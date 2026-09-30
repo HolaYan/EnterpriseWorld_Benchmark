@@ -98,6 +98,7 @@ section.sec{padding:64px 0;border-bottom:1px solid var(--line)}
 section.sec:last-of-type{border-bottom:0}
 .sec-head{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:22px}
 .lead{font-size:1.08rem;color:var(--text);max-width:68ch}
+.lead.full{max-width:none}
 .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
 .pr{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;box-shadow:var(--shadow)}
 .pr .n{font-family:var(--mono);color:var(--brand);font-size:.8rem;letter-spacing:.06em}
@@ -271,8 +272,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
 
 <section class="sec" id="idea"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">The idea</div><h2>Workflows are the unit of evaluation, not tasks</h2></div>
-  <div class="prose">
-    <p class="lead">In a payment workflow, a computed amount must inform the approval, the approval must authorize the payment, and reconciliation must use the transaction record that payment created. Existing benchmarks capture long, stateful tasks, but rarely make these dependencies explicit, verified, and controllable. EnterpriseWorld is built from familiar source tasks (BIRD, Spider 2.0, EnterpriseOps-Gym, WorkBench, AppWorld) woven into shared cases where every edge is a real field-level handoff that an incorrect upstream result demonstrably breaks.</p>
+  <div>
+    <p class="lead full">In a payment workflow, a computed amount must inform the approval, the approval must authorize the payment, and reconciliation must use the transaction record that payment created. Existing benchmarks capture long, stateful tasks, but rarely make these dependencies explicit, verified, and controllable. EnterpriseWorld is built from familiar source tasks (BIRD, Spider 2.0, EnterpriseOps-Gym, WorkBench, AppWorld) woven into shared cases where every edge is a real field-level handoff that an incorrect upstream result demonstrably breaks.</p>
   </div>
   <div class="principles">
     <div class="pr"><div class="n">01</div><h3>Realistic</h3><p>Enterprise operations keep their original data and judging semantics; 7 of 20 checks per workflow are inherited byte for byte from the source dataset.</p></div>
