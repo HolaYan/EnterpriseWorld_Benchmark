@@ -110,6 +110,16 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--line);bor
 figcaption{font-size:.9rem;color:var(--muted);margin-top:.7rem;line-height:1.55}
 /* board */
 .board{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.query{padding:16px 20px 14px;border-bottom:1px solid var(--line-soft)}
+.query p{margin:0 0 .6rem;font-size:.98rem;color:var(--text);max-width:none}
+.deliv{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.deliv .lab{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.deliv span:not(.lab){font:600 .76rem var(--mono);background:var(--band);border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--ink)}
+.ticker{display:flex;gap:12px;align-items:baseline;padding:10px 20px;border-bottom:1px solid var(--line-soft);background:var(--paper);min-height:44px}
+.ticker .tk{font:600 .78rem var(--mono);color:var(--brand);letter-spacing:.04em;white-space:nowrap}
+.ticker .tw{font-family:var(--display);font-size:1.05rem;color:var(--ink);line-height:1.3}
+.ticker.bad .tk{color:var(--bad)}
+.ticker.ok .tk{color:var(--ok)}
 .board-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line-soft);background:var(--band)}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper)}
 .seg button{border:0;background:transparent;color:var(--muted);padding:.42rem .85rem;font:600 .82rem var(--body);cursor:pointer}
@@ -288,6 +298,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
   <div class="sec-head"><div class="eyebrow">The workflow</div><h2>One misread at step 3, and the whole case goes wrong consistently</h2></div>
   <p class="lead">This is a real workflow from the benchmark, a balance-transfer request, and a real run by a frontier model under the plan-level condition. Each box is an operation; each line is a verified dependency (dashed amber lines span five steps or more). Press play to watch the run: the agent adds a status filter the reference book never asked for, the uplift becomes 3 instead of 65, and every downstream action is the other branch's action. Click any operation to read what happened there.</p>
   <div class="board" id="board">
+    <div class="query"><div class="eyebrow">Business request · plan-level condition</div><p>Process the cardholder's balance-transfer request: the new promo-APR line pays off the high-APR source card. Plan and carry the engagement out end to end from the case files and the live records; the desk's standing policies arrive as notes the first time you touch the records they govern.</p><div class="deliv"><span class="lab">Deliverable</span><span>branch</span><span>delta</span><span>promo_uplift</span><span>total_transfer</span><span>transfer_base</span><span>source_balance</span><span>reconciled</span><span>side_scan_count</span></div></div>
     <div class="board-top">
       <div class="seg" role="group" aria-label="Run to replay">
         <button type="button" data-mode="agent" aria-pressed="true">Agent run</button>
@@ -300,6 +311,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
         <button class="ib" type="button" id="reset">Reset</button>
       </div>
     </div>
+    <div class="ticker" id="ticker"><span class="tk">Press Play</span><span class="tw">The graph fills in one operation at a time; the panel below explains each one.</span></div>
     <div class="board-body">
       <div id="wfhost"></div>
       <aside class="narr" id="narr"></aside>
@@ -380,26 +392,26 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
 
 /* ---------- workflow data: hybrid_balance_transfer_offer__0001, GPT-5.6 Sol, plan-level run ---------- */
 var NODES=[
- {id:'n01',k:1,lane:0,role:'req',label:'source balance',sys:'BIRD reference book',gold:'149,609.18',agent:'#52: 149,609.18',ok:true,text:'Average loan amount over male-borrower links. The agent computes it exactly as the book does.'},
- {id:'n02',k:2,lane:2,role:'req',label:'transfer base',sys:'CRM (WorkBench)',gold:'748',agent:'748, stamped [BTO-BASE]',ok:true,text:'transfer_base = round(source_balance / 200), stamped on the CRM row.'},
- {id:'n03',k:3,lane:0,role:'req',label:'promo uplift',sys:'BIRD reference book',gold:'65',agent:'#53: 3',ok:false,origin:true,text:'Count of qualifying loans (BIRD financial #136, inherited verbatim). The agent adds status = \'A\', reading "approved" as a status code; the book counts every loan meeting the amount, date, and issuance conditions. 65 becomes 3.'},
- {id:'n04',k:4,lane:1,role:'req',label:'total & delta',sys:'composition',gold:'813; 65',agent:'751; 3',ok:false,text:'total_transfer = base + uplift, delta = uplift. Arithmetically right for the agent\'s own uplift, wrong for the case.'},
- {id:'n05',k:5,lane:1,role:'req',label:'branch',sys:'composition',gold:'CONDITIONAL_UW_REVIEW',agent:'AUTO_APPROVE_STANDARD_PROMO',ok:false,text:'delta 3 falls below the conditional-review floor, so the branch flips to automatic approval. From here every gated action is the other route\'s action.'},
- {id:'n06',k:6,lane:5,role:'req',label:'promo hold',sys:'Enterprise scheduler',gold:'hold cites 813',agent:'#113–118: cites 751',ok:false,text:'The promo-window hold is placed correctly but cites the wrong total.'},
- {id:'n07',k:7,lane:3,role:'opt',label:'payoff [XFER]',sys:'Venmo ledger',gold:'65',agent:'#107: 3',ok:false,text:'Payoff wired for exactly delta: 3 instead of 65.'},
- {id:'n08',k:8,lane:4,role:'req',label:'handoff e-mail',sys:'Gmail',gold:'sent',agent:'not sent',ok:false,text:'The underwriting handoff is sent only on conditional or declined branches. Not sending it is correct for the branch the agent chose, and still fails the check.'},
- {id:'n09',k:9,lane:2,role:'req',label:'CRM log',sys:'CRM (WorkBench)',gold:'813, after the handoff',agent:'751, no handoff',ok:false,text:'The disposition log is written without the handoff that should precede it.'},
- {id:'n10',k:10,lane:3,role:'req',label:'fee allocation',sys:'Splitwise',gold:'on 65',agent:'on 3',ok:false,text:'Intercompany fee allocation computed from the wrong delta.'},
- {id:'n11',k:11,lane:4,role:'req',label:'follow-up task',sys:'Todoist',gold:'delta 65',agent:'#111: delta 3',ok:false,text:'Reconciliation follow-up opened with delta 3.'},
- {id:'n12',k:12,lane:2,role:'req',label:'tier stamp',sys:'CRM (WorkBench)',gold:'CONDITIONAL_UW_REVIEW',agent:'#123: AUTO_APPROVE…, uplift 3',ok:false,text:'The tier is supposed to be re-derived from the live book. The agent re-uses its own uplift.'},
- {id:'n13',k:13,lane:5,role:'req',label:'intake ticket',sys:'ITSM gym',gold:'conditional route',agent:'#119–120: auto-approve route',ok:false,text:'Card-servicing intake filed on the wrong route.'},
- {id:'n14',k:14,lane:4,role:'req',label:'status e-mail',sys:'Gmail',gold:'813, conditional',agent:'#110: 751, auto-approve',ok:false,text:'Status update to the manager cites the wrong total and tier.'},
- {id:'n15',k:15,lane:5,role:'req',label:'briefing case',sys:'HR gym',gold:'conditional route',agent:'#125–126: auto-approve route',ok:false,text:'Manager briefing case reassigned on the basis of the wrong branch.'},
- {id:'n16',k:16,lane:3,role:'req',label:'settle-up',sys:'Splitwise',gold:'share of 65',agent:'share of 3',ok:false,text:'Underwriting settle-up matches the wrong share.'},
- {id:'n17',k:17,lane:4,role:'req',label:'wrap-up',sys:'Todoist',gold:'total 813',agent:'#122: 751',ok:false,text:'Wrap-up comment quotes 751.'},
- {id:'n18',k:18,lane:2,role:'opt',label:'reconcile',sys:'CRM (WorkBench)',gold:'net 65',agent:'#132–162: net 3, "reconciled: ok"',ok:false,text:'The agent re-reads every record it wrote itself and confirms they agree with each other. Nothing re-asks the book.'},
- {id:'n19',k:19,lane:2,role:'req',label:'review booking',sys:'Calendar (WorkBench)',gold:'65 / 813 / 65 / conditional',agent:'#112: pins fail',ok:false,text:'The closing review is booked in the right slot, but its pins require the true uplift, total, delta, and branch.'},
- {id:'n20',k:20,lane:0,role:'opt',label:'control probe',sys:'BIRD reference book',gold:'74',agent:'74',ok:true,text:'Quarter-close control reading, reported verbatim. Correct.'}
+ {id:'n01',what:"Look up the source card's balance in the reference book",k:1,lane:0,role:'req',label:'source balance',sys:'BIRD reference book',gold:'149,609.18',agent:'#52: 149,609.18',ok:true,text:'Average loan amount over male-borrower links. The agent computes it exactly as the book does.'},
+ {id:'n02',what:"Set the transfer base from the source balance and stamp it on the CRM",k:2,lane:2,role:'req',label:'transfer base',sys:'CRM (WorkBench)',gold:'748',agent:'748, stamped [BTO-BASE]',ok:true,text:'transfer_base = round(source_balance / 200), stamped on the CRM row.'},
+ {id:'n03',what:"Count the qualifying loans in the reference book to size the promo uplift",k:3,lane:0,role:'req',label:'promo uplift',sys:'BIRD reference book',gold:'65',agent:'#53: 3',ok:false,origin:true,text:'Count of qualifying loans (BIRD financial #136, inherited verbatim). The agent adds status = \'A\', reading "approved" as a status code; the book counts every loan meeting the amount, date, and issuance conditions. 65 becomes 3.'},
+ {id:'n04',what:"Compute the total transfer and the escalation delta",k:4,lane:1,role:'req',label:'total & delta',sys:'composition',gold:'813; 65',agent:'751; 3',ok:false,text:'total_transfer = base + uplift, delta = uplift. Arithmetically right for the agent\'s own uplift, wrong for the case.'},
+ {id:'n05',what:"Decide the decision branch from the delta and the base",k:5,lane:1,role:'req',label:'branch',sys:'composition',gold:'CONDITIONAL_UW_REVIEW',agent:'AUTO_APPROVE_STANDARD_PROMO',ok:false,text:'delta 3 falls below the conditional-review floor, so the branch flips to automatic approval. From here every gated action is the other route\'s action.'},
+ {id:'n06',what:"Reserve the promo-window hold in the enterprise scheduler",k:6,lane:5,role:'req',label:'promo hold',sys:'Enterprise scheduler',gold:'hold cites 813',agent:'#113–118: cites 751',ok:false,text:'The promo-window hold is placed correctly but cites the wrong total.'},
+ {id:'n07',what:"Post the payoff transfer for exactly the delta on the card-payoff ledger",k:7,lane:3,role:'opt',label:'payoff [XFER]',sys:'Venmo ledger',gold:'65',agent:'#107: 3',ok:false,text:'Payoff wired for exactly delta: 3 instead of 65.'},
+ {id:'n08',what:"Send the underwriting handoff e-mail if the branch requires review",k:8,lane:4,role:'req',label:'handoff e-mail',sys:'Gmail',gold:'sent',agent:'not sent',ok:false,text:'The underwriting handoff is sent only on conditional or declined branches. Not sending it is correct for the branch the agent chose, and still fails the check.'},
+ {id:'n09',what:"Log the transfer disposition on the ops manager's CRM record",k:9,lane:2,role:'req',label:'CRM log',sys:'CRM (WorkBench)',gold:'813, after the handoff',agent:'751, no handoff',ok:false,text:'The disposition log is written without the handoff that should precede it.'},
+ {id:'n10',what:"Post the intercompany fee allocation on the expense-share ledger",k:10,lane:3,role:'req',label:'fee allocation',sys:'Splitwise',gold:'on 65',agent:'on 3',ok:false,text:'Intercompany fee allocation computed from the wrong delta.'},
+ {id:'n11',what:"Open the reconciliation follow-up task",k:11,lane:4,role:'req',label:'follow-up task',sys:'Todoist',gold:'delta 65',agent:'#111: delta 3',ok:false,text:'Reconciliation follow-up opened with delta 3.'},
+ {id:'n12',what:"Re-derive the tier from the live book and stamp it on the CRM",k:12,lane:2,role:'req',label:'tier stamp',sys:'CRM (WorkBench)',gold:'CONDITIONAL_UW_REVIEW',agent:'#123: AUTO_APPROVE…, uplift 3',ok:false,text:'The tier is supposed to be re-derived from the live book. The agent re-uses its own uplift.'},
+ {id:'n13',what:"File the card-servicing intake ticket on the route the tier requires",k:13,lane:5,role:'req',label:'intake ticket',sys:'ITSM gym',gold:'conditional route',agent:'#119–120: auto-approve route',ok:false,text:'Card-servicing intake filed on the wrong route.'},
+ {id:'n14',what:"Send the ops manager a status update citing total and tier",k:14,lane:4,role:'req',label:'status e-mail',sys:'Gmail',gold:'813, conditional',agent:'#110: 751, auto-approve',ok:false,text:'Status update to the manager cites the wrong total and tier.'},
+ {id:'n15',what:"Record in the HR case that the ops manager has been briefed",k:15,lane:5,role:'req',label:'briefing case',sys:'HR gym',gold:'conditional route',agent:'#125–126: auto-approve route',ok:false,text:'Manager briefing case reassigned on the basis of the wrong branch.'},
+ {id:'n16',what:"Post the underwriting settle-up matching the recorded share",k:16,lane:3,role:'req',label:'settle-up',sys:'Splitwise',gold:'share of 65',agent:'share of 3',ok:false,text:'Underwriting settle-up matches the wrong share.'},
+ {id:'n17',what:"Wrap up the reconciliation task with the final total",k:17,lane:4,role:'req',label:'wrap-up',sys:'Todoist',gold:'total 813',agent:'#122: 751',ok:false,text:'Wrap-up comment quotes 751.'},
+ {id:'n18',what:"Reconcile the posted transfer against the recorded delta",k:18,lane:2,role:'opt',label:'reconcile',sys:'CRM (WorkBench)',gold:'net 65',agent:'#132–162: net 3, "reconciled: ok"',ok:false,text:'The agent re-reads every record it wrote itself and confirms they agree with each other. Nothing re-asks the book.'},
+ {id:'n19',what:"Schedule the closing ops review after the hold window",k:19,lane:2,role:'req',label:'review booking',sys:'Calendar (WorkBench)',gold:'65 / 813 / 65 / conditional',agent:'#112: pins fail',ok:false,text:'The closing review is booked in the right slot, but its pins require the true uplift, total, delta, and branch.'},
+ {id:'n20',what:"Take the quarter's control reading from the reference book",k:20,lane:0,role:'opt',label:'control probe',sys:'BIRD reference book',gold:'74',agent:'74',ok:true,text:'Quarter-close control reading, reported verbatim. Correct.'}
 ];
 var EDGES=[['n01','n02','v',1],['n02','n04','v',2],['n03','n04','v',1],['n04','n05','v',1],['n02','n05','v',3],['n04','n06','v',2],['n04','n07','v',3],['n04','n08','v',4],['n05','n08','v',3],['n08','n09','s',1],['n04','n09','v',5],['n09','n11','s',2],['n04','n10','v',6],['n11','n12','s',1],['n12','n13','s',1],['n13','n14','s',1],['n04','n14','v',10],['n14','n15','s',1],['n11','n17','s',6],['n15','n17','s',2],['n07','n18','s',11],['n04','n18','v',14],['n06','n19','s',13],['n09','n19','s',10],['n15','n19','s',4],['n10','n16','s',6],['n04','n16','v',12],['n03','n12','v',9],['n02','n13','v',11],['n05','n15','v',10],['n04','n17','v',13],['n10','n17','s',7],['n16','n17','s',1],['n01','n19','v',18]];
 var LANES=['REFERENCE BOOK','COMPUTE','CRM · CALENDAR','LEDGERS','MAIL · TASKS','ENTERPRISE GYMS'];
@@ -437,7 +449,7 @@ function narrHTML(n){
   var pill=done?('<span class="pill '+(st?'ok':'bad')+'">'+(st?'check passes':'check fails')+'</span>'):'<span class="pill wait">not yet executed</span>';
   var agentVal=board.mode==='agent'?n.agent:(board.mode==='oracle'&&n.id==='n04'?'oracle supplies uplift 65 → 813; 65':n.gold);
   var body=board.mode==='agent'?n.text:(board.mode==='oracle'?'Under the handoff oracle the correct upstream object is delivered when this consumer starts its step. With uplift 65 at operation 4, the branch, ledger, and every gated action follow the reference route.':'The reference program executes the workflow on the live world and recomputes every figure, branch, and target from it.');
-  return '<div class="k">operation '+n.k+' · '+n.sys+(n.role==='opt'?' · optional':' · depth-required')+(n.origin&&board.mode==='agent'?' · <b style="color:var(--bad)">origin of the error</b>':'')+'</div><div class="t">'+n.label.charAt(0).toUpperCase()+n.label.slice(1)+'</div>'+pill+'<div class="body">'+body+'</div><div class="vals"><span class="lab">reference</span><span>'+n.gold+'</span><span class="lab">'+(board.mode==='gold'?'reference':'agent')+'</span><span>'+agentVal+'</span></div>';
+  return '<div class="k">operation '+n.k+' · '+n.sys+(n.role==='opt'?' · optional':' · depth-required')+(n.origin&&board.mode==='agent'?' · <b style="color:var(--bad)">origin of the error</b>':'')+' · '+n.label+'</div><div class="t">'+n.what+'</div>'+pill+'<div class="body">'+body+'</div><div class="vals"><span class="lab">reference</span><span>'+n.gold+'</span><span class="lab">'+(board.mode==='gold'?'reference':'agent')+'</span><span>'+agentVal+'</span></div>';
 }
 function reportHTML(){
   var pass=board.mode==='agent'?false:true;
@@ -454,18 +466,19 @@ function paint(){
     if(b<board.i){var ok=status(byId[e[0]]);p.classList.add(ok?'ok':'bad');p.setAttribute('marker-end','url(#arr-'+(ok?'ok':'bad')+')');}
     else{p.setAttribute('marker-end','url(#arr-'+(e[3]>=5?'amber':'blue')+')');if(a>=board.i)p.classList.add('dim');}});
 }
-function showNode(id,manual){var n=byId[id];document.getElementById('narr').innerHTML=narrHTML(n);if(manual){svg.querySelectorAll('.node.cur').forEach(function(g){g.classList.remove('cur');});svg.querySelector('[data-id="'+id+'"]').classList.add('cur');}}
+function setTicker(n){var t=document.getElementById('ticker');var done=board.i>NODES.indexOf(n);var st=status(n);t.className='ticker'+(done?(st?' ok':' bad'):'');t.innerHTML='<span class="tk">step '+n.k+' of 20'+(done?(st?' · passes':' · fails'):'')+'</span><span class="tw">'+n.what+'</span>';}
+function showNode(id,manual){var n=byId[id];setTicker(n);document.getElementById('narr').innerHTML=narrHTML(n);if(manual){svg.querySelectorAll('.node.cur').forEach(function(g){g.classList.remove('cur');});svg.querySelector('[data-id="'+id+'"]').classList.add('cur');}}
 function stepOnce(){
   if(board.i>=NODES.length){finish();return false;}
   var n=NODES[board.i]; board.i++; paint(); showNode(n.id,false);
   if(board.mode==='agent'&&n.origin){var h=svg.querySelector('[data-id="'+n.id+'"] .halo');h.classList.remove('go');void h.getBoundingClientRect();h.classList.add('go');}
   return true;
 }
-function finish(){stopPlay();document.getElementById('narr').innerHTML=reportHTML();}
+function finish(){stopPlay();document.getElementById('narr').innerHTML=reportHTML();var t=document.getElementById('ticker');t.className='ticker'+(board.mode==='agent'?' bad':' ok');t.innerHTML='<span class="tk">run complete</span><span class="tw">'+(board.mode==='agent'?'Case closed with the wrong figures: 15 of 17 required operations fail.':'Every required operation passes; the case closes on the reference route.')+'</span>';}
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function play(){if(board.timer){stopPlay();return;}document.querySelector('#play span').textContent='Pause';var tick=function(){if(!stepOnce()){return;}if(board.i>=NODES.length){board.timer=setTimeout(function(){finish();},900);return;}board.timer=setTimeout(tick,reduce?400:(NODES[board.i-1].origin?1700:720));};tick();}
 function stopPlay(){if(board.timer){clearTimeout(board.timer);board.timer=null;}document.querySelector('#play span').textContent='Play';}
-function reset(){stopPlay();board.i=0;paint();document.getElementById('narr').innerHTML='<div class="k">balance-transfer offer · 20 operations · required depth 12</div><div class="t">'+(board.mode==='agent'?'GPT-5.6 Sol, plan-level condition':(board.mode==='oracle'?'Same model, handoff oracle':'Reference execution'))+'</div><div class="body">'+(board.mode==='agent'?'The agent receives the business objective, the case files, and six database tools. Policies arrive as desk notes the first time it works the records they govern. It must plan the engagement itself.':(board.mode==='oracle'?'When a consumer operation starts its step, the harness delivers the correct dependency object as the reference execution produced it. Everything else is unchanged.':'The reference program that defines ground truth: every figure recomputed from the live world, every check passing.'))+'</div><div class="body" style="color:var(--muted)">Press Play, or Step through one operation at a time.</div>';}
+function reset(){stopPlay();board.i=0;paint();var t=document.getElementById('ticker');t.className='ticker';t.innerHTML='<span class="tk">Press Play</span><span class="tw">The graph fills in one operation at a time; the panel below explains each one.</span>';document.getElementById('narr').innerHTML='<div class="k">balance-transfer offer · 20 operations · required depth 12</div><div class="t">'+(board.mode==='agent'?'GPT-5.6 Sol, plan-level condition':(board.mode==='oracle'?'Same model, handoff oracle':'Reference execution'))+'</div><div class="body">'+(board.mode==='agent'?'The agent receives the business objective, the case files, and six database tools. Policies arrive as desk notes the first time it works the records they govern. It must plan the engagement itself.':(board.mode==='oracle'?'When a consumer operation starts its step, the harness delivers the correct dependency object as the reference execution produced it. Everything else is unchanged.':'The reference program that defines ground truth: every figure recomputed from the live world, every check passing.'))+'</div><div class="body" style="color:var(--muted)">Press Play, or Step through one operation at a time.</div>';}
 document.getElementById('play').addEventListener('click',play);
 document.getElementById('step').addEventListener('click',function(){stopPlay();if(!stepOnce())finish();});
 document.getElementById('reset').addEventListener('click',reset);
