@@ -1,0 +1,105 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The regional redemption base count is fixed from the reference book's own question — the number of games played in the Italian Serie A league in the 2015–2016 season (a whole count).",
+  "kinds": [
+   "redemption_base_count"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_european_football_2_League",
+   "bird_european_football_2_Match"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The tier index is taken from its book's own question — the number of bond connections summed over every atom whose id ends in _19 (the 19th atom in each molecule, across all molecules) — and set the redemption uplift as that index rounded to a whole number, times the declared per-index 10.",
+  "kinds": [
+   "tier_index"
+  ],
+  "node": "n03",
+  "tables": [
+   "bird_toxicology_connected"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "definition",
+  "note": "The four independent side anchors for the quarterly redemption overview — the French-language share among the Story Spotlight cards, the funds amount received by the Vice President, the number of DISTINCT euro-currency customers having at least one month whose consumption exceeds 1000 (each counts once, not once per qualifying month), and the number of active schools whose CITY is 'San Joaquin' (the city, not the county of the same name) with a California mailing state.",
+  "kinds": [],
+  "node": "",
+  "tables": [],
+  "trigger": "start"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The base redemption is set as that count times the declared per-unit base of 100.",
+  "kinds": [
+   "base_redemption",
+   "redemption_base_count"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_european_football_2_League",
+   "bird_european_football_2_Match",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "rate",
+  "note": "The total redemption is the base plus the uplift; the redemption delta equals the uplift.",
+  "kinds": [
+   "base_redemption",
+   "branch",
+   "redemption_delta",
+   "redemption_uplift",
+   "tier_index",
+   "total_redemption"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_european_football_2_League",
+   "bird_european_football_2_Match",
+   "bird_toxicology_connected"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The disposition branch is decided on the delta — 'CLAWBACK' when the delta is at least 1000000, 'MANUAL_REVIEW' when it is at least 1000, 'AUTO_APPROVE' otherwise",
+  "kinds": [
+   "base_redemption",
+   "branch",
+   "redemption_delta",
+   "redemption_uplift",
+   "tier_index",
+   "total_redemption"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_european_football_2_League",
+   "bird_european_football_2_Match",
+   "bird_toxicology_connected"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n18",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

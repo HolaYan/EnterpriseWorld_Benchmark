@@ -1,0 +1,5341 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1164_hold_case_count",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "auto_release_base_is_count_times_multiplier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "auto_release_base_derives_from_stored_count",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "vendor_crm_auto_release_base_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1039_overlimit_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n04": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "uplift_is_round_index_times_multiplier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "hold_carry_equals_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "hold_carry_derives_from_stored_base_and_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n05": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_239_side_atom_connections",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_239_side_atom_connections"
+   ]
+  },
+  "n06": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "hold_review_window_hold_placed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n07": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_depositor",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n08": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "negotiate_email_iff_negotiate_or_consolidate",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n09": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "crm_logged_hold_carry_gated_by_branch",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n10": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n11": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n12": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n13": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "csm_contact_first_name_updated",
+     "ok": true,
+     "actual": "Linda",
+     "expected": "Linda"
+    },
+    {
+     "name": "csm_contact_last_name_updated",
+     "ok": true,
+     "actual": "Hernandez",
+     "expected": "Hernandez"
+    },
+    {
+     "name": "email_sendas_alias_provisioned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_contact_last_name_confirmed",
+     "ok": true,
+     "actual": "Hernandez",
+     "expected": "Hernandez"
+    },
+    {
+     "name": "email_sendas_alias_confirmed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_contact_first_name_confirmed",
+     "ok": true,
+     "actual": "Linda",
+     "expected": "Linda"
+    },
+    {
+     "name": "contact_beat_gated_on_tier_stamp",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n14": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "priority_task_reflects_tier_after_contact_beat",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n15": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "status_email_cites_hold_carry_and_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n16": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_372_side_toughness_cards",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n17": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__hold_case_count_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__auto_release_base_is_fn_of_count",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__overlimit_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__overlimit_uplift_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__hold_carry_is_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_atom_connections_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_toughness_cards_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_vp_funds_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_gas_txns_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "final_task_pin__side_atom_connections_correct"
+   ]
+  },
+  "n19": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1331_side_vp_funds",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n20": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1508_side_gas_txns",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  }
+ },
+ "terminal": {
+  "passed": true,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "hold_case_count_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "auto_release_base_is_fn_of_count",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "overlimit_index_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "overlimit_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "hold_carry_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "renewal_review_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_disbursement_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_vendor_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "negotiate_email_matches_branch_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_hold_carry",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "white_glove_beat_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "priority_task_reflects_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_hold_carry_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_atom_connections_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "side_toughness_cards_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_vp_funds_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_gas_txns_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "no_autorenew_negotiate_email",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_consolidate_note_for_non_strategic_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_disbursement",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_vendor",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_1164_hold_case_count",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__auto_release_base_is_count_times_multiplier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__auto_release_base_derives_from_stored_count",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__vendor_crm_auto_release_base_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_1039_overlimit_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_is_round_index_times_multiplier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_derives_from_stored_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__hold_carry_equals_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__hold_carry_derives_from_stored_base_and_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__branch_derives_from_stored_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__src_birdsql_239_side_atom_connections",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__hold_review_window_hold_placed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_depositor",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_credit_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__negotiate_email_iff_negotiate_or_consolidate",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_hold_carry_gated_by_branch",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_contact_first_name_updated",
+    "ok": true,
+    "actual": "Linda",
+    "expected": "Linda"
+   },
+   {
+    "name": "node_n13__csm_contact_last_name_updated",
+    "ok": true,
+    "actual": "Hernandez",
+    "expected": "Hernandez"
+   },
+   {
+    "name": "node_n13__email_sendas_alias_provisioned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_contact_last_name_confirmed",
+    "ok": true,
+    "actual": "Hernandez",
+    "expected": "Hernandez"
+   },
+   {
+    "name": "node_n13__email_sendas_alias_confirmed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_contact_first_name_confirmed",
+    "ok": true,
+    "actual": "Linda",
+    "expected": "Linda"
+   },
+   {
+    "name": "node_n13__contact_beat_gated_on_tier_stamp",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__priority_task_reflects_tier_after_contact_beat",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_hold_carry_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__src_birdsql_372_side_toughness_cards",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_net_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_figures_consistent",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__review_after_window_conflict_free_gated",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_terminal",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__hold_case_count_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__auto_release_base_is_fn_of_count",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__overlimit_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__overlimit_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__hold_carry_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_atom_connections_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_toughness_cards_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_vp_funds_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_gas_txns_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__src_birdsql_1331_side_vp_funds",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_1508_side_gas_txns",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ],
+  "n_ok": 92,
+  "n_checks": 96,
+  "failed": [
+   "overlimit_index_correct",
+   "side_atom_connections_correct",
+   "node_n05__src_birdsql_239_side_atom_connections",
+   "node_n18__final_task_pin__side_atom_connections_correct"
+  ]
+ },
+ "n_tool_calls": 117,
+ "n_turns": 17,
+ "n_assistant_msgs": 1,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 229.2,
+ "usage": {
+  "input_tokens": 35880,
+  "output_tokens": 6996,
+  "reasoning_tokens": 3778,
+  "cache_read_tokens": 288197,
+  "cache_write_tokens": 34042,
+  "steps": 17
+ },
+ "runner_errors": [],
+ "transport": {
+  "api": "responses",
+  "reasoning_effort": "high"
+ },
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nRun the Q1 mobile-deposit-hold batch for the daily deposit book. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nauto_release_base: the auto-release base — whole number\nbranch: the hold-outcome route — exactly one of {AUTO_RELEASE, PARTIAL_HOLD, EXTENDED_REVIEW}\nhold_carry: the hold carry — whole number\nhold_case_count: the flagged mobile-deposit case count — whole number\nhold_delta: the hold delta — whole number\noverlimit_index: the over-limit index — the book's exact decimal value\noverlimit_uplift: the over-limit uplift — whole number, no thousands separators\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the release ledger nets to the delta\nside_atom_connections: the first side anchor — whole number\nside_gas_txns: the fourth side anchor — whole number\nside_toughness_cards: the second side anchor — whole number\nside_vp_funds: the third side anchor — the book's exact value\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nMOBILE DEPOSIT HOLD DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[MDH-BASE]' — depositor CRM notes: the auto-release-base stamp, citing 'auto_release_base=<n>'.\n   - '[MDH-HOLD]' — wb_calendar_events EVENT NAME of the hold-review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[MDH-RELEASE]' — hold-release ledger (vm) DESCRIPTION of every release entry (also carrying the hold citation token 'MDH-2024-Q1-042').\n   - '[MDH-REVERSAL]' — release ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[MDH-RELEASE]' tag).\n   - '[MDH-HANDOFF]' — email SUBJECT of the fraud-review-desk handoff notification; the BODY must cite the hold carry and the delta.\n   - '[MDH-LOG]' — depositor CRM notes: the disposition log, citing 'hold_carry=<n>'.\n   - '[MDH-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany hold-review carry allocation. The expense books the full recorded hold_carry as its amount, and its sw_expense_shares row assigns ops.controller@atlas.com a share of exactly half that amount.\n   - '[MDH-FUP]' — Todoist task TITLE (in your 'Q1 Mobile Deposit Hold Batch' project); the title cites the delta.\n   - '[MDH-TIER]' — depositor CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[MDH-PRIOTASK]' — wb_project_tasks TASK NAME of the hold-management priority task assigned to you (list_name 'In Progress'); the name carries the tier word.\n   - '[MDH-STATUS]' — email SUBJECT of the depositor status update; the BODY must cite the hold carry and the tier word.\n   - '[MDH-RECON]' — depositor CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[MDH-RELEASE]' ledger (releases minus reversals) at write time, and the note is written only after the figure chain is re-derived: the recorded hold_carry must still come to auto_release_base + round(overlimit_index)*1000.\n   - '[MDH-REVIEW]' — wb_calendar_events EVENT NAME of the post-release hold review.\n   - '[MDH-ESCALATE]' — depositor CRM notes: the extended-review escalation note, filed ONLY on the extended-review route.\n\n2. ROUTE AND TIER WORDS. The hold-outcome route is always one of the desk's three route words: 'AUTO_RELEASE', 'PARTIAL_HOLD', 'EXTENDED_REVIEW'. The hold tier is always one of the desk's three tier words: 'AUTO_RELEASE_TIER', 'PARTIAL_HOLD_TIER', 'EXTENDED_REVIEW_TIER'. A cited tier word is re-derived from the live over-limit-index book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (riley.chen@atlas.com); the depositor is written to at deposit.desk@atlas.com, the fraud-review desk at fraud.review@krotov.cz. Hold releases run on the vm ledger FROM the hold treasury (hold.treasury@atlas.com) TO the correct depositor (deposit.desk@atlas.com); a release that lands on the name-match wrong depositor (wrong.depositor@atlas.com) is corrected by that wrong depositor sending the same amount back to the treasury, never deleted. The hold-review carry allocation runs on the sw ledger between you and the ops controller (ops.controller@atlas.com). Follow-up work lives in your Todoist 'Q1 Mobile Deposit Hold Batch' project; the window and hold review on your own wb_calendar_events (participant_email = riley.chen@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Release rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the depositor row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the depositor record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The hold review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the over-limit index keeps its exact decimal; the side connection, card, officer-funds and gas-transaction figures are reported as the book computes them); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTER (shared desk systems; record under the desk ids of record, exactly as stated — the registers' OTHER rows are background book, never modify them).\n   - Depositor-contact identity beat (spanning two desk systems). On the CSM user register (eops_sn_csm_server_* tables) set the flagged depositor's contact record (email 'jessicabrown83@gmail.com') to first_name 'Linda' and last_name 'Hernandez'. On the email-alias system (eops_gym_email_mcp_* tables) provision the verified send-as alias for user_id '104daf4b-2023-49f1-8def-39b4e9dcda5e': send_as_email 'jb@gmail.com', display_name 'Jessica Brown', reply_to_address 'jessicabrown83@gmail.com', signature 'Warm wishes, Jessica Brown - Client Services: +44 7911 234567', is_primary 0, treat_as_alias 1, verification_status 'accepted'.\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_depositor\": [{\"customer_id\": \"00000002\", \"customer_email\": \"deposit.desk@atlas.com\", \"customer_name\": \"Deposit Desk\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"status\": \"Open\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"hold.treasury@atlas.com\", \"note\": \"\"}, {\"email\": \"deposit.desk@atlas.com\", \"note\": \"\"}, {\"email\": \"wrong.depositor@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"riley.chen@atlas.com\", \"note\": \"\"}, {\"email\": \"deposit.desk@atlas.com\", \"note\": \"\"}, {\"email\": \"fraud.review@krotov.cz\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Mobile Deposit Hold Batch\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"Deposit-desk daily standup\", \"participant_email\": \"riley.chen@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"eops_sn_csm_server_user\": [{\"first_name\": \"Thomas\", \"last_name\": \"Green\", \"email\": \"thomas.green@servicenow.com\", \"role\": \"agent\", \"note\": \"\"}], \"eops_gym_email_mcp_send_as_aliases\": [{\"send_as_email\": \"jessicabrown83@gmail.com\", \"display_name\": \"Linda Hernandez\", \"verification_status\": \"accepted\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the six reference books, the ledgers, CRM state, the eops_ CSM user register and email-alias system).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions release / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / a wb_project_tasks task / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register row).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: hold releases are compensatable — reverse a wrong-depositor release, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "Engagement completed and reconciled.\n\nREPORT\nauto_release_base: 100\nbranch: PARTIAL_HOLD\nhold_carry: 62100\nhold_case_count: 1\nhold_delta: 62000\noverlimit_index: 61.57142857142857\noverlimit_uplift: 62000\nreconciled: ok\nside_atom_connections: 497\nside_gas_txns: 56\nside_toughness_cards: 1\nside_vp_funds: 50",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_card_games_cards",
+     "bird_card_games_foreign_data",
+     "bird_card_games_legalities",
+     "bird_card_games_rulings",
+     "bird_card_games_set_translations",
+     "bird_card_games_sets",
+     "bird_debit_card_specializing_customers",
+     "bird_debit_card_specializing_gasstations",
+     "bird_debit_card_specializing_products",
+     "bird_debit_card_specializing_transactions_1k",
+     "bird_debit_card_specializing_yearmonth",
+     "bird_european_football_2_Country",
+     "bird_european_football_2_League",
+     "bird_european_football_2_Match",
+     "bird_european_football_2_Player",
+     "bird_european_football_2_Player_Attributes",
+     "bird_european_football_2_Team",
+     "bird_european_football_2_Team_Attributes",
+     "bird_student_club_attendance",
+     "bird_student_club_budget",
+     "bird_student_club_event",
+     "bird_student_club_expense",
+     "bird_student_club_income",
+     "bird_student_club_major",
+     "bird_student_club_member",
+     "bird_student_club_zip_code",
+     "bird_thrombosis_prediction_Examination",
+     "bird_thrombosis_prediction_Laboratory",
+     "bird_thrombosis_prediction_Patient",
+     "bird_toxicology_atom",
+     "bird_toxicology_bond",
+     "bird_toxicology_connected",
+     "bird_toxicology_molecule",
+     "eops_gym_email_mcp_attachments",
+     "eops_gym_email_mcp_auto_forwarding",
+     "eops_gym_email_mcp_cse_identities",
+     "eops_gym_email_mcp_cse_key_pairs",
+     "eops_gym_email_mcp_cse_private_key_metadata",
+     "eops_gym_email_mcp_delegates",
+     "eops_gym_email_mcp_drafts",
+     "eops_gym_email_mcp_filters",
+     "eops_gym_email_mcp_forwarding_addresses",
+     "eops_gym_email_mcp_history_events",
+     "eops_gym_email_mcp_imap_settings",
+     "eops_gym_email_mcp_labels",
+     "eops_gym_email_mcp_language_settings",
+     "eops_gym_email_mcp_message_headers",
+     "eops_gym_email_mcp_message_labels",
+     "eops_gym_email_mcp_message_part_bodies",
+     "eops_gym_email_mcp_message_parts",
+     "eops_gym_email_mcp_messages",
+     "eops_gym_email_mcp_pop_settings",
+     "eops_gym_email_mcp_profiles",
+     "eops_gym_email_mcp_send_as_aliases",
+     "eops_gym_email_mcp_smime_info",
+     "eops_gym_email_mcp_threads",
+     "eops_gym_email_mcp_users",
+     "eops_gym_email_mcp_vacation_settings",
+     "eops_gym_email_mcp_watch_subscriptions",
+     "eops_sn_csm_server_account",
+     "eops_sn_csm_server_case_knowledge",
+     "eops_sn_csm_server_case_sla",
+     "eops_sn_csm_server_contact",
+     "eops_sn_csm_server_contract",
+     "eops_sn_csm_server_customer_case",
+     "eops_sn_csm_server_entitlement",
+     "eops_sn_csm_server_installed_product",
+     "eops_sn_csm_server_interaction",
+     "eops_sn_csm_server_knowledge",
+     "eops_sn_csm_server_location",
+     "eops_sn_csm_server_notification",
+     "eops_sn_csm_server_product",
+     "eops_sn_csm_server_sla_definition",
+     "eops_sn_csm_server_user",
+     "eops_sn_csm_server_user_group",
+     "eops_sn_csm_server_user_group_member",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The four independent side anchors for the daily deposit overview — the number of bond connections summed over every atom whose id ends in _19 (across all molecules, not one), the number of cards with toughness 99, the funds the Vice President received, and the number of over-1000-price transactions at Czech-Republic gas stations — each a period-over-period anchor compared with its prior-cycle counterpart when the overview is countersigned, consumed by no figure downstream, and given as the book's own value."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "table": "wb_customer_relationship_manager_data",
+    "columns": [
+     "customer_id",
+     "assigned_to_email",
+     "customer_name",
+     "customer_email",
+     "customer_phone",
+     "last_contact_date",
+     "product_interest",
+     "status",
+     "follow_up_by",
+     "notes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_projects"
+   },
+   "response": {
+    "table": "td_projects",
+    "columns": [
+     "color",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "name",
+     "is_inbox",
+     "description"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_project_tasks"
+   },
+   "response": {
+    "table": "wb_project_tasks",
+    "columns": [
+     "task_id",
+     "task_name",
+     "assigned_to_email",
+     "list_name",
+     "due_date",
+     "board"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_contact"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_contact",
+    "columns": [
+     "contact_id",
+     "account_id",
+     "portal_user_id",
+     "active",
+     "is_primary",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_user"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_user",
+    "columns": [
+     "user_id",
+     "first_name",
+     "last_name",
+     "email",
+     "phone",
+     "role",
+     "location_id",
+     "active",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_email_mcp_send_as_aliases"
+   },
+   "response": {
+    "table": "eops_gym_email_mcp_send_as_aliases",
+    "columns": [
+     "id",
+     "user_id",
+     "send_as_email",
+     "display_name",
+     "reply_to_address",
+     "signature",
+     "is_primary",
+     "is_default",
+     "treat_as_alias",
+     "smtp_msa",
+     "verification_status",
+     "verification_token",
+     "verification_token_expires",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_toxicology_atom"
+   },
+   "response": {
+    "table": "bird_toxicology_atom",
+    "columns": [
+     "atom_id",
+     "molecule_id",
+     "element"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_toxicology_connected"
+   },
+   "response": {
+    "table": "bird_toxicology_connected",
+    "columns": [
+     "atom_id",
+     "atom_id2",
+     "bond_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_cards"
+   },
+   "response": {
+    "table": "bird_card_games_cards",
+    "columns": [
+     "id",
+     "artist",
+     "asciiName",
+     "availability",
+     "borderColor",
+     "cardKingdomFoilId",
+     "cardKingdomId",
+     "colorIdentity",
+     "colorIndicator",
+     "colors",
+     "convertedManaCost",
+     "duelDeck",
+     "edhrecRank",
+     "faceConvertedManaCost",
+     "faceName",
+     "flavorName",
+     "flavorText",
+     "frameEffects",
+     "frameVersion",
+     "hand",
+     "hasAlternativeDeckLimit",
+     "hasContentWarning",
+     "hasFoil",
+     "hasNonFoil",
+     "isAlternative",
+     "isFullArt",
+     "isOnlineOnly",
+     "isOversized",
+     "isPromo",
+     "isReprint",
+     "isReserved",
+     "isStarter",
+     "isStorySpotlight",
+     "isTextless",
+     "isTimeshifted",
+     "keywords",
+     "layout",
+     "leadershipSkills",
+     "life",
+     "loyalty",
+     "manaCost",
+     "mcmId",
+     "mcmMetaId",
+     "mtgArenaId",
+     "mtgjsonV4Id",
+     "mtgoFoilId",
+     "mtgoId",
+     "multiverseId",
+     "name",
+     "number",
+     "originalReleaseDate",
+     "originalText",
+     "originalType",
+     "otherFaceIds",
+     "power",
+     "printings",
+     "promoTypes",
+     "purchaseUrls",
+     "rarity",
+     "scryfallId",
+     "scryfallIllustrationId",
+     "scryfallOracleId",
+     "setCode",
+     "side",
+     "subtypes",
+     "supertypes",
+     "tcgplayerProductId",
+     "text",
+     "toughness",
+     "type",
+     "types",
+     "uuid",
+     "variations",
+     "watermark"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_income"
+   },
+   "response": {
+    "table": "bird_student_club_income",
+    "columns": [
+     "income_id",
+     "date_received",
+     "amount",
+     "source",
+     "notes",
+     "link_to_member"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_member"
+   },
+   "response": {
+    "table": "bird_student_club_member",
+    "columns": [
+     "member_id",
+     "first_name",
+     "last_name",
+     "email",
+     "position",
+     "t_shirt_size",
+     "phone",
+     "zip",
+     "link_to_major"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_debit_card_specializing_transactions_1k"
+   },
+   "response": {
+    "table": "bird_debit_card_specializing_transactions_1k",
+    "columns": [
+     "TransactionID",
+     "Date",
+     "Time",
+     "CustomerID",
+     "CardID",
+     "GasStationID",
+     "ProductID",
+     "Amount",
+     "Price"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_debit_card_specializing_gasstations"
+   },
+   "response": {
+    "table": "bird_debit_card_specializing_gasstations",
+    "columns": [
+     "GasStationID",
+     "ChainID",
+     "Country",
+     "Segment"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='deposit.desk@atlas.com' OR assigned_to_email='riley.chen@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "riley.chen@atlas.com",
+      "customer_name": "Deposit Desk",
+      "customer_email": "deposit.desk@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "mobile deposit hold review",
+      "status": "Open",
+      "follow_up_by": "",
+      "notes": "Q1 mobile deposit hold batch."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The auto-release base is set as that count times the declared per-case base of 100."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('hold.treasury@atlas.com','deposit.desk@atlas.com','wrong.depositor@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Deposit",
+      "last_name": "Desk",
+      "email": "deposit.desk@atlas.com",
+      "password": "mdh-seed",
+      "venmo_balance": 0.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Hold",
+      "last_name": "Treasury",
+      "email": "hold.treasury@atlas.com",
+      "password": "mdh-seed",
+      "venmo_balance": 10000000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Depositor",
+      "email": "wrong.depositor@atlas.com",
+      "password": "mdh-seed",
+      "venmo_balance": 0.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions WHERE description LIKE '%MDH%' OR description LIKE '%hold%' OR description LIKE '%release%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users WHERE email IN ('riley.chen@atlas.com','deposit.desk@atlas.com','fraud.review@krotov.cz')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 153,
+      "first_name": "Deposit",
+      "last_name": "Desk",
+      "email": "deposit.desk@atlas.com",
+      "password": "mdh-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 154,
+      "first_name": "Fraud",
+      "last_name": "Review",
+      "email": "fraud.review@krotov.cz",
+      "password": "mdh-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 152,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "riley.chen@atlas.com",
+      "password": "mdh-seed",
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.*, s.email AS sender_email FROM gm_emails e JOIN gm_users s ON s.id=e.sender_id WHERE e.subject LIKE '%MDH%' OR e.body LIKE '%hold%' OR e.body LIKE '%deposit%'"
+   },
+   "response": {
+    "n_rows": 200,
+    "rows": [
+     {
+      "recipient_ids": "[2]",
+      "created_at": "2023-01-09 01:27:53.000000",
+      "record_hash": "netz4Eb2F18=",
+      "id": 70,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[3]",
+      "created_at": "2023-03-22 16:40:41.000000",
+      "record_hash": "y2Kuxcr1has=",
+      "id": 125,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[5]",
+      "created_at": "2022-11-10 16:16:40.000000",
+      "record_hash": "D3jQEcCX6UU=",
+      "id": 217,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[7]",
+      "created_at": "2023-04-05 14:07:09.000000",
+      "record_hash": "2eoRHvnR/2c=",
+      "id": 331,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[9]",
+      "created_at": "2022-11-01 08:46:18.000000",
+      "record_hash": "Gv+Wqrghnck=",
+      "id": 394,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[10]",
+      "created_at": "2022-12-22 12:34:47.000000",
+      "record_hash": "pjzdE2+pfkg=",
+      "id": 452,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[11]",
+      "created_at": "2023-01-03 06:06:53.000000",
+      "record_hash": "TD0UIEbc0uU=",
+      "id": 509,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[13]",
+      "created_at": "2023-03-16 17:54:00.000000",
+      "record_hash": "MSbaLME2oBA=",
+      "id": 593,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[15]",
+      "created_at": "2022-11-05 06:53:27.000000",
+      "record_hash": "SZgv/FvVWKU=",
+      "id": 692,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[18]",
+      "created_at": "2022-11-17 03:16:01.000000",
+      "record_hash": "FHgqu024c6E=",
+      "id": 828,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[19]",
+      "created_at": "2022-10-20 22:26:19.000000",
+      "record_hash": "ZAzzj/P+uFU=",
+      "id": 878,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[20]",
+      "created_at": "2023-03-14 20:46:26.000000",
+      "record_hash": "1jDPhihpY4U=",
+      "id": 935,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[21]",
+      "created_at": "2023-03-27 03:27:51.000000",
+      "record_hash": "R30JN82ZW/s=",
+      "id": 971,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[25]",
+      "created_at": "2022-10-08 18:24:28.000000",
+      "record_hash": "YNeFYEvaR+k=",
+      "id": 1156,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[26]",
+      "created_at": "2022-06-13 02:29:04.000000",
+      "record_hash": "pyvBaTh+Af8=",
+      "id": 1201,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[27]",
+      "created_at": "2023-01-31 19:48:24.000000",
+      "record_hash": "/yO7BCOoYhQ=",
+      "id": 1243,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     },
+     {
+      "recipient_ids": "[28]",
+      "created_at": "2022-10-30 03:45:50.000000",
+      "record_hash": "9yjQqi5FUIc=",
+      "id": 1311,
+      "sender_id": 125,
+      "subject": "Lottery Prize",
+      "body": "Claim your prize from the annual lottery. Provide your bank account for deposit.",
+      "response_to_email_id": null,
+      "sender_email": "notifications@lotteryprizeclaim.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_users WHERE email IN ('riley.chen@atlas.com','ops.controller@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Ops",
+      "last_name": "Controller",
+      "email": "ops.controller@atlas.com",
+      "password": "mdh-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "riley.chen@atlas.com",
+      "password": "mdh-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE description LIKE '%MDH%' OR description LIKE '%hold%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name='Q1 Mobile Deposit Hold Batch'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 Mobile Deposit Hold Batch",
+      "is_inbox": 0,
+      "description": "Q1 mobile-deposit-hold intake + reconciliation workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.* FROM td_tasks t JOIN td_projects p ON p.id=t.project_id WHERE p.name='Q1 Mobile Deposit Hold Batch'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email='riley.chen@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "Deposit-desk daily standup",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The hold review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_project_tasks WHERE assigned_to_email='riley.chen@atlas.com'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_user WHERE email='jessicabrown83@gmail.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "user_id": 2,
+      "first_name": "Jessica",
+      "last_name": "Brown",
+      "email": "jessicabrown83@gmail.com",
+      "phone": "+919079913295",
+      "role": "customer",
+      "location_id": "2",
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:43:46",
+      "sys_updated_on": "2026-06-02 22:51:28"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_email_mcp_send_as_aliases WHERE user_id='104daf4b-2023-49f1-8def-39b4e9dcda5e' OR send_as_email IN ('jb@gmail.com','jessicabrown83@gmail.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "id": "4cc8e6b2-8a50-4b8f-950a-0d3e7b943f85",
+      "user_id": "104daf4b-2023-49f1-8def-39b4e9dcda5e",
+      "send_as_email": "jessicabrown83@gmail.com",
+      "display_name": "Linda Hernandez",
+      "reply_to_address": null,
+      "signature": "<p>Best regards,<br>Linda Hernandez<br>Software Developer<br>Global Tech Inc.</p>",
+      "is_primary": 1,
+      "is_default": 1,
+      "treat_as_alias": 0,
+      "smtp_msa": null,
+      "verification_status": "accepted",
+      "verification_token": null,
+      "verification_token_expires": null,
+      "created_at": "2025-08-27T09:24:25.034357",
+      "updated_at": "2025-08-27T09:24:25.034357"
+     },
+     {
+      "id": "1fc04b35-3552-45ec-bff3-820631b4b390",
+      "user_id": "104daf4b-2023-49f1-8def-39b4e9dcda5e",
+      "send_as_email": "linda1990@operations.org",
+      "display_name": "Operations Team",
+      "reply_to_address": "jessicabrown83@gmail.com",
+      "signature": "<p>Thank you,<br>Operations Team<br>linda1990@operations.org</p>",
+      "is_primary": 0,
+      "is_default": 0,
+      "treat_as_alias": 1,
+      "smtp_msa": null,
+      "verification_status": "accepted",
+      "verification_token": null,
+      "verification_token_expires": null,
+      "created_at": "2025-09-26T21:59:52.909321",
+      "updated_at": "2025-09-26T21:59:52.909321"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_thrombosis_prediction_Examination"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 806
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The flagged mobile-deposit case count is fixed from the reference book's own question — the number of female patients whose 1997 examination records the most serious thrombosis case (the book grades severity so that Thrombosis = 1 is the MOST serious; 2 and 3 are milder, so the most serious grade is the lowest positive code, not the highest).",
+     "DESK POLICY (rate) — applies to records you are working with: The hold carry is the base plus the uplift; the hold delta equals the uplift.",
+     "DESK POLICY (threshold) — applies to records you are working with: The hold-outcome branch is decided on the delta — 'EXTENDED_REVIEW' when the delta is at least 1000000, 'PARTIAL_HOLD' when it is at least 1000, 'AUTO_RELEASE' otherwise"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Match"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 25979
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_card_games_cards"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 56822
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_student_club_income"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 36
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_debit_card_specializing_transactions_1k"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1000
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_toxicology_atom"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 12333
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Examination"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Examination",
+    "columns": [
+     "ID",
+     "Examination Date",
+     "aCL IgG",
+     "aCL IgM",
+     "ANA",
+     "ANA Pattern",
+     "aCL IgA",
+     "Diagnosis",
+     "KCT",
+     "RVVT",
+     "LAC",
+     "Symptoms",
+     "Thrombosis"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Laboratory"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Laboratory",
+    "columns": [
+     "ID",
+     "Date",
+     "GOT",
+     "GPT",
+     "LDH",
+     "ALP",
+     "TP",
+     "ALB",
+     "UA",
+     "UN",
+     "CRE",
+     "T-BIL",
+     "T-CHO",
+     "TG",
+     "CPK",
+     "GLU",
+     "WBC",
+     "RBC",
+     "HGB",
+     "HCT",
+     "PLT",
+     "PT",
+     "APTT",
+     "FG",
+     "PIC",
+     "TAT",
+     "TAT2",
+     "U-PRO",
+     "IGG",
+     "IGA",
+     "IGM",
+     "CRP",
+     "RA",
+     "RF",
+     "C3",
+     "C4",
+     "RNP",
+     "SM",
+     "SC170",
+     "SSA",
+     "SSB",
+     "CENTROMEA",
+     "DNA",
+     "DNA-II"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Patient"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Patient",
+    "columns": [
+     "ID",
+     "SEX",
+     "Birthday",
+     "Description",
+     "First Date",
+     "Admission",
+     "Diagnosis"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_european_football_2_Match"
+   },
+   "response": {
+    "table": "bird_european_football_2_Match",
+    "columns": [
+     "id",
+     "country_id",
+     "league_id",
+     "season",
+     "stage",
+     "date",
+     "match_api_id",
+     "home_team_api_id",
+     "away_team_api_id",
+     "home_team_goal",
+     "away_team_goal",
+     "home_player_X1",
+     "home_player_X2",
+     "home_player_X3",
+     "home_player_X4",
+     "home_player_X5",
+     "home_player_X6",
+     "home_player_X7",
+     "home_player_X8",
+     "home_player_X9",
+     "home_player_X10",
+     "home_player_X11",
+     "away_player_X1",
+     "away_player_X2",
+     "away_player_X3",
+     "away_player_X4",
+     "away_player_X5",
+     "away_player_X6",
+     "away_player_X7",
+     "away_player_X8",
+     "away_player_X9",
+     "away_player_X10",
+     "away_player_X11",
+     "home_player_Y1",
+     "home_player_Y2",
+     "home_player_Y3",
+     "home_player_Y4",
+     "home_player_Y5",
+     "home_player_Y6",
+     "home_player_Y7",
+     "home_player_Y8",
+     "home_player_Y9",
+     "home_player_Y10",
+     "home_player_Y11",
+     "away_player_Y1",
+     "away_player_Y2",
+     "away_player_Y3",
+     "away_player_Y4",
+     "away_player_Y5",
+     "away_player_Y6",
+     "away_player_Y7",
+     "away_player_Y8",
+     "away_player_Y9",
+     "away_player_Y10",
+     "away_player_Y11",
+     "home_player_1",
+     "home_player_2",
+     "home_player_3",
+     "home_player_4",
+     "home_player_5",
+     "home_player_6",
+     "home_player_7",
+     "home_player_8",
+     "home_player_9",
+     "home_player_10",
+     "home_player_11",
+     "away_player_1",
+     "away_player_2",
+     "away_player_3",
+     "away_player_4",
+     "away_player_5",
+     "away_player_6",
+     "away_player_7",
+     "away_player_8",
+     "away_player_9",
+     "away_player_10",
+     "away_player_11",
+     "goal",
+     "shoton",
+     "shotoff",
+     "foulcommit",
+     "card",
+     "cross",
+     "corner",
+     "possession",
+     "B365H",
+     "B365D",
+     "B365A",
+     "BWH",
+     "BWD",
+     "BWA",
+     "IWH",
+     "IWD",
+     "IWA",
+     "LBH",
+     "LBD",
+     "LBA",
+     "PSH",
+     "PSD",
+     "PSA",
+     "WHH",
+     "WHD",
+     "WHA",
+     "SJH",
+     "SJD",
+     "SJA",
+     "VCH",
+     "VCD",
+     "VCA",
+     "GBH",
+     "GBD",
+     "GBA",
+     "BSH",
+     "BSD",
+     "BSA"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_european_football_2_Player"
+   },
+   "response": {
+    "table": "bird_european_football_2_Player",
+    "columns": [
+     "id",
+     "player_api_id",
+     "player_name",
+     "player_fifa_api_id",
+     "birthday",
+     "height",
+     "weight"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_european_football_2_Player_Attributes"
+   },
+   "response": {
+    "table": "bird_european_football_2_Player_Attributes",
+    "columns": [
+     "id",
+     "player_fifa_api_id",
+     "player_api_id",
+     "date",
+     "overall_rating",
+     "potential",
+     "preferred_foot",
+     "attacking_work_rate",
+     "defensive_work_rate",
+     "crossing",
+     "finishing",
+     "heading_accuracy",
+     "short_passing",
+     "volleys",
+     "dribbling",
+     "curve",
+     "free_kick_accuracy",
+     "long_passing",
+     "ball_control",
+     "acceleration",
+     "sprint_speed",
+     "agility",
+     "reactions",
+     "balance",
+     "shot_power",
+     "jumping",
+     "stamina",
+     "strength",
+     "long_shots",
+     "aggression",
+     "interceptions",
+     "positioning",
+     "vision",
+     "penalties",
+     "marking",
+     "standing_tackle",
+     "sliding_tackle",
+     "gk_diving",
+     "gk_handling",
+     "gk_kicking",
+     "gk_positioning",
+     "gk_reflexes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_expense"
+   },
+   "response": {
+    "table": "bird_student_club_expense",
+    "columns": [
+     "expense_id",
+     "expense_description",
+     "expense_date",
+     "cost",
+     "approved",
+     "link_to_member",
+     "link_to_budget"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_budget"
+   },
+   "response": {
+    "table": "bird_student_club_budget",
+    "columns": [
+     "budget_id",
+     "category",
+     "spent",
+     "remaining",
+     "amount",
+     "event_status",
+     "link_to_event"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Country"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 11
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_League"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 11
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Player"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 11060
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The  is taken over-limit index from its book's own question — the average long-shot attribute for Ahmed Samir Farag, reported exactly as the book computes it — and set the over-limit uplift as that index rounded and multiplied by the declared per-unit rate of 1000."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Player_Attributes"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 183978
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Team"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 299
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_european_football_2_Team_Attributes"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1458
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_analytics_data LIMIT 20"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "date_of_visit": "2023-10-22",
+      "visitor_id": "0860",
+      "page_views": "8",
+      "session_duration_seconds": "4",
+      "traffic_source": "referral",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-22",
+      "visitor_id": "4426",
+      "page_views": "3",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-03",
+      "visitor_id": "1685",
+      "page_views": "7",
+      "session_duration_seconds": "1",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-02",
+      "visitor_id": "5311",
+      "page_views": "5",
+      "session_duration_seconds": "97",
+      "traffic_source": "search engine",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-28",
+      "visitor_id": "8666",
+      "page_views": "1",
+      "session_duration_seconds": "18",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-19",
+      "visitor_id": "9998",
+      "page_views": "8",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-10-25",
+      "visitor_id": "1267",
+      "page_views": "1",
+      "session_duration_seconds": "17",
+      "traffic_source": "search engine",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-21",
+      "visitor_id": "5393",
+      "page_views": "17",
+      "session_duration_seconds": "59",
+      "traffic_source": "social media",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-09",
+      "visitor_id": "7513",
+      "page_views": "6",
+      "session_duration_seconds": "2",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-10",
+      "visitor_id": "0775",
+      "page_views": "13",
+      "session_duration_seconds": "0",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-04",
+      "visitor_id": "3073",
+      "page_views": "2",
+      "session_duration_seconds": "11",
+      "traffic_source": "referral",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-02",
+      "visitor_id": "6873",
+      "page_views": "3",
+      "session_duration_seconds": "11",
+      "traffic_source": "social media",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-10-18",
+      "visitor_id": "7629",
+      "page_views": "1",
+      "session_duration_seconds": "4",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-19",
+      "visitor_id": "7916",
+      "page_views": "9",
+      "session_duration_seconds": "6",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-10-30",
+      "visitor_id": "8571",
+      "page_views": "2",
+      "session_duration_seconds": "6",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-28",
+      "visitor_id": "8006",
+      "page_views": "3",
+      "session_duration_seconds": "11",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-02",
+      "visitor_id": "5258",
+      "page_views": "7",
+      "session_duration_seconds": "4",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-05",
+      "visitor_id": "3561",
+      "page_views": "1",
+      "session_duration_seconds": "8",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-11",
+      "visitor_id": "3104",
+      "page_views": "2",
+      "session_duration_seconds": "1",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-10-14",
+      "visitor_id": "8154",
+      "page_views": "3",
+      "session_duration_seconds": "16",
+      "traffic_source": "social media",
+      "user_engaged": "True"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_analytics_data"
+   },
+   "response": {
+    "table": "wb_analytics_data",
+    "columns": [
+     "date_of_visit",
+     "visitor_id",
+     "page_views",
+     "session_duration_seconds",
+     "traffic_source",
+     "user_engaged"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \"SEX\", COUNT(*) AS n FROM bird_thrombosis_prediction_Patient GROUP BY \"SEX\""
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "SEX": "",
+      "n": 13
+     },
+     {
+      "SEX": "F",
+      "n": 1023
+     },
+     {
+      "SEX": "M",
+      "n": 202
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \"Examination Date\", COUNT(*) AS n FROM bird_thrombosis_prediction_Examination WHERE \"Examination Date\" LIKE '%1997%' GROUP BY \"Examination Date\" ORDER BY \"Examination Date\" LIMIT 20"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "Examination Date": "1997-01-06",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-01-13",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-01-17",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-01-20",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-01-21",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-01-23",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-01-26",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-01-27",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-01-28",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-02-03",
+      "n": 3
+     },
+     {
+      "Examination Date": "1997-02-04",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-02-10",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-02-17",
+      "n": 3
+     },
+     {
+      "Examination Date": "1997-02-18",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-02-24",
+      "n": 3
+     },
+     {
+      "Examination Date": "1997-02-25",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-02-27",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-03-03",
+      "n": 2
+     },
+     {
+      "Examination Date": "1997-03-04",
+      "n": 1
+     },
+     {
+      "Examination Date": "1997-03-06",
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \"Thrombosis\", COUNT(*) AS n FROM bird_thrombosis_prediction_Examination GROUP BY \"Thrombosis\" ORDER BY \"Thrombosis\""
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "Thrombosis": 0,
+      "n": 726
+     },
+     {
+      "Thrombosis": 1,
+      "n": 57
+     },
+     {
+      "Thrombosis": 2,
+      "n": 18
+     },
+     {
+      "Thrombosis": 3,
+      "n": 5
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT p.\"ID\", p.\"SEX\", e.\"Examination Date\", e.\"Thrombosis\" FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.\"ID\"=p.\"ID\" WHERE p.\"SEX\" IN ('F','Female','female') AND e.\"Examination Date\" LIKE '%1997%' AND CAST(e.\"Thrombosis\" AS INTEGER)=1 LIMIT 20"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ID": 14872,
+      "SEX": "F",
+      "Examination Date": "1997-05-27",
+      "Thrombosis": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT p.player_api_id, p.player_name, pa.long_shots FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag' LIMIT 30"
+   },
+   "response": {
+    "n_rows": 7,
+    "rows": [
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 65
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 65
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 65
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 65
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 57
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 57
+     },
+     {
+      "player_api_id": 174600,
+      "player_name": "Ahmed Samir Farag",
+      "long_shots": 57
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(pa.long_shots) AS overlimit_index, COUNT(pa.long_shots) AS n FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "overlimit_index": 61.57142857142857,
+      "n": 7
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS atoms_19 FROM bird_toxicology_atom WHERE atom_id LIKE '%\\_19' ESCAPE '\\'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "atoms_19": 288
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT a.atom_id, COUNT(c.bond_id) AS connections FROM bird_toxicology_atom a LEFT JOIN bird_toxicology_connected c ON c.atom_id=a.atom_id WHERE a.atom_id LIKE '%\\_19' ESCAPE '\\' GROUP BY a.atom_id ORDER BY a.atom_id LIMIT 50"
+   },
+   "response": {
+    "n_rows": 50,
+    "rows": [
+     {
+      "atom_id": "TR001_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR004_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR005_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR006_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR007_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR008_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR009_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR011_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR012_19",
+      "connections": 2
+     },
+     {
+      "atom_id": "TR015_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR016_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR017_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR018_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR019_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR020_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR021_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR022_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR024_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR026_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR029_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR030_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR031_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR032_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR033_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR034_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR035_19",
+      "connections": 2
+     },
+     {
+      "atom_id": "TR039_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR040_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR042_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR043_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR045_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR046_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR047_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR049_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR050_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR051_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR054_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR056_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR057_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR058_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR059_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR060_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR062_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR064_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR067_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR069_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR070_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR071_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR072_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR075_19",
+      "connections": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT a.atom_id, COUNT(c.bond_id) AS connections FROM bird_toxicology_atom a LEFT JOIN bird_toxicology_connected c ON c.atom_id2=a.atom_id WHERE a.atom_id LIKE '%\\_19' ESCAPE '\\' GROUP BY a.atom_id ORDER BY a.atom_id LIMIT 50"
+   },
+   "response": {
+    "n_rows": 50,
+    "rows": [
+     {
+      "atom_id": "TR001_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR004_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR005_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR006_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR007_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR008_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR009_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR011_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR012_19",
+      "connections": 2
+     },
+     {
+      "atom_id": "TR015_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR016_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR017_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR018_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR019_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR020_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR021_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR022_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR024_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR026_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR029_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR030_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR031_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR032_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR033_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR034_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR035_19",
+      "connections": 2
+     },
+     {
+      "atom_id": "TR039_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR040_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR042_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR043_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR045_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR046_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR047_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR049_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR050_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR051_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR054_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR056_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR057_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR058_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR059_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR060_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR062_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR064_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR067_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR069_19",
+      "connections": 4
+     },
+     {
+      "atom_id": "TR070_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR071_19",
+      "connections": 1
+     },
+     {
+      "atom_id": "TR072_19",
+      "connections": 3
+     },
+     {
+      "atom_id": "TR075_19",
+      "connections": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN c.atom_id LIKE '%\\_19' ESCAPE '\\' THEN 1 ELSE 0 END) AS as_source, SUM(CASE WHEN c.atom_id2 LIKE '%\\_19' ESCAPE '\\' THEN 1 ELSE 0 END) AS as_target FROM bird_toxicology_connected c"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "as_source": 497,
+      "as_target": 497
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS side_toughness_cards FROM bird_card_games_cards WHERE CAST(toughness AS TEXT)='99'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_toughness_cards": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT toughness, COUNT(*) AS n FROM bird_card_games_cards WHERE toughness LIKE '%99%' GROUP BY toughness"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "toughness": "99",
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT m.member_id,m.first_name,m.last_name,m.position,i.amount,i.source,i.date_received FROM bird_student_club_member m JOIN bird_student_club_income i ON i.link_to_member=m.member_id WHERE lower(m.position) LIKE '%vice%president%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "member_id": "recD078PnS3x2doBe",
+      "first_name": "Phillip",
+      "last_name": "Cullen",
+      "position": "Vice President",
+      "amount": 50,
+      "source": "Dues",
+      "date_received": "2019-09-22"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT m.position, COUNT(*) AS rows, SUM(i.amount) AS funds FROM bird_student_club_member m JOIN bird_student_club_income i ON i.link_to_member=m.member_id GROUP BY m.position ORDER BY m.position"
+   },
+   "response": {
+    "n_rows": 6,
+    "rows": [
+     {
+      "position": "Inactive",
+      "rows": 2,
+      "funds": 100
+     },
+     {
+      "position": "Member",
+      "rows": 26,
+      "funds": 1300
+     },
+     {
+      "position": "President",
+      "rows": 2,
+      "funds": 100
+     },
+     {
+      "position": "Secretary",
+      "rows": 1,
+      "funds": 50
+     },
+     {
+      "position": "Treasurer",
+      "rows": 1,
+      "funds": 50
+     },
+     {
+      "position": "Vice President",
+      "rows": 1,
+      "funds": 50
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS side_gas_txns FROM bird_debit_card_specializing_transactions_1k t JOIN bird_debit_card_specializing_gasstations g ON g.GasStationID=t.GasStationID WHERE g.Country='CZE' AND CAST(t.Price AS REAL)>1000"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_gas_txns": 56
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT g.Country, COUNT(*) AS n FROM bird_debit_card_specializing_transactions_1k t JOIN bird_debit_card_specializing_gasstations g ON g.GasStationID=t.GasStationID WHERE CAST(t.Price AS REAL)>1000 GROUP BY g.Country ORDER BY g.Country"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "Country": "CZE",
+      "n": 56
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses ORDER BY id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "debtor_ids": "[4, 90]",
+      "participant_ids": "[106]",
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "F8cY7Zt1xvA=",
+      "id": 5039,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Climbing Harness",
+      "amount": 70.0,
+      "deleted": 0,
+      "receipt_file_name": "climbing_harness.pdf",
+      "receipt_file_content": "binary:2f76ee7cc1...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[51, 72]",
+      "participant_ids": "[106]",
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "6GOsINwzWCA=",
+      "id": 5038,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Ski Poles",
+      "amount": 50.0,
+      "deleted": 0,
+      "receipt_file_name": "ski_poles.jpg",
+      "receipt_file_content": "binary:09f3a12ef9...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[4, 54, 51]",
+      "participant_ids": "[106]",
+      "created_at": "2023-02-09 18:32:40.000000",
+      "record_hash": "iRoj6pzLMlU=",
+      "id": 5037,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Water Bottles",
+      "amount": 10.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares ORDER BY id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "0zkIJOH9/qU=",
+      "id": 11686,
+      "expense_id": 5039,
+      "debtor_id": 90,
+      "share_amount": 35.0
+     },
+     {
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "lAtOs8vmV6w=",
+      "id": 11685,
+      "expense_id": 5039,
+      "debtor_id": 4,
+      "share_amount": 35.0
+     },
+     {
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "NwW7asmGxis=",
+      "id": 11684,
+      "expense_id": 5038,
+      "debtor_id": 72,
+      "share_amount": 25.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks ORDER BY id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-19 20:44:32.000000",
+      "record_hash": "XrrWpl9THg0=",
+      "id": 6333,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Seek professional help",
+      "description": "Consult a therapist",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 18,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-24 00:28:54.000000",
+      "record_hash": "BAEeBhrmqjg=",
+      "id": 6332,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Do a digital detox",
+      "description": "No screens for an hour",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 17,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": "minutes",
+      "created_at": "2022-12-20 16:04:07.000000",
+      "record_hash": "dOfMWXSJ3pA=",
+      "id": 6331,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Plan a relaxing weekend",
+      "description": "",
+      "is_completed": 1,
+      "duration": 60.0,
+      "order_index": 16,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions ORDER BY id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-02-25 06:08:24.000000",
+      "updated_at": "2023-02-25 06:08:24.000000",
+      "record_hash": "lMOJKhlIFRU=",
+      "id": 8215,
+      "sender_id": 16,
+      "receiver_id": 106,
+      "amount": 24.0,
+      "description": "🚲 Bike Repair 🛠️🚲",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-03-25 20:16:49.000000",
+      "updated_at": "2023-03-25 20:16:49.000000",
+      "record_hash": "TRB36Pjbb48=",
+      "id": 8214,
+      "sender_id": 16,
+      "receiver_id": 106,
+      "amount": 50.0,
+      "description": "🌌Stargazing Trip",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-04-25 11:18:55.000000",
+      "updated_at": "2023-04-25 11:18:55.000000",
+      "record_hash": "dSIXx2TFZUU=",
+      "id": 8213,
+      "sender_id": 16,
+      "receiver_id": 106,
+      "amount": 98.0,
+      "description": "Hiking Gear 🥾🌲",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails ORDER BY id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "recipient_ids": "[44]",
+      "created_at": "2023-02-09 14:40:15.000000",
+      "record_hash": "7qVRfkaRCWQ=",
+      "id": 20866,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Chad Brown,\n\nChad Brown (ch.brow@gmail.com) has invited you to join the project, 'Health Fair'.\nYou can accept the invite by using this code: 948b5c0 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[84]",
+      "created_at": "2023-02-09 08:50:33.000000",
+      "record_hash": "YM+6q8GpGlY=",
+      "id": 20865,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Chad Brown,\n\nChad Brown (ch.brow@gmail.com) has invited you to join the project, 'Health Fair'.\nYou can accept the invite by using this code: 1be8c9f on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[31]",
+      "created_at": "2022-12-22 02:56:03.000000",
+      "record_hash": "83yG94OVf6c=",
+      "id": 20864,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Carl Brown,\n\nCarl Brown (carbrown@gmail.com) has invited you to join the project, 'Charity Donations'.\nYou can accept the invite by using this code: 5ab1197 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(CAST(event_id AS INTEGER)) AS max_event_id FROM wb_calendar_events"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_event_id": 300
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(CAST(task_id AS INTEGER)) AS max_task_id FROM wb_project_tasks"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_task_id": 299
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS hold_case_count FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.ID=p.ID WHERE p.SEX='F' AND substr(e.\"Examination Date\",1,4)='1997' AND e.Thrombosis=1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hold_case_count": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(pa.long_shots) AS overlimit_index, ROUND(AVG(pa.long_shots)) AS rounded_index, CAST(ROUND(AVG(pa.long_shots)) AS INTEGER)*1000 AS overlimit_uplift FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "overlimit_index": 61.57142857142857,
+      "rounded_index": 62.0,
+      "overlimit_uplift": 62000
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*)*100 AS auto_release_base FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.ID=p.ID WHERE p.SEX='F' AND substr(e.\"Examination Date\",1,4)='1997' AND e.Thrombosis=1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "auto_release_base": 100
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000301",
+     "event_name": "[MDH-HOLD] Hold-review window",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000301",
+     "event_name": "[MDH-HOLD] Hold-review window",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_user",
+    "key_column": "user_id",
+    "key_value": "2",
+    "fields": {
+     "first_name": "Linda",
+     "last_name": "Hernandez"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_user",
+    "updated": {
+     "first_name": "Linda",
+     "last_name": "Hernandez"
+    },
+    "where": {
+     "user_id": "2"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_email_mcp_send_as_aliases",
+    "fields": {
+     "id": "00000000-0000-4000-8000-000000000042",
+     "user_id": "104daf4b-2023-49f1-8def-39b4e9dcda5e",
+     "send_as_email": "jb@gmail.com",
+     "display_name": "Jessica Brown",
+     "reply_to_address": "jessicabrown83@gmail.com",
+     "signature": "Warm wishes, Jessica Brown - Client Services: +44 7911 234567",
+     "is_primary": 0,
+     "is_default": 0,
+     "treat_as_alias": 1,
+     "verification_status": "accepted"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_email_mcp_send_as_aliases",
+    "created": {
+     "id": "00000000-0000-4000-8000-000000000042",
+     "user_id": "104daf4b-2023-49f1-8def-39b4e9dcda5e",
+     "send_as_email": "jb@gmail.com",
+     "display_name": "Jessica Brown",
+     "reply_to_address": "jessicabrown83@gmail.com",
+     "signature": "Warm wishes, Jessica Brown - Client Services: +44 7911 234567",
+     "is_primary": 0,
+     "is_default": 0,
+     "treat_as_alias": 1,
+     "verification_status": "accepted"
+    },
+    "rowid": 204
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "created_at": "2024-02-15 09:00:00",
+     "updated_at": "2024-02-15 09:00:00",
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 62000,
+     "description": "[MDH-RELEASE] MDH-2024-Q1-042 hold delta release",
+     "private": 1,
+     "receipt_download_count": 0,
+     "like_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "created_at": "2024-02-15 09:00:00",
+     "updated_at": "2024-02-15 09:00:00",
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 62000,
+     "description": "[MDH-RELEASE] MDH-2024-Q1-042 hold delta release",
+     "private": 1,
+     "receipt_download_count": 0,
+     "like_count": 0
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_project_tasks ORDER BY CAST(task_id AS INTEGER) DESC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "task_id": "00000299",
+      "task_name": "Improve UX of onboarding process",
+      "assigned_to_email": "luis.ortiz@atlas.com",
+      "list_name": "Backlog",
+      "due_date": "2023-11-27",
+      "board": "Design"
+     },
+     {
+      "task_id": "00000298",
+      "task_name": "Create wireframe for landing page",
+      "assigned_to_email": "jinsoo.kim@atlas.com",
+      "list_name": "Backlog",
+      "due_date": "2023-12-10",
+      "board": "Design"
+     },
+     {
+      "task_id": "00000297",
+      "task_name": "Update brand colors in mobile app",
+      "assigned_to_email": "amir.ali@atlas.com",
+      "list_name": "Backlog",
+      "due_date": "2023-12-13",
+      "board": "Design"
+     },
+     {
+      "task_id": "00000296",
+      "task_name": "Improve UX of feedback submission",
+      "assigned_to_email": "luis.ortiz@atlas.com",
+      "list_name": "In Review",
+      "due_date": "2023-12-06",
+      "board": "Design"
+     },
+     {
+      "task_id": "00000295",
+      "task_name": "Design logo for blog",
+      "assigned_to_email": "luis.ortiz@atlas.com",
+      "list_name": "Backlog",
+      "due_date": "2023-12-08",
+      "board": "Design"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*)*100 + CAST(ROUND((SELECT AVG(pa.long_shots) FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag')) AS INTEGER)*1000 AS hold_carry, CAST(ROUND((SELECT AVG(pa.long_shots) FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag')) AS INTEGER)*1000 AS delta FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.ID=p.ID WHERE p.SEX='F' AND substr(e.\"Examination Date\",1,4)='1997' AND e.Thrombosis=1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hold_carry": 62100,
+      "delta": 62000
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT CASE WHEN CAST(ROUND(AVG(pa.long_shots)) AS INTEGER)*1000>=1000000 THEN 'EXTENDED_REVIEW_TIER' WHEN CAST(ROUND(AVG(pa.long_shots)) AS INTEGER)*1000>=1000 THEN 'PARTIAL_HOLD_TIER' ELSE 'AUTO_RELEASE_TIER' END AS tier, CASE WHEN CAST(ROUND(AVG(pa.long_shots)) AS INTEGER)*1000>=1000000 THEN 'EXTENDED_REVIEW' WHEN CAST(ROUND(AVG(pa.long_shots)) AS INTEGER)*1000>=1000 THEN 'PARTIAL_HOLD' ELSE 'AUTO_RELEASE' END AS branch FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "tier": "PARTIAL_HOLD_TIER",
+      "branch": "PARTIAL_HOLD"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN s.email='hold.treasury@atlas.com' AND r.email='deposit.desk@atlas.com' AND t.description LIKE '%[MDH-RELEASE]%' AND t.description NOT LIKE '%[MDH-REVERSAL]%' THEN t.amount ELSE 0 END)-SUM(CASE WHEN s.email='wrong.depositor@atlas.com' AND r.email='hold.treasury@atlas.com' AND t.description LIKE '%[MDH-RELEASE]%' AND t.description LIKE '%[MDH-REVERSAL]%' THEN t.amount ELSE 0 END) AS net FROM vm_transactions t JOIN vm_users s ON s.id=t.sender_id JOIN vm_users r ON r.id=t.receiver_id WHERE t.description LIKE '%MDH-2024-Q1-042%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net": 62000.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch.",
+     "status": "[MDH-TIER] PARTIAL_HOLD_TIER"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch.",
+     "status": "[MDH-TIER] PARTIAL_HOLD_TIER"
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "recipient_ids": "[154]",
+     "created_at": "2024-02-15 09:05:00",
+     "sender_id": 152,
+     "subject": "[MDH-HANDOFF] Fraud-review desk handoff",
+     "body": "Q1 mobile-deposit-hold handoff: hold_carry=62100; delta=62000.",
+     "response_to_email_id": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "recipient_ids": "[154]",
+     "created_at": "2024-02-15 09:05:00",
+     "sender_id": 152,
+     "subject": "[MDH-HANDOFF] Fraud-review desk handoff",
+     "body": "Q1 mobile-deposit-hold handoff: hold_carry=62100; delta=62000.",
+     "response_to_email_id": null
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2024-02-15 09:10:00",
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[MDH-ALLOC] Intercompany hold-review carry allocation",
+     "amount": 62100,
+     "deleted": 0,
+     "receipt_download_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2024-02-15 09:10:00",
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[MDH-ALLOC] Intercompany hold-review carry allocation",
+     "amount": 62100,
+     "deleted": 0,
+     "receipt_download_count": 0
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "due_date": "2024-02-15",
+     "priority": "high",
+     "created_at": "2024-02-15 09:15:00",
+     "project_id": 280,
+     "user_id": 107,
+     "title": "[MDH-FUP] Follow up on delta=62000",
+     "description": "Q1 mobile-deposit-hold batch follow-up.",
+     "is_completed": 0,
+     "order_index": 1,
+     "assignee_id": 107,
+     "assigner_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "due_date": "2024-02-15",
+     "priority": "high",
+     "created_at": "2024-02-15 09:15:00",
+     "project_id": 280,
+     "user_id": 107,
+     "title": "[MDH-FUP] Follow up on delta=62000",
+     "description": "Q1 mobile-deposit-hold batch follow-up.",
+     "is_completed": 0,
+     "order_index": 1,
+     "assignee_id": 107,
+     "assigner_id": 107
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_project_tasks",
+    "fields": {
+     "task_id": "00000300",
+     "task_name": "[MDH-PRIOTASK] PARTIAL_HOLD_TIER hold-management priority",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "list_name": "In Progress",
+     "due_date": "2024-02-15",
+     "board": "Operations"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_project_tasks",
+    "created": {
+     "task_id": "00000300",
+     "task_name": "[MDH-PRIOTASK] PARTIAL_HOLD_TIER hold-management priority",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "list_name": "In Progress",
+     "due_date": "2024-02-15",
+     "board": "Operations"
+    },
+    "rowid": 301
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "recipient_ids": "[153]",
+     "created_at": "2024-02-15 09:20:00",
+     "sender_id": 152,
+     "subject": "[MDH-STATUS] Depositor status update",
+     "body": "Q1 mobile-deposit-hold status: hold_carry=62100; tier=PARTIAL_HOLD_TIER.",
+     "response_to_email_id": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "recipient_ids": "[153]",
+     "created_at": "2024-02-15 09:20:00",
+     "sender_id": 152,
+     "subject": "[MDH-STATUS] Depositor status update",
+     "body": "Q1 mobile-deposit-hold status: hold_carry=62100; tier=PARTIAL_HOLD_TIER.",
+     "response_to_email_id": null
+    },
+    "rowid": 20868
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2024-02-15 09:10:00",
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 31050
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2024-02-15 09:10:00",
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 31050
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "WITH base AS (SELECT COUNT(*)*100 AS b FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.ID=p.ID WHERE p.SEX='F' AND substr(e.\"Examination Date\",1,4)='1997' AND e.Thrombosis=1), idx AS (SELECT AVG(pa.long_shots) AS i FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag') SELECT b AS auto_release_base, i AS overlimit_index, CAST(ROUND(i) AS INTEGER)*1000 AS delta, b+CAST(ROUND(i) AS INTEGER)*1000 AS hold_carry FROM base,idx"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "auto_release_base": 100,
+      "overlimit_index": 61.57142857142857,
+      "delta": 62000,
+      "hold_carry": 62100
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN s.email='hold.treasury@atlas.com' AND r.email='deposit.desk@atlas.com' AND t.description LIKE '%[MDH-RELEASE]%' AND t.description NOT LIKE '%[MDH-REVERSAL]%' THEN t.amount ELSE 0 END)-SUM(CASE WHEN t.description LIKE '%[MDH-RELEASE]%' AND t.description LIKE '%[MDH-REVERSAL]%' THEN t.amount ELSE 0 END) AS release_net FROM vm_transactions t JOIN vm_users s ON s.id=t.sender_id JOIN vm_users r ON r.id=t.receiver_id WHERE t.description LIKE '%MDH-2024-Q1-042%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "release_net": 62000.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT notes,status FROM wb_customer_relationship_manager_data WHERE customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notes": "[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch.",
+      "status": "[MDH-TIER] PARTIAL_HOLD_TIER"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email='riley.chen@atlas.com' AND datetime(event_start)<'2024-02-15 14:30:00' AND datetime(event_start, '+'||duration||' minutes')>'2024-02-15 14:00:00'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(n) AS side_atom_connections FROM (SELECT a.atom_id, COUNT(c.bond_id) AS n FROM bird_toxicology_atom a LEFT JOIN bird_toxicology_connected c ON c.atom_id=a.atom_id WHERE a.atom_id LIKE '%\\_19' ESCAPE '\\' GROUP BY a.atom_id)"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_atom_connections": 497
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS side_toughness_cards FROM bird_card_games_cards WHERE toughness='99'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_toughness_cards": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(i.amount) AS side_vp_funds FROM bird_student_club_member m JOIN bird_student_club_income i ON i.link_to_member=m.member_id WHERE m.position='Vice President'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_vp_funds": 50
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS side_gas_txns FROM bird_debit_card_specializing_transactions_1k t JOIN bird_debit_card_specializing_gasstations g ON g.GasStationID=t.GasStationID WHERE g.Country='CZE' AND t.Price>1000"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_gas_txns": 56
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[MDH-RECON] delta=62000; release_net=62000\n[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[MDH-RECON] delta=62000; release_net=62000\n[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000302",
+     "event_name": "[MDH-REVIEW] Post-release hold review",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000302",
+     "event_name": "[MDH-REVIEW] Post-release hold review",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "riley.chen@atlas.com",
+      "customer_name": "Deposit Desk",
+      "customer_email": "deposit.desk@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "mobile deposit hold review",
+      "status": "[MDH-TIER] PARTIAL_HOLD_TIER",
+      "follow_up_by": "",
+      "notes": "[MDH-RECON] delta=62000; release_net=62000\n[MDH-LOG] hold_carry=62100\n[MDH-BASE] auto_release_base=100\nQ1 mobile deposit hold batch."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.id,s.email AS sender,r.email AS receiver,t.amount,t.description FROM vm_transactions t JOIN vm_users s ON s.id=t.sender_id JOIN vm_users r ON r.id=t.receiver_id WHERE t.description LIKE '%MDH-%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 8216,
+      "sender": "hold.treasury@atlas.com",
+      "receiver": "deposit.desk@atlas.com",
+      "amount": 62000.0,
+      "description": "[MDH-RELEASE] MDH-2024-Q1-042 hold delta release"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 110,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,s.email AS sender,e.recipient_ids,e.subject,e.body FROM gm_emails e JOIN gm_users s ON s.id=e.sender_id WHERE e.subject LIKE '[MDH-%' ORDER BY e.id"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "id": 20867,
+      "sender": "riley.chen@atlas.com",
+      "recipient_ids": "[154]",
+      "subject": "[MDH-HANDOFF] Fraud-review desk handoff",
+      "body": "Q1 mobile-deposit-hold handoff: hold_carry=62100; delta=62000."
+     },
+     {
+      "id": 20868,
+      "sender": "riley.chen@atlas.com",
+      "recipient_ids": "[153]",
+      "subject": "[MDH-STATUS] Depositor status update",
+      "body": "Q1 mobile-deposit-hold status: hold_carry=62100; tier=PARTIAL_HOLD_TIER."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 111,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,e.description,e.amount,e.payer_id,e.participant_ids,e.debtor_ids,s.debtor_id,s.share_amount FROM sw_expenses e JOIN sw_expense_shares s ON s.expense_id=e.id WHERE e.description LIKE '[MDH-ALLOC]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 5040,
+      "description": "[MDH-ALLOC] Intercompany hold-review carry allocation",
+      "amount": 62100.0,
+      "payer_id": 107,
+      "participant_ids": "[107, 108]",
+      "debtor_ids": "[108]",
+      "debtor_id": 108,
+      "share_amount": 31050.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 112,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.title,t.project_id,t.user_id,t.assignee_id,p.name FROM td_tasks t JOIN td_projects p ON p.id=t.project_id WHERE t.title LIKE '[MDH-FUP]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "title": "[MDH-FUP] Follow up on delta=62000",
+      "project_id": 280,
+      "user_id": 107,
+      "assignee_id": 107,
+      "name": "Q1 Mobile Deposit Hold Batch"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 113,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE event_name LIKE '[MDH-%' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "event_id": "00000301",
+      "event_name": "[MDH-HOLD] Hold-review window",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     },
+     {
+      "event_id": "00000302",
+      "event_name": "[MDH-REVIEW] Post-release hold review",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 114,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_project_tasks WHERE task_name LIKE '[MDH-PRIOTASK]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "task_id": "00000300",
+      "task_name": "[MDH-PRIOTASK] PARTIAL_HOLD_TIER hold-management priority",
+      "assigned_to_email": "riley.chen@atlas.com",
+      "list_name": "In Progress",
+      "due_date": "2024-02-15",
+      "board": "Operations"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 115,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT user_id,first_name,last_name,email FROM eops_sn_csm_server_user WHERE email='jessicabrown83@gmail.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "user_id": 2,
+      "first_name": "Linda",
+      "last_name": "Hernandez",
+      "email": "jessicabrown83@gmail.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 116,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT user_id,send_as_email,display_name,reply_to_address,signature,is_primary,treat_as_alias,verification_status FROM eops_gym_email_mcp_send_as_aliases WHERE user_id='104daf4b-2023-49f1-8def-39b4e9dcda5e' AND send_as_email='jb@gmail.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "user_id": "104daf4b-2023-49f1-8def-39b4e9dcda5e",
+      "send_as_email": "jb@gmail.com",
+      "display_name": "Jessica Brown",
+      "reply_to_address": "jessicabrown83@gmail.com",
+      "signature": "Warm wishes, Jessica Brown - Client Services: +44 7911 234567",
+      "is_primary": 0,
+      "treat_as_alias": 1,
+      "verification_status": "accepted"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 117,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "WITH x AS (SELECT AVG(pa.long_shots) i FROM bird_european_football_2_Player p JOIN bird_european_football_2_Player_Attributes pa ON pa.player_api_id=p.player_api_id WHERE p.player_name='Ahmed Samir Farag'), c AS (SELECT COUNT(*) n FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Examination e ON e.ID=p.ID WHERE p.SEX='F' AND substr(e.\"Examination Date\",1,4)='1997' AND e.Thrombosis=1), a AS (SELECT SUM(n) n FROM (SELECT COUNT(z.bond_id) n FROM bird_toxicology_atom q LEFT JOIN bird_toxicology_connected z ON z.atom_id=q.atom_id WHERE q.atom_id LIKE '%\\_19' ESCAPE '\\' GROUP BY q.atom_id)), k AS (SELECT COUNT(*) n FROM bird_card_games_cards WHERE toughness='99'), v AS (SELECT SUM(i.amount) n FROM bird_student_club_member m JOIN bird_student_club_income i ON i.link_to_member=m.member_id WHERE m.position='Vice President'), g AS (SELECT COUNT(*) n FROM bird_debit_card_specializing_transactions_1k t JOIN bird_debit_card_specializing_gasstations s ON s.GasStationID=t.GasStationID WHERE s.Country='CZE' AND t.Price>1000) SELECT c.n AS hold_case_count,c.n*100 AS auto_release_base,x.i AS overlimit_index,CAST(ROUND(x.i) AS INTEGER)*1000 AS overlimit_uplift,c.n*100+CAST(ROUND(x.i) AS INTEGER)*1000 AS hold_carry,CAST(ROUND(x.i) AS INTEGER)*1000 AS hold_delta,CASE WHEN CAST(ROUND(x.i) AS INTEGER)*1000>=1000000 THEN 'EXTENDED_REVIEW' WHEN CAST(ROUND(x.i) AS INTEGER)*1000>=1000 THEN 'PARTIAL_HOLD' ELSE 'AUTO_RELEASE' END branch,a.n side_atom_connections,k.n side_toughness_cards,v.n side_vp_funds,g.n side_gas_txns FROM c,x,a,k,v,g"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hold_case_count": 1,
+      "auto_release_base": 100,
+      "overlimit_index": 61.57142857142857,
+      "overlimit_uplift": 62000,
+      "hold_carry": 62100,
+      "hold_delta": 62000,
+      "branch": "PARTIAL_HOLD",
+      "side_atom_connections": 497,
+      "side_toughness_cards": 1,
+      "side_vp_funds": 50,
+      "side_gas_txns": 56
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_mobile_deposit_hold__0001",
+ "provider": "openai",
+ "model": "gpt-5.6-sol",
+ "attempt": 1,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 18,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 25,
+  "fsv_n_checks": 96,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "auto_release_base": "100",
+  "branch": "PARTIAL_HOLD",
+  "hold_carry": "62100",
+  "hold_case_count": "1",
+  "hold_delta": "62000",
+  "overlimit_index": "61.5714285714286",
+  "overlimit_uplift": "62000",
+  "reconciled": "ok",
+  "side_atom_connections": "497",
+  "side_gas_txns": "56",
+  "side_toughness_cards": "1",
+  "side_vp_funds": "50"
+ },
+ "extraction_scored": true
+}

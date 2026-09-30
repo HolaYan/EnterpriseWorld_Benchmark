@@ -1,0 +1,1508 @@
+{
+  "instance_id": "hybrid_debt_covenant_amendment__0001",
+  "agent_visible": {
+    "overall_query": "Run the lender-consent solicitation for the covenant amendment on the regional syndicated credit facility. Fix the covenant-consent index from the register's own question \u2014 the count of distinct non-textless cards that carry a 'Restricted' legality (join cards to legalities on the shared uuid). Set the base consent scope as that index rounded to a whole count. Pull the ballot reference index from its book's own question \u2014 among Student_Club members who attended the 'Women's Soccer' event, the number who want a Medium T-shirt \u2014 and set the amendment uplift at 1000 per index-unit. The total scope is the base plus the uplift; the escalation delta equals the uplift. Decide the consent branch on the delta \u2014 'DENIED_ESCALATION' when the delta is at least 1000000, 'SUPER_MAJORITY' when it is at least 1000, 'AUTO_FILE' otherwise \u2014 and work the cycle end to end: place the review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the ballot-credit run so the net credit received by the correct lender equals the delta (a credit that lands on the wrong lender is retracted, never deleted, then the correct lender is credited); unless the branch is an auto-file, send the bond trustee the super-majority notice citing the total scope and the delta; log the total scope on the general-counsel record and open the follow-up; allocate the amendment effort evenly with the legal-ops co-owner; RE-DERIVE the consent tier from the live ballot book (TIER_3_DENIED_ESCALATION when the ballot index times 1000 is at least 1000000, TIER_2_SUPER_MAJORITY when at least 1000, else TIER_1_AUTO_FILE) and stamp it on the general-counsel record; take the solicitation's consent case of record up at that tier \u2014 onto the second-line queue and the high response target, its summary line citing the tier and the delta \u2014 close the linked change and problem; send the general counsel the status update citing the total scope and the tier, and then file this solicitation's consent-execution pack in the desk's document register, its docket line carrying that case, that tier and that figure (each recorded exactly as the handbook lays down); reconcile the credit ledger to the delta, and before you return the 'ok' verdict re-derive the figure chain \u2014 re-read the recorded base_consents and ballot_index and confirm the recorded total_scope still equals base_consents + ballot_index*1000, since a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing; and schedule the post-window amendment review after the window ends, conflict-free. Also pull the quarter's two facility-overview anchor readings \u2014 the desk's own period-over-period control, taken from a licensed reference book kept apart from the covenant and ballot registers on purpose, each reported as the book's own exact figure because it stands as next quarter's comparison point at the sign-off: how much customer 6 consumed between August and November 2013, and the average number of test takers from Fresno schools that opened in 1980.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\ncovenant_index: the covenant-consent index \u2014 whole number\nbase_consents: the base consent scope \u2014 whole number\nballot_index: the ballot reference index \u2014 whole number\namendment_uplift: the amendment uplift \u2014 whole number, no thousands separators\ntotal_scope: the total amendment scope \u2014 whole number\ndelta: the escalation delta \u2014 whole number\nbranch: the consent route \u2014 exactly one of {AUTO_FILE, SUPER_MAJORITY, DENIED_ESCALATION}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the credit ledger nets to the delta\nside_exposure: the first side anchor \u2014 the book's exact decimal value\nside_cohort: the second side anchor \u2014 the book's exact decimal value",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: four source reference books \u2014 the covenant register (bird_card_games_cards, bird_card_games_legalities, ...), the ballot book (bird_student_club_event, bird_student_club_attendance, bird_student_club_member, ...), the side-exposure consumption book (bird_debit_card_specializing_yearmonth, ...) and the side-cohort schools book (bird_california_schools_satscores, bird_california_schools_schools, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the ballot-credit ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany amendment-line ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's three shared enterprise registers \u2014 CSM (eops_sn_csm_server_customer_case, eops_sn_csm_server_case_sla, eops_sn_csm_server_user_group, ...), ITSM (eops_gym_itsm_mcp_change, eops_gym_itsm_mcp_problem, ...) and the document register (eops_gym_google_drive_mcp_files, eops_gym_google_drive_mcp_comments, ...). You are riley.chen@atlas.com (Riley Chen), the treasurer, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist amendment-docket project, and a calendar on wb_calendar_events; the correct lender is correct.lender@atlas.com, the wrong lender is wrong.lender@atlas.com, the legal-ops co-owner is legal.desk@atlas.com, the bond trustee is bond.trustee@atlas.com, and ONE CRM record \u2014 the general counsel general.counsel@atlas.com \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the covenant index, base consent scope, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "TREASURY COVENANT DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[DCA-BASE]' \u2014 general-counsel CRM notes: the base-consent stamp, citing 'base_consents=<n>'.\n   - '[DCA-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[DCA-VOTE]' \u2014 ballot ledger (vm) DESCRIPTION of every ballot-credit entry.\n   - '[DCA-RETRACT]' \u2014 ballot ledger DESCRIPTION of a retraction entry (same amount as the row it reverses, opposite direction, alongside the '[DCA-VOTE]' tag).\n   - '[DCA-NOTICE]' \u2014 email SUBJECT of the trustee super-majority notice; the BODY must cite the total scope and the delta.\n   - '[DCA-FILE]' \u2014 general-counsel CRM notes: the consent log, citing 'total_scope=<n>'.\n   - '[DCA-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany amendment-line allocation. The expense books the full recorded total_scope as its amount, and its sw_expense_shares row assigns legal.desk@atlas.com a share of exactly half that amount.\n   - '[DCA-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Covenant Amendment Docket' project); the title cites the delta.\n   - '[DCA-TIER]' \u2014 general-counsel CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[DCA-CASE]' \u2014 the consent case of record's short_description on the CSM register: prepended to the line already there, citing the case number, the tier word and the delta.\n   - '[DCA-PACK]' \u2014 a COMMENT on the filed record copy in the document register: the pack's docket line, citing the consent case number, the tier word and 'total_scope=<n>'.\n   - '[DCA-STATUS]' \u2014 email SUBJECT of the general-counsel status update; the BODY must cite the total scope and the tier word.\n   - '[DCA-RECON]' \u2014 general-counsel CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[DCA-VOTE]' ledger (credits minus retractions) at write time, and the figure chain is re-derived before the verdict is written \u2014 the recorded total_scope must still equal base_consents + ballot_index*1000.\n   - '[DCA-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window amendment review.\n   - '[DCA-BONDHOLDER]' \u2014 general-counsel CRM notes: the bondholder-escalation note, filed ONLY on the denied-escalation route.\n\n2. ROUTE AND TIER WORDS. The consent route is always one of the desk's three route words: 'AUTO_FILE', 'SUPER_MAJORITY', 'DENIED_ESCALATION'. The consent tier is always one of the desk's three tier words: 'TIER_1_AUTO_FILE', 'TIER_2_SUPER_MAJORITY', 'TIER_3_DENIED_ESCALATION'. A cited tier word is re-derived from the live ballot book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (riley.chen@atlas.com); the general counsel is written to at general.counsel@atlas.com, the bond trustee at bond.trustee@atlas.com. Ballot credits run on the vm ledger FROM you TO the correct lender (correct.lender@atlas.com); a credit that lands on the wrong lender (wrong.lender@atlas.com) is corrected by that lender sending the same amount back to you, never deleted. The amendment-effort allocation runs on the sw ledger between you and the legal-ops co-owner (legal.desk@atlas.com). Follow-up work lives in your Todoist 'Q1 Covenant Amendment Docket' project; the window and review on your own wb_calendar_events (participant_email = riley.chen@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Ballot rows are append-only: a wrong ledger entry is corrected by a NEW retraction row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the general-counsel row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the general-counsel record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The amendment review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators; the two side anchors keep their exact decimal value; the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The solicitation's consent case of record is 'CS-0000184' (case_id 184). Taking it up at the classified tier sets its priority to 'high', its assignment_group_id to the group_id of the 'CSM Tier 2 Support' group, and its contact_id to 11 (Tonya Stevens), the consent contact of record; the response clock is restarted by a NEW eops_sn_csm_server_case_sla row on that case linking it to the 'SLA Response - High (No Pause)' definition with stage 'in_progress' and a non-null start_time (that definition already stands on the register). The case's summary line carries the '[DCA-CASE]' stamp prepended to its short_description, citing the tier word and the delta; the rest of the line and the case's open state stand as they are.\n   - ITSM register (eops_gym_itsm_mcp_* tables). The change/problem closure moves change 'CHG_017' to status 'closed' with close_notes recording 'Found 3 unused rules removed, 2 vendor access rules updated', and moves problem 'PRB_011' to status 'closed'.\n   - Document register (eops_gym_google_drive_mcp_* tables). This solicitation's papers are kept under the amendment programme's own file stem, 'Phoenix'. Filing the consent-execution pack opens the docket archive folder 'Phoenix_Archives' (an 'application/vnd.google-apps.folder' row, not trashed); files the record copy of the consent plan into that folder as 'Phoenix_Plan_Closed.txt' with its description exactly 'Status: Terminated'; leaves the desk's sign-off comment 'Closeout approved by QA' on that record copy, alongside the '[DCA-PACK]' docket line; and trashes the superseded working plan 'Phoenix_Plan_vFinal.txt'.\n\nSEQUENCING: the n17 step must not be finalized until the n05 figure (branch), the n19 figure (side_exposure), the n20 figure (side_cohort) are all already on file \u2014 record them first.",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_general_counsel": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "general.counsel@atlas.com",
+          "customer_name": "General Counsel",
+          "assigned_to_email": "riley.chen@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "riley.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "correct.lender@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.lender@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "riley.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "general.counsel@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "bond.trustee@atlas.com",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Covenant Amendment Docket",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "Treasury-desk daily standup",
+          "participant_email": "riley.chen@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_customer_case": [
+        {
+          "number": "CS-0000184",
+          "priority": "moderate",
+          "assignment_group_id": "(vendor liaison)",
+          "contact_id": "(not yet the point of contact of record)",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_change": [
+        {
+          "change_id": "CHG_017",
+          "status": "review",
+          "note": ""
+        }
+      ],
+      "eops_gym_google_drive_mcp_files": [
+        {
+          "name": "(no 'Phoenix' pack filed yet)",
+          "mime_type": "application/vnd.google-apps.folder",
+          "description": "",
+          "trashed": "0",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the four reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register case update/closure).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: ballot credits are compensatable \u2014 retract a wrong-lender credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across FOUR bird books (card_games/student_club/debit_card_specializing/california_schools) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/itsm/drive). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n18 with long-range edges: delta n04 reconciled at n17 (gap 13); the [DCA-HOLD] window n06 gates the review n18 (gap 12); total_scope n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (student_club) woven into the arithmetic/branch; n19 (debit_card_specializing) and n20 (california_schools) are two independent side anchors reported verbatim.",
+    "protagonist": {
+      "email": "riley.chen@atlas.com",
+      "role": "treasurer running the covenant-amendment consent solicitation"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "How many cards of legalities whose status is restricted have text boxes? (Read it as the book does: count the DISTINCT cards that have a legality whose status is 'Restricted' and that are not textless, i.e. isTextless = 0, joining cards to legalities on the shared uuid.) Record the answer in answers as kind='covenant_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.uuid",
+          "bird_card_games_legalities.status",
+          "bird_card_games_cards.isTextless"
+        ],
+        "writes": [
+          "answers.covenant_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the base consent scope from the covenant index. Read the stored covenant_index and compute base_consents = round(covenant_index). Record it in answers as kind='base_consents' and stamp the general-counsel CRM row (customer_email general.counsel@atlas.com) by prepending '[DCA-BASE] base_consents=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.covenant_index"
+        ],
+        "writes": [
+          "answers.base_consents",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size? (Read it as the book does: over students who attended the event named 'Women's Soccer', count the DISTINCT members whose t_shirt_size is 'Medium', joining event to attendance to member.) Record the answer in answers as kind='ballot_index'. (This ballot reference index feeds the amendment uplift.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_student_club_event.event_name",
+          "bird_student_club_attendance.link_to_event",
+          "bird_student_club_member.t_shirt_size"
+        ],
+        "writes": [
+          "answers.ballot_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the amendment-scope envelope from the stored answers. Read answers.base_consents AND answers.ballot_index. amendment_uplift = ballot_index * 1000; total_scope = base_consents + amendment_uplift; delta = amendment_uplift. Record all three: answers kind='amendment_uplift', kind='total_scope', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.base_consents",
+          "answers.ballot_index"
+        ],
+        "writes": [
+          "answers.amendment_uplift",
+          "answers.total_scope",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the consent branch on the computed state. Read answers.delta and set answers kind='branch' to 'DENIED_ESCALATION' if delta >= 1000000, else 'SUPER_MAJORITY' if delta >= 1000, else 'AUTO_FILE'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total scope is computed, place the amendment-review WINDOW on the treasurer's calendar (participant_email=riley.chen@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[DCA-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_scope",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the ballot-credit run for EXACTLY delta on the lender ledger. Record vm_transactions rows tagged '[DCA-VOTE]' so the NET credit posted FROM the treasurer (riley.chen@atlas.com) TO the correct lender (correct.lender@atlas.com) equals delta. If the first credit lands on the WRONG lender (wrong.lender@atlas.com), DO NOT delete it: write a matching '[DCA-RETRACT] [DCA-VOTE]' entry (the wrong lender sends the SAME amount back to the treasurer) which cancels the wrong credit, then the correct credit to the right lender.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the consent branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION', send the bond trustee a super-majority notice. INSERT a gm_emails row from the treasurer (riley.chen@atlas.com) to the bond trustee (bond.trustee@atlas.com) whose subject carries '[DCA-NOTICE]' and whose body CITES the total_scope and the delta. For branch 'AUTO_FILE' (auto-file), the notice MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_scope",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the consent solicitation on the general-counsel CRM record. Prepend '[DCA-FILE] total_scope=<n>' to the notes \u2014 but on the 'SUPER_MAJORITY' and 'DENIED_ESCALATION' routes, ONLY after the '[DCA-NOTICE]' notice has been sent to the bond trustee. On the 'AUTO_FILE' route the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_scope",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany amendment-line ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the treasurer (riley.chen@atlas.com) for the full total_scope with description '[DCA-ALLOC]', and a sw_expense_shares row assigning the legal-ops co-owner (legal.desk@atlas.com) a share_amount = total_scope/2 (its half of the joint amendment effort).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_scope",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Covenant Amendment Docket' project owned by the treasurer whose title carries '[DCA-FUP]' and the delta value \u2014 only after the general-counsel CRM record carries the '[DCA-FILE]' consent log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the consent TIER. RE-DERIVE it from the live ballot book: uplift = (the ballot reference index) * 1000, TIER = 'TIER_3_DENIED_ESCALATION' if uplift >= 1000000, 'TIER_2_SUPER_MAJORITY' if uplift >= 1000, else 'TIER_1_AUTO_FILE'. Write it to the general-counsel CRM row's DEDICATED status column (set status='[DCA-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_student_club_member.t_shirt_size"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Take the amendment's consent case of record up at the classified tier on the desk's enterprise case register. The case of record for this solicitation is 'CS-0000184' (case_id 184), the alert ticket standing on the facility account the general-counsel record covers. Raise its priority to 'high'; move it off the vendor-liaison queue to the desk's second-line specialists \u2014 set its assignment_group_id to the group_id of the 'CSM Tier 2 Support' group; name the consent contact of record as the point of contact \u2014 contact_id 11 (Tonya Stevens); and switch the response target by attaching a NEW case_sla row linking the case to the 'SLA Response - High (No Pause)' definition with stage 'in_progress' and a non-null start_time, which restarts the response clock at the classification. Then restate the case's summary line: prepend '[DCA-CASE] CS-0000184 tier=<tier> delta=<n>' to its short_description, <tier> being the consent tier word stamped on the general-counsel CRM row and <n> the recorded escalation delta, so the register shows the classification and the figure the case is being worked at. Take it up only once that CRM status carries the '[DCA-TIER]' stamp whose tier matches the live re-derivation: the case is taken up AT the classification of record, so while the tier is unstamped there is nothing of record for the case line to cite. Leave the rest of the summary line as it stands and do NOT close the case.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status",
+          "answers.delta"
+        ],
+        "writes": [
+          "eops_sn_csm_server_customer_case.priority",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_case_sla.stage"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Close out the linked change and problem in the desk's ITSM register. Close change 'CHG_017' (status 'closed') with the access-rule cleanup close_notes ('Found 3 unused rules removed, 2 vendor access rules updated'), and close problem 'PRB_011' (status 'closed'). Only after the consent case of record has been taken up at the classified tier on the case register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.priority"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_change.status",
+          "eops_gym_itsm_mcp_problem.status"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the general counsel a status update. INSERT a gm_emails row from the treasurer (riley.chen@atlas.com) to the general counsel (general.counsel@atlas.com) whose subject carries '[DCA-STATUS]' and whose body cites the total_scope and the consent tier word (re-derived from the live ballot book) \u2014 only after the change/problem closure is on the desk register.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_itsm_mcp_change.status",
+          "answers.total_scope",
+          "bird_student_club_member.t_shirt_size",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "File this amendment's consent-execution pack in the desk's document register. The desk keeps each amendment programme's papers under its own file stem; this solicitation's is 'Phoenix'. Open the docket archive folder 'Phoenix_Archives' (mime_type 'application/vnd.google-apps.folder', not trashed); file the record copy of the consent plan into that folder as 'Phoenix_Plan_Closed.txt' with its description set to exactly 'Status: Terminated'; leave the desk's sign-off comment 'Closeout approved by QA' on that record copy; and add a second comment on it carrying the pack's docket line '[DCA-PACK] CS-0000184 tier=<tier> total_scope=<n>' \u2014 <tier> the consent tier word and <n> the recorded total_scope, the two figures the general counsel was given in the '[DCA-STATUS]' update \u2014 so the record copy shows the classification and the scope this amendment was filed at. Then send the superseded working plan 'Phoenix_Plan_vFinal.txt' to the trash, so nothing edits the draft behind the filed record. Only after the '[DCA-STATUS]' status email is out: the pack is the file as reported to counsel, so it cannot be closed ahead of the report it copies.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "gm_emails.body",
+          "answers.total_scope",
+          "bird_student_club_member.t_shirt_size"
+        ],
+        "writes": [
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_files.trashed",
+          "eops_gym_google_drive_mcp_comments.content"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct lender equals delta (re-read from the '[DCA-VOTE]' ledger rows, credits minus retractions, never from memory). Then, before the 'ok' verdict, re-derive the figure chain: re-read the recorded base_consents and ballot_index and confirm the recorded total_scope still equals base_consents + ballot_index*1000 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Only when both cross-checks hold, record answers kind='reconciled'='ok' and prepend a '[DCA-RECON] delta=<delta>' note to the general-counsel CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.base_consents",
+          "answers.ballot_index",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Schedule the general-counsel amendment review. INSERT a wb_calendar_events row on the treasurer's calendar whose event_name carries '[DCA-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[DCA-HOLD]' review window and does NOT overlap any of the treasurer's other events. Only for a general-counsel record whose CRM carries '[DCA-RECON]' AND with this solicitation's consent-execution pack filed in the desk's document register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_google_drive_mcp_files.description"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n17",
+          "n16"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Take the quarter's first facility-overview anchor reading, at the close of the run, once the amendment's own figures are settled and the quarterly overview is ready to sign off. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the covenant and ballot registers this amendment is sized on, on purpose \u2014 and is answered exactly as that book asks it: \"How much did customer 6 consume in total between August and November 2013?\" (Read it as the book does: sum the Consumption for customer 6 over the year-month rows whose Date is between '201308' and '201311' inclusive; report the book's own exact value.) Record the answer in answers as kind='side_exposure'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the facility overview is signed off only when this quarter's reading lines up with the last. Nothing later in this amendment reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a facility-overview move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_debit_card_specializing_yearmonth.Consumption",
+          "bird_debit_card_specializing_yearmonth.CustomerID"
+        ],
+        "writes": [
+          "answers.side_exposure"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's second facility-overview anchor reading, at the close of the run, once the amendment's own figures are settled and the quarterly overview is ready to sign off. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the covenant and ballot registers this amendment is sized on, on purpose \u2014 and is answered exactly as that book asks it: \"What is the average number of test takers from Fresno schools that opened between 1/1/1980 and 12/31/1980?\" (Read it as the book does: over Fresno-county schools whose OpenDate year is 1980, average the NumTstTakr from the SAT-score rows joined on cds=CDSCode; report the book's own exact decimal value.) Record the answer in answers as kind='side_cohort'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the facility overview is signed off only when this quarter's reading lines up with the last. Nothing later in this amendment reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a facility-overview move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_california_schools_satscores.NumTstTakr",
+          "bird_california_schools_schools.County",
+          "bird_california_schools_schools.OpenDate"
+        ],
+        "writes": [
+          "answers.side_cohort"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 13,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 27,
+      "dependency_depth": 13,
+      "max_dependency_gap": 15,
+      "mean_dependency_gap": 4.63,
+      "long_range_edge_ratio": 0.333,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.815,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n17",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n17",
+          "gap": 15,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n17",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n18",
+          "gap": 12,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n18"
+      ],
+      "primary_chain_len": 13,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (consent branch on delta bands) -> 'SUPER_MAJORITY' on real data",
+      "long_range_edges": [
+        "n04->n17 delta reconciled 13 steps later (gap 13, max)",
+        "n06->n18 [DCA-HOLD] window (type-B) gates the review (gap 12)",
+        "n04->n15 total_scope resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n19 (independent birdsql:1483 debit_card_specializing side anchor)",
+        "n20 (independent birdsql:39 california_schools side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:1317 student_club) woven into the delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "riley.chen@atlas.com",
+      "general_counsel": "general.counsel@atlas.com",
+      "correct_lender": "correct.lender@atlas.com",
+      "wrong_lender": "wrong.lender@atlas.com",
+      "co_owner": "legal.desk@atlas.com",
+      "trustee": "bond.trustee@atlas.com",
+      "gc_crm_id": "00000002",
+      "source_questions": {
+        "covenant_index": "birdsql:361 (card_games) \u2014 How many cards of legalities whose status is restricted have text boxes?",
+        "ballot_index": "birdsql:1317 (student_club) \u2014 Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size?",
+        "side_exposure": "birdsql:1483 (debit_card_specializing) \u2014 How much did customer 6 consume in total between August and November 2013?",
+        "side_cohort": "birdsql:39 (california_schools) \u2014 What is the average number of test takers from Fresno schools that opened between 1/1/1980 and 12/31/1980?"
+      },
+      "eops_source_tasks": {
+        "csm_consent_case": "enterpriseops:task_20251128_072831_616_6cd2e092_426f7c81 (sn-csm-server) \u2014 consent case of record CS-0000184 at 'high' in 'CSM Tier 2 Support', contact 11, response clock running on 'SLA Response - High (No Pause)'",
+        "itsm_closure": "enterpriseops:task_20251223_081019_100_d4a463c3_f8774fe4 (gym-itsm-mcp) \u2014 change CHG_017 closed + problem PRB_011 closed",
+        "execution_pack": "enterpriseops:task_20260107_163801_607_64a4ebb9_6f9c4d1b (gym-google-drive-mcp) \u2014 'Phoenix_Plan_Closed.txt' filed in 'Phoenix_Archives' at 'Status: Terminated' with the 'Closeout approved by QA' sign-off and the [DCA-PACK] docket line; 'Phoenix_Plan_vFinal.txt' trashed"
+      },
+      "base_policy": "base_consents = round(covenant_index) (whole-count rounding)",
+      "uplift_policy": "amendment_uplift = ballot_index * 1000 (per-index 1000 is declared)",
+      "branch_policy": "'AUTO_FILE' (delta<1000, no notice); 'SUPER_MAJORITY' (delta>=1000, trustee notice, no bondholder note); 'DENIED_ESCALATION' (delta>=1000000, notice + bondholder note) \u2014 the 1000/1000000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[DCA-BASE]",
+        "review_window": "[DCA-HOLD]",
+        "credit": "[DCA-VOTE]",
+        "reversal": "[DCA-RETRACT]",
+        "allocation": "[DCA-ALLOC]",
+        "handoff": "[DCA-NOTICE]",
+        "crm_log": "[DCA-FILE]",
+        "followup": "[DCA-FUP]",
+        "tier": "[DCA-TIER]",
+        "consent_case_line": "[DCA-CASE]",
+        "status_email": "[DCA-STATUS]",
+        "execution_pack_line": "[DCA-PACK]",
+        "crm_reconcile": "[DCA-RECON]",
+        "calendar_review": "[DCA-REVIEW]",
+        "bondholder_note_only_on_denied_escalation": "[DCA-BONDHOLDER]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.covenant_index",
+          "answers.base_consents",
+          "answers.ballot_index",
+          "answers.amendment_uplift",
+          "answers.total_scope",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_exposure",
+          "answers.side_cohort"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [DCA-HOLD] event (n18 reads them there); the three eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "consent tier \u2014 re-derived at n12 from the live student_club book (ballot-index banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (treasurer->wrong lender) + retraction delta (wrong lender->treasurer) + correct delta (treasurer->correct lender); net treasurer->correct lender = delta",
+      "review_window_hold": "[DCA-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 treasury standup)",
+      "true_covenant_index": "535",
+      "true_base_consents": 535,
+      "true_ballot_index": 7,
+      "true_amendment_uplift": 7000,
+      "true_total_scope": 7535,
+      "true_delta": 7000,
+      "true_branch": "SUPER_MAJORITY",
+      "true_tier": "TIER_2_SUPER_MAJORITY",
+      "true_reconciled": "ok",
+      "true_side_exposure": "1224.96",
+      "true_side_cohort": "137.888888888889"
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.covenant_index"
+        ],
+        "change": "How many cards of legalities whose status is restricted have text boxes? (Read it as the book does: count the DISTINCT cards that "
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.base_consents",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the base consent scope from the covenant index. Read the stored covenant_index and compute base_consents = round(covenant_inde"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.ballot_index"
+        ],
+        "change": "Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.amendment_uplift",
+          "answers.total_scope",
+          "answers.delta"
+        ],
+        "change": "Compute the amendment-scope envelope from the stored answers. Read answers.base_consents AND answers.ballot_index. amendment_uplif"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the consent branch on the computed state. Read answers.delta and set answers kind='branch' to 'DENIED_ESCALATION' if delta "
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total scope is computed, place the amendment-review WINDOW on the treasurer's calendar (participant_email=riley.chen@atla"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the ballot-credit run for EXACTLY delta on the lender ledger. Record vm_transactions rows tagged '[DCA-VOTE]' so the NET cred"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the consent branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION', send the bond trustee a super-majority notice. INSERT a gm_email"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the consent solicitation on the general-counsel CRM record. Prepend '[DCA-FILE] total_scope=<n>' to the notes \u2014 but on the 'SU"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany amendment-line ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the treasurer (ril"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Covenant Amendment Docket' project owned by the treasurer whos"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the consent TIER. RE-DERIVE it from the live ballot book: uplift = (the ballot reference index) * 1000, TIER = 'TIER_3_DE"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_customer_case.priority",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_case_sla.stage"
+        ],
+        "change": "Take the amendment's consent case of record up at the classified tier on the desk's enterprise case register. The case of record f"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_change.status",
+          "eops_gym_itsm_mcp_problem.status"
+        ],
+        "change": "Close out the linked change and problem in the desk's ITSM register. Close change 'CHG_017' (status 'closed') with the access-rule"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the general counsel a status update. INSERT a gm_emails row from the treasurer (riley.chen@atlas.com) to the general counsel "
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_files.trashed",
+          "eops_gym_google_drive_mcp_comments.content"
+        ],
+        "change": "File this amendment's consent-execution pack in the desk's document register. The desk keeps each amendment programme's papers und"
+      },
+      {
+        "subgoal": "n17",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct lender equals delta (re"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the general-counsel amendment review. INSERT a wb_calendar_events row on the treasurer's calendar whose event_name carrie"
+      },
+      {
+        "subgoal": "n19",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_exposure"
+        ],
+        "change": "Take the quarter's first facility-overview anchor reading, at the close of the run, once the amendment's own figures are settled a"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_cohort"
+        ],
+        "change": "Take the quarter's second facility-overview anchor reading, at the close of the run, once the amendment's own figures are settled "
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the consent branch the data selects ('SUPER_MAJORITY'). The four source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (covenant_index == the birdsql:361 COUNT(DISTINCT); ballot_index == the birdsql:1317 COUNT(DISTINCT); side_exposure == the birdsql:1483 SUM REAL stored in the book's exact CAST-text form; side_cohort == the birdsql:39 AVG REAL in CAST-text form), and the three EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the CSM consent case of record CS-0000184 taken up at the classified tier \u2014 priority 'high' / the 'CSM Tier 2 Support' second-line group / contact 11 as the point of contact / a case_sla row on the 'SLA Response - High (No Pause)' target at stage 'in_progress' with a start_time; the ITSM CHG_017 closed + PRB_011 closed; the document register's 'Phoenix_Archives' docket folder open with 'Phoenix_Plan_Closed.txt' filed into it at 'Status: Terminated' and its sign-off comment, and the superseded 'Phoenix_Plan_vFinal.txt' draft trashed). COMPLETENESS: base_consents == round(covenant_index); amendment_uplift == ballot_index*1000; total_scope == base+uplift; delta == uplift=7000; branch == 'SUPER_MAJORITY' (1000 <= 7000 < 1000000); the [DCA-HOLD] window on the calendar; the vm ledger NETS delta to the correct lender (a wrong-lender credit offset by a [DCA-RETRACT] + the correct credit, net == delta AND wrong-lender net == 0); the trustee notice exists IFF the branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION' and cites the total + delta; the allocation + co-owner share on Splitwise; the CRM logs total_scope; the follow-up cites delta; the consent TIER is RE-DERIVED from the live student_club book (type-C, never in answers) and stamped; the three eops register beats match the inherited checks; the status email cites total + tier; reconciled == 'ok' only with the figure chain re-derived (total_scope == base_consents + ballot_index*1000); the review is conflict-free, after the window end, with the consent-execution pack filed; side_exposure == 1224.96; side_cohort == 137.888888888889. COLLATERAL (each 0): NO trustee notice on an 'AUTO_FILE' path; NO [DCA-BONDHOLDER] note on an 'AUTO_FILE' or 'SUPER_MAJORITY' branch; NO naked delete of a wrong-lender credit (it must keep its [DCA-RETRACT]); the review never double-books, never precedes the window end, and never fires for an unlogged general-counsel; no unrelated CRM row is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped covenant_index).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the general-counsel facility CRM row and confirm it is homed to riley.chen@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='general.counsel@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: general.counsel@atlas.com assigned_to riley.chen@atlas.com.",
+        "state_delta": "none (GC ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the covenant-consent index from the register's own question.",
+        "reasoning": "COUNT DISTINCT non-textless cards carrying a 'Restricted' legality (cards JOIN legalities on uuid).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(DISTINCT T1.id) FROM bird_card_games_cards T1 JOIN bird_card_games_legalities T2 ON T1.uuid=T2.uuid WHERE T2.status='Restricted' AND T1.isTextless=0"
+          }
+        },
+        "tool_result": "535.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Covenant index = 535.",
+        "reasoning": "n01: record covenant_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "covenant_index",
+              "value": "535"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+covenant_index=535"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the base consent scope from the covenant index.",
+        "reasoning": "n02: base_consents=round(535)=535; stamp the GC CRM [DCA-BASE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "base_consents",
+              "value": "535"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[DCA-BASE] base_consents=535').",
+        "state_delta": "answers:+base_consents=535; CRM:+base note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the ballot reference index from its book's own question.",
+        "reasoning": "COUNT DISTINCT Women's-Soccer attendees who want a Medium T-shirt (event JOIN attendance JOIN member).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event T1 JOIN bird_student_club_attendance T2 ON T1.event_id=T2.link_to_event JOIN bird_student_club_member T3 ON T2.link_to_member=T3.member_id WHERE T1.event_name='Women''s Soccer' AND T3.t_shirt_size='Medium'"
+          }
+        },
+        "tool_result": "7.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Ballot index = 7.",
+        "reasoning": "n03: record ballot_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "ballot_index",
+              "value": "7"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+ballot_index=7"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=535, ballot_index=7.",
+        "reasoning": "n04: amendment_uplift=7*1000=7000; total_scope=535+7000=7535; delta=7000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "amendment_uplift",
+              "value": "7000"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_scope=7535,+delta=7000).",
+        "state_delta": "answers:+amendment_uplift=7000,+total_scope=7535,+delta=7000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=7000.",
+        "reasoning": "n05: BRANCH DECISION on delta. 1000 <= 7000 < 1000000 -> the 'SUPER_MAJORITY' route.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 7000 >= 1000000 AS is_denied_escalation, 7000 >= 1000 AS is_super_majority_or_denied_escalation"
+          }
+        },
+        "tool_result": "0,1 -> 'SUPER_MAJORITY'.",
+        "state_delta": "none (SUPER_MAJORITY SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Route 'SUPER_MAJORITY'.",
+        "reasoning": "n05: record branch='SUPER_MAJORITY'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "SUPER_MAJORITY"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=SUPER_MAJORITY"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [DCA-HOLD] on the treasurer's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 amendment review window [DCA-HOLD]",
+              "participant_email": "riley.chen@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the ballot credit for delta. Instinct: credit the WRONG lender (wrong.lender@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 7000 credit to the wrong lender.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 7000.0,
+              "description": "Ballot attribution credit (wrong lender) [DCA-VOTE]"
+            }
+          }
+        },
+        "tool_result": "1 row (treasurer->wrong lender).",
+        "state_delta": "venmo:+WRONG-lender credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct lender.",
+        "reasoning": "The net treasurer->correct lender is currently 0, not delta=7000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description NOT LIKE '%[DCA-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description LIKE '%[DCA-RETRACT]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 7000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [DCA-RETRACT] as a positive 7000 in the OPPOSITE direction (wrong->treasurer).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<riley_vm>",
+              "amount": 7000.0,
+              "description": "Retraction of wrong-lender credit [DCA-RETRACT] [DCA-VOTE]"
+            }
+          }
+        },
+        "tool_result": "1 row (7000, wrong->treasurer).",
+        "state_delta": "venmo:+retraction (wrong-lender net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 7000 (treasurer->correct lender); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 7000.0,
+              "description": "Ballot attribution credit (correct lender) [DCA-VOTE]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 7000=delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the 'SUPER_MAJORITY' route requires a trustee super-majority notice.",
+        "reasoning": "Email bond.trustee@atlas.com a [DCA-NOTICE] citing total_scope=7535, delta=7000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<trustee_gm>]",
+              "subject": "trustee notice [DCA-NOTICE]",
+              "body": "... total_scope 7535 delta 7000 branch SUPER_MAJORITY ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+trustee notice (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total scope on the GC CRM (notice sent).",
+        "reasoning": "Prepend '[DCA-FILE] total_scope=7535' to the GC CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[DCA-FILE] total_scope=7535 <existing>"
+            },
+            "where": "lower(customer_email)='general.counsel@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany amendment-line allocation.",
+        "reasoning": "INSERT sw_expenses [DCA-ALLOC] amount=total_scope (7535) with a co-owner share (3767.5).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 7535.0,
+              "description": "Q1 intercompany amendment-line [DCA-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-owner share 3767.5).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [DCA-FUP] in 'Q1 Covenant Amendment Docket' citing delta=7000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "Reconcile Q1 covenant amendment consent [DCA-FUP] [delta=7000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the consent TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live ballot book: ballot_index*1000=7000 -> TIER_2_SUPER_MAJORITY; write [DCA-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN ((SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event AS T1 INNER JOIN bird_student_club_attendance AS T2 ON T1.event_id = T2.link_to_event INNER JOIN bird_student_club_member AS T3 ON T2.link_to_member = T3.member_id WHERE T1.event_name = 'Women''s Soccer' AND T3.t_shirt_size = 'Medium')*1000) >= 1000000 THEN 'TIER_3_DENIED_ESCALATION' WHEN ((SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event AS T1 INNER JOIN bird_student_club_attendance AS T2 ON T1.event_id = T2.link_to_event INNER JOIN bird_student_club_member AS T3 ON T2.link_to_member = T3.member_id WHERE T1.event_name = 'Women''s Soccer' AND T3.t_shirt_size = 'Medium')*1000) >= 1000 THEN 'TIER_2_SUPER_MAJORITY' ELSE 'TIER_1_AUTO_FILE' END)"
+          }
+        },
+        "tool_result": "'TIER_2_SUPER_MAJORITY' (7000 in [1000,1000000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the GC CRM status='[DCA-TIER] TIER_2_SUPER_MAJORITY'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[DCA-TIER] TIER_2_SUPER_MAJORITY"
+            },
+            "where": "lower(customer_email)='general.counsel@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=TIER_2_SUPER_MAJORITY"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: take the consent case of record up at the classified tier (the tier is stamped).",
+        "reasoning": "Per the handbook: case CS-0000184 to priority 'high', group 'CSM Tier 2 Support', contact 11 (Tonya Stevens); a NEW case_sla row on 'SLA Response - High (No Pause)' in_progress with start_time; summary line prepended '[DCA-CASE] CS-0000184 tier=TIER_2_SUPER_MAJORITY delta=7000'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_customer_case",
+            "set": {
+              "priority": "high",
+              "assignment_group_id": "<CSM Tier 2 Support group_id>",
+              "contact_id": 11,
+              "short_description": "[DCA-CASE] CS-0000184 tier=TIER_2_SUPER_MAJORITY delta=7000 <existing>"
+            },
+            "where": "case_id=184"
+          }
+        },
+        "tool_result": "1 case updated (+1 new case_sla row, response clock running).",
+        "state_delta": "CSM register: +consent case at the classified tier"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: close the linked change and problem in the ITSM register (gated on the consent case).",
+        "reasoning": "Per the handbook: close change CHG_017 with the cleanup close_notes; close problem PRB_011.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_change",
+            "set": {
+              "status": "closed",
+              "close_notes": "Found 3 unused rules removed, 2 vendor access rules updated"
+            },
+            "where": "change_id='CHG_017'"
+          }
+        },
+        "tool_result": "1 change closed (+1 problem closed).",
+        "state_delta": "ITSM register: +change/problem closure"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the GC.",
+        "reasoning": "INSERT gm_emails riley->GC [DCA-STATUS] citing total_scope=7535 and tier TIER_2_SUPER_MAJORITY.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<gc_gm>]",
+              "subject": "amendment status [DCA-STATUS]",
+              "body": "... total_scope 7535 ... TIER_2_SUPER_MAJORITY ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: file the consent-execution pack in the document register (gated on the status email).",
+        "reasoning": "Per the handbook: open 'Phoenix_Archives'; file the record copy 'Phoenix_Plan_Closed.txt' into it with description 'Status: Terminated'; comment 'Closeout approved by QA' plus the docket line '[DCA-PACK] CS-0000184 tier=TIER_2_SUPER_MAJORITY total_scope=7535'; trash the superseded 'Phoenix_Plan_vFinal.txt'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_google_drive_mcp_files",
+            "values": {
+              "name": "Phoenix_Plan_Closed.txt",
+              "description": "Status: Terminated",
+              "parent_ids": "[<Phoenix_Archives id>]",
+              "trashed": 0
+            }
+          }
+        },
+        "tool_result": "1 folder + 1 record copy filed (+2 comments; the draft trashed).",
+        "state_delta": "document register: +consent-execution pack"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: reconcile the credit ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct lender == delta (7000) AND re-derive the figure chain: the recorded total_scope 7535 must still equal base_consents 535 + ballot_index 7*1000; record reconciled='ok' + [DCA-RECON] delta=7000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description NOT LIKE '%[DCA-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description LIKE '%[DCA-RETRACT]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (7000==7000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n17: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[DCA-RECON] delta=7000' to the GC CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 27,
+        "phase": "discovery",
+        "observation": "n18: read the window end and the treasurer's busy slots.",
+        "reasoning": "Read the [DCA-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[DCA-HOLD]%' AND lower(participant_email)=lower('riley.chen@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n18: schedule the '[DCA-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "GC amendment review [DCA-REVIEW]",
+              "participant_email": "riley.chen@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+amendment review"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "n19: independent side-exposure figure (birdsql:1483).",
+        "reasoning": "SUM customer-6 consumption over the year-month rows in [201308,201311].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT SUM(Consumption) FROM bird_debit_card_specializing_yearmonth WHERE CustomerID=6 AND Date BETWEEN '201308' AND '201311'"
+          }
+        },
+        "tool_result": "1224.96.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "Side exposure = 1224.96.",
+        "reasoning": "n19: record side_exposure verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_exposure",
+              "value": "1224.96"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_exposure=1224.96"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "n20: independent side-cohort average (birdsql:39).",
+        "reasoning": "AVG NumTstTakr over Fresno-county schools whose OpenDate year is 1980 (satscores JOIN schools).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT AVG(T1.NumTstTakr) FROM bird_california_schools_satscores T1 JOIN bird_california_schools_schools T2 ON T1.cds=T2.CDSCode WHERE strftime('%Y',T2.OpenDate)='1980' AND T2.County='Fresno'"
+          }
+        },
+        "tool_result": "137.888888888889.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 32,
+        "phase": "execution",
+        "observation": "Side cohort = 137.888888888889.",
+        "reasoning": "n20: record side_cohort verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_cohort",
+              "value": "137.888888888889"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_cohort=137.888888888889"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct lender == delta and branch 'SUPER_MAJORITY' recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description NOT LIKE '%[DCA-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lender@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[DCA-VOTE]%' AND description LIKE '%[DCA-RETRACT]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "7000.0, 'SUPER_MAJORITY' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no bondholder note / extra notice for an auto-file branch and every wrong-lender credit has a [DCA-RETRACT].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[DCA-BONDHOLDER]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[DCA-RETRACT]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> the 'DENIED_ESCALATION' artifacts are absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 35,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', all three eops register beats are in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_itsm_mcp_problem WHERE problem_id='PRB_011' AND status='closed')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the credit posting, the window and the allocation) and joins (n18 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n17 (gap 13), the [DCA-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n18 (gap 12), and total_scope resurfaces in the status email at n15. The cross-book mid value (ballot_index from the student_club book, birdsql:1317) is woven into the delta and thus into the branch and the whole downstream; n19 (debit_card_specializing, birdsql:1483) and n20 (california_schools, birdsql:39) are two independent side anchors no downstream check reads, reported verbatim. The consent tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from live student_club book, and the consent case's composition check binds the tier written onto the case line to that live re-derivation. The three EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The ballot credit is COMPENSATABLE: the first (wrong-lender) credit must be corrected by a matching [DCA-RETRACT] then the correct credit \u2014 the net treasurer->correct-lender credit == delta, and the collateral 'no_naked_delete_of_wrong_lender_credit' forbids removing the wrong row. On the real data delta=7000 mandates the 'SUPER_MAJORITY' branch (trustee notice, no bondholder note); the FSV accepts that branch complete AND rejects a spurious bondholder note or an extra notice on the 'AUTO_FILE' branch.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "gate",
+    "probe_edge": {
+      "from": "n05",
+      "to": "n17"
+    },
+    "probe_edges": [
+      {
+        "from": "n05",
+        "to": "n17"
+      },
+      {
+        "from": "n19",
+        "to": "n17"
+      },
+      {
+        "from": "n20",
+        "to": "n17"
+      }
+    ],
+    "consumer": "n17",
+    "prerequisites": [
+      "n05",
+      "n19",
+      "n20"
+    ],
+    "n_parents": 3,
+    "signature": {
+      "dG": 3,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

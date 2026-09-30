@@ -1,0 +1,528 @@
+{
+ "uid": "hybrid_franchise_royalty_reconciliation__0001",
+ "generated_from_build_sha": "2f10007ce3de",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "royalty_index": "9675.03846153846",
+  "expected_royalty": "65",
+  "reference_catalog_item": "Gleemax",
+  "underpayment_amount": "4000",
+  "total_royalty_flow": "4065",
+  "underpayment_delta": "4000",
+  "branch": "UNDERPAID_BELOW_THRESHOLD",
+  "reconciled": "ok",
+  "side_cohort_major": "Business"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:152",
+   "answers_written": {
+    "royalty_index": "9675.03846153846"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT AVG(sub.A15) AS avg_crimes_1995\nFROM (\n  SELECT DISTINCT\n    T1.district_id,\n    T1.A15\n  FROM bird_district AS T1\n  INNER JOIN bird_account AS T2 ON T1.district_id = T2.district_id\n  WHERE STRFTIME('%Y', T2.date) >= '1997'\n    AND T1.A15 > 4000\n) AS sub",
+    "result": 9675.038461538461
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_152_royalty_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "answers_written": {
+    "expected_royalty": "65"
+   },
+   "checks": [
+    {
+     "name": "expected_royalty_is_round_index_over_150",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "expected_royalty_derives_from_stored_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "frdir_crm_expected_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:342",
+   "answers_written": {
+    "reference_catalog_item": "Gleemax"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT DISTINCT name FROM bird_card_games_cards WHERE ConvertedManaCost = (SELECT MAX(ConvertedManaCost) FROM bird_card_games_cards)",
+    "result": "Gleemax"
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_342_reference_catalog_item",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "answers_written": {
+    "underpayment_amount": "4000",
+    "total_royalty_flow": "4065",
+    "underpayment_delta": "4000"
+   },
+   "checks": [
+    {
+     "name": "underpayment_is_count_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_flow_equals_expected_plus_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_flow_derives_from_stored_expected_and_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "answers_written": {
+    "branch": "UNDERPAID_BELOW_THRESHOLD"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:method",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[FRR-HOLD]",
+      "event_name": "Q1 franchise reconciliation review window [FRR-HOLD]",
+      "participant_email": "franchise.ops@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:method",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_franchisee",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "collections_sent_iff_underpaid",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "collections_cites_reference_item",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:method",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_flow_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:method",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251217_130333_406_df2c536d_96566d89",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "collections_case_escalation_reason_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "case_escalation_filed_at_the_tier_of_record",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251217_130333_406_df2c536d_96566d89",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "collections_review_session_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "collections_review_names_case_and_agent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "collections_review_quotes_case_and_filed_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_flow_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20251217_040407_761_6f5b66fc_eecce10e",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "settlement_case_raised_critical",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "settlement_case_raised_at_the_reported_total",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "enterpriseops:task_20251217_040407_761_6f5b66fc_eecce10e",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "settlement_working_block_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "case_reviewer_added_to_working_block",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "working_block_cites_case_and_recorded_total",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:method",
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:method",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[FRR-REVIEW]",
+      "event_name": "Post-reconciliation review [FRR-REVIEW]",
+      "participant_email": "franchise.ops@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__royalty_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__expected_royalty_is_fn_of_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reference_catalog_item_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__underpayment_amount_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_flow_is_expected_plus_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_underpayment",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_cohort_major_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:1312",
+   "answers_written": {
+    "side_cohort_major": "Business"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T2.major_name FROM bird_student_club_member AS T1 INNER JOIN bird_student_club_major AS T2 ON T1.link_to_major = T2.major_id WHERE T1.first_name = 'Angela' AND T1.last_name = 'Sanders'",
+    "result": "Business"
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1312_side_cohort_major",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

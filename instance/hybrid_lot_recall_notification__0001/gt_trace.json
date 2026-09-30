@@ -1,0 +1,663 @@
+{
+ "uid": "hybrid_lot_recall_notification__0001",
+ "generated_from_build_sha": "d96ec34c8f0d",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "recall_account": "2836",
+  "retailer_batch_pool": "1547425",
+  "notification_base": "20632",
+  "parts_index": "181.400601190476",
+  "lot_uplift": "18100",
+  "total_notifications": "38732",
+  "delta": "18100",
+  "branch": "REPORTABLE",
+  "reconciled": "ok",
+  "side_lead_supplier": "Fisichella"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:95",
+   "verdict_basis": "recall_account is judged by birdsql:95's own official gold SQL rerun LIVE on the bird_-prefixed financial book \u2014 a true single-row account id; the money-domain IDENTITY ANCHOR (the spine magnitude is derived downstream from a live sum off this account)",
+   "answers_written": {
+    "recall_account": "2836"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T1.account_id FROM bird_account AS T1 INNER JOIN bird_disp AS T2 ON T1.account_id = T2.account_id INNER JOIN bird_client AS T3 ON T2.client_id = T3.client_id INNER JOIN bird_district AS T4 ON T1.district_id = T4.district_id WHERE T3.client_id = ( SELECT T3.client_id FROM bird_client AS T3 INNER JOIN bird_disp AS T2 ON T3.client_id = T2.client_id INNER JOIN bird_account AS T1 ON T2.account_id = T1.account_id INNER JOIN bird_district AS T4 ON T1.district_id = T4.district_id WHERE T3.birth_date = (SELECT MAX(birth_date) FROM bird_client) ORDER BY T4.A11, T3.client_id DESC LIMIT 1)",
+    "result": 2836
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_95_recall_account",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "retailer_batch_pool = SUM(trans.amount) on the reference account; notification_base = round(pool / 75)",
+   "follows": "count/sum-off-an-identity-anchor then scaled-by-rate; the divisor 75 is a declared recall constant, no source counterpart",
+   "inputs": [
+    "recall_account <- birdsql:95 (live rerun)"
+   ],
+   "answers_written": {
+    "retailer_batch_pool": "1547425",
+    "notification_base": "20632"
+   },
+   "checks": [
+    {
+     "name": "retailer_batch_pool_equals_account_volume",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "retailer_batch_pool_derives_from_stored_recall_account",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "notification_base_is_round_pool_over_75",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "notification_base_derives_from_stored_pool",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "qm_crm_notification_base_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:1033",
+   "verdict_basis": "parts_index is judged by birdsql:1033's own official gold SQL rerun LIVE on the bird_european_football_2_-prefixed book \u2014 a true single-row SUM/COUNT scalar; the cross-book input woven into the recall arithmetic",
+   "answers_written": {
+    "parts_index": "181.400601190476"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT SUM(height) / COUNT(id) FROM bird_european_football_2_Player WHERE SUBSTR(birthday, 1, 4) BETWEEN '1990' AND '1995'",
+    "result": 181.4006011904762
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1033_parts_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "lot_uplift = round(parts_index)*100; total_notifications = notification_base + lot_uplift; delta = lot_uplift",
+   "follows": "index-rounded-scaled-by-rate + additive combine; the per-index 100 is a declared constant",
+   "inputs": [
+    "notification_base <- n02",
+    "parts_index <- n03 (birdsql:1033 live rerun)"
+   ],
+   "answers_written": {
+    "lot_uplift": "18100",
+    "total_notifications": "38732",
+    "delta": "18100"
+   },
+   "checks": [
+    {
+     "name": "lot_uplift_is_index_rounded_times_100",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_parts_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_notifications_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'MANDATORY' if delta>=100000; 'REPORTABLE' if delta>=10000; else 'VOLUNTARY'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 10000/100000 bands are declared constants; the branch predicate is source-expressed (delta from the live football index)",
+   "inputs": [
+    "delta <- n04 (round(parts_index)*100)"
+   ],
+   "answers_written": {
+    "branch": "REPORTABLE"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [LRN-HOLD] window's duration is the declared 3-day review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[LRN-HOLD]",
+      "event_name": "Q1 recall review window [LRN-HOLD]",
+      "participant_email": "recall.coordinator@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong notification corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_lot",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_retracted_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [LRN-CPSC-REPORT] email coordinator->CPSC citing total_notifications+delta, present IFF branch in ('REPORTABLE','MANDATORY')",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "total_notifications/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_reportable_or_mandatory",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [LRN-LOG] total_notifications marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_notifications; controller share = total_notifications/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_notifications <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [LRN-FUP] task citing delta in the coordinator's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [LRN-LOG]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived class",
+   "rule": "class = 'MANDATORY_RECALL_SUBSTANTIAL_HAZARD' if round(index)*100 >= 100000; 'CPSC_REPORTABLE_SECTION_15B' if >= 10000; else 'VOLUNTARY_MARKET_WITHDRAWAL'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the football reference index), not a relabel of a stored value",
+   "inputs": [
+    "index <- live bird_european_football_2 (re-derived at write time)",
+    "gate <- n11 td_tasks [LRN-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_class_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20260113_141542_776_911d75d7_78be6b0f",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server+gym-calendar oracle task (onboard the new support lead): its three native database_state checks \u2014 the manager user at Sydney location 15, the 'Stephanie - Team Leads' calendar, and the group-7 membership \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); the dependency coupling (the CRM [LRN-CLASS] stamp matching the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "recall-lead onboarding == the source task's own user+calendar+membership triple, gated on the n12 class relay",
+   "inputs": [
+    "class relay <- n12 CRM [LRN-CLASS] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "recall_lead_user_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "recall_lead_calendar_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "recall_lead_group_membership",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_onboarding_gated_on_class_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20260106_003109_589_b5bd4eb9_d0454fa5",
+   "verdict_basis": "EnterpriseOps-Gym gym-teams-mcp oracle task (the engineering-review space for THIS desk's engineering staff), checks 0-2 of 6: the PRIVATE 'Technical discussions' channel in the TechCorp Solutions Team, Bob Smith as the sole owner, and exactly the four members Alice Johnson / Bob Smith / Nathan Richards / Sophia Bennett \u2014 inherited VERBATIM (prefix rewrite only); the CONSUMPTION coupling (the channel description citing the [LRN-CLASS] class and the onboarded recall lead's email + register role) is a SEPARATE composition glue check",
+   "rule": "engineering-review channel == the source task's own private-channel + sole-owner + four-member checks, its description citing the class + the n13 recall lead",
+   "inputs": [
+    "recall lead + role <- n13 eops_sn_csm_server_user stephanie.brown@servicenow.com (register read)",
+    "class <- n12 CRM [LRN-CLASS] / live football banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "eng_review_channel_private",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_review_bob_smith_sole_owner",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_review_exactly_four_members",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_channel_cites_class_and_recall_lead",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [LRN-STATUS] email coordinator->QM citing total_notifications + the live class + the 'Technical discussions' channel, gated on that channel being on the register",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "channel name <- n14 eops_gym_teams_mcp_channels 'Technical discussions' (register read)",
+    "total_notifications <- n04",
+    "class truth <- live football banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20260106_003109_589_b5bd4eb9_d0454fa5",
+   "verdict_basis": "EnterpriseOps-Gym gym-teams-mcp oracle task (the engineering-review space), checks 3-5 of 6: the single OneNote 'Engineering Notebook' tab, the active channel email, and the high-importance notice carrying the task's exact sentence \u2014 inherited VERBATIM; the CONSUMPTION coupling (the notice citing total_notifications + the [LRN-STATUS] marker) is a SEPARATE composition glue check",
+   "rule": "engineering notebook + notice == the source task's own tab + email + notice checks, the notice citing total_notifications + [LRN-STATUS], gated on the status email",
+   "inputs": [
+    "total_notifications <- n04 answers",
+    "gate <- n15 gm_emails [LRN-STATUS]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "eng_notebook_tab_single_onenote",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_channel_email_active",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_high_importance_notice_posted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "eng_notice_cites_total_and_status_email",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "enterpriseops:task_20251129_042357_079_d809b0d6_b11e3d3b",
+   "verdict_basis": "EnterpriseOps-Gym gym-teams-mcp oracle task (stand up the coordination channel): its four native database_state checks \u2014 the channel description, the channel email, the four members, and the two tabs \u2014 are inherited VERBATIM; the coupling (the engineering-review notice) is a SEPARATE composition glue check",
+   "rule": "coordination channel == the source task's own description+email+members+tabs, gated on the engineering-review notice",
+   "inputs": [
+    "gate <- n16 eops_gym_teams_mcp_channel_messages 'Technical discussions' notice (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "channel_description_set",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "channel_email_set",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "channel_members_added",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "channel_tabs_added",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "teams_beat_gated_on_eng_review_notice",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [LRN-NOTIFY] net (credits - retractions) to the correct lot == delta AND the recorded total_notifications == notification_base + round(parts_index)*100 (figure chain re-derived before the verdict), with the CRM [LRN-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 14)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [LRN-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops coordination channel",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[LRN-REVIEW]",
+      "event_name": "Recall committee review [LRN-REVIEW]",
+      "participant_email": "recall.coordinator@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__recall_account_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__retailer_batch_pool_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__notification_base_is_fn_of_pool",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__parts_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__lot_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_notifications_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_lead_supplier_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:847",
+   "verdict_basis": "side_lead_supplier is judged by birdsql:847's own official gold SQL rerun LIVE on the bird_formula_1_-prefixed book \u2014 a deterministic ORDER-BY...LIMIT 1 single-row scalar; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_lead_supplier": "Fisichella"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T2.surname FROM bird_formula_1_qualifying AS T1 INNER JOIN bird_formula_1_drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 19 ORDER BY T1.q2 ASC LIMIT 1",
+    "result": "Fisichella"
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_847_side_lead_supplier",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

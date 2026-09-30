@@ -1,0 +1,19 @@
+Adjudicate the quarterly employee-leave entitlement for the regional workforce. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+adjustment_uplift: the adjustment uplift — whole number, no thousands separators
+base_entitlement: the base entitlement — whole number
+branch: the leave route — exactly one of {STANDARD_LEAVE, EXTENDED_REVIEW, BOARD_ESCALATION}
+cohort_index: the eligible-cohort count — whole number
+delta: the escalation delta — whole number
+leave_index: the workforce leave index — the book's exact decimal value
+leave_index_staged1: the desk's staging re-record 1 of 5 of leave_index — the identical value
+leave_index_staged2: the desk's staging re-record 2 of 5 of leave_index — the identical value
+leave_index_staged3: the desk's staging re-record 3 of 5 of leave_index — the identical value
+leave_index_staged4: the desk's staging re-record 4 of 5 of leave_index — the identical value
+leave_index_staged5: the desk's staging re-record 5 of 5 of leave_index — the identical value
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta
+side_ratio: the first side anchor — the book's exact decimal value
+side_records: the third side anchor — whole number
+side_roster: the second side anchor — whole number
+total_scope: the total leave scope — whole number

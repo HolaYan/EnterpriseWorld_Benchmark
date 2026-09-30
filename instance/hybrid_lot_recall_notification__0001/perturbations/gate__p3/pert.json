@@ -1,0 +1,205 @@
+{
+ "op": "gate",
+ "signature": {
+  "dG": 3,
+  "ds0": 0,
+  "dPi": 0,
+  "dg": 0,
+  "dT": 0
+ },
+ "axis": "topology",
+ "capability": "fixed decomposition/order",
+ "probe_edge": {
+  "from": "n01",
+  "to": "n03"
+ },
+ "probe_edges": [
+  {
+   "from": "n01",
+   "to": "n03"
+  },
+  {
+   "from": "n02",
+   "to": "n03"
+  },
+  {
+   "from": "n20",
+   "to": "n03"
+  }
+ ],
+ "consumer": "n03",
+ "prerequisite": "n01",
+ "prerequisites": [
+  "n01",
+  "n02",
+  "n20"
+ ],
+ "n_parents": 3,
+ "answer_changed": false,
+ "changed_region": {
+  "V_new": [],
+  "E_new": [
+   [
+    "n01",
+    "n03"
+   ],
+   [
+    "n02",
+    "n03"
+   ],
+   [
+    "n20",
+    "n03"
+   ]
+  ],
+  "E_ret": [
+   [
+    "n01",
+    "n02"
+   ],
+   [
+    "n02",
+    "n04"
+   ],
+   [
+    "n02",
+    "n18"
+   ],
+   [
+    "n03",
+    "n04"
+   ],
+   [
+    "n03",
+    "n18"
+   ],
+   [
+    "n04",
+    "n05"
+   ],
+   [
+    "n04",
+    "n06"
+   ],
+   [
+    "n04",
+    "n07"
+   ],
+   [
+    "n04",
+    "n08"
+   ],
+   [
+    "n04",
+    "n09"
+   ],
+   [
+    "n04",
+    "n10"
+   ],
+   [
+    "n04",
+    "n11"
+   ],
+   [
+    "n04",
+    "n15"
+   ],
+   [
+    "n04",
+    "n18"
+   ],
+   [
+    "n05",
+    "n08"
+   ],
+   [
+    "n05",
+    "n09"
+   ],
+   [
+    "n06",
+    "n19"
+   ],
+   [
+    "n07",
+    "n18"
+   ],
+   [
+    "n08",
+    "n09"
+   ],
+   [
+    "n09",
+    "n11"
+   ],
+   [
+    "n11",
+    "n12"
+   ],
+   [
+    "n12",
+    "n13"
+   ],
+   [
+    "n13",
+    "n14"
+   ],
+   [
+    "n14",
+    "n15"
+   ],
+   [
+    "n15",
+    "n16"
+   ],
+   [
+    "n16",
+    "n17"
+   ],
+   [
+    "n17",
+    "n19"
+   ],
+   [
+    "n18",
+    "n19"
+   ]
+  ],
+  "V_down": [
+   "n03"
+  ],
+  "frontier": {
+   "node": "n03",
+   "edge": [
+    "n01",
+    "n03"
+   ],
+   "unchanged_required_ancestors": [
+    "n01",
+    "n02",
+    "n20"
+   ]
+  },
+  "gold_suffix_calls": null,
+  "gold_suffix_calls_note": "requires world replay; deferred"
+ },
+ "base_build_sha": "d96ec34c8f0d",
+ "gate": {
+  "rule7": true,
+  "rule7_violations": [],
+  "gold": true,
+  "gold_error": null,
+  "fsv": "105/105",
+  "fsv_on_damage": true,
+  "changed_region": true,
+  "added_kinds": true,
+  "added_kinds_violations": [],
+  "s2_sidecar": true,
+  "s2_sidecar_problems": [],
+  "reliable": true,
+  "checked_at": "2026-09-16T21:47:21+00:00",
+  "gate_version": "2026-09-07.1",
+  "gate_code_sha": "1ee1bae3c4e5"
+ }
+}

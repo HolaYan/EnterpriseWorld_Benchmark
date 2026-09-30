@@ -1,0 +1,202 @@
+{
+ "op": "bridge",
+ "signature": {
+  "dG": 3,
+  "ds0": 0,
+  "dPi": 0,
+  "dg": 0,
+  "dT": 0
+ },
+ "axis": "topology",
+ "capability": "fixed decomposition/order",
+ "probe_edge": {
+  "from": "n01",
+  "to": "n02"
+ },
+ "staged_value": "covenant_index",
+ "k": 3,
+ "relays": [
+  "nbridge1",
+  "nbridge2",
+  "nbridge3"
+ ],
+ "staged_kinds": [
+  "covenant_index_staged1",
+  "covenant_index_staged2",
+  "covenant_index_staged3"
+ ],
+ "answer_changed": false,
+ "changed_region": {
+  "V_new": [
+   "nbridge1",
+   "nbridge2",
+   "nbridge3"
+  ],
+  "E_new": [
+   [
+    "n01",
+    "nbridge1"
+   ],
+   [
+    "nbridge1",
+    "nbridge2"
+   ],
+   [
+    "nbridge2",
+    "nbridge3"
+   ],
+   [
+    "nbridge3",
+    "n02"
+   ]
+  ],
+  "E_ret": [
+   [
+    "n01",
+    "n02"
+   ],
+   [
+    "n02",
+    "n04"
+   ],
+   [
+    "n02",
+    "n17"
+   ],
+   [
+    "n03",
+    "n04"
+   ],
+   [
+    "n03",
+    "n17"
+   ],
+   [
+    "n04",
+    "n05"
+   ],
+   [
+    "n04",
+    "n06"
+   ],
+   [
+    "n04",
+    "n07"
+   ],
+   [
+    "n04",
+    "n08"
+   ],
+   [
+    "n04",
+    "n09"
+   ],
+   [
+    "n04",
+    "n10"
+   ],
+   [
+    "n04",
+    "n11"
+   ],
+   [
+    "n04",
+    "n15"
+   ],
+   [
+    "n04",
+    "n17"
+   ],
+   [
+    "n05",
+    "n08"
+   ],
+   [
+    "n05",
+    "n09"
+   ],
+   [
+    "n06",
+    "n18"
+   ],
+   [
+    "n07",
+    "n17"
+   ],
+   [
+    "n08",
+    "n09"
+   ],
+   [
+    "n09",
+    "n11"
+   ],
+   [
+    "n11",
+    "n12"
+   ],
+   [
+    "n12",
+    "n13"
+   ],
+   [
+    "n13",
+    "n14"
+   ],
+   [
+    "n14",
+    "n15"
+   ],
+   [
+    "n15",
+    "n16"
+   ],
+   [
+    "n16",
+    "n18"
+   ],
+   [
+    "n17",
+    "n18"
+   ]
+  ],
+  "V_down": [
+   "n02"
+  ],
+  "frontier": {
+   "node": "nbridge1",
+   "edge": [
+    "n01",
+    "nbridge1"
+   ],
+   "unchanged_required_ancestors": [
+    "n01"
+   ]
+  },
+  "gold_suffix_calls": 3,
+  "gold_suffix_calls_note": "operator-added gold calls only (3 staging INSERTs); full C* from frontier to completion requires world replay"
+ },
+ "base_build_sha": "73d093464478",
+ "added_kinds": [
+  "covenant_index_staged1",
+  "covenant_index_staged2",
+  "covenant_index_staged3"
+ ],
+ "gate": {
+  "rule7": true,
+  "rule7_violations": [],
+  "gold": true,
+  "gold_error": null,
+  "fsv": "101/101",
+  "fsv_on_damage": true,
+  "changed_region": true,
+  "added_kinds": true,
+  "added_kinds_violations": [],
+  "s2_sidecar": true,
+  "s2_sidecar_problems": [],
+  "reliable": true,
+  "checked_at": "2026-09-16T19:57:48+00:00",
+  "gate_version": "2026-09-07.1",
+  "gate_code_sha": "1ee1bae3c4e5"
+ }
+}

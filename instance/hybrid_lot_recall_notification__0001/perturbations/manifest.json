@@ -1,0 +1,195 @@
+{
+  "uid": "hybrid_lot_recall_notification__0001",
+  "variants": {
+    "bridge__k1": {
+      "op": "bridge",
+      "probe_edge": {
+        "from": "n01",
+        "to": "n02"
+      },
+      "staged_value": "recall_account",
+      "k": 1,
+      "relays": [
+        "nbridge1"
+      ],
+      "added_kinds": [
+        "recall_account_staged1"
+      ],
+      "signature": {
+        "dG": 1,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 0,
+        "dT": 0
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    },
+    "bridge__k3": {
+      "op": "bridge",
+      "probe_edge": {
+        "from": "n01",
+        "to": "n02"
+      },
+      "staged_value": "recall_account",
+      "k": 3,
+      "relays": [
+        "nbridge1",
+        "nbridge2",
+        "nbridge3"
+      ],
+      "added_kinds": [
+        "recall_account_staged1",
+        "recall_account_staged2",
+        "recall_account_staged3"
+      ],
+      "signature": {
+        "dG": 3,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 0,
+        "dT": 0
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    },
+    "bridge__k5": {
+      "op": "bridge",
+      "probe_edge": {
+        "from": "n01",
+        "to": "n02"
+      },
+      "staged_value": "recall_account",
+      "k": 5,
+      "relays": [
+        "nbridge1",
+        "nbridge2",
+        "nbridge3",
+        "nbridge4",
+        "nbridge5"
+      ],
+      "added_kinds": [
+        "recall_account_staged1",
+        "recall_account_staged2",
+        "recall_account_staged3",
+        "recall_account_staged4",
+        "recall_account_staged5"
+      ],
+      "signature": {
+        "dG": 5,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 0,
+        "dT": 0
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    },
+    "gate__p3": {
+      "op": "gate",
+      "probe_edge": {
+        "from": "n01",
+        "to": "n03"
+      },
+      "probe_edges": [
+        {
+          "from": "n01",
+          "to": "n03"
+        },
+        {
+          "from": "n02",
+          "to": "n03"
+        },
+        {
+          "from": "n20",
+          "to": "n03"
+        }
+      ],
+      "consumer": "n03",
+      "prerequisites": [
+        "n01",
+        "n02",
+        "n20"
+      ],
+      "n_parents": 3,
+      "signature": {
+        "dG": 3,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 0,
+        "dT": 0
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    },
+    "distractor__d10": {
+      "op": "distractor",
+      "n_arms": 10,
+      "arm_kinds": [
+        "legal_hold",
+        "regulator_notice",
+        "board_memo",
+        "external_audit",
+        "fraud_referral",
+        "exec_escalation",
+        "insurer_notice",
+        "press_holding",
+        "law_enforcement",
+        "emergency_reserve"
+      ],
+      "added_kinds": [
+        "legal_hold",
+        "regulator_notice",
+        "board_memo",
+        "external_audit",
+        "fraud_referral",
+        "exec_escalation",
+        "insurer_notice",
+        "press_holding",
+        "law_enforcement",
+        "emergency_reserve"
+      ],
+      "signature": {
+        "dG": 10,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 1,
+        "dT": 0
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    },
+    "tool__x10": {
+      "op": "tool",
+      "change": "add:10_decoys",
+      "n_tools": 10,
+      "decoy_tools": [
+        "send_sms",
+        "lookup_fx_rate",
+        "geocode_address",
+        "translate_text",
+        "fetch_public_holidays",
+        "create_reminder",
+        "search_knowledge_base",
+        "export_csv",
+        "archive_thread",
+        "schedule_report"
+      ],
+      "signature": {
+        "dG": 0,
+        "ds0": 0,
+        "dPi": 0,
+        "dg": 0,
+        "dT": 10
+      },
+      "answer_changed": false,
+      "base_build_sha": "d96ec34c8f0d",
+      "status": "green"
+    }
+  }
+}

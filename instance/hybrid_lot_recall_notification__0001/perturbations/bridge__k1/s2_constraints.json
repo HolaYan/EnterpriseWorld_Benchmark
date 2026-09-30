@@ -1,0 +1,112 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The recalled-lot retail value is sized from the receivables book's own question — the account number of the client who is youngest and has the highest average salary (the client with the latest birth date, ties broken by district average salary then highest client id) — and take that reference account's total transaction volume as the recalled-lot retail value.",
+  "kinds": [
+   "recall_account"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The recall dimensional reference index is taken from the parts reference book's own question — the average height of players born between 1990 and 1995 (the summed heights divided by the player count) — and set the flagged-lot uplift at 100 per whole unit of that rounded index.",
+  "kinds": [
+   "parts_index"
+  ],
+  "node": "n03",
+  "tables": [
+   "bird_european_football_2_Player"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "definition",
+  "note": "The independent side-reference lead supplier for the quarterly overview — the surname race number 19's qualifying list returns first when its rows are ordered by the second-qualifying-period (q2) time ascending (rows with an unrecorded q2 sort first, so this is not the fastest-lap driver).",
+  "kinds": [
+   "side_lead_supplier"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_formula_1_drivers",
+   "bird_formula_1_qualifying"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The notification base is set at one unit per 75 of that retail value, rounded to a whole number.",
+  "kinds": [
+   "notification_base",
+   "recall_account",
+   "retailer_batch_pool"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_trans",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "rate",
+  "note": "The total notifications is the base plus the uplift; the recall delta equals the uplift.",
+  "kinds": [
+   "delta",
+   "lot_uplift",
+   "notification_base",
+   "parts_index",
+   "total_notifications"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_european_football_2_Player",
+   "bird_trans"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The recall-class branch is decided on the delta — 'MANDATORY' when the delta is at least 100000, 'REPORTABLE' (CPSC-REPORTABLE) when it is at least 10000, 'VOLUNTARY' otherwise",
+  "kinds": [
+   "branch",
+   "delta"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_european_football_2_Player"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The committee review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

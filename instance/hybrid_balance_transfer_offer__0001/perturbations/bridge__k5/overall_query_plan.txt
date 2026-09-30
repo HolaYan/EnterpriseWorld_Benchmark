@@ -1,0 +1,16 @@
+Process the cardholder's balance-transfer request: the new promo-APR line pays off the high-APR source card. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+branch: the BT decision branch — exactly one upper-case one of {AUTO_APPROVE_STANDARD_PROMO, CONDITIONAL_UW_REVIEW, DECLINED_ALTERNATIVE}: 'AUTO_APPROVE_STANDARD_PROMO', 'CONDITIONAL_UW_REVIEW', 'DECLINED_ALTERNATIVE'
+delta: the escalation delta (the uplift restated) — whole number
+promo_uplift: the promo-window uplift count — whole number
+reconciled: the ledger reconciliation verdict — the single lower-case word 'ok' if the payoff ledger nets to the delta
+side_scan_count: the quarterly-overview side-question count — whole number
+source_balance: the audited source-card portfolio balance — the full unrounded figure as the book computes it (report all the digits it yields; do not deliberately round or truncate), no thousands separators
+source_balance_staged1: the desk's staging re-record 1 of 5 of source_balance — the identical value
+source_balance_staged2: the desk's staging re-record 2 of 5 of source_balance — the identical value
+source_balance_staged3: the desk's staging re-record 3 of 5 of source_balance — the identical value
+source_balance_staged4: the desk's staging re-record 4 of 5 of source_balance — the identical value
+source_balance_staged5: the desk's staging re-record 5 of 5 of source_balance — the identical value
+total_transfer: the combined transfer figure — whole number, no thousands separators
+transfer_base: the nominal transfer base — whole number, no thousands separators

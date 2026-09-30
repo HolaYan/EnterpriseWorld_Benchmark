@@ -1,0 +1,635 @@
+{
+ "uid": "hybrid_debt_covenant_amendment__0001",
+ "generated_from_build_sha": "73d093464478",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "covenant_index": "535",
+  "base_consents": "535",
+  "ballot_index": "7",
+  "amendment_uplift": "7000",
+  "total_scope": "7535",
+  "delta": "7000",
+  "branch": "SUPER_MAJORITY",
+  "reconciled": "ok",
+  "side_exposure": "1224.96",
+  "side_cohort": "137.888888888889"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:361",
+   "verdict_basis": "covenant_index is judged by birdsql:361's own official gold SQL rerun LIVE on the bird_card_games_-prefixed book \u2014 a true single-row COUNT(DISTINCT) scalar; the spine root, rounded downstream into the consent arithmetic",
+   "answers_written": {
+    "covenant_index": "535"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(DISTINCT T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_legalities AS T2 ON T1.uuid = T2.uuid WHERE T2.status = 'Restricted' AND T1.isTextless = 0",
+    "result": 535
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_361_covenant_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "base_consents = round(covenant_index)",
+   "follows": "whole-count rounding of the covenant index; no source counterpart",
+   "inputs": [
+    "covenant_index <- birdsql:361 (live rerun)"
+   ],
+   "answers_written": {
+    "base_consents": "535"
+   },
+   "checks": [
+    {
+     "name": "base_consents_is_round_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "base_consents_derives_from_stored_covenant_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "gc_crm_base_consents_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:1317",
+   "verdict_basis": "ballot_index is judged by birdsql:1317's own official gold SQL rerun LIVE on the bird_student_club_-prefixed book \u2014 a true single-row COUNT(DISTINCT) scalar; the cross-book input woven into the amendment arithmetic",
+   "answers_written": {
+    "ballot_index": "7"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event AS T1 INNER JOIN bird_student_club_attendance AS T2 ON T1.event_id = T2.link_to_event INNER JOIN bird_student_club_member AS T3 ON T2.link_to_member = T3.member_id WHERE T1.event_name = 'Women''s Soccer' AND T3.t_shirt_size = 'Medium'",
+    "result": 7
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1317_ballot_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "amendment_uplift = ballot_index*1000; total_scope = base_consents + amendment_uplift; delta = amendment_uplift",
+   "follows": "value-scaled-by-rate + additive combine; the per-index 1000 is a declared constant",
+   "inputs": [
+    "base_consents <- n02",
+    "ballot_index <- n03 (birdsql:1317 live rerun)"
+   ],
+   "answers_written": {
+    "amendment_uplift": "7000",
+    "total_scope": "7535",
+    "delta": "7000"
+   },
+   "checks": [
+    {
+     "name": "amendment_uplift_is_ballot_index_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_ballot_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_scope_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'DENIED_ESCALATION' if delta>=1000000; 'SUPER_MAJORITY' if delta>=1000; else 'AUTO_FILE'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 1000/1000000 bands are declared constants; the branch predicate is source-expressed (delta from the live student_club book)",
+   "inputs": [
+    "delta <- n04 (ballot_index*1000)"
+   ],
+   "answers_written": {
+    "branch": "SUPER_MAJORITY"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [DCA-HOLD] window's duration is the declared 3-day review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DCA-HOLD]",
+      "event_name": "Q1 amendment review window [DCA-HOLD]",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong transfer corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_lender",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_retracted_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [DCA-NOTICE] email treasurer->trustee citing total_scope+delta, present IFF the branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION'",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "total_scope/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "notice_sent_iff_supermajority_or_denied",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [DCA-FILE] total_scope marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_scope; co-owner share = total_scope/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_scope <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [DCA-FUP] task citing delta in the treasurer's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [DCA-FILE]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'TIER_3_DENIED_ESCALATION' if the live ballot index*1000 >= 1000000; 'TIER_2_SUPER_MAJORITY' if >= 1000; else 'TIER_1_AUTO_FILE'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the student_club ballot index), not a relabel of a stored value",
+   "inputs": [
+    "ballot index <- live bird_student_club (re-derived at write time)",
+    "gate <- n11 td_tasks [DCA-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251128_072831_616_6cd2e092_426f7c81",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task (take the case of record up a band): its four native database_state checks \u2014 the case raised to priority 'high', moved to the 'CSM Tier 2 Support' group, its contact_id set to the point of contact of record, and a case_sla row linking it to the 'SLA Response - High (No Pause)' definition at stage 'in_progress' with a start_time \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched, all equals, no LIKE, every one fails on the untouched seed); the dependency coupling (the summary line citing the CRM [DCA-TIER] tier and the recorded delta) is a SEPARATE composition glue check on the same node",
+   "rule": "the consent case of record is taken up at the classified tier == the source task's own checks, plus the case line citing the n12 tier and the delta",
+   "inputs": [
+    "tier word <- n12 CRM [DCA-TIER] (must equal the live re-derivation)",
+    "delta <- n04 (cited on the case line)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "consent_case_raised_to_high",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "consent_case_moved_to_second_line",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "consent_case_point_of_contact_set",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "consent_case_response_clock_running",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "case_line_carries_tier_of_record_and_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251223_081019_100_d4a463c3_f8774fe4",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task (close the linked change and problem): its two native database_state checks \u2014 change CHG_017 closed with the access-rule cleanup close_notes, and problem PRB_011 closed \u2014 are inherited VERBATIM; FALLBACK for the pre-assigned itsm task whose check[2] carries ~13 loose free-text substring LIKE tokens on notification.message (wave-2 loose-LIKE rejection); the coupling (the consent case of record up at the classified tier) is a SEPARATE composition glue check",
+   "rule": "change/problem closure == the source task's own checks, gated on the consent case",
+   "inputs": [
+    "gate <- n13 eops_sn_csm_server_customer_case case CS-0000184 (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "itsm_change_closed_with_notes",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_problem_closed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_beat_gated_on_consent_case",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [DCA-STATUS] email treasurer->general-counsel citing total_scope + the live tier, gated on the itsm beat",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "gate <- n14 eops itsm beat",
+    "total_scope <- n04",
+    "tier truth <- live student_club banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20260107_163801_607_64a4ebb9_6f9c4d1b",
+   "verdict_basis": "EnterpriseOps-Gym gym-google-drive-mcp oracle task (file the closeout pack): its four native database_state checks \u2014 the 'Phoenix_Archives' docket folder open, the record copy 'Phoenix_Plan_Closed.txt' filed in it at description 'Status: Terminated', the sign-off comment on that copy, and the superseded 'Phoenix_Plan_vFinal.txt' draft trashed \u2014 are inherited VERBATIM (prefix rewrite only, all equals, no free-text LIKE, every one fails on the untouched seed); RE-SEATED 2026-09-06 off a personnel-register beat whose cases named no party of this solicitation. Every row the checks pin is an artifact THIS run creates. The dependency coupling (the docket line citing the consent case number, the live tier word and the recorded total_scope the status update carried) is a SEPARATE composition glue check on the same node",
+   "rule": "the consent-execution pack filed == the source task's own checks, plus the docket line citing the case, the reported tier and total_scope",
+   "inputs": [
+    "tier word + total_scope <- n15 gm_emails [DCA-STATUS] (written onto the pack's docket line)",
+    "gate <- n15 gm_emails [DCA-STATUS]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "docket_archive_folder_opened",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "record_copy_filed_and_marked",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "record_copy_carries_signoff",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "superseded_draft_trashed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "pack_line_cites_case_tier_and_total",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [DCA-VOTE] net (credits - retractions) to the correct lender == delta AND the recorded total_scope still equals base_consents + ballot_index*1000 (the figure cross-check), with the CRM [DCA-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 13)",
+    "base_consents <- n02 and ballot_index <- n03 (the figure chain re-derived at reconcile time)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [DCA-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops filed consent-execution pack",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DCA-REVIEW]",
+      "event_name": "GC amendment review [DCA-REVIEW]",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__covenant_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__base_consents_is_fn_of_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__ballot_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__amendment_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_scope_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_exposure_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_cohort_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "birdsql:1483",
+   "verdict_basis": "side_exposure is judged by birdsql:1483's own official gold SQL rerun LIVE on the bird_debit_card_specializing_-prefixed book \u2014 a true single-row SUM REAL scalar stored in the book's own CAST-text form; an independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_exposure": "1224.96"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT SUM(Consumption) FROM bird_debit_card_specializing_yearmonth WHERE CustomerID = 6 AND Date BETWEEN '201308' AND '201311'",
+    "result": 1224.96
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1483_side_exposure",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:39",
+   "verdict_basis": "side_cohort is judged by birdsql:39's own official gold SQL rerun LIVE on the bird_california_schools_-prefixed book \u2014 a true single-row AVG REAL scalar stored in the book's own CAST-text form; a second independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_cohort": "137.888888888889"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT AVG(T1.NumTstTakr) FROM bird_california_schools_satscores AS T1 INNER JOIN bird_california_schools_schools AS T2 ON T1.cds = T2.CDSCode WHERE strftime('%Y', T2.OpenDate) = '1980' AND T2.County = 'Fresno'",
+    "result": 137.88888888888889
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_39_side_cohort",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

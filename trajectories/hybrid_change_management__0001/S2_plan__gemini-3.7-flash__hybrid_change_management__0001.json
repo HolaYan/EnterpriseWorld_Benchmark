@@ -1,0 +1,6274 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1151_risk_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "risk_score_is_round_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "risk_score_derives_from_stored_risk_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "cab_crm_risk_score_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_1023_change_volume",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_1023_change_volume"
+   ]
+  },
+  "n04": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "window_uplift_is_count_times_1000",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_change_volume",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "release_total_equals_score_plus_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "release_total_derives_from_stored_score_and_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "window_uplift_is_count_times_1000",
+    "uplift_derives_from_stored_change_volume",
+    "release_total_equals_score_plus_uplift",
+    "delta_equals_uplift",
+    "ancestors_pass__n04"
+   ]
+  },
+  "n05": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "branch_matches_true_risk_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_risk_score",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n06": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "change_window_hold_placed",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "change_window_hold_placed",
+    "ancestors_pass__n06"
+   ]
+  },
+  "n07": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_vendor",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "wrong_disbursement_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "vm_net_equals_delta_to_correct_vendor",
+    "ancestors_pass__n07"
+   ]
+  },
+  "n08": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "handoff_sent_iff_extended_or_emergency",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "handoff_sent_iff_extended_or_emergency",
+    "ancestors_pass__n08"
+   ]
+  },
+  "n09": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_logged_release_total_gated_by_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_logged_release_total_gated_by_branch",
+    "ancestors_pass__n09"
+   ]
+  },
+  "n10": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "allocation_and_share_recorded",
+    "ancestors_pass__n10"
+   ]
+  },
+  "n11": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "followup_task_cites_delta_after_log",
+    "ancestors_pass__n11"
+   ]
+  },
+  "n12": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n12"
+   ]
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "standard_change_record_raised",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "change_mapped_to_the_incident_it_remediates",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "change_record_filed_at_the_tier_of_record",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n13"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_held_awaiting_the_change",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "incident_hold_cites_the_filed_change",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_release_total_tier_and_held_incident",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "status_email_cites_release_total_tier_and_held_incident",
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_caller_informed_of_the_change",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "caller_notice_repeats_the_reported_total",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "caller_notice_repeats_the_reported_total",
+    "ancestors_pass__n16"
+   ]
+  },
+  "n17": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_sla_paused_for_the_window",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "sla_pause_gated_on_the_caller_notice",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n17"
+   ]
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "reconciled_net_equals_delta",
+    "reconciled_figures_consistent",
+    "ancestors_pass__n18"
+   ]
+  },
+  "n19": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__risk_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__risk_score_is_round_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__change_volume_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__window_uplift_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__release_total_is_score_plus_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_risk_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_exposure_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n19",
+    "final_task_pin__change_volume_correct",
+    "final_task_pin__window_uplift_correct",
+    "final_task_pin__release_total_is_score_plus_uplift",
+    "final_task_pin__delta_equals_uplift"
+   ]
+  },
+  "n20": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_182_side_exposure",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  }
+ },
+ "terminal": {
+  "passed": true,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "risk_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "risk_score_is_round_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "change_volume_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "window_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "release_total_is_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_risk_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "change_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_disbursement_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_vendor_disbursement_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "handoff_email_matches_branch_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_release_total",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "standard_change_record_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "incident_held_against_the_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_total_and_tier",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "incident_caller_informed_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "incident_sla_paused_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_exposure_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "no_normal_partner_handoff",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_emergency_note_for_non_emergency_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_vendor_disbursement",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_cab",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_1151_risk_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__risk_score_is_round_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__risk_score_derives_from_stored_risk_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__cab_crm_risk_score_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_1023_change_volume",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__window_uplift_is_count_times_1000",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_derives_from_stored_change_volume",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__release_total_equals_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__release_total_derives_from_stored_score_and_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_true_risk_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_risk_score",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__change_window_hold_placed",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_vendor",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_disbursement_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__handoff_sent_iff_extended_or_emergency",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_release_total_gated_by_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__standard_change_record_raised",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__change_mapped_to_the_incident_it_remediates",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__change_record_filed_at_the_tier_of_record",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__incident_held_awaiting_the_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__incident_hold_cites_the_filed_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_release_total_tier_and_held_incident",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__incident_caller_informed_of_the_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__caller_notice_repeats_the_reported_total",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__ancestors_pass__n16",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__incident_sla_paused_for_the_window",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__sla_pause_gated_on_the_caller_notice",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_net_equals_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_figures_consistent",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__review_after_window_conflict_free_gated",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__ancestors_pass__n19",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_terminal",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__risk_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__risk_score_is_round_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__change_volume_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__window_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__release_total_is_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__branch_matches_true_risk_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__side_exposure_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_182_side_exposure",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ],
+  "n_ok": 54,
+  "n_checks": 93,
+  "failed": [
+   "change_volume_correct",
+   "window_uplift_correct",
+   "release_total_is_score_plus_uplift",
+   "delta_equals_uplift",
+   "status_email_cites_total_and_tier",
+   "node_n03__src_birdsql_1023_change_volume",
+   "node_n04__window_uplift_is_count_times_1000",
+   "node_n04__uplift_derives_from_stored_change_volume",
+   "node_n04__release_total_equals_score_plus_uplift",
+   "node_n04__delta_equals_uplift",
+   "node_n04__ancestors_pass__n04",
+   "node_n06__change_window_hold_placed",
+   "node_n06__ancestors_pass__n06",
+   "node_n07__vm_net_equals_delta_to_correct_vendor",
+   "node_n07__ancestors_pass__n07",
+   "node_n08__handoff_sent_iff_extended_or_emergency",
+   "node_n08__ancestors_pass__n08",
+   "node_n09__crm_logged_release_total_gated_by_branch",
+   "node_n09__ancestors_pass__n09",
+   "node_n10__allocation_and_share_recorded",
+   "node_n10__ancestors_pass__n10",
+   "node_n11__followup_task_cites_delta_after_log",
+   "node_n11__ancestors_pass__n11",
+   "node_n12__ancestors_pass__n12",
+   "node_n13__ancestors_pass__n13",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__status_email_cites_release_total_tier_and_held_incident",
+   "node_n15__ancestors_pass__n15",
+   "node_n16__caller_notice_repeats_the_reported_total",
+   "node_n16__ancestors_pass__n16",
+   "node_n17__ancestors_pass__n17",
+   "node_n18__reconciled_net_equals_delta",
+   "node_n18__reconciled_figures_consistent",
+   "node_n18__ancestors_pass__n18",
+   "node_n19__ancestors_pass__n19",
+   "node_n19__final_task_pin__change_volume_correct",
+   "node_n19__final_task_pin__window_uplift_correct",
+   "node_n19__final_task_pin__release_total_is_score_plus_uplift",
+   "node_n19__final_task_pin__delta_equals_uplift"
+  ]
+ },
+ "n_tool_calls": 109,
+ "n_turns": 110,
+ "n_assistant_msgs": 1,
+ "usage": {
+  "steps_with_usage": 110,
+  "input": 747131,
+  "output": 7812,
+  "reasoning": 20634,
+  "cache_read": 3437874,
+  "cache_write": 0,
+  "cost_usd": 0.0
+ },
+ "n_decoy_calls": 0,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 1312.3,
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nRun the quarterly production change-management / release cycle for the release desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nbranch: the change-window route — exactly one of {NORMAL_WINDOW, EXTENDED_WINDOW, EMERGENCY_HOLD}\nchange_volume: the in-scope change count — whole number\ndelta: the escalation delta — whole number, no thousands separators\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the fee ledger nets to the delta\nrelease_total: the release total — whole number, no thousands separators\nrisk_index: the change-risk index — the percentage exactly as the source book returns it (its full decimal form)\nrisk_score: the change risk score — whole number\nside_exposure: the side-exposure figure — whole number\nwindow_uplift: the change-window uplift — whole number, no thousands separators\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nPRODUCTION CHANGE DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[CM-RISK]' — CAB CRM notes: the risk-score stamp, citing 'risk_score=<n>'.\n   - '[CM-WINDOW]' — wb_calendar_events EVENT NAME of the change window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[CM-FEE]' — change-fee ledger (vm) DESCRIPTION of every disbursement entry.\n   - '[CM-FEE-REV]' — change-fee ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[CM-FEE]' tag).\n   - '[CM-HANDOFF]' — email SUBJECT of the rollback-partner handoff; the BODY must cite the release total and the delta.\n   - '[CM-LOG]' — CAB CRM notes: the change log, citing 'release_total=<n>'.\n   - '[CM-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany change-cost allocation. The expense books the full recorded release_total as its amount, and its sw_expense_shares row assigns morgan.reyes@atlas.com a share of exactly half that amount.\n   - '[CM-FUP]' — Todoist task TITLE (in your 'Q1 Change Management Review' project); the title cites the delta.\n   - '[CM-TIER]' — CAB CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[CM-STATUS]' — email SUBJECT of the CAB status update; the BODY must cite the release total and the tier word.\n   - '[CM-RECON]' — CAB CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[CM-FEE]' ledger (disbursements minus reversals) at write time, and the figure chain is re-derived before the verdict — the recorded release_total must still equal risk_score + change_volume*1000.\n   - '[CM-REVIEW]' — wb_calendar_events EVENT NAME of the post-implementation review.\n   - '[CM-CHG]' — the ITSM change record's SUMMARY LINE (short_description) and the held incident's WORK NOTES: the change number and the tier word the change was raised at.\n   - '[CM-EMERGENCY]' — CAB CRM notes: the emergency-freeze note, filed ONLY on the EMERGENCY route.\n\n2. ROUTE AND TIER WORDS. The change route is always one of the desk's three route words: 'NORMAL_WINDOW', 'EXTENDED_WINDOW', 'EMERGENCY_HOLD'. The change tier is always one of the desk's three tier words: 'STANDARD_CHANGE', 'EXTENDED_REVIEW', 'EMERGENCY_CHANGE'. A cited tier word is re-derived from the live change-risk cohort book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (parker.li@atlas.com); the CAB lead is written to at cab.lead@atlas.com, the rollback partner at rollback.partner@atlas.com. Change-fee disbursements run on the vm ledger FROM you TO the correct vendor (correct.vendor@atlas.com); a disbursement that lands on the wrong vendor (wrong.vendor@atlas.com) is corrected by that vendor sending the same amount back to you, never deleted. The change-cost allocation runs on the sw ledger between you and the co-approver (morgan.reyes@atlas.com). Follow-up work lives in your Todoist 'Q1 Change Management Review' project; the window and review on your own wb_calendar_events (participant_email = parker.li@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the CAB row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the CAB record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the change-risk index keeps its full decimal form); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE CHANGE REGISTER (a shared desk system; record under the ids of record, exactly as stated — the register's OTHER rows are background book, never modify them).\n   - ITSM change register (eops_gym_itsm_mcp_* tables). The production incident this quarter's deployment remediates is INC_057 ('INC-000057'), raised by its caller of record richard.lopez@servicenow.com; its response clock is the SLA row 'TSLA_022' (definition 'SLA_001').\n   - The cycle's change record is 'CHG_026' (number 'CHG0000026'), filed on the register's STANDARD-change template: status 'new', impact 'low', risk 'low', priority 'low', category 'other', cab_required false (a standard change is pre-approved — the register's form of the desk's standing pre-authorization), org 'ORG_001'. Its summary line carries the '[CM-CHG]' tag, the change number and the tier word. It is mapped to the incident it remediates as change_request_mapping 'CRM_017'.\n   - The hold on 'INC-000057' is status 'on_hold' with on_hold_reason 'Awaiting Change' and change_request 'CHG_026'; the incident's WORK NOTES carry the change number and the tier word the change was raised at.\n   - The caller of record is told on notification 'NOTIF_031' (type 'update', status 'sent', on incident 'INC_057', to richard.lopez@servicenow.com); its MESSAGE carries the change number, the release total exactly as reported to the CAB lead, and the tier word.\n   - The response clock is stopped last: SLA row 'TSLA_022' moves to stage 'paused' for the window, never before the caller has been told why it is stopping.\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_cab_lead\": [{\"customer_id\": \"00000002\", \"customer_email\": \"cab.lead@atlas.com\", \"customer_name\": \"CAB Lead\", \"assigned_to_email\": \"parker.li@atlas.com\", \"status\": \"Active\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"parker.li@atlas.com\", \"note\": \"\"}, {\"email\": \"correct.vendor@atlas.com\", \"note\": \"\"}, {\"email\": \"wrong.vendor@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"parker.li@atlas.com\", \"note\": \"\"}, {\"email\": \"cab.lead@atlas.com\", \"note\": \"\"}, {\"email\": \"rollback.partner@atlas.com\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Change Management Review\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"release-desk daily standup\", \"participant_email\": \"parker.li@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"eops_gym_itsm_mcp_incident\": [{\"incident_id\": \"INC_057\", \"number\": \"INC-000057\", \"short_description\": \"HR DB\", \"status\": \"new\", \"caller_id\": \"USER_057\", \"note\": \"\"}], \"eops_gym_itsm_mcp_incident_sla\": [{\"incident_sla_id\": \"TSLA_022\", \"incident_id\": \"INC_057\", \"sla_def_id\": \"SLA_001\", \"stage\": \"in_progress\", \"note\": \"\"}], \"eops_gym_itsm_mcp_users\": [{\"user_id\": \"USER_057\", \"email\": \"richard.lopez@servicenow.com\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions disbursement / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register re-home/rename/attachment).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: change-fee disbursements are compensatable — reverse a wrong-vendor disbursement, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "The quarterly production change-management and release cycle has been completed in accordance with desk policies and recording procedures:\n\n1. **Change-Risk Assessment & Scoring:**\n   - Evaluated the source cohort data (`bird_thrombosis_prediction_Patient`), yielding a change-risk index of `37.5838926174497`% (56 inpatient admissions out of 149 patients born between 1930 and 1940).\n   - Rounded risk score: `38`.\n   - Determined route/tier: `EXTENDED_WINDOW` / `EXTENDED_REVIEW`.\n   - Computed in-scope change volume: `733` (defensive work rate 'low' among players rated between 60 and 65).\n   - Change-window uplift: `733000` (733 * 1000).\n   - Release total: `733038` (38 + 733000), with escalation delta of `733000`.\n   - Side exposure figure: `1556` (SIPO home payment transactions > 4000 on accounts held by male clients born between 1974 and 1976).\n\n2. **System Records & Bookkeeping:**\n   - Updated CAB CRM record (`wb_customer_relationship_manager_data`) with status `[CM-TIER] EXTENDED_REVIEW` and prepended annotations `[CM-RECON]`, `[CM-LOG]`, and `[CM-RISK]`.\n   - Scheduled change window `[CM-WINDOW]` on `2024-02-12 09:00:00` (duration 4320 minutes) and post-implementation review `[CM-REVIEW]` at `2024-02-15 14:00:00` (duration 30 minutes).\n   - Disbursed fee of `733000` to `correct.vendor@atlas.com` via Venmo ledger (`vm_transactions`) tagged `[CM-FEE]`.\n   - Allocated intercompany change costs via Splitwise (`sw_expenses` and `sw_expense_shares`) with description `[CM-ALLOC]`.\n   - Created follow-up review task `[CM-FUP] delta=733000` in Todoist (`td_tasks`).\n   - Dispatched rollback handoff email `[CM-HANDOFF]` to `rollback.partner@atlas.com` and status email `[CM-STATUS]` to `cab.lead@atlas.com`.\n   - Created ITSM change record `CHG_026` (`CHG0000026`) tagged `[CM-CHG]` with mapping `CRM_017` to incident `INC_057`.\n   - Placed incident `INC_057` on hold (`Awaiting Change`) with work notes tagged `[CM-CHG]`.\n   - Sent update notification `NOTIF_031` to caller `richard.lopez@servicenow.com`.\n   - Paused SLA clock `TSLA_022`.\n\nREPORT\nbranch: EXTENDED_WINDOW\nchange_volume: 733\ndelta: 733000\nreconciled: ok\nrelease_total: 733038\nrisk_index: 37.5838926174497\nrisk_score: 38\nside_exposure: 1556\nwindow_uplift: 733000",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_account",
+     "bird_card",
+     "bird_client",
+     "bird_disp",
+     "bird_district",
+     "bird_european_football_2_Country",
+     "bird_european_football_2_League",
+     "bird_european_football_2_Match",
+     "bird_european_football_2_Player",
+     "bird_european_football_2_Player_Attributes",
+     "bird_european_football_2_Team",
+     "bird_european_football_2_Team_Attributes",
+     "bird_loan",
+     "bird_order",
+     "bird_thrombosis_prediction_Examination",
+     "bird_thrombosis_prediction_Laboratory",
+     "bird_thrombosis_prediction_Patient",
+     "bird_trans",
+     "eops_gym_itsm_mcp_change",
+     "eops_gym_itsm_mcp_change_request_mapping",
+     "eops_gym_itsm_mcp_child_incident",
+     "eops_gym_itsm_mcp_configuration_item",
+     "eops_gym_itsm_mcp_incident",
+     "eops_gym_itsm_mcp_incident_affected_cis",
+     "eops_gym_itsm_mcp_incident_knowledge",
+     "eops_gym_itsm_mcp_incident_sla",
+     "eops_gym_itsm_mcp_incident_template",
+     "eops_gym_itsm_mcp_knowledge",
+     "eops_gym_itsm_mcp_location",
+     "eops_gym_itsm_mcp_notification",
+     "eops_gym_itsm_mcp_organization",
+     "eops_gym_itsm_mcp_permission",
+     "eops_gym_itsm_mcp_problem",
+     "eops_gym_itsm_mcp_role",
+     "eops_gym_itsm_mcp_role_permission",
+     "eops_gym_itsm_mcp_service",
+     "eops_gym_itsm_mcp_service_offering",
+     "eops_gym_itsm_mcp_sla_definition",
+     "eops_gym_itsm_mcp_user_group",
+     "eops_gym_itsm_mcp_user_group_member",
+     "eops_gym_itsm_mcp_user_role",
+     "eops_gym_itsm_mcp_users",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data;"
+   },
+   "response": {
+    "n_rows": 200,
+    "rows": [
+     {
+      "customer_id": "00000189",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "customer_name": "Taylor Jackson",
+      "customer_email": "taylor.jackson@nanolabs",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Consulting",
+      "status": "Lost",
+      "follow_up_by": "2023-12-22",
+      "notes": "2023-11-07: Had a call. 2023-11-25: Had a call. "
+     },
+     {
+      "customer_id": "00000107",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "customer_name": "Quinn Harris",
+      "customer_email": "quinn.harris@nanoforcerobotics",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Consulting",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-14",
+      "notes": "2023-11-26: Saw the demo. 2023-11-29: Had a call. 2023-10-27: Had a call. "
+     },
+     {
+      "customer_id": "00000052",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "customer_name": "Jaden White",
+      "customer_email": "jaden.white@protracefoods",
+      "customer_phone": "724-857-2625",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Hardware",
+      "status": "Won",
+      "follow_up_by": "2023-12-13",
+      "notes": "2023-10-17: Had a call. "
+     },
+     {
+      "customer_id": "00000102",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "customer_name": "Alex Thomas",
+      "customer_email": "alex.thomas@proenergy",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Hardware",
+      "status": "Qualified",
+      "follow_up_by": "2023-12-22",
+      "notes": "2023-10-15: On holiday. "
+     },
+     {
+      "customer_id": "00000187",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "customer_name": "Quinn Robinson",
+      "customer_email": "quinn.robinson@flexenergy",
+      "customer_phone": "399-396-5380",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Hardware",
+      "status": "Lead",
+      "follow_up_by": "2023-12-23",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000154",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "customer_name": "Jordan Garcia",
+      "customer_email": "jordan.garcia@forceenergy",
+      "customer_phone": "607-148-6642",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Services",
+      "status": "Lead",
+      "follow_up_by": "2023-12-27",
+      "notes": "2023-11-20: Saw the demo. 2023-11-14: Met in person. 2023-10-27: On holiday. "
+     },
+     {
+      "customer_id": "00000105",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "customer_name": "Reese Taylor",
+      "customer_email": "reese.taylor@pointdynamics",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Hardware",
+      "status": "Won",
+      "follow_up_by": "2023-12-25",
+      "notes": "2023-10-30: Saw the demo. 2023-11-19: Met in person. 2023-11-02: Met in person. "
+     },
+     {
+      "customer_id": "00000149",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "customer_name": "Jessie Thomas",
+      "customer_email": "jessie.thomas@greendynamicsecurity",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-29",
+      "product_interest": "Services",
+      "status": "Lead",
+      "follow_up_by": "2023-12-21",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000198",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "customer_name": "Angel Williams",
+      "customer_email": "angel.williams@techinteractivefoods",
+      "customer_phone": "368-320-1652",
+      "last_contact_date": "2023-11-29",
+      "product_interest": "Software",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-07",
+      "notes": "2023-11-02: Saw the demo. 2023-11-10: Met in person. 2023-10-28: Met in person. "
+     },
+     {
+      "customer_id": "00000197",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "customer_name": "Angel Robinson",
+      "customer_email": "angel.robinson@greencloud",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-29",
+      "product_interest": "Services",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-16",
+      "notes": "2023-10-25: Met in person. "
+     },
+     {
+      "customer_id": "00000060",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "customer_name": "Taylor Wilson",
+      "customer_email": "taylor.wilson@visionsoftware",
+      "customer_phone": "952-257-9165",
+      "last_contact_date": "2023-11-29",
+      "product_interest": "Consulting",
+      "status": "Won",
+      "follow_up_by": "2023-12-28",
+      "notes": "2023-11-02: Saw the demo. 2023-10-27: Met in person. "
+     },
+     {
+      "customer_id": "00000141",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "customer_name": "Jordan Davis",
+      "customer_email": "jordan.davis@omnienergy",
+      "customer_phone": "906-607-4052",
+      "last_contact_date": "2023-11-29",
+      "product_interest": "Training",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-29",
+      "notes": "2023-11-26: Had a call. 2023-10-01: Saw the demo. "
+     },
+     {
+      "customer_id": "00000159",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "customer_name": "Parker Martin",
+      "customer_email": "parker.martin@solarsystems",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-28",
+      "product_interest": "Hardware",
+      "status": "Qualified",
+      "follow_up_by": "2023-12-11",
+      "notes": "2023-10-21: Met in person. 2023-10-03: On holiday. "
+     },
+     {
+      "customer_id": "00000033",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "customer_name": "Morgan Thompson",
+      "customer_email": "morgan.thompson@solarpathtech",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-28",
+      "product_interest": "Training",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-08",
+      "notes": "2023-10-09: Met in person. 2023-11-12: Saw the demo. 2023-11-28: Met in person. "
+     },
+     {
+      "customer_id": "00000028",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "customer_name": "Avery Miller",
+      "customer_email": "avery.miller@interactiveelectronics",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-28",
+      "product_interest": "Training",
+      "status": "Lost",
+      "follow_up_by": "2023-12-15",
+      "notes": "2023-11-12: Had a call. 2023-11-16: Saw the demo. "
+     },
+     {
+      "customer_id": "00000054",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "customer_name": "Quinn Martinez",
+      "customer_email": "quinn.martinez@visionelectronics",
+      "customer_phone": "330-763-3441",
+      "last_contact_date": "2023-11-28",
+      "product_interest": "Hardware",
+      "status": "Lost",
+      "follow_up_by": "2023-12-13",
+      "notes": "2023-10-05: Had a call. "
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email = 'cab.lead@atlas.com' OR customer_id = '00000002';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "parker.li@atlas.com",
+      "customer_name": "CAB Lead",
+      "customer_email": "cab.lead@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "change management",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 change review."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The change risk score is set as that index rounded to a whole number."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_analytics_data LIMIT 10;"
+   },
+   "response": {
+    "n_rows": 10,
+    "rows": [
+     {
+      "date_of_visit": "2023-10-22",
+      "visitor_id": "0860",
+      "page_views": "8",
+      "session_duration_seconds": "4",
+      "traffic_source": "referral",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-22",
+      "visitor_id": "4426",
+      "page_views": "3",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-03",
+      "visitor_id": "1685",
+      "page_views": "7",
+      "session_duration_seconds": "1",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-02",
+      "visitor_id": "5311",
+      "page_views": "5",
+      "session_duration_seconds": "97",
+      "traffic_source": "search engine",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-28",
+      "visitor_id": "8666",
+      "page_views": "1",
+      "session_duration_seconds": "18",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-19",
+      "visitor_id": "9998",
+      "page_views": "8",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-10-25",
+      "visitor_id": "1267",
+      "page_views": "1",
+      "session_duration_seconds": "17",
+      "traffic_source": "search engine",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-21",
+      "visitor_id": "5393",
+      "page_views": "17",
+      "session_duration_seconds": "59",
+      "traffic_source": "social media",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-09",
+      "visitor_id": "7513",
+      "page_views": "6",
+      "session_duration_seconds": "2",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-10",
+      "visitor_id": "0775",
+      "page_views": "13",
+      "session_duration_seconds": "0",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events;"
+   },
+   "response": {
+    "n_rows": 200,
+    "rows": [
+     {
+      "event_id": "00000013",
+      "event_name": "sync up",
+      "participant_email": "luis.ortiz@atlas.com",
+      "event_start": "2023-08-01 09:00:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000275",
+      "event_name": "process review",
+      "participant_email": "fatima.khan@atlas.com",
+      "event_start": "2023-08-01 11:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000098",
+      "event_name": "Data Security and Compliance Training",
+      "participant_email": "amir.ali@atlas.com",
+      "event_start": "2023-08-02 11:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000190",
+      "event_name": "Product Launch Analysis",
+      "participant_email": "yuki.tanaka@atlas.com",
+      "event_start": "2023-08-02 11:30:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000071",
+      "event_name": "daily stand-up",
+      "participant_email": "kofi.mensah@atlas.com",
+      "event_start": "2023-08-02 13:30:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000132",
+      "event_name": "project debrief",
+      "participant_email": "santiago.martinez@atlas.com",
+      "event_start": "2023-08-02 15:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000220",
+      "event_name": "Team Building Retreat",
+      "participant_email": "santiago.martinez@atlas.com",
+      "event_start": "2023-08-02 15:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000178",
+      "event_name": "Quarterly Sales Review",
+      "participant_email": "akira.sato@atlas.com",
+      "event_start": "2023-08-03 10:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000128",
+      "event_name": "strategic planning meeting",
+      "participant_email": "dmitri.ivanov@atlas.com",
+      "event_start": "2023-08-04 10:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000138",
+      "event_name": "Quarterly Sales Review",
+      "participant_email": "nadia.moreau@atlas.com",
+      "event_start": "2023-08-04 12:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000270",
+      "event_name": "Team Building Retreat",
+      "participant_email": "carlos.rodriguez@atlas.com",
+      "event_start": "2023-08-04 15:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000074",
+      "event_name": "New Employee Onboarding",
+      "participant_email": "anaya.patel@atlas.com",
+      "event_start": "2023-08-07 10:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000014",
+      "event_name": "Global Expansion Strategy Discussion",
+      "participant_email": "lena.schmidt@atlas.com",
+      "event_start": "2023-08-07 12:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000277",
+      "event_name": "strategic planning meeting",
+      "participant_email": "dmitri.ivanov@atlas.com",
+      "event_start": "2023-08-07 14:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000008",
+      "event_name": "performance evaluation",
+      "participant_email": "raj.patel@atlas.com",
+      "event_start": "2023-08-07 14:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000095",
+      "event_name": "Global Expansion Strategy Discussion",
+      "participant_email": "yuki.tanaka@atlas.com",
+      "event_start": "2023-08-08 11:00:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000166",
+      "event_name": "Quarterly Sales Review",
+      "participant_email": "sofia.santos@atlas.com",
+      "event_start": "2023-08-08 12:00:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000214",
+      "event_name": "IT Systems Update Briefing",
+      "participant_email": "nadia.moreau@atlas.com",
+      "event_start": "2023-08-08 15:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000034",
+      "event_name": "process review",
+      "participant_email": "aisha.chen@atlas.com",
+      "event_start": "2023-08-09 14:00:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000196",
+      "event_name": "process review",
+      "participant_email": "kofi.mensah@atlas.com",
+      "event_start": "2023-08-10 10:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000079",
+      "event_name": "sync up",
+      "participant_email": "akira.sato@atlas.com",
+      "event_start": "2023-08-10 12:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000203",
+      "event_name": "Corporate Social Responsibility Initiative",
+      "participant_email": "anaya.patel@atlas.com",
+      "event_start": "2023-08-10 15:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000227",
+      "event_name": "team evaluation",
+      "participant_email": "jinsoo.kim@atlas.com",
+      "event_start": "2023-08-11 09:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000168",
+      "event_name": "Machine Learning Chat",
+      "participant_email": "yuki.tanaka@atlas.com",
+      "event_start": "2023-08-11 15:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000154",
+      "event_name": "process review",
+      "participant_email": "kofi.mensah@atlas.com",
+      "event_start": "2023-08-14 10:30:00",
+      "duration": "120"
+     },
+     {
+      "event_id": "00000075",
+      "event_name": "annual summary",
+      "participant_email": "dmitri.ivanov@atlas.com",
+      "event_start": "2023-08-14 12:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000272",
+      "event_name": "brainstorming session",
+      "participant_email": "anaya.patel@atlas.com",
+      "event_start": "2023-08-15 10:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000059",
+      "event_name": "casual catch-up",
+      "participant_email": "lena.schmidt@atlas.com",
+      "event_start": "2023-08-15 14:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000175",
+      "event_name": "Health & Wellness Expo",
+      "participant_email": "anaya.patel@atlas.com",
+      "event_start": "2023-08-16 11:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000254",
+      "event_name": "feedback discussion",
+      "participant_email": "anaya.patel@atlas.com",
+      "event_start": "2023-08-16 14:00:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000204",
+      "event_name": "Employee Recognition Event",
+      "participant_email": "jinsoo.kim@atlas.com",
+      "event_start": "2023-08-17 11:30:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000176",
+      "event_name": "Global Expansion Strategy Discussion",
+      "participant_email": "leila.azizi@atlas.com",
+      "event_start": "2023-08-18 09:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000265",
+      "event_name": "annual summary",
+      "participant_email": "akira.sato@atlas.com",
+      "event_start": "2023-08-18 11:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000010",
+      "event_name": "Digital Transformation Conference",
+      "participant_email": "akira.sato@atlas.com",
+      "event_start": "2023-08-18 15:30:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000155",
+      "event_name": "daily stand-up",
+      "participant_email": "nia.johnson@atlas.com",
+      "event_start": "2023-08-21 09:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email = 'parker.li@atlas.com';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "release-desk daily standup",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Match LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "country_id": 1,
+      "league_id": 1,
+      "season": "2008/2009",
+      "stage": 1,
+      "date": "2008-08-17 00:00:00",
+      "match_api_id": 492473,
+      "home_team_api_id": 9987,
+      "away_team_api_id": 9993,
+      "home_team_goal": 1,
+      "away_team_goal": 1,
+      "home_player_X1": null,
+      "home_player_X2": null,
+      "home_player_X3": null,
+      "home_player_X4": null,
+      "home_player_X5": null,
+      "home_player_X6": null,
+      "home_player_X7": null,
+      "home_player_X8": null,
+      "home_player_X9": null,
+      "home_player_X10": null,
+      "home_player_X11": null,
+      "away_player_X1": null,
+      "away_player_X2": null,
+      "away_player_X3": null,
+      "away_player_X4": null,
+      "away_player_X5": null,
+      "away_player_X6": null,
+      "away_player_X7": null,
+      "away_player_X8": null,
+      "away_player_X9": null,
+      "away_player_X10": null,
+      "away_player_X11": null,
+      "home_player_Y1": null,
+      "home_player_Y2": null,
+      "home_player_Y3": null,
+      "home_player_Y4": null,
+      "home_player_Y5": null,
+      "home_player_Y6": null,
+      "home_player_Y7": null,
+      "home_player_Y8": null,
+      "home_player_Y9": null,
+      "home_player_Y10": null,
+      "home_player_Y11": null,
+      "away_player_Y1": null,
+      "away_player_Y2": null,
+      "away_player_Y3": null,
+      "away_player_Y4": null,
+      "away_player_Y5": null,
+      "away_player_Y6": null,
+      "away_player_Y7": null,
+      "away_player_Y8": null,
+      "away_player_Y9": null,
+      "away_player_Y10": null,
+      "away_player_Y11": null,
+      "home_player_1": null,
+      "home_player_2": null,
+      "home_player_3": null,
+      "home_player_4": null,
+      "home_player_5": null,
+      "home_player_6": null,
+      "home_player_7": null,
+      "home_player_8": null,
+      "home_player_9": null,
+      "home_player_10": null,
+      "home_player_11": null,
+      "away_player_1": null,
+      "away_player_2": null,
+      "away_player_3": null,
+      "away_player_4": null,
+      "away_player_5": null,
+      "away_player_6": null,
+      "away_player_7": null,
+      "away_player_8": null,
+      "away_player_9": null,
+      "away_player_10": null,
+      "away_player_11": null,
+      "goal": null,
+      "shoton": null,
+      "shotoff": null,
+      "foulcommit": null,
+      "card": null,
+      "cross": null,
+      "corner": null,
+      "possession": null,
+      "B365H": 1.73,
+      "B365D": 3.4,
+      "B365A": 5.0,
+      "BWH": 1.75,
+      "BWD": 3.35,
+      "BWA": 4.2,
+      "IWH": 1.85,
+      "IWD": 3.2,
+      "IWA": 3.5,
+      "LBH": 1.8,
+      "LBD": 3.3,
+      "LBA": 3.75,
+      "PSH": null,
+      "PSD": null,
+      "PSA": null,
+      "WHH": 1.7,
+      "WHD": 3.3,
+      "WHA": 4.33,
+      "SJH": 1.9,
+      "SJD": 3.3,
+      "SJA": 4.0,
+      "VCH": 1.65,
+      "VCD": 3.4,
+      "VCA": 4.5,
+      "GBH": 1.78,
+      "GBD": 3.25,
+      "GBA": 4.0,
+      "BSH": 1.73,
+      "BSD": 3.4,
+      "BSA": 4.2
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_account LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "account_id": 1,
+      "district_id": 18,
+      "frequency": "POPLATEK MESICNE",
+      "date": "1995-03-24"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_thrombosis_prediction_Patient LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ID": 2110,
+      "SEX": "F",
+      "Birthday": "1934-02-13",
+      "Description": "1994-02-14",
+      "First Date": "1993-02-10",
+      "Admission": "+",
+      "Diagnosis": "RA susp."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "change_id": "CHG_001",
+      "number": "CHG0000001",
+      "short_description": "Apply Oracle Patch 19.4.2 to SAP DB",
+      "requested_by": "USER_059",
+      "service": "SVC_017",
+      "service_offering": "SVCOFF_021",
+      "configuration_item": "CI_001",
+      "assigned_to": "USER_059",
+      "assignment_group": "GROUP_008",
+      "org_id": "ORG_001",
+      "status": "scheduled",
+      "category": "software",
+      "description": "Applying critical vendor patch to fix memory leak ORA-04030.",
+      "implementation_plan": "1. Stop SAP Services. 2. Apply DB Patch. 3. Restart DB. 4. Start SAP.",
+      "testing_plan": "Verify user login and transaction creation in QA first.",
+      "close_notes": null,
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "high",
+      "risk": "high",
+      "close_code": null,
+      "created_on": "2025-12-03 10:30:00",
+      "updated_on": "2025-12-03 11:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_card LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "card_id": 1,
+      "disp_id": 9,
+      "type": "gold",
+      "issued": "1998-10-16"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_loan LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "loan_id": 4959,
+      "account_id": 2,
+      "date": "1994-01-05",
+      "amount": 80952,
+      "duration": 24,
+      "payments": 3373.0,
+      "status": "A"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_trans LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "trans_id": 1,
+      "account_id": 1,
+      "date": "1995-03-24",
+      "type": "PRIJEM",
+      "operation": "VKLAD",
+      "amount": 1000,
+      "balance": 1000,
+      "k_symbol": null,
+      "bank": null,
+      "account": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_district LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "district_id": 1,
+      "A2": "Hl.m. Praha",
+      "A3": "Prague",
+      "A4": "1204953",
+      "A5": "0",
+      "A6": "0",
+      "A7": "0",
+      "A8": 1,
+      "A9": 1,
+      "A10": 100.0,
+      "A11": 12541,
+      "A12": 0.2,
+      "A13": 0.43,
+      "A14": 167,
+      "A15": 85677,
+      "A16": 99107
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_order LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "order_id": 29401,
+      "account_id": 1,
+      "bank_to": "YZ",
+      "account_to": 87144583,
+      "amount": 2452.0,
+      "k_symbol": "SIPO"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_disp LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "disp_id": 1,
+      "client_id": 1,
+      "account_id": 1,
+      "type": "OWNER"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_client LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "client_id": 1,
+      "gender": "F",
+      "birth_date": "1970-12-13",
+      "district_id": 18
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_thrombosis_prediction_Examination LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ID": 14872,
+      "Examination Date": "1997-05-27",
+      "aCL IgG": 1.3,
+      "aCL IgM": 1.6,
+      "ANA": 256,
+      "ANA Pattern": "P",
+      "aCL IgA": 0,
+      "Diagnosis": "MCTD, AMI",
+      "KCT": null,
+      "RVVT": null,
+      "LAC": "-",
+      "Symptoms": "AMI",
+      "Thrombosis": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_thrombosis_prediction_Laboratory LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ID": 27654,
+      "Date": "1991-09-11",
+      "GOT": 34,
+      "GPT": 36,
+      "LDH": 567,
+      "ALP": 166,
+      "TP": 4.5,
+      "ALB": 3.3,
+      "UA": 3.8,
+      "UN": 29,
+      "CRE": 0.8,
+      "T-BIL": 0.3,
+      "T-CHO": 165,
+      "TG": null,
+      "CPK": 9,
+      "GLU": null,
+      "WBC": 5.0,
+      "RBC": 2.6,
+      "HGB": 6.4,
+      "HCT": 20.3,
+      "PLT": 227,
+      "PT": null,
+      "APTT": null,
+      "FG": null,
+      "PIC": null,
+      "TAT": null,
+      "TAT2": null,
+      "U-PRO": null,
+      "IGG": 339,
+      "IGA": 145,
+      "IGM": 46,
+      "CRP": "0.6",
+      "RA": null,
+      "RF": null,
+      "C3": null,
+      "C4": null,
+      "RNP": null,
+      "SM": null,
+      "SC170": null,
+      "SSA": null,
+      "SSB": null,
+      "CENTROMEA": null,
+      "DNA": null,
+      "DNA-II": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_League LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "country_id": 1,
+      "name": "Belgium Jupiler League"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Player LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "player_api_id": 505942,
+      "player_name": "Aaron Appindangoye",
+      "player_fifa_api_id": 218353,
+      "birthday": "1992-02-29 00:00:00",
+      "height": 182.88,
+      "weight": 187
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Player_Attributes LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2016-02-18 00:00:00",
+      "overall_rating": 67,
+      "potential": 71,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 49,
+      "finishing": 44,
+      "heading_accuracy": 71,
+      "short_passing": 61,
+      "volleys": 44,
+      "dribbling": 51,
+      "curve": 45,
+      "free_kick_accuracy": 39,
+      "long_passing": 64,
+      "ball_control": 49,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 47,
+      "balance": 65,
+      "shot_power": 55,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 35,
+      "aggression": 71,
+      "interceptions": 70,
+      "positioning": 45,
+      "vision": 54,
+      "penalties": 48,
+      "marking": 65,
+      "standing_tackle": 69,
+      "sliding_tackle": 69,
+      "gk_diving": 6,
+      "gk_handling": 11,
+      "gk_kicking": 10,
+      "gk_positioning": 8,
+      "gk_reflexes": 8
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Team LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "team_api_id": 9987,
+      "team_fifa_api_id": 673,
+      "team_long_name": "KRC Genk",
+      "team_short_name": "GEN"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Team_Attributes LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "team_fifa_api_id": 434,
+      "team_api_id": 9930,
+      "date": "2010-02-22 00:00:00",
+      "buildUpPlaySpeed": 60,
+      "buildUpPlaySpeedClass": "Balanced",
+      "buildUpPlayDribbling": null,
+      "buildUpPlayDribblingClass": "Little",
+      "buildUpPlayPassing": 50,
+      "buildUpPlayPassingClass": "Mixed",
+      "buildUpPlayPositioningClass": "Organised",
+      "chanceCreationPassing": 60,
+      "chanceCreationPassingClass": "Normal",
+      "chanceCreationCrossing": 65,
+      "chanceCreationCrossingClass": "Normal",
+      "chanceCreationShooting": 55,
+      "chanceCreationShootingClass": "Normal",
+      "chanceCreationPositioningClass": "Organised",
+      "defencePressure": 50,
+      "defencePressureClass": "Medium",
+      "defenceAggression": 55,
+      "defenceAggressionClass": "Press",
+      "defenceTeamWidth": 45,
+      "defenceTeamWidthClass": "Normal",
+      "defenceDefenderLineClass": "Cover"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_emails LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "email_id": "00000373",
+      "inbox/outbox": "inbox",
+      "sender/recipient": "santiago.martinez@atlas.com",
+      "subject": "Task Update on Develop prototype for payment gateway",
+      "sent_datetime": "2023-10-01 09:15:02",
+      "body": "Sam,\\n\\nCompleted task 'Develop prototype for payment gateway' ahead of schedule. Please review and let me know if any tweaks are needed.\\n\\nBest,\\nSantiago"
+     },
+     {
+      "email_id": "00000353",
+      "inbox/outbox": "inbox",
+      "sender/recipient": "chenwei.zhang@atlas.com",
+      "subject": "Update on Annual Budget Planning Session",
+      "sent_datetime": "2023-10-01 09:40:01",
+      "body": "Sam,\\n\\nEncountered a few challenges while working on the Annual Budget Planning Session. Could use your advice.\\n\\nCheers,\\nChenwei"
+     },
+     {
+      "email_id": "00000013",
+      "inbox/outbox": "inbox",
+      "sender/recipient": "kofi.mensah@atlas.com",
+      "subject": "Task Update on Fix alignment issue in homepage",
+      "sent_datetime": "2023-10-01 10:50:46",
+      "body": "Dear Sam,\\n\\nRegarding task 'Fix alignment issue in homepage', I've made significant progress but have hit a snag with third-party API compatibility. Could use a brainstorm session.\\n\\nRegards,\\nKofi"
+     },
+     {
+      "email_id": "00000103",
+      "inbox/outbox": "inbox",
+      "sender/recipient": "chenwei.zhang@atlas.com",
+      "subject": "Update on Quarterly Sales Review",
+      "sent_datetime": "2023-10-01 10:58:07",
+      "body": "Hey Sam,\\n\\nEncountered a few challenges while working on the Quarterly Sales Review. Could use your advice.\\n\\nThanks,\\nChenwei"
+     },
+     {
+      "email_id": "00000295",
+      "inbox/outbox": "inbox",
+      "sender/recipient": "nadia.moreau@atlas.com",
+      "subject": "Update on Year-End Performance Assessment",
+      "sent_datetime": "2023-10-01 11:37:37",
+      "body": "Hey Sam,\\n\\nCould you provide your input on the Year-End Performance Assessment planing? Your insights would be really valuable.\\n\\nAdditionally, I wanted to touch base on some other areas we've been focusing on lately. Our team has been working tirelessly on improving our project management workflows and enhancing collaboration across departments. This effort includes adopting new tools, refining our communication strategies, and ensuring that all team members are fully aligned with our objectives.\\n\\nBest,\\nNadia"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_project_tasks LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "task_id": "00000149",
+      "task_name": "Add animation to carousel",
+      "assigned_to_email": "leila.azizi@atlas.com",
+      "list_name": "Backlog",
+      "due_date": "2023-11-27",
+      "board": "Front end"
+     },
+     {
+      "task_id": "00000037",
+      "task_name": "Add authentication for email notification",
+      "assigned_to_email": "carlos.rodriguez@atlas.com",
+      "list_name": "Completed",
+      "due_date": "2023-11-27",
+      "board": "Back end"
+     },
+     {
+      "task_id": "00000061",
+      "task_name": "Update Flask to latest version",
+      "assigned_to_email": "aisha.chen@atlas.com",
+      "list_name": "Completed",
+      "due_date": "2023-11-27",
+      "board": "Back end"
+     },
+     {
+      "task_id": "00000093",
+      "task_name": "Optimize database query for search functionality",
+      "assigned_to_email": "fatima.khan@atlas.com",
+      "list_name": "Completed",
+      "due_date": "2023-11-27",
+      "board": "Back end"
+     },
+     {
+      "task_id": "00000096",
+      "task_name": "Add authentication for third-party login",
+      "assigned_to_email": "carlos.rodriguez@atlas.com",
+      "list_name": "Completed",
+      "due_date": "2023-11-27",
+      "board": "Back end"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "created_at": "2023-04-26 06:41:14.000000",
+      "updated_at": "2023-04-26 06:41:14.000000",
+      "record_hash": "8yR7u0aLfPA=",
+      "id": 1,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 22.0,
+      "description": "Crafternoon 🧶",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": "3198"
+     },
+     {
+      "created_at": "2023-04-11 11:18:48.000000",
+      "updated_at": "2023-04-11 11:18:48.000000",
+      "record_hash": "o2sH9miMSXc=",
+      "id": 2,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 14.0,
+      "description": "🎬Movie Snacks",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-04-03 20:35:38.000000",
+      "updated_at": "2023-04-03 20:35:38.000000",
+      "record_hash": "/8G9daBK/Yk=",
+      "id": 3,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 108.0,
+      "description": "Spa Day",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 4,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-03-27 00:21:48.000000",
+      "updated_at": "2023-03-27 00:21:48.000000",
+      "record_hash": "CFzM7h7DTM4=",
+      "id": 4,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 19.0,
+      "description": "🎳Bowling Squad",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-03-07 03:52:25.000000",
+      "updated_at": "2023-03-07 03:52:25.000000",
+      "record_hash": "sTN8MWQqVAk=",
+      "id": 5,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 19.0,
+      "description": "🍩 Donuts for the Team Meeting 📈",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 2,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users;"
+   },
+   "response": {
+    "n_rows": 109,
+    "rows": [
+     {
+      "last_logged_in": "2023-01-24 12:51:50.000000",
+      "created_at": "2023-01-24 12:51:50.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "uCcxPcOFt3c=",
+      "id": 1,
+      "first_name": "Stephen",
+      "last_name": "Mccoy",
+      "email": "stmcco@gmail.com",
+      "password": "QYf5cmc",
+      "venmo_balance": 14203.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2023-02-12 14:30:46.000000",
+      "created_at": "2023-02-12 14:30:46.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "Uh6QCF8hS7Q=",
+      "id": 2,
+      "first_name": "Laura",
+      "last_name": "Mccoy",
+      "email": "la-mcco@gmail.com",
+      "password": "z$tR*}f",
+      "venmo_balance": 5184.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-08-25 08:57:40.000000",
+      "created_at": "2022-08-25 08:57:40.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "UZRwtnKplmU=",
+      "id": 3,
+      "first_name": "Chris",
+      "last_name": "Mccoy",
+      "email": "chris.mcco@gmail.com",
+      "password": "+dXReKG",
+      "venmo_balance": 9492.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-08-26 16:01:41.000000",
+      "created_at": "2022-08-26 16:01:41.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "ffIxad11NLU=",
+      "id": 4,
+      "first_name": "Jonathan",
+      "last_name": "Ball",
+      "email": "jo.ball@gmail.com",
+      "password": "SpNp_UN",
+      "venmo_balance": 8554.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2023-02-08 08:46:59.000000",
+      "created_at": "2023-02-08 08:46:59.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "cP354jDymDI=",
+      "id": 5,
+      "first_name": "Leslie",
+      "last_name": "Ball",
+      "email": "les_ball@gmail.com",
+      "password": "{Ew}9!q",
+      "venmo_balance": 5356.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-04-27 18:22:21.000000",
+      "created_at": "2022-04-27 18:22:21.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "eCM1FNhsz88=",
+      "id": 6,
+      "first_name": "Bradley",
+      "last_name": "Ball",
+      "email": "bradley_ball@gmail.com",
+      "password": "PoVVcBP",
+      "venmo_balance": 10813.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-04-25 18:24:54.000000",
+      "created_at": "2022-04-25 18:24:54.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "cGKlce2nO2s=",
+      "id": 7,
+      "first_name": "Katherine",
+      "last_name": "Smith",
+      "email": "ka_ball@gmail.com",
+      "password": "AsH7vaR",
+      "venmo_balance": 9712.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-05-09 14:11:52.000000",
+      "created_at": "2022-05-09 14:11:52.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "vRfHwDC1+i4=",
+      "id": 8,
+      "first_name": "Thomas",
+      "last_name": "Solomon",
+      "email": "thomas.solomon@gmail.com",
+      "password": "7$[Aqqp",
+      "venmo_balance": 12593.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2023-01-17 09:00:50.000000",
+      "created_at": "2023-01-17 09:00:50.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "BM1/nhho6aU=",
+      "id": 9,
+      "first_name": "Jamie",
+      "last_name": "Solomon",
+      "email": "jamie-solomon@gmail.com",
+      "password": "ZrkUNxv",
+      "venmo_balance": 7554.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-10-02 15:33:08.000000",
+      "created_at": "2022-10-02 15:33:08.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "Af5LDkQXSeM=",
+      "id": 10,
+      "first_name": "James",
+      "last_name": "Solomon",
+      "email": "ja-solomon@gmail.com",
+      "password": "MCsW+XB",
+      "venmo_balance": 13229.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-04-05 09:14:55.000000",
+      "created_at": "2022-04-05 09:14:55.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "j7a2bzQlR9Q=",
+      "id": 11,
+      "first_name": "Troy",
+      "last_name": "Solomon",
+      "email": "tr_solo@gmail.com",
+      "password": "z*@]t]Q",
+      "venmo_balance": 9202.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-07-28 16:36:46.000000",
+      "created_at": "2022-07-28 16:36:46.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "DYO0dHCun34=",
+      "id": 12,
+      "first_name": "Ronald",
+      "last_name": "Harrison",
+      "email": "ron.harrison@gmail.com",
+      "password": "uS*!Ydj",
+      "venmo_balance": 12314.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-10-01 16:49:36.000000",
+      "created_at": "2022-10-01 16:49:36.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "J31Z0QC3z7w=",
+      "id": 13,
+      "first_name": "Christina",
+      "last_name": "Harrison",
+      "email": "chrharrison@gmail.com",
+      "password": "s[8qzk8",
+      "venmo_balance": 6430.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": "2022-12-14 14:46:35.000000",
+      "created_at": "2022-12-14 14:46:35.000000",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": "AzDZwJIHRoo=",
+      "id": 14,
+      "first_name": "Jose",
+      "last_name": "Harrison",
+      "email": "joseharr@gmail.com",
+      "password": "uNK8[nt",
+      "venmo_balance": 15268.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('parker.li@atlas.com', 'correct.vendor@atlas.com', 'wrong.vendor@atlas.com');"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Correct",
+      "last_name": "Vendor",
+      "email": "correct.vendor@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 20000000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Vendor",
+      "email": "wrong.vendor@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users;"
+   },
+   "response": {
+    "n_rows": 154,
+    "rows": [
+     {
+      "created_at": "2023-02-08 15:20:25.000000",
+      "last_logged_in": "2023-02-08 15:20:25.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "z2T5ZhvCpxo=",
+      "id": 1,
+      "first_name": "Stephen",
+      "last_name": "Mccoy",
+      "email": "stmcco@gmail.com",
+      "password": "n3v=I[w",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-08-17 18:36:19.000000",
+      "last_logged_in": "2022-08-17 18:36:19.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "rodez1HXyd0=",
+      "id": 2,
+      "first_name": "Laura",
+      "last_name": "Mccoy",
+      "email": "la-mcco@gmail.com",
+      "password": "qRFsgRQ",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-05-16 16:31:36.000000",
+      "last_logged_in": "2022-05-16 16:31:36.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "oZAfIHgBE24=",
+      "id": 3,
+      "first_name": "Chris",
+      "last_name": "Mccoy",
+      "email": "chris.mcco@gmail.com",
+      "password": "-f1{_-l",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-12-03 13:52:07.000000",
+      "last_logged_in": "2022-12-03 13:52:07.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "Sy1JoPPQukI=",
+      "id": 4,
+      "first_name": "Jonathan",
+      "last_name": "Ball",
+      "email": "jo.ball@gmail.com",
+      "password": "KpLxWEj",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-08-25 18:31:29.000000",
+      "last_logged_in": "2022-08-25 18:31:29.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "BNULwWieIac=",
+      "id": 5,
+      "first_name": "Leslie",
+      "last_name": "Ball",
+      "email": "les_ball@gmail.com",
+      "password": "%@g}L&b",
+      "password_reset_code": null,
+      "status": "away"
+     },
+     {
+      "created_at": "2022-11-07 18:11:40.000000",
+      "last_logged_in": "2022-11-07 18:11:40.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "Tobuwl3bT80=",
+      "id": 6,
+      "first_name": "Bradley",
+      "last_name": "Ball",
+      "email": "bradley_ball@gmail.com",
+      "password": "mD=1PdF",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-10-23 14:21:31.000000",
+      "last_logged_in": "2022-10-23 14:21:31.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "EqgnsZbEG/k=",
+      "id": 7,
+      "first_name": "Katherine",
+      "last_name": "Smith",
+      "email": "ka_ball@gmail.com",
+      "password": "D@&l@N2",
+      "password_reset_code": null,
+      "status": "away"
+     },
+     {
+      "created_at": "2022-03-14 14:54:56.000000",
+      "last_logged_in": "2022-03-14 14:54:56.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "BHtreFd84dE=",
+      "id": 8,
+      "first_name": "Thomas",
+      "last_name": "Solomon",
+      "email": "thomas.solomon@gmail.com",
+      "password": "n3HFQWU",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-05-02 10:06:41.000000",
+      "last_logged_in": "2022-05-02 10:06:41.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "UlMBMm1QDeE=",
+      "id": 9,
+      "first_name": "Jamie",
+      "last_name": "Solomon",
+      "email": "jamie-solomon@gmail.com",
+      "password": "%ll_W)d",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-07-25 13:42:05.000000",
+      "last_logged_in": "2022-07-25 13:42:05.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "yhvtJOjK320=",
+      "id": 10,
+      "first_name": "James",
+      "last_name": "Solomon",
+      "email": "ja-solomon@gmail.com",
+      "password": "O9rG%bf",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-03-29 15:44:17.000000",
+      "last_logged_in": "2022-03-29 15:44:17.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "CenVEkXX5vk=",
+      "id": 11,
+      "first_name": "Troy",
+      "last_name": "Solomon",
+      "email": "tr_solo@gmail.com",
+      "password": "*WytI+J",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-08-14 16:08:31.000000",
+      "last_logged_in": "2022-08-14 16:08:31.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "QZwc0QC4+5w=",
+      "id": 12,
+      "first_name": "Ronald",
+      "last_name": "Harrison",
+      "email": "ron.harrison@gmail.com",
+      "password": "BjQY4tY",
+      "password_reset_code": null,
+      "status": "away"
+     },
+     {
+      "created_at": "2022-07-14 09:55:12.000000",
+      "last_logged_in": "2022-07-14 09:55:12.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "9ucfi2Eav8I=",
+      "id": 13,
+      "first_name": "Christina",
+      "last_name": "Harrison",
+      "email": "chrharrison@gmail.com",
+      "password": "CISmOIf",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2022-07-03 17:39:35.000000",
+      "last_logged_in": "2022-07-03 17:39:35.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "JTTQ4vujZXY=",
+      "id": 14,
+      "first_name": "Jose",
+      "last_name": "Harrison",
+      "email": "joseharr@gmail.com",
+      "password": "-Uf_)OB",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-02-21 15:42:16.000000",
+      "last_logged_in": "2022-02-21 15:42:16.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "IvOONpq+7Rs=",
+      "id": 15,
+      "first_name": "Jordan",
+      "last_name": "Harrison",
+      "email": "jo-harr@gmail.com",
+      "password": "S4kyt)a",
+      "password_reset_code": null,
+      "status": "away"
+     },
+     {
+      "created_at": "2022-02-28 18:22:00.000000",
+      "last_logged_in": "2022-02-28 18:22:00.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "ZoieTf/iI6I=",
+      "id": 16,
+      "first_name": "Anthony",
+      "last_name": "Harrison",
+      "email": "an-harrison@gmail.com",
+      "password": "sK_Fo7s",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-11-27 18:50:41.000000",
+      "last_logged_in": "2022-11-27 18:50:41.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "imvBHeHVRWE=",
+      "id": 17,
+      "first_name": "Morgan",
+      "last_name": "Burton",
+      "email": "morgan-harrison@gmail.com",
+      "password": "BJTw{yJ",
+      "password_reset_code": null,
+      "status": "do_not_disturb"
+     },
+     {
+      "created_at": "2022-07-08 08:24:23.000000",
+      "last_logged_in": "2022-07-08 08:24:23.000000",
+      "password_reset_code_expiry": null,
+      "record_hash": "TyUVZ0ToPvU=",
+      "id": 18,
+      "first_name": "Richard",
+      "last_name": "Riddle",
+      "email": "ric.riddle@gmail.com",
+      "password": "[@8$jks",
+      "password_reset_code": null,
+      "status": "away"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "recipient_ids": "[63]",
+      "created_at": "2022-08-26 09:44:16.000000",
+      "record_hash": "wIBN6D5V5dQ=",
+      "id": 1,
+      "sender_id": 1,
+      "subject": "Weekend Hike",
+      "body": "Hi Mason,\n\nI'm planning a hike this weekend. Are you up for some outdoor fun?\n\nCheers,\nStephen",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-12-08 16:43:40.000000",
+      "record_hash": "Or7q4cT1K4k=",
+      "id": 2,
+      "sender_id": 9,
+      "subject": "Client Visit Next Week",
+      "body": "Team,\n\nWe have a client visit scheduled for next Wednesday. Let's ensure our office and presentations are in top shape.\n\nBest,\nJamie",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-12-12 13:46:50.000000",
+      "record_hash": "Y+tVOkqiu+o=",
+      "id": 3,
+      "sender_id": 9,
+      "subject": "IT Helpdesk Satisfaction Survey",
+      "body": "Dear team,\n\nWe would like to gather your feedback on our IT helpdesk services. Please take a few minutes to complete the attached survey and share your thoughts. Your input will help us improve our support and provide better service to our clients. https://forms.google.com/jfewpflqwer .\n\nThank you,\nJamie\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-08-17 17:34:59.000000",
+      "record_hash": "uvUuwyL4BzA=",
+      "id": 4,
+      "sender_id": 9,
+      "subject": "Feedback Request: Team Building Event",
+      "body": "Hello team,\n\nI hope you all enjoyed the recent team building event. Your feedback is valuable in helping us improve future events. Please take a moment to share your thoughts and suggestions by filling out the feedback form at https://forms.google.com/abcd1234efgh5678.\n\nBest regards,\nJamie",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[9]",
+      "created_at": "2022-08-17 17:59:40.000000",
+      "record_hash": "657kK7Sz64M=",
+      "id": 5,
+      "sender_id": 76,
+      "subject": "Re: Feedback Request: Team Building Event",
+      "body": "Submitted!",
+      "response_to_email_id": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "debtor_ids": "[97, 20]",
+      "participant_ids": "[41]",
+      "created_at": "2023-04-03 04:24:23.000000",
+      "record_hash": "MTEUUUJqQtA=",
+      "id": 1,
+      "user_id": 41,
+      "group_id": 1,
+      "payer_id": 41,
+      "description": "Pet Toys",
+      "amount": 30.0,
+      "deleted": 0,
+      "receipt_file_name": "pet_toys.jpg",
+      "receipt_file_content": "binary:e23f679ab5...",
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks LIMIT 1;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "low",
+      "duration_unit": null,
+      "created_at": "2022-10-18 11:59:57.000000",
+      "record_hash": "UYBkitXlIRU=",
+      "id": 1,
+      "project_id": 1,
+      "section_id": null,
+      "user_id": 1,
+      "title": "Organize Photoshoot",
+      "description": "",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 0,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident WHERE incident_id = 'INC_057';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_057",
+      "number": "INC-000057",
+      "short_description": "HR DB",
+      "caller_id": "USER_057",
+      "service": "SVC_022",
+      "service_offering": "SVCOFF_027",
+      "configuration_item": null,
+      "assigned_to": "USER_004",
+      "assignment_group": "GROUP_002",
+      "resolved_by": null,
+      "problem": null,
+      "change_request": null,
+      "caused_by_change": null,
+      "incident_template": null,
+      "parent_incident": null,
+      "org_id": "ORG_001",
+      "channel": "web",
+      "contact_type": "api",
+      "status": "new",
+      "category": "database",
+      "description": "Refused.",
+      "worknotes": null,
+      "resolution_notes": null,
+      "close_notes": null,
+      "impact": "high",
+      "urgency": "high",
+      "priority": "critical",
+      "resolution_code": null,
+      "on_hold_reason": null,
+      "resolved": null,
+      "created_at": "2025-12-03 11:45:00",
+      "updated_at": "2025-12-03 11:45:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change WHERE change_id = 'CHG_026';"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 'bird_account' as t, count(*) FROM bird_account UNION ALL\nSELECT 'bird_card', count(*) FROM bird_card UNION ALL\nSELECT 'bird_client', count(*) FROM bird_client UNION ALL\nSELECT 'bird_disp', count(*) FROM bird_disp UNION ALL\nSELECT 'bird_district', count(*) FROM bird_district UNION ALL\nSELECT 'bird_loan', count(*) FROM bird_loan UNION ALL\nSELECT 'bird_order', count(*) FROM bird_order UNION ALL\nSELECT 'bird_trans', count(*) FROM bird_trans UNION ALL\nSELECT 'bird_football_country', count(*) FROM bird_european_football_2_Country UNION ALL\nSELECT 'bird_football_league', count(*) FROM bird_european_football_2_League UNION ALL\nSELECT 'bird_football_match', count(*) FROM bird_european_football_2_Match UNION ALL\nSELECT 'bird_football_player', count(*) FROM bird_european_football_2_Player UNION ALL\nSELECT 'bird_football_pa', count(*) FROM bird_european_football_2_Player_Attributes UNION ALL\nSELECT 'bird_football_team', count(*) FROM bird_european_football_2_Team UNION ALL\nSELECT 'bird_football_ta', count(*) FROM bird_european_football_2_Team_Attributes UNION ALL\nSELECT 'bird_thrombosis_exam', count(*) FROM bird_thrombosis_prediction_Examination UNION ALL\nSELECT 'bird_thrombosis_lab', count(*) FROM bird_thrombosis_prediction_Laboratory UNION ALL\nSELECT 'bird_thrombosis_pat', count(*) FROM bird_thrombosis_prediction_Patient;"
+   },
+   "response": {
+    "n_rows": 18,
+    "rows": [
+     {
+      "t": "bird_account",
+      "count(*)": 4500
+     },
+     {
+      "t": "bird_card",
+      "count(*)": 892
+     },
+     {
+      "t": "bird_client",
+      "count(*)": 5369
+     },
+     {
+      "t": "bird_disp",
+      "count(*)": 5369
+     },
+     {
+      "t": "bird_district",
+      "count(*)": 77
+     },
+     {
+      "t": "bird_loan",
+      "count(*)": 682
+     },
+     {
+      "t": "bird_order",
+      "count(*)": 6471
+     },
+     {
+      "t": "bird_trans",
+      "count(*)": 1056320
+     },
+     {
+      "t": "bird_football_country",
+      "count(*)": 11
+     },
+     {
+      "t": "bird_football_league",
+      "count(*)": 11
+     },
+     {
+      "t": "bird_football_match",
+      "count(*)": 25979
+     },
+     {
+      "t": "bird_football_player",
+      "count(*)": 11060
+     },
+     {
+      "t": "bird_football_pa",
+      "count(*)": 183978
+     },
+     {
+      "t": "bird_football_team",
+      "count(*)": 299
+     },
+     {
+      "t": "bird_football_ta",
+      "count(*)": 1458
+     },
+     {
+      "t": "bird_thrombosis_exam",
+      "count(*)": 806
+     },
+     {
+      "t": "bird_thrombosis_lab",
+      "count(*)": 13908
+     },
+     {
+      "t": "bird_thrombosis_pat",
+      "count(*)": 1238
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The  is taken in-scope change count from the cross-book register's own question — among players with an overall rating between 60 and 65, how many have a 'low' defensive work rate — and set the change-window uplift at 1000 per in-scope change.",
+     "DESK POLICY (definition) — applies to records you are working with: The change-risk index is fixed from the source cohort book's own question — for patients born between 1930 and 1940, the percentage that were inpatients (100 * inpatient-count / cohort-count, an inpatient being an Admission of '+').",
+     "DESK POLICY (threshold) — applies to records you are working with: The change-window branch is decided on the risk score — 'EMERGENCY_HOLD' when the score is at least 100, 'EXTENDED_WINDOW' when it is at least 20, 'NORMAL_WINDOW' otherwise",
+     "DESK POLICY (definition) — applies to records you are working with: The independent side-exposure figure for the quarterly overview — how many home-payment transactions (k_symbol 'SIPO', amount over 4000) were made on accounts held by male clients born between 1974 and 1976.",
+     "DESK POLICY (rate) — applies to records you are working with: The release total is the risk score plus the uplift; the escalation delta equals the uplift."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 'eops_change' as t, count(*) FROM eops_gym_itsm_mcp_change UNION ALL\nSELECT 'eops_crm', count(*) FROM eops_gym_itsm_mcp_change_request_mapping UNION ALL\nSELECT 'eops_inc', count(*) FROM eops_gym_itsm_mcp_incident UNION ALL\nSELECT 'eops_sla', count(*) FROM eops_gym_itsm_mcp_incident_sla UNION ALL\nSELECT 'eops_notif', count(*) FROM eops_gym_itsm_mcp_notification UNION ALL\nSELECT 'gm_emails', count(*) FROM gm_emails UNION ALL\nSELECT 'sw_expenses', count(*) FROM sw_expenses UNION ALL\nSELECT 'sw_shares', count(*) FROM sw_expense_shares UNION ALL\nSELECT 'td_tasks', count(*) FROM td_tasks UNION ALL\nSELECT 'td_projects', count(*) FROM td_projects UNION ALL\nSELECT 'vm_trans', count(*) FROM vm_transactions UNION ALL\nSELECT 'vm_users', count(*) FROM vm_users;"
+   },
+   "response": {
+    "n_rows": 12,
+    "rows": [
+     {
+      "t": "eops_change",
+      "count(*)": 25
+     },
+     {
+      "t": "eops_crm",
+      "count(*)": 16
+     },
+     {
+      "t": "eops_inc",
+      "count(*)": 100
+     },
+     {
+      "t": "eops_sla",
+      "count(*)": 26
+     },
+     {
+      "t": "eops_notif",
+      "count(*)": 30
+     },
+     {
+      "t": "gm_emails",
+      "count(*)": 20866
+     },
+     {
+      "t": "sw_expenses",
+      "count(*)": 5039
+     },
+     {
+      "t": "sw_shares",
+      "count(*)": 11686
+     },
+     {
+      "t": "td_tasks",
+      "count(*)": 6333
+     },
+     {
+      "t": "td_projects",
+      "count(*)": 280
+     },
+     {
+      "t": "vm_trans",
+      "count(*)": 8215
+     },
+     {
+      "t": "vm_users",
+      "count(*)": 109
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 'eops_sla_def', count(*) FROM eops_gym_itsm_mcp_sla_definition UNION ALL\nSELECT 'eops_users', count(*) FROM eops_gym_itsm_mcp_users UNION ALL\nSELECT 'td_labels', count(*) FROM td_labels UNION ALL\nSELECT 'sw_users', count(*) FROM sw_users;"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "'eops_sla_def'": "eops_sla_def",
+      "count(*)": 8
+     },
+     {
+      "'eops_sla_def'": "eops_users",
+      "count(*)": 100
+     },
+     {
+      "'eops_sla_def'": "td_labels",
+      "count(*)": 2293
+     },
+     {
+      "'eops_sla_def'": "sw_users",
+      "count(*)": 108
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 'eops_know' as t, count(*) FROM eops_gym_itsm_mcp_knowledge UNION ALL\nSELECT 'eops_temp', count(*) FROM eops_gym_itsm_mcp_incident_template UNION ALL\nSELECT 'eops_prob', count(*) FROM eops_gym_itsm_mcp_problem UNION ALL\nSELECT 'eops_serv', count(*) FROM eops_gym_itsm_mcp_service UNION ALL\nSELECT 'eops_off', count(*) FROM eops_gym_itsm_mcp_service_offering;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "t": "eops_know",
+      "count(*)": 25
+     },
+     {
+      "t": "eops_temp",
+      "count(*)": 10
+     },
+     {
+      "t": "eops_prob",
+      "count(*)": 10
+     },
+     {
+      "t": "eops_serv",
+      "count(*)": 48
+     },
+     {
+      "t": "eops_off",
+      "count(*)": 60
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT Birthday, Admission FROM bird_thrombosis_prediction_Patient LIMIT 20;"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "Birthday": "1934-02-13",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1937-05-02",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1956-04-14",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1953-09-21",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1936-03-25",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1944-07-13",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1937-11-24",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1948-10-07",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1954-03-16",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1923-07-25",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1972-12-23",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1929-10-20",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1967-03-25",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1982-04-01",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1942-03-15",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1968-04-08",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1943-03-17",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1970-12-04",
+      "Admission": "-"
+     },
+     {
+      "Birthday": "1945-10-27",
+      "Admission": "+"
+     },
+     {
+      "Birthday": "1961-05-22",
+      "Admission": "-"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  count(*) as total_count,\n  count(CASE WHEN Admission = '+' THEN 1 END) as inpatient_count,\n  100.0 * count(CASE WHEN Admission = '+' THEN 1 END) / count(*) as risk_index_substr,\n  SUBSTR(Birthday, 1, 4) as year\nFROM bird_thrombosis_prediction_Patient \nWHERE SUBSTR(Birthday, 1, 4) BETWEEN '1930' AND '1940';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "total_count": 149,
+      "inpatient_count": 56,
+      "risk_index_substr": 37.58389261744966,
+      "year": "1934"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT DISTINCT LENGTH(Birthday) FROM bird_thrombosis_prediction_Patient;"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "LENGTH(Birthday)": 10
+     },
+     {
+      "LENGTH(Birthday)": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  count(*) as total,\n  sum(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) as inpatients,\n  (CAST(sum(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) AS FLOAT) * 100.0 / count(*)) as pct\nFROM bird_thrombosis_prediction_Patient\nWHERE Birthday >= '1930-01-01' AND Birthday <= '1940-12-31';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "total": 149,
+      "inpatients": 56,
+      "pct": 37.58389261744966
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 100.0 * 56 / 149;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "100.0 * 56 / 149": 37.58389261744966
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_european_football_2_Player_Attributes LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "id": 1,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2016-02-18 00:00:00",
+      "overall_rating": 67,
+      "potential": 71,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 49,
+      "finishing": 44,
+      "heading_accuracy": 71,
+      "short_passing": 61,
+      "volleys": 44,
+      "dribbling": 51,
+      "curve": 45,
+      "free_kick_accuracy": 39,
+      "long_passing": 64,
+      "ball_control": 49,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 47,
+      "balance": 65,
+      "shot_power": 55,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 35,
+      "aggression": 71,
+      "interceptions": 70,
+      "positioning": 45,
+      "vision": 54,
+      "penalties": 48,
+      "marking": 65,
+      "standing_tackle": 69,
+      "sliding_tackle": 69,
+      "gk_diving": 6,
+      "gk_handling": 11,
+      "gk_kicking": 10,
+      "gk_positioning": 8,
+      "gk_reflexes": 8
+     },
+     {
+      "id": 2,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2015-11-19 00:00:00",
+      "overall_rating": 67,
+      "potential": 71,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 49,
+      "finishing": 44,
+      "heading_accuracy": 71,
+      "short_passing": 61,
+      "volleys": 44,
+      "dribbling": 51,
+      "curve": 45,
+      "free_kick_accuracy": 39,
+      "long_passing": 64,
+      "ball_control": 49,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 47,
+      "balance": 65,
+      "shot_power": 55,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 35,
+      "aggression": 71,
+      "interceptions": 70,
+      "positioning": 45,
+      "vision": 54,
+      "penalties": 48,
+      "marking": 65,
+      "standing_tackle": 69,
+      "sliding_tackle": 69,
+      "gk_diving": 6,
+      "gk_handling": 11,
+      "gk_kicking": 10,
+      "gk_positioning": 8,
+      "gk_reflexes": 8
+     },
+     {
+      "id": 3,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2015-09-21 00:00:00",
+      "overall_rating": 62,
+      "potential": 66,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 49,
+      "finishing": 44,
+      "heading_accuracy": 71,
+      "short_passing": 61,
+      "volleys": 44,
+      "dribbling": 51,
+      "curve": 45,
+      "free_kick_accuracy": 39,
+      "long_passing": 64,
+      "ball_control": 49,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 47,
+      "balance": 65,
+      "shot_power": 55,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 35,
+      "aggression": 63,
+      "interceptions": 41,
+      "positioning": 45,
+      "vision": 54,
+      "penalties": 48,
+      "marking": 65,
+      "standing_tackle": 66,
+      "sliding_tackle": 69,
+      "gk_diving": 6,
+      "gk_handling": 11,
+      "gk_kicking": 10,
+      "gk_positioning": 8,
+      "gk_reflexes": 8
+     },
+     {
+      "id": 4,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2015-03-20 00:00:00",
+      "overall_rating": 61,
+      "potential": 65,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 48,
+      "finishing": 43,
+      "heading_accuracy": 70,
+      "short_passing": 60,
+      "volleys": 43,
+      "dribbling": 50,
+      "curve": 44,
+      "free_kick_accuracy": 38,
+      "long_passing": 63,
+      "ball_control": 48,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 46,
+      "balance": 65,
+      "shot_power": 54,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 34,
+      "aggression": 62,
+      "interceptions": 40,
+      "positioning": 44,
+      "vision": 53,
+      "penalties": 47,
+      "marking": 62,
+      "standing_tackle": 63,
+      "sliding_tackle": 66,
+      "gk_diving": 5,
+      "gk_handling": 10,
+      "gk_kicking": 9,
+      "gk_positioning": 7,
+      "gk_reflexes": 7
+     },
+     {
+      "id": 5,
+      "player_fifa_api_id": 218353,
+      "player_api_id": 505942,
+      "date": "2007-02-22 00:00:00",
+      "overall_rating": 61,
+      "potential": 65,
+      "preferred_foot": "right",
+      "attacking_work_rate": "medium",
+      "defensive_work_rate": "medium",
+      "crossing": 48,
+      "finishing": 43,
+      "heading_accuracy": 70,
+      "short_passing": 60,
+      "volleys": 43,
+      "dribbling": 50,
+      "curve": 44,
+      "free_kick_accuracy": 38,
+      "long_passing": 63,
+      "ball_control": 48,
+      "acceleration": 60,
+      "sprint_speed": 64,
+      "agility": 59,
+      "reactions": 46,
+      "balance": 65,
+      "shot_power": 54,
+      "jumping": 58,
+      "stamina": 54,
+      "strength": 76,
+      "long_shots": 34,
+      "aggression": 62,
+      "interceptions": 40,
+      "positioning": 44,
+      "vision": 53,
+      "penalties": 47,
+      "marking": 62,
+      "standing_tackle": 63,
+      "sliding_tackle": 66,
+      "gk_diving": 5,
+      "gk_handling": 10,
+      "gk_kicking": 9,
+      "gk_positioning": 7,
+      "gk_reflexes": 7
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  COUNT(DISTINCT player_api_id) as distinct_players,\n  COUNT(DISTINCT player_fifa_api_id) as distinct_fifa_players,\n  COUNT(*) as total_rows\nFROM bird_european_football_2_Player_Attributes\nWHERE overall_rating BETWEEN 60 AND 65 AND defensive_work_rate = 'low';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "distinct_players": 733,
+      "distinct_fifa_players": 733,
+      "total_rows": 3594
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  COUNT(DISTINCT T1.player_name) as distinct_player_names,\n  COUNT(DISTINCT T1.player_api_id) as distinct_player_ids,\n  COUNT(DISTINCT T2.player_api_id) as distinct_pa_ids,\n  COUNT(*) as total_matches\nFROM bird_european_football_2_Player AS T1\nJOIN bird_european_football_2_Player_Attributes AS T2\nON T1.player_api_id = T2.player_api_id\nWHERE T2.overall_rating BETWEEN 60 AND 65 AND T2.defensive_work_rate = 'low';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "distinct_player_names": 733,
+      "distinct_player_ids": 733,
+      "distinct_pa_ids": 733,
+      "total_matches": 3594
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "-- check if latest attribute per player would be different\nWITH latest_pa AS (\n  SELECT player_api_id, overall_rating, defensive_work_rate,\n         ROW_NUMBER() OVER (PARTITION BY player_api_id ORDER BY date DESC) as rn\n  FROM bird_european_football_2_Player_Attributes\n)\nSELECT \n  COUNT(*) \nFROM latest_pa\nWHERE rn = 1 AND overall_rating BETWEEN 60 AND 65 AND defensive_work_rate = 'low';"
+   },
+   "response": {
+    "error": "ValueError: query must start with SELECT or WITH"
+   },
+   "error": "query must start with SELECT or WITH"
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "WITH latest_pa AS (\n  SELECT player_api_id, overall_rating, defensive_work_rate,\n         ROW_NUMBER() OVER (PARTITION BY player_api_id ORDER BY date DESC) as rn\n  FROM bird_european_football_2_Player_Attributes\n)\nSELECT \n  COUNT(*) \nFROM latest_pa\nWHERE rn = 1 AND overall_rating BETWEEN 60 AND 65 AND defensive_work_rate = 'low';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 273
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  t.trans_id, t.account_id, t.k_symbol, t.amount,\n  d.client_id, d.type as disp_type,\n  c.gender, c.birth_date\nFROM bird_trans t\nJOIN bird_account a ON t.account_id = a.account_id\nJOIN bird_disp d ON a.account_id = d.account_id\nJOIN bird_client c ON d.client_id = c.client_id\nLIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "trans_id": 159,
+      "account_id": 1,
+      "k_symbol": "SLUZBY",
+      "amount": 15,
+      "client_id": 1,
+      "disp_type": "OWNER",
+      "gender": "F",
+      "birth_date": "1970-12-13"
+     },
+     {
+      "trans_id": 160,
+      "account_id": 1,
+      "k_symbol": "SLUZBY",
+      "amount": 15,
+      "client_id": 1,
+      "disp_type": "OWNER",
+      "gender": "F",
+      "birth_date": "1970-12-13"
+     },
+     {
+      "trans_id": 161,
+      "account_id": 1,
+      "k_symbol": "SLUZBY",
+      "amount": 15,
+      "client_id": 1,
+      "disp_type": "OWNER",
+      "gender": "F",
+      "birth_date": "1970-12-13"
+     },
+     {
+      "trans_id": 162,
+      "account_id": 1,
+      "k_symbol": "SLUZBY",
+      "amount": 15,
+      "client_id": 1,
+      "disp_type": "OWNER",
+      "gender": "F",
+      "birth_date": "1970-12-13"
+     },
+     {
+      "trans_id": 163,
+      "account_id": 1,
+      "k_symbol": "SLUZBY",
+      "amount": 15,
+      "client_id": 1,
+      "disp_type": "OWNER",
+      "gender": "F",
+      "birth_date": "1970-12-13"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  COUNT(t.trans_id) as trans_count_all_disp,\n  COUNT(DISTINCT t.trans_id) as distinct_trans_all_disp\nFROM bird_trans t\nJOIN bird_account a ON t.account_id = a.account_id\nJOIN bird_disp d ON a.account_id = d.account_id\nJOIN bird_client c ON d.client_id = c.client_id\nWHERE t.k_symbol = 'SIPO' \n  AND t.amount > 4000\n  AND c.gender = 'M'\n  AND (SUBSTR(c.birth_date, 1, 4) BETWEEN '1974' AND '1976');"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "trans_count_all_disp": 1556,
+      "distinct_trans_all_disp": 1556
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  COUNT(t.trans_id) as trans_count_owner,\n  COUNT(DISTINCT t.trans_id) as distinct_trans_owner\nFROM bird_trans t\nJOIN bird_account a ON t.account_id = a.account_id\nJOIN bird_disp d ON a.account_id = d.account_id\nJOIN bird_client c ON d.client_id = c.client_id\nWHERE t.k_symbol = 'SIPO' \n  AND t.amount > 4000\n  AND c.gender = 'M'\n  AND (SUBSTR(c.birth_date, 1, 4) BETWEEN '1974' AND '1976')\n  AND d.type = 'OWNER';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "trans_count_owner": 1238,
+      "distinct_trans_owner": 1238
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT type, COUNT(*) FROM bird_disp GROUP BY type;"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "type": "DISPONENT",
+      "COUNT(*)": 869
+     },
+     {
+      "type": "OWNER",
+      "COUNT(*)": 4500
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions WHERE sender_id IN (107, 108, 109) OR receiver_id IN (107, 108, 109);"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "PRAGMA table_info(vm_transactions);"
+   },
+   "response": {
+    "error": "ValueError: query must start with SELECT or WITH"
+   },
+   "error": "query must start with SELECT or WITH"
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) FROM vm_transactions;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(id)": 8215
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_users WHERE email IN ('parker.li@atlas.com', 'morgan.reyes@atlas.com');"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Morgan",
+      "last_name": "Reyes",
+      "email": "morgan.reyes@atlas.com",
+      "password": "cm-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_groups WHERE id IN (SELECT group_id FROM sw_group_members WHERE user_id IN (107, 108));"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE group_id IS NULL LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "debtor_ids": "[71, 100, 68]",
+      "participant_ids": "[1]",
+      "created_at": "2023-03-13 12:15:59.000000",
+      "record_hash": "SlpslfJqnxU=",
+      "id": 3940,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Sunglasses",
+      "amount": 25.0,
+      "deleted": 0,
+      "receipt_file_name": "sunglasses.jpg",
+      "receipt_file_content": "binary:96e38f3702...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[63, 99]",
+      "participant_ids": "[1]",
+      "created_at": "2023-01-26 15:40:43.000000",
+      "record_hash": "OcS1rDQKDAA=",
+      "id": 3941,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Climbing Trip",
+      "amount": 200.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[76, 85, 99]",
+      "participant_ids": "[1]",
+      "created_at": "2023-02-15 06:38:35.000000",
+      "record_hash": "fFJSrUitMFg=",
+      "id": 3942,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Grapes",
+      "amount": 15.0,
+      "deleted": 0,
+      "receipt_file_name": "grapes.jpg",
+      "receipt_file_content": "binary:8696dafa6f...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[100]",
+      "participant_ids": "[1]",
+      "created_at": "2022-07-02 19:58:09.000000",
+      "record_hash": "UQHpa7IdrG8=",
+      "id": 3943,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Travel Costs",
+      "amount": 200.0,
+      "deleted": 0,
+      "receipt_file_name": "travel_costs.pdf",
+      "receipt_file_content": "binary:ed0e5887ed...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[21, 45, 100]",
+      "participant_ids": "[1]",
+      "created_at": "2023-04-15 11:46:25.000000",
+      "record_hash": "ZmH/7//M9zs=",
+      "id": 3944,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Nuts and Hexes",
+      "amount": 60.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) FROM sw_expenses;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(id)": 5039
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) FROM sw_expense_shares;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(id)": 11686
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares WHERE expense_id = 3943;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2022-07-02 19:58:09.000000",
+      "record_hash": "ZSabDTO6E58=",
+      "id": 9481,
+      "expense_id": 3943,
+      "debtor_id": 100,
+      "share_amount": 200.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name = 'Q1 Change Management Review';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 Change Management Review",
+      "is_inbox": 0,
+      "description": "Quarterly change-management review workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) FROM td_tasks;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(id)": 6333
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(event_id) FROM wb_calendar_events;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(event_id)": "00000300"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email = 'parker.li@atlas.com' ORDER BY event_start;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "release-desk daily standup",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users WHERE email IN ('parker.li@atlas.com', 'cab.lead@atlas.com', 'rollback.partner@atlas.com');"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 153,
+      "first_name": "CAB",
+      "last_name": "Lead",
+      "email": "cab.lead@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 152,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 154,
+      "first_name": "Rollback",
+      "last_name": "Partner",
+      "email": "rollback.partner@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) FROM gm_emails;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "MAX(id)": 20866
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_change",
+    "columns": [
+     "change_id",
+     "number",
+     "short_description",
+     "requested_by",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "org_id",
+     "status",
+     "category",
+     "description",
+     "implementation_plan",
+     "testing_plan",
+     "close_notes",
+     "cab_required",
+     "impact",
+     "priority",
+     "risk",
+     "close_code",
+     "created_on",
+     "updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "columns": [
+     "change_request_mapping_id",
+     "change_id",
+     "incident_id",
+     "problem_id",
+     "org_id",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "columns": [
+     "incident_id",
+     "number",
+     "short_description",
+     "caller_id",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "resolved_by",
+     "problem",
+     "change_request",
+     "caused_by_change",
+     "incident_template",
+     "parent_incident",
+     "org_id",
+     "channel",
+     "contact_type",
+     "status",
+     "category",
+     "description",
+     "worknotes",
+     "resolution_notes",
+     "close_notes",
+     "impact",
+     "urgency",
+     "priority",
+     "resolution_code",
+     "on_hold_reason",
+     "resolved",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_notification"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_notification",
+    "columns": [
+     "notification_id",
+     "incident_id",
+     "org_id",
+     "email",
+     "subject",
+     "message",
+     "type",
+     "status",
+     "created_on",
+     "updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident_sla"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident_sla",
+    "columns": [
+     "incident_sla_id",
+     "incident_id",
+     "sla_def_id",
+     "org_id",
+     "stage",
+     "has_breached",
+     "start_time",
+     "breach_time",
+     "completed_time",
+     "created_on",
+     "updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change LIMIT 3;"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "change_id": "CHG_001",
+      "number": "CHG0000001",
+      "short_description": "Apply Oracle Patch 19.4.2 to SAP DB",
+      "requested_by": "USER_059",
+      "service": "SVC_017",
+      "service_offering": "SVCOFF_021",
+      "configuration_item": "CI_001",
+      "assigned_to": "USER_059",
+      "assignment_group": "GROUP_008",
+      "org_id": "ORG_001",
+      "status": "scheduled",
+      "category": "software",
+      "description": "Applying critical vendor patch to fix memory leak ORA-04030.",
+      "implementation_plan": "1. Stop SAP Services. 2. Apply DB Patch. 3. Restart DB. 4. Start SAP.",
+      "testing_plan": "Verify user login and transaction creation in QA first.",
+      "close_notes": null,
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "high",
+      "risk": "high",
+      "close_code": null,
+      "created_on": "2025-12-03 10:30:00",
+      "updated_on": "2025-12-03 11:00:00"
+     },
+     {
+      "change_id": "CHG_002",
+      "number": "CHG0000002",
+      "short_description": "Replace Line Card on Core Switch",
+      "requested_by": "USER_039",
+      "service": "SVC_043",
+      "service_offering": "SVCOFF_052",
+      "configuration_item": "CI_004",
+      "assigned_to": "USER_045",
+      "assignment_group": "GROUP_007",
+      "org_id": "ORG_001",
+      "status": "authorize",
+      "category": "hardware",
+      "description": "Replacing faulty ASIC line card in slot 1.",
+      "implementation_plan": "Hot swap card during maintenance window.",
+      "testing_plan": "Check interface status and error counters.",
+      "close_notes": null,
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "high",
+      "risk": "medium",
+      "close_code": null,
+      "created_on": "2025-12-03 09:00:00",
+      "updated_on": "2025-12-03 09:30:00"
+     },
+     {
+      "change_id": "CHG_003",
+      "number": "CHG0000003",
+      "short_description": "EMERGENCY:Robot Firmware Rollback",
+      "requested_by": "USER_037",
+      "service": "SVC_011",
+      "service_offering": "SVCOFF_020",
+      "configuration_item": "CI_094",
+      "assigned_to": "USER_037",
+      "assignment_group": "GROUP_006",
+      "org_id": "ORG_003",
+      "status": "review",
+      "category": "hardware",
+      "description": "Rolling back firmware to v4.0 to restore production.",
+      "implementation_plan": "Flash firmware via USB.",
+      "testing_plan": "Run diagnostic loop.",
+      "close_notes": "Production restored immediately.",
+      "cab_required": 0,
+      "impact": "high",
+      "priority": "critical",
+      "risk": "high",
+      "close_code": "successful",
+      "created_on": "2025-12-02 10:00:00",
+      "updated_on": "2025-12-02 12:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change_request_mapping;"
+   },
+   "response": {
+    "n_rows": 16,
+    "rows": [
+     {
+      "change_request_mapping_id": "CRM_001",
+      "change_id": "CHG_007",
+      "incident_id": "INC_052",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-20 10:00:00",
+      "updated_at": "2025-11-20 10:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_002",
+      "change_id": "CHG_009",
+      "incident_id": "INC_028",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-15 09:00:00",
+      "updated_at": "2025-11-15 09:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_003",
+      "change_id": "CHG_008",
+      "incident_id": "INC_051",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 12:00:00",
+      "updated_at": "2025-12-03 12:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_004",
+      "change_id": "CHG_005",
+      "incident_id": "INC_025",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 11:00:00",
+      "updated_at": "2025-12-03 11:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_005",
+      "change_id": "CHG_002",
+      "incident_id": "INC_003",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 09:00:00",
+      "updated_at": "2025-12-03 09:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_006",
+      "change_id": "CHG_001",
+      "incident_id": "INC_001",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 10:30:00",
+      "updated_at": "2025-12-03 10:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_007",
+      "change_id": "CHG_006",
+      "incident_id": "INC_057",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 14:00:00",
+      "updated_at": "2025-12-03 14:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_008",
+      "change_id": "CHG_003",
+      "incident_id": "INC_004",
+      "problem_id": null,
+      "org_id": "ORG_003",
+      "created_at": "2025-12-02 10:00:00",
+      "updated_at": "2025-12-02 10:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_009",
+      "change_id": "CHG_001",
+      "incident_id": null,
+      "problem_id": "PRB_001",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 10:35:00",
+      "updated_at": "2025-12-03 10:35:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_010",
+      "change_id": "CHG_002",
+      "incident_id": null,
+      "problem_id": "PRB_002",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 09:05:00",
+      "updated_at": "2025-12-03 09:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_011",
+      "change_id": "CHG_003",
+      "incident_id": null,
+      "problem_id": "PRB_003",
+      "org_id": "ORG_003",
+      "created_at": "2025-12-02 10:05:00",
+      "updated_at": "2025-12-02 10:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_012",
+      "change_id": "CHG_005",
+      "incident_id": null,
+      "problem_id": "PRB_006",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 11:05:00",
+      "updated_at": "2025-12-03 11:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_013",
+      "change_id": "CHG_011",
+      "incident_id": "INC_012",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-02 14:00:00",
+      "updated_at": "2025-12-02 14:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_014",
+      "change_id": "CHG_025",
+      "incident_id": "INC_055",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-25 10:30:00",
+      "updated_at": "2025-11-25 10:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_015",
+      "change_id": "CHG_015",
+      "incident_id": "INC_057",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 12:30:00",
+      "updated_at": "2025-12-03 12:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_016",
+      "change_id": "CHG_014",
+      "incident_id": "INC_030",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-29 18:00:00",
+      "updated_at": "2025-11-29 18:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_notification LIMIT 5;"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "notification_id": "NOTIF_001",
+      "incident_id": "INC_001",
+      "org_id": "ORG_001",
+      "email": "gregory.richards36@servicenow.com",
+      "subject": "MAJOR INCIDENT ALERT:INC0000001 - SAP DB Unreachable",
+      "message": "A P1 Critical Incident has been assigned to your group. Please investigate immediately.",
+      "type": "alert",
+      "status": "opened",
+      "created_on": "2025-12-03 08:05:00",
+      "updated_on": "2025-12-03 08:10:00"
+     },
+     {
+      "notification_id": "NOTIF_002",
+      "incident_id": "INC_001",
+      "org_id": "ORG_001",
+      "email": "thomas.green@servicenow.com",
+      "subject": "Incident INC0000001 Created",
+      "message": "Your incident regarding SAP Database has been created with Priority 1 - Critical.",
+      "type": "update",
+      "status": "delivered",
+      "created_on": "2025-12-03 08:01:00",
+      "updated_on": "2025-12-03 08:01:05"
+     },
+     {
+      "notification_id": "NOTIF_003",
+      "incident_id": "INC_001",
+      "org_id": "ORG_001",
+      "email": "jose.roberson@servicenow.com",
+      "subject": "Status Update:INC0000001",
+      "message": "The DBA team is currently restarting the Oracle services. Next update in 30 mins.",
+      "type": "update",
+      "status": "queued",
+      "created_on": "2025-12-03 08:30:00",
+      "updated_on": "2025-12-03 08:30:00"
+     },
+     {
+      "notification_id": "NOTIF_004",
+      "incident_id": "INC_003",
+      "org_id": "ORG_004",
+      "email": "james.hill89@wayneenterprises.com",
+      "subject": "Solution Proposed for INC0000003",
+      "message": "Your issue regarding the Printer Jam has been resolved. Resolution:Cleared paper tray.",
+      "type": "solution_proposal",
+      "status": "opened",
+      "created_on": "2025-12-02 14:05:00",
+      "updated_on": "2025-12-02 14:15:00"
+     },
+     {
+      "notification_id": "NOTIF_005",
+      "incident_id": "INC_001",
+      "org_id": "ORG_002",
+      "email": "christina.oliver@carsonllc.com",
+      "subject": "Incident INC0000001 Resolved",
+      "message": "Your password has been reset successfully. Please verify.",
+      "type": "solution_proposal",
+      "status": "delivered",
+      "created_on": "2025-12-01 10:06:00",
+      "updated_on": "2025-12-01 10:07:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_sla WHERE incident_sla_id = 'TSLA_022';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_sla_id": "TSLA_022",
+      "incident_id": "INC_057",
+      "sla_def_id": "SLA_001",
+      "org_id": "ORG_001",
+      "stage": "in_progress",
+      "has_breached": 0,
+      "start_time": "2025-12-03 11:45:00",
+      "breach_time": "2025-12-03 12:00:00",
+      "completed_time": null,
+      "created_on": "2025-12-03 11:45:00",
+      "updated_on": "2025-12-03 11:45:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "status": "[CM-TIER] EXTENDED_REVIEW",
+     "notes": "[CM-RECON] delta=733000\n[CM-LOG] release_total=733038\n[CM-RISK] risk_score=38\nQ1 change review."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "status": "[CM-TIER] EXTENDED_REVIEW",
+     "notes": "[CM-RECON] delta=733000\n[CM-LOG] release_total=733038\n[CM-RISK] risk_score=38\nQ1 change review."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_start": "2024-02-12 09:00:00",
+     "event_name": "[CM-WINDOW]",
+     "event_id": "00000301",
+     "participant_email": "parker.li@atlas.com",
+     "duration": "4320"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_start": "2024-02-12 09:00:00",
+     "event_name": "[CM-WINDOW]",
+     "event_id": "00000301",
+     "participant_email": "parker.li@atlas.com",
+     "duration": "4320"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000302",
+     "participant_email": "parker.li@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "event_name": "[CM-REVIEW]",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000302",
+     "participant_email": "parker.li@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "event_name": "[CM-REVIEW]",
+     "duration": "30"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "record_hash": null,
+     "receipt_download_count": 0,
+     "created_at": "2024-02-12 09:00:00.000000",
+     "id": 8216,
+     "updated_at": "2024-02-12 09:00:00.000000",
+     "description": "[CM-FEE]",
+     "like_count": 0,
+     "amount": 733000,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "payment_card_digits": null,
+     "private": 1
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "record_hash": null,
+     "receipt_download_count": 0,
+     "created_at": "2024-02-12 09:00:00.000000",
+     "id": 8216,
+     "updated_at": "2024-02-12 09:00:00.000000",
+     "description": "[CM-FEE]",
+     "like_count": 0,
+     "amount": 733000,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "payment_card_digits": null,
+     "private": 1
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "id": 5040,
+     "payer_id": 107,
+     "amount": 733038,
+     "participant_ids": "[107, 108]",
+     "receipt_file_content": null,
+     "group_id": null,
+     "record_hash": null,
+     "receipt_file_name": null,
+     "description": "[CM-ALLOC]",
+     "deleted": 0,
+     "debtor_ids": "[108]",
+     "receipt_download_count": 0,
+     "user_id": 107,
+     "created_at": "2024-02-12 09:00:00.000000"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "id": 5040,
+     "payer_id": 107,
+     "amount": 733038,
+     "participant_ids": "[107, 108]",
+     "receipt_file_content": null,
+     "group_id": null,
+     "record_hash": null,
+     "receipt_file_name": null,
+     "description": "[CM-ALLOC]",
+     "deleted": 0,
+     "debtor_ids": "[108]",
+     "receipt_download_count": 0,
+     "user_id": 107,
+     "created_at": "2024-02-12 09:00:00.000000"
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "share_amount": 366519,
+     "record_hash": null,
+     "expense_id": 5040,
+     "created_at": "2024-02-12 09:00:00.000000",
+     "id": 11687,
+     "debtor_id": 108
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "share_amount": 366519,
+     "record_hash": null,
+     "expense_id": 5040,
+     "created_at": "2024-02-12 09:00:00.000000",
+     "id": 11687,
+     "debtor_id": 108
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "created_at": "2024-02-12 09:00:00.000000",
+     "duration": null,
+     "priority": "medium",
+     "section_id": null,
+     "project_id": 280,
+     "duration_unit": null,
+     "user_id": 107,
+     "title": "[CM-FUP] delta=733000",
+     "due_date": null,
+     "record_hash": null,
+     "assignee_id": null,
+     "description": "",
+     "order_index": 0,
+     "is_completed": 0,
+     "id": 6334,
+     "assigner_id": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "created_at": "2024-02-12 09:00:00.000000",
+     "duration": null,
+     "priority": "medium",
+     "section_id": null,
+     "project_id": 280,
+     "duration_unit": null,
+     "user_id": 107,
+     "title": "[CM-FUP] delta=733000",
+     "due_date": null,
+     "record_hash": null,
+     "assignee_id": null,
+     "description": "",
+     "order_index": 0,
+     "is_completed": 0,
+     "id": 6334,
+     "assigner_id": null
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "recipient_ids": "[154]",
+     "subject": "[CM-HANDOFF]",
+     "response_to_email_id": null,
+     "id": 20867,
+     "body": "Rollback partner handoff: release_total=733038, delta=733000",
+     "record_hash": null,
+     "sender_id": 152,
+     "created_at": "2024-02-12 09:00:00.000000"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "recipient_ids": "[154]",
+     "subject": "[CM-HANDOFF]",
+     "response_to_email_id": null,
+     "id": 20867,
+     "body": "Rollback partner handoff: release_total=733038, delta=733000",
+     "record_hash": null,
+     "sender_id": 152,
+     "created_at": "2024-02-12 09:00:00.000000"
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "response_to_email_id": null,
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "id": 20868,
+     "body": "CAB status update: release_total=733038, tier=EXTENDED_REVIEW",
+     "subject": "[CM-STATUS]",
+     "record_hash": null,
+     "created_at": "2024-02-12 09:00:00.000000"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "response_to_email_id": null,
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "id": 20868,
+     "body": "CAB status update: release_total=733038, tier=EXTENDED_REVIEW",
+     "subject": "[CM-STATUS]",
+     "record_hash": null,
+     "created_at": "2024-02-12 09:00:00.000000"
+    },
+    "rowid": 20868
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change",
+    "fields": {
+     "risk": "low",
+     "updated_on": "2024-02-12 09:00:00",
+     "impact": "low",
+     "created_on": "2024-02-12 09:00:00",
+     "priority": "low",
+     "status": "new",
+     "org_id": "ORG_001",
+     "category": "other",
+     "change_id": "CHG_026",
+     "short_description": "[CM-CHG] CHG0000026 EXTENDED_REVIEW",
+     "cab_required": 0,
+     "number": "CHG0000026"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_change",
+    "created": {
+     "risk": "low",
+     "updated_on": "2024-02-12 09:00:00",
+     "impact": "low",
+     "created_on": "2024-02-12 09:00:00",
+     "priority": "low",
+     "status": "new",
+     "org_id": "ORG_001",
+     "category": "other",
+     "change_id": "CHG_026",
+     "short_description": "[CM-CHG] CHG0000026 EXTENDED_REVIEW",
+     "cab_required": 0,
+     "number": "CHG0000026"
+    },
+    "rowid": 26
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "fields": {
+     "org_id": "ORG_001",
+     "problem_id": null,
+     "incident_id": "INC_057",
+     "change_id": "CHG_026",
+     "created_at": "2024-02-12 09:00:00",
+     "updated_at": "2024-02-12 09:00:00",
+     "change_request_mapping_id": "CRM_017"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "created": {
+     "org_id": "ORG_001",
+     "problem_id": null,
+     "incident_id": "INC_057",
+     "change_id": "CHG_026",
+     "created_at": "2024-02-12 09:00:00",
+     "updated_at": "2024-02-12 09:00:00",
+     "change_request_mapping_id": "CRM_017"
+    },
+    "rowid": 17
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "key_column": "incident_id",
+    "key_value": "INC_057",
+    "fields": {
+     "worknotes": "[CM-CHG] CHG0000026 EXTENDED_REVIEW",
+     "on_hold_reason": "Awaiting Change",
+     "change_request": "CHG_026",
+     "status": "on_hold",
+     "updated_at": "2024-02-12 09:00:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident",
+    "updated": {
+     "worknotes": "[CM-CHG] CHG0000026 EXTENDED_REVIEW",
+     "on_hold_reason": "Awaiting Change",
+     "change_request": "CHG_026",
+     "status": "on_hold",
+     "updated_at": "2024-02-12 09:00:00"
+    },
+    "where": {
+     "incident_id": "INC_057"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_notification",
+    "fields": {
+     "notification_id": "NOTIF_031",
+     "subject": "Incident INC-000057 update: CHG0000026",
+     "org_id": "ORG_001",
+     "updated_on": "2024-02-12 09:00:00",
+     "type": "update",
+     "message": "Incident INC-000057 is on hold for change CHG0000026, release_total=733038, tier=EXTENDED_REVIEW.",
+     "status": "sent",
+     "email": "richard.lopez@servicenow.com",
+     "created_on": "2024-02-12 09:00:00",
+     "incident_id": "INC_057"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_notification",
+    "created": {
+     "notification_id": "NOTIF_031",
+     "subject": "Incident INC-000057 update: CHG0000026",
+     "org_id": "ORG_001",
+     "updated_on": "2024-02-12 09:00:00",
+     "type": "update",
+     "message": "Incident INC-000057 is on hold for change CHG0000026, release_total=733038, tier=EXTENDED_REVIEW.",
+     "status": "sent",
+     "email": "richard.lopez@servicenow.com",
+     "created_on": "2024-02-12 09:00:00",
+     "incident_id": "INC_057"
+    },
+    "rowid": 31
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident_sla",
+    "key_column": "incident_sla_id",
+    "key_value": "TSLA_022",
+    "fields": {
+     "stage": "paused",
+     "updated_on": "2024-02-12 09:00:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident_sla",
+    "updated": {
+     "stage": "paused",
+     "updated_on": "2024-02-12 09:00:00"
+    },
+    "where": {
+     "incident_sla_id": "TSLA_022"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_id = '00000002';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "parker.li@atlas.com",
+      "customer_name": "CAB Lead",
+      "customer_email": "cab.lead@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "change management",
+      "status": "[CM-TIER] EXTENDED_REVIEW",
+      "follow_up_by": "",
+      "notes": "[CM-RECON] delta=733000\n[CM-LOG] release_total=733038\n[CM-RISK] risk_score=38\nQ1 change review."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email = 'parker.li@atlas.com';"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "release-desk daily standup",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000301",
+      "event_name": "[CM-WINDOW]",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     },
+     {
+      "event_id": "00000302",
+      "event_name": "[CM-REVIEW]",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions WHERE id = 8216;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2024-02-12 09:00:00.000000",
+      "updated_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 8216,
+      "sender_id": 107,
+      "receiver_id": 108,
+      "amount": 733000.0,
+      "description": "[CM-FEE]",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE id = 5040;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "debtor_ids": "[108]",
+      "participant_ids": "[107, 108]",
+      "created_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 5040,
+      "user_id": 107,
+      "group_id": null,
+      "payer_id": 107,
+      "description": "[CM-ALLOC]",
+      "amount": 733038.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares WHERE id = 11687;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 11687,
+      "expense_id": 5040,
+      "debtor_id": 108,
+      "share_amount": 366519.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks WHERE id = 6334;"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": null,
+      "created_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 6334,
+      "project_id": 280,
+      "section_id": null,
+      "user_id": 107,
+      "title": "[CM-FUP] delta=733000",
+      "description": "",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 0,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails WHERE id IN (20867, 20868);"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "recipient_ids": "[154]",
+      "created_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 20867,
+      "sender_id": 152,
+      "subject": "[CM-HANDOFF]",
+      "body": "Rollback partner handoff: release_total=733038, delta=733000",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[153]",
+      "created_at": "2024-02-12 09:00:00.000000",
+      "record_hash": null,
+      "id": 20868,
+      "sender_id": 152,
+      "subject": "[CM-STATUS]",
+      "body": "CAB status update: release_total=733038, tier=EXTENDED_REVIEW",
+      "response_to_email_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, number, short_description, status, impact, risk, priority, category, cab_required, org_id FROM eops_gym_itsm_mcp_change WHERE change_id = 'CHG_026';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "change_id": "CHG_026",
+      "number": "CHG0000026",
+      "short_description": "[CM-CHG] CHG0000026 EXTENDED_REVIEW",
+      "status": "new",
+      "impact": "low",
+      "risk": "low",
+      "priority": "low",
+      "category": "other",
+      "cab_required": 0,
+      "org_id": "ORG_001"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change_request_mapping WHERE change_id = 'CHG_026';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "change_request_mapping_id": "CRM_017",
+      "change_id": "CHG_026",
+      "incident_id": "INC_057",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2024-02-12 09:00:00",
+      "updated_at": "2024-02-12 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT incident_id, number, status, on_hold_reason, change_request, worknotes FROM eops_gym_itsm_mcp_incident WHERE incident_id = 'INC_057';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_057",
+      "number": "INC-000057",
+      "status": "on_hold",
+      "on_hold_reason": "Awaiting Change",
+      "change_request": "CHG_026",
+      "worknotes": "[CM-CHG] CHG0000026 EXTENDED_REVIEW"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_notification WHERE notification_id = 'NOTIF_031';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notification_id": "NOTIF_031",
+      "incident_id": "INC_057",
+      "org_id": "ORG_001",
+      "email": "richard.lopez@servicenow.com",
+      "subject": "Incident INC-000057 update: CHG0000026",
+      "message": "Incident INC-000057 is on hold for change CHG0000026, release_total=733038, tier=EXTENDED_REVIEW.",
+      "type": "update",
+      "status": "sent",
+      "created_on": "2024-02-12 09:00:00",
+      "updated_on": "2024-02-12 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_sla WHERE incident_sla_id = 'TSLA_022';"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_sla_id": "TSLA_022",
+      "incident_id": "INC_057",
+      "sla_def_id": "SLA_001",
+      "org_id": "ORG_001",
+      "stage": "paused",
+      "has_breached": 0,
+      "start_time": "2025-12-03 11:45:00",
+      "breach_time": "2025-12-03 12:00:00",
+      "completed_time": null,
+      "created_on": "2025-12-03 11:45:00",
+      "updated_on": "2024-02-12 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_change_management__0001",
+ "provider": "gemini",
+ "model": "gemini-3.7-flash",
+ "attempt": 1,
+ "variant_sha": null,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 4,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 27,
+  "fsv_n_checks": 93,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "branch": "EXTENDED_WINDOW",
+  "change_volume": "733",
+  "delta": "733000",
+  "reconciled": "ok",
+  "release_total": "733038",
+  "risk_index": "37.5838926174497",
+  "risk_score": "38",
+  "side_exposure": "1556",
+  "window_uplift": "733000"
+ },
+ "extraction_scored": true,
+ "transport": {}
+}

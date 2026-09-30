@@ -1,0 +1,16 @@
+Run the Q1 loyalty ticket-redemption reconciliation over the regional redemption ledger. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+base_redemption: the base redemption — whole number
+branch: the disposition route — exactly one of {AUTO_APPROVE, MANUAL_REVIEW, CLAWBACK}
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta
+redemption_base_count: the regional redemption base count — whole number
+redemption_base_count_staged1: the desk's staging re-record 1 of 1 of redemption_base_count — the identical value
+redemption_delta: the redemption delta — whole number
+redemption_uplift: the redemption uplift — whole number, no thousands separators
+side_active_school_count: the fourth side anchor — whole number Book-reading notes (how the reference books count): the French percentage is taken over the TRANSLATION ENTRIES of Story Spotlight cards (one row per card-and-language), not over the cards themselves.
+side_eur_customer_count: the third side anchor — whole number
+side_language_ratio: the first side anchor — the book's exact decimal value
+side_officer_tally: the second side anchor — whole number
+tier_index: the tier index — whole number
+total_redemption: the total redemption — whole number

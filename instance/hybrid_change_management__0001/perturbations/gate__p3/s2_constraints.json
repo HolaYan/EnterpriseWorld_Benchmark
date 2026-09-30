@@ -1,0 +1,102 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The change-risk index is fixed from the source cohort book's own question — for patients born between 1930 and 1940, the percentage that were inpatients (100 * inpatient-count / cohort-count, an inpatient being an Admission of '+').",
+  "kinds": [
+   "risk_index"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_thrombosis_prediction_Patient"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The independent side-exposure figure for the quarterly overview — how many home-payment transactions (k_symbol 'SIPO', amount over 4000) were made on accounts held by male clients born between 1974 and 1976.",
+  "kinds": [
+   "side_exposure"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_trans"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "rate",
+  "note": "The change risk score is set as that index rounded to a whole number.",
+  "kinds": [
+   "risk_index",
+   "risk_score"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_thrombosis_prediction_Patient",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The  is taken in-scope change count from the cross-book register's own question — among players with an overall rating between 60 and 65, how many have a 'low' defensive work rate — and set the change-window uplift at 1000 per in-scope change.",
+  "kinds": [
+   "change_volume"
+  ],
+  "node": "n03",
+  "tables": [
+   "bird_european_football_2_Player_Attributes"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "rate",
+  "note": "The release total is the risk score plus the uplift; the escalation delta equals the uplift.",
+  "kinds": [
+   "change_volume",
+   "delta",
+   "release_total",
+   "risk_score",
+   "window_uplift"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_european_football_2_Player_Attributes",
+   "bird_thrombosis_prediction_Patient"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The change-window branch is decided on the risk score — 'EMERGENCY_HOLD' when the score is at least 100, 'EXTENDED_WINDOW' when it is at least 20, 'NORMAL_WINDOW' otherwise",
+  "kinds": [
+   "branch",
+   "risk_score"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_thrombosis_prediction_Patient"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

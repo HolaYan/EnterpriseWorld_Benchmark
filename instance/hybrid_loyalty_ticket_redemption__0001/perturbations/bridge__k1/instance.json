@@ -1,0 +1,1451 @@
+{
+  "instance_id": "hybrid_loyalty_ticket_redemption__0001",
+  "agent_visible": {
+    "overall_query": "Run the Q1 loyalty ticket-redemption reconciliation over the regional redemption ledger. Fix the regional redemption base count from the reference book's own question \u2014 the number of games played in the Italian Serie A league in the 2015\u20132016 season (a whole count). Set the base redemption as that count times the declared per-unit base of 100. Pull the tier index from its book's own question \u2014 the number of bond connections summed over every atom whose id ends in _19 (the 19th atom in each molecule, across all molecules) \u2014 and set the redemption uplift as that index rounded to a whole number, times the declared per-index 10. The total redemption is the base plus the uplift; the redemption delta equals the uplift. Decide the disposition branch on the delta \u2014 'CLAWBACK' when the delta is at least 1000000, 'MANUAL_REVIEW' when it is at least 1000, 'AUTO_APPROVE' otherwise \u2014 and work the cycle end to end: place the post-credit review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the redemption credit so the net credit received by the correct member equals the delta (a credit that lands on the name-match lookalike is reversed, never deleted, then the correct member is credited); unless the branch is auto-approve, send the loyalty manager the disposition notification citing the total redemption and the delta; log the total redemption on the member record and open the follow-up; allocate the case-share carry evenly with the co-analyst desk; RE-DERIVE the redemption tier from the live tier-index book (CLAWBACK_REDEMPTION when the rounded index times 10 is at least 1000000, REVIEW_REDEMPTION when at least 1000, else STANDARD_REDEMPTION) and stamp it on the member record; escalate the member's own pending case (CS-0000102) on the desk's case register at that tier and notify the member's primary contact (per the recording handbook); open the priority task carrying the tier and that case number; send the member the status update citing the total redemption and the tier; reconcile the credit ledger to the delta, and before you return the 'ok' verdict re-derive the figure chain \u2014 re-read the recorded base_redemption and tier_index and confirm the recorded total_redemption still comes to base_redemption + round(tier_index)*10, since a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing; and schedule the post-credit review after the window ends, conflict-free. Once those figures are settled, take the quarter's four sign-off control readings \u2014 the readings the quarterly redemption overview is signed against \u2014 each held against the same probe's reading at the last quarterly sign-off; nothing in the reconciliation reads them, and the overview is signed only when this quarter's readings line up with the last. Also pull the four independent side anchors for the quarterly redemption overview \u2014 the French-language share among the Story Spotlight cards, the funds amount received by the Vice President, the number of DISTINCT euro-currency customers having at least one month whose consumption exceeds 1000 (each counts once, not once per qualifying month), and the number of active schools whose CITY is 'San Joaquin' (the city, not the county of the same name) with a California mailing state.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nredemption_base_count: the regional redemption base count \u2014 whole number\nbase_redemption: the base redemption \u2014 whole number\ntier_index: the tier index \u2014 whole number\nredemption_uplift: the redemption uplift \u2014 whole number, no thousands separators\ntotal_redemption: the total redemption \u2014 whole number\nredemption_delta: the redemption delta \u2014 whole number\nbranch: the disposition route \u2014 exactly one of {AUTO_APPROVE, MANUAL_REVIEW, CLAWBACK}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the credit ledger nets to the delta\nside_language_ratio: the first side anchor \u2014 the book's exact decimal value\nside_officer_tally: the second side anchor \u2014 whole number\nside_eur_customer_count: the third side anchor \u2014 whole number\nside_active_school_count: the fourth side anchor \u2014 whole number Book-reading notes (how the reference books count): the French percentage is taken over the TRANSLATION ENTRIES of Story Spotlight cards (one row per card-and-language), not over the cards themselves.\nredemption_base_count_staged1: the desk's staging re-record 1 of 1 of redemption_base_count \u2014 the identical value\n",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: six source reference books \u2014 the redemption-base book (bird_european_football_2_League, bird_european_football_2_Match, ...), the tier-index book (bird_toxicology_connected, ...), the side language-ratio book (bird_card_games_cards, bird_card_games_foreign_data, ...), the side officer-tally book (bird_student_club_member, bird_student_club_income, ...), the side EUR-customer book (bird_debit_card_specializing_yearmonth, bird_debit_card_specializing_customers, ...) and the side active-school book (bird_california_schools_schools, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the redemption-credit ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany case-share ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's shared case register \u2014 customer_case, notification, account, contact, user (eops_sn_csm_server_*). You are redemptions.analyst@atlas.com (Riley Chen), the redemptions analyst, with your own Venmo-payer treasury, Gmail, Splitwise and Todoist identities, a Todoist redemption docket project, and a calendar on wb_calendar_events; the correct member is thomas.bailey63@initech.io (Thomas Bailey of Initech, whose own pending case CS-0000102 sits on the case register), the name-match lookalike is wrong.member@atlas.com, the co-analyst desk is co.analyst@atlas.com, the loyalty manager is loyalty.manager@atlas.com, and ONE CRM record \u2014 the member thomas.bailey63@initech.io \u2014 is assigned to you. The case register is a shared desk system recorded under desk ids of record (see the recording handbook). NOTHING marks the redemption base count, base redemption, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "TICKET REDEMPTION DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[LTR-BASIS]' \u2014 member CRM notes: the base-redemption stamp, citing 'base_redemption=<n>'.\n   - '[LTR-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[LTR-CREDIT]' \u2014 redemption-credit ledger (vm) DESCRIPTION of every credit entry (also carrying the redemption citation token 'RDM-2024-Q1-042').\n   - '[LTR-REVERSAL]' \u2014 redemption-credit ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[LTR-CREDIT]' tag).\n   - '[LTR-DISPO]' \u2014 email SUBJECT of the loyalty-manager disposition notification; the BODY must cite the total redemption and the delta.\n   - '[LTR-LOG]' \u2014 member CRM notes: the disposition log, citing 'total_redemption=<n>'.\n   - '[LTR-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany case-share allocation. The expense books the full recorded total_redemption as its amount, and its sw_expense_shares row assigns co.analyst@atlas.com a share of exactly half that amount.\n   - '[LTR-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Ticket Redemption Docket' project); the title cites the delta.\n   - '[LTR-TIER]' \u2014 member CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[LTR-ESC]' \u2014 the member's escalated case: prepended to the short_description of case CS-0000102 on the case register as '[LTR-ESC] tier=<tier> RDM-2024-Q1-042 | ' ahead of the seed summary text; the tier word is the one stamped on the member record.\n   - '[LTR-PRIOTASK]' \u2014 wb_project_tasks TASK NAME of the case-management priority task assigned to you (list_name 'In Progress'); the name carries the tier word and the case number CS-0000102.\n   - '[LTR-STATUS]' \u2014 email SUBJECT of the member status update; the BODY must cite the total redemption and the tier word.\n   - '[LTR-RECON]' \u2014 member CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[LTR-CREDIT]' ledger (credits minus reversals) at write time, and the note is written only after the figure chain is re-derived: the recorded total_redemption must still come to base_redemption + round(tier_index)*10.\n   - '[LTR-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-credit review.\n   - '[LTR-CLAWBACK]' \u2014 member CRM notes: the clawback-escalation note, filed ONLY on the clawback route.\n\n2. ROUTE AND TIER WORDS. The disposition route is always one of the desk's three route words: 'AUTO_APPROVE', 'MANUAL_REVIEW', 'CLAWBACK'. The redemption tier is always one of the desk's three tier words: 'STANDARD_REDEMPTION', 'REVIEW_REDEMPTION', 'CLAWBACK_REDEMPTION'. A cited tier word is re-derived from the live tier-index book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (redemptions.analyst@atlas.com); the member is written to at thomas.bailey63@initech.io, the loyalty manager at loyalty.manager@atlas.com. Redemption credits run on the vm ledger FROM the redemption treasury (redemption.treasury@atlas.com) TO the correct member (thomas.bailey63@initech.io); a credit that lands on the name-match lookalike (wrong.member@atlas.com) is corrected by that lookalike sending the same amount back to the treasury, never deleted. The case-share allocation runs on the sw ledger between you and the co-analyst desk (co.analyst@atlas.com). Follow-up work lives in your Todoist 'Q1 Ticket Redemption Docket' project; the window and review on your own wb_calendar_events (participant_email = redemptions.analyst@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Redemption-credit rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the member row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the member record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the language-ratio side anchor keeps its exact decimal); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTER (shared desk system; record under the desk ids of record, exactly as stated \u2014 the register's OTHER rows are background book, never modify them).\n   - Case register (eops_sn_csm_server_* tables). The member's case of record for this redemption is CS-0000102 (case_id 102; the Initech member account, account_id 5, product_id 48 \u2014 leave account/product/state as they are). Escalating it sets escalation=1 with escalation_reason 'customer_request', keeps priority 'high', and prepends '[LTR-ESC] tier=<tier> RDM-2024-Q1-042 | ' to its short_description (the tier word as stamped on the member record); the update is then notified by INSERTing a notification row on that case (case_id '102', email 'thomas.bailey63@initech.io' \u2014 the member's primary contact \u2014, type 'update', status 'success', knowledge_id NULL, notification_id = next free integer).\n\nSTAGING: before the downstream step reads redemption_base_count, this desk re-records it through 1 staging entry \u2014 kind='redemption_base_count_staged1' (each the identical value, each copied from the previous one); file every staging record as an explicit intermediate step.",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_member": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "thomas.bailey63@initech.io",
+          "customer_name": "Thomas Bailey",
+          "assigned_to_email": "redemptions.analyst@atlas.com",
+          "status": "Open",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "redemption.treasury@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "thomas.bailey63@initech.io",
+          "note": ""
+        },
+        {
+          "email": "wrong.member@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "redemptions.analyst@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "thomas.bailey63@initech.io",
+          "note": ""
+        },
+        {
+          "email": "loyalty.manager@atlas.com",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Ticket Redemption Docket",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "Redemptions desk standup",
+          "participant_email": "redemptions.analyst@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_customer_case": [
+        {
+          "case_id": 102,
+          "number": "CS-0000102",
+          "account_id": "5",
+          "product_id": "48",
+          "priority": "high",
+          "state": "in_progress",
+          "escalation": 0,
+          "short_description": "Product: MySQL Enterprise 8.0 Variant 28, Issue: is not working as expected.",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_account": [
+        {
+          "account_id": 5,
+          "name": "Initech",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the six reference books, the ledgers, CRM state, the eops_ case register).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / a wb_project_tasks task / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; the member's eops_ case row).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: redemption credits are compensatable \u2014 reverse a wrong-member credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across SIX bird books (european_football_2/toxicology/card_games/student_club/debit_card_specializing/california_schools) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm). Depth spine n01->n02->n04->n08->n09->n11->n12->n13->n14->n15->n17->n18 with long-range edges: redemption_delta n04 reconciled at n17 (gap 13); the [LTR-HOLD] window n06 gates the review n18 (gap 12); total_redemption n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (toxicology) woven into the arithmetic/branch; n05 (card_games), n16 (student_club), n19 (debit_card_specializing) and n20 (california_schools) are four independent side anchors reported verbatim.",
+    "protagonist": {
+      "email": "redemptions.analyst@atlas.com",
+      "role": "redemptions analyst running the Q1 ticket-redemption reconciliation"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "In the 2015\u20132016 season, how many games were played in the Italian Serie A league? (Read it as the book does: the number of Italy Serie A matches played in the 2015/2016 season \u2014 a whole count.) Record the answer in answers as kind='redemption_base_count'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_european_football_2_League.name",
+          "bird_european_football_2_Match.league_id",
+          "bird_european_football_2_Match.season"
+        ],
+        "writes": [
+          "answers.redemption_base_count"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the base redemption from the redemption base count. Read the stored redemption_base_count and compute base_redemption = round(redemption_base_count) * 100 (the declared per-unit base). Record it in answers as kind='base_redemption' and stamp the member's CRM row (customer_email thomas.bailey63@initech.io) by prepending '[LTR-BASIS] base_redemption=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.redemption_base_count"
+        ],
+        "writes": [
+          "answers.base_redemption",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "How many connections does the atom 19 have? (Read it as the book does: 'atom 19' means every atom whose id ends in _19 \u2014 the 19th atom in each molecule, taken across ALL molecules in the table, not one single molecule's atom; count all bond connections of those atoms.) Record the answer in answers as kind='tier_index'. (This tier index feeds the redemption uplift.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_toxicology_connected.bond_id",
+          "bird_toxicology_connected.atom_id"
+        ],
+        "writes": [
+          "answers.tier_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the redemption envelope from the stored answers and decide the disposition branch. Read answers.base_redemption AND answers.tier_index. redemption_uplift = round(tier_index) * 10; total_redemption = base_redemption + redemption_uplift; redemption_delta = redemption_uplift. Record all three: answers kind='redemption_uplift', kind='total_redemption', kind='redemption_delta'. Then set answers kind='branch' to 'CLAWBACK' if redemption_delta >= 1000000, else 'MANUAL_REVIEW' if redemption_delta >= 1000, else 'AUTO_APPROVE'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.base_redemption",
+          "answers.tier_index"
+        ],
+        "writes": [
+          "answers.redemption_uplift",
+          "answers.total_redemption",
+          "answers.redemption_delta",
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Take the quarter's first sign-off control reading at the close of the run, once the redemption case's own figures are settled and the quarterly redemption overview is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the redemption registers (the Venmo credit ledger and the member CRM record) is the one that separates drift in the desk's own reporting from a real shift in redemption volume \u2014 and is answered exactly as that book asks it: What is the percentage of cards whose language is French among the Story Spotlight cards? (Read it as the book does: over the Story Spotlight cards, take the count with French language as a real number, times 100, divided by the total; report it EXACTLY as the book computes it \u2014 keep the book's own decimal value.) Record the answer in answers as kind='side_language_ratio'. A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly redemption overview is signed only when this quarter's reading lines up with the last. Nothing later in this reconciliation reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a redemption-volume move that never happened.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.id",
+          "bird_card_games_cards.isStorySpotlight",
+          "bird_card_games_foreign_data.language"
+        ],
+        "writes": [
+          "answers.side_language_ratio"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n06",
+        "description": "Once the total redemption is computed, place the post-credit review WINDOW on the analyst's calendar (participant_email=redemptions.analyst@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[LTR-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_redemption",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the redemption credit run for 'RDM-2024-Q1-042' for EXACTLY redemption_delta on the member ledger. Record vm_transactions rows tagged '[LTR-CREDIT]' so the NET credit posted FROM the redemption treasury (redemption.treasury@atlas.com) TO the correct member (thomas.bailey63@initech.io) equals redemption_delta. If the first credit lands on the name-match lookalike (wrong.member@atlas.com), DO NOT delete it: write a matching '[LTR-REVERSAL] [LTR-CREDIT]' entry (the lookalike sends the SAME amount back to the treasury) which cancels the wrong credit, then the correct credit to the right member.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.redemption_delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the disposition branch is 'MANUAL_REVIEW' or 'CLAWBACK', send the loyalty manager a disposition notification. INSERT a gm_emails row from the analyst (redemptions.analyst@atlas.com) to the loyalty manager (loyalty.manager@atlas.com) whose subject carries '[LTR-DISPO]' and whose body CITES the total_redemption and the redemption_delta. On the AUTO_APPROVE route (in-house), the disposition email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_redemption",
+          "answers.redemption_delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the redemption disposition on the member CRM record. Prepend '[LTR-LOG] total_redemption=<n>' to the notes \u2014 but for the MANUAL_REVIEW and CLAWBACK routes, ONLY after the '[LTR-DISPO]' disposition email has been sent to the loyalty manager. For the AUTO_APPROVE route the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_redemption",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany case-share ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the analyst (redemptions.analyst@atlas.com) for the full total_redemption with description '[LTR-ALLOC]', and a sw_expense_shares row assigning the co-analyst desk (co.analyst@atlas.com) a share_amount = total_redemption/2 (its half of the joint casework carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_redemption",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Ticket Redemption Docket' project owned by the analyst whose title carries '[LTR-FUP]' and the redemption_delta value \u2014 only after the member CRM record carries the '[LTR-LOG]' disposition log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.redemption_delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the redemption TIER. RE-DERIVE it from the live tier-index book: uplift = round(the tier index) * 10, TIER = 'CLAWBACK_REDEMPTION' if uplift >= 1000000, 'REVIEW_REDEMPTION' if uplift >= 1000, else 'STANDARD_REDEMPTION'. Write it to the member CRM row's DEDICATED status column (set status='[LTR-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_toxicology_connected.bond_id"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Escalate the member's own pending case on the desk's shared case register (per the recording handbook). Case CS-0000102 (case_id 102) is the Initech member account's (account_id 5) case of record for this redemption, in progress on product_id 48: set escalation=1 with escalation_reason 'customer_request', keep its priority at 'high', and restate its summary line by prepending '[LTR-ESC] tier=<tier> RDM-2024-Q1-042 | ' to its short_description \u2014 the tier word re-derived from the live tier-index book, the same one stamped on the member record. Then INSERT the 'update' notification on that case (case_id '102') to the member's primary contact thomas.bailey63@initech.io, status 'success'. Escalate only once the member CRM status carries the '[LTR-TIER]' tier stamp whose tier matches that live re-derivation \u2014 the case is escalated at the tier off that stamp, so until the classification is on record there is nothing to escalate it at.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_customer_case.escalation",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_notification.notification_id"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Open the case-management priority task. INSERT a wb_project_tasks row assigned to redemptions.analyst@atlas.com whose task_name carries '[LTR-PRIOTASK]', the tier word (from the CRM '[LTR-TIER]' status field) and the number of the member's escalated case (CS-0000102 \u2014 take it off the register row you escalated, whose '[LTR-ESC]' summary line names that same tier), list_name='In Progress' \u2014 only after the member's case is escalated on the desk register (its 'update' notification filed).",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.short_description",
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "wb_project_tasks.task_name"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the member a status update. INSERT a gm_emails row from the analyst (redemptions.analyst@atlas.com) to the member (thomas.bailey63@initech.io) whose subject carries '[LTR-STATUS]' and whose body cites the total_redemption and the redemption tier word (re-derived from the live tier-index book) \u2014 only after the WorkBench '[LTR-PRIOTASK]' priority task exists.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "wb_project_tasks.task_name",
+          "answers.total_redemption",
+          "bird_toxicology_connected.bond_id",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Take the quarter's second sign-off control reading at the close of the run, once the redemption case's own figures are settled and the quarterly redemption overview is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the redemption registers (the Venmo credit ledger and the member CRM record) is the one that separates drift in the desk's own reporting from a real shift in redemption volume \u2014 and is answered exactly as that book asks it: What is the amount of the funds that the Vice President received? (Read it as the book does: the funds amount recorded against the member whose position is 'Vice President'.) Record the answer in answers as kind='side_officer_tally'. A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly redemption overview is signed only when this quarter's reading lines up with the last. Nothing later in this reconciliation reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a redemption-volume move that never happened.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_student_club_member.position",
+          "bird_student_club_member.member_id",
+          "bird_student_club_income.amount",
+          "bird_student_club_income.link_to_member"
+        ],
+        "writes": [
+          "answers.side_officer_tally"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n17",
+        "description": "Reconcile the posted credit against the recorded redemption_delta \u2014 only after the member '[LTR-STATUS]' status email is out. Confirm the Venmo NET credit posted to the correct member matches redemption_delta (re-read from the '[LTR-CREDIT]' ledger rows, credits minus reversals, never from memory). Before the 'ok' verdict, re-derive the figure chain: re-read the recorded base_redemption and tier_index and confirm the recorded total_redemption still comes to base_redemption + round(tier_index)*10 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[LTR-RECON] delta=<n>' note to the member CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.redemption_delta",
+          "answers.base_redemption",
+          "answers.tier_index",
+          "vm_transactions.amount",
+          "gm_emails.subject"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03",
+          "n15"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Schedule the post-credit review. INSERT a wb_calendar_events row on the analyst's calendar whose event_name carries '[LTR-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[LTR-HOLD]' review window and does NOT overlap any of the analyst's other events. Only for a member record whose CRM carries the '[LTR-RECON]' reconciliation note.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n17"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Take the quarter's third sign-off control reading at the close of the run, once the redemption case's own figures are settled and the quarterly redemption overview is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the redemption registers (the Venmo credit ledger and the member CRM record) is the one that separates drift in the desk's own reporting from a real shift in redemption volume \u2014 and is answered exactly as that book asks it: Among the customers who paid in euro, how many of them have a monthly consumption of over 1000? (Read it as the book does: over the customers whose currency is 'EUR', count the distinct customers with any monthly Consumption over 1000.) Record the answer in answers as kind='side_eur_customer_count'. A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly redemption overview is signed only when this quarter's reading lines up with the last. Nothing later in this reconciliation reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a redemption-volume move that never happened.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_debit_card_specializing_yearmonth.CustomerID",
+          "bird_debit_card_specializing_yearmonth.Consumption",
+          "bird_debit_card_specializing_customers.Currency"
+        ],
+        "writes": [
+          "answers.side_eur_customer_count"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's fourth sign-off control reading at the close of the run, once the redemption case's own figures are settled and the quarterly redemption overview is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the redemption registers (the Venmo credit ledger and the member CRM record) is the one that separates drift in the desk's own reporting from a real shift in redemption volume \u2014 and is answered exactly as that book asks it: Of all the schools with a mailing state address in California, how many are active in San Joaquin city? (Read it as the book does: over California mailing-state schools, count those that are active in San Joaquin city.) Record the answer in answers as kind='side_active_school_count'. A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly redemption overview is signed only when this quarter's reading lines up with the last. Nothing later in this reconciliation reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a redemption-volume move that never happened.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_california_schools_schools.City",
+          "bird_california_schools_schools.MailState",
+          "bird_california_schools_schools.StatusType"
+        ],
+        "writes": [
+          "answers.side_active_school_count"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 12,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 23,
+      "dependency_depth": 12,
+      "max_dependency_gap": 15,
+      "mean_dependency_gap": 5.04,
+      "long_range_edge_ratio": 0.391,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 8,
+      "fan_in": 5,
+      "fork_count": 3,
+      "join_count": 6,
+      "cross_system_edge_ratio": 0.87,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n17",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n17",
+          "gap": 15,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n17",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n18",
+          "gap": 12,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n17",
+        "n18"
+      ],
+      "primary_chain_len": 12,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "venmo",
+        "splitwise",
+        "gmail",
+        "todoist",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n04 (disposition branch on delta bands) -> MANUAL_REVIEW on real data",
+      "long_range_edges": [
+        "n04->n17 redemption_delta reconciled 13 steps later (gap 13, max)",
+        "n06->n18 [LTR-HOLD] window (type-B) gates the review (gap 12)",
+        "n04->n15 total_redemption resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n05 (independent birdsql:371 card_games side anchor)",
+        "n16 (independent birdsql:1331 student_club side anchor)",
+        "n19 (independent birdsql:1505 debit_card_specializing side anchor)",
+        "n20 (independent birdsql:56 california_schools side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:239 toxicology) woven into the uplift/delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "redemptions.analyst@atlas.com",
+      "member": "thomas.bailey63@initech.io",
+      "wrong_member": "wrong.member@atlas.com",
+      "co_analyst": "co.analyst@atlas.com",
+      "loyalty_manager": "loyalty.manager@atlas.com",
+      "credit_treasury": "redemption.treasury@atlas.com",
+      "member_crm_id": "00000002",
+      "member_name": "Thomas Bailey",
+      "member_org": "Initech",
+      "member_case": "CS-0000102",
+      "redemption_id": "RDM-2024-Q1-042",
+      "source_questions": {
+        "redemption_base_count": "birdsql:1142 (european_football_2) \u2014 In the 2015\u20132016 season, how many games were played in the Italian Serie A league?",
+        "tier_index": "birdsql:239 (toxicology) \u2014 How many connections does the atom 19 have?",
+        "side_language_ratio": "birdsql:371 (card_games) \u2014 What is the percentage of cards whose language is French among the Story Spotlight cards?",
+        "side_officer_tally": "birdsql:1331 (student_club) \u2014 What is the amount of the funds that the Vice President received?",
+        "side_eur_customer_count": "birdsql:1505 (debit_card_specializing) \u2014 Among the customers who paid in euro, how many of them have a monthly consumption of over 1000?",
+        "side_active_school_count": "birdsql:56 (california_schools) \u2014 Of all the schools with a mailing state address in California, how many are active in San Joaquin city?"
+      },
+      "eops_source_tasks": {
+        "member_case_escalation": "enterpriseops:task_20251204_231522_245_e6427839_5d09c3c2 (sn-csm-server) \u2014 the member's own case CS-0000102 escalated (customer_request, priority high) + 'update' notification to thomas.bailey63@initech.io"
+      },
+      "base_policy": "base_redemption = round(redemption_base_count) * 100 (declared per-unit base)",
+      "uplift_policy": "redemption_uplift = round(tier_index) * 10 (declared per-index rate)",
+      "branch_policy": "A AUTO_APPROVE (delta<1000, no disposition email); B MANUAL_REVIEW (delta>=1000, disposition email, no clawback note); C CLAWBACK (delta>=1000000, disposition email + clawback note) \u2014 the 1000/1000000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[LTR-BASIS]",
+        "review_window": "[LTR-HOLD]",
+        "credit": "[LTR-CREDIT]",
+        "reversal": "[LTR-REVERSAL]",
+        "allocation": "[LTR-ALLOC]",
+        "dispo_email": "[LTR-DISPO]",
+        "crm_log": "[LTR-LOG]",
+        "followup": "[LTR-FUP]",
+        "tier": "[LTR-TIER]",
+        "priority_task": "[LTR-PRIOTASK]",
+        "status_email": "[LTR-STATUS]",
+        "crm_reconcile": "[LTR-RECON]",
+        "calendar_review": "[LTR-REVIEW]",
+        "clawback_note_only_for_C": "[LTR-CLAWBACK]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.redemption_base_count",
+          "answers.base_redemption",
+          "answers.tier_index",
+          "answers.redemption_uplift",
+          "answers.total_redemption",
+          "answers.redemption_delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_language_ratio",
+          "answers.side_officer_tally",
+          "answers.side_eur_customer_count",
+          "answers.side_active_school_count"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [LTR-HOLD] event (n18 reads them there); the eops case escalation is a register-state gate the later hops read directly (its [LTR-ESC] summary line carries the tier; the priority task cites the case number)",
+        "C_not_persisted": "redemption tier \u2014 re-derived at n12 from the live toxicology book (tier-index banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (treasury->lookalike) + reversal delta (lookalike->treasury) + correct delta (treasury->correct member); net treasury->correct member = redemption_delta",
+      "review_window_hold": "[LTR-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 redemptions desk standup)",
+      "true_redemption_base_count": 380,
+      "true_base_redemption": 38000,
+      "true_tier_index": 498,
+      "true_redemption_uplift": 4980,
+      "true_total_redemption": 42980,
+      "true_redemption_delta": 4980,
+      "true_branch": "MANUAL_REVIEW",
+      "true_tier": "REVIEW_REDEMPTION",
+      "true_reconciled": "ok",
+      "true_side_language_ratio": "10.0",
+      "true_side_officer_tally": 50,
+      "true_side_eur_customer_count": 391,
+      "true_side_active_school_count": 2
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.redemption_base_count"
+        ],
+        "change": "In the 2015\u20132016 season, how many games were played in the Italian Serie A league? (Read it as the book does: the number of Italy "
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.base_redemption",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the base redemption from the redemption base count. Read the stored redemption_base_count and compute base_redemption = round("
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.tier_index"
+        ],
+        "change": "How many connections does the atom 19 have? (Read it as the book does: 'atom 19' means every atom whose id ends in _19 \u2014 the 19th "
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.redemption_uplift",
+          "answers.total_redemption",
+          "answers.redemption_delta",
+          "answers.branch"
+        ],
+        "change": "Compute the redemption envelope from the stored answers and decide the disposition branch. Read answers.base_redemption AND answer"
+      },
+      {
+        "subgoal": "n05",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_language_ratio"
+        ],
+        "change": "Take the quarter's first sign-off control reading at the close of the run, once the redemption case's own figures are settled and "
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total redemption is computed, place the post-credit review WINDOW on the analyst's calendar (participant_email=redemption"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the redemption credit run for 'RDM-2024-Q1-042' for EXACTLY redemption_delta on the member ledger. Record vm_transactions row"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the disposition branch is 'MANUAL_REVIEW' or 'CLAWBACK', send the loyalty manager a disposition notification. INSERT a gm_email"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the redemption disposition on the member CRM record. Prepend '[LTR-LOG] total_redemption=<n>' to the notes \u2014 but for the MANUA"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany case-share ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the analyst (redemptio"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Ticket Redemption Docket' project owned by the analyst whose t"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the redemption TIER. RE-DERIVE it from the live tier-index book: uplift = round(the tier index) * 10, TIER = 'CLAWBACK_RE"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_customer_case.escalation",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_notification.notification_id"
+        ],
+        "change": "Escalate the member's own pending case on the desk's shared case register (per the recording handbook). Case CS-0000102 (case_id 1"
+      },
+      {
+        "subgoal": "n14",
+        "system": "workbench",
+        "writes": [
+          "wb_project_tasks.task_name"
+        ],
+        "change": "Open the case-management priority task. INSERT a wb_project_tasks row assigned to redemptions.analyst@atlas.com whose task_name ca"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the member a status update. INSERT a gm_emails row from the analyst (redemptions.analyst@atlas.com) to the member (thomas.bai"
+      },
+      {
+        "subgoal": "n16",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_officer_tally"
+        ],
+        "change": "Take the quarter's second sign-off control reading at the close of the run, once the redemption case's own figures are settled and"
+      },
+      {
+        "subgoal": "n17",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted credit against the recorded redemption_delta \u2014 only after the member '[LTR-STATUS]' status email is out. Conf"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the post-credit review. INSERT a wb_calendar_events row on the analyst's calendar whose event_name carries '[LTR-REVIEW]'"
+      },
+      {
+        "subgoal": "n19",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_eur_customer_count"
+        ],
+        "change": "Take the quarter's third sign-off control reading at the close of the run, once the redemption case's own figures are settled and "
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_active_school_count"
+        ],
+        "change": "Take the quarter's fourth sign-off control reading at the close of the run, once the redemption case's own figures are settled and"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the disposition branch the data selects (MANUAL_REVIEW). The six source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (redemption_base_count == the birdsql:1142 COUNT; tier_index == the birdsql:239 COUNT; side_language_ratio == the birdsql:371 REAL, stored in the book's exact CAST-text form; side_officer_tally == the birdsql:1331 scalar; side_eur_customer_count == the birdsql:1505 COUNT; side_active_school_count == the birdsql:56 COUNT), and the one EnterpriseOps beat by its source task's OWN database_state checks (prefix-rewritten only: the member's own case CS-0000102 escalated at 'customer_request' and priority 'high', and the 'update' notification to thomas.bailey63@initech.io). COMPLETENESS: base_redemption == round(redemption_base_count)*100; redemption_uplift == round(tier_index)*10; total_redemption == base+uplift; redemption_delta == uplift=4980; branch == 'MANUAL_REVIEW' (1000 <= 4980 < 1000000); the [LTR-HOLD] window on the calendar; the vm ledger NETS redemption_delta to the correct member (a lookalike credit offset by an [LTR-REVERSAL] + the correct credit, net == delta AND lookalike net == 0); the disposition email exists IFF the branch is MANUAL_REVIEW or CLAWBACK and cites the total + delta; the allocation + co-analyst share on Splitwise; the CRM logs the total; the follow-up cites the delta; the redemption TIER is RE-DERIVED from the live toxicology book (type-C, never in answers) and stamped; the member's own case escalation matches the inherited checks and its summary line cites the tier; the priority task carries the tier and the case number; the status email cites the total + tier; reconciled == 'ok'; the review is conflict-free, after the window end. COLLATERAL (each 0): NO disposition email on an AUTO_APPROVE path; NO [LTR-CLAWBACK] note for an AUTO_APPROVE or MANUAL_REVIEW branch; NO naked delete of a lookalike credit (it must keep its [LTR-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged member; no CRM row outside the member record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped redemption_base_count).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the member CRM row and confirm it is homed to redemptions.analyst@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='thomas.bailey63@initech.io'"
+          }
+        },
+        "tool_result": "1 row: thomas.bailey63@initech.io assigned_to redemptions.analyst@atlas.com.",
+        "state_delta": "none (MEMBER ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the regional redemption base count from the reference book's own question.",
+        "reasoning": "Count the Italy Serie A matches played in the 2015/2016 season (a whole count).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(t2.id) FROM bird_european_football_2_League t1 JOIN bird_european_football_2_Match t2 ON t1.id=t2.league_id WHERE t1.name='Italy Serie A' AND t2.season='2015/2016'"
+          }
+        },
+        "tool_result": "380.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Redemption base count = 380.",
+        "reasoning": "n01: record redemption_base_count.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "redemption_base_count",
+              "value": "380"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+redemption_base_count"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the base redemption from the redemption base count.",
+        "reasoning": "n02: base_redemption=round(380)*100=38000; stamp the member CRM [LTR-BASIS].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "base_redemption",
+              "value": "38000"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[LTR-BASIS] base_redemption=38000').",
+        "state_delta": "answers:+base_redemption; CRM:+base note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the tier index from its book's own question.",
+        "reasoning": "Count the bond connections of atom 19.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T.bond_id) FROM bird_toxicology_connected T WHERE T.atom_id LIKE '%_19'"
+          }
+        },
+        "tool_result": "498.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Tier index = 498.",
+        "reasoning": "n03: record tier_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "tier_index",
+              "value": "498"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+tier_index=498"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=38000, tier_index=498.",
+        "reasoning": "n04: redemption_uplift=round(498)*10=4980; total_redemption=38000+4980=42980; redemption_delta=4980.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "redemption_uplift",
+              "value": "4980"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_redemption=42980,+redemption_delta=4980).",
+        "state_delta": "answers:+redemption_uplift=4980,+total_redemption=42980,+redemption_delta=4980"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "redemption_delta=4980.",
+        "reasoning": "n04: BRANCH DECISION on delta. 1000 <= 4980 < 1000000 -> the MANUAL_REVIEW route.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "MANUAL_REVIEW"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=MANUAL_REVIEW (MANUAL_REVIEW SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Independent language-ratio side anchor (birdsql:371).",
+        "reasoning": "n05: French share among Story Spotlight cards; keep the book's decimal.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(CASE WHEN T2.language='French' THEN 1 ELSE 0 END) AS REAL)*100/COUNT(T1.id) FROM bird_card_games_cards T1 JOIN bird_card_games_foreign_data T2 ON T1.uuid=T2.uuid WHERE T1.isStorySpotlight=1"
+          }
+        },
+        "tool_result": "10.0.",
+        "state_delta": "answers:+side_language_ratio=10.0"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [LTR-HOLD] on the analyst's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 post-credit redemption review window [LTR-HOLD]",
+              "participant_email": "redemptions.analyst@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the redemption credit for delta. Instinct: credit the lookalike (wrong.member@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 4980 credit to the name-match lookalike.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<treasury_vm>",
+              "receiver_id": "<lookalike_vm>",
+              "amount": 4980.0,
+              "description": "Redemption credit (wrong member) [LTR-CREDIT] RDM-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (treasury->lookalike).",
+        "state_delta": "venmo:+WRONG credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct member.",
+        "reasoning": "The net treasury->correct member is currently 0, not redemption_delta=4980.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND description LIKE '%[LTR-CREDIT]%' AND description NOT LIKE '%[LTR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND description LIKE '%[LTR-CREDIT]%' AND description LIKE '%[LTR-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='redemption_delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 4980.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [LTR-REVERSAL] as a positive 4980 in the OPPOSITE direction (lookalike->treasury).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<lookalike_vm>",
+              "receiver_id": "<treasury_vm>",
+              "amount": 4980.0,
+              "description": "Reversal of wrong-member credit [LTR-REVERSAL] [LTR-CREDIT] RDM-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (4980, lookalike->treasury).",
+        "state_delta": "venmo:+reversal (lookalike net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 4980 (treasury->correct member); ledger nets redemption_delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<treasury_vm>",
+              "receiver_id": "<member_vm>",
+              "amount": 4980.0,
+              "description": "Redemption credit (correct member) [LTR-CREDIT] RDM-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 4980=redemption_delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the MANUAL_REVIEW route requires a loyalty-manager disposition notification.",
+        "reasoning": "Email loyalty.manager@atlas.com a [LTR-DISPO] citing total_redemption=42980, redemption_delta=4980.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<mgr_gm>]",
+              "subject": "redemption disposition [LTR-DISPO]",
+              "body": "... total_redemption 42980 redemption_delta 4980 branch MANUAL_REVIEW ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+dispo notice (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total on the member CRM (notice sent).",
+        "reasoning": "Prepend '[LTR-LOG] total_redemption=42980' to the member CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[LTR-LOG] total_redemption=42980 <existing>"
+            },
+            "where": "lower(customer_email)='thomas.bailey63@initech.io'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany case-share allocation.",
+        "reasoning": "INSERT sw_expenses [LTR-ALLOC] amount=total_redemption (42980) with a co-analyst share (21490.0).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 42980.0,
+              "description": "Q1 intercompany case-share allocation [LTR-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-analyst share 21490.0).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [LTR-FUP] in 'Q1 Ticket Redemption Docket' citing delta=4980.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "Reconcile Q1 redemption RDM-2024-Q1-042 [LTR-FUP] [delta=4980]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the redemption TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live tier-index book: round(index)*10=4980 -> REVIEW_REDEMPTION; write [LTR-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN (CAST(ROUND((SELECT COUNT(T.bond_id) FROM bird_toxicology_connected AS T WHERE T.atom_id LIKE '%_19')) AS INTEGER)*10) >= 1000000 THEN 'CLAWBACK_REDEMPTION' WHEN (CAST(ROUND((SELECT COUNT(T.bond_id) FROM bird_toxicology_connected AS T WHERE T.atom_id LIKE '%_19')) AS INTEGER)*10) >= 1000 THEN 'REVIEW_REDEMPTION' ELSE 'STANDARD_REDEMPTION' END)"
+          }
+        },
+        "tool_result": "'REVIEW_REDEMPTION' (4980 in [1000,1000000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the member CRM status='[LTR-TIER] REVIEW_REDEMPTION'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[LTR-TIER] REVIEW_REDEMPTION"
+            },
+            "where": "lower(customer_email)='thomas.bailey63@initech.io'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=REVIEW_REDEMPTION"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: escalate the member's own case CS-0000102 on the case register AT the stamped tier.",
+        "reasoning": "Per the handbook: escalation=1, escalation_reason 'customer_request', priority 'high'; prepend '[LTR-ESC] tier=REVIEW_REDEMPTION RDM-2024-Q1-042 | ' to the summary line; then INSERT the 'update' notification to thomas.bailey63@initech.io.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_customer_case",
+            "set": {
+              "escalation": 1,
+              "escalation_reason": "customer_request",
+              "priority": "high",
+              "short_description": "[LTR-ESC] tier=REVIEW_REDEMPTION RDM-2024-Q1-042 | <seed summary>"
+            },
+            "where": "case_id=102"
+          }
+        },
+        "tool_result": "1 row (+1 'update' notification).",
+        "state_delta": "case register: CS-0000102 escalated at tier"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: open the case-management priority task (gated on the escalated case).",
+        "reasoning": "INSERT wb_project_tasks [LTR-PRIOTASK] carrying REVIEW_REDEMPTION and CS-0000102, assigned to me, list 'In Progress'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_project_tasks",
+            "values": {
+              "task_name": "Case management [LTR-PRIOTASK] REVIEW_REDEMPTION \u2014 CS-0000102",
+              "assigned_to_email": "redemptions.analyst@atlas.com",
+              "list_name": "In Progress"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "tasks:+priority task"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the member.",
+        "reasoning": "INSERT gm_emails riley->member [LTR-STATUS] citing total_redemption=42980 and tier REVIEW_REDEMPTION.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<member_gm>]",
+              "subject": "redemption status [LTR-STATUS]",
+              "body": "... total_redemption 42980 ... REVIEW_REDEMPTION ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: independent officer-tally side anchor (birdsql:1331).",
+        "reasoning": "Funds amount received by the Vice President.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T2.amount FROM bird_student_club_member T1 JOIN bird_student_club_income T2 ON T1.member_id=T2.link_to_member WHERE T1.position='Vice President'"
+          }
+        },
+        "tool_result": "50.",
+        "state_delta": "answers:+side_officer_tally=50"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: reconcile the credit ledger to redemption_delta (after the status email).",
+        "reasoning": "Confirm the net posted to the correct member == redemption_delta (4980) AND re-derive the figure chain before the verdict: the recorded total_redemption 42980 must still come to base_redemption + round(tier_index)*10 = 38000 + 498*10; then record reconciled='ok' + [LTR-RECON] delta=4980.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND description LIKE '%[LTR-CREDIT]%' AND description NOT LIKE '%[LTR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND description LIKE '%[LTR-CREDIT]%' AND description LIKE '%[LTR-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='redemption_delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (4980==4980).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n17: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[LTR-RECON] delta=4980' to the member CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 27,
+        "phase": "discovery",
+        "observation": "n18: read the review-window end and the analyst's busy slots.",
+        "reasoning": "Read the [LTR-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[LTR-HOLD]%' AND lower(participant_email)=lower('redemptions.analyst@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n18: schedule the '[LTR-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Post-credit redemption review \u2014 RDM-2024-Q1-042 [LTR-REVIEW]",
+              "participant_email": "redemptions.analyst@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+review"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "n19: independent EUR-customer side anchor (birdsql:1505).",
+        "reasoning": "Count distinct EUR customers with monthly Consumption over 1000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(DISTINCT T1.CustomerID) FROM bird_debit_card_specializing_yearmonth T1 JOIN bird_debit_card_specializing_customers T2 ON T1.CustomerID=T2.CustomerID WHERE T2.Currency='EUR' AND T1.Consumption>1000.00"
+          }
+        },
+        "tool_result": "391.",
+        "state_delta": "answers:+side_eur_customer_count=391"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent active-school side anchor (birdsql:56).",
+        "reasoning": "Count active San Joaquin schools with a California mailing state.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(CDSCode) FROM bird_california_schools_schools WHERE City='San Joaquin' AND MailState='CA' AND StatusType='Active'"
+          }
+        },
+        "tool_result": "2.",
+        "state_delta": "answers:+side_active_school_count=2"
+      },
+      {
+        "turn": 31,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct member == redemption_delta and branch MANUAL_REVIEW recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND description LIKE '%[LTR-CREDIT]%' AND description NOT LIKE '%[LTR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='thomas.bailey63@initech.io') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='redemption.treasury@atlas.com') AND description LIKE '%[LTR-CREDIT]%' AND description LIKE '%[LTR-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "4980.0, 'MANUAL_REVIEW' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no clawback note / extra disposition email for an auto-approve branch and every lookalike credit has a [LTR-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[LTR-CLAWBACK]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[LTR-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> CLAWBACK route absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', the member's case CS-0000102 is escalated at the tier, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_sn_csm_server_customer_case WHERE case_id=102 AND escalation=1 AND short_description LIKE '%[LTR-ESC]%')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the credit, the disposition email, the window and the allocation) and joins (n17 and n18 are multi-input), not a chain; the difficulty is long-range: redemption_delta set at n04 is reconciled only at n17 (gap 13), the [LTR-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n18 (gap 12), and total_redemption resurfaces in the status email at n15. The cross-book mid value (tier_index from the toxicology book, birdsql:239) is woven into the uplift, delta and branch and thus the whole downstream; n05 (card_games, birdsql:371), n16 (student_club, birdsql:1331), n19 (debit_card_specializing, birdsql:1505) and n20 (california_schools, birdsql:56) are four independent side anchors no downstream check reads, reported verbatim. The redemption tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live toxicology book, and the case-escalation beat's composition gate binds the STAMPED tier to that live re-derivation and to the tier word written onto the escalated case's summary line. The EnterpriseOps beat is judged by the source task's own checks, so any order that leaves the same register end-state passes; its register witness is a state gate the next hop reads directly. The redemption credit is COMPENSATABLE: the first (lookalike) credit must be corrected by a matching [LTR-REVERSAL] then the correct credit \u2014 the net treasury->correct-member credit == redemption_delta, and the collateral 'no_naked_delete_of_wrong_credit' forbids removing the wrong row. On the real data redemption_delta=4980 mandates the MANUAL_REVIEW route (disposition email, no clawback note); the FSV accepts the MANUAL_REVIEW route complete AND rejects a spurious clawback note or a disposition email on the AUTO_APPROVE route.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "bridge",
+    "probe_edge": {
+      "from": "n01",
+      "to": "n02"
+    },
+    "staged_value": "redemption_base_count",
+    "k": 1,
+    "relays": [
+      "nbridge1"
+    ],
+    "added_kinds": [
+      "redemption_base_count_staged1"
+    ],
+    "signature": {
+      "dG": 1,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

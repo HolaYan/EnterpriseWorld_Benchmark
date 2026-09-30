@@ -1,0 +1,108 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The exposure envelope is fixed from the benefit-reference catalog's own question — how many borderless catalog cards are illustrated in Russian (count the 'borderless' cards with a Russian foreign-data illustration).",
+  "kinds": [
+   "exposure"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_card_games_cards",
+   "bird_card_games_foreign_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The utilization signal is taken from the same reference book's own question — the percentage of French-language cards among the Story-Spotlight cards (isStorySpotlight = 1).",
+  "kinds": [
+   "claim_score"
+  ],
+  "node": "n03",
+  "tables": [
+   "bird_card_games_cards",
+   "bird_card_games_foreign_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "definition",
+  "note": "The independent side reference page for the quarterly oversight overview — the season page URL of the year in which race No. 901 took place (the quarter's oversight control reading, taken at the close of the run once this case's own figures are settled: a reading means something only held against this same reading at the last quarterly sign-off, so nothing later in this case reads it, and it is recorded exactly as the book gives it).",
+  "kinds": [
+   "side_page"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_formula_1_races",
+   "bird_formula_1_seasons"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The refund envelope is set at $50 per benefit-reference unit of that exposure, and the review uplift is set at 1000 per benefit-reference unit of the exposure.",
+  "kinds": [
+   "claim_score",
+   "delta",
+   "exposure",
+   "refund_units",
+   "review_uplift",
+   "sla_hours"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_card_games_cards",
+   "bird_card_games_foreign_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "rate",
+  "note": "The response SLA is the refund envelope plus 1000 per whole utilization point; the review delta equals the review uplift.",
+  "kinds": [
+   "claim_score",
+   "delta",
+   "exposure",
+   "refund_units",
+   "review_uplift",
+   "sla_hours"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_card_games_cards",
+   "bird_card_games_foreign_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The review-tier branch is decided on the delta — 'URGENT' when the delta is at least 100000, 'HIGH' when it is at least 10000, 'LOW' otherwise",
+  "kinds": [
+   "delta",
+   "priority"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_card_games_cards",
+   "bird_card_games_foreign_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The debrief is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the embargo window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

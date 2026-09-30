@@ -1,0 +1,606 @@
+{
+ "uid": "hybrid_change_management__0001",
+ "generated_from_build_sha": "edc67e9d95c3",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "risk_index": "37.5838926174497",
+  "risk_score": "38",
+  "change_volume": "3594",
+  "window_uplift": "3594000",
+  "release_total": "3594038",
+  "delta": "3594000",
+  "branch": "EXTENDED_WINDOW",
+  "reconciled": "ok",
+  "side_exposure": "1556"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:1151",
+   "verdict_basis": "risk_index is judged by birdsql:1151's own official gold SQL rerun LIVE on the bird_thrombosis_prediction_-prefixed book \u2014 a true single-row REAL scalar (an inpatient cohort ratio); the stored answer must equal the recipe's live result (its own CAST-text form) at scoring time",
+   "answers_written": {
+    "risk_index": "37.5838926174497"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE STRFTIME('%Y', Birthday) BETWEEN '1930' AND '1940'",
+    "result": 37.58389261744966
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1151_risk_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "risk_score = round(risk_index)",
+   "follows": "ratio-rounded-to-whole; rounding to a whole score is a declared change policy, no source counterpart",
+   "inputs": [
+    "risk_index <- birdsql:1151 (live rerun)"
+   ],
+   "answers_written": {
+    "risk_score": "38"
+   },
+   "checks": [
+    {
+     "name": "risk_score_is_round_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "risk_score_derives_from_stored_risk_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "cab_crm_risk_score_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:1023",
+   "verdict_basis": "change_volume is judged by birdsql:1023's own official gold SQL rerun LIVE on the bird_european_football_2_-prefixed book \u2014 a true single-row COUNT scalar; the cross-book input woven into the change arithmetic",
+   "answers_written": {
+    "change_volume": "3594"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(id) FROM bird_european_football_2_Player_Attributes WHERE overall_rating BETWEEN 60 AND 65 AND defensive_work_rate = 'low'",
+    "result": 3594
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1023_change_volume",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "window_uplift = change_volume*1000; release_total = risk_score + window_uplift; delta = window_uplift",
+   "follows": "count-scaled-by-rate + additive combine; the per-change 1000 is a declared constant",
+   "inputs": [
+    "risk_score <- n02",
+    "change_volume <- n03 (birdsql:1023 live rerun)"
+   ],
+   "answers_written": {
+    "window_uplift": "3594000",
+    "release_total": "3594038",
+    "delta": "3594000"
+   },
+   "checks": [
+    {
+     "name": "window_uplift_is_count_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_change_volume",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "release_total_equals_score_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "release_total_derives_from_stored_score_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'EMERGENCY_HOLD' if risk_score>=100; 'EXTENDED_WINDOW' if risk_score>=20; else 'NORMAL_WINDOW'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 20/100 bands are declared constants; the branch predicate is source-expressed (risk_score from the live thrombosis book)",
+   "inputs": [
+    "risk_score <- n02 (round of birdsql:1151 ratio)"
+   ],
+   "answers_written": {
+    "branch": "EXTENDED_WINDOW"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_risk_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_risk_score",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [CM-WINDOW] window's duration is the declared 3-day change window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[CM-WINDOW]",
+      "event_name": "Q1 change window [CM-WINDOW]",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "change_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong disbursement corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_vendor",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_disbursement_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [CM-HANDOFF] email owner->partner citing release_total+delta, present IFF branch in EXTENDED_WINDOW/EMERGENCY_HOLD",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "release_total/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_extended_or_emergency",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [CM-LOG] release_total marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_release_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = release_total; co-approver share = release_total/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "release_total <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [CM-FUP] task citing delta in the owner's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [CM-LOG]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'EMERGENCY_CHANGE' if the live risk score >= 100; 'EXTENDED_REVIEW' if >= 20; else 'STANDARD_CHANGE'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the thrombosis inpatient ratio), not a relabel of a stored value",
+   "inputs": [
+    "risk score <- live bird_thrombosis_prediction (re-derived at write time)",
+    "gate <- n11 td_tasks [CM-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251223_063905_655_30600918_3e736be9",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task (raise a standard change so the deployment can be managed during the change window): its first two native database_state checks \u2014 the CHG_026 standard change record and its CRM_017 mapping to the incident it remediates \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); the dependency coupling (the change summary line citing the tier that matches the CRM [CM-TIER] stamp and the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "the change record == the source task's own change + mapping checks, filed at the n12 tier relay and citing it",
+   "inputs": [
+    "tier relay <- n12 CRM [CM-TIER] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "standard_change_record_raised",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "change_mapped_to_the_incident_it_remediates",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "change_record_filed_at_the_tier_of_record",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251223_063905_655_30600918_3e736be9",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task: its incident-hold check (INC_057 on_hold, reason 'Awaiting Change', change_request CHG_026) is inherited VERBATIM; the coupling (the work note carrying the change number and the tier off the change record's summary line) is a SEPARATE composition glue check",
+   "rule": "the production incident is held against the filed change and its work note carries that change's number + tier",
+   "inputs": [
+    "tier word <- n13 eops_gym_itsm_mcp_change [CM-CHG] summary line (quoted in the work note)",
+    "gate <- n13 change CHG0000026 filed (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "incident_held_awaiting_the_change",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "incident_hold_cites_the_filed_change",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [CM-STATUS] email owner->CAB lead citing release_total + the live tier + the held incident, gated on that hold",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "held incident <- n14 eops_gym_itsm_mcp_incident work note (INC-000057)",
+    "release_total <- n04",
+    "tier truth <- live thrombosis banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_release_total_tier_and_held_incident",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20251223_063905_655_30600918_3e736be9",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task: its caller-notification check (NOTIF_031, type 'update', on INC_057 to the incident's caller of record) is inherited VERBATIM; the coupling (the message repeating the release total exactly as reported in the [CM-STATUS] update) is a SEPARATE composition glue check",
+   "rule": "the caller of record is told the fix rides this change, the notice repeating the reported release_total + tier",
+   "inputs": [
+    "release_total as reported <- n15 gm_emails [CM-STATUS] body",
+    "gate <- n15 gm_emails [CM-STATUS]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "incident_caller_informed_of_the_change",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "caller_notice_repeats_the_reported_total",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "enterpriseops:task_20251223_063905_655_30600918_3e736be9",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task: its SLA-pause check (TSLA_022 on INC_057 at stage 'paused') is inherited VERBATIM; the coupling (the caller notification filed first) is a SEPARATE composition glue check",
+   "rule": "the held incident's SLA clock is paused for the window, never before the caller is told",
+   "inputs": [
+    "gate <- n16 eops_gym_itsm_mcp_notification NOTIF_031 update to the caller (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "incident_sla_paused_for_the_window",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "sla_pause_gated_on_the_caller_notice",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [CM-FEE] net (disbursements - reversals) to the correct vendor == delta, with the CRM [CM-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 14)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [CM-WINDOW] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops Teams channel",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[CM-REVIEW]",
+      "event_name": "Change PIR [CM-REVIEW]",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__risk_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__risk_score_is_round_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__change_volume_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__window_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__release_total_is_score_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_risk_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_exposure_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:182",
+   "verdict_basis": "side_exposure is judged by birdsql:182's own official gold SQL rerun LIVE on the bird_-prefixed financial book \u2014 a true single-row COUNT scalar (no region/A3 clause); an independent side question no downstream check reads",
+   "answers_written": {
+    "side_exposure": "1556"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.account_id) FROM bird_trans AS T1 INNER JOIN bird_account AS T2 ON T1.account_id = T2.account_id INNER JOIN bird_disp AS T4 ON T2.account_id = T4.account_id INNER JOIN bird_client AS T3 ON T4.client_id = T3.client_id WHERE STRFTIME('%Y', T3.birth_date) BETWEEN '1974' AND '1976' AND T3.gender = 'M' AND T1.amount > 4000 AND T1.k_symbol = 'SIPO'",
+    "result": 1556
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_182_side_exposure",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

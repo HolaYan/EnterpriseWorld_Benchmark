@@ -1,0 +1,1489 @@
+{
+  "instance_id": "hybrid_dividend_distribution__0001",
+  "agent_visible": {
+    "overall_query": "Run the quarterly dividend distribution for the wealth-management dividend desk. Fix the dividend-eligible register-lot count from the register's own question \u2014 among the students who attended the 'Women's Soccer' event, the count of DISTINCT members who want a medium-size T-shirt. Set the base dividend as that lot count times the declared per-lot dividend of 1000. Pull the benchmark rate index from its book's own question \u2014 the average monthly 2013 consumption of SME-segment customers, reported exactly as the book computes it (keep the decimal) \u2014 and set the distribution uplift at 1000 per index-unit on the ROUNDED rate index. The total distribution is the base plus the uplift; the escalation delta equals the uplift. Decide the distribution branch on the delta \u2014 'SPECIAL_REVIEW' when the delta is at least 100000000, 'REGISTRAR_ESCALATION' when it is at least 100000, 'STANDARD_PAYOUT' otherwise \u2014 and work the cycle end to end: place the review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the dividend-credit run so the net credit received by the correct holder equals the delta (a credit that lands on the wrong holder is reversed, never deleted, then the correct holder is credited); unless the branch is standard payout, send the transfer agent the distribution-handoff email citing the total distribution and the delta; log the total distribution on the registrar-lead record and open the follow-up; allocate the distribution effort evenly with the co-analyst; RE-DERIVE the distribution tier from the live rate-index book (TIER_3_SPECIAL_REVIEW when the rounded rate index times 1000 is at least 100000000, TIER_2_REGISTRAR_ESCALATION when at least 100000, else TIER_1_STANDARD_PAYOUT) and stamp it on the registrar-lead record; set up the institutional holder's service engagement and retire the legacy distribution service and its incidents in the desk's enterprise registers (per the recording handbook); send the registrar lead the status update citing the total distribution and the tier; file the quarter's workbook of record on the desk's document register \u2014 attested, carrying the same total distribution and tier word the status update published, and under its change-watch; reconcile the credit ledger to the delta, re-deriving before the 'ok' verdict that the recorded total_distribution still equals base_dividend + round(rate_index)*1000; and schedule the post-window distribution review after the window ends, conflict-free, its event naming the workbook of record it convenes on. Also pull the quarter's two independent side-anchor readings for the quarterly overview at the close of the run, each answered exactly as the licensed reference book it reads asks it and each recorded as next quarter's comparison point at the close-out sign-off rather than as an input anything later in this quarter's run reads \u2014 the free rate for ages 5-17 at the school run by Kacey Gibson, and how many drivers finished the race on 2015/11/29.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\neligible_lots: the dividend-eligible register-lot count \u2014 whole number\nbase_dividend: the base dividend \u2014 whole number\nrate_index: the benchmark rate index \u2014 the book's exact decimal value\ndistribution_uplift: the distribution uplift \u2014 whole number, no thousands separators\ntotal_distribution: the total distribution \u2014 whole number\ndelta: the escalation delta \u2014 whole number\nbranch: the distribution route \u2014 exactly one of {STANDARD_PAYOUT, REGISTRAR_ESCALATION, SPECIAL_REVIEW}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the credit ledger nets to the delta\nside_ratio: the first side anchor \u2014 the book's exact decimal value (a ratio below 1)\nside_cohort: the second side anchor \u2014 whole number Book-reading notes (how the reference books count): average the Consumption figure over the 2013 monthly records of SME customers, then divide THAT AVERAGE by 12 -- the answer is one twelfth of the average.\neligible_lots_staged1: the desk's staging re-record 1 of 1 of eligible_lots \u2014 the identical value\n",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: four source reference books \u2014 the register book (bird_student_club_event, bird_student_club_attendance, bird_student_club_member, ...), the rate-index book (bird_debit_card_specializing_customers, bird_debit_card_specializing_yearmonth, ...), the side-ratio schools book (bird_california_schools_schools, bird_california_schools_frpm, ...) and the side-cohort racing book (bird_formula_1_races, bird_formula_1_results, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the dividend-credit ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany effort ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's three shared enterprise registers \u2014 CSM (eops_sn_csm_server_contract, eops_sn_csm_server_entitlement, eops_sn_csm_server_customer_case, ...), ITSM (eops_gym_itsm_mcp_service, eops_gym_itsm_mcp_service_offering, eops_gym_itsm_mcp_incident, ...) and the DOCUMENT register (eops_gym_google_drive_mcp_files, eops_gym_google_drive_mcp_comments, eops_gym_google_drive_mcp_channels, eops_gym_google_drive_mcp_users, ...). You are distribution.lead@atlas.com (Riley Chen), the dividend distribution lead, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist distribution-docket project, and a calendar on wb_calendar_events; the correct holder is correct.holder@atlas.com, the wrong holder is wrong.holder@atlas.com, the co-analyst is co.analyst@atlas.com, the transfer agent is transfer.agent@registry.example, and ONE CRM record \u2014 the registrar lead registrar.lead@atlas.com \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the eligible-lot count, base dividend, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "WEALTH-MGMT DIVIDEND DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[DDX-BASE]' \u2014 registrar-lead CRM notes: the base-dividend stamp, citing 'base_dividend=<n>'.\n   - '[DDX-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[DDX-CREDIT]' \u2014 dividend ledger (vm) DESCRIPTION of every dividend-credit entry.\n   - '[DDX-REVERSAL]' \u2014 dividend ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[DDX-CREDIT]' tag).\n   - '[DDX-HANDOFF]' \u2014 email SUBJECT of the transfer-agent handoff; the BODY must cite the total distribution and the delta.\n   - '[DDX-LOG]' \u2014 registrar-lead CRM notes: the distribution log, citing 'total_distribution=<n>'.\n   - '[DDX-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany distribution-effort allocation. The expense books the full recorded total_distribution as its amount, and its sw_expense_shares row assigns co.analyst@atlas.com a share of exactly half that amount.\n   - '[DDX-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Dividend Distribution Docket' project); the title cites the delta.\n   - '[DDX-TIER]' \u2014 registrar-lead CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[DDX-STATUS]' \u2014 email SUBJECT of the registrar-lead status update; the BODY must cite the total distribution and the tier word.\n   - '[DDX-RECON]' \u2014 registrar-lead CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[DDX-CREDIT]' ledger (credits minus reversals) at write time. The same reconciliation re-derives the figure chain before the 'ok' verdict: the recorded total_distribution must still equal base_dividend + round(rate_index)*1000, both re-read from the recorded answers at write time, never quoted from an earlier step.\n   - '[DDX-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window distribution review; the same event name also names the workbook of record the review convenes on.\n   - '[DDX-SPECIAL]' \u2014 registrar-lead CRM notes: the special-review note, filed ONLY on the special-review route.\n\n2. ROUTE AND TIER WORDS. The distribution route is always one of the desk's three route words: 'STANDARD_PAYOUT', 'REGISTRAR_ESCALATION', 'SPECIAL_REVIEW'. The distribution tier is always one of the desk's three tier words: 'TIER_1_STANDARD_PAYOUT', 'TIER_2_REGISTRAR_ESCALATION', 'TIER_3_SPECIAL_REVIEW'. A cited tier word is re-derived from the live rate-index book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (distribution.lead@atlas.com); the registrar lead is written to at registrar.lead@atlas.com, the transfer agent at transfer.agent@registry.example. Dividend credits run on the vm ledger FROM you TO the correct holder (correct.holder@atlas.com); a credit that lands on the wrong holder (wrong.holder@atlas.com) is corrected by that holder sending the same amount back to you, never deleted. The distribution-effort allocation runs on the sw ledger between you and the co-analyst (co.analyst@atlas.com). Follow-up work lives in your Todoist 'Q1 Dividend Distribution Docket' project; the window and review on your own wb_calendar_events (participant_email = distribution.lead@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Dividend rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the registrar-lead row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the registrar-lead record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The distribution review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the rate index and the side ratio keep their exact decimals); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The institutional-holder service engagement sets the 'Wayne Enterprises' account an active 'support' contract (contract_price 150000, start_date '2026-01-01', end_date '2026-12-31'), a 'premium' 'h24x7' entitlement on 'Windows Server 2022 Datacenter' (max_cases_per_month 50, active) under that contract, the 'SSL termination issue on Windows Server node' case on the 'phone' channel at 'high' priority in state 'in_progress' for a primary, active contact of that account, and its 'SLA Response - High' response SLA in stage 'in_progress'.\n   - ITSM register (eops_gym_itsm_mcp_* tables). The legacy-service retirement sets the legacy service 'SVC_041' and its offering 'SVCOFF_050' to status 'retired', and closes the two distribution incidents 'INC_015' and 'INC_064' (status 'closed' with close notes).\n   - DOCUMENT register (eops_gym_google_drive_mcp_* tables). The quarter's workbook of record is the file 'Monthly Financials.xls.xlsx', filed untrashed, its description recorded verbatim as 'Under comprehensive monitoring - all changes tracked and audited.' The register's standing audit attestation is posted on that workbook as a comment, verbatim \u2014 'Comprehensive Audit System Active: Permissions reviewed, labels verified, revision history analyzed, real-time monitoring enabled as of December 9, 2025.' \u2014 authored under the desk's records-analyst id of record (carmenalvarez22@airbnb.com); the quarter's classification is a SECOND comment on the same workbook, citing the recorded total distribution and the tier word. The register's change-watch is a channel row of type 'web_hook' whose resource_id carries the workbook's file id, addressed to the desk's monitoring endpoint https://monitoring.company.com/drive-changes, with an expiration still in the future (the desk records 4102444800000).\n\nSTAGING: before the downstream step reads eligible_lots, this desk re-records it through 1 staging entry \u2014 kind='eligible_lots_staged1' (each the identical value, each copied from the previous one); file every staging record as an explicit intermediate step.",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_registrar_lead": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "registrar.lead@atlas.com",
+          "customer_name": "Registrar Lead",
+          "assigned_to_email": "distribution.lead@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "distribution.lead@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "correct.holder@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.holder@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "distribution.lead@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "registrar.lead@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "transfer.agent@registry.example",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Dividend Distribution Docket",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "Distribution-desk daily standup",
+          "participant_email": "distribution.lead@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_account": [
+        {
+          "account_id": 7,
+          "name": "Wayne Enterprises",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_service": [
+        {
+          "service_id": "SVC_041",
+          "status": "repair_in_progress",
+          "note": ""
+        }
+      ],
+      "eops_gym_google_drive_mcp_users": [
+        {
+          "id": "9e2a66d40a13450dbef56d074f",
+          "email": "carmenalvarez22@airbnb.com",
+          "display_name": "Carmen Alvarez",
+          "note": "the desk's records analyst of record"
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the four reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register contract/retirement/catalog change).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: dividend credits are compensatable \u2014 reverse a wrong-holder credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across FOUR bird books (student_club/debit_card_specializing/california_schools/formula_1) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/itsm/drive). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n18 with long-range edges: delta n04 reconciled at n17 (gap 13); the [DDX-HOLD] window n06 gates the review n18 (gap 12); total_distribution n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (debit_card_specializing) woven into the arithmetic/branch; n19 (california_schools) and n20 (formula_1) are two independent side anchors reported verbatim.",
+    "protagonist": {
+      "email": "distribution.lead@atlas.com",
+      "role": "dividend distribution lead running the quarterly distribution"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size? (Read it as the book does: over the students who attended the event named 'Women's Soccer', count the DISTINCT members whose T-shirt size is 'Medium'.) Record the answer in answers as kind='eligible_lots'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_student_club_event.event_name",
+          "bird_student_club_attendance.link_to_event",
+          "bird_student_club_member.member_id",
+          "bird_student_club_member.t_shirt_size"
+        ],
+        "writes": [
+          "answers.eligible_lots"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the base dividend from the eligible-lot count. Read the stored eligible_lots and compute base_dividend = eligible_lots * 1000 (the declared per-lot dividend). Record it in answers as kind='base_dividend' and stamp the registrar-lead's CRM row (customer_email registrar.lead@atlas.com) by prepending '[DDX-BASE] base_dividend=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.eligible_lots"
+        ],
+        "writes": [
+          "answers.base_dividend",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "What was the average monthly consumption of customers in SME for the\n               year 2013? Read it as the book does: average the Consumption figure over\n               the 2013 monthly records of SME customers, then divide THAT AVERAGE BY 12\n               \u2014 the stored Consumption is a yearly-scale figure, so the monthly answer\n               is one twelfth of the average, not the average itself. (Read it as the book does: over SME-segment customers, take the average of the 2013 monthly consumption rows divided by 12; report it EXACTLY as the book computes it \u2014 keep the book's own decimal value.) Record the answer in answers as kind='rate_index'. (This benchmark rate index feeds the distribution uplift.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_debit_card_specializing_customers.Segment",
+          "bird_debit_card_specializing_yearmonth.Consumption"
+        ],
+        "writes": [
+          "answers.rate_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the distribution envelope from the stored answers. Read answers.base_dividend AND answers.rate_index. distribution_uplift = round(rate_index) * 1000; total_distribution = base_dividend + distribution_uplift; delta = distribution_uplift. Record all three: answers kind='distribution_uplift', kind='total_distribution', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.base_dividend",
+          "answers.rate_index"
+        ],
+        "writes": [
+          "answers.distribution_uplift",
+          "answers.total_distribution",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the distribution branch on the computed state. Read answers.delta and set answers kind='branch' to 'SPECIAL_REVIEW' if delta >= 100000000, else 'REGISTRAR_ESCALATION' if delta >= 100000, else 'STANDARD_PAYOUT'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total distribution is computed, place the distribution-review WINDOW on the lead's calendar (participant_email=distribution.lead@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[DDX-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_distribution",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the dividend-credit run for EXACTLY delta on the holder ledger. Record vm_transactions rows tagged '[DDX-CREDIT]' so the NET credit posted FROM the distribution lead (distribution.lead@atlas.com) TO the correct holder (correct.holder@atlas.com) equals delta. If the first credit lands on the WRONG holder (wrong.holder@atlas.com), DO NOT delete it: write a matching '[DDX-REVERSAL] [DDX-CREDIT]' entry (the wrong holder sends the SAME amount back to the lead) which cancels the wrong credit, then the correct credit to the right holder.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the distribution branch is 'REGISTRAR_ESCALATION' or 'SPECIAL_REVIEW', send the transfer agent a distribution-handoff email. INSERT a gm_emails row from the distribution lead (distribution.lead@atlas.com) to the transfer agent (transfer.agent@registry.example) whose subject carries '[DDX-HANDOFF]' and whose body CITES the total_distribution and the delta. For branch 'STANDARD_PAYOUT' (standard payout), the handoff MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_distribution",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the dividend distribution on the registrar-lead CRM record. Prepend '[DDX-LOG] total_distribution=<n>' to the notes \u2014 but when the recorded branch is 'REGISTRAR_ESCALATION' or 'SPECIAL_REVIEW', ONLY after the '[DDX-HANDOFF]' email has been sent to the transfer agent. When the recorded branch is 'STANDARD_PAYOUT' the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_distribution",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany distribution-effort ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the distribution lead (distribution.lead@atlas.com) for the full total_distribution with description '[DDX-ALLOC]', and a sw_expense_shares row assigning the co-analyst (co.analyst@atlas.com) a share_amount = total_distribution/2 (its half of the joint distribution effort).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_distribution",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Dividend Distribution Docket' project owned by the distribution lead whose title carries '[DDX-FUP]' and the delta value \u2014 only after the registrar-lead CRM record carries the '[DDX-LOG]' distribution log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the distribution TIER. RE-DERIVE it from the live rate-index book: uplift = round(the benchmark rate index) * 1000, TIER = 'TIER_3_SPECIAL_REVIEW' if uplift >= 100000000, 'TIER_2_REGISTRAR_ESCALATION' if uplift >= 100000, else 'TIER_1_STANDARD_PAYOUT'. Write it to the registrar-lead CRM row's DEDICATED status column (set status='[DDX-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_debit_card_specializing_customers.Segment",
+          "bird_debit_card_specializing_yearmonth.Consumption"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Set up the institutional holder's service engagement in the desk's CSM register. For the 'Wayne Enterprises' account: set an active 'support' contract (contract_price 150000, start_date '2026-01-01', end_date '2026-12-31'); add a 'premium' 'h24x7' entitlement on 'Windows Server 2022 Datacenter' (max_cases_per_month 50, active) under that contract; open the 'SSL termination issue on Windows Server node' case on the 'phone' channel at 'high' priority in state 'in_progress' for a primary, active contact of that account; and put its 'SLA Response - High' response SLA in stage 'in_progress'. Only after the registrar-lead CRM status carries the '[DDX-TIER]' tier stamp whose tier matches the live re-derivation.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_contract.status",
+          "eops_sn_csm_server_entitlement.support_level",
+          "eops_sn_csm_server_customer_case.state"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Retire the legacy distribution service in the desk's ITSM register. Set the legacy service 'SVC_041' and its offering 'SVCOFF_050' to status 'retired'; and close the two distribution incidents 'INC_015' and 'INC_064' (status 'closed' with close notes). Only after the CSM service engagement is on the register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_contract.status"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_service.status",
+          "eops_gym_itsm_mcp_incident.status"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the registrar lead a status update. INSERT a gm_emails row from the distribution lead (distribution.lead@atlas.com) to the registrar lead (registrar.lead@atlas.com) whose subject carries '[DDX-STATUS]' and whose body cites the total_distribution and the distribution tier word (re-derived from the live rate-index book) \u2014 only after the legacy-service retirement is on the desk register.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_itsm_mcp_service.status",
+          "answers.total_distribution",
+          "bird_debit_card_specializing_yearmonth.Consumption",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "File the quarter's workbook of record on the desk's document register (per the recording handbook). Put the workbook 'Monthly Financials.xls.xlsx' on that register untrashed with its description set to 'Under comprehensive monitoring - all changes tracked and audited.'; post the register's standing audit attestation on it verbatim \u2014 'Comprehensive Audit System Active: Permissions reviewed, labels verified, revision history analyzed, real-time monitoring enabled as of December 9, 2025.' \u2014 under the desk's records-analyst id of record (carmenalvarez22@airbnb.com); post a SECOND note on the same workbook carrying the quarter's classification of record \u2014 the recorded total distribution AND the tier word, re-derived live at write time; and open the register's change-watch on that workbook to the desk's monitoring endpoint https://monitoring.company.com/drive-changes, with an expiration still in the future. The two cited figures are the two the '[DDX-STATUS]' update carries, so the workbook is filed only once that update is out.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "gm_emails.body",
+          "answers.total_distribution",
+          "bird_debit_card_specializing_yearmonth.Consumption"
+        ],
+        "writes": [
+          "eops_gym_google_drive_mcp_files.name",
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_comments.content",
+          "eops_gym_google_drive_mcp_channels.address"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct holder equals delta (re-read from the '[DDX-CREDIT]' ledger rows, credits minus reversals, never from memory), AND re-derive the figure chain before the 'ok' verdict: re-read the recorded base_dividend and rate_index and confirm the recorded total_distribution still equals base_dividend + round(rate_index)*1000 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Only when both cross-checks hold, record answers kind='reconciled'='ok' and prepend a '[DDX-RECON] delta=<delta>' note to the registrar-lead CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.base_dividend",
+          "answers.rate_index",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Schedule the registrar distribution review. INSERT a wb_calendar_events row on the lead's calendar whose event_name carries '[DDX-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[DDX-HOLD]' review window and does NOT overlap any of the lead's other events. The review convenes on the quarter's workbook of record, so the event_name also names that workbook ('Monthly Financials.xls.xlsx') after the tag, and the review is booked only for a registrar-lead record whose CRM carries '[DDX-RECON]' AND once that workbook stands filed on the desk's document register under its change-watch \u2014 booking a review of a record that is neither filed nor frozen convenes it on nothing.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_google_drive_mcp_files.name"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n17",
+          "n16"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Take the quarter's first side-anchor reading, at the close of the run, once the distribution's own figures are settled and the close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the register and rate-index books this quarter's figures come off, on purpose \u2014 and is answered exactly as that book asks it: \"What is the free rate for students between the ages of 5 and 17 at the school run by Kacey Gibson?\" (Read it as the book does: the free meal count for ages 5-17 as a real number divided by the enrollment for ages 5-17, at the school administered by Kacey Gibson.) Record the answer in answers as kind='side_ratio'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the close-out is signed only when this quarter's two anchor readings line up with the last. Nothing later in this quarter's run reads it; what is recorded here is next quarter's comparison point at that sign-off, and it is taken at the close so it carries the same as-of date as the close-out it is filed with. Report the book's own figure exactly \u2014 a ratio below 1, kept to the book's own decimals; one rounded to look tidy would read as a holder-register move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_california_schools_schools.AdmFName1",
+          "bird_california_schools_frpm.Enrollment (Ages 5-17)"
+        ],
+        "writes": [
+          "answers.side_ratio"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's second side-anchor reading, at the close of the run, once the distribution's own figures are settled and the close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the register and rate-index books this quarter's figures come off, on purpose \u2014 and is answered exactly as that book asks it: \"For the race happened on 2015/11/29, how many drivers finished the game?\" (Read it as the book does: over the results joined to the race on 2015-11-29, count the drivers whose finishing time is not null.) Record the answer in answers as kind='side_cohort'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the close-out is signed only when this quarter's two anchor readings line up with the last. Nothing later in this quarter's run reads it; what is recorded here is next quarter's comparison point at that sign-off, and it is taken at the close so it carries the same as-of date as the close-out it is filed with. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a holder-register move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_formula_1_races.date",
+          "bird_formula_1_results.time"
+        ],
+        "writes": [
+          "answers.side_cohort"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 13,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 27,
+      "dependency_depth": 13,
+      "max_dependency_gap": 15,
+      "mean_dependency_gap": 4.63,
+      "long_range_edge_ratio": 0.333,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.815,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n17",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n17",
+          "gap": 15,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n17",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n18",
+          "gap": 12,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n18"
+      ],
+      "primary_chain_len": 13,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (distribution branch on delta bands) -> B on real data (REGISTRAR_ESCALATION)",
+      "long_range_edges": [
+        "n04->n17 delta reconciled 13 steps later (gap 13, max)",
+        "n06->n18 [DDX-HOLD] window (type-B) gates the review (gap 12)",
+        "n04->n15 total_distribution resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n19 (independent birdsql:34 california_schools side anchor)",
+        "n20 (independent birdsql:864 formula_1 side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:1473 debit_card_specializing) woven into the delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "distribution.lead@atlas.com",
+      "registrar_lead": "registrar.lead@atlas.com",
+      "correct_holder": "correct.holder@atlas.com",
+      "wrong_holder": "wrong.holder@atlas.com",
+      "co_analyst": "co.analyst@atlas.com",
+      "transfer_agent": "transfer.agent@registry.example",
+      "rego_crm_id": "00000002",
+      "source_questions": {
+        "eligible_lots": "birdsql:1317 (student_club) \u2014 Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size?",
+        "rate_index": "birdsql:1473 (debit_card_specializing) \u2014 What was the average monthly consumption of customers in SME for the\n               year 2013? Read it as the book does: average the Consumption figure over\n               the 2013 monthly records of SME customers, then divide THAT AVERAGE BY 12\n               \u2014 the stored Consumption is a yearly-scale figure, so the monthly answer\n               is one twelfth of the average, not the average itself.",
+        "side_ratio": "birdsql:34 (california_schools) \u2014 What is the free rate for students between the ages of 5 and 17 at the school run by Kacey Gibson?",
+        "side_cohort": "birdsql:864 (formula_1) \u2014 For the race happened on 2015/11/29, how many drivers finished the game?"
+      },
+      "eops_source_tasks": {
+        "csm_engagement": "enterpriseops:task_20260101_122222_300_ad5a67e3_3757206c (sn-csm-server) \u2014 Wayne Enterprises support contract active 150000 + premium h24x7 entitlement + SSL case + response SLA",
+        "itsm_retirement": "enterpriseops:task_20251222_140957_029_c5ca08eb_3c4271f0 (gym-itsm-mcp) \u2014 SVC_041/SVCOFF_050 retired + INC_015/INC_064 closed",
+        "workbook_of_record": "enterpriseops:task_20260109_145235_208_64a4ebb9_9befb3ae (gym-google-drive-mcp) \u2014 'Monthly Financials.xls.xlsx' filed on the document register with the monitoring description + the audit attestation under carmenalvarez22@airbnb.com + the change-watch to https://monitoring.company.com/drive-changes (RE-SEATED)"
+      },
+      "base_policy": "base_dividend = eligible_lots * 1000 (declared per-lot dividend)",
+      "uplift_policy": "distribution_uplift = round(rate_index) * 1000 (per-index 1000 is declared)",
+      "branch_policy": "A STANDARD_PAYOUT (delta<100000, no handoff); B REGISTRAR_ESCALATION (delta>=100000, transfer-agent handoff, no special note); C SPECIAL_REVIEW (delta>=100000000, handoff + special note) \u2014 the 100000/100000000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[DDX-BASE]",
+        "review_window": "[DDX-HOLD]",
+        "credit": "[DDX-CREDIT]",
+        "reversal": "[DDX-REVERSAL]",
+        "allocation": "[DDX-ALLOC]",
+        "handoff": "[DDX-HANDOFF]",
+        "crm_log": "[DDX-LOG]",
+        "followup": "[DDX-FUP]",
+        "tier": "[DDX-TIER]",
+        "status_email": "[DDX-STATUS]",
+        "crm_reconcile": "[DDX-RECON]",
+        "calendar_review": "[DDX-REVIEW]",
+        "special_note_only_for_C": "[DDX-SPECIAL]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.eligible_lots",
+          "answers.base_dividend",
+          "answers.rate_index",
+          "answers.distribution_uplift",
+          "answers.total_distribution",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_ratio",
+          "answers.side_cohort"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [DDX-HOLD] event (n18 reads them there); the three eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "distribution tier \u2014 re-derived at n12 from the live debit_card_specializing book (rate-index banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (lead->wrong holder) + reversal delta (wrong holder->lead) + correct delta (lead->correct holder); net lead->correct holder = delta",
+      "review_window_hold": "[DDX-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 distribution-desk standup)",
+      "true_eligible_lots": 7,
+      "true_base_dividend": 7000,
+      "true_rate_index": "459.9562642870894",
+      "true_distribution_uplift": 460000,
+      "true_total_distribution": 467000,
+      "true_delta": 460000,
+      "true_branch": "REGISTRAR_ESCALATION",
+      "true_tier": "TIER_2_REGISTRAR_ESCALATION",
+      "true_reconciled": "ok",
+      "true_side_ratio": "0.20174165457184326",
+      "true_side_cohort": 11
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.eligible_lots"
+        ],
+        "change": "Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.base_dividend",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the base dividend from the eligible-lot count. Read the stored eligible_lots and compute base_dividend = eligible_lots * 1000 "
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.rate_index"
+        ],
+        "change": "What was the average monthly consumption of customers in SME for the year 2013? Read it as the book does: average the Consumption "
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.distribution_uplift",
+          "answers.total_distribution",
+          "answers.delta"
+        ],
+        "change": "Compute the distribution envelope from the stored answers. Read answers.base_dividend AND answers.rate_index. distribution_uplift "
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the distribution branch on the computed state. Read answers.delta and set answers kind='branch' to 'SPECIAL_REVIEW' if delt"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total distribution is computed, place the distribution-review WINDOW on the lead's calendar (participant_email=distributi"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the dividend-credit run for EXACTLY delta on the holder ledger. Record vm_transactions rows tagged '[DDX-CREDIT]' so the NET "
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the distribution branch is 'REGISTRAR_ESCALATION' or 'SPECIAL_REVIEW', send the transfer agent a distribution-handoff email. IN"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the dividend distribution on the registrar-lead CRM record. Prepend '[DDX-LOG] total_distribution=<n>' to the notes \u2014 but when"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany distribution-effort ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the distribut"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Dividend Distribution Docket' project owned by the distributio"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the distribution TIER. RE-DERIVE it from the live rate-index book: uplift = round(the benchmark rate index) * 1000, TIER "
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_contract.status",
+          "eops_sn_csm_server_entitlement.support_level",
+          "eops_sn_csm_server_customer_case.state"
+        ],
+        "change": "Set up the institutional holder's service engagement in the desk's CSM register. For the 'Wayne Enterprises' account: set an activ"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_service.status",
+          "eops_gym_itsm_mcp_incident.status"
+        ],
+        "change": "Retire the legacy distribution service in the desk's ITSM register. Set the legacy service 'SVC_041' and its offering 'SVCOFF_050'"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the registrar lead a status update. INSERT a gm_emails row from the distribution lead (distribution.lead@atlas.com) to the re"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_google_drive_mcp_files.name",
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_comments.content",
+          "eops_gym_google_drive_mcp_channels.address"
+        ],
+        "change": "File the quarter's workbook of record on the desk's document register (per the recording handbook). Put the workbook 'Monthly Fina"
+      },
+      {
+        "subgoal": "n17",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct holder equals delta (re"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the registrar distribution review. INSERT a wb_calendar_events row on the lead's calendar whose event_name carries '[DDX-"
+      },
+      {
+        "subgoal": "n19",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_ratio"
+        ],
+        "change": "Take the quarter's first side-anchor reading, at the close of the run, once the distribution's own figures are settled and the clo"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_cohort"
+        ],
+        "change": "Take the quarter's second side-anchor reading, at the close of the run, once the distribution's own figures are settled and the cl"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the distribution branch the data selects (B: REGISTRAR_ESCALATION). The four source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (eligible_lots == the birdsql:1317 COUNT; rate_index == the birdsql:1473 REAL average, stored in the book's exact CAST-text form; side_ratio == the birdsql:34 REAL<1 ratio, stored verbatim; side_cohort == the birdsql:864 COUNT), and the three EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the CSM active support contract + premium entitlement + high-priority in-progress SSL case + response SLA + entitlement-under-contract; the ITSM retired SVC_041 + retired SVCOFF_050 + closed INC_015 + closed INC_064; the document register's 'Monthly Financials.xls.xlsx' workbook of record standing untrashed with the monitoring description, the register's audit attestation posted on it under the records-analyst id of record, and the change-watch open on it to the desk's monitoring endpoint with an unexpired expiration). COMPLETENESS: base_dividend == eligible_lots*1000; distribution_uplift == round(rate_index)*1000; total_distribution == base+uplift; delta == uplift=460000; branch == 'REGISTRAR_ESCALATION' (100000 <= 460000 < 100000000); the [DDX-HOLD] window on the calendar; the vm ledger NETS delta to the correct holder (a wrong-holder credit offset by a [DDX-REVERSAL] + the correct credit, net == delta AND wrong-holder net == 0); the transfer-agent handoff exists IFF the branch is B/C and cites the total + delta; the allocation + co-analyst share on Splitwise; the CRM logs total_distribution; the follow-up cites delta; the distribution TIER is RE-DERIVED from the live debit_card_specializing book (type-C, never in answers) and stamped; the three eops register beats match the inherited checks; the status email cites total + tier; reconciled == 'ok'; the review is conflict-free, after the window end, names the workbook of record and is booked only once that workbook is filed under its change-watch; side_ratio == 0.20174165457184326; side_cohort == 11. COLLATERAL (each 0): NO transfer-agent handoff on a standard-payout (branch-A) path; NO [DDX-SPECIAL] note for an A/B branch; NO naked delete of a wrong-holder credit (it must keep its [DDX-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged registrar lead; no unrelated CRM row is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped eligible_lots).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the registrar-lead distribution CRM row and confirm it is homed to distribution.lead@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='registrar.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: registrar.lead@atlas.com assigned_to distribution.lead@atlas.com.",
+        "state_delta": "none (REGISTRAR ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the dividend-eligible register-lot count from the register's own question.",
+        "reasoning": "Among Women's Soccer attendees, count DISTINCT members wanting a Medium T-shirt.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event T1 JOIN bird_student_club_attendance T2 ON T1.event_id=T2.link_to_event JOIN bird_student_club_member T3 ON T2.link_to_member=T3.member_id WHERE T1.event_name='Women''s Soccer' AND T3.t_shirt_size='Medium'"
+          }
+        },
+        "tool_result": "7.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Eligible-lot count = 7.",
+        "reasoning": "n01: record eligible_lots.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "eligible_lots",
+              "value": "7"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+eligible_lots=7"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the base dividend from the eligible-lot count.",
+        "reasoning": "n02: base_dividend=7*1000=7000; stamp the registrar CRM [DDX-BASE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "base_dividend",
+              "value": "7000"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[DDX-BASE] base_dividend=7000').",
+        "state_delta": "answers:+base_dividend=7000; CRM:+base note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the benchmark rate index from its book's own question.",
+        "reasoning": "The average monthly 2013 consumption of SME-segment customers divided by 12; keep the decimal.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT AVG(T2.Consumption)/12 FROM bird_debit_card_specializing_customers T1 JOIN bird_debit_card_specializing_yearmonth T2 ON T1.CustomerID=T2.CustomerID WHERE SUBSTR(T2.Date,1,4)='2013' AND T1.Segment='SME'"
+          }
+        },
+        "tool_result": "459.9562642870894.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Rate index = 459.9562642870894.",
+        "reasoning": "n03: record rate_index verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "rate_index",
+              "value": "459.9562642870894"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+rate_index=459.9562642870894"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=7000, rate_index=459.9562642870894.",
+        "reasoning": "n04: distribution_uplift=round(459.96)*1000=460000; total=7000+460000=467000; delta=460000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "distribution_uplift",
+              "value": "460000"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_distribution=467000,+delta=460000).",
+        "state_delta": "answers:+distribution_uplift=460000,+total_distribution=467000,+delta=460000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=460000.",
+        "reasoning": "n05: BRANCH DECISION on delta. 100000 <= 460000 < 100000000 -> branch B (REGISTRAR_ESCALATION).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 460000 >= 100000000 AS is_c, 460000 >= 100000 AS is_b_or_c"
+          }
+        },
+        "tool_result": "0,1 -> branch B.",
+        "state_delta": "none (BRANCH B SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch B.",
+        "reasoning": "n05: record branch='REGISTRAR_ESCALATION'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "REGISTRAR_ESCALATION"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=B"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [DDX-HOLD] on the lead's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 distribution review window [DDX-HOLD]",
+              "participant_email": "distribution.lead@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the dividend credit for delta. Instinct: credit the WRONG holder (wrong.holder@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 460000 credit to the wrong holder.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 460000.0,
+              "description": "Dividend credit (wrong holder) [DDX-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (lead->wrong holder).",
+        "state_delta": "venmo:+WRONG-holder credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct holder.",
+        "reasoning": "The net lead->correct holder is currently 0, not delta=460000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description NOT LIKE '%[DDX-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description LIKE '%[DDX-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 460000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [DDX-REVERSAL] as a positive 460000 in the OPPOSITE direction (wrong->lead).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<riley_vm>",
+              "amount": 460000.0,
+              "description": "Reversal of wrong-holder credit [DDX-REVERSAL] [DDX-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (460000, wrong->lead).",
+        "state_delta": "venmo:+reversal (wrong-holder net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 460000 (lead->correct holder); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 460000.0,
+              "description": "Dividend credit (correct holder) [DDX-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 460000=delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: branch B requires a transfer-agent handoff.",
+        "reasoning": "Email transfer.agent@registry.example a [DDX-HANDOFF] citing total_distribution=467000, delta=460000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<agent_gm>]",
+              "subject": "distribution handoff [DDX-HANDOFF]",
+              "body": "... total_distribution 467000 delta 460000 branch B ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+handoff email (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total distribution on the registrar CRM (handoff sent).",
+        "reasoning": "Prepend '[DDX-LOG] total_distribution=467000' to the registrar CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[DDX-LOG] total_distribution=467000 <existing>"
+            },
+            "where": "lower(customer_email)='registrar.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany distribution-effort allocation.",
+        "reasoning": "INSERT sw_expenses [DDX-ALLOC] amount=total_distribution (467000) with a co-analyst share (233500.0).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 467000.0,
+              "description": "Q1 intercompany distribution-effort [DDX-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-analyst share 233500.0).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [DDX-FUP] in 'Q1 Dividend Distribution Docket' citing delta=460000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "Reconcile Q1 dividend distribution [DDX-FUP] [delta=460000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the distribution TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live rate-index book: round(rate_index)*1000=460000 -> TIER_2_REGISTRAR_ESCALATION; write [DDX-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN (CAST(ROUND((SELECT AVG(T2.Consumption) / 12 FROM bird_debit_card_specializing_customers AS T1 INNER JOIN bird_debit_card_specializing_yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTR(T2.Date, 1, 4) = '2013' AND T1.Segment = 'SME')) AS INTEGER)*1000) >= 100000000 THEN 'TIER_3_SPECIAL_REVIEW' WHEN (CAST(ROUND((SELECT AVG(T2.Consumption) / 12 FROM bird_debit_card_specializing_customers AS T1 INNER JOIN bird_debit_card_specializing_yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTR(T2.Date, 1, 4) = '2013' AND T1.Segment = 'SME')) AS INTEGER)*1000) >= 100000 THEN 'TIER_2_REGISTRAR_ESCALATION' ELSE 'TIER_1_STANDARD_PAYOUT' END)"
+          }
+        },
+        "tool_result": "'TIER_2_REGISTRAR_ESCALATION' (460000 in [100000,100000000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the registrar CRM status='[DDX-TIER] TIER_2_REGISTRAR_ESCALATION'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[DDX-TIER] TIER_2_REGISTRAR_ESCALATION"
+            },
+            "where": "lower(customer_email)='registrar.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=TIER_2_REGISTRAR_ESCALATION"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: set up the institutional-holder service engagement in the CSM register (gated on the tier stamp).",
+        "reasoning": "Per the handbook: Wayne Enterprises active support contract 150000; premium h24x7 entitlement on Windows Server 2022 Datacenter; SSL case high/in_progress; response SLA in progress.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_sn_csm_server_contract",
+            "values": {
+              "account_id": 7,
+              "contract_type": "support",
+              "status": "active",
+              "contract_price": 150000,
+              "start_date": "2026-01-01"
+            }
+          }
+        },
+        "tool_result": "1 contract (+entitlement + case + SLA).",
+        "state_delta": "CSM register: +engagement"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: retire the legacy distribution service in the ITSM register (gated on the CSM engagement).",
+        "reasoning": "Per the handbook: set SVC_041 and SVCOFF_050 'retired'; close INC_015/INC_064 with close notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_service",
+            "set": {
+              "status": "retired"
+            },
+            "where": "service_id='SVC_041'"
+          }
+        },
+        "tool_result": "1 row (+offering retired + 2 incidents closed).",
+        "state_delta": "ITSM register: +retirement"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the registrar lead.",
+        "reasoning": "INSERT gm_emails riley->registrar [DDX-STATUS] citing total_distribution=467000 and tier TIER_2_REGISTRAR_ESCALATION.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<rego_gm>]",
+              "subject": "distribution status [DDX-STATUS]",
+              "body": "... total_distribution 467000 ... TIER_2_REGISTRAR_ESCALATION ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: file the quarter's workbook of record on the document register (citing the status update's figures).",
+        "reasoning": "Per the handbook: file 'Monthly Financials.xls.xlsx' untrashed with the monitoring description; post the standing audit attestation under carmenalvarez22@airbnb.com; post the classification note citing total_distribution=467000 and TIER_2_REGISTRAR_ESCALATION; open the change-watch to https://monitoring.company.com/drive-changes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_google_drive_mcp_files",
+            "values": {
+              "name": "Monthly Financials.xls.xlsx",
+              "description": "Under comprehensive monitoring - all changes tracked and audited.",
+              "trashed": 0
+            }
+          }
+        },
+        "tool_result": "1 file (+attestation comment + classification comment + change-watch channel).",
+        "state_delta": "document register: +workbook of record"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: reconcile the credit ledger to delta (long-range from n04/n07/n02/n03).",
+        "reasoning": "Confirm the net posted to the correct holder == delta (460000) AND re-derive the figure chain: the recorded total_distribution 467000 still equals base_dividend 7000 + round(459.9562642870894)*1000; record reconciled='ok' + [DDX-RECON] delta=460000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description NOT LIKE '%[DDX-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description LIKE '%[DDX-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (460000==460000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n17: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[DDX-RECON] delta=460000' to the registrar CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 27,
+        "phase": "discovery",
+        "observation": "n18: read the window end and the lead's busy slots.",
+        "reasoning": "Read the [DDX-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[DDX-HOLD]%' AND lower(participant_email)=lower('distribution.lead@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n18: schedule the '[DDX-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Registrar distribution review [DDX-REVIEW] \u2014 record: Monthly Financials.xls.xlsx",
+              "participant_email": "distribution.lead@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+distribution review"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "n19: independent side ratio (birdsql:34).",
+        "reasoning": "Free meal count ages 5-17 as REAL over enrollment ages 5-17, at Kacey Gibson's school.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL)/T2.`Enrollment (Ages 5-17)` FROM bird_california_schools_schools T1 JOIN bird_california_schools_frpm T2 ON T1.CDSCode=T2.CDSCode WHERE T1.AdmFName1='Kacey' AND T1.AdmLName1='Gibson'"
+          }
+        },
+        "tool_result": "0.20174165457184326.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "Side ratio = 0.20174165457184326.",
+        "reasoning": "n19: record side_ratio verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_ratio",
+              "value": "0.20174165457184326"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_ratio=0.20174165457184326"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "n20: independent side cohort (birdsql:864).",
+        "reasoning": "Count drivers whose finishing time is not null for the race on 2015-11-29.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T2.driverId) FROM bird_formula_1_races T1 JOIN bird_formula_1_results T2 ON T2.raceId=T1.raceId WHERE T1.date='2015-11-29' AND T2.time IS NOT NULL"
+          }
+        },
+        "tool_result": "11.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 32,
+        "phase": "execution",
+        "observation": "Side cohort = 11.",
+        "reasoning": "n20: record side_cohort verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_cohort",
+              "value": "11"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_cohort=11"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct holder == delta and branch B recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description NOT LIKE '%[DDX-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.holder@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='distribution.lead@atlas.com') AND description LIKE '%[DDX-CREDIT]%' AND description LIKE '%[DDX-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "460000.0, 'REGISTRAR_ESCALATION' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no special-review note / extra handoff for a standard-payout branch and every wrong-holder credit has a [DDX-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[DDX-SPECIAL]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[DDX-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> branch C absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 35,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', all three eops register beats are in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_itsm_mcp_service WHERE service_id='SVC_041' AND status='retired')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the credit posting, the window and the allocation) and joins (n18 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n17 (gap 13), the [DDX-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n18 (gap 12), and total_distribution resurfaces in the status email at n15. The cross-book mid value (rate_index from the debit_card_specializing book, birdsql:1473) is woven into the delta and thus into the branch and the whole downstream; n19 (california_schools, birdsql:34) and n20 (formula_1, birdsql:864) are two independent side anchors no downstream check reads, reported verbatim. The distribution tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live debit_card_specializing book, and the CSM engagement's composition gate binds the STAMPED tier to that live re-derivation. The three EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The dividend credit is COMPENSATABLE: the first (wrong-holder) credit must be corrected by a matching [DDX-REVERSAL] then the correct credit \u2014 the net lead->correct-holder credit == delta, and the collateral 'no_naked_delete_of_wrong_holder_credit' forbids removing the wrong row. On the real data delta=460000 mandates branch B (REGISTRAR_ESCALATION: transfer-agent handoff, no special note); the FSV accepts branch B complete AND rejects a spurious special note or an extra handoff on branch A.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "bridge",
+    "probe_edge": {
+      "from": "n01",
+      "to": "n02"
+    },
+    "staged_value": "eligible_lots",
+    "k": 1,
+    "relays": [
+      "nbridge1"
+    ],
+    "added_kinds": [
+      "eligible_lots_staged1"
+    ],
+    "signature": {
+      "dG": 1,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

@@ -1,0 +1,550 @@
+[
+ {
+  "id": "h01",
+  "node": "n02",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n01",
+    "type": "value",
+    "kind": "compliance_index",
+    "value": "11"
+   }
+  ],
+  "note": "For the step that Set the deal-desk delegation BAR from the compliance index, the upstream results it depends on, exactly as the reference run produced them: compliance_index = 11 (the figure recorded by the step that In the molecule containing sodium atoms, how many are non-carcinogenic?)."
+ },
+ {
+  "id": "h02",
+  "node": "n04",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "start",
+  "tables": [],
+  "items": [
+   {
+    "from": "n02",
+    "type": "value",
+    "kind": "bar",
+    "value": "11000"
+   },
+   {
+    "from": "n03",
+    "type": "value",
+    "kind": "deal_count",
+    "value": "236"
+   }
+  ],
+  "note": "For the step that Compute the deal-desk exposure from the stored answers, the upstream results it depends on, exactly as the reference run produced them: bar = 11000 (the figure recorded by the step that Set the deal-desk delegation BAR from the compliance index); deal_count = 236 (the figure recorded by the step that How many users with more than 10 views created their account after the year 2013?)."
+ },
+ {
+  "id": "h03",
+  "node": "n05",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "start",
+  "tables": [],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "discount_impact",
+    "value": "23600"
+   },
+   {
+    "from": "n02",
+    "type": "value",
+    "kind": "bar",
+    "value": "11000"
+   }
+  ],
+  "note": "For the step that Decide the approval-routing branch on the computed state, the upstream results it depends on, exactly as the reference run produced them: discount_impact = 23600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers); bar = 11000 (the figure recorded by the step that Set the deal-desk delegation BAR from the compliance index)."
+ },
+ {
+  "id": "h04",
+  "node": "n06",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "total_exposure",
+    "value": "34600"
+   }
+  ],
+  "note": "For the step that Once the total exposure is computed, place the approval-review WINDOW on the lead's calendar (participant_email=sam.chen@atlas.com): INSERT …, the upstream results it depends on, exactly as the reference run produced them: total_exposure = 34600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers)."
+ },
+ {
+  "id": "h05",
+  "node": "n07",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "delta",
+    "value": "23600"
+   }
+  ],
+  "note": "For the step that Post the rebate credit run for EXACTLY delta on the recipient ledger, the upstream results it depends on, exactly as the reference run produced them: delta = 23600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers)."
+ },
+ {
+  "id": "h06",
+  "node": "n08",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "total_exposure",
+    "value": "34600"
+   },
+   {
+    "from": "n05",
+    "type": "value",
+    "kind": "branch",
+    "value": "MULTI_LEVEL_APPROVE"
+   }
+  ],
+  "note": "For the step that If the routing branch is 'MULTI_LEVEL_APPROVE' or 'ESCALATE_TO_CEO', send the sales VP the approval-chain email, the upstream results it depends on, exactly as the reference run produced them: total_exposure = 34600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers); branch = MULTI_LEVEL_APPROVE (the figure recorded by the step that Decide the approval-routing branch on the computed state)."
+ },
+ {
+  "id": "h07",
+  "node": "n09",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n08",
+    "type": "state",
+    "table": "gm_emails",
+    "tags": [
+     "[DDA-CHAIN-EMAIL]"
+    ],
+    "record": {
+     "recipient_ids": "[154]",
+     "created_at": "2024-03-08 09:30:00",
+     "id": 20867,
+     "sender_id": 152,
+     "subject": "Approval routing [DDA-CHAIN-EMAIL]",
+     "body": "Alex, the deal-desk review has total_exposure=34600 (delta=23600, branch MULTI_LEVEL_APPROVE). Please run the approval chain."
+    },
+    "n_candidates": 2
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "total_exposure",
+    "value": "34600"
+   },
+   {
+    "from": "n05",
+    "type": "value",
+    "kind": "branch",
+    "value": "MULTI_LEVEL_APPROVE"
+   }
+  ],
+  "note": "For the step that Log the approval kickoff on the key-account CRM record, the upstream results it depends on, exactly as the reference run produced them: the record the step that If the routing branch is 'MULTI_LEVEL_APPROVE' or 'ESCALATE_TO_CEO', send the sales VP the approval-chain email files in gm_emails: {\"recipient_ids\": \"[154]\", \"created_at\": \"2024-03-08 09:30:00\", \"id\": 20867, \"sender_id\": 152, \"subject\": \"Approval routing [DDA-CHAIN-EMAIL]\", \"body\": \"Alex, the deal-desk review has total_exposure=34600 (delta=23600, branch MULTI_LEVEL_APPROVE). Please run the approval chain.\"}; total_exposure = 34600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers); branch = MULTI_LEVEL_APPROVE (the figure recorded by the step that Decide the approval-routing branch on the computed state)."
+ },
+ {
+  "id": "h08",
+  "node": "n10",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "total_exposure",
+    "value": "34600"
+   }
+  ],
+  "note": "For the step that Post the legal-review fee ALLOCATION on the sw_* deal-desk ledger, the upstream results it depends on, exactly as the reference run produced them: total_exposure = 34600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers)."
+ },
+ {
+  "id": "h09",
+  "node": "n11",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "items": [
+   {
+    "from": "n09",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[DDA-LOGGED]"
+    ],
+    "record": {
+     "customer_id": "00000001",
+     "assigned_to_email": "sam.chen@atlas.com",
+     "customer_name": "Marc Henry",
+     "customer_email": "marc.henry@stark-industries.com",
+     "last_contact_date": "2023-11-18",
+     "product_interest": "Software",
+     "status": "[DDA-TIER] PRIORITY_REVIEW",
+     "notes": "[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master."
+    },
+    "n_candidates": 1
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "delta",
+    "value": "23600"
+   }
+  ],
+  "note": "For the step that Open the approval follow-up, the upstream results it depends on, exactly as the reference run produced them: the record the step that Log the approval kickoff on the key-account CRM record files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000001\", \"assigned_to_email\": \"sam.chen@atlas.com\", \"customer_name\": \"Marc Henry\", \"customer_email\": \"marc.henry@stark-industries.com\", \"last_contact_date\": \"2023-11-18\", \"product_interest\": \"Software\", \"status\": \"[DDA-TIER] PRIORITY_REVIEW\", \"notes\": \"[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master.\"}; delta = 23600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers)."
+ },
+ {
+  "id": "h10",
+  "node": "n12",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n11",
+    "type": "state",
+    "table": "td_tasks",
+    "tags": [
+     "[DDA-FUP]"
+    ],
+    "record": {
+     "priority": "p2",
+     "created_at": "2024-03-09 09:00:00",
+     "id": 6334,
+     "project_id": 280,
+     "user_id": 107,
+     "title": "Reconcile deal-desk approval [DDA-FUP] [delta=23600]",
+     "description": "Post-approval reconciliation follow-up",
+     "is_completed": 0,
+     "order_index": 1
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Classify the rep TIER. RE-DERIVE it from the live pipeline registry: exposure = (the flagged-deal count) * 100, TIER = 'ESCALATED_REVIEW' if…, the upstream results it depends on, exactly as the reference run produced them: the record the step that Open the approval follow-up files in td_tasks: {\"priority\": \"p2\", \"created_at\": \"2024-03-09 09:00:00\", \"id\": 6334, \"project_id\": 280, \"user_id\": 107, \"title\": \"Reconcile deal-desk approval [DDA-FUP] [delta=23600]\", \"description\": \"Post-approval reconciliation follow-up\", \"is_completed\": 0, \"order_index\": 1}."
+ },
+ {
+  "id": "h11",
+  "node": "n13",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "eops_sn_csm_server_customer_case",
+   "eops_sn_csm_server_notification",
+   "eops_sn_csm_server_user_group_member"
+  ],
+  "items": [
+   {
+    "from": "n12",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[DDA-TIER]"
+    ],
+    "record": {
+     "customer_id": "00000001",
+     "assigned_to_email": "sam.chen@atlas.com",
+     "customer_name": "Marc Henry",
+     "customer_email": "marc.henry@stark-industries.com",
+     "last_contact_date": "2023-11-18",
+     "product_interest": "Software",
+     "status": "[DDA-TIER] PRIORITY_REVIEW",
+     "notes": "[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master."
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Open the key account's deal-desk review case in the desk's CSM register, the upstream results it depends on, exactly as the reference run produced them: the record the step that Classify the rep TIER. RE-DERIVE it from the live pipeline registry: exposure = (the flagged-deal count) * 100, TIER = 'ESCALATED_REVIEW' if… files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000001\", \"assigned_to_email\": \"sam.chen@atlas.com\", \"customer_name\": \"Marc Henry\", \"customer_email\": \"marc.henry@stark-industries.com\", \"last_contact_date\": \"2023-11-18\", \"product_interest\": \"Software\", \"status\": \"[DDA-TIER] PRIORITY_REVIEW\", \"notes\": \"[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master.\"}."
+ },
+ {
+  "id": "h12",
+  "node": "n14",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_email_mcp_filters"
+  ],
+  "items": [
+   {
+    "from": "n13",
+    "type": "state",
+    "table": "eops_sn_csm_server_customer_case",
+    "tags": [],
+    "record": {
+     "case_id": 1233,
+     "number": "CS-0001233",
+     "account_id": "8",
+     "contact_id": "10",
+     "product_id": "25",
+     "installed_product_id": "40",
+     "channel": "email",
+     "priority": "high",
+     "state": "new",
+     "short_description": "Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: deal-desk non-standard-deal review [DDA-TIER] PRIORITY_REVIEW",
+     "assignment_group_id": "11",
+     "assigned_to": "3",
+     "escalation": 0,
+     "reopen_count": 0
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that File the review-routing mail filter in the desk's email register (mailbox 'user_001'), the upstream results it depends on, exactly as the reference run produced them: the record the step that Open the key account's deal-desk review case in the desk's CSM register files in eops_sn_csm_server_customer_case: {\"case_id\": 1233, \"number\": \"CS-0001233\", \"account_id\": \"8\", \"contact_id\": \"10\", \"product_id\": \"25\", \"installed_product_id\": \"40\", \"channel\": \"email\", \"priority\": \"high\", \"state\": \"new\", \"short_description\": \"Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: deal-desk non-standard-deal review [DDA-TIER] PRIORITY_REVIEW\", \"assignment_group_id\": \"11\", \"assigned_to\": \"3\", \"escalation\": 0, \"reopen_count\": 0}."
+ },
+ {
+  "id": "h13",
+  "node": "n15",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "items": [
+   {
+    "from": "n14",
+    "type": "state",
+    "table": "eops_gym_email_mcp_filters",
+    "tags": [],
+    "record": {
+     "id": "filter_dda_001",
+     "user_id": "user_001",
+     "criteria_json": "{\"query\": \"Review in:chats\"}",
+     "action_json": "{\"addLabelIds\": [\"label_006\", \"label_007\", \"label_001\"]}"
+    },
+    "n_candidates": 1
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "total_exposure",
+    "value": "34600"
+   }
+  ],
+  "note": "For the step that Send the key account a status update, the upstream results it depends on, exactly as the reference run produced them: the record the step that File the review-routing mail filter in the desk's email register (mailbox 'user_001') files in eops_gym_email_mcp_filters: {\"id\": \"filter_dda_001\", \"user_id\": \"user_001\", \"criteria_json\": \"{\\\"query\\\": \\\"Review in:chats\\\"}\", \"action_json\": \"{\\\"addLabelIds\\\": [\\\"label_006\\\", \\\"label_007\\\", \\\"label_001\\\"]}\"}; total_exposure = 34600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers)."
+ },
+ {
+  "id": "h14",
+  "node": "n16",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_google_drive_mcp_comments",
+   "eops_gym_google_drive_mcp_files",
+   "eops_gym_google_drive_mcp_permissions",
+   "eops_gym_google_drive_mcp_replies"
+  ],
+  "items": [
+   {
+    "from": "n15",
+    "type": "state",
+    "table": "gm_emails",
+    "tags": [
+     "[DDA-STATUS]"
+    ],
+    "record": {
+     "recipient_ids": "[153]",
+     "created_at": "2024-03-10 09:00:00",
+     "id": 20868,
+     "sender_id": 152,
+     "subject": "Deal-desk status [DDA-STATUS]",
+     "body": "Hi Marc Henry, wrapping the deal-desk approval (total_exposure=34600). As a PRIORITY_REVIEW account you have priority support. Best, Sam."
+    },
+    "n_candidates": 2
+   }
+  ],
+  "note": "For the step that Close out the review of the deal packet's Technical Spec annex (01JBQM3K8TGHZX9RNVQM5Y2P8R) in the desk's shared drive register and file the…, the upstream results it depends on, exactly as the reference run produced them: the record the step that Send the key account a status update files in gm_emails: {\"recipient_ids\": \"[153]\", \"created_at\": \"2024-03-10 09:00:00\", \"id\": 20868, \"sender_id\": 152, \"subject\": \"Deal-desk status [DDA-STATUS]\", \"body\": \"Hi Marc Henry, wrapping the deal-desk approval (total_exposure=34600). As a PRIORITY_REVIEW account you have priority support. Best, Sam.\"}."
+ },
+ {
+  "id": "h15",
+  "node": "n17",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_calendar_events"
+  ],
+  "items": [
+   {
+    "from": "n16",
+    "type": "state",
+    "table": "eops_gym_google_drive_mcp_files",
+    "tags": [
+     "[DDA-STATUS]"
+    ],
+    "record": {
+     "id": "file_dda_audit",
+     "drive_id": "01JBQM3K8TGHZX9RNVQM5Y2P8B",
+     "name": "Q4 Comment Audit Report",
+     "mime_type": "application/vnd.google-apps.document",
+     "parent_id": "01JBQM3K8TGHZX9RNVQM5Y2P8Q",
+     "trashed": 0,
+     "created_by": "01JBQM3K8TGHZX9RNVQM5Y2P7Y",
+     "created_time": "2024-03-10 10:05:00",
+     "properties": "{\"audit_cycle\": \"Q4 2024\", \"threads_audited\": 3, \"source_file\": \"01JBQM3K8TGHZX9RNVQM5Y2P8R\"}",
+     "description": "[DDA-STATUS] deal-desk dossier close-out for Marc Henry: Technical Spec annex review threads audited (1 resolved, 2 confirmed closed); total_exposure=34600; tier PRIORITY_REVIEW."
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Stand up the client demo on the desk's shared coordination calendar, the upstream results it depends on, exactly as the reference run produced them: the record the step that Close out the review of the deal packet's Technical Spec annex (01JBQM3K8TGHZX9RNVQM5Y2P8R) in the desk's shared drive register and file the… files in eops_gym_google_drive_mcp_files: {\"id\": \"file_dda_audit\", \"drive_id\": \"01JBQM3K8TGHZX9RNVQM5Y2P8B\", \"name\": \"Q4 Comment Audit Report\", \"mime_type\": \"application/vnd.google-apps.document\", \"parent_id\": \"01JBQM3K8TGHZX9RNVQM5Y2P8Q\", \"trashed\": 0, \"created_by\": \"01JBQM3K8TGHZX9RNVQM5Y2P7Y\", \"created_time\": \"2024-03-10 10:05:00\", \"properties\": \"{\\\"audit_cycle\\\": \\\"Q4 2024\\\", \\\"threads_audited\\\": 3, \\\"source_file\\\": \\\"01JBQM3K8TGHZX9RNVQM5Y2P8R\\\"}\", \"description\": \"[DDA-STATUS] deal-desk dossier close-out for Marc Henry: Technical Spec annex review threads audited (1 resolved, 2 confirmed closed); total_exposure=34600; tier PRIORITY_REVIEW.\"}."
+ },
+ {
+  "id": "h16",
+  "node": "n18",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n07",
+    "type": "state",
+    "table": "vm_transactions",
+    "tags": [],
+    "record": {
+     "created_at": "2024-03-08 09:00:00",
+     "id": 8216,
+     "sender_id": 107,
+     "receiver_id": 109,
+     "amount": 23600.0,
+     "description": "Rebate credit (wrong recipient) [DDA-REBATE]",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0
+    },
+    "n_candidates": 3
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "delta",
+    "value": "23600"
+   },
+   {
+    "from": "n02",
+    "type": "value",
+    "kind": "bar",
+    "value": "11000"
+   },
+   {
+    "from": "n03",
+    "type": "value",
+    "kind": "deal_count",
+    "value": "236"
+   }
+  ],
+  "note": "For the step that Reconcile the posted rebate against the recorded delta, the upstream results it depends on, exactly as the reference run produced them: the record the step that Post the rebate credit run for EXACTLY delta on the recipient ledger files in vm_transactions: {\"created_at\": \"2024-03-08 09:00:00\", \"id\": 8216, \"sender_id\": 107, \"receiver_id\": 109, \"amount\": 23600.0, \"description\": \"Rebate credit (wrong recipient) [DDA-REBATE]\", \"private\": 0, \"receipt_download_count\": 0, \"like_count\": 0}; delta = 23600 (the figure recorded by the step that Compute the deal-desk exposure from the stored answers); bar = 11000 (the figure recorded by the step that Set the deal-desk delegation BAR from the compliance index); deal_count = 236 (the figure recorded by the step that How many users with more than 10 views created their account after the year 2013?)."
+ },
+ {
+  "id": "h17",
+  "node": "n19",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "items": [
+   {
+    "from": "n06",
+    "type": "state",
+    "table": "wb_calendar_events",
+    "tags": [
+     "[DDA-HOLD]"
+    ],
+    "record": {
+     "event_id": "00000301",
+     "event_name": "Deal-desk approval window [DDA-HOLD]",
+     "participant_email": "sam.chen@atlas.com",
+     "event_start": "2024-03-08 09:00:00",
+     "duration": "2880"
+    },
+    "n_candidates": 2
+   },
+   {
+    "from": "n18",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[DDA-RECON]"
+    ],
+    "record": {
+     "customer_id": "00000001",
+     "assigned_to_email": "sam.chen@atlas.com",
+     "customer_name": "Marc Henry",
+     "customer_email": "marc.henry@stark-industries.com",
+     "last_contact_date": "2023-11-18",
+     "product_interest": "Software",
+     "status": "[DDA-TIER] PRIORITY_REVIEW",
+     "notes": "[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master."
+    },
+    "n_candidates": 1
+   },
+   {
+    "from": "n17",
+    "type": "state",
+    "table": "eops_gym_calendar_events",
+    "tags": [],
+    "record": {
+     "event_id": "evt-dda-demoA",
+     "calendar_id": "dave-sales",
+     "user_id": "dave_sales",
+     "summary": "Enterprise Client Demo",
+     "location": "MegaCorp Headquarters, 123 Business Ave, New York, NY",
+     "start_datetime": "2025-12-09 11:00:00.000000",
+     "end_datetime": "2025-12-09 13:00:00.000000",
+     "start_timezone": "America/New_York",
+     "end_timezone": "America/New_York",
+     "status": "confirmed",
+     "visibility": "confidential",
+     "color_id": "11",
+     "source": "CRM System - MegaCorp Deal https://crm.techcorp.com/deals/megacorp-2024"
+    },
+    "n_candidates": 2
+   }
+  ],
+  "note": "For the step that Schedule the QBR pricing review, the upstream results it depends on, exactly as the reference run produced them: the record the step that Once the total exposure is computed, place the approval-review WINDOW on the lead's calendar (participant_email=sam.chen@atlas.com): INSERT … files in wb_calendar_events: {\"event_id\": \"00000301\", \"event_name\": \"Deal-desk approval window [DDA-HOLD]\", \"participant_email\": \"sam.chen@atlas.com\", \"event_start\": \"2024-03-08 09:00:00\", \"duration\": \"2880\"}; the record the step that Reconcile the posted rebate against the recorded delta files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000001\", \"assigned_to_email\": \"sam.chen@atlas.com\", \"customer_name\": \"Marc Henry\", \"customer_email\": \"marc.henry@stark-industries.com\", \"last_contact_date\": \"2023-11-18\", \"product_interest\": \"Software\", \"status\": \"[DDA-TIER] PRIORITY_REVIEW\", \"notes\": \"[DDA-RECON] delta=23600 [DDA-LOGGED] total_exposure=34600 approval kickoff [DDA-BAR] bar=11000 Stark Industries master.\"}; the record the step that Stand up the client demo on the desk's shared coordination calendar files in eops_gym_calendar_events: {\"event_id\": \"evt-dda-demoA\", \"calendar_id\": \"dave-sales\", \"user_id\": \"dave_sales\", \"summary\": \"Enterprise Client Demo\", \"location\": \"MegaCorp Headquarters, 123 Business Ave, New York, NY\", \"start_datetime\": \"2025-12-09 11:00:00.000000\", \"end_datetime\": \"2025-12-09 13:00:00.000000\", \"start_timezone\": \"America/New_York\", \"end_timezone\": \"America/New_York\", \"status\": \"confirmed\", \"visibility\": \"confidential\", \"color_id\": \"11\", \"source\": \"CRM System - MegaCorp Deal https://crm.techcorp.com/deals/megacorp-2024\"}."
+ }
+]

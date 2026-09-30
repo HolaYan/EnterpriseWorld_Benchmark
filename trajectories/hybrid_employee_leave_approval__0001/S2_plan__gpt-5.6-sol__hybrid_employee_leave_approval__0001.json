@@ -1,0 +1,4942 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_47_leave_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "base_entitlement_is_scaled_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "base_entitlement_derives_from_stored_leave_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "hrdir_crm_base_entitlement_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_864_cohort_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n04": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "adjustment_uplift_is_cohort_times_1000",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_cohort_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_scope_equals_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n05": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n06": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n07": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_employee",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n08": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "handoff_sent_iff_extended_or_escalation",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "handoff_sent_iff_extended_or_escalation"
+   ]
+  },
+  "n09": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_logged_total_gated_by_branch",
+    "ancestors_pass__n09"
+   ]
+  },
+  "n10": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n11": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n11"
+   ]
+  },
+  "n12": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n12"
+   ]
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "csm_sla9_completed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_case5_closed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_sla10_completed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_closure_gated_on_tier_stamp",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n13"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "hr_loa_case_ready_for_account",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "hr_loa_case_assigned_service_desk",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "hr_employee_update_notified",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "loa_case_cites_closed_benefits_case_and_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_total_tier_and_loa_case",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1160_side_ratio",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n17": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__leave_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__base_entitlement_is_fn_of_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__cohort_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__adjustment_uplift_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__total_scope_is_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_ratio_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_roster_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_records_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n18",
+    "final_task_terminal"
+   ]
+  },
+  "n19": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_721_side_roster",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n20": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_537_side_records",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  }
+ },
+ "terminal": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "leave_index_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "base_entitlement_is_fn_of_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "cohort_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "adjustment_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "total_scope_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_credit_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_employee_credit_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "handoff_email_matches_branch_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_total_scope",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "csm_case_closure_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "loa_case_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_total_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_ratio_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "side_roster_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_records_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "no_standard_leave_board_handoff",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_escalation_note_for_non_escalation_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_employee_credit",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_hrdir",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_47_leave_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__base_entitlement_is_scaled_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__base_entitlement_derives_from_stored_leave_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__hrdir_crm_base_entitlement_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_864_cohort_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__adjustment_uplift_is_cohort_times_1000",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_derives_from_stored_cohort_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_scope_equals_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_derives_from_stored_base_and_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__review_window_hold_placed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_employee",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_credit_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__handoff_sent_iff_extended_or_escalation",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_total_gated_by_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_sla9_completed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_case5_closed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_sla10_completed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_closure_gated_on_tier_stamp",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__hr_loa_case_ready_for_account",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__hr_loa_case_assigned_service_desk",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__hr_employee_update_notified",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__loa_case_cites_closed_benefits_case_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_total_tier_and_loa_case",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__src_birdsql_1160_side_ratio",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_net_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_figures_consistent",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__review_after_window_conflict_free_gated",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_terminal",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__leave_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__base_entitlement_is_fn_of_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__cohort_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__adjustment_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__total_scope_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_ratio_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_roster_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_records_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__src_birdsql_721_side_roster",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_537_side_records",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ],
+  "n_ok": 81,
+  "n_checks": 94,
+  "failed": [
+   "leave_index_correct",
+   "handoff_email_matches_branch_class",
+   "side_ratio_correct",
+   "node_n08__handoff_sent_iff_extended_or_escalation",
+   "node_n09__crm_logged_total_gated_by_branch",
+   "node_n09__ancestors_pass__n09",
+   "node_n11__ancestors_pass__n11",
+   "node_n12__ancestors_pass__n12",
+   "node_n13__ancestors_pass__n13",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__ancestors_pass__n15",
+   "node_n18__ancestors_pass__n18",
+   "node_n18__final_task_terminal"
+  ]
+ },
+ "n_tool_calls": 112,
+ "n_turns": 28,
+ "n_assistant_msgs": 1,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 452.7,
+ "usage": {
+  "input_tokens": 41594,
+  "output_tokens": 7104,
+  "reasoning_tokens": 8263,
+  "cache_read_tokens": 626304,
+  "cache_write_tokens": 0,
+  "steps": 28
+ },
+ "runner_errors": [],
+ "transport": {
+  "api": "responses",
+  "reasoning_effort": "high"
+ },
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nAdjudicate the quarterly employee-leave entitlement for the regional workforce. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nadjustment_uplift: the adjustment uplift — whole number, no thousands separators\nbase_entitlement: the base entitlement — whole number\nbranch: the leave route — exactly one of {STANDARD_LEAVE, EXTENDED_REVIEW, BOARD_ESCALATION}\ncohort_index: the eligible-cohort count — whole number\ndelta: the escalation delta — whole number\nleave_index: the workforce leave index — the book's exact decimal value\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta\nside_ratio: the first side anchor — the book's exact decimal value\nside_records: the third side anchor — whole number\nside_roster: the second side anchor — whole number\ntotal_scope: the total leave scope — whole number\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nHR LEAVE-APPROVAL DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[ELA-BASE]' — HR-director CRM notes: the base-entitlement stamp, citing 'base_entitlement=<n>'.\n   - '[ELA-HOLD]' — wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[ELA-CREDIT]' — entitlement ledger (vm) DESCRIPTION of every entitlement-credit entry.\n   - '[ELA-REVERSAL]' — entitlement ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[ELA-CREDIT]' tag).\n   - '[ELA-HANDOFF]' — email SUBJECT of the appeals-board handoff; the BODY must cite the total scope and the delta.\n   - '[ELA-LOG]' — HR-director CRM notes: the leave log, citing 'total_scope=<n>'.\n   - '[ELA-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany review-line allocation. The expense books the full recorded total_scope as its amount, and its sw_expense_shares row assigns co.hr.partner@atlas.com a share of exactly half that amount.\n   - '[ELA-FUP]' — Todoist task TITLE (in your 'Q1 Leave Approval Docket' project); the title cites the delta.\n   - '[ELA-TIER]' — HR-director CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[ELA-STATUS]' — email SUBJECT of the HR-director status update; the BODY must cite the total scope and the tier word.\n   - '[ELA-RECON]' — HR-director CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[ELA-CREDIT]' ledger (credits minus reversals) at write time, and the 'ok' verdict is written only after the recorded total_scope is re-derived from the recorded base_entitlement and cohort_index (the goal's own figure chain).\n   - '[ELA-REVIEW]' — wb_calendar_events EVENT NAME of the post-window leave review.\n   - '[ELA-ESCALATION]' — HR-director CRM notes: the board-escalation note, filed ONLY on the board-escalation route.\n\n2. ROUTE AND TIER WORDS. The leave route is always one of the desk's three route words: 'STANDARD_LEAVE', 'EXTENDED_REVIEW', 'BOARD_ESCALATION'. The leave tier is always one of the desk's three tier words: 'TIER_1_STANDARD', 'TIER_2_EXTENDED', 'TIER_3_BOARD'. A cited tier word is re-derived from the live roster book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (hr.specialist@atlas.com); the HR director is written to at hr.director@atlas.com, the appeals board at leave.appeals@benefitsboard.example. Entitlement credits run on the vm ledger FROM you TO the correct employee (employee.correct@atlas.com); a credit that lands on the wrong employee (employee.wrong@atlas.com) is corrected by that employee sending the same amount back to you, never deleted. The review-effort allocation runs on the sw ledger between you and the co-HR partner (co.hr.partner@atlas.com). Follow-up work lives in your Todoist 'Q1 Leave Approval Docket' project; the window and review on your own wb_calendar_events (participant_email = hr.specialist@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Entitlement rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the HR-director row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the HR-director record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The leave review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the leave index and the side ratio keep their exact decimals); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated — the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The benefits-case closure sets the two open SLA stages (case_sla_id 9 and 10) to stage 'completed', and the benefits case (case_id 5) to state 'closed'.\n   - HR register (eops_sn_hr_internal_* tables). The employee is on file there under the register's own ids of record: user Christina Oliver (user_id 2, email christina.oliver@carsonllc.com), account 'HRC0000772'; the desk files under its own register user (user_id 4). The leave-of-absence case filing INSERTs one hr_case row: hr_case_id the next on the register, number in the register's HRC format (the next after the highest on file), status 'ready', hr_service 6 ('Leave Of Absence'), opened_for 2, assignment_group 4 ('HR Service Desk'), account_number 'HRC0000772', coe_type 'Total Rewards'; its short_description cites the closed benefits case's number as it reads on the CSM register (customer_case.number for case_id 5) and the tier word off the '[ELA-TIER]' stamp. Then one notification row on that case: type 'update', email = the employee's register email, status 'ready'. The status update to the HR director cites that case's number.\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_hr_director\": [{\"customer_id\": \"00000002\", \"customer_email\": \"hr.director@atlas.com\", \"customer_name\": \"HR Director\", \"assigned_to_email\": \"hr.specialist@atlas.com\", \"status\": \"Active\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"hr.specialist@atlas.com\", \"note\": \"\"}, {\"email\": \"employee.correct@atlas.com\", \"note\": \"\"}, {\"email\": \"employee.wrong@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"hr.specialist@atlas.com\", \"note\": \"\"}, {\"email\": \"hr.director@atlas.com\", \"note\": \"\"}, {\"email\": \"leave.appeals@benefitsboard.example\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Leave Approval Docket\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"HR-desk daily standup\", \"participant_email\": \"hr.specialist@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"eops_sn_csm_server_customer_case\": [{\"case_id\": 5, \"state\": \"in_progress\", \"note\": \"\"}], \"eops_sn_hr_internal_user\": [{\"user_id\": 2, \"first_name\": \"Christina\", \"last_name\": \"Oliver\", \"email\": \"christina.oliver@carsonllc.com\", \"note\": \"\"}], \"eops_sn_hr_internal_hr_service\": [{\"hr_service_id\": 6, \"service_name\": \"Leave Of Absence\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the five reference books, ledgers, CRM state, the eops_ enterprise registers).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register closure).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: entitlement credits are compensatable — reverse a wrong-employee credit, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "Engagement completed and reconciled across leave, CRM, calendar, finance, email, task, CSM, and HR systems.\n\nREPORT\nadjustment_uplift: 11000\nbase_entitlement: 14167\nbranch: EXTENDED_REVIEW\ncohort_index: 11\ndelta: 11000\nleave_index: 1.4166666666666667\nreconciled: ok\nside_ratio: 6.123526306528242\nside_records: 121\nside_roster: 234\ntotal_scope: 25167",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_california_schools_frpm",
+     "bird_california_schools_satscores",
+     "bird_california_schools_schools",
+     "bird_codebase_community_badges",
+     "bird_codebase_community_comments",
+     "bird_codebase_community_postHistory",
+     "bird_codebase_community_postLinks",
+     "bird_codebase_community_posts",
+     "bird_codebase_community_tags",
+     "bird_codebase_community_users",
+     "bird_codebase_community_votes",
+     "bird_formula_1_circuits",
+     "bird_formula_1_constructorResults",
+     "bird_formula_1_constructorStandings",
+     "bird_formula_1_constructors",
+     "bird_formula_1_driverStandings",
+     "bird_formula_1_drivers",
+     "bird_formula_1_lapTimes",
+     "bird_formula_1_pitStops",
+     "bird_formula_1_qualifying",
+     "bird_formula_1_races",
+     "bird_formula_1_results",
+     "bird_formula_1_seasons",
+     "bird_formula_1_status",
+     "bird_superhero_alignment",
+     "bird_superhero_attribute",
+     "bird_superhero_colour",
+     "bird_superhero_gender",
+     "bird_superhero_hero_attribute",
+     "bird_superhero_hero_power",
+     "bird_superhero_publisher",
+     "bird_superhero_race",
+     "bird_superhero_superhero",
+     "bird_superhero_superpower",
+     "bird_thrombosis_prediction_Examination",
+     "bird_thrombosis_prediction_Laboratory",
+     "bird_thrombosis_prediction_Patient",
+     "eops_sn_csm_server_account",
+     "eops_sn_csm_server_case_knowledge",
+     "eops_sn_csm_server_case_sla",
+     "eops_sn_csm_server_contact",
+     "eops_sn_csm_server_contract",
+     "eops_sn_csm_server_customer_case",
+     "eops_sn_csm_server_entitlement",
+     "eops_sn_csm_server_installed_product",
+     "eops_sn_csm_server_interaction",
+     "eops_sn_csm_server_knowledge",
+     "eops_sn_csm_server_location",
+     "eops_sn_csm_server_notification",
+     "eops_sn_csm_server_product",
+     "eops_sn_csm_server_sla_definition",
+     "eops_sn_csm_server_user",
+     "eops_sn_csm_server_user_group",
+     "eops_sn_csm_server_user_group_member",
+     "eops_sn_hr_internal_assignment_rules",
+     "eops_sn_hr_internal_checklist",
+     "eops_sn_hr_internal_escalation_rule",
+     "eops_sn_hr_internal_hr_case",
+     "eops_sn_hr_internal_hr_case_knowledge",
+     "eops_sn_hr_internal_hr_case_task",
+     "eops_sn_hr_internal_hr_criteria",
+     "eops_sn_hr_internal_hr_profile",
+     "eops_sn_hr_internal_hr_service",
+     "eops_sn_hr_internal_knowledge",
+     "eops_sn_hr_internal_notification",
+     "eops_sn_hr_internal_organization",
+     "eops_sn_hr_internal_permission",
+     "eops_sn_hr_internal_role",
+     "eops_sn_hr_internal_role_permission",
+     "eops_sn_hr_internal_service_template",
+     "eops_sn_hr_internal_skill",
+     "eops_sn_hr_internal_survey",
+     "eops_sn_hr_internal_survey_instance",
+     "eops_sn_hr_internal_topic_category",
+     "eops_sn_hr_internal_topic_detail",
+     "eops_sn_hr_internal_user",
+     "eops_sn_hr_internal_user_group",
+     "eops_sn_hr_internal_user_group_member",
+     "eops_sn_hr_internal_user_role",
+     "eops_sn_hr_internal_user_skill",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The three independent side anchors for the quarterly workforce overview — the percentage of female patients with total protein outside the normal range, how many superheroes have blue eyes, and how many posts the user csgillespie owns — the period-over-period controls of the overview, each compared with its own prior-period value when the overview is approved and consumed by no other step."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_analytics_data"
+   },
+   "response": {
+    "table": "wb_analytics_data",
+    "columns": [
+     "date_of_visit",
+     "visitor_id",
+     "page_views",
+     "session_duration_seconds",
+     "traffic_source",
+     "user_engaged"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "table": "wb_customer_relationship_manager_data",
+    "columns": [
+     "customer_id",
+     "assigned_to_email",
+     "customer_name",
+     "customer_email",
+     "customer_phone",
+     "last_contact_date",
+     "product_interest",
+     "status",
+     "follow_up_by",
+     "notes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_projects"
+   },
+   "response": {
+    "table": "td_projects",
+    "columns": [
+     "color",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "name",
+     "is_inbox",
+     "description"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Patient"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Patient",
+    "columns": [
+     "ID",
+     "SEX",
+     "Birthday",
+     "Description",
+     "First Date",
+     "Admission",
+     "Diagnosis"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Examination"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Examination",
+    "columns": [
+     "ID",
+     "Examination Date",
+     "aCL IgG",
+     "aCL IgM",
+     "ANA",
+     "ANA Pattern",
+     "aCL IgA",
+     "Diagnosis",
+     "KCT",
+     "RVVT",
+     "LAC",
+     "Symptoms",
+     "Thrombosis"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_thrombosis_prediction_Laboratory"
+   },
+   "response": {
+    "table": "bird_thrombosis_prediction_Laboratory",
+    "columns": [
+     "ID",
+     "Date",
+     "GOT",
+     "GPT",
+     "LDH",
+     "ALP",
+     "TP",
+     "ALB",
+     "UA",
+     "UN",
+     "CRE",
+     "T-BIL",
+     "T-CHO",
+     "TG",
+     "CPK",
+     "GLU",
+     "WBC",
+     "RBC",
+     "HGB",
+     "HCT",
+     "PLT",
+     "PT",
+     "APTT",
+     "FG",
+     "PIC",
+     "TAT",
+     "TAT2",
+     "U-PRO",
+     "IGG",
+     "IGA",
+     "IGM",
+     "CRP",
+     "RA",
+     "RF",
+     "C3",
+     "C4",
+     "RNP",
+     "SM",
+     "SC170",
+     "SSA",
+     "SSB",
+     "CENTROMEA",
+     "DNA",
+     "DNA-II"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_superhero_superhero"
+   },
+   "response": {
+    "table": "bird_superhero_superhero",
+    "columns": [
+     "id",
+     "superhero_name",
+     "full_name",
+     "gender_id",
+     "eye_colour_id",
+     "hair_colour_id",
+     "skin_colour_id",
+     "race_id",
+     "publisher_id",
+     "alignment_id",
+     "height_cm",
+     "weight_kg"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_superhero_colour"
+   },
+   "response": {
+    "table": "bird_superhero_colour",
+    "columns": [
+     "id",
+     "colour"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_codebase_community_users"
+   },
+   "response": {
+    "table": "bird_codebase_community_users",
+    "columns": [
+     "Id",
+     "Reputation",
+     "CreationDate",
+     "DisplayName",
+     "LastAccessDate",
+     "WebsiteUrl",
+     "Location",
+     "AboutMe",
+     "Views",
+     "UpVotes",
+     "DownVotes",
+     "AccountId",
+     "Age",
+     "ProfileImageUrl"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_california_schools_schools"
+   },
+   "response": {
+    "table": "bird_california_schools_schools",
+    "columns": [
+     "CDSCode",
+     "NCESDist",
+     "NCESSchool",
+     "StatusType",
+     "County",
+     "District",
+     "School",
+     "Street",
+     "StreetAbr",
+     "City",
+     "Zip",
+     "State",
+     "MailStreet",
+     "MailStrAbr",
+     "MailCity",
+     "MailZip",
+     "MailState",
+     "Phone",
+     "Ext",
+     "Website",
+     "OpenDate",
+     "ClosedDate",
+     "Charter",
+     "CharterNum",
+     "FundingType",
+     "DOC",
+     "DOCType",
+     "SOC",
+     "SOCType",
+     "EdOpsCode",
+     "EdOpsName",
+     "EILCode",
+     "EILName",
+     "GSoffered",
+     "GSserved",
+     "Virtual",
+     "Magnet",
+     "Latitude",
+     "Longitude",
+     "AdmFName1",
+     "AdmLName1",
+     "AdmEmail1",
+     "AdmFName2",
+     "AdmLName2",
+     "AdmEmail2",
+     "AdmFName3",
+     "AdmLName3",
+     "AdmEmail3",
+     "LastUpdate"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_codebase_community_posts"
+   },
+   "response": {
+    "table": "bird_codebase_community_posts",
+    "columns": [
+     "Id",
+     "PostTypeId",
+     "AcceptedAnswerId",
+     "CreaionDate",
+     "Score",
+     "ViewCount",
+     "Body",
+     "OwnerUserId",
+     "LasActivityDate",
+     "Title",
+     "Tags",
+     "AnswerCount",
+     "CommentCount",
+     "FavoriteCount",
+     "LastEditorUserId",
+     "LastEditDate",
+     "CommunityOwnedDate",
+     "ParentId",
+     "ClosedDate",
+     "OwnerDisplayName",
+     "LastEditorDisplayName"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_california_schools_frpm"
+   },
+   "response": {
+    "table": "bird_california_schools_frpm",
+    "columns": [
+     "CDSCode",
+     "Academic Year",
+     "County Code",
+     "District Code",
+     "School Code",
+     "County Name",
+     "District Name",
+     "School Name",
+     "District Type",
+     "School Type",
+     "Educational Option Type",
+     "NSLP Provision Status",
+     "Charter School (Y/N)",
+     "Charter School Number",
+     "Charter Funding Type",
+     "IRC",
+     "Low Grade",
+     "High Grade",
+     "Enrollment (K-12)",
+     "Free Meal Count (K-12)",
+     "Percent (%) Eligible Free (K-12)",
+     "FRPM Count (K-12)",
+     "Percent (%) Eligible FRPM (K-12)",
+     "Enrollment (Ages 5-17)",
+     "Free Meal Count (Ages 5-17)",
+     "Percent (%) Eligible Free (Ages 5-17)",
+     "FRPM Count (Ages 5-17)",
+     "Percent (%) Eligible FRPM (Ages 5-17)",
+     "2013-14 CALPADS Fall 1 Certification Status"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_california_schools_satscores"
+   },
+   "response": {
+    "table": "bird_california_schools_satscores",
+    "columns": [
+     "cds",
+     "rtype",
+     "sname",
+     "dname",
+     "cname",
+     "enroll12",
+     "NumTstTakr",
+     "AvgScrRead",
+     "AvgScrMath",
+     "AvgScrWrite",
+     "NumGE1500"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_formula_1_races"
+   },
+   "response": {
+    "table": "bird_formula_1_races",
+    "columns": [
+     "raceId",
+     "year",
+     "round",
+     "circuitId",
+     "name",
+     "date",
+     "time",
+     "url"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_formula_1_results"
+   },
+   "response": {
+    "table": "bird_formula_1_results",
+    "columns": [
+     "resultId",
+     "raceId",
+     "driverId",
+     "constructorId",
+     "number",
+     "grid",
+     "position",
+     "positionText",
+     "positionOrder",
+     "points",
+     "laps",
+     "time",
+     "milliseconds",
+     "fastestLap",
+     "rank",
+     "fastestLapTime",
+     "fastestLapSpeed",
+     "statusId"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_formula_1_drivers"
+   },
+   "response": {
+    "table": "bird_formula_1_drivers",
+    "columns": [
+     "driverId",
+     "driverRef",
+     "number",
+     "code",
+     "forename",
+     "surname",
+     "dob",
+     "nationality",
+     "url"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='hr.director@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "hr.specialist@atlas.com",
+      "customer_name": "HR Director",
+      "customer_email": "hr.director@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "employee leave approval",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 leave-approval docket."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The base entitlement is set as that leave index scaled to whole units (round it times 10000)."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT u.email, t.* FROM vm_transactions t JOIN vm_users u ON u.id=t.sender_id WHERE t.description LIKE '%ELA-%' UNION ALL SELECT u.email, t.* FROM vm_transactions t JOIN vm_users u ON u.id=t.receiver_id WHERE t.description LIKE '%ELA-%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.*, s.email AS sender_email FROM gm_emails e JOIN gm_users s ON s.id=e.sender_id WHERE e.subject LIKE '%ELA-%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE description LIKE '%ELA-%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks WHERE title LIKE '%ELA-%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE event_name LIKE '%ELA-%' OR participant_email='hr.specialist@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "HR-desk daily standup",
+      "participant_email": "hr.specialist@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The leave review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('hr.specialist@atlas.com','employee.correct@atlas.com','employee.wrong@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Correct",
+      "last_name": "Employee",
+      "email": "employee.correct@atlas.com",
+      "password": "ela-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Employee",
+      "email": "employee.wrong@atlas.com",
+      "password": "ela-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "hr.specialist@atlas.com",
+      "password": "ela-seed",
+      "venmo_balance": 500000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users WHERE email IN ('hr.specialist@atlas.com','hr.director@atlas.com','leave.appeals@benefitsboard.example')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 153,
+      "first_name": "HR",
+      "last_name": "Director",
+      "email": "hr.director@atlas.com",
+      "password": "ela-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 152,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "hr.specialist@atlas.com",
+      "password": "ela-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 154,
+      "first_name": "Appeals",
+      "last_name": "Board",
+      "email": "leave.appeals@benefitsboard.example",
+      "password": "ela-seed",
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name='Q1 Leave Approval Docket'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 Leave Approval Docket",
+      "is_inbox": 0,
+      "description": "Quarterly leave-approval docket workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_users WHERE email IN ('hr.specialist@atlas.com','co.hr.partner@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Co",
+      "last_name": "Partner",
+      "email": "co.hr.partner@atlas.com",
+      "password": "ela-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "hr.specialist@atlas.com",
+      "password": "ela-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_california_schools_schools"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 17686
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The total scope is the base plus the uplift; the escalation delta equals the uplift.",
+     "DESK POLICY (definition) — applies to records you are working with: The workforce leave index is fixed from the reference registry's own question — the monthly average number of schools opened in Alameda County under the Elementary School District jurisdiction in 1980 (the count of qualifying schools as a real number divided by 12), reported exactly as the book computes it (keep the decimal)."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_formula_1_results"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 23657
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The eligible-cohort count is taken from the roster book's own question — how many drivers finished the race dated 2015-11-29 (results rows with a recorded finishing time) — and set the adjustment uplift at 1000 per cohort member.",
+     "DESK POLICY (threshold) — applies to records you are working with: The leave-route branch is decided on the delta — 'BOARD_ESCALATION' when the delta is at least 100000, 'EXTENDED_REVIEW' when it is at least 10000, 'STANDARD_LEAVE' otherwise"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_thrombosis_prediction_Laboratory"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 13908
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_superhero_superhero"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 750
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM bird_codebase_community_posts"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 91966
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_customer_case WHERE case_id=5"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "case_id": 5,
+      "number": "CS-0000005",
+      "account_id": "1",
+      "contact_id": "123",
+      "product_id": "128",
+      "installed_product_id": "3",
+      "channel": "social",
+      "priority": "moderate",
+      "state": "in_progress",
+      "short_description": "Product: Palo Alto Networks PA-3220, Issue: is not working as expected.",
+      "assignment_group_id": "18",
+      "assigned_to": "62",
+      "escalation": 0,
+      "escalation_reason": null,
+      "reopen_count": 0,
+      "sys_created_on": "2025-08-27 15:31:08",
+      "sys_updated_on": "2026-01-21 03:55:30",
+      "closed_on": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_hr_case ORDER BY hr_case_id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hr_case_id": 60,
+      "number": "HRC0000770",
+      "status": "closed_incomplete",
+      "hr_service": 6,
+      "opened_for": 28,
+      "opened_by": 28,
+      "priority": "planning",
+      "source": "virtual-agent",
+      "assigned_to": 81,
+      "assignment_group": 11,
+      "short_description": "Request for extended Leave of Absence",
+      "worknotes": "Case created via virtual-agent",
+      "skills": null,
+      "approval_criteria": null,
+      "coe_type": "Total Rewards",
+      "approver": null,
+      "request_status": null,
+      "account_number": "ACC-28-59",
+      "account_type": "other",
+      "created_at": "2023-06-15 10:00:00",
+      "updated_at": "2023-06-15 10:00:00",
+      "org_id": 20
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS qualifying_schools, CAST(COUNT(*) AS REAL)/12 AS leave_index FROM bird_california_schools_schools WHERE County='Alameda' AND DOCType='Elementary School District' AND substr(OpenDate,1,4)='1980'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "qualifying_schools": 17,
+      "leave_index": 1.4166666666666667
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT County,DOCType,OpenDate,COUNT(*) n FROM bird_california_schools_schools WHERE County LIKE '%Alameda%' AND OpenDate LIKE '%1980%' GROUP BY County,DOCType,OpenDate ORDER BY DOCType,OpenDate"
+   },
+   "response": {
+    "n_rows": 9,
+    "rows": [
+     {
+      "County": "Alameda",
+      "DOCType": "Community College District",
+      "OpenDate": "1980-07-01",
+      "n": 1
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "County Office of Education (COE)",
+      "OpenDate": "1980-07-01",
+      "n": 28
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "Elementary School District",
+      "OpenDate": "1980-07-01",
+      "n": 17
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "High School District",
+      "OpenDate": "1980-07-01",
+      "n": 8
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "Joint Powers Authority (JPA)",
+      "OpenDate": "1980-07-01",
+      "n": 1
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "Non-School Locations",
+      "OpenDate": "1980-07-01",
+      "n": 1
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "Regional Occupation Center/Program (ROC/P)",
+      "OpenDate": "1980-07-01",
+      "n": 5
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "State Special Schools",
+      "OpenDate": "1980-07-01",
+      "n": 2
+     },
+     {
+      "County": "Alameda",
+      "DOCType": "Unified School District",
+      "OpenDate": "1980-07-01",
+      "n": 445
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT r.raceId,r.name,r.date,COUNT(*) AS result_rows, SUM(CASE WHEN x.time IS NOT NULL AND TRIM(x.time)<>'' AND x.time<>'\\\\N' THEN 1 ELSE 0 END) AS recorded_time FROM bird_formula_1_races r JOIN bird_formula_1_results x ON x.raceId=r.raceId WHERE r.date='2015-11-29' GROUP BY r.raceId,r.name,r.date"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "raceId": 945,
+      "name": "Abu Dhabi Grand Prix",
+      "date": "2015-11-29",
+      "result_rows": 20,
+      "recorded_time": 11
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT x.position,x.positionText,x.time,x.milliseconds,x.statusId,d.forename,d.surname FROM bird_formula_1_races r JOIN bird_formula_1_results x ON x.raceId=r.raceId JOIN bird_formula_1_drivers d ON d.driverId=x.driverId WHERE r.date='2015-11-29' ORDER BY x.positionOrder"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "position": 1,
+      "positionText": "1",
+      "time": "1:38:30.175",
+      "milliseconds": 5910175,
+      "statusId": 1,
+      "forename": "Nico",
+      "surname": "Rosberg"
+     },
+     {
+      "position": 2,
+      "positionText": "2",
+      "time": "+8.271",
+      "milliseconds": 5918446,
+      "statusId": 1,
+      "forename": "Lewis",
+      "surname": "Hamilton"
+     },
+     {
+      "position": 3,
+      "positionText": "3",
+      "time": "+19.430",
+      "milliseconds": 5929605,
+      "statusId": 1,
+      "forename": "Kimi",
+      "surname": "Räikkönen"
+     },
+     {
+      "position": 4,
+      "positionText": "4",
+      "time": "+43.735",
+      "milliseconds": 5953910,
+      "statusId": 1,
+      "forename": "Sebastian",
+      "surname": "Vettel"
+     },
+     {
+      "position": 5,
+      "positionText": "5",
+      "time": "+1:03.952",
+      "milliseconds": 5974127,
+      "statusId": 1,
+      "forename": "Sergio",
+      "surname": "Pérez"
+     },
+     {
+      "position": 6,
+      "positionText": "6",
+      "time": "+1:05.010",
+      "milliseconds": 5975185,
+      "statusId": 1,
+      "forename": "Daniel",
+      "surname": "Ricciardo"
+     },
+     {
+      "position": 7,
+      "positionText": "7",
+      "time": "+1:33.618",
+      "milliseconds": 6003793,
+      "statusId": 1,
+      "forename": "Nico",
+      "surname": "Hülkenberg"
+     },
+     {
+      "position": 8,
+      "positionText": "8",
+      "time": "+1:37.751",
+      "milliseconds": 6007926,
+      "statusId": 1,
+      "forename": "Felipe",
+      "surname": "Massa"
+     },
+     {
+      "position": 9,
+      "positionText": "9",
+      "time": "+1:38.201",
+      "milliseconds": 6008376,
+      "statusId": 1,
+      "forename": "Romain",
+      "surname": "Grosjean"
+     },
+     {
+      "position": 10,
+      "positionText": "10",
+      "time": "+1:42.371",
+      "milliseconds": 6012546,
+      "statusId": 1,
+      "forename": "Daniil",
+      "surname": "Kvyat"
+     },
+     {
+      "position": 11,
+      "positionText": "11",
+      "time": "+1:43.525",
+      "milliseconds": 6013700,
+      "statusId": 1,
+      "forename": "Carlos",
+      "surname": "Sainz"
+     },
+     {
+      "position": 12,
+      "positionText": "12",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 11,
+      "forename": "Jenson",
+      "surname": "Button"
+     },
+     {
+      "position": 13,
+      "positionText": "13",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 11,
+      "forename": "Valtteri",
+      "surname": "Bottas"
+     },
+     {
+      "position": 14,
+      "positionText": "14",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 11,
+      "forename": "Marcus",
+      "surname": "Ericsson"
+     },
+     {
+      "position": 15,
+      "positionText": "15",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 11,
+      "forename": "Felipe",
+      "surname": "Nasr"
+     },
+     {
+      "position": 16,
+      "positionText": "16",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 11,
+      "forename": "Max",
+      "surname": "Verstappen"
+     },
+     {
+      "position": 17,
+      "positionText": "17",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 12,
+      "forename": "Fernando",
+      "surname": "Alonso"
+     },
+     {
+      "position": 18,
+      "positionText": "18",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 12,
+      "forename": "Will",
+      "surname": "Stevens"
+     },
+     {
+      "position": 19,
+      "positionText": "19",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 13,
+      "forename": "Roberto",
+      "surname": "Merhi"
+     },
+     {
+      "position": null,
+      "positionText": "R",
+      "time": null,
+      "milliseconds": null,
+      "statusId": 4,
+      "forename": "Pastor",
+      "surname": "Maldonado"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.id,c.colour,COUNT(*) AS n FROM bird_superhero_colour c JOIN bird_superhero_superhero h ON h.eye_colour_id=c.id WHERE lower(c.colour) LIKE '%blue%' GROUP BY c.id,c.colour ORDER BY c.colour"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "id": 7,
+      "colour": "Blue",
+      "n": 234
+     },
+     {
+      "id": 8,
+      "colour": "Blue/White",
+      "n": 1
+     },
+     {
+      "id": 15,
+      "colour": "Green/Blue",
+      "n": 1
+     },
+     {
+      "id": 34,
+      "colour": "Yellow/Blue",
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT u.Id,u.DisplayName,COUNT(p.Id) AS posts FROM bird_codebase_community_users u LEFT JOIN bird_codebase_community_posts p ON p.OwnerUserId=u.Id WHERE lower(u.DisplayName)='csgillespie' GROUP BY u.Id,u.DisplayName"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "Id": 8,
+      "DisplayName": "csgillespie",
+      "posts": 121
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SEX, COUNT(*) AS patients FROM bird_thrombosis_prediction_Patient GROUP BY SEX"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "SEX": "",
+      "patients": 13
+     },
+     {
+      "SEX": "F",
+      "patients": 1023
+     },
+     {
+      "SEX": "M",
+      "patients": 202
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(DISTINCT p.ID) AS female_with_lab, COUNT(DISTINCT CASE WHEN l.TP<6 OR l.TP>8 THEN p.ID END) AS abnormal_distinct, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6 OR l.TP>8 THEN p.ID END)/COUNT(DISTINCT p.ID) AS pct_distinct, COUNT(l.ID) AS lab_rows, SUM(CASE WHEN l.TP<6 OR l.TP>8 THEN 1 ELSE 0 END) AS abnormal_rows, 100.0*SUM(CASE WHEN l.TP<6 OR l.TP>8 THEN 1 ELSE 0 END)/COUNT(l.ID) AS pct_rows FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Laboratory l ON l.ID=p.ID WHERE p.SEX='F' AND l.TP IS NOT NULL"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "female_with_lab": 250,
+      "abnormal_distinct": 150,
+      "pct_distinct": 60.0,
+      "lab_rows": 9050,
+      "abnormal_rows": 1305,
+      "pct_rows": 14.41988950276243
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS joined_rows, COUNT(l.TP) AS tp_nonnull, SUM(CASE WHEN l.TP<6 OR l.TP>8 THEN 1 ELSE 0 END) abnormal, 100.0*SUM(CASE WHEN l.TP<6 OR l.TP>8 THEN 1 ELSE 0 END)/COUNT(*) pct_all, 100.0*SUM(CASE WHEN l.TP<6 OR l.TP>8 THEN 1 ELSE 0 END)/COUNT(l.TP) pct_nonnull FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Laboratory l ON l.ID=p.ID WHERE p.SEX='F'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "joined_rows": 11366,
+      "tp_nonnull": 9050,
+      "abnormal": 1305,
+      "pct_all": 11.481611824740455,
+      "pct_nonnull": 14.41988950276243
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MIN(TP) min_tp, MAX(TP) max_tp, SUM(TP IS NULL) nulls, SUM(TP='') blanks, COUNT(*) n FROM bird_thrombosis_prediction_Laboratory"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "min_tp": 0.0,
+      "max_tp": 9.9,
+      "nulls": 2790,
+      "blanks": 0,
+      "n": 13908
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT TP,COUNT(*) n FROM bird_thrombosis_prediction_Laboratory GROUP BY TP ORDER BY TP LIMIT 20"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "TP": null,
+      "n": 2790
+     },
+     {
+      "TP": 0.0,
+      "n": 1
+     },
+     {
+      "TP": 1.4,
+      "n": 1
+     },
+     {
+      "TP": 1.8,
+      "n": 1
+     },
+     {
+      "TP": 3.8,
+      "n": 1
+     },
+     {
+      "TP": 3.9,
+      "n": 1
+     },
+     {
+      "TP": 4.0,
+      "n": 1
+     },
+     {
+      "TP": 4.1,
+      "n": 1
+     },
+     {
+      "TP": 4.2,
+      "n": 3
+     },
+     {
+      "TP": 4.3,
+      "n": 2
+     },
+     {
+      "TP": 4.4,
+      "n": 3
+     },
+     {
+      "TP": 4.5,
+      "n": 3
+     },
+     {
+      "TP": 4.7,
+      "n": 7
+     },
+     {
+      "TP": 4.8,
+      "n": 8
+     },
+     {
+      "TP": 4.9,
+      "n": 20
+     },
+     {
+      "TP": 5.0,
+      "n": 14
+     },
+     {
+      "TP": 5.1,
+      "n": 12
+     },
+     {
+      "TP": 5.2,
+      "n": 17
+     },
+     {
+      "TP": 5.3,
+      "n": 25
+     },
+     {
+      "TP": 5.4,
+      "n": 38
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.colour,COUNT(*) n FROM bird_superhero_colour c JOIN bird_superhero_superhero h ON h.eye_colour_id=c.id GROUP BY c.colour ORDER BY n DESC,c.colour LIMIT 20"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "colour": "Blue",
+      "n": 234
+     },
+     {
+      "colour": "No Colour",
+      "n": 169
+     },
+     {
+      "colour": "Brown",
+      "n": 131
+     },
+     {
+      "colour": "Green",
+      "n": 76
+     },
+     {
+      "colour": "Red",
+      "n": 47
+     },
+     {
+      "colour": "Black",
+      "n": 24
+     },
+     {
+      "colour": "Yellow",
+      "n": 22
+     },
+     {
+      "colour": "White",
+      "n": 16
+     },
+     {
+      "colour": "Grey",
+      "n": 6
+     },
+     {
+      "colour": "Hazel",
+      "n": 6
+     },
+     {
+      "colour": "Purple",
+      "n": 4
+     },
+     {
+      "colour": "Amber",
+      "n": 3
+     },
+     {
+      "colour": "Gold",
+      "n": 3
+     },
+     {
+      "colour": "Violet",
+      "n": 2
+     },
+     {
+      "colour": "Blue/White",
+      "n": 1
+     },
+     {
+      "colour": "Green/Blue",
+      "n": 1
+     },
+     {
+      "colour": "Indigo",
+      "n": 1
+     },
+     {
+      "colour": "Silver",
+      "n": 1
+     },
+     {
+      "colour": "White/Red",
+      "n": 1
+     },
+     {
+      "colour": "Yellow/Blue",
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT u.Id,u.DisplayName,u.CreationDate,u.LastAccessDate,u.Reputation,u.Views,u.UpVotes,u.DownVotes FROM bird_codebase_community_users u WHERE lower(u.DisplayName)='csgillespie'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "Id": 8,
+      "DisplayName": "csgillespie",
+      "CreationDate": "2010-07-19 19:04:52.0",
+      "LastAccessDate": "2014-09-09 21:15:08.0",
+      "Reputation": 6764,
+      "Views": 1089,
+      "UpVotes": 604,
+      "DownVotes": 25
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MIN(CreaionDate) first_post, MAX(CreaionDate) last_post, COUNT(*) n FROM bird_codebase_community_posts WHERE OwnerUserId=8"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "first_post": "2010-07-19 19:12:12.0",
+      "last_post": "2012-09-25 20:52:48.0",
+      "n": 121
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_case_sla"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_case_sla",
+    "columns": [
+     "case_sla_id",
+     "case_id",
+     "sla_def_id",
+     "stage",
+     "start_time",
+     "breach_time",
+     "has_breached",
+     "completed_time"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_customer_case",
+    "columns": [
+     "case_id",
+     "number",
+     "account_id",
+     "contact_id",
+     "product_id",
+     "installed_product_id",
+     "channel",
+     "priority",
+     "state",
+     "short_description",
+     "assignment_group_id",
+     "assigned_to",
+     "escalation",
+     "escalation_reason",
+     "reopen_count",
+     "sys_created_on",
+     "sys_updated_on",
+     "closed_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_hr_internal_hr_case"
+   },
+   "response": {
+    "table": "eops_sn_hr_internal_hr_case",
+    "columns": [
+     "hr_case_id",
+     "number",
+     "status",
+     "hr_service",
+     "opened_for",
+     "opened_by",
+     "priority",
+     "source",
+     "assigned_to",
+     "assignment_group",
+     "short_description",
+     "worknotes",
+     "skills",
+     "approval_criteria",
+     "coe_type",
+     "approver",
+     "request_status",
+     "account_number",
+     "account_type",
+     "created_at",
+     "updated_at",
+     "org_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_hr_internal_notification"
+   },
+   "response": {
+    "table": "eops_sn_hr_internal_notification",
+    "columns": [
+     "notification_id",
+     "hr_case_id",
+     "email",
+     "type",
+     "status",
+     "created_at",
+     "org_id",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_hr_internal_user_group"
+   },
+   "response": {
+    "table": "eops_sn_hr_internal_user_group",
+    "columns": [
+     "group_id",
+     "name",
+     "type",
+     "active",
+     "org_id",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions WHERE sender_id IN (107,108,109) OR receiver_id IN (107,108,109) ORDER BY id DESC LIMIT 20"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses ORDER BY id DESC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "debtor_ids": "[4, 90]",
+      "participant_ids": "[106]",
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "F8cY7Zt1xvA=",
+      "id": 5039,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Climbing Harness",
+      "amount": 70.0,
+      "deleted": 0,
+      "receipt_file_name": "climbing_harness.pdf",
+      "receipt_file_content": "binary:2f76ee7cc1...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[51, 72]",
+      "participant_ids": "[106]",
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "6GOsINwzWCA=",
+      "id": 5038,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Ski Poles",
+      "amount": 50.0,
+      "deleted": 0,
+      "receipt_file_name": "ski_poles.jpg",
+      "receipt_file_content": "binary:09f3a12ef9...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[4, 54, 51]",
+      "participant_ids": "[106]",
+      "created_at": "2023-02-09 18:32:40.000000",
+      "record_hash": "iRoj6pzLMlU=",
+      "id": 5037,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Water Bottles",
+      "amount": 10.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[46]",
+      "participant_ids": "[106]",
+      "created_at": "2023-05-02 18:16:48.000000",
+      "record_hash": "rknnHNEM4OE=",
+      "id": 5036,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Party Hats",
+      "amount": 8.0,
+      "deleted": 0,
+      "receipt_file_name": "party_hats.jpg",
+      "receipt_file_content": "binary:3c184e4ffe...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[4]",
+      "participant_ids": "[106]",
+      "created_at": "2023-05-06 04:24:12.000000",
+      "record_hash": "ODSuwTCBQ2E=",
+      "id": 5035,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Spin Class",
+      "amount": 25.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares ORDER BY id DESC LIMIT 10"
+   },
+   "response": {
+    "n_rows": 10,
+    "rows": [
+     {
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "0zkIJOH9/qU=",
+      "id": 11686,
+      "expense_id": 5039,
+      "debtor_id": 90,
+      "share_amount": 35.0
+     },
+     {
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "lAtOs8vmV6w=",
+      "id": 11685,
+      "expense_id": 5039,
+      "debtor_id": 4,
+      "share_amount": 35.0
+     },
+     {
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "NwW7asmGxis=",
+      "id": 11684,
+      "expense_id": 5038,
+      "debtor_id": 72,
+      "share_amount": 25.0
+     },
+     {
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "48SWchbhbCU=",
+      "id": 11683,
+      "expense_id": 5038,
+      "debtor_id": 51,
+      "share_amount": 25.0
+     },
+     {
+      "created_at": "2023-02-09 18:32:40.000000",
+      "record_hash": "y41Dc3s96rY=",
+      "id": 11682,
+      "expense_id": 5037,
+      "debtor_id": 51,
+      "share_amount": 3.33
+     },
+     {
+      "created_at": "2023-02-09 18:32:40.000000",
+      "record_hash": "EXS64+Zvj2s=",
+      "id": 11681,
+      "expense_id": 5037,
+      "debtor_id": 54,
+      "share_amount": 3.33
+     },
+     {
+      "created_at": "2023-02-09 18:32:40.000000",
+      "record_hash": "qhHl3hpBby8=",
+      "id": 11680,
+      "expense_id": 5037,
+      "debtor_id": 4,
+      "share_amount": 3.33
+     },
+     {
+      "created_at": "2023-05-02 18:16:48.000000",
+      "record_hash": "Mqx4YvfPyMw=",
+      "id": 11679,
+      "expense_id": 5036,
+      "debtor_id": 46,
+      "share_amount": 8.0
+     },
+     {
+      "created_at": "2023-05-06 04:24:12.000000",
+      "record_hash": "KrsVik/hsp4=",
+      "id": 11678,
+      "expense_id": 5035,
+      "debtor_id": 4,
+      "share_amount": 25.0
+     },
+     {
+      "created_at": "2022-09-19 16:34:40.000000",
+      "record_hash": "iXCSRNTemnM=",
+      "id": 11677,
+      "expense_id": 5034,
+      "debtor_id": 87,
+      "share_amount": 40.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks ORDER BY id DESC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-19 20:44:32.000000",
+      "record_hash": "XrrWpl9THg0=",
+      "id": 6333,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Seek professional help",
+      "description": "Consult a therapist",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 18,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-24 00:28:54.000000",
+      "record_hash": "BAEeBhrmqjg=",
+      "id": 6332,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Do a digital detox",
+      "description": "No screens for an hour",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 17,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": "minutes",
+      "created_at": "2022-12-20 16:04:07.000000",
+      "record_hash": "dOfMWXSJ3pA=",
+      "id": 6331,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Plan a relaxing weekend",
+      "description": "",
+      "is_completed": 1,
+      "duration": 60.0,
+      "order_index": 16,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-18 23:43:54.000000",
+      "record_hash": "cTDdkieR4cw=",
+      "id": 6330,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Take a warm bath",
+      "description": "",
+      "is_completed": 1,
+      "duration": null,
+      "order_index": 15,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": null,
+      "created_at": "2022-12-19 14:15:17.000000",
+      "record_hash": "mfldUdIRU28=",
+      "id": 6329,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Create a stress management plan",
+      "description": "",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 14,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails ORDER BY id DESC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "recipient_ids": "[44]",
+      "created_at": "2023-02-09 14:40:15.000000",
+      "record_hash": "7qVRfkaRCWQ=",
+      "id": 20866,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Chad Brown,\n\nChad Brown (ch.brow@gmail.com) has invited you to join the project, 'Health Fair'.\nYou can accept the invite by using this code: 948b5c0 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[84]",
+      "created_at": "2023-02-09 08:50:33.000000",
+      "record_hash": "YM+6q8GpGlY=",
+      "id": 20865,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Chad Brown,\n\nChad Brown (ch.brow@gmail.com) has invited you to join the project, 'Health Fair'.\nYou can accept the invite by using this code: 1be8c9f on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[31]",
+      "created_at": "2022-12-22 02:56:03.000000",
+      "record_hash": "83yG94OVf6c=",
+      "id": 20864,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Carl Brown,\n\nCarl Brown (carbrown@gmail.com) has invited you to join the project, 'Charity Donations'.\nYou can accept the invite by using this code: 5ab1197 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[46]",
+      "created_at": "2022-12-22 04:54:36.000000",
+      "record_hash": "hFK/+RsCbL0=",
+      "id": 20863,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Carl Brown,\n\nCarl Brown (carbrown@gmail.com) has invited you to join the project, 'Charity Donations'.\nYou can accept the invite by using this code: f29f405 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[63]",
+      "created_at": "2022-11-03 01:34:50.000000",
+      "record_hash": "bEKY5sGQzZg=",
+      "id": 20862,
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "body": "\nHello Patricia Ritter,\n\nPatricia Ritter (pa_ritter@gmail.com) has invited you to join the project, 'Volunteer Schedule'.\nYou can accept the invite by using this code: 400a0b7 on the Todoist projects page.\n\nBest,\nTodoist Team\n",
+      "response_to_email_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT hr_case_id,number FROM eops_sn_hr_internal_hr_case ORDER BY CAST(substr(number,4) AS INTEGER) DESC LIMIT 10"
+   },
+   "response": {
+    "n_rows": 10,
+    "rows": [
+     {
+      "hr_case_id": 60,
+      "number": "HRC0000770"
+     },
+     {
+      "hr_case_id": 59,
+      "number": "HRC0000769"
+     },
+     {
+      "hr_case_id": 58,
+      "number": "HRC0000768"
+     },
+     {
+      "hr_case_id": 57,
+      "number": "HRC0000767"
+     },
+     {
+      "hr_case_id": 56,
+      "number": "HRC0000766"
+     },
+     {
+      "hr_case_id": 55,
+      "number": "HRC0000765"
+     },
+     {
+      "hr_case_id": 54,
+      "number": "HRC0000764"
+     },
+     {
+      "hr_case_id": 53,
+      "number": "HRC0000763"
+     },
+     {
+      "hr_case_id": 52,
+      "number": "HRC0000762"
+     },
+     {
+      "hr_case_id": 51,
+      "number": "HRC0000761"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(hr_case_id) AS max_id, MAX(CAST(substr(number,4) AS INTEGER)) AS max_num FROM eops_sn_hr_internal_hr_case"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 60,
+      "max_num": 770
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(notification_id) AS max_id FROM eops_sn_hr_internal_notification"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 60
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_case_sla WHERE case_sla_id IN (9,10)"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "case_sla_id": 9,
+      "case_id": "5",
+      "sla_def_id": "3",
+      "stage": "in_progress",
+      "start_time": "2025-08-27 15:34:08",
+      "breach_time": "2025-08-27 16:34:08",
+      "has_breached": 0,
+      "completed_time": null
+     },
+     {
+      "case_sla_id": 10,
+      "case_id": "5",
+      "sla_def_id": "12",
+      "stage": "paused",
+      "start_time": "2025-08-27 15:34:08",
+      "breach_time": "2025-08-28 11:34:08",
+      "has_breached": 0,
+      "completed_time": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_user WHERE user_id IN (2,4)"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "user_id": 2,
+      "first_name": "Christina",
+      "last_name": "Oliver",
+      "email": "christina.oliver@carsonllc.com",
+      "phone": "+919079913295",
+      "role": "employee",
+      "active": 1,
+      "org_id": 2,
+      "static_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVU0VSXzAwMiIsImlzcyI6Iml0c20ifQ.8j9_dflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_xyz",
+      "created_at": "2025-08-27 15:43:46",
+      "updated_at": "2026-06-02 22:51:28"
+     },
+     {
+      "user_id": 4,
+      "first_name": "Joanne",
+      "last_name": "Simpson",
+      "email": "joanne.simpson@servicenow.com",
+      "phone": "+916014562413",
+      "role": "manager",
+      "active": 1,
+      "org_id": 1,
+      "static_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVU0VSXzAwNCIsImlzcyI6Iml0c20ifQ.kL3_dflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_123",
+      "created_at": "2025-08-27 15:35:46",
+      "updated_at": "2026-02-01 00:17:24"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_user_group WHERE group_id=4"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "group_id": 4,
+      "name": "HR Service Desk",
+      "type": "Service Desk",
+      "active": 1,
+      "org_id": 1,
+      "created_at": "2023-01-01 00:00:00",
+      "updated_at": "2023-01-01 00:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_notification ORDER BY notification_id DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "notification_id": 60,
+      "hr_case_id": 60,
+      "email": "sharon.fields.28@personal.example.com",
+      "type": "report",
+      "status": "closed_complete",
+      "created_at": "2023-06-15 10:10:00",
+      "org_id": 20,
+      "updated_at": "2023-06-15 10:10:00"
+     },
+     {
+      "notification_id": 59,
+      "hr_case_id": 59,
+      "email": "ashley.krueger.27@personal.example.com",
+      "type": "solution_proposal",
+      "status": "closed_complete",
+      "created_at": "2023-05-15 10:10:00",
+      "org_id": 19,
+      "updated_at": "2023-05-15 10:10:00"
+     },
+     {
+      "notification_id": 58,
+      "hr_case_id": 58,
+      "email": "andrew.bell.21@personal.example.com",
+      "type": "update",
+      "status": "ready",
+      "created_at": "2023-04-15 10:10:00",
+      "org_id": 18,
+      "updated_at": "2023-04-15 10:10:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(event_id) AS max_event FROM wb_calendar_events"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_event": "00000300"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) AS max_id FROM vm_transactions"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 8215
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) AS max_id FROM gm_emails"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 20866
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) AS max_id FROM sw_expenses"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 5039
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) AS max_id FROM sw_expense_shares"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": 11686
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) AS max_id, MAX(order_index) AS max_order FROM td_tasks WHERE project_id=280"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_id": null,
+      "max_order": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS female_measurements, COUNT(TP) AS nonnull, SUM(CASE WHEN TP<6.5 OR TP>8.2 THEN 1 ELSE 0 END) AS abnormal_65_82, 100.0*SUM(CASE WHEN TP<6.5 OR TP>8.2 THEN 1 ELSE 0 END)/COUNT(*) AS pct_all_65_82, 100.0*SUM(CASE WHEN TP<6.5 OR TP>8.2 THEN 1 ELSE 0 END)/COUNT(TP) AS pct_nonnull_65_82, SUM(CASE WHEN TP<6.0 OR TP>8.0 THEN 1 ELSE 0 END) AS abnormal_60_80, 100.0*SUM(CASE WHEN TP<6.0 OR TP>8.0 THEN 1 ELSE 0 END)/COUNT(*) AS pct_all_60_80, 100.0*SUM(CASE WHEN TP<6.0 OR TP>8.0 THEN 1 ELSE 0 END)/COUNT(TP) AS pct_nonnull_60_80 FROM bird_thrombosis_prediction_Laboratory l JOIN bird_thrombosis_prediction_Patient p ON p.ID=l.ID WHERE p.SEX='F'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "female_measurements": 11366,
+      "nonnull": 9050,
+      "abnormal_65_82": 1775,
+      "pct_all_65_82": 15.616751715643145,
+      "pct_nonnull_65_82": 19.613259668508288,
+      "abnormal_60_80": 1305,
+      "pct_all_60_80": 11.481611824740455,
+      "pct_nonnull_60_80": 14.41988950276243
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(DISTINCT p.ID) female_with_labs, COUNT(DISTINCT CASE WHEN l.TP IS NOT NULL THEN p.ID END) female_with_tp, COUNT(DISTINCT CASE WHEN l.TP<6.5 OR l.TP>8.2 THEN p.ID END) abnormal_65_82, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6.5 OR l.TP>8.2 THEN p.ID END)/COUNT(DISTINCT p.ID) pct_all_patients_65_82, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6.5 OR l.TP>8.2 THEN p.ID END)/COUNT(DISTINCT CASE WHEN l.TP IS NOT NULL THEN p.ID END) pct_tp_patients_65_82, COUNT(DISTINCT CASE WHEN l.TP<6 OR l.TP>8 THEN p.ID END) abnormal_60_80, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6 OR l.TP>8 THEN p.ID END)/COUNT(DISTINCT p.ID) pct_all_patients_60_80 FROM bird_thrombosis_prediction_Patient p JOIN bird_thrombosis_prediction_Laboratory l ON l.ID=p.ID WHERE p.SEX='F'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "female_with_labs": 252,
+      "female_with_tp": 250,
+      "abnormal_65_82": 177,
+      "pct_all_patients_65_82": 70.23809523809524,
+      "pct_tp_patients_65_82": 70.8,
+      "abnormal_60_80": 150,
+      "pct_all_patients_60_80": 59.523809523809526
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SEX,COUNT(*) rows,COUNT(DISTINCT ID) distinct_ids FROM bird_thrombosis_prediction_Patient GROUP BY SEX"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "SEX": "",
+      "rows": 13,
+      "distinct_ids": 13
+     },
+     {
+      "SEX": "F",
+      "rows": 1023,
+      "distinct_ids": 1023
+     },
+     {
+      "SEX": "M",
+      "rows": 202,
+      "distinct_ids": 202
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "status": "[ELA-TIER] TIER_2_EXTENDED",
+     "notes": "[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "status": "[ELA-TIER] TIER_2_EXTENDED",
+     "notes": "[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000301",
+     "event_name": "[ELA-HOLD] Quarterly employee-leave review window",
+     "participant_email": "hr.specialist@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000301",
+     "event_name": "[ELA-HOLD] Quarterly employee-leave review window",
+     "participant_email": "hr.specialist@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00",
+     "id": 8216,
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 11000,
+     "description": "[ELA-CREDIT] Quarterly employee-leave entitlement credit",
+     "private": 1,
+     "receipt_download_count": 0,
+     "like_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00",
+     "id": 8216,
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 11000,
+     "description": "[ELA-CREDIT] Quarterly employee-leave entitlement credit",
+     "private": 1,
+     "receipt_download_count": 0,
+     "like_count": 0
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 09:00:00",
+     "id": 5040,
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[ELA-ALLOC] Intercompany leave review-line allocation",
+     "amount": 25167,
+     "deleted": 0,
+     "receipt_download_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 09:00:00",
+     "id": 5040,
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[ELA-ALLOC] Intercompany leave review-line allocation",
+     "amount": 25167,
+     "deleted": 0,
+     "receipt_download_count": 0
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "created_at": "2026-09-16 09:00:00",
+     "id": 6334,
+     "project_id": 280,
+     "user_id": 107,
+     "title": "[ELA-FUP] Follow up on leave delta=11000",
+     "description": "Quarterly leave approval follow-up",
+     "is_completed": 0,
+     "priority": "high",
+     "order_index": 1
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "created_at": "2026-09-16 09:00:00",
+     "id": 6334,
+     "project_id": 280,
+     "user_id": 107,
+     "title": "[ELA-FUP] Follow up on leave delta=11000",
+     "description": "Quarterly leave approval follow-up",
+     "is_completed": 0,
+     "priority": "high",
+     "order_index": 1
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2026-09-16 09:00:00",
+     "id": 11687,
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 12583.5
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2026-09-16 09:00:00",
+     "id": 11687,
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 12583.5
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000302",
+     "event_name": "[ELA-REVIEW] Post-window leave review",
+     "participant_email": "hr.specialist@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000302",
+     "event_name": "[ELA-REVIEW] Post-window leave review",
+     "participant_email": "hr.specialist@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_case_sla",
+    "key_column": "case_sla_id",
+    "key_value": "9",
+    "fields": {
+     "stage": "completed"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_case_sla",
+    "updated": {
+     "stage": "completed"
+    },
+    "where": {
+     "case_sla_id": "9"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_case_sla",
+    "key_column": "case_sla_id",
+    "key_value": "10",
+    "fields": {
+     "stage": "completed"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_case_sla",
+    "updated": {
+     "stage": "completed"
+    },
+    "where": {
+     "case_sla_id": "10"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case",
+    "key_column": "case_id",
+    "key_value": "5",
+    "fields": {
+     "state": "closed"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_customer_case",
+    "updated": {
+     "state": "closed"
+    },
+    "where": {
+     "case_id": "5"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.case_id,c.number,c.state, crm.status FROM eops_sn_csm_server_customer_case c CROSS JOIN wb_customer_relationship_manager_data crm WHERE c.case_id=5 AND crm.customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "case_id": 5,
+      "number": "CS-0000005",
+      "state": "closed",
+      "status": "[ELA-TIER] TIER_2_EXTENDED"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_hr_internal_hr_case",
+    "fields": {
+     "hr_case_id": 61,
+     "number": "HRC0000771",
+     "status": "ready",
+     "hr_service": 6,
+     "opened_for": 2,
+     "opened_by": 4,
+     "assignment_group": 4,
+     "short_description": "Leave of absence filing for closed benefits case CS-0000005; tier TIER_2_EXTENDED",
+     "coe_type": "Total Rewards",
+     "account_number": "HRC0000772",
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_hr_internal_hr_case",
+    "created": {
+     "hr_case_id": 61,
+     "number": "HRC0000771",
+     "status": "ready",
+     "hr_service": 6,
+     "opened_for": 2,
+     "opened_by": 4,
+     "assignment_group": 4,
+     "short_description": "Leave of absence filing for closed benefits case CS-0000005; tier TIER_2_EXTENDED",
+     "coe_type": "Total Rewards",
+     "account_number": "HRC0000772",
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00"
+    },
+    "rowid": 61
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT h.number AS hr_case_number, h.status AS hr_case_status, crm.status AS tier_stamp, crm.notes FROM eops_sn_hr_internal_hr_case h CROSS JOIN wb_customer_relationship_manager_data crm WHERE h.hr_case_id=61 AND crm.customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hr_case_number": "HRC0000771",
+      "hr_case_status": "ready",
+      "tier_stamp": "[ELA-TIER] TIER_2_EXTENDED",
+      "notes": "[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_hr_internal_notification",
+    "fields": {
+     "notification_id": 61,
+     "hr_case_id": 61,
+     "email": "christina.oliver@carsonllc.com",
+     "type": "update",
+     "status": "ready",
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_hr_internal_notification",
+    "created": {
+     "notification_id": 61,
+     "hr_case_id": 61,
+     "email": "christina.oliver@carsonllc.com",
+     "type": "update",
+     "status": "ready",
+     "created_at": "2026-09-16 09:00:00",
+     "updated_at": "2026-09-16 09:00:00"
+    },
+    "rowid": 61
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "recipient_ids": "[153]",
+     "created_at": "2026-09-16 09:00:00",
+     "id": 20867,
+     "sender_id": 152,
+     "subject": "[ELA-STATUS] Quarterly employee-leave status",
+     "body": "Quarterly leave approval status: total_scope=25167; tier=TIER_2_EXTENDED; HR case=HRC0000771.",
+     "response_to_email_id": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "recipient_ids": "[153]",
+     "created_at": "2026-09-16 09:00:00",
+     "id": 20867,
+     "sender_id": 152,
+     "subject": "[ELA-STATUS] Quarterly employee-leave status",
+     "body": "Quarterly leave approval status: total_scope=25167; tier=TIER_2_EXTENDED; HR case=HRC0000771.",
+     "response_to_email_id": null
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "WITH cohort AS (SELECT COUNT(*) AS cohort_index FROM bird_formula_1_races r JOIN bird_formula_1_results x ON x.raceId=r.raceId WHERE r.date='2015-11-29' AND x.time IS NOT NULL), ledger AS (SELECT COALESCE(SUM(CASE WHEN t.sender_id=107 THEN t.amount WHEN t.receiver_id=107 THEN -t.amount ELSE 0 END),0) AS net FROM vm_transactions t WHERE t.description LIKE '%[ELA-CREDIT]%'), recorded AS (SELECT notes, CAST(substr(notes,instr(notes,'base_entitlement=')+17, instr(substr(notes,instr(notes,'base_entitlement=')+17),char(10))-1) AS INTEGER) AS recorded_base, CAST(substr(notes,instr(notes,'total_scope=')+12, instr(substr(notes,instr(notes,'total_scope=')+12),char(10))-1) AS INTEGER) AS recorded_total FROM wb_customer_relationship_manager_data WHERE customer_id='00000002') SELECT cohort_index, recorded_base, recorded_total, recorded_base + cohort_index*1000 AS rederived_total, net, CASE WHEN net=cohort_index*1000 AND recorded_total=recorded_base+cohort_index*1000 THEN 'ok' ELSE 'not_ok' END AS verdict FROM cohort,ledger,recorded"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "cohort_index": 11,
+      "recorded_base": 14167,
+      "recorded_total": 25167,
+      "rederived_total": 25167,
+      "net": 11000.0,
+      "verdict": "ok"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[ELA-RECON] delta=11000 net=11000 reconciled=ok\n[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[ELA-RECON] delta=11000 net=11000 reconciled=ok\n[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 100.0*SUM(CASE WHEN TP<6.0 OR TP>8.3 THEN 1 ELSE 0 END)/COUNT(*) AS pct_60_83_all, 100.0*SUM(CASE WHEN TP<6.0 OR TP>8.5 THEN 1 ELSE 0 END)/COUNT(*) AS pct_60_85_all, 100.0*SUM(CASE WHEN TP<6.5 OR TP>8.2 THEN 1 ELSE 0 END)/COUNT(*) AS pct_65_82_all, 100.0*SUM(CASE WHEN TP<6.0 OR TP>8.0 THEN 1 ELSE 0 END)/COUNT(*) AS pct_60_80_all, 100.0*SUM(CASE WHEN TP<6.4 OR TP>8.3 THEN 1 ELSE 0 END)/COUNT(*) AS pct_64_83_all FROM bird_thrombosis_prediction_Laboratory l JOIN bird_thrombosis_prediction_Patient p ON p.ID=l.ID WHERE p.SEX='F'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "pct_60_83_all": 7.5136371634699985,
+      "pct_60_85_all": 6.123526306528242,
+      "pct_65_82_all": 15.616751715643145,
+      "pct_60_80_all": 11.481611824740455,
+      "pct_64_83_all": 12.607777582262889
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "hr.specialist@atlas.com",
+      "customer_name": "HR Director",
+      "customer_email": "hr.director@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "employee leave approval",
+      "status": "[ELA-TIER] TIER_2_EXTENDED",
+      "follow_up_by": "",
+      "notes": "[ELA-RECON] delta=11000 net=11000 reconciled=ok\n[ELA-LOG] total_scope=25167\n[ELA-BASE] base_entitlement=14167\nQ1 leave-approval docket."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.id,s.email sender,r.email receiver,t.amount,t.description FROM vm_transactions t JOIN vm_users s ON s.id=t.sender_id JOIN vm_users r ON r.id=t.receiver_id WHERE t.description LIKE '%[ELA-CREDIT]%' ORDER BY t.id"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 8216,
+      "sender": "hr.specialist@atlas.com",
+      "receiver": "employee.correct@atlas.com",
+      "amount": 11000.0,
+      "description": "[ELA-CREDIT] Quarterly employee-leave entitlement credit"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,e.description,e.amount,e.payer_id,e.debtor_ids,e.participant_ids,sh.debtor_id,u.email,sh.share_amount FROM sw_expenses e LEFT JOIN sw_expense_shares sh ON sh.expense_id=e.id LEFT JOIN sw_users u ON u.id=sh.debtor_id WHERE e.description LIKE '%[ELA-ALLOC]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 5040,
+      "description": "[ELA-ALLOC] Intercompany leave review-line allocation",
+      "amount": 25167.0,
+      "payer_id": 107,
+      "debtor_ids": "[108]",
+      "participant_ids": "[107, 108]",
+      "debtor_id": 108,
+      "email": "co.hr.partner@atlas.com",
+      "share_amount": 12583.5
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.id,t.project_id,p.name,t.user_id,t.title,t.is_completed FROM td_tasks t JOIN td_projects p ON p.id=t.project_id WHERE t.title LIKE '%[ELA-FUP]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 6334,
+      "project_id": 280,
+      "name": "Q1 Leave Approval Docket",
+      "user_id": 107,
+      "title": "[ELA-FUP] Follow up on leave delta=11000",
+      "is_completed": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE event_name LIKE '%[ELA-%' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "event_id": "00000301",
+      "event_name": "[ELA-HOLD] Quarterly employee-leave review window",
+      "participant_email": "hr.specialist@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     },
+     {
+      "event_id": "00000302",
+      "event_name": "[ELA-REVIEW] Post-window leave review",
+      "participant_email": "hr.specialist@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,s.email sender,g.email recipient,e.subject,e.body FROM gm_emails e JOIN gm_users s ON s.id=e.sender_id JOIN json_each(e.recipient_ids) j JOIN gm_users g ON g.id=j.value WHERE e.subject LIKE '%[ELA-%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 20867,
+      "sender": "hr.specialist@atlas.com",
+      "recipient": "hr.director@atlas.com",
+      "subject": "[ELA-STATUS] Quarterly employee-leave status",
+      "body": "Quarterly leave approval status: total_scope=25167; tier=TIER_2_EXTENDED; HR case=HRC0000771."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_case_sla WHERE case_sla_id IN (9,10);"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "case_sla_id": 9,
+      "case_id": "5",
+      "sla_def_id": "3",
+      "stage": "completed",
+      "start_time": "2025-08-27 15:34:08",
+      "breach_time": "2025-08-27 16:34:08",
+      "has_breached": 0,
+      "completed_time": null
+     },
+     {
+      "case_sla_id": 10,
+      "case_id": "5",
+      "sla_def_id": "12",
+      "stage": "completed",
+      "start_time": "2025-08-27 15:34:08",
+      "breach_time": "2025-08-28 11:34:08",
+      "has_breached": 0,
+      "completed_time": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT case_id,number,state FROM eops_sn_csm_server_customer_case WHERE case_id=5"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "case_id": 5,
+      "number": "CS-0000005",
+      "state": "closed"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT hr_case_id,number,status,hr_service,opened_for,opened_by,assignment_group,account_number,coe_type,short_description FROM eops_sn_hr_internal_hr_case WHERE hr_case_id=61"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hr_case_id": 61,
+      "number": "HRC0000771",
+      "status": "ready",
+      "hr_service": 6,
+      "opened_for": 2,
+      "opened_by": 4,
+      "assignment_group": 4,
+      "account_number": "HRC0000772",
+      "coe_type": "Total Rewards",
+      "short_description": "Leave of absence filing for closed benefits case CS-0000005; tier TIER_2_EXTENDED"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_notification WHERE hr_case_id=61"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notification_id": 61,
+      "hr_case_id": 61,
+      "email": "christina.oliver@carsonllc.com",
+      "type": "update",
+      "status": "ready",
+      "created_at": "2026-09-16 09:00:00",
+      "org_id": null,
+      "updated_at": "2026-09-16 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 110,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT sql FROM sqlite_master WHERE type='table' AND name='bird_thrombosis_prediction_Laboratory'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "sql": "CREATE TABLE \"bird_thrombosis_prediction_Laboratory\"\n(\n    ID        INTEGER  default 0            not null,\n    Date      DATE default '0000-00-00' not null,\n    GOT       INTEGER                       null,\n    GPT       INTEGER                        null,\n    LDH       INTEGER                        null,\n    ALP       INTEGER                        null,\n    TP        REAL             null,\n    ALB       REAL             null,\n    UA        REAL             null,\n    UN        INTEGER                       null,\n    CRE       REAL             null,\n    `T-BIL`   REAL             null,\n    `T-CHO`   INTEGER                       null,\n    TG        INTEGER                       null,\n    CPK       INTEGER                       null,\n    GLU       INTEGER                       null,\n    WBC       REAL             null,\n    RBC       REAL             null,\n    HGB       REAL             null,\n    HCT       REAL             null,\n    PLT       INTEGER                       null,\n    PT        REAL             null,\n    APTT      INTEGER                       null,\n    FG        REAL             null,\n    PIC       INTEGER                       null,\n    TAT       INTEGER                       null,\n    TAT2      INTEGER                       null,\n    `U-PRO`   TEXT              null,\n    IGG       INTEGER                       null,\n    IGA       INTEGER                       null,\n    IGM       INTEGER                       null,\n    CRP       TEXT              null,\n    RA        TEXT              null,\n    RF        TEXT              null,\n    C3        INTEGER                       null,\n    C4        INTEGER                       null,\n    RNP       TEXT              null,\n    SM        TEXT              null,\n    SC170     TEXT              null,\n    SSA       TEXT              null,\n    SSB       TEXT              null,\n    CENTROMEA TEXT              null,\n    DNA       TEXT              null,\n    `DNA-II`  INTEGER                       null,\n    primary key (ID, Date),\n        foreign key (ID) references Patient (ID)\n            on update cascade on delete cascade\n)"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 111,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN 1 ELSE 0 END) abnormal_rows, 100.0*SUM(CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN 1 ELSE 0 END)/COUNT(l.TP) pct_nonnull, COUNT(DISTINCT CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN p.ID END) abnormal_patients, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN p.ID END)/(SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE SEX='F') pct_all_female_patients, 100.0*COUNT(DISTINCT CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN p.ID END)/COUNT(DISTINCT p.ID) pct_female_with_labs FROM bird_thrombosis_prediction_Laboratory l JOIN bird_thrombosis_prediction_Patient p ON p.ID=l.ID WHERE p.SEX='F'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "abnormal_rows": 696,
+      "pct_nonnull": 7.69060773480663,
+      "abnormal_patients": 100,
+      "pct_all_female_patients": 9.775171065493646,
+      "pct_female_with_labs": 39.682539682539684
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 112,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "WITH school AS (SELECT COUNT(*) AS n FROM bird_california_schools_schools WHERE County='Alameda' AND DOCType='Elementary School District' AND substr(OpenDate,1,4)='1980'), cohort AS (SELECT COUNT(*) AS n FROM bird_formula_1_races r JOIN bird_formula_1_results x ON x.raceId=r.raceId WHERE r.date='2015-11-29' AND x.time IS NOT NULL), ratio AS (SELECT 100.0*SUM(CASE WHEN l.TP<6.0 OR l.TP>8.5 THEN 1 ELSE 0 END)/COUNT(*) AS v FROM bird_thrombosis_prediction_Laboratory l JOIN bird_thrombosis_prediction_Patient p ON p.ID=l.ID WHERE p.SEX='F'), roster AS (SELECT COUNT(*) AS n FROM bird_superhero_superhero h JOIN bird_superhero_colour c ON c.id=h.eye_colour_id WHERE c.colour='Blue'), records AS (SELECT COUNT(*) AS n FROM bird_codebase_community_posts p JOIN bird_codebase_community_users u ON u.Id=p.OwnerUserId WHERE u.DisplayName='csgillespie') SELECT CAST(school.n AS REAL)/12 AS leave_index, ROUND((CAST(school.n AS REAL)/12)*10000) AS base_entitlement, cohort.n AS cohort_index, cohort.n*1000 AS adjustment_uplift, ROUND((CAST(school.n AS REAL)/12)*10000)+cohort.n*1000 AS total_scope, cohort.n*1000 AS delta, CASE WHEN cohort.n*1000>=100000 THEN 'BOARD_ESCALATION' WHEN cohort.n*1000>=10000 THEN 'EXTENDED_REVIEW' ELSE 'STANDARD_LEAVE' END AS branch, ratio.v AS side_ratio, roster.n AS side_roster, records.n AS side_records FROM school,cohort,ratio,roster,records"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "leave_index": 1.4166666666666667,
+      "base_entitlement": 14167.0,
+      "cohort_index": 11,
+      "adjustment_uplift": 11000,
+      "total_scope": 25167.0,
+      "delta": 11000,
+      "branch": "EXTENDED_REVIEW",
+      "side_ratio": 6.123526306528242,
+      "side_roster": 234,
+      "side_records": 121
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_employee_leave_approval__0001",
+ "provider": "openai",
+ "model": "gpt-5.6-sol",
+ "attempt": 1,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 12,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 26,
+  "fsv_n_checks": 94,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "adjustment_uplift": "11000",
+  "base_entitlement": "14167",
+  "branch": "EXTENDED_REVIEW",
+  "cohort_index": "11",
+  "delta": "11000",
+  "leave_index": "1.41666666666667",
+  "reconciled": "ok",
+  "side_ratio": "6.12352630652824",
+  "side_records": "121",
+  "side_roster": "234",
+  "total_scope": "25167"
+ },
+ "extraction_scored": true
+}

@@ -1,0 +1,226 @@
+{
+ "op": "distractor",
+ "signature": {
+  "dG": 10,
+  "ds0": 0,
+  "dPi": 0,
+  "dg": 1,
+  "dT": 0
+ },
+ "axis": "topology-control",
+ "capability": "branch selectivity",
+ "n_arms": 10,
+ "arm_kind": "legal_hold",
+ "arm_kinds": [
+  "legal_hold",
+  "regulator_notice",
+  "board_memo",
+  "external_audit",
+  "fraud_referral",
+  "exec_escalation",
+  "insurer_notice",
+  "press_holding",
+  "law_enforcement",
+  "emergency_reserve"
+ ],
+ "arms": [
+  {
+   "kind": "legal_hold",
+   "key": "redemption_delta",
+   "ceiling": 10000000,
+   "action": "open a legal hold"
+  },
+  {
+   "kind": "regulator_notice",
+   "key": "total_redemption",
+   "ceiling": 20000000,
+   "action": "file a regulator notification"
+  },
+  {
+   "kind": "board_memo",
+   "key": "base_redemption",
+   "ceiling": 50000000,
+   "action": "record a board notification memo"
+  },
+  {
+   "kind": "external_audit",
+   "key": "redemption_delta",
+   "ceiling": 100000000,
+   "action": "open an external audit referral"
+  },
+  {
+   "kind": "fraud_referral",
+   "key": "total_redemption",
+   "ceiling": 10000000,
+   "action": "open a fraud referral"
+  },
+  {
+   "kind": "exec_escalation",
+   "key": "base_redemption",
+   "ceiling": 20000000,
+   "action": "escalate to the executive on call"
+  },
+  {
+   "kind": "insurer_notice",
+   "key": "redemption_delta",
+   "ceiling": 50000000,
+   "action": "notify the insurer"
+  },
+  {
+   "kind": "press_holding",
+   "key": "total_redemption",
+   "ceiling": 100000000,
+   "action": "record a press holding statement"
+  },
+  {
+   "kind": "law_enforcement",
+   "key": "base_redemption",
+   "ceiling": 10000000,
+   "action": "refer the case to law enforcement"
+  },
+  {
+   "kind": "emergency_reserve",
+   "key": "redemption_delta",
+   "ceiling": 20000000,
+   "action": "book an emergency reserve entry"
+  }
+ ],
+ "answer_changed": false,
+ "pooled": false,
+ "changed_region": {
+  "V_new": [],
+  "E_new": [],
+  "E_ret": [
+   [
+    "n01",
+    "n02"
+   ],
+   [
+    "n02",
+    "n04"
+   ],
+   [
+    "n02",
+    "n17"
+   ],
+   [
+    "n03",
+    "n04"
+   ],
+   [
+    "n03",
+    "n17"
+   ],
+   [
+    "n04",
+    "n06"
+   ],
+   [
+    "n04",
+    "n07"
+   ],
+   [
+    "n04",
+    "n08"
+   ],
+   [
+    "n04",
+    "n09"
+   ],
+   [
+    "n04",
+    "n10"
+   ],
+   [
+    "n04",
+    "n11"
+   ],
+   [
+    "n04",
+    "n15"
+   ],
+   [
+    "n04",
+    "n17"
+   ],
+   [
+    "n06",
+    "n18"
+   ],
+   [
+    "n07",
+    "n17"
+   ],
+   [
+    "n08",
+    "n09"
+   ],
+   [
+    "n09",
+    "n11"
+   ],
+   [
+    "n11",
+    "n12"
+   ],
+   [
+    "n12",
+    "n13"
+   ],
+   [
+    "n13",
+    "n14"
+   ],
+   [
+    "n14",
+    "n15"
+   ],
+   [
+    "n15",
+    "n17"
+   ],
+   [
+    "n17",
+    "n18"
+   ]
+  ],
+  "V_down": null,
+  "frontier": {
+   "node": null,
+   "edge": null,
+   "unchanged_required_ancestors": []
+  },
+  "gold_suffix_calls": null,
+  "gold_suffix_calls_note": "requires world replay; deferred"
+ },
+ "base_build_sha": "a31106a36483",
+ "added_kinds": [
+  "legal_hold",
+  "regulator_notice",
+  "board_memo",
+  "external_audit",
+  "fraud_referral",
+  "exec_escalation",
+  "insurer_notice",
+  "press_holding",
+  "law_enforcement",
+  "emergency_reserve"
+ ],
+ "gate": {
+  "rule7": true,
+  "rule7_violations": [],
+  "gold": true,
+  "gold_error": null,
+  "fsv": "103/103",
+  "fsv_on_damage": true,
+  "changed_region": true,
+  "added_kinds": true,
+  "added_kinds_violations": [],
+  "s2_sidecar": true,
+  "s2_sidecar_problems": [],
+  "reliable": true,
+  "checked_at": "2026-09-16T21:50:45+00:00",
+  "gate_version": "2026-09-07.1",
+  "gate_code_sha": "1ee1bae3c4e5"
+ }
+}

@@ -1,0 +1,624 @@
+{
+ "uid": "hybrid_mobile_deposit_hold__0001",
+ "generated_from_build_sha": "79bd9f6e26f2",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "hold_case_count": "1",
+  "auto_release_base": "100",
+  "overlimit_index": "61.5714285714286",
+  "overlimit_uplift": "62000",
+  "hold_carry": "62100",
+  "hold_delta": "62000",
+  "branch": "PARTIAL_HOLD",
+  "side_atom_connections": "498",
+  "side_toughness_cards": "1",
+  "reconciled": "ok",
+  "side_vp_funds": "50",
+  "side_gas_txns": "56"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:1164",
+   "verdict_basis": "hold_case_count is judged by birdsql:1164's own official gold SQL rerun LIVE on the bird_thrombosis_prediction_-prefixed book \u2014 a true single-row COUNT scalar; the spine root, scaled downstream off a declared per-contract multiplier into the hold arithmetic",
+   "answers_written": {
+    "hold_case_count": "1"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT  COUNT(*) FROM bird_thrombosis_prediction_Patient AS T1 INNER JOIN bird_thrombosis_prediction_Examination AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F' AND STRFTIME('%Y', T2.`Examination Date`) = '1997' AND T2.Thrombosis = 1",
+    "result": 1
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1164_hold_case_count",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "auto_release_base = round(hold_case_count) * 100",
+   "follows": "count scaled by a declared per-contract rate; no source counterpart",
+   "inputs": [
+    "hold_case_count <- birdsql:1164 (live rerun)"
+   ],
+   "answers_written": {
+    "auto_release_base": "100"
+   },
+   "checks": [
+    {
+     "name": "auto_release_base_is_count_times_multiplier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "auto_release_base_derives_from_stored_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "vendor_crm_auto_release_base_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:1039",
+   "verdict_basis": "overlimit_index is judged by birdsql:1039's own official gold SQL rerun LIVE on the bird_european_football_2_-prefixed book \u2014 a true single-row REAL scalar stored verbatim; the cross-book input woven into the hold arithmetic",
+   "answers_written": {
+    "overlimit_index": "61.5714285714286"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(t2.long_shots) AS REAL) / COUNT(t2.long_shots) FROM bird_european_football_2_Player AS t1 INNER JOIN bird_european_football_2_Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t1.player_name = 'Ahmed Samir Farag'",
+    "result": 61.57142857142857
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1039_overlimit_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "overlimit_uplift = round(overlimit_index) * 1000; hold_carry = auto_release_base + overlimit_uplift; hold_delta = overlimit_uplift; branch = 'EXTENDED_REVIEW' if delta>=1000000, 'PARTIAL_HOLD' if delta>=1000, else 'AUTO_RELEASE'",
+   "follows": "value-rounded + scaled + additive combine + threshold-to-categorical CASE; the 1000/1000000 bands are declared constants; the branch predicate is source-expressed (delta from the live european_football_2 book)",
+   "inputs": [
+    "auto_release_base <- n02",
+    "overlimit_index <- n03 (birdsql:1039 live rerun)"
+   ],
+   "answers_written": {
+    "overlimit_uplift": "62000",
+    "hold_carry": "62100",
+    "hold_delta": "62000",
+    "branch": "PARTIAL_HOLD"
+   },
+   "checks": [
+    {
+     "name": "uplift_is_round_index_times_multiplier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "hold_carry_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "hold_carry_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "birdsql:239",
+   "verdict_basis": "side_atom_connections is judged by birdsql:239's own official gold SQL rerun LIVE on the bird_toxicology_-prefixed book \u2014 a true single-row COUNT scalar; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_atom_connections": "498"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T.bond_id) FROM bird_toxicology_connected AS T WHERE T.atom_id LIKE '%_19'",
+    "result": 498
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_239_side_atom_connections",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [MDH-HOLD] window's duration is the declared 3-day hold-review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[MDH-HOLD]",
+      "event_name": "Q1 post-release hold review window [MDH-HOLD]",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "hold_review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong transfer corrected by an offsetting transaction, never a delete; the net target is the recomputed hold_delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_depositor",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [MDH-PARTIAL_HOLD] email lead->fraud-desk citing hold_carry+hold_delta, present IFF branch in (PARTIAL_HOLD, EXTENDED_REVIEW)",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n04",
+    "hold_carry/hold_delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "negotiate_email_iff_negotiate_or_consolidate",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [MDH-LOG] hold_carry marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_hold_carry_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = hold_carry; ops-controller share = hold_carry/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "hold_carry <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [MDH-FUP] task citing hold_delta in the lead's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [MDH-LOG]",
+    "hold_delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'EXTENDED_REVIEW_TIER' if round(the live over-limit index)*1000 >= 1000000; 'PARTIAL_HOLD_TIER' if >= 1000; else 'AUTO_RELEASE_TIER'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the european_football_2 over-limit index), not a relabel of a stored value",
+   "inputs": [
+    "over-limit index <- live bird_european_football_2 (re-derived at write time)",
+    "gate <- n11 td_tasks [MDH-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251217_140216_182_701c5774_9fcdf867",
+   "verdict_basis": "EnterpriseOps-Gym MULTI-GYM hybrid oracle task: its THREE native database_state checks span TWO gyms \u2014 a high-priority depositor-contact customer_case on sn-csm-server (priority high, short_description 'Having issues with software', assignment_group 4, the Red Hat Enterprise Linux 9 product), a confirmed 'depositor-contact update' calendar event on gym-calendar (2025-12-16 09:00-10:00), and its two attendees \u2014 inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched; each verifier's own gym_name picks its seed tables + prefix); PRE-ASSIGNED and kept (all checks equals and fail on the untouched seeds); the dependency coupling (the CRM [MDH-TIER] stamp matching the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "depositor-contact beat == the source task's own three checks across two gyms, gated on the n12 tier relay",
+   "inputs": [
+    "tier relay <- n12 CRM [MDH-TIER] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "csm_contact_first_name_updated",
+     "expected": "Linda",
+     "achieved": "Linda"
+    },
+    {
+     "name": "csm_contact_last_name_updated",
+     "expected": "Hernandez",
+     "achieved": "Hernandez"
+    },
+    {
+     "name": "email_sendas_alias_provisioned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_contact_last_name_confirmed",
+     "expected": "Hernandez",
+     "achieved": "Hernandez"
+    },
+    {
+     "name": "email_sendas_alias_confirmed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_contact_first_name_confirmed",
+     "expected": "Linda",
+     "achieved": "Linda"
+    },
+    {
+     "name": "contact_beat_gated_on_tier_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "workbench:project_mgmt/10",
+   "verdict_basis": "task-create outcome judged by the resulting wb_project_tasks row carrying the re-derived tier word, gated on the depositor-contact beat",
+   "rule": "one [MDH-PRIOTASK] priority task assigned to the lead carrying the live tier, gated on the depositor-contact beat",
+   "inputs": [
+    "gate <- n13 CSM case + gym-calendar session (register-state gate)",
+    "tier truth <- live european_football_2 banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "priority_task_reflects_tier_after_contact_beat",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [MDH-STATUS] email lead->vendor citing hold_carry + the live tier, gated on the priority task",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "gate <- n14 [MDH-PRIOTASK]",
+    "hold_carry <- n04",
+    "tier truth <- live european_football_2 banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_hold_carry_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "birdsql:372",
+   "verdict_basis": "side_toughness_cards is judged by birdsql:372's own official gold SQL rerun LIVE on the bird_card_games_-prefixed book \u2014 a true single-row COUNT scalar; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_toughness_cards": "1"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(id) FROM bird_card_games_cards WHERE toughness = 99",
+    "result": 1
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_372_side_toughness_cards",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [MDH-DISBURSE] net (credits - reversals) to the correct depositor == hold_delta, with the CRM [MDH-RECON] note citing the delta, after the status email",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "hold_delta <- n04 (gap 13)",
+    "gate <- n15 [MDH-STATUS]"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [MDH-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[MDH-REVIEW]",
+      "event_name": "Post-disbursement hold review \u2014 MDH-2024-Q1-042 [MDH-REVIEW]",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__hold_case_count_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__auto_release_base_is_fn_of_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__overlimit_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__overlimit_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__hold_carry_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_atom_connections_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_toughness_cards_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_vp_funds_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_gas_txns_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "birdsql:1331",
+   "verdict_basis": "side_vp_funds is judged by birdsql:1331's own official gold SQL rerun LIVE on the bird_student_club_-prefixed book \u2014 a true single-row COUNT scalar; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_vp_funds": "50"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T2.amount\nFROM bird_student_club_member AS T1\nINNER JOIN bird_student_club_income AS T2 ON T1.member_id = T2.link_to_member\nWHERE T1.position = 'Vice President'",
+    "result": 50
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1331_side_vp_funds",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:1508",
+   "verdict_basis": "side_gas_txns is judged by birdsql:1508's own official gold SQL rerun LIVE on the bird_debit_card_specializing_-prefixed book \u2014 a true single-row COUNT scalar stored verbatim; a second independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_gas_txns": "56"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.TransactionID) FROM bird_debit_card_specializing_transactions_1k AS T1 INNER JOIN bird_debit_card_specializing_gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.Country = 'CZE' AND T1.Price > 1000",
+    "result": 56
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1508_side_gas_txns",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

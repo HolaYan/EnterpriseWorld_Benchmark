@@ -1,0 +1,177 @@
+[
+ {
+  "id": "m01",
+  "node": "n02",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Set the base consent scope from the covenant index has (1) a VALUE dependency on the step that How many cards of legalities whose status is restricted have text boxes? — it consumes the figure 'covenant_index' that step records."
+ },
+ {
+  "id": "m02",
+  "node": "n04",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Compute the amendment-scope envelope from the stored answers has (1) a VALUE dependency on the step that Set the base consent scope from the covenant index — it consumes the figure 'base_consents' that step records; (2) a VALUE dependency on the step that Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size? — it consumes the figure 'ballot_index' that step records."
+ },
+ {
+  "id": "m03",
+  "node": "n05",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Decide the consent branch on the computed state has (1) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m04",
+  "node": "n06",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Once the total scope is computed, place the amendment-review WINDOW on the treasurer's calendar (participant_email=riley.chen@atlas.com): IN… has (1) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'total_scope' that step records."
+ },
+ {
+  "id": "m05",
+  "node": "n07",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "note": "The step that Post the ballot-credit run for EXACTLY delta on the lender ledger has (1) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m06",
+  "node": "n08",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that If the consent branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION', send the bond trustee a super-majority notice has (1) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'total_scope' that step records; (2) a VALUE dependency on the step that Decide the consent branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m07",
+  "node": "n09",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Log the consent solicitation on the general-counsel CRM record has (1) a STATE dependency on the step that If the consent branch is 'SUPER_MAJORITY' or 'DENIED_ESCALATION', send the bond trustee a super-majority notice — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'total_scope' that step records; (3) a VALUE dependency on the step that Decide the consent branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m08",
+  "node": "n10",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "note": "The step that Post the intercompany amendment-line ALLOCATION on the sw_* line-share ledger has (1) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'total_scope' that step records."
+ },
+ {
+  "id": "m09",
+  "node": "n11",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "note": "The step that Open the reconciliation follow-up has (1) a STATE dependency on the step that Log the consent solicitation on the general-counsel CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m10",
+  "node": "n12",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Classify the consent TIER. RE-DERIVE it from the live ballot book: uplift = (the ballot reference index) * 1000, TIER = 'TIER_3_DENIED_ESCAL… has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks."
+ },
+ {
+  "id": "m11",
+  "node": "n13",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_sn_csm_server_case_sla",
+   "eops_sn_csm_server_customer_case"
+  ],
+  "note": "The step that Take the amendment's consent case of record up at the classified tier on the desk's enterprise case register has (1) a STATE dependency on the step that Classify the consent TIER. RE-DERIVE it from the live ballot book: uplift = (the ballot reference index) * 1000, TIER = 'TIER_3_DENIED_ESCAL… — it must follow the record that step files in wb_customer_relationship_manager_data."
+ },
+ {
+  "id": "m12",
+  "node": "n14",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_itsm_mcp_change",
+   "eops_gym_itsm_mcp_problem"
+  ],
+  "note": "The step that Close out the linked change and problem in the desk's ITSM register has (1) a STATE dependency on the step that Take the amendment's consent case of record up at the classified tier on the desk's enterprise case register — it must follow the record that step files in eops_sn_csm_server_customer_case."
+ },
+ {
+  "id": "m13",
+  "node": "n15",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that Send the general counsel a status update has (1) a STATE dependency on the step that Close out the linked change and problem in the desk's ITSM register — it must follow the record that step files in eops_gym_itsm_mcp_change; (2) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'total_scope' that step records."
+ },
+ {
+  "id": "m14",
+  "node": "n16",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_google_drive_mcp_comments",
+   "eops_gym_google_drive_mcp_files"
+  ],
+  "note": "The step that File this amendment's consent-execution pack in the desk's document register has (1) a STATE dependency on the step that Send the general counsel a status update — it must follow the record that step files in gm_emails."
+ },
+ {
+  "id": "m15",
+  "node": "n17",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Reconcile the posted credit against the recorded delta has (1) a STATE dependency on the step that Post the ballot-credit run for EXACTLY delta on the lender ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the amendment-scope envelope from the stored answers — it consumes the figure 'delta' that step records; (3) a VALUE dependency on the step that Set the base consent scope from the covenant index — it consumes the figure 'base_consents' that step records; (4) a VALUE dependency on the step that Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size? — it consumes the figure 'ballot_index' that step records."
+ },
+ {
+  "id": "m16",
+  "node": "n18",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Schedule the general-counsel amendment review has (1) a STATE dependency on the step that Once the total scope is computed, place the amendment-review WINDOW on the treasurer's calendar (participant_email=riley.chen@atlas.com): IN… — it must follow the record that step files in wb_calendar_events; (2) a STATE dependency on the step that Reconcile the posted credit against the recorded delta — it must follow the record that step files in wb_customer_relationship_manager_data; (3) a STATE dependency on the step that File this amendment's consent-execution pack in the desk's document register — it must follow the record that step files in eops_gym_google_drive_mcp_files."
+ }
+]

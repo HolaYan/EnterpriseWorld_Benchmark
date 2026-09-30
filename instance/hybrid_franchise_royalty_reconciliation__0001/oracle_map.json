@@ -1,0 +1,186 @@
+[
+ {
+  "id": "m01",
+  "node": "n02",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Set the expected royalty from the royalty index has (1) a VALUE dependency on the step that What is the average number of crimes committed in 1995 in regions where the number exceeds 4000 and the region has accounts that are opened … — it consumes the figure 'royalty_index' that step records."
+ },
+ {
+  "id": "m02",
+  "node": "n04",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Compute the reconciliation totals has (1) a VALUE dependency on the step that Set the expected royalty from the royalty index — it consumes the figure 'expected_royalty' that step records."
+ },
+ {
+  "id": "m03",
+  "node": "n05",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Decide the remittance-status branch on the computed state has (1) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'underpayment_delta' that step records."
+ },
+ {
+  "id": "m04",
+  "node": "n06",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Once the total royalty flow is computed, place the review WINDOW on the ops lead's calendar (participant_email=franchise.ops@atlas.com): INS… has (1) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'total_royalty_flow' that step records."
+ },
+ {
+  "id": "m05",
+  "node": "n07",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "note": "The step that Post the shortfall settlement credit for EXACTLY delta on the settlement ledger has (1) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'underpayment_delta' that step records."
+ },
+ {
+  "id": "m06",
+  "node": "n08",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that If the remittance-status branch is 'UNDERPAID_BELOW_THRESHOLD' or 'UNDERPAID_COLLECTIONS_REFERRAL', send the collections partner a collectio… has (1) a VALUE dependency on the step that Return the card name at the highest converted mana cost -- i.e — it consumes the figure 'reference_catalog_item' that step records; (2) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'total_royalty_flow' that step records; (3) a VALUE dependency on the step that Decide the remittance-status branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m07",
+  "node": "n09",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Log the reconciliation launch on the franchise-director CRM record has (1) a STATE dependency on the step that If the remittance-status branch is 'UNDERPAID_BELOW_THRESHOLD' or 'UNDERPAID_COLLECTIONS_REFERRAL', send the collections partner a collectio… — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'total_royalty_flow' that step records; (3) a VALUE dependency on the step that Decide the remittance-status branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m08",
+  "node": "n10",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "note": "The step that Post the intercompany royalty-processing ALLOCATION on the sw_* carry ledger has (1) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'total_royalty_flow' that step records."
+ },
+ {
+  "id": "m09",
+  "node": "n11",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "note": "The step that Open the reconciliation follow-up has (1) a STATE dependency on the step that Log the reconciliation launch on the franchise-director CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'underpayment_delta' that step records."
+ },
+ {
+  "id": "m10",
+  "node": "n12",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Classify the remittance TIER. RE-DERIVE it from the live loan book: shortfall = (the count of status='D' loans in district 1) * 1000, TIER =… has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks."
+ },
+ {
+  "id": "m11",
+  "node": "n13",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_sn_csm_server_customer_case"
+  ],
+  "note": "The step that Escalate this reconciliation's collections case on the desk's shared enterprise case register (per the recording handbook) has (1) a STATE dependency on the step that Classify the remittance TIER. RE-DERIVE it from the live loan book: shortfall = (the count of status='D' loans in district 1) * 1000, TIER =… — it must follow the record that step files in wb_customer_relationship_manager_data."
+ },
+ {
+  "id": "m12",
+  "node": "n14",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_calendar_events"
+  ],
+  "note": "The step that Convene the collections review for the escalated case on the desk's shared calendar register (per the recording handbook) has (1) a STATE dependency on the step that Escalate this reconciliation's collections case on the desk's shared enterprise case register (per the recording handbook) — it must follow the record that step files in eops_sn_csm_server_customer_case."
+ },
+ {
+  "id": "m13",
+  "node": "n15",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that Send the franchise director a status update has (1) a STATE dependency on the step that Convene the collections review for the escalated case on the desk's shared calendar register (per the recording handbook) — it must follow the record that step files in eops_gym_calendar_events; (2) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'total_royalty_flow' that step records."
+ },
+ {
+  "id": "m14",
+  "node": "n16",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_sn_csm_server_customer_case"
+  ],
+  "note": "The step that Raise this reconciliation's settlement case on the desk's shared enterprise case register (per the recording handbook) has (1) a STATE dependency on the step that Send the franchise director a status update — it must follow the record that step files in gm_emails."
+ },
+ {
+  "id": "m15",
+  "node": "n17",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_calendar_attendees",
+   "eops_gym_calendar_events"
+  ],
+  "note": "The step that Block the settlement case's working session on the desk's shared calendar register (per the recording handbook) has (1) a STATE dependency on the step that Raise this reconciliation's settlement case on the desk's shared enterprise case register (per the recording handbook) — it must follow the record that step files in eops_sn_csm_server_customer_case."
+ },
+ {
+  "id": "m16",
+  "node": "n18",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Reconcile the posted settlement against the recorded delta has (1) a STATE dependency on the step that Post the shortfall settlement credit for EXACTLY delta on the settlement ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the reconciliation totals — it consumes the figure 'underpayment_delta' that step records; (3) a VALUE dependency on the step that Set the expected royalty from the royalty index — it consumes the figure 'expected_royalty' that step records."
+ },
+ {
+  "id": "m17",
+  "node": "n19",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Schedule the post-reconciliation review has (1) a STATE dependency on the step that Once the total royalty flow is computed, place the review WINDOW on the ops lead's calendar (participant_email=franchise.ops@atlas.com): INS… — it must follow the record that step files in wb_calendar_events; (2) a STATE dependency on the step that Reconcile the posted settlement against the recorded delta — it must follow the record that step files in wb_customer_relationship_manager_data; (3) a STATE dependency on the step that Block the settlement case's working session on the desk's shared calendar register (per the recording handbook) — it must follow the record that step files in eops_gym_calendar_events."
+ }
+]

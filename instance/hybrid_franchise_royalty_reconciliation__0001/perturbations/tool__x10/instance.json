@@ -1,0 +1,1522 @@
+{
+  "instance_id": "hybrid_franchise_royalty_reconciliation__0001",
+  "agent_visible": {
+    "overall_query": "Run the quarterly franchise royalty reconciliation for the regional franchisee base. Fix the regional royalty benchmark index from the reference book's own question \u2014 the average number of crimes committed in 1995 in the reference regions where the count exceeds 4000 and the region has at least one account opened in 1997 or later (average the distinct region/crime-count pairs). Set the expected royalty at one unit per 150 of that index, rounded to a whole number. Pull the underpayment shortfall from the live loan book \u2014 the count of loans in the flagship lending district (district_id 1) whose status is 'D' (the underpaying-franchisee segment) \u2014 and set the shortfall at 1000 per underpaying franchisee. The total royalty flow is the expected royalty plus the shortfall; the underpayment delta equals the shortfall. Decide the remittance-status route on the delta \u2014 'UNDERPAID_COLLECTIONS_REFERRAL' when the delta is at least 8000, 'UNDERPAID_BELOW_THRESHOLD' when it is at least 1000, 'FULLY_REMITTED' otherwise \u2014 and work the cycle end to end: place the review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the settlement-credit run so the net credit received by the correct (underpaying) franchisee equals the delta (a credit that lands on the wrong advance-pool account is reversed, never deleted, then the correct franchisee is credited); unless the route is FULLY_REMITTED, send the collections partner the disclosure email citing the total royalty flow, the delta and the flagship catalog reference item; log the total royalty flow on the franchise-director record and open the follow-up; allocate the royalty-processing carry evenly with the finance analyst; RE-DERIVE the remittance tier from the live loan book (UNDERPAID_COLLECTIONS_REFERRAL when the shortfall is at least 8000, UNDERPAID_BELOW_THRESHOLD when at least 1000, else FULLY_REMITTED) and stamp it on the director record; escalate this reconciliation's collections case at that tier and convene its collections review with the agent that case is assigned to, in the desk's shared case and calendar registers (per the recording handbook); send the franchise director the status update citing the total royalty flow, the tier and that case; raise the settlement case at the reconciled total and block its working session in those same registers; reconcile the settlement ledger to the delta, re-deriving the figure chain before the verdict (the recorded total royalty flow must still be expected_royalty + underpayment_amount); and schedule the post-window review after the window ends, conflict-free. Also pull the reference franchisee-cohort discipline for the quarterly overview \u2014 the declared major of the member named Angela Sanders in the membership reference book \u2014 as the quarter's cohort control reading, taken at the close of the run once the reconciliation's own figures are settled, from a licensed reference book the desk's reporting service also serves, unrelated to the royalty registers on purpose; nothing later in this reconciliation reads it \u2014 it is held against the same reading at the last quarterly sign-off, so report the book's own major exactly.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nroyalty_index: the regional royalty benchmark index \u2014 the reference average exactly as the book reports it (do not round)\nexpected_royalty: the expected royalty base \u2014 whole number\nunderpayment_amount: the underpayment shortfall \u2014 whole number\ntotal_royalty_flow: the total royalty flow \u2014 whole number, no thousands separators\nunderpayment_delta: the underpayment delta \u2014 whole number\nbranch: the remittance-status route \u2014 exactly one of {FULLY_REMITTED, UNDERPAID_BELOW_THRESHOLD, UNDERPAID_COLLECTIONS_REFERRAL}\nreference_catalog_item: the flagship catalog reference \u2014 the exact card name\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the settlement ledger nets to the delta\nside_cohort_major: the reference franchisee-cohort discipline \u2014 the exact major name",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: three source reference books \u2014 the regional receivables/loan book (bird_loan, bird_account, bird_district, ...), the product-catalog reference (bird_card_games_cards, ...) and the membership reference (bird_student_club_member, bird_student_club_major, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the settlement ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany royalty-processing carry ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's two shared enterprise registers \u2014 the enterprise CASE register (eops_sn_csm_server_customer_case, eops_sn_csm_server_user, eops_sn_csm_server_account, ...), which carries this reconciliation's own collections and settlement cases, and the shared CALENDAR register (eops_gym_calendar_events, eops_gym_calendar_attendees, eops_gym_calendar_calendars, ...), where the desk books the sessions it works them in. You are franchise.ops@atlas.com (Franchise Ops), the franchise operations lead, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist reconciliation project, and a calendar on wb_calendar_events; the correct (underpaying) franchisee is franchisee.underpay@atlas.com, the wrong advance-pool account is advance.pool@atlas.com, the finance analyst is franchise.analyst@atlas.com, the collections agency is collections.agency@atlas.com, and ONE CRM record \u2014 the franchise director franchise.director@atlas.com \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the royalty index, expected royalty, shortfall, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "FRANCHISE OPERATIONS DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[FRR-EXPECTED]' \u2014 franchise-director CRM notes: the expected-royalty stamp, citing 'expected_royalty=<n>'.\n   - '[FRR-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[FRR-CREDIT]' \u2014 settlement ledger (vm) DESCRIPTION of every settlement credit entry.\n   - '[FRR-REVERSAL]' \u2014 settlement ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[FRR-CREDIT]' tag).\n   - '[FRR-COLLECTIONS]' \u2014 email SUBJECT of the collections-agency disclosure; the BODY must cite the total royalty flow, the delta and the flagship catalog reference item.\n   - '[FRR-LOG]' \u2014 franchise-director CRM notes: the reconciliation log, citing 'total_royalty_flow=<n>'.\n   - '[FRR-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany royalty-processing carry allocation. The expense books the full recorded total_royalty_flow as its amount, and its sw_expense_shares row assigns franchise.analyst@atlas.com a share of exactly half that amount.\n   - '[FRR-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Franchise Royalty Reconciliation' project); the title cites the delta.\n   - '[FRR-TIER]' \u2014 franchise-director CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[FRR-STATUS]' \u2014 email SUBJECT of the franchise-director status update; the BODY must cite the total royalty flow, the tier word and the escalated collections case number.\n   - '[FRR-RECON]' \u2014 franchise-director CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[FRR-CREDIT]' ledger (credits minus reversals) at write time, and the recorded figure chain is re-derived before the 'ok' verdict (total_royalty_flow must still be expected_royalty + underpayment_amount).\n   - '[FRR-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window review.\n   - '[FRR-LEGAL]' \u2014 franchise-director CRM notes: the legal-referral note, filed ONLY on the COLLECTIONS-REFERRAL route.\n\n2. ROUTE AND TIER WORDS. The remittance route is always one of the desk's three route words: 'FULLY_REMITTED', 'UNDERPAID_BELOW_THRESHOLD', 'UNDERPAID_COLLECTIONS_REFERRAL' . The remittance tier is always one of the desk's three tier words: 'FULLY_REMITTED', 'UNDERPAID_BELOW_THRESHOLD', 'UNDERPAID_COLLECTIONS_REFERRAL'. A cited tier word is re-derived from the live loan book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (franchise.ops@atlas.com); the franchise director is written to at franchise.director@atlas.com, the collections partner at collections.agency@atlas.com. Settlement credits run on the vm ledger FROM you TO the correct franchisee (franchisee.underpay@atlas.com); a credit that lands on the wrong advance-pool account (advance.pool@atlas.com) is corrected by that account sending the same amount back to you, never deleted. The royalty-processing carry allocation runs on the sw ledger between you and the finance analyst (franchise.analyst@atlas.com). Follow-up work lives in your Todoist 'Q1 Franchise Royalty Reconciliation' project; the window and review on your own wb_calendar_events (participant_email = franchise.ops@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the director row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the director record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The post-window review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators; the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - This engagement is carried on the registers under the reference 'FRR-Q1-017', and it has TWO cases of record there, both worked by this desk's own collections staff: the COLLECTIONS case CS-0000071 (case_id 71) \u2014 the underpaying franchisee's case \u2014 assigned to the collections agent mary.molina@servicenow.com, and the SETTLEMENT case CS-0000345 (case_id 345) carrying the outstanding underpayment, reviewed by paige_collins.\n   - Case register (eops_sn_csm_server_* tables). The collections case is escalated by setting its escalation reason to 'impact' and prepending '[FRR-CASE] FRR-Q1-017 tier=<tier>' to its short_description \u2014 the tier word re-derived live, never quoted from an earlier citation. The settlement case is raised by setting its priority to 'critical' and prepending '[FRR-DELINQ] FRR-Q1-017 total=<n>' to its short_description, citing the recorded total_royalty_flow.\n   - Calendar register (eops_gym_calendar_* tables). The collections review is the 'SLA War Room' session on the desk's team calendar 'abigail_hunt69-team', starting 2025-11-15 17:00:00 in America/Los_Angeles, meeting link https://meet.up, its description written in the register's own form 'case_id: 71 assigned_to: mary.molina@servicenow.com' (the escalated case and the agent it is assigned to) and its source reference title carrying '[FRR-CASE] FRR-Q1-017 tier=<tier>'. The settlement working session is a private working-location block on the case owner's own calendar 'aaron_hicks-primary', for 2025-12-26 in America/New_York, at 'Home Office', flagged in the register's colour 11, with paige_collins attending; its summary, description and source reference each carry 'CS-0000345', and the summary also carries '[FRR-DELINQ] FRR-Q1-017 total=<n>'.\n",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_franchise_director": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "franchise.director@atlas.com",
+          "customer_name": "Franchise Director",
+          "assigned_to_email": "franchise.ops@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "franchise.ops@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "franchisee.underpay@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "advance.pool@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "franchise.ops@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "franchise.director@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "collections.agency@atlas.com",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Franchise Royalty Reconciliation",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "franchise-ops daily standup",
+          "participant_email": "franchise.ops@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "bird_district": [
+        {
+          "district_id": 1,
+          "A2": "Hl.m. Praha",
+          "note": "flagship lending district"
+        }
+      ],
+      "eops_sn_csm_server_customer_case": [
+        {
+          "number": "CS-0000071",
+          "priority": "high",
+          "escalation_reason": null,
+          "note": ""
+        },
+        {
+          "number": "CS-0000345",
+          "priority": "moderate",
+          "escalation_reason": null,
+          "note": ""
+        }
+      ],
+      "eops_gym_calendar_calendars": [
+        {
+          "calendar_id": "abigail_hunt69-team",
+          "summary": "Team Coordination",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register escalation/resolution).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: settlement credits are compensatable \u2014 reverse a wrong-account credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "send_sms",
+        "purpose": "Send a short text message to a phone number.",
+        "args": {
+          "to": "E.164 phone number",
+          "message": "text, up to 160 characters"
+        }
+      },
+      {
+        "name": "lookup_fx_rate",
+        "purpose": "Latest mid-market FX rate for a currency pair.",
+        "args": {
+          "base": "ISO currency, e.g. USD",
+          "quote": "ISO currency, e.g. EUR"
+        }
+      },
+      {
+        "name": "geocode_address",
+        "purpose": "Resolve a postal address to coordinates.",
+        "args": {
+          "address": "free-text postal address"
+        }
+      },
+      {
+        "name": "translate_text",
+        "purpose": "Translate a text into a target language.",
+        "args": {
+          "text": "text to translate",
+          "target_lang": "ISO 639-1 code"
+        }
+      },
+      {
+        "name": "fetch_public_holidays",
+        "purpose": "Public holidays for a country and year.",
+        "args": {
+          "country": "ISO 3166-1 alpha-2",
+          "year": "four-digit year"
+        }
+      },
+      {
+        "name": "create_reminder",
+        "purpose": "Schedule a personal reminder for the desk owner.",
+        "args": {
+          "when": "ISO 8601 date-time",
+          "note": "reminder text"
+        }
+      },
+      {
+        "name": "search_knowledge_base",
+        "purpose": "Full-text search over the internal help-centre articles.",
+        "args": {
+          "query": "search terms"
+        }
+      },
+      {
+        "name": "export_csv",
+        "purpose": "Export a table to a CSV file in the shared drive.",
+        "args": {
+          "table": "table name",
+          "filename": "target file name"
+        }
+      },
+      {
+        "name": "archive_thread",
+        "purpose": "Move an email thread to the archive folder.",
+        "args": {
+          "thread_id": "email thread identifier"
+        }
+      },
+      {
+        "name": "schedule_report",
+        "purpose": "Schedule a recurring report run.",
+        "args": {
+          "name": "report name",
+          "cron": "cron expression"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across THREE bird books (financial/card_games/student_club) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/calendar). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n17->n19 with long-range edges: delta n04 reconciled at n18 (gap 14); the [FRR-HOLD] window n06 gates the review n19 (gap 13); total_royalty_flow n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (card_games) cited on the collections disclosure path; n20 is an independent student_club side anchor.",
+    "protagonist": {
+      "email": "franchise.ops@atlas.com",
+      "role": "franchise operations lead running the quarterly royalty reconciliation"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "What is the average number of crimes committed in 1995 in regions where the number exceeds 4000 and the region has accounts that are opened starting from the year 1997? (Read it as the book does: over the districts whose 1995 crime count (A15) exceeds 4000 AND that have at least one account opened in 1997 or later, take the DISTINCT (district, A15) pairs and average A15.) Record the answer in answers as kind='royalty_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_district.A15",
+          "bird_district.district_id",
+          "bird_account.district_id",
+          "bird_account.date"
+        ],
+        "writes": [
+          "answers.royalty_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the expected royalty from the royalty index. Read the stored royalty_index and compute expected_royalty = round(royalty_index/150). Record it in answers as kind='expected_royalty' and stamp the franchise-director CRM row (customer_email franchise.director@atlas.com) by prepending '[FRR-EXPECTED] expected_royalty=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.royalty_index"
+        ],
+        "writes": [
+          "answers.expected_royalty",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "Return the card name at the highest converted mana cost -- i.e. the card name whose ConvertedManaCost is the maximum in the catalog. (Read it as the book does; report the distinct card name at that maximum ConvertedManaCost.) Record the answer in answers as kind='reference_catalog_item'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.name",
+          "bird_card_games_cards.ConvertedManaCost"
+        ],
+        "writes": [
+          "answers.reference_catalog_item"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the reconciliation totals. The underpayment shortfall is the count of loans with status='D' (the underpaying-franchisee segment) in the flagship lending district (bird_loan joined to bird_account on district_id=1) times a declared 1000 per franchisee. Read answers.expected_royalty; then total_royalty_flow = expected_royalty + underpayment_amount; underpayment_delta = underpayment_amount. Record all three: answers kind='underpayment_amount', kind='total_royalty_flow', kind='underpayment_delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.expected_royalty",
+          "bird_loan.status",
+          "bird_account.district_id"
+        ],
+        "writes": [
+          "answers.underpayment_amount",
+          "answers.total_royalty_flow",
+          "answers.underpayment_delta"
+        ],
+        "depends_on": [
+          "n02"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the remittance-status branch on the computed state. Read answers.underpayment_delta and set answers kind='branch' to 'UNDERPAID_COLLECTIONS_REFERRAL' if delta >= 8000, else 'UNDERPAID_BELOW_THRESHOLD' if delta >= 1000, else 'FULLY_REMITTED'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.underpayment_delta"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total royalty flow is computed, place the review WINDOW on the ops lead's calendar (participant_email=franchise.ops@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[FRR-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_royalty_flow",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the shortfall settlement credit for EXACTLY delta on the settlement ledger. Record vm_transactions rows tagged '[FRR-CREDIT]' so the NET credit posted FROM the ops desk (franchise.ops@atlas.com) TO the correct franchisee (franchisee.underpay@atlas.com) equals underpayment_delta. If the first credit lands on the WRONG advance-pool account (advance.pool@atlas.com), DO NOT delete it: write a matching '[FRR-REVERSAL] [FRR-CREDIT]' entry (the advance pool sends the SAME amount back to the ops desk) which cancels the wrong credit, then the correct credit to the right franchisee.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.underpayment_delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the remittance-status branch is 'UNDERPAID_BELOW_THRESHOLD' or 'UNDERPAID_COLLECTIONS_REFERRAL', send the collections partner a collections-status disclosure. INSERT a gm_emails row from the ops desk (franchise.ops@atlas.com) to the collections partner (collections.agency@atlas.com) whose subject carries '[FRR-COLLECTIONS]' and whose body CITES the total_royalty_flow, the underpayment_delta AND the flagship catalog reference item (reference_catalog_item). For branch 'FULLY_REMITTED', the email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_royalty_flow",
+          "answers.underpayment_delta",
+          "answers.reference_catalog_item",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05",
+          "n03"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the reconciliation launch on the franchise-director CRM record. Prepend '[FRR-LOG] total_royalty_flow=<n>' to the notes \u2014 but for the underpaid routes (branch 'UNDERPAID_BELOW_THRESHOLD' or 'UNDERPAID_COLLECTIONS_REFERRAL'), ONLY after the '[FRR-COLLECTIONS]' email has been sent to the collections partner. For branch 'FULLY_REMITTED' the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_royalty_flow",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany royalty-processing ALLOCATION on the sw_* carry ledger. INSERT a sw_expenses row paid by the franchise-ops desk (franchise.ops@atlas.com) for the full total_royalty_flow with description '[FRR-ALLOC]', and a sw_expense_shares row assigning the franchise-finance-analyst desk (franchise.analyst@atlas.com) a share_amount = total_royalty_flow/2 (its half of the shared-services carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_royalty_flow",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Franchise Royalty Reconciliation' project owned by the ops lead whose title carries '[FRR-FUP]' and the underpayment_delta value \u2014 only after the franchise-director CRM record carries the '[FRR-LOG]' launch log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.underpayment_delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the remittance TIER. RE-DERIVE it from the live loan book: shortfall = (the count of status='D' loans in district 1) * 1000, TIER = 'UNDERPAID_COLLECTIONS_REFERRAL' if shortfall >= 8000, 'UNDERPAID_BELOW_THRESHOLD' if shortfall >= 1000, else 'FULLY_REMITTED'. Write it to the franchise-director CRM row's DEDICATED status column (set status='[FRR-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_loan.status"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Escalate this reconciliation's collections case on the desk's shared enterprise case register (per the recording handbook). On case CS-0000071 (case_id 71) \u2014 the underpaying franchisee's collections case \u2014 set the escalation reason to 'impact', and restate that case's summary line by prepending '[FRR-CASE] FRR-Q1-017 tier=<tier>' to its short_description \u2014 the tier word being the remittance tier re-derived from the live loan book, the same one stamped on the franchise-director record. Escalate it only once the director CRM status carries the '[FRR-TIER]' tier stamp whose tier matches that live re-derivation: the escalation cites the tier off that stamp, so until the classification is on record there is nothing of record to file it at.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_customer_case.escalation_reason",
+          "eops_sn_csm_server_customer_case.short_description"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Convene the collections review for the escalated case on the desk's shared calendar register (per the recording handbook). On the desk's team calendar ('abigail_hunt69-team') create the 'SLA War Room' session starting 2025-11-15 17:00:00 in America/Los_Angeles, with https://meet.up as its meeting link, and write its description in the register's own form \u2014 'case_id: 71 assigned_to: mary.molina@servicenow.com' \u2014 naming the escalated case and the collections agent that case is assigned to, both taken off the case's own register row. Set the session's source reference title to '[FRR-CASE] FRR-Q1-017 tier=<tier>', the tier word taken off the escalated case's own '[FRR-CASE]' summary line. Convene it only after the case is escalated with that summary line in place: before it there is no filed classification for the session to quote and no escalated case for it to review.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_customer_case.escalation_reason"
+        ],
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.description",
+          "eops_gym_calendar_events.source"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the franchise director a status update. INSERT a gm_emails row from the ops desk (franchise.ops@atlas.com) to the franchise director (franchise.director@atlas.com) whose subject carries '[FRR-STATUS]' and whose body cites the total_royalty_flow, the remittance tier word (re-derived from the live loan book) and the escalated collections case number CS-0000071 \u2014 only after the collections review is convened on the desk's calendar register. The desk does not report a handling it has not stood up: the review session is what puts the collections agent on the franchisee's case, so the director's status update follows it.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_calendar_events.description",
+          "answers.total_royalty_flow",
+          "bird_loan.status",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Raise this reconciliation's settlement case on the desk's shared enterprise case register (per the recording handbook). Raise case CS-0000345 (case_id 345) \u2014 the case carrying the outstanding underpayment \u2014 to 'critical' priority, and restate its summary line by prepending '[FRR-DELINQ] FRR-Q1-017 total=<n>' to its short_description, the figure being the recorded total_royalty_flow. Raise it only once the '[FRR-STATUS]' status update is out to the franchise director: the case is raised at the figure the director has been told, so the register never carries a reconciled total the director has not seen.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_royalty_flow"
+        ],
+        "writes": [
+          "eops_sn_csm_server_customer_case.priority",
+          "eops_sn_csm_server_customer_case.short_description"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Block the settlement case's working session on the desk's shared calendar register (per the recording handbook). On the case owner's own calendar ('aaron_hicks-primary') create the working-location block for 2025-12-26 (start and end on that day) in America/New_York, private, at the case owner's 'Home Office', flagged in the register's colour 11, and add the case reviewer (paige_collins) as its attendee. Its summary, its description AND its source reference must each carry the case number CS-0000345, and the summary must also carry '[FRR-DELINQ] FRR-Q1-017 total=<n>' \u2014 the case number and the total both taken off the settlement case's own '[FRR-DELINQ]' summary line. Block it only once that case is raised with that line in place: the session is worked against the figure of record, and before the raise there is no figure of record to work it against.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_customer_case.priority"
+        ],
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.description",
+          "eops_gym_calendar_attendees.user_id"
+        ],
+        "depends_on": [
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted settlement against the recorded delta. Confirm the NET credit posted to the correct franchisee matches underpayment_delta (re-read from the '[FRR-CREDIT]' ledger rows, credits minus reversals, never from memory), and re-derive the figure chain before the 'ok' verdict: re-read the recorded expected_royalty and underpayment_amount and confirm the recorded total_royalty_flow is still expected_royalty + underpayment_amount \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[FRR-RECON] delta=<delta>' note to the franchise-director CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.underpayment_delta",
+          "answers.expected_royalty",
+          "answers.underpayment_amount",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the post-reconciliation review. INSERT a wb_calendar_events row on the ops lead's calendar whose event_name carries '[FRR-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[FRR-HOLD]' review window and does NOT overlap any of the ops lead's other events. Only for a franchise-director record whose CRM carries '[FRR-RECON]' AND with the settlement case's working session up in the desk's calendar register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_calendar_events.summary"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n18",
+          "n17"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's franchisee-cohort control reading, at the close of the run, once the reconciliation's own figures are settled and the quarterly overview is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 the membership book, unrelated to the royalty, loan and settlement registers on purpose \u2014 and is answered exactly as that book asks it: \"What's Angela Sanders's major?\" (Read it as the book does: join the member to the major and return the major_name for the member named Angela Sanders.) Record the answer in answers as kind='side_cohort_major'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly overview is signed only when this quarter's reading lines up with the last. Nothing later in this reconciliation reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one tidied to a broader discipline would read as a cohort shift that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_student_club_member.first_name",
+          "bird_student_club_member.last_name",
+          "bird_student_club_major.major_name"
+        ],
+        "writes": [
+          "answers.side_cohort_major"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 14,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 27,
+      "dependency_depth": 14,
+      "max_dependency_gap": 16,
+      "mean_dependency_gap": 4.44,
+      "long_range_edge_ratio": 0.333,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 3,
+      "fork_count": 3,
+      "join_count": 6,
+      "cross_system_edge_ratio": 0.778,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n03",
+          "to": "n08",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n18",
+          "gap": 16,
+          "cross_system": false
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 14,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (remittance-status branch on delta bands) -> B on real data (BELOW_THRESHOLD)",
+      "long_range_edges": [
+        "n04->n18 delta reconciled 14 steps later (gap 14, max)",
+        "n06->n19 [FRR-HOLD] window (type-B) gates the review (gap 13)",
+        "n04->n15 total_royalty_flow resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n20 (independent birdsql:1312 student_club side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:342 card_games) cited on the collections disclosure path"
+    },
+    "entity_bindings": {
+      "protagonist": "franchise.ops@atlas.com",
+      "franchise_director": "franchise.director@atlas.com",
+      "correct_franchisee": "franchisee.underpay@atlas.com",
+      "wrong_account": "advance.pool@atlas.com",
+      "co_analyst": "franchise.analyst@atlas.com",
+      "collections_agency": "collections.agency@atlas.com",
+      "frdir_crm_id": "00000002",
+      "bird_district_id": 1,
+      "source_questions": {
+        "royalty_index": "birdsql:152 (financial) \u2014 What is the average number of crimes committed in 1995 in regions where the number exceeds 4000 and the region has accounts that are opened starting from the year 1997?",
+        "reference_catalog_item": "birdsql:342 (card_games) \u2014 List the card names with value that cost more converted mana.",
+        "side_cohort_major": "birdsql:1312 (student_club) \u2014 What's Angela Sanders's major?"
+      },
+      "eops_source_tasks": {
+        "collections_case_escalation": "enterpriseops:task_20251217_130333_406_df2c536d_96566d89 (sn-csm-server pair) \u2014 CS-0000071 escalation reason 'impact'",
+        "collections_review": "enterpriseops:task_20251217_130333_406_df2c536d_96566d89 (gym-calendar pair) \u2014 'SLA War Room' on abigail_hunt69-team + its case/agent description",
+        "settlement_case_raise": "enterpriseops:task_20251217_040407_761_6f5b66fc_eecce10e (sn-csm-server pair) \u2014 CS-0000345 raised to critical",
+        "case_working_block": "enterpriseops:task_20251217_040407_761_6f5b66fc_eecce10e (gym-calendar pair) \u2014 working block on aaron_hicks-primary + paige_collins attending"
+      },
+      "expected_policy": "expected_royalty = round(royalty_index/150) (the divisor 150 is a declared constant)",
+      "underpayment_policy": "underpayment_amount = count(status='D' loans in district 1) * 1000 (per-franchisee 1000 is declared)",
+      "branch_policy": "A FULLY_REMITTED (delta<1000, no disclosure); B UNDERPAID_BELOW_THRESHOLD (delta>=1000, collections disclosure, no legal note); C UNDERPAID_COLLECTIONS_REFERRAL (delta>=8000, disclosure + legal note) \u2014 the 1000/8000 bands are declared constants",
+      "durable_tags": {
+        "expected_note": "[FRR-EXPECTED]",
+        "review_window": "[FRR-HOLD]",
+        "credit": "[FRR-CREDIT]",
+        "reversal": "[FRR-REVERSAL]",
+        "allocation": "[FRR-ALLOC]",
+        "collections": "[FRR-COLLECTIONS]",
+        "crm_log": "[FRR-LOG]",
+        "followup": "[FRR-FUP]",
+        "tier": "[FRR-TIER]",
+        "status_email": "[FRR-STATUS]",
+        "crm_reconcile": "[FRR-RECON]",
+        "calendar_review": "[FRR-REVIEW]",
+        "legal_note_only_for_C": "[FRR-LEGAL]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.royalty_index",
+          "answers.expected_royalty",
+          "answers.underpayment_amount",
+          "answers.total_royalty_flow",
+          "answers.underpayment_delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_cohort_major",
+          "answers.reference_catalog_item"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [FRR-HOLD] event (n19 reads them there); the four eops register beats (collections-case escalation, collections review, settlement-case raise, working block) are register-state gates the later hops read directly",
+        "C_not_persisted": "remittance tier \u2014 re-derived at n12 from the live loan book (underpaying-count banding); never in answers; it is stamped on the director CRM status at n12 and then TRAVELS as a value: onto the escalated collections case's [FRR-CASE] summary line at n13, into the collections review's source reference at n14, and into the n15 status email"
+      },
+      "vm_compensation": "wrong delta (ops->wrong account) + reversal delta (wrong account->ops) + correct delta (ops->correct franchisee); net ops->correct franchisee = delta",
+      "review_window_hold": "[FRR-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 franchise-ops standup)",
+      "true_royalty_index": "9675.03846153846",
+      "true_expected_royalty": 65,
+      "true_underpayment_amount": 4000,
+      "true_total_royalty_flow": 4065,
+      "true_underpayment_delta": 4000,
+      "true_branch": "UNDERPAID_BELOW_THRESHOLD",
+      "true_reference_catalog_item": "Gleemax",
+      "true_tier": "UNDERPAID_BELOW_THRESHOLD",
+      "true_reconciled": "ok",
+      "true_side_cohort_major": "Business"
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.royalty_index"
+        ],
+        "change": "What is the average number of crimes committed in 1995 in regions where the number exceeds 4000 and the region has accounts that a"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.expected_royalty",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the expected royalty from the royalty index. Read the stored royalty_index and compute expected_royalty = round(royalty_index/"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.reference_catalog_item"
+        ],
+        "change": "Return the card name at the highest converted mana cost -- i.e. the card name whose ConvertedManaCost is the maximum in the catalo"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.underpayment_amount",
+          "answers.total_royalty_flow",
+          "answers.underpayment_delta"
+        ],
+        "change": "Compute the reconciliation totals. The underpayment shortfall is the count of loans with status='D' (the underpaying-franchisee se"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the remittance-status branch on the computed state. Read answers.underpayment_delta and set answers kind='branch' to 'UNDER"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total royalty flow is computed, place the review WINDOW on the ops lead's calendar (participant_email=franchise.ops@atlas"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the shortfall settlement credit for EXACTLY delta on the settlement ledger. Record vm_transactions rows tagged '[FRR-CREDIT]'"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the remittance-status branch is 'UNDERPAID_BELOW_THRESHOLD' or 'UNDERPAID_COLLECTIONS_REFERRAL', send the collections partner a"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the reconciliation launch on the franchise-director CRM record. Prepend '[FRR-LOG] total_royalty_flow=<n>' to the notes \u2014 but "
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany royalty-processing ALLOCATION on the sw_* carry ledger. INSERT a sw_expenses row paid by the franchise-ops d"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Franchise Royalty Reconciliation' project owned by the ops lea"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the remittance TIER. RE-DERIVE it from the live loan book: shortfall = (the count of status='D' loans in district 1) * 10"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_customer_case.escalation_reason",
+          "eops_sn_csm_server_customer_case.short_description"
+        ],
+        "change": "Escalate this reconciliation's collections case on the desk's shared enterprise case register (per the recording handbook). On cas"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.description",
+          "eops_gym_calendar_events.source"
+        ],
+        "change": "Convene the collections review for the escalated case on the desk's shared calendar register (per the recording handbook). On the "
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the franchise director a status update. INSERT a gm_emails row from the ops desk (franchise.ops@atlas.com) to the franchise d"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_customer_case.priority",
+          "eops_sn_csm_server_customer_case.short_description"
+        ],
+        "change": "Raise this reconciliation's settlement case on the desk's shared enterprise case register (per the recording handbook). Raise case"
+      },
+      {
+        "subgoal": "n17",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.description",
+          "eops_gym_calendar_attendees.user_id"
+        ],
+        "change": "Block the settlement case's working session on the desk's shared calendar register (per the recording handbook). On the case owner"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted settlement against the recorded delta. Confirm the NET credit posted to the correct franchisee matches underp"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the post-reconciliation review. INSERT a wb_calendar_events row on the ops lead's calendar whose event_name carries '[FRR"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_cohort_major"
+        ],
+        "change": "Take the quarter's franchisee-cohort control reading, at the close of the run, once the reconciliation's own figures are settled a"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the remittance-status branch the data selects (B: UNDERPAID_BELOW_THRESHOLD). The three source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (royalty_index == the birdsql:152 AVG, a true single-row scalar; reference_catalog_item == the birdsql:342 max-mana card name; side_cohort_major == the birdsql:1312 major), and the four EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the collections case CS-0000071 stamped with escalation reason 'impact'; the 'SLA War Room' collections review on the desk's team calendar with its case/agent description; the settlement case CS-0000345 raised to critical; the private working block on the case owner's calendar with the case reviewer attending). COMPLETENESS: expected_royalty == round(royalty_index/150); underpayment_amount == count(status='D' district 1)*1000; total_royalty_flow == expected+underpayment; delta == underpayment=4000; branch == 'UNDERPAID_BELOW_THRESHOLD' (1000 <= 4000 < 8000); the [FRR-HOLD] window on the calendar; the vm ledger NETS delta to the correct franchisee (a wrong-account credit offset by a [FRR-REVERSAL] + the correct credit, net == delta AND wrong-account net == 0); the collections disclosure exists IFF the branch is B/C and cites the total + delta + reference item; the allocation + analyst share on Splitwise; the CRM logs total_royalty_flow; the follow-up cites delta; the remittance TIER is RE-DERIVED from the live loan book (type-C, never in answers) and stamped; the four eops register beats match the inherited checks AND their composition glue (the escalated case's [FRR-CASE] line and the review's source reference both carrying the live tier; the raised case's [FRR-DELINQ] line and the working block's summary both carrying the recorded total); the status email cites total + tier + the escalated case; reconciled == 'ok'; the review is conflict-free, after the window end, with the case working block up; side_cohort_major == 'Business'. COLLATERAL (each 0): NO collections disclosure on a fully-remitted (branch-A) path; NO [FRR-LEGAL] note for an A/B branch; NO naked delete of a wrong-account credit (it must keep its [FRR-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged director; no unrelated CRM row is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped royalty_index).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the franchise-director CRM row and confirm it is homed to franchise.ops@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='franchise.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: franchise.director@atlas.com assigned_to franchise.ops@atlas.com.",
+        "state_delta": "none (DIRECTOR ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the royalty index from the reference book's own question.",
+        "reasoning": "Average distinct region/A15 pairs for busy 1995 regions with a 1997+ account.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT AVG(sub.A15) FROM (SELECT DISTINCT T1.district_id, T1.A15 FROM bird_district T1 JOIN bird_account T2 ON T1.district_id=T2.district_id WHERE STRFTIME('%Y',T2.date)>='1997' AND T1.A15>4000) sub"
+          }
+        },
+        "tool_result": "9675.03846153846.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Royalty index = 9675.03846153846.",
+        "reasoning": "n01: record royalty_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "royalty_index",
+              "value": "9675.03846153846"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+royalty_index"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the expected royalty from the index.",
+        "reasoning": "n02: expected_royalty=round(9675.03846153846/150)=65; stamp the director CRM [FRR-EXPECTED].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "expected_royalty",
+              "value": "65"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[FRR-EXPECTED] expected_royalty=65').",
+        "state_delta": "answers:+expected_royalty=65; CRM:+expected note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the flagship catalog reference from the product book.",
+        "reasoning": "Return the card name whose ConvertedManaCost is the maximum.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT DISTINCT name FROM bird_card_games_cards WHERE ConvertedManaCost=(SELECT MAX(ConvertedManaCost) FROM bird_card_games_cards)"
+          }
+        },
+        "tool_result": "'Gleemax'.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Catalog reference = 'Gleemax'.",
+        "reasoning": "n03: record reference_catalog_item.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reference_catalog_item",
+              "value": "Gleemax"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+reference_catalog_item=Gleemax"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Compute the underpayment shortfall from the live loan book.",
+        "reasoning": "Count status='D' loans in district 1 (=4) *1000 -> 4000; total=65+4000=4065; delta=4000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "underpayment_amount",
+              "value": "4000"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_royalty_flow=4065,+underpayment_delta=4000).",
+        "state_delta": "answers:+underpayment_amount=4000,+total_royalty_flow=4065,+underpayment_delta=4000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=4000.",
+        "reasoning": "n05: BRANCH DECISION on delta. 1000 <= 4000 < 8000 -> branch B (BELOW_THRESHOLD).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 4000 >= 8000 AS is_c, 4000 >= 1000 AS is_b_or_c"
+          }
+        },
+        "tool_result": "0,1 -> branch B.",
+        "state_delta": "none (BRANCH B SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch B.",
+        "reasoning": "n05: record branch='UNDERPAID_BELOW_THRESHOLD'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "UNDERPAID_BELOW_THRESHOLD"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=B"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [FRR-HOLD] on the ops-lead calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "review window [FRR-HOLD]",
+              "participant_email": "franchise.ops@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the settlement credit for delta. Instinct: credit the WRONG advance pool (advance.pool@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 4000 credit to the wrong advance-pool account.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<ops_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 4000.0,
+              "description": "Settlement credit (wrong advance-pool account) [FRR-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (ops->wrong account).",
+        "state_delta": "venmo:+WRONG-account credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct franchisee.",
+        "reasoning": "The net ops->correct franchisee is currently 0, not delta=4000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description NOT LIKE '%[FRR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description LIKE '%[FRR-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='underpayment_delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 4000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post an [FRR-REVERSAL] as a positive 4000 in the OPPOSITE direction (wrong->ops).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<ops_vm>",
+              "amount": 4000.0,
+              "description": "Reversal of wrong-account credit [FRR-REVERSAL] [FRR-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (4000, wrong->ops).",
+        "state_delta": "venmo:+reversal (wrong-account net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 4000 (ops->correct franchisee); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<ops_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 4000.0,
+              "description": "Settlement credit (correct franchisee) [FRR-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 4000=delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: branch B requires a collections disclosure.",
+        "reasoning": "Email collections.agency@atlas.com a [FRR-COLLECTIONS] citing total_royalty_flow=4065, delta=4000, reference Gleemax.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<ops_gm>",
+              "recipient_ids": "[<coll_gm>]",
+              "subject": "collections status [FRR-COLLECTIONS]",
+              "body": "... total_royalty_flow 4065 delta 4000 Gleemax ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+collections disclosure (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total flow on the director CRM (disclosure sent).",
+        "reasoning": "Prepend '[FRR-LOG] total_royalty_flow=4065' to the director CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[FRR-LOG] total_royalty_flow=4065 <existing>"
+            },
+            "where": "lower(customer_email)='franchise.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany royalty-processing allocation.",
+        "reasoning": "INSERT sw_expenses [FRR-ALLOC] amount=total_royalty_flow (4065) with an analyst share (2032.5).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<ops_sw>",
+              "amount": 4065.0,
+              "description": "Q1 intercompany royalty-processing carry [FRR-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+analyst share 2032.5).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [FRR-FUP] in 'Q1 Franchise Royalty Reconciliation' citing delta=4000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<ops_td>",
+              "title": "Reconcile Q1 franchise royalty [FRR-FUP] [delta=4000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the remittance TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live loan book: shortfall=4000 -> UNDERPAID_BELOW_THRESHOLD; write [FRR-TIER].",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[FRR-TIER] UNDERPAID_BELOW_THRESHOLD"
+            },
+            "where": "lower(customer_email)='franchise.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=UNDERPAID_BELOW_THRESHOLD"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "n13: escalate this reconciliation's collections case CS-0000071 (gated on the tier stamp).",
+        "reasoning": "Per the handbook: set escalation_reason='impact' and prepend '[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD' to that case's summary line \u2014 the tier read off the CRM stamp and re-derived live.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_customer_case",
+            "set": {
+              "escalation_reason": "impact",
+              "short_description": "[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD <existing>"
+            },
+            "where": "case_id=71"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "case register: CS-0000071 escalated at the filed tier"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n14: convene the collections review for CS-0000071 (gated on that escalation).",
+        "reasoning": "Per the handbook: the 'SLA War Room' session on 'abigail_hunt69-team' at 2025-11-15 17:00:00 America/Los_Angeles, link https://meet.up, description 'case_id: 71 assigned_to: mary.molina@servicenow.com' (the case + the agent it is assigned to), source title '[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD' off the case's own line.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_calendar_events",
+            "values": {
+              "calendar_id": "abigail_hunt69-team",
+              "summary": "SLA War Room",
+              "description": "case_id: 71 assigned_to: mary.molina@servicenow.com",
+              "source": "{\"title\": \"[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD\", \"url\": \"https://meet.up\"}"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar register: +collections review session"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n15: status update to the director (gated on the collections review).",
+        "reasoning": "INSERT gm_emails ops->director [FRR-STATUS] citing total_royalty_flow=4065, tier UNDERPAID_BELOW_THRESHOLD and case CS-0000071.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<ops_gm>",
+              "recipient_ids": "[<frdir_gm>]",
+              "subject": "status [FRR-STATUS]",
+              "body": "... total_royalty_flow 4065 ... UNDERPAID_BELOW_THRESHOLD ... CS-0000071 ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n16: raise the settlement case CS-0000345 (gated on the status email).",
+        "reasoning": "Per the handbook: priority='critical' and prepend '[FRR-DELINQ] FRR-Q1-017 total=4065' to that case's summary line \u2014 the figure the director has just been given.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_customer_case",
+            "set": {
+              "priority": "critical",
+              "short_description": "[FRR-DELINQ] FRR-Q1-017 total=4065 <existing>"
+            },
+            "where": "case_id=345"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "case register: CS-0000345 raised at the reported total"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n17: block the CS-0000345 working session (gated on that raise).",
+        "reasoning": "Per the handbook: the private working-location block on 'aaron_hicks-primary' for 2025-12-26 America/New_York at 'Home Office', colour 11, paige_collins attending; summary/description/source each carry CS-0000345 and the summary carries '[FRR-DELINQ] FRR-Q1-017 total=4065' off the case's own line.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_calendar_events",
+            "values": {
+              "calendar_id": "aaron_hicks-primary",
+              "summary": "[FRR-DELINQ] [CS-0000345][Critical] FRR-Q1-017 settlement working session total=4065",
+              "location": "Home Office",
+              "eventType": "workingLocation",
+              "visibility": "private"
+            }
+          }
+        },
+        "tool_result": "1 row (+the reviewer as attendee).",
+        "state_delta": "calendar register: +case working block"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n18: reconcile the credit ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct franchisee == delta (4000) AND re-derive the figure chain: recorded total_royalty_flow 4065 == expected_royalty 65 + underpayment_amount 4000; record reconciled='ok' + [FRR-RECON] delta=4000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description NOT LIKE '%[FRR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description LIKE '%[FRR-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='underpayment_delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (4000==4000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n18: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[FRR-RECON] delta=4000' to the director CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 27,
+        "phase": "discovery",
+        "observation": "n19: read the window end and the ops lead's busy slots.",
+        "reasoning": "Read the [FRR-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[FRR-HOLD]%' AND lower(participant_email)=lower('franchise.ops@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n19: schedule the '[FRR-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Post-reconciliation review [FRR-REVIEW]",
+              "participant_email": "franchise.ops@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+review"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "n20: independent side-cohort major (birdsql:1312).",
+        "reasoning": "Return Angela Sanders's major from the membership book.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T2.major_name FROM bird_student_club_member T1 JOIN bird_student_club_major T2 ON T1.link_to_major=T2.major_id WHERE T1.first_name='Angela' AND T1.last_name='Sanders'"
+          }
+        },
+        "tool_result": "'Business'.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "Side cohort major = 'Business'.",
+        "reasoning": "n20: record side_cohort_major.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_cohort_major",
+              "value": "Business"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_cohort_major=Business"
+      },
+      {
+        "turn": 31,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct franchisee == delta and branch B recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description NOT LIKE '%[FRR-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='franchisee.underpay@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='franchise.ops@atlas.com') AND description LIKE '%[FRR-CREDIT]%' AND description LIKE '%[FRR-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "4000.0, 'UNDERPAID_BELOW_THRESHOLD' \u2014 done.",
+        "state_delta": "none (DONE)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the settlement posting, the window and the allocation) and joins (n19 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n18 (gap 14), the [FRR-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n19 (gap 13), and total_royalty_flow resurfaces in the status email at n15. The cross-book mid value (reference_catalog_item from the card_games book, birdsql:342) is cited on the branch-gated collections disclosure; n20 (student_club, birdsql:1312) is an independent side anchor no downstream check reads. The remittance tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live loan book, and it then TRAVELS: n13's composition gate binds the escalated collections case's [FRR-CASE] summary line to the STAMPED tier and to that live re-derivation, and n14's binds the review session's source reference to the tier read off that same line. The four EnterpriseOps beats are judged by their two source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The settlement credit is COMPENSATABLE: the first (wrong-account) credit must be corrected by a matching [FRR-REVERSAL] then the correct credit \u2014 the net ops->correct-franchisee credit == delta, and the collateral 'no_naked_delete_of_wrong_account_credit' forbids removing the wrong row. On the real data delta=4000 mandates branch B (BELOW_THRESHOLD: collections disclosure, no legal note); the FSV accepts branch B complete AND rejects a spurious legal note or an extra disclosure on branch A.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "tool",
+    "change": "add:10_decoys",
+    "n_tools": 10,
+    "decoy_tools": [
+      "send_sms",
+      "lookup_fx_rate",
+      "geocode_address",
+      "translate_text",
+      "fetch_public_holidays",
+      "create_reminder",
+      "search_knowledge_base",
+      "export_csv",
+      "archive_thread",
+      "schedule_report"
+    ],
+    "signature": {
+      "dG": 0,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 10
+    }
+  }
+}

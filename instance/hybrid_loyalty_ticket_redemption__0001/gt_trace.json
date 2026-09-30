@@ -1,0 +1,609 @@
+{
+ "uid": "hybrid_loyalty_ticket_redemption__0001",
+ "generated_from_build_sha": "a31106a36483",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "redemption_base_count": "380",
+  "base_redemption": "38000",
+  "tier_index": "498",
+  "redemption_uplift": "4980",
+  "total_redemption": "42980",
+  "redemption_delta": "4980",
+  "branch": "MANUAL_REVIEW",
+  "side_language_ratio": "10.0",
+  "side_officer_tally": "50",
+  "reconciled": "ok",
+  "side_eur_customer_count": "391",
+  "side_active_school_count": "2"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:1142",
+   "verdict_basis": "redemption_base_count is judged by birdsql:1142's own official gold SQL rerun LIVE on the bird_european_football_2_-prefixed book \u2014 a true single-row COUNT scalar (matches played, a whole count); the spine root, scaled downstream off a declared per-unit multiplier into the redemption arithmetic",
+   "answers_written": {
+    "redemption_base_count": "380"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(t2.id) FROM bird_european_football_2_League AS t1 INNER JOIN bird_european_football_2_Match AS t2 ON t1.id = t2.league_id WHERE t1.name = 'Italy Serie A' AND t2.season = '2015/2016'",
+    "result": 380
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1142_redemption_base_count",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "base_redemption = round(redemption_base_count) * 100",
+   "follows": "whole count scaled by a declared per-unit rate; no source counterpart",
+   "inputs": [
+    "redemption_base_count <- birdsql:1142 (live rerun)"
+   ],
+   "answers_written": {
+    "base_redemption": "38000"
+   },
+   "checks": [
+    {
+     "name": "base_redemption_is_count_times_multiplier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "base_redemption_derives_from_stored_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "member_crm_base_redemption_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:239",
+   "verdict_basis": "tier_index is judged by birdsql:239's own official gold SQL rerun LIVE on the bird_toxicology_-prefixed book \u2014 a true single-row COUNT scalar; the cross-book input woven into the redemption arithmetic",
+   "answers_written": {
+    "tier_index": "498"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T.bond_id) FROM bird_toxicology_connected AS T WHERE T.atom_id LIKE '%_19'",
+    "result": 498
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_239_tier_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "redemption_uplift = round(tier_index)*10; total_redemption = base_redemption + redemption_uplift; redemption_delta = redemption_uplift; branch = 'CLAWBACK' if delta>=1000000, 'MANUAL_REVIEW' if delta>=1000, else 'AUTO_APPROVE'",
+   "follows": "value-scaled-by-rate + additive combine + threshold-to-categorical CASE; the 1000/1000000 bands are declared constants; the branch predicate is source-expressed (delta from the live toxicology book)",
+   "inputs": [
+    "base_redemption <- n02",
+    "tier_index <- n03 (birdsql:239 live rerun)"
+   ],
+   "answers_written": {
+    "redemption_uplift": "4980",
+    "total_redemption": "42980",
+    "redemption_delta": "4980",
+    "branch": "MANUAL_REVIEW"
+   },
+   "checks": [
+    {
+     "name": "uplift_is_round_index_times_rate",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "birdsql:371",
+   "verdict_basis": "side_language_ratio is judged by birdsql:371's own official gold SQL rerun LIVE on the bird_card_games_-prefixed book \u2014 a true single-row REAL scalar stored verbatim; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_language_ratio": "10.0"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.isStorySpotlight = 1",
+    "result": 10.0
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_371_side_language_ratio",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [LTR-HOLD] window's duration is the declared 3-day review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[LTR-HOLD]",
+      "event_name": "Q1 post-credit redemption review window [LTR-HOLD]",
+      "participant_email": "redemptions.analyst@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong transfer corrected by an offsetting transaction, never a delete; the net target is the recomputed redemption_delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_member",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [LTR-DISPO] email analyst->loyalty-manager citing total_redemption+redemption_delta, present IFF branch in MANUAL_REVIEW/CLAWBACK",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n04",
+    "total_redemption/redemption_delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "dispo_email_iff_review_or_clawback",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [LTR-LOG] total_redemption marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_redemption; co-analyst share = total_redemption/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_redemption <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [LTR-FUP] task citing redemption_delta in the analyst's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [LTR-LOG]",
+    "redemption_delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'CLAWBACK_REDEMPTION' if round(the live tier index)*10 >= 1000000; 'REVIEW_REDEMPTION' if >= 1000; else 'STANDARD_REDEMPTION'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the toxicology tier index), not a relabel of a stored value",
+   "inputs": [
+    "tier index <- live bird_toxicology (re-derived at write time)",
+    "gate <- n11 td_tasks [LTR-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251204_231522_245_e6427839_5d09c3c2",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task: its THREE distinct native database_state checks \u2014 the member account's own case CS-0000102 (case_id 102, account 5 Initech, product 48) escalated at 'customer_request' and held at priority 'high', and the 'update' notification on that case to the member's primary contact thomas.bailey63@initech.io \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched; all equals, no loose LIKE, tables in the tracked seed, all fail untouched); the dependency coupling (the case's summary line CITING the tier word that the CRM [LTR-TIER] stamp carries, both equal to the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "member case escalation == the source task's own three checks; the case is escalated AT the n12 tier (summary line cites it)",
+   "inputs": [
+    "tier relay <- n12 CRM [LTR-TIER] (cited on the case summary line; must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "member_case_escalated_at_high",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "member_contact_update_notification",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "member_case_escalated_at_customer_request",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "case_escalated_at_the_tier_of_record",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "workbench:project_mgmt/10",
+   "verdict_basis": "task-create outcome judged by the resulting wb_project_tasks row carrying the re-derived tier word and the escalated case's number CS-0000102, gated on the case escalation at that tier",
+   "rule": "one [LTR-PRIOTASK] priority task assigned to the analyst carrying the live tier and citing CS-0000102, gated on the escalated case",
+   "inputs": [
+    "case number <- n13 eops_sn_csm_server_customer_case case CS-0000102 escalated with the '[LTR-ESC]' summary line (register-state gate; number written onto the task)",
+    "tier truth <- live toxicology banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "priority_task_cites_tier_and_escalated_case",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [LTR-STATUS] email analyst->member citing total_redemption + the live tier, gated on the priority task",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "gate <- n14 [LTR-PRIOTASK]",
+    "total_redemption <- n04",
+    "tier truth <- live toxicology banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "birdsql:1331",
+   "verdict_basis": "side_officer_tally is judged by birdsql:1331's own official gold SQL rerun LIVE on the bird_student_club_-prefixed book \u2014 a true single-row scalar stored verbatim; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_officer_tally": "50"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T2.amount\nFROM bird_student_club_member AS T1\nINNER JOIN bird_student_club_income AS T2 ON T1.member_id = T2.link_to_member\nWHERE T1.position = 'Vice President'",
+    "result": 50
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1331_side_officer_tally",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [LTR-CREDIT] net (credits - reversals) to the correct member == redemption_delta, with the CRM [LTR-RECON] note citing the delta, after the status email",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "redemption_delta <- n04 (gap 13)",
+    "gate <- n15 [LTR-STATUS]"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [LTR-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[LTR-REVIEW]",
+      "event_name": "Post-credit redemption review \u2014 RDM-2024-Q1-042 [LTR-REVIEW]",
+      "participant_email": "redemptions.analyst@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__redemption_base_count_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__base_redemption_is_fn_of_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__tier_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__redemption_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_language_ratio_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_officer_tally_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_eur_customer_count_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_active_school_count_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "birdsql:1505",
+   "verdict_basis": "side_eur_customer_count is judged by birdsql:1505's own official gold SQL rerun LIVE on the bird_debit_card_specializing_-prefixed book \u2014 a true single-row COUNT scalar stored verbatim; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_eur_customer_count": "391"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(DISTINCT T1.CustomerID) FROM bird_debit_card_specializing_yearmonth AS T1 INNER JOIN bird_debit_card_specializing_customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Currency = 'EUR' AND T1.Consumption > 1000.00",
+    "result": 391
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1505_side_eur_customer_count",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:56",
+   "verdict_basis": "side_active_school_count is judged by birdsql:56's own official gold SQL rerun LIVE on the bird_california_schools_-prefixed book \u2014 a true single-row COUNT scalar; a second independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_active_school_count": "2"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(CDSCode) FROM bird_california_schools_schools WHERE City = 'San Joaquin' AND MailState = 'CA' AND StatusType = 'Active'",
+    "result": 2
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_56_side_active_school_count",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

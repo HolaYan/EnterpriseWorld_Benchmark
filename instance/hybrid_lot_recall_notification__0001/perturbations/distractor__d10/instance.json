@@ -1,0 +1,1479 @@
+{
+  "instance_id": "hybrid_lot_recall_notification__0001",
+  "agent_visible": {
+    "overall_query": "Run the quarterly consumer-goods lot-recall notification for the regional recall desk. Size the recalled-lot retail value from the receivables book's own question \u2014 the account number of the client who is youngest and has the highest average salary (the client with the latest birth date, ties broken by district average salary then highest client id) \u2014 and take that reference account's total transaction volume as the recalled-lot retail value. Set the notification base at one unit per 75 of that retail value, rounded to a whole number. Pull the recall dimensional reference index from the parts reference book's own question \u2014 the average height of players born between 1990 and 1995 (the summed heights divided by the player count) \u2014 and set the flagged-lot uplift at 100 per whole unit of that rounded index. The total notifications is the base plus the uplift; the recall delta equals the uplift. Decide the recall-class branch on the delta \u2014 'MANDATORY' when the delta is at least 100000, 'REPORTABLE' (CPSC-REPORTABLE) when it is at least 10000, 'VOLUNTARY' otherwise \u2014 and work the cycle end to end: place the review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the recall-notification run so the net credit received by the correct-lot recipient equals the delta (a notification that lands on the wrong lot is retracted, never deleted, then the correct lot is notified); unless the branch is VOLUNTARY, send CPSC the report email citing the total notifications and the delta; log the total notifications on the quality-manager record and open the follow-up; allocate the recall carry evenly with the supply-chain controller; RE-DERIVE the recall class from the live reference index (MANDATORY_RECALL_SUBSTANTIAL_HAZARD when the rounded index times 100 is at least 100000, CPSC_REPORTABLE_SECTION_15B when at least 10000, else VOLUNTARY_MARKET_WITHDRAWAL) and stamp it on the manager record; onboard the incoming recall lead, open the flagged-lot engineering-review channel citing the recall class, finish it with its notebook tab and a notice citing the total notifications, and stand up the coordination channel in the desk's enterprise registers (per the recording handbook); send the quality manager the status update citing the total notifications and the class; reconcile the notification ledger to the delta, and before you return the 'ok' verdict re-derive the figure chain \u2014 re-read the recorded notification_base and parts_index and confirm the recorded total_notifications still equals notification_base + round(parts_index)*100, since a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing; and schedule the post-window recall committee review after the window ends, conflict-free. Once those figures are settled, take the quarter's sign-off control reading for the quarterly overview, held against the same probe's reading at the last quarterly sign-off; nothing in the run reads it, and the overview is signed only when this quarter's reading lines up with the last. Also pull the independent side-reference lead supplier for the quarterly overview \u2014 the surname race number 19's qualifying list returns first when its rows are ordered by the second-qualifying-period (q2) time ascending (rows with an unrecorded q2 sort first, so this is not the fastest-lap driver).\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nrecall_account: the reference distribution account number \u2014 whole number\nretailer_batch_pool: the recalled-lot retail value \u2014 whole number, no thousands separators\nnotification_base: the notification base \u2014 whole number\nparts_index: the recall reference index \u2014 the average value as computed by the book\nlot_uplift: the flagged-lot uplift \u2014 whole number\ntotal_notifications: the total notifications \u2014 whole number\ndelta: the recall delta \u2014 whole number\nbranch: the recall-class route \u2014 exactly one of {VOLUNTARY, REPORTABLE, MANDATORY}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the notification ledger nets to the delta\nside_lead_supplier: the side-reference lead supplier \u2014 a surname\n\nCONDITIONAL ESCALATIONS (evaluate each carefully): the desk carries the escalation rules below. Apply an escalation only if its condition genuinely holds for this case's figures \u2014 do not record any of these entries otherwise.\n1. LEGAL HOLD: if delta reaches the regulatory ceiling of 1,000,000, you must ALSO open a legal hold by recording an entry with kind='legal_hold'.\n2. REGULATOR NOTICE: if total_notifications reaches the mandatory-reporting threshold of 2,000,000, you must ALSO file a regulator notification by recording an entry with kind='regulator_notice'.\n3. BOARD MEMO: if retailer_batch_pool reaches the board-notification threshold of 100,000,000, you must ALSO record a board notification memo by recording an entry with kind='board_memo'.\n4. EXTERNAL AUDIT: if delta reaches the external-audit trigger of 10,000,000, you must ALSO open an external audit referral by recording an entry with kind='external_audit'.\n5. FRAUD REFERRAL: if total_notifications reaches the fraud-referral threshold of 1,000,000, you must ALSO open a fraud referral by recording an entry with kind='fraud_referral'.\n6. EXECUTIVE ESCALATION: if retailer_batch_pool reaches the executive-escalation limit of 50,000,000, you must ALSO escalate to the executive on call by recording an entry with kind='exec_escalation'.\n7. INSURER NOTICE: if delta reaches the insurer-notification threshold of 5,000,000, you must ALSO notify the insurer by recording an entry with kind='insurer_notice'.\n8. PRESS HOLDING STATEMENT: if total_notifications reaches the public-disclosure threshold of 10,000,000, you must ALSO record a press holding statement by recording an entry with kind='press_holding'.\n9. LAW-ENFORCEMENT REFERRAL: if retailer_batch_pool reaches the criminal-referral threshold of 20,000,000, you must ALSO refer the case to law enforcement by recording an entry with kind='law_enforcement'.\n10. EMERGENCY RESERVE: if delta reaches the reserve-booking threshold of 2,000,000, you must ALSO book an emergency reserve entry by recording an entry with kind='emergency_reserve'.",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: three source reference books \u2014 the regional receivables book (bird_account, bird_trans, bird_disp, bird_client, bird_district, ...), the parts reference book (bird_european_football_2_Player, ...) and the side-reference book (bird_formula_1_qualifying, bird_formula_1_drivers, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the retailer notification ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany recall-cost-share ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's shared enterprise registers \u2014 CSM (eops_sn_csm_server_user, ...), calendar (eops_gym_calendar_calendars, ...) and Teams (eops_gym_teams_mcp_teams, eops_gym_teams_mcp_channels, eops_gym_teams_mcp_channel_members, eops_gym_teams_mcp_teams_channel_tabs, eops_gym_teams_mcp_teams_apps, eops_gym_teams_mcp_channel_messages, ...). You are recall.coordinator@atlas.com (the recall coordinator), with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist review project, and a calendar on wb_calendar_events; the correct-lot recipient is correct.lot.recipient@atlas.com, the wrong (misread) lot is wrong.lot.recipient@atlas.com, the supply-chain controller is supplychain.controller@atlas.com, CPSC is reached at recalls.section15@cpsc.gov, and ONE CRM record \u2014 the quality manager quality.manager@atlas.com \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the recalled-lot retail value, notification base, uplift, delta, branch or class \u2014 derive every figure from the LIVE tables.",
+    "conventions": "REGIONAL RECALL DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[LRN-BASE]' \u2014 QM CRM notes: the notification-base stamp, citing 'notification_base=<n>'.\n   - '[LRN-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[LRN-NOTIFY]' \u2014 notification ledger (vm) DESCRIPTION of every recall notification entry.\n   - '[LRN-RETRACT]' \u2014 notification ledger DESCRIPTION of a retraction entry (same amount as the row it reverses, opposite direction, alongside the '[LRN-NOTIFY]' tag).\n   - '[LRN-CPSC-REPORT]' \u2014 email SUBJECT of the CPSC report; the BODY must cite the total notifications and the delta.\n   - '[LRN-LOG]' \u2014 QM CRM notes: the recall log, citing 'total_notifications=<n>'.\n   - '[LRN-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany recall-cost-share allocation. The expense books the full recorded total_notifications as its amount, and its sw_expense_shares row assigns supplychain.controller@atlas.com a share of exactly half that amount.\n   - '[LRN-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Consumer Lot Recall Batch' project); the title cites the delta.\n   - '[LRN-CLASS]' \u2014 QM CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the class word.\n   - '[LRN-STATUS]' \u2014 email SUBJECT of the QM status update; the BODY must cite the total notifications and the class word.\n   - '[LRN-RECON]' \u2014 QM CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[LRN-NOTIFY]' ledger (credits minus retractions) at write time, and the figure chain is re-derived before the verdict is written \u2014 the recorded total_notifications must still equal notification_base + round(parts_index)*100.\n   - '[LRN-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window recall committee review.\n   - '[LRN-MANDATORY-URGENT]' \u2014 QM CRM notes: the mandatory-urgent note, filed ONLY on the MANDATORY route.\n\n2. ROUTE AND CLASS WORDS. The recall route is always one of the desk's three route words: 'VOLUNTARY', 'REPORTABLE' (CPSC-REPORTABLE), 'MANDATORY'. The recall class is always one of the desk's three class words: 'VOLUNTARY_MARKET_WITHDRAWAL', 'CPSC_REPORTABLE_SECTION_15B', 'MANDATORY_RECALL_SUBSTANTIAL_HAZARD'. A cited class word is re-derived from the live parts reference index at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (recall.coordinator@atlas.com); the quality manager is written to at quality.manager@atlas.com, CPSC at recalls.section15@cpsc.gov. Recall notifications run on the vm ledger FROM you TO the correct-lot recipient (correct.lot.recipient@atlas.com); a notification that lands on the wrong lot (wrong.lot.recipient@atlas.com) is corrected by that recipient sending the same amount back to you, never deleted. The recall-carry allocation runs on the sw ledger between you and the supply-chain controller (supplychain.controller@atlas.com). Follow-up work lives in your Todoist 'Q1 Consumer Lot Recall Batch' project; the window and review on your own wb_calendar_events (participant_email = recall.coordinator@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW retraction row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the QM row's notes column (the class stamp alone uses the dedicated status column); never touch CRM rows outside the QM record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The committee review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators; the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM + calendar register (eops_sn_csm_server_* / eops_gym_calendar_* tables). The recall-lead onboarding creates the ServiceNow user for the new support lead (email 'stephanie.brown@servicenow.com') with the 'manager' role and location_id 15 (the Sydney office), adds that user to group 7, and creates her 'Stephanie - Team Leads' calendar.\n   - Engineering-review channel (eops_gym_teams_mcp_* tables). The flagged-lot engineering review is a NEW PRIVATE channel named 'Technical discussions' in the TechCorp Solutions Team (org_id 'techcorp-001', team_id 'team_techcorp_001'; membership_type 'private', is_archived 0, soft_delete 0). Its description carries the '[LRN-CLASS]' recall class (the live re-derivation) and the onboarded recall lead's email ('stephanie.brown@servicenow.com') with the register role. Its channel_members are EXACTLY the four desk engineers Alice Johnson (alice.johnson), Bob Smith (bob.smith), Nathan Richards (nathan.richards) and Sophia Bennett (sophia.bennett), with Bob Smith the ONLY row whose roles is 'owner' (the others 'member').\n   - Engineering notebook + notice (same channel, after the [LRN-STATUS] email). Add exactly ONE tab named 'Engineering Notebook' whose app_id is the OneNote app of org 'techcorp-001' in eops_gym_teams_mcp_teams_apps (no other tab named like '%Notebook%'); set the channel email to an active address ('technical.discussions@techcorp.com'); and post ONE eops_gym_teams_mcp_channel_messages row on the channel with importance 'high' and deleted_datetime NULL whose body_json content carries the exact sentence \"The engineering workspace is now updated with four members of the engineering team, the Engineering Notebook tab, and an active shared email address for direct updates\" followed by 'total_notifications=<the recorded total>' and the '[LRN-STATUS]' marker.\n   - Teams register (eops_gym_teams_mcp_* tables). The coordination channel is the TechCorp 'Development' channel: set a descriptive channel description (at least 50 characters) and a channel email ('development@techcorp.com'), add the four coordination members (Alice Johnson, Bob Smith, Sophia Bennett, Nathan Richards), and add the two channel tabs ('API Notes', 'Release Notes').\n",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_quality_manager": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "quality.manager@atlas.com",
+          "customer_name": "Quality Manager",
+          "assigned_to_email": "recall.coordinator@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "recall.coordinator@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "correct.lot.recipient@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.lot.recipient@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "recall.coordinator@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "quality.manager@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "recalls.section15@cpsc.gov",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Consumer Lot Recall Batch",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "recall-desk daily standup",
+          "participant_email": "recall.coordinator@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_gym_teams_mcp_teams": [
+        {
+          "display_name": "TechCorp Solutions Team",
+          "note": ""
+        }
+      ],
+      "eops_gym_teams_mcp_channels": [
+        {
+          "display_name": "Development",
+          "note": ""
+        }
+      ],
+      "eops_gym_teams_mcp_teams_apps": [
+        {
+          "display_name": "OneNote",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row \u2014 a CSM user, a Teams channel, member, tab or channel message).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register onboarding/channel-email/description change).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: recall notifications are compensatable \u2014 retract a wrong-lot notification, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across THREE bird books (financial/european_football_2/formula_1) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/calendar/teams). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n17->n19 with long-range edges: delta n04 reconciled at n18 (gap 14); the [LRN-HOLD] window n06 gates the review n19 (gap 13); total_notifications n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (european_football_2) woven into the arithmetic/branch; n20 is an independent formula_1 side anchor.",
+    "protagonist": {
+      "email": "recall.coordinator@atlas.com",
+      "role": "recall coordinator running the quarterly lot-recall notification"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "List out the account numbers of clients who are youngest and have highest average salary? (Read it as the book does: the account of the client with the latest birth_date, breaking ties by the district's average salary then the highest client_id \u2014 a single account number.) Record the answer in answers as kind='recall_account'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_account.account_id",
+          "bird_disp.client_id",
+          "bird_client.birth_date",
+          "bird_district.A11"
+        ],
+        "writes": [
+          "answers.recall_account"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Size the recalled-lot retail value and set the notification base. Read the stored recall_account and compute retailer_batch_pool = the TOTAL transaction amount booked on that account (sum bird_trans.amount for that account_id); record it in answers as kind='retailer_batch_pool'. Then compute notification_base = round(retailer_batch_pool/75), record it as kind='notification_base', and stamp the quality manager's CRM row (customer_email quality.manager@atlas.com) by prepending '[LRN-BASE] notification_base=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.recall_account",
+          "bird_trans.amount",
+          "bird_trans.account_id"
+        ],
+        "writes": [
+          "answers.retailer_batch_pool",
+          "answers.notification_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "What is the average height of players born between 1990 and 1995? (Read it as the book does: the sum of player heights divided by the player count, over players whose birth year is between 1990 and 1995 inclusive.) Record the answer in answers as kind='parts_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_european_football_2_Player.height",
+          "bird_european_football_2_Player.birthday"
+        ],
+        "writes": [
+          "answers.parts_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the recall load from the stored answers. Read answers.notification_base AND answers.parts_index. lot_uplift = round(parts_index) * 100; total_notifications = notification_base + lot_uplift; delta = lot_uplift. Record all three: answers kind='lot_uplift', kind='total_notifications', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.notification_base",
+          "answers.parts_index"
+        ],
+        "writes": [
+          "answers.lot_uplift",
+          "answers.total_notifications",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the recall-class branch on the computed state. Read answers.delta and set answers kind='branch' to 'MANDATORY' if delta >= 100000, else 'REPORTABLE' (CPSC-REPORTABLE) if delta >= 10000, else 'VOLUNTARY'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total notifications is computed, place the recall-committee review WINDOW on the coordinator's calendar (participant_email=recall.coordinator@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[LRN-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_notifications",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the recall notification run for EXACTLY delta on the retailer ledger. Record vm_transactions rows tagged '[LRN-NOTIFY]' so the NET credit posted FROM the recall coordinator (recall.coordinator@atlas.com) TO the correct-lot recipient (correct.lot.recipient@atlas.com) equals delta. If the first notification lands on the WRONG lot (wrong.lot.recipient@atlas.com), DO NOT delete it: write a matching '[LRN-RETRACT] [LRN-NOTIFY]' entry (the wrong-lot recipient sends the SAME amount back to the coordinator) which cancels the wrong credit, then the correct notification to the right lot recipient.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the recall-class branch is 'REPORTABLE' or 'MANDATORY', send CPSC a handoff report email. INSERT a gm_emails row from the recall coordinator (recall.coordinator@atlas.com) to the CPSC endpoint (recalls.section15@cpsc.gov) whose subject carries '[LRN-CPSC-REPORT]' and whose body CITES the total_notifications and the delta. For branch 'VOLUNTARY' (voluntary), the email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_notifications",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the lot recall on the quality-manager CRM record. Prepend '[LRN-LOG] total_notifications=<n>' to the notes \u2014 but for the 'REPORTABLE' and 'MANDATORY' branches, ONLY after the '[LRN-CPSC-REPORT]' email has been sent to CPSC. For the 'VOLUNTARY' branch the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_notifications",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany recall-cost-share ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the recall desk (recall.coordinator@atlas.com) for the full total_notifications with description '[LRN-ALLOC]', and a sw_expense_shares row assigning the supply-chain controller (supplychain.controller@atlas.com) a share_amount = total_notifications/2 (its half of the joint recall carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_notifications",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Consumer Lot Recall Batch' project owned by the recall coordinator whose title carries '[LRN-FUP]' and the delta value \u2014 only after the quality-manager CRM record carries the '[LRN-LOG]' recall log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the recall CLASS. RE-DERIVE it from the live reference index: reach = round(the reference index) * 100, CLASS = 'MANDATORY_RECALL_SUBSTANTIAL_HAZARD' if reach >= 100000, 'CPSC_REPORTABLE_SECTION_15B' if reach >= 10000, else 'VOLUNTARY_MARKET_WITHDRAWAL'. Write it to the quality-manager CRM row's DEDICATED status column (set status='[LRN-CLASS] <class>') \u2014 only after the follow-up task exists. (The class is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_european_football_2_Player.height"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Onboard the incoming recall lead in the desk's CSM register. Create the ServiceNow user account for the new support lead (email 'stephanie.brown@servicenow.com') with the 'manager' role and location_id 15 (the Sydney office), add that user to group 7, and create her 'Stephanie - Team Leads' calendar \u2014 only after the quality-manager CRM status carries the '[LRN-CLASS]' recall-class stamp whose class matches the live re-derivation.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_user.role",
+          "eops_sn_csm_server_user_group_member.group_id",
+          "eops_gym_calendar_calendars.summary"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Open the flagged-lot engineering-review channel on the desk's Teams register. Create a PRIVATE channel named 'Technical discussions' in the TechCorp Solutions Team (org 'techcorp-001', not archived, not soft-deleted) whose description carries the '[LRN-CLASS]' recall class re-derived from the live index and names the onboarded recall lead (stephanie.brown@servicenow.com) with the register role; give it exactly four members \u2014 Alice Johnson, Bob Smith, Nathan Richards, Sophia Bennett \u2014 with Bob Smith the ONLY owner \u2014 per the recording handbook, and only after the recall lead's CSM onboarding is on the register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_user.role"
+        ],
+        "writes": [
+          "eops_gym_teams_mcp_channels.display_name",
+          "eops_gym_teams_mcp_channel_members.roles"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the quality manager a status update. INSERT a gm_emails row from the recall coordinator (recall.coordinator@atlas.com) to the quality manager (quality.manager@atlas.com) whose subject carries '[LRN-STATUS]' and whose body cites the total_notifications, the recall-class word (re-derived from the live index) and the name of the engineering-review channel ('Technical discussions') \u2014 only after that private channel, with its four members, is on the desk's Teams register.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_teams_mcp_channels.display_name",
+          "answers.total_notifications",
+          "bird_european_football_2_Player.height",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Complete the 'Technical discussions' engineering-review channel on the desk's Teams register: add exactly one OneNote tab named 'Engineering Notebook' (no other notebook tab on the channel), give the channel an active email address, and post a high-importance channel message whose body carries this exact sentence \u2014 \"The engineering workspace is now updated with four members of the engineering team, the Engineering Notebook tab, and an active shared email address for direct updates\" \u2014 followed by the total_notifications figure and the '[LRN-STATUS]' marker of the status update it follows \u2014 only after the '[LRN-STATUS]' status email to the quality manager is out.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject"
+        ],
+        "writes": [
+          "eops_gym_teams_mcp_channels.email",
+          "eops_gym_teams_mcp_channel_messages.body_json"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Stand up the recall coordination workspace on the desk's Teams register. On the TechCorp Development channel, set a descriptive channel description and a channel email, add the four coordination members (Alice Johnson, Bob Smith, Sophia Bennett, Nathan Richards), and add the two channel tabs (API Notes, Release Notes) \u2014 only once the 'Technical discussions' engineering-review notice is on the Teams register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_gym_teams_mcp_channel_messages.body_json"
+        ],
+        "writes": [
+          "eops_gym_teams_mcp_channels.description",
+          "eops_gym_teams_mcp_teams_channel_tabs.display_name"
+        ],
+        "depends_on": [
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted notification against the recorded delta. Confirm the Venmo NET credit posted to the correct-lot recipient equals delta (re-read from the '[LRN-NOTIFY]' ledger rows, credits minus retractions, never from memory), and re-derive the figure chain before the 'ok' verdict: re-read the recorded notification_base and parts_index and confirm the recorded total_notifications still equals notification_base + round(parts_index)*100 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[LRN-RECON] delta=<delta>' note to the quality-manager CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.notification_base",
+          "answers.parts_index",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the recall committee review. INSERT a wb_calendar_events row on the coordinator's calendar whose event_name carries '[LRN-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[LRN-HOLD]' review window and does NOT overlap any of the coordinator's other events. Only for a quality-manager record whose CRM carries '[LRN-RECON]' AND with the recall coordination channel (its two tabs) up on the desk's Teams register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_teams_mcp_teams_channel_tabs.display_name"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n18",
+          "n17"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's sign-off control reading for the quarterly overview once the recall run's own figures are settled, so the quarter's entry records the side-reference lead supplier as it stood at the sign-off rather than mid-run. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the recall registers is the one that separates drift in the desk's own reporting from a real shift in recall volume \u2014 and is answered exactly as that book asks it: \"Order race number 19's qualifying rows by the second qualifying period (q2) ascending and return the surname of the driver in the first row.\" (Read it exactly as the source query does: sort race 19's qualifying rows by q2 ascending and take the first surname. Because unrecorded q2 times sort ahead of any actual time, this returns the first driver whose q2 was not recorded \u2014 it is NOT the fastest-lap driver.) Record the answer in answers as kind='side_lead_supplier'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly overview is signed only when this quarter's reading lines up with the last \u2014 so nothing else in this run reads it, and what is recorded here is next quarter's comparison point at that sign-off. Report the book's own answer exactly \u2014 the tidier-looking name, the fastest-lap driver, would read as a supplier change that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_formula_1_qualifying.q2",
+          "bird_formula_1_qualifying.raceId",
+          "bird_formula_1_drivers.surname"
+        ],
+        "writes": [
+          "answers.side_lead_supplier"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 14,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 28,
+      "dependency_depth": 14,
+      "max_dependency_gap": 16,
+      "mean_dependency_gap": 4.68,
+      "long_range_edge_ratio": 0.321,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.786,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n18",
+          "gap": 16,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n18",
+          "gap": 15,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 14,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (recall-class branch on delta bands) -> 'REPORTABLE' on real data (CPSC-REPORTABLE)",
+      "long_range_edges": [
+        "n04->n18 delta reconciled 14 steps later (gap 14, max)",
+        "n06->n19 [LRN-HOLD] window (type-B) gates the review (gap 13)",
+        "n04->n15 total_notifications resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n20 (independent birdsql:847 formula_1 side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:1033 european_football_2) woven into the delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "recall.coordinator@atlas.com",
+      "quality_manager": "quality.manager@atlas.com",
+      "correct_lot": "correct.lot.recipient@atlas.com",
+      "wrong_lot": "wrong.lot.recipient@atlas.com",
+      "supply_chain_controller": "supplychain.controller@atlas.com",
+      "cpsc": "recalls.section15@cpsc.gov",
+      "qm_crm_id": "00000002",
+      "source_questions": {
+        "recall_account": "birdsql:95 (financial) \u2014 List out the account numbers of clients who are youngest and have highest average salary?",
+        "parts_index": "birdsql:1033 (european_football_2) \u2014 What is the average height of players born between 1990 and 1995?",
+        "side_lead_supplier": "birdsql:847 (formula_1) \u2014 Order race number 19's qualifying rows by the second qualifying period (q2) ascending and return the surname of the driver in the first row."
+      },
+      "eops_source_tasks": {
+        "recall_lead_onboarding": "enterpriseops:task_20260113_141542_776_911d75d7_78be6b0f (sn-csm-server+gym-calendar) \u2014 stephanie.brown@servicenow.com manager/loc 15 + group 7 + 'Stephanie - Team Leads' calendar",
+        "engineering_review_channel": "enterpriseops:task_20260106_003109_589_b5bd4eb9_d0454fa5 (gym-teams-mcp, checks 0-2) \u2014 private 'Technical discussions' in the TechCorp Solutions Team + 4 members, Bob Smith sole owner; description cites [LRN-CLASS] + recall lead",
+        "engineering_notebook_notice": "enterpriseops:task_20260106_003109_589_b5bd4eb9_d0454fa5 (gym-teams-mcp, checks 3-5) \u2014 'Engineering Notebook' OneNote tab + channel email + high-importance notice citing total_notifications + [LRN-STATUS]",
+        "coordination_channel": "enterpriseops:task_20251129_042357_079_d809b0d6_b11e3d3b (gym-teams-mcp) \u2014 TechCorp Development channel + 4 members + 2 tabs"
+      },
+      "base_policy": "notification_base = round(retailer_batch_pool/75) (the divisor 75 is a declared constant)",
+      "uplift_policy": "lot_uplift = round(parts_index) * 100 (per-index 100 is declared)",
+      "branch_policy": "VOLUNTARY (delta<10000, no CPSC report); REPORTABLE, i.e. CPSC-REPORTABLE (delta>=10000, CPSC report, no mandatory note); MANDATORY (delta>=100000, CPSC report + mandatory-urgent note) \u2014 the 10000/100000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[LRN-BASE]",
+        "review_window": "[LRN-HOLD]",
+        "credit": "[LRN-NOTIFY]",
+        "retraction": "[LRN-RETRACT]",
+        "allocation": "[LRN-ALLOC]",
+        "handoff": "[LRN-CPSC-REPORT]",
+        "crm_log": "[LRN-LOG]",
+        "followup": "[LRN-FUP]",
+        "class": "[LRN-CLASS]",
+        "status_email": "[LRN-STATUS]",
+        "crm_reconcile": "[LRN-RECON]",
+        "calendar_review": "[LRN-REVIEW]",
+        "mandatory_note_only_for_C": "[LRN-MANDATORY-URGENT]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.recall_account",
+          "answers.retailer_batch_pool",
+          "answers.notification_base",
+          "answers.parts_index",
+          "answers.lot_uplift",
+          "answers.total_notifications",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_lead_supplier"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [LRN-HOLD] event (n19 reads them there); the four eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "recall class \u2014 re-derived at n12 from the live european_football_2 index (rounded*100 banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (coordinator->wrong lot) + retraction delta (wrong lot->coordinator) + correct delta (coordinator->correct lot); net coordinator->correct lot = delta",
+      "review_window_hold": "[LRN-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 recall-desk standup)",
+      "true_recall_account": 2836,
+      "true_retailer_batch_pool": 1547425,
+      "true_notification_base": 20632,
+      "true_parts_index": 181.4006011904762,
+      "true_lot_uplift": 18100,
+      "true_total_notifications": 38732,
+      "true_delta": 18100,
+      "true_branch": "REPORTABLE",
+      "true_class": "CPSC_REPORTABLE_SECTION_15B",
+      "true_reconciled": "ok",
+      "true_side_lead_supplier": "Fisichella"
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.recall_account"
+        ],
+        "change": "List out the account numbers of clients who are youngest and have highest average salary? (Read it as the book does: the account o"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.retailer_batch_pool",
+          "answers.notification_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Size the recalled-lot retail value and set the notification base. Read the stored recall_account and compute retailer_batch_pool ="
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.parts_index"
+        ],
+        "change": "What is the average height of players born between 1990 and 1995? (Read it as the book does: the sum of player heights divided by "
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.lot_uplift",
+          "answers.total_notifications",
+          "answers.delta"
+        ],
+        "change": "Compute the recall load from the stored answers. Read answers.notification_base AND answers.parts_index. lot_uplift = round(parts_"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the recall-class branch on the computed state. Read answers.delta and set answers kind='branch' to 'MANDATORY' if delta >= "
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total notifications is computed, place the recall-committee review WINDOW on the coordinator's calendar (participant_emai"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the recall notification run for EXACTLY delta on the retailer ledger. Record vm_transactions rows tagged '[LRN-NOTIFY]' so th"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the recall-class branch is 'REPORTABLE' or 'MANDATORY', send CPSC a handoff report email. INSERT a gm_emails row from the recal"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the lot recall on the quality-manager CRM record. Prepend '[LRN-LOG] total_notifications=<n>' to the notes \u2014 but for the 'REPO"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany recall-cost-share ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the recall desk"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Consumer Lot Recall Batch' project owned by the recall coordin"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the recall CLASS. RE-DERIVE it from the live reference index: reach = round(the reference index) * 100, CLASS = 'MANDATOR"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_user.role",
+          "eops_sn_csm_server_user_group_member.group_id",
+          "eops_gym_calendar_calendars.summary"
+        ],
+        "change": "Onboard the incoming recall lead in the desk's CSM register. Create the ServiceNow user account for the new support lead (email 's"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_teams_mcp_channels.display_name",
+          "eops_gym_teams_mcp_channel_members.roles"
+        ],
+        "change": "Open the flagged-lot engineering-review channel on the desk's Teams register. Create a PRIVATE channel named 'Technical discussion"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the quality manager a status update. INSERT a gm_emails row from the recall coordinator (recall.coordinator@atlas.com) to the"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_teams_mcp_channels.email",
+          "eops_gym_teams_mcp_channel_messages.body_json"
+        ],
+        "change": "Complete the 'Technical discussions' engineering-review channel on the desk's Teams register: add exactly one OneNote tab named 'E"
+      },
+      {
+        "subgoal": "n17",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_teams_mcp_channels.description",
+          "eops_gym_teams_mcp_teams_channel_tabs.display_name"
+        ],
+        "change": "Stand up the recall coordination workspace on the desk's Teams register. On the TechCorp Development channel, set a descriptive ch"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted notification against the recorded delta. Confirm the Venmo NET credit posted to the correct-lot recipient equ"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the recall committee review. INSERT a wb_calendar_events row on the coordinator's calendar whose event_name carries '[LRN"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_lead_supplier"
+        ],
+        "change": "Take the quarter's sign-off control reading for the quarterly overview once the recall run's own figures are settled, so the quart"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the recall-class branch the data selects (B: CPSC-REPORTABLE). The three source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (recall_account == the birdsql:95 account id 2836, an identity anchor; parts_index == the birdsql:1033 average; side_lead_supplier == the birdsql:847 surname), and the four EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the Stephanie-Brown manager user + calendar + group membership; the private 'Technical discussions' engineering-review channel + four members + Bob Smith sole owner; its single OneNote 'Engineering Notebook' tab + active email + high-importance notice; the TechCorp Development channel description + email + four members + two tabs). COMPLETENESS: retailer_batch_pool == the reference account's transaction volume (1547425); notification_base == round(pool/75) = 20632; lot_uplift == round(parts_index)*100 = 18100; total_notifications == base+uplift = 38732; delta == uplift = 18100; branch == 'REPORTABLE' (10000 <= 18100 < 100000); the [LRN-HOLD] window on the calendar; the vm ledger NETS delta to the correct lot (a wrong-lot credit offset by an [LRN-RETRACT] + the correct credit, net == delta AND wrong-lot net == 0); the CPSC report exists IFF the branch is 'REPORTABLE' or 'MANDATORY' and cites the total + delta; the allocation + controller share on Splitwise; the CRM logs total_notifications; the follow-up cites delta; the recall CLASS is RE-DERIVED from the live football index (type-C, never in answers) and stamped; the four eops register beats match the inherited checks, the engineering-review channel description citing the class + recall lead and its notice citing total_notifications + [LRN-STATUS]; the status email cites total + class + the channel; reconciled == 'ok'; the review is conflict-free, after the window end, with the coordination channel up; side_lead_supplier == 'Fisichella'. COLLATERAL (each 0): NO CPSC report on a 'VOLUNTARY' path; NO [LRN-MANDATORY-URGENT] note for a 'VOLUNTARY' or 'REPORTABLE' branch; NO naked delete of a wrong-lot credit (it must keep its [LRN-RETRACT]); the review never double-books, never precedes the window end, and never fires for an unlogged QM; no CRM row outside the QM record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped recall_account).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the QM recall CRM row and confirm it is homed to recall.coordinator@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='quality.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: quality.manager@atlas.com assigned_to recall.coordinator@atlas.com.",
+        "state_delta": "none (QM ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "Size the recalled-lot retail value from the receivables book's own question.",
+        "reasoning": "Find the youngest/highest-avg-salary client's account (birdsql:95).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T1.account_id FROM account T1 JOIN disp T2 ON ... (gold 95)"
+          }
+        },
+        "tool_result": "2836.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Reference account = 2836.",
+        "reasoning": "n01: record recall_account.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "recall_account",
+              "value": "2836"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+recall_account=2836"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Sum that account's transaction volume and set the base.",
+        "reasoning": "n02: pool=SUM(trans.amount for 2836)=1547425; base=round(1547425/75)=20632; stamp CRM [LRN-BASE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "notification_base",
+              "value": "20632"
+            }
+          }
+        },
+        "tool_result": "pool+base recorded (+CRM base note).",
+        "state_delta": "answers:+retailer_batch_pool=1547425,+notification_base=20632; CRM:+base"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the parts reference index from the parts book.",
+        "reasoning": "Average height of players born 1990-1995 (birdsql:1033).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT SUM(height)/COUNT(id) FROM bird_european_football_2_Player WHERE SUBSTR(birthday,1,4) BETWEEN '1990' AND '1995'"
+          }
+        },
+        "tool_result": "181.4006011904762.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Index = 181.40...",
+        "reasoning": "n03: record parts_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "parts_index",
+              "value": "181.4006011904762"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+parts_index=181.40..."
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=20632, index=181.40.",
+        "reasoning": "n04: lot_uplift=round(181.40)*100=18100; total=20632+18100=38732; delta=18100.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "lot_uplift",
+              "value": "18100"
+            }
+          }
+        },
+        "tool_result": "1 row (+total=38732,+delta=18100).",
+        "state_delta": "answers:+lot_uplift=18100,+total_notifications=38732,+delta=18100"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=18100.",
+        "reasoning": "n05: BRANCH DECISION. 10000 <= 18100 < 100000 -> the 'REPORTABLE' branch (CPSC-REPORTABLE).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 18100 >= 100000 AS is_c, 18100 >= 10000 AS is_b_or_c"
+          }
+        },
+        "tool_result": "0,1 -> 'REPORTABLE'.",
+        "state_delta": "none (BRANCH REPORTABLE SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch 'REPORTABLE'.",
+        "reasoning": "n05: record branch='REPORTABLE'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "REPORTABLE"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=REPORTABLE"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [LRN-HOLD] on the coordinator's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 recall review window [LRN-HOLD]",
+              "participant_email": "recall.coordinator@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the recall notification for delta. Instinct: notify the WRONG lot (wrong.lot.recipient@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 18100 notification to the wrong (misread) lot.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<coord_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 18100.0,
+              "description": "Recall notification (wrong lot) [LRN-NOTIFY]"
+            }
+          }
+        },
+        "tool_result": "1 row (coordinator->wrong lot).",
+        "state_delta": "venmo:+WRONG-lot credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct lot.",
+        "reasoning": "The net coordinator->correct lot is currently 0, not delta=18100.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description NOT LIKE '%[LRN-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description LIKE '%[LRN-RETRACT]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 18100.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted ledger row cannot be naked-deleted.",
+        "reasoning": "Post an [LRN-RETRACT] as a positive 18100 in the OPPOSITE direction (wrong->coordinator).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<coord_vm>",
+              "amount": 18100.0,
+              "description": "Retraction of wrong-lot notification [LRN-RETRACT] [LRN-NOTIFY]"
+            }
+          }
+        },
+        "tool_result": "1 row (18100, wrong->coordinator).",
+        "state_delta": "venmo:+retraction (wrong-lot net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct notification.",
+        "reasoning": "n07: post the correct 18100 (coordinator->correct lot); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<coord_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 18100.0,
+              "description": "Recall notification (correct lot) [LRN-NOTIFY]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 18100=delta).",
+        "state_delta": "venmo:+correct notification (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the 'REPORTABLE' branch requires a CPSC report.",
+        "reasoning": "Email recalls.section15@cpsc.gov a [LRN-CPSC-REPORT] citing total_notifications=38732, delta=18100.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "subject": "CPSC report [LRN-CPSC-REPORT]",
+              "body": "... total_notifications 38732 delta 18100 branch REPORTABLE ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+CPSC report (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the recall on the QM CRM (handoff sent).",
+        "reasoning": "Prepend '[LRN-LOG] total_notifications=38732' to the QM CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[LRN-LOG] total_notifications=38732 <existing>"
+            },
+            "where": "lower(customer_email)='quality.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany recall-cost-share allocation.",
+        "reasoning": "INSERT sw_expenses [LRN-ALLOC] amount=total_notifications (38732) with a controller share (19366).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<coord_sw>",
+              "amount": 38732.0,
+              "description": "Q1 intercompany recall-cost-share [LRN-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+controller share 19366).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [LRN-FUP] in 'Q1 Consumer Lot Recall Batch' citing delta=18100.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "title": "Reconcile Q1 lot recall [LRN-FUP] [delta=18100]"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the recall CLASS (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live index: round(181.40)*100=18100 -> CPSC_REPORTABLE_SECTION_15B; write [LRN-CLASS].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN (CAST(ROUND((SELECT SUM(height) / COUNT(id) FROM bird_european_football_2_Player WHERE SUBSTR(birthday, 1, 4) BETWEEN '1990' AND '1995')) AS INTEGER)*100) >= 100000 THEN 'MANDATORY_RECALL_SUBSTANTIAL_HAZARD' WHEN (CAST(ROUND((SELECT SUM(height) / COUNT(id) FROM bird_european_football_2_Player WHERE SUBSTR(birthday, 1, 4) BETWEEN '1990' AND '1995')) AS INTEGER)*100) >= 10000 THEN 'CPSC_REPORTABLE_SECTION_15B' ELSE 'VOLUNTARY_MARKET_WITHDRAWAL' END)"
+          }
+        },
+        "tool_result": "'CPSC_REPORTABLE_SECTION_15B' (18100 in [10000,100000)).",
+        "state_delta": "none (class re-derived)"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "class re-derived.",
+        "reasoning": "n12: set the QM CRM status='[LRN-CLASS] CPSC_REPORTABLE_SECTION_15B'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[LRN-CLASS] CPSC_REPORTABLE_SECTION_15B"
+            },
+            "where": "lower(customer_email)='quality.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+class=CPSC_REPORTABLE_SECTION_15B"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: onboard the recall lead in the CSM+calendar register (gated on the class stamp).",
+        "reasoning": "Per the handbook: create the 'manager' user stephanie.brown@servicenow.com at location 15, add to group 7, create the 'Stephanie - Team Leads' calendar.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_sn_csm_server_user",
+            "values": {
+              "email": "stephanie.brown@servicenow.com",
+              "role": "manager",
+              "location_id": "15"
+            }
+          }
+        },
+        "tool_result": "user + membership + calendar.",
+        "state_delta": "CSM register: +recall lead"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: open the flagged-lot engineering-review channel (its description cites the class + the onboarded recall lead).",
+        "reasoning": "Per the handbook: create the PRIVATE 'Technical discussions' channel in the TechCorp Solutions Team, description '[LRN-CLASS] CPSC_REPORTABLE_SECTION_15B ... recall lead stephanie.brown@servicenow.com (manager)'; add exactly the 4 members with Bob Smith the sole owner.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_teams_mcp_channels",
+            "values": {
+              "display_name": "Technical discussions",
+              "team_id": "team_techcorp_001",
+              "org_id": "techcorp-001",
+              "membership_type": "private",
+              "description": "[LRN-CLASS] CPSC_REPORTABLE_SECTION_15B flagged-lot engineering review; recall lead stephanie.brown@servicenow.com (manager)."
+            }
+          }
+        },
+        "tool_result": "channel + 4 channel_members (bob.smith owner).",
+        "state_delta": "teams register: +engineering-review channel"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the QM (cites the engineering-review channel).",
+        "reasoning": "INSERT gm_emails coordinator->QM [LRN-STATUS] citing total_notifications=38732, class CPSC_REPORTABLE_SECTION_15B and the 'Technical discussions' channel.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "subject": "lot recall status [LRN-STATUS]",
+              "body": "... total_notifications 38732 ... CPSC_REPORTABLE_SECTION_15B ... Technical discussions ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: finish the engineering-review channel \u2014 notebook tab, email, notice (the notice cites the status update + total).",
+        "reasoning": "Per the handbook: add the single OneNote 'Engineering Notebook' tab, set the channel email, post the high-importance notice with the exact sentence + total_notifications=38732 + [LRN-STATUS].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_teams_mcp_channel_messages",
+            "values": {
+              "channel_id": "<the Technical discussions channel_id>",
+              "importance": "high",
+              "body_json": "{\"contentType\": \"html\", \"content\": \"<p>The engineering workspace is now updated with four members of the engineering team, the Engineering Notebook tab, and an active shared email address for direct updates. total_notifications=38732; [LRN-STATUS] ...</p>\"}"
+            }
+          }
+        },
+        "tool_result": "tab + email + notice.",
+        "state_delta": "teams register: +notebook tab/email/notice"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: stand up the coordination channel (gated on the engineering-review notice).",
+        "reasoning": "Per the handbook: set the TechCorp Development channel description + email, add 4 members, add 2 tabs.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_teams_mcp_channels",
+            "set": {
+              "email": "development@techcorp.com"
+            },
+            "where": "channel_id='5d8f4b2f9c8e4a1b847b6c3d7e8f9a0b'"
+          }
+        },
+        "tool_result": "channel description/email + members + tabs.",
+        "state_delta": "teams register: +coordination channel"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n18: reconcile the ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct lot == delta (re-read from the [LRN-NOTIFY] ledger) AND re-derive the figure chain: recorded total_notifications 38732 == notification_base 20632 + round(parts_index 181.40)*100; only then record reconciled='ok'.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description NOT LIKE '%[LRN-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description LIKE '%[LRN-RETRACT]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AND (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='total_notifications')=(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='notification_base')+CAST(ROUND((SELECT CAST(value AS REAL) FROM answers WHERE kind='parts_index')) AS INTEGER)*100 THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (18100==18100; 38732==20632+18100).",
+        "state_delta": "none (reconcile confirmed)"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "n18: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[LRN-RECON] delta=18100' to the QM CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 28,
+        "phase": "discovery",
+        "observation": "n19: read the window end and the coordinator's busy slots.",
+        "reasoning": "Read the [LRN-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[LRN-HOLD]%' AND lower(participant_email)=lower('recall.coordinator@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n19: schedule the '[LRN-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Recall committee review [LRN-REVIEW]",
+              "participant_email": "recall.coordinator@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+committee review"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent side lead supplier (birdsql:847).",
+        "reasoning": "Race-19 qualifying, first surname ordered by q2 ascending (unrecorded q2 sorts first).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T2.surname FROM bird_formula_1_qualifying T1 JOIN bird_formula_1_drivers T2 ON T2.driverId=T1.driverId WHERE T1.raceId=19 ORDER BY T1.q2 ASC LIMIT 1"
+          }
+        },
+        "tool_result": "Fisichella.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "Side lead supplier = Fisichella.",
+        "reasoning": "n20: record side_lead_supplier.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_lead_supplier",
+              "value": "Fisichella"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_lead_supplier=Fisichella"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct lot == delta and branch 'REPORTABLE' recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description NOT LIKE '%[LRN-RETRACT]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.lot.recipient@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='recall.coordinator@atlas.com') AND description LIKE '%[LRN-NOTIFY]%' AND description LIKE '%[LRN-RETRACT]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "18100.0, 'REPORTABLE' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no mandatory note / CPSC email for a VOLUNTARY branch and every wrong-lot credit has an [LRN-RETRACT].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[LRN-MANDATORY-URGENT]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[LRN-RETRACT]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> the MANDATORY branch absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', all four eops register beats are in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_teams_mcp_teams_channel_tabs WHERE display_name IN ('API Notes','Release Notes'))"
+          }
+        },
+        "tool_result": "ok, 2 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the notification posting, the window and the allocation) and joins (n19 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n18 (gap 14), the [LRN-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n19 (gap 13), and total_notifications resurfaces in the status email at n15. The cross-book mid value (parts_index from the european_football_2 book, birdsql:1033) is woven into the delta and thus into the branch and the whole downstream; n20 (formula_1, birdsql:847) is an independent side anchor no downstream check reads. The recall class re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live index, and the CSM onboarding's composition gate binds the STAMPED class to that live re-derivation. The four EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The recall notification is COMPENSATABLE: the first (wrong-lot) notification must be corrected by a matching [LRN-RETRACT] then the correct notification \u2014 the net coordinator->correct-lot credit == delta, and the collateral 'no_naked_delete_of_wrong_lot_credit' forbids removing the wrong row. On the real data delta=18100 mandates the 'REPORTABLE' branch (CPSC-REPORTABLE: CPSC report, no mandatory note); the FSV accepts the 'REPORTABLE' branch complete AND rejects a spurious mandatory note or an extra CPSC email on the 'VOLUNTARY' branch.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "distractor",
+    "n_arms": 10,
+    "arm_kinds": [
+      "legal_hold",
+      "regulator_notice",
+      "board_memo",
+      "external_audit",
+      "fraud_referral",
+      "exec_escalation",
+      "insurer_notice",
+      "press_holding",
+      "law_enforcement",
+      "emergency_reserve"
+    ],
+    "added_kinds": [
+      "legal_hold",
+      "regulator_notice",
+      "board_memo",
+      "external_audit",
+      "fraud_referral",
+      "exec_escalation",
+      "insurer_notice",
+      "press_holding",
+      "law_enforcement",
+      "emergency_reserve"
+    ],
+    "signature": {
+      "dG": 10,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 1,
+      "dT": 0
+    }
+  }
+}

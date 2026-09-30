@@ -1,0 +1,15 @@
+Run the quarterly franchise royalty reconciliation for the regional franchisee base. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+branch: the remittance-status route — exactly one of {FULLY_REMITTED, UNDERPAID_BELOW_THRESHOLD, UNDERPAID_COLLECTIONS_REFERRAL}
+expected_royalty: the expected royalty base — whole number
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the settlement ledger nets to the delta
+reference_catalog_item: the flagship catalog reference — the exact card name
+royalty_index: the regional royalty benchmark index — the reference average exactly as the book reports it (do not round)
+royalty_index_staged1: the desk's staging re-record 1 of 3 of royalty_index — the identical value
+royalty_index_staged2: the desk's staging re-record 2 of 3 of royalty_index — the identical value
+royalty_index_staged3: the desk's staging re-record 3 of 3 of royalty_index — the identical value
+side_cohort_major: the reference franchisee-cohort discipline — the exact major name
+total_royalty_flow: the total royalty flow — whole number, no thousands separators
+underpayment_amount: the underpayment shortfall — whole number
+underpayment_delta: the underpayment delta — whole number

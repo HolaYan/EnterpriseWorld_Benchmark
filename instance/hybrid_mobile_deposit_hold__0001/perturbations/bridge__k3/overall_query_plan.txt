@@ -1,0 +1,18 @@
+Run the Q1 mobile-deposit-hold batch for the daily deposit book. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+auto_release_base: the auto-release base — whole number
+branch: the hold-outcome route — exactly one of {AUTO_RELEASE, PARTIAL_HOLD, EXTENDED_REVIEW}
+hold_carry: the hold carry — whole number
+hold_case_count: the flagged mobile-deposit case count — whole number
+hold_case_count_staged1: the desk's staging re-record 1 of 3 of hold_case_count — the identical value
+hold_case_count_staged2: the desk's staging re-record 2 of 3 of hold_case_count — the identical value
+hold_case_count_staged3: the desk's staging re-record 3 of 3 of hold_case_count — the identical value
+hold_delta: the hold delta — whole number
+overlimit_index: the over-limit index — the book's exact decimal value
+overlimit_uplift: the over-limit uplift — whole number, no thousands separators
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the release ledger nets to the delta
+side_atom_connections: the first side anchor — whole number
+side_gas_txns: the fourth side anchor — whole number
+side_toughness_cards: the second side anchor — whole number
+side_vp_funds: the third side anchor — the book's exact value

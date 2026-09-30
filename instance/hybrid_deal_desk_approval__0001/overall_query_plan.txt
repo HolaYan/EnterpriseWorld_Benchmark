@@ -1,0 +1,12 @@
+Run the quarterly deal-desk non-standard-deal approval cycle for the key account. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+bar: the delegation bar — whole number, no thousands separators
+branch: the routing branch — exactly one of {AUTO_APPROVE, MULTI_LEVEL_APPROVE, ESCALATE_TO_CEO}
+compliance_index: the compliance index — whole number
+deal_count: the flagged non-standard-deal count — whole number
+delta: the escalation delta — whole number
+discount_impact: the aggregate discount impact — whole number
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta
+side_report: the side-region FX exposure — the euro-paying percentage of KAM customers
+total_exposure: the total exposure — whole number

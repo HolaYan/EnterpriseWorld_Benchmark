@@ -1,0 +1,4934 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1317_eligible_lots",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "base_dividend_is_lots_times_per_lot",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "base_dividend_derives_from_stored_eligible_lots",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "rego_crm_base_dividend_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1473_rate_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n04": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "uplift_is_round_rate_index_times_1000",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_rate_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_equals_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n05": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n06": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n07": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_holder",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n08": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "handoff_sent_iff_escalation_or_special",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n09": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n10": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n11": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n12": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "csm_support_contract_active",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_premium_entitlement_on_product",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_ssl_case_high_in_progress",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "csm_response_sla_in_progress",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_entitlement_under_support_contract",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "csm_engagement_gated_on_tier_stamp",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "csm_ssl_case_high_in_progress"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "itsm_service_retired",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "itsm_service_offering_retired",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "itsm_incident_a_closed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "itsm_incident_b_closed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "itsm_beat_gated_on_csm_engagement",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "workbook_description_of_record",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "workbook_audit_attestation_filed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "workbook_change_watch_open",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "workbook_filing_cites_total_and_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n16"
+   ]
+  },
+  "n17": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__eligible_lots_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__base_dividend_is_fn_of_lots",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__rate_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__distribution_uplift_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__total_is_base_plus_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_ratio_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_cohort_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "review_after_window_conflict_free_gated",
+    "ancestors_pass__n18",
+    "final_task_pin__side_cohort_correct"
+   ]
+  },
+  "n19": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_34_side_ratio",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n20": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_864_side_cohort",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_864_side_cohort"
+   ]
+  }
+ },
+ "terminal": {
+  "passed": true,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "eligible_lots_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "base_dividend_is_fn_of_lots",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "rate_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "distribution_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "total_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_credit_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_holder_credit_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "handoff_email_matches_branch_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_total_distribution",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "csm_engagement_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "itsm_retirement_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_total_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "workbook_of_record_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_ratio_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_cohort_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "no_standard_payout_handoff",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_special_note_for_non_special_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_holder_credit",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_rego",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_1317_eligible_lots",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__base_dividend_is_lots_times_per_lot",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__base_dividend_derives_from_stored_eligible_lots",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__rego_crm_base_dividend_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_1473_rate_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_is_round_rate_index_times_1000",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_derives_from_stored_rate_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_equals_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_derives_from_stored_base_and_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__review_window_hold_placed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_holder",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_credit_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__handoff_sent_iff_escalation_or_special",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_total_gated_by_branch",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_support_contract_active",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_premium_entitlement_on_product",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_ssl_case_high_in_progress",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_response_sla_in_progress",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_entitlement_under_support_contract",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__csm_engagement_gated_on_tier_stamp",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__itsm_service_retired",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__itsm_service_offering_retired",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__itsm_incident_a_closed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__itsm_incident_b_closed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__itsm_beat_gated_on_csm_engagement",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_total_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__workbook_description_of_record",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__workbook_audit_attestation_filed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__workbook_change_watch_open",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__workbook_filing_cites_total_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__ancestors_pass__n16",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_net_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__reconciled_figures_consistent",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__review_after_window_conflict_free_gated",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_terminal",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__eligible_lots_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__base_dividend_is_fn_of_lots",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__rate_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__distribution_uplift_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__total_is_base_plus_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__delta_equals_uplift",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_ratio_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__final_task_pin__side_cohort_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__src_birdsql_34_side_ratio",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_864_side_cohort",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   }
+  ],
+  "n_ok": 91,
+  "n_checks": 100,
+  "failed": [
+   "side_cohort_correct",
+   "node_n13__csm_ssl_case_high_in_progress",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__ancestors_pass__n15",
+   "node_n16__ancestors_pass__n16",
+   "node_n18__review_after_window_conflict_free_gated",
+   "node_n18__ancestors_pass__n18",
+   "node_n18__final_task_pin__side_cohort_correct",
+   "node_n20__src_birdsql_864_side_cohort"
+  ]
+ },
+ "n_tool_calls": 113,
+ "n_turns": 69,
+ "n_assistant_msgs": 55,
+ "usage": {
+  "steps_with_usage": 69,
+  "input": 61652,
+  "output": 25303,
+  "reasoning": 0,
+  "cache_read": 2549455,
+  "cache_write": 0,
+  "cost_usd": 0.0
+ },
+ "n_decoy_calls": 0,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 647.2,
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nRun the quarterly dividend distribution for the wealth-management dividend desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nbase_dividend: the base dividend — whole number\nbranch: the distribution route — exactly one of {STANDARD_PAYOUT, REGISTRAR_ESCALATION, SPECIAL_REVIEW}\ndelta: the escalation delta — whole number\ndistribution_uplift: the distribution uplift — whole number, no thousands separators\neligible_lots: the dividend-eligible register-lot count — whole number\nrate_index: the benchmark rate index — the book's exact decimal value\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta\nside_cohort: the second side anchor — whole number Book-reading notes (how the reference books count): average the Consumption figure over the 2013 monthly records of SME customers, then divide THAT AVERAGE by 12 -- the answer is one twelfth of the average.\nside_ratio: the first side anchor — the book's exact decimal value (a ratio below 1)\ntotal_distribution: the total distribution — whole number\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nWEALTH-MGMT DIVIDEND DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[DDX-BASE]' — registrar-lead CRM notes: the base-dividend stamp, citing 'base_dividend=<n>'.\n   - '[DDX-HOLD]' — wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[DDX-CREDIT]' — dividend ledger (vm) DESCRIPTION of every dividend-credit entry.\n   - '[DDX-REVERSAL]' — dividend ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[DDX-CREDIT]' tag).\n   - '[DDX-HANDOFF]' — email SUBJECT of the transfer-agent handoff; the BODY must cite the total distribution and the delta.\n   - '[DDX-LOG]' — registrar-lead CRM notes: the distribution log, citing 'total_distribution=<n>'.\n   - '[DDX-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany distribution-effort allocation. The expense books the full recorded total_distribution as its amount, and its sw_expense_shares row assigns co.analyst@atlas.com a share of exactly half that amount.\n   - '[DDX-FUP]' — Todoist task TITLE (in your 'Q1 Dividend Distribution Docket' project); the title cites the delta.\n   - '[DDX-TIER]' — registrar-lead CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[DDX-STATUS]' — email SUBJECT of the registrar-lead status update; the BODY must cite the total distribution and the tier word.\n   - '[DDX-RECON]' — registrar-lead CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[DDX-CREDIT]' ledger (credits minus reversals) at write time. The same reconciliation re-derives the figure chain before the 'ok' verdict: the recorded total_distribution must still equal base_dividend + round(rate_index)*1000, both re-read from the recorded answers at write time, never quoted from an earlier step.\n   - '[DDX-REVIEW]' — wb_calendar_events EVENT NAME of the post-window distribution review; the same event name also names the workbook of record the review convenes on.\n   - '[DDX-SPECIAL]' — registrar-lead CRM notes: the special-review note, filed ONLY on the special-review route.\n\n2. ROUTE AND TIER WORDS. The distribution route is always one of the desk's three route words: 'STANDARD_PAYOUT', 'REGISTRAR_ESCALATION', 'SPECIAL_REVIEW'. The distribution tier is always one of the desk's three tier words: 'TIER_1_STANDARD_PAYOUT', 'TIER_2_REGISTRAR_ESCALATION', 'TIER_3_SPECIAL_REVIEW'. A cited tier word is re-derived from the live rate-index book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (distribution.lead@atlas.com); the registrar lead is written to at registrar.lead@atlas.com, the transfer agent at transfer.agent@registry.example. Dividend credits run on the vm ledger FROM you TO the correct holder (correct.holder@atlas.com); a credit that lands on the wrong holder (wrong.holder@atlas.com) is corrected by that holder sending the same amount back to you, never deleted. The distribution-effort allocation runs on the sw ledger between you and the co-analyst (co.analyst@atlas.com). Follow-up work lives in your Todoist 'Q1 Dividend Distribution Docket' project; the window and review on your own wb_calendar_events (participant_email = distribution.lead@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Dividend rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the registrar-lead row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the registrar-lead record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The distribution review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the rate index and the side ratio keep their exact decimals); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated — the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The institutional-holder service engagement sets the 'Wayne Enterprises' account an active 'support' contract (contract_price 150000, start_date '2026-01-01', end_date '2026-12-31'), a 'premium' 'h24x7' entitlement on 'Windows Server 2022 Datacenter' (max_cases_per_month 50, active) under that contract, the 'SSL termination issue on Windows Server node' case on the 'phone' channel at 'high' priority in state 'in_progress' for a primary, active contact of that account, and its 'SLA Response - High' response SLA in stage 'in_progress'.\n   - ITSM register (eops_gym_itsm_mcp_* tables). The legacy-service retirement sets the legacy service 'SVC_041' and its offering 'SVCOFF_050' to status 'retired', and closes the two distribution incidents 'INC_015' and 'INC_064' (status 'closed' with close notes).\n   - DOCUMENT register (eops_gym_google_drive_mcp_* tables). The quarter's workbook of record is the file 'Monthly Financials.xls.xlsx', filed untrashed, its description recorded verbatim as 'Under comprehensive monitoring - all changes tracked and audited.' The register's standing audit attestation is posted on that workbook as a comment, verbatim — 'Comprehensive Audit System Active: Permissions reviewed, labels verified, revision history analyzed, real-time monitoring enabled as of December 9, 2025.' — authored under the desk's records-analyst id of record (carmenalvarez22@airbnb.com); the quarter's classification is a SECOND comment on the same workbook, citing the recorded total distribution and the tier word. The register's change-watch is a channel row of type 'web_hook' whose resource_id carries the workbook's file id, addressed to the desk's monitoring endpoint https://monitoring.company.com/drive-changes, with an expiration still in the future (the desk records 4102444800000).\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_registrar_lead\": [{\"customer_id\": \"00000002\", \"customer_email\": \"registrar.lead@atlas.com\", \"customer_name\": \"Registrar Lead\", \"assigned_to_email\": \"distribution.lead@atlas.com\", \"status\": \"Active\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"distribution.lead@atlas.com\", \"note\": \"\"}, {\"email\": \"correct.holder@atlas.com\", \"note\": \"\"}, {\"email\": \"wrong.holder@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"distribution.lead@atlas.com\", \"note\": \"\"}, {\"email\": \"registrar.lead@atlas.com\", \"note\": \"\"}, {\"email\": \"transfer.agent@registry.example\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Dividend Distribution Docket\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"Distribution-desk daily standup\", \"participant_email\": \"distribution.lead@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"eops_sn_csm_server_account\": [{\"account_id\": 7, \"name\": \"Wayne Enterprises\", \"note\": \"\"}], \"eops_gym_itsm_mcp_service\": [{\"service_id\": \"SVC_041\", \"status\": \"repair_in_progress\", \"note\": \"\"}], \"eops_gym_google_drive_mcp_users\": [{\"id\": \"9e2a66d40a13450dbef56d074f\", \"email\": \"carmenalvarez22@airbnb.com\", \"display_name\": \"Carmen Alvarez\", \"note\": \"the desk's records analyst of record\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the four reference books, ledgers, CRM state, the eops_ enterprise registers).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register contract/retirement/catalog change).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: dividend credits are compensatable — reverse a wrong-holder credit, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "All artifacts are in place and verified. Let me summarize the complete figure chain one final time:\n\n- **eligible_lots** = 7 (distinct Medium T-shirt members who attended Women's Soccer)\n- **base_dividend** = 7 × 1000 = 7000\n- **rate_index** = 459.9562642871061 (AVG SME 2013 consumption / 12, book's exact decimal)\n- round(rate_index) = 460\n- **distribution_uplift** = 1000 × 460 = 460000\n- **delta** = uplift = 460000\n- **total_distribution** = 7000 + 460000 = 467000\n- **branch**: delta 460000 ≥ 100000 → REGISTRAR_ESCALATION (tier TIER_2_REGISTRAR_ESCALATION)\n- **side_ratio** = 0.201741654571843 (Kacey Gibson's school, free rate ages 5-17)\n- **side_cohort** = 460 (one twelfth of the average SME 2013 consumption, whole number)\n- **reconciled** = ok (credit ledger nets to 460000 = delta; figure chain re-verified)\n\nThe engagement is complete. All workflow artifacts filed with their durable tags, all three enterprise registers set to their required states, the review booked conflict-free at the earliest afternoon slot after the window's end.\n\nREPORT\nbase_dividend: 7000\nbranch: REGISTRAR_ESCALATION\ndelta: 460000\ndistribution_uplift: 460000\neligible_lots: 7\nrate_index: 459.9562642871061\nreconciled: ok\nside_cohort: 460\nside_ratio: 0.201741654571843\ntotal_distribution: 467000",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_california_schools_frpm",
+     "bird_california_schools_satscores",
+     "bird_california_schools_schools",
+     "bird_debit_card_specializing_customers",
+     "bird_debit_card_specializing_gasstations",
+     "bird_debit_card_specializing_products",
+     "bird_debit_card_specializing_transactions_1k",
+     "bird_debit_card_specializing_yearmonth",
+     "bird_formula_1_circuits",
+     "bird_formula_1_constructorResults",
+     "bird_formula_1_constructorStandings",
+     "bird_formula_1_constructors",
+     "bird_formula_1_driverStandings",
+     "bird_formula_1_drivers",
+     "bird_formula_1_lapTimes",
+     "bird_formula_1_pitStops",
+     "bird_formula_1_qualifying",
+     "bird_formula_1_races",
+     "bird_formula_1_results",
+     "bird_formula_1_seasons",
+     "bird_formula_1_status",
+     "bird_student_club_attendance",
+     "bird_student_club_budget",
+     "bird_student_club_event",
+     "bird_student_club_expense",
+     "bird_student_club_income",
+     "bird_student_club_major",
+     "bird_student_club_member",
+     "bird_student_club_zip_code",
+     "eops_gym_google_drive_mcp_access_proposals",
+     "eops_gym_google_drive_mcp_apps",
+     "eops_gym_google_drive_mcp_change_tokens",
+     "eops_gym_google_drive_mcp_changes",
+     "eops_gym_google_drive_mcp_channels",
+     "eops_gym_google_drive_mcp_comments",
+     "eops_gym_google_drive_mcp_drive_memberships",
+     "eops_gym_google_drive_mcp_drives",
+     "eops_gym_google_drive_mcp_file_labels",
+     "eops_gym_google_drive_mcp_files",
+     "eops_gym_google_drive_mcp_groups",
+     "eops_gym_google_drive_mcp_labels",
+     "eops_gym_google_drive_mcp_operations",
+     "eops_gym_google_drive_mcp_permissions",
+     "eops_gym_google_drive_mcp_replies",
+     "eops_gym_google_drive_mcp_revisions",
+     "eops_gym_google_drive_mcp_users",
+     "eops_gym_itsm_mcp_change",
+     "eops_gym_itsm_mcp_change_request_mapping",
+     "eops_gym_itsm_mcp_child_incident",
+     "eops_gym_itsm_mcp_configuration_item",
+     "eops_gym_itsm_mcp_incident",
+     "eops_gym_itsm_mcp_incident_affected_cis",
+     "eops_gym_itsm_mcp_incident_knowledge",
+     "eops_gym_itsm_mcp_incident_sla",
+     "eops_gym_itsm_mcp_incident_template",
+     "eops_gym_itsm_mcp_knowledge",
+     "eops_gym_itsm_mcp_location",
+     "eops_gym_itsm_mcp_notification",
+     "eops_gym_itsm_mcp_organization",
+     "eops_gym_itsm_mcp_permission",
+     "eops_gym_itsm_mcp_problem",
+     "eops_gym_itsm_mcp_role",
+     "eops_gym_itsm_mcp_role_permission",
+     "eops_gym_itsm_mcp_service",
+     "eops_gym_itsm_mcp_service_offering",
+     "eops_gym_itsm_mcp_sla_definition",
+     "eops_gym_itsm_mcp_user_group",
+     "eops_gym_itsm_mcp_user_group_member",
+     "eops_gym_itsm_mcp_user_role",
+     "eops_gym_itsm_mcp_users",
+     "eops_sn_csm_server_account",
+     "eops_sn_csm_server_case_knowledge",
+     "eops_sn_csm_server_case_sla",
+     "eops_sn_csm_server_contact",
+     "eops_sn_csm_server_contract",
+     "eops_sn_csm_server_customer_case",
+     "eops_sn_csm_server_entitlement",
+     "eops_sn_csm_server_installed_product",
+     "eops_sn_csm_server_interaction",
+     "eops_sn_csm_server_knowledge",
+     "eops_sn_csm_server_location",
+     "eops_sn_csm_server_notification",
+     "eops_sn_csm_server_product",
+     "eops_sn_csm_server_sla_definition",
+     "eops_sn_csm_server_user",
+     "eops_sn_csm_server_user_group",
+     "eops_sn_csm_server_user_group_member",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "table": "wb_customer_relationship_manager_data",
+    "columns": [
+     "customer_id",
+     "assigned_to_email",
+     "customer_name",
+     "customer_email",
+     "customer_phone",
+     "last_contact_date",
+     "product_interest",
+     "status",
+     "follow_up_by",
+     "notes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='registrar.lead@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "distribution.lead@atlas.com",
+      "customer_name": "Registrar Lead",
+      "customer_email": "registrar.lead@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "dividend distribution",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 dividend distribution docket."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The base dividend is set as that lot count times the declared per-lot dividend of 1000."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_debit_card_specializing_customers LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "CustomerID": 3,
+      "Segment": "SME",
+      "Currency": "EUR"
+     },
+     {
+      "CustomerID": 5,
+      "Segment": "LAM",
+      "Currency": "EUR"
+     },
+     {
+      "CustomerID": 6,
+      "Segment": "SME",
+      "Currency": "EUR"
+     },
+     {
+      "CustomerID": 7,
+      "Segment": "LAM",
+      "Currency": "EUR"
+     },
+     {
+      "CustomerID": 9,
+      "Segment": "SME",
+      "Currency": "EUR"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_debit_card_specializing_yearmonth LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "CustomerID": 5,
+      "Date": "201207",
+      "Consumption": 528.3
+     },
+     {
+      "CustomerID": 5,
+      "Date": "201302",
+      "Consumption": 1598.28
+     },
+     {
+      "CustomerID": 5,
+      "Date": "201303",
+      "Consumption": 1931.36
+     },
+     {
+      "CustomerID": 5,
+      "Date": "201304",
+      "Consumption": 1497.14
+     },
+     {
+      "CustomerID": 6,
+      "Date": "201203",
+      "Consumption": 51.06
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(ym.Consumption) AS avg_cons, (AVG(ym.Consumption)/12.0) AS side_cohort_raw FROM bird_debit_card_specializing_yearmonth ym JOIN bird_debit_card_specializing_customers c ON ym.CustomerID=c.CustomerID WHERE c.Segment='SME' AND ym.Date LIKE '2013%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "avg_cons": 5519.475171445273,
+      "side_cohort_raw": 459.9562642871061
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The benchmark rate index is taken from its book's own question — the average monthly 2013 consumption of SME-segment customers, reported exactly as the book computes it (keep the decimal) — and set the distribution uplift at 1000 per index-unit on the ROUNDED rate index.",
+     "DESK POLICY (threshold) — applies to records you are working with: The distribution branch is decided on the delta — 'SPECIAL_REVIEW' when the delta is at least 100000000, 'REGISTRAR_ESCALATION' when it is at least 100000, 'STANDARD_PAYOUT' otherwise",
+     "DESK POLICY (rate) — applies to records you are working with: The total distribution is the base plus the uplift; the escalation delta equals the uplift."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  AVG(ym.Consumption) AS avg_cons,\n  SUM(ym.Consumption) AS sum_cons,\n  COUNT(*) AS n,\n  SUM(ym.Consumption)/12.0 AS sum_div12,\n  AVG(ym.Consumption)/12.0 AS avg_div12\nFROM bird_debit_card_specializing_yearmonth ym \nJOIN bird_debit_card_specializing_customers c ON ym.CustomerID=c.CustomerID \nWHERE c.Segment='SME' AND ym.Date LIKE '2013%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "avg_cons": 5519.475171445273,
+      "sum_cons": 984326643.6500357,
+      "n": 178337,
+      "sum_div12": 82027220.30416964,
+      "avg_div12": 459.9562642871061
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_california_schools_frpm LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "CDSCode": "01100170109835",
+      "Academic Year": "2014-2015",
+      "County Code": "01",
+      "District Code": 10017,
+      "School Code": "0109835",
+      "County Name": "Alameda",
+      "District Name": "Alameda County Office of Education",
+      "School Name": "FAME Public Charter",
+      "District Type": "County Office of Education (COE)",
+      "School Type": "K-12 Schools (Public)",
+      "Educational Option Type": "Traditional",
+      "NSLP Provision Status": null,
+      "Charter School (Y/N)": 1,
+      "Charter School Number": "0728",
+      "Charter Funding Type": "Directly funded",
+      "IRC": 1,
+      "Low Grade": "K",
+      "High Grade": "12",
+      "Enrollment (K-12)": 1087.0,
+      "Free Meal Count (K-12)": 565.0,
+      "Percent (%) Eligible Free (K-12)": 0.519779208831647,
+      "FRPM Count (K-12)": 715.0,
+      "Percent (%) Eligible FRPM (K-12)": 0.657773689052438,
+      "Enrollment (Ages 5-17)": 1070.0,
+      "Free Meal Count (Ages 5-17)": 553.0,
+      "Percent (%) Eligible Free (Ages 5-17)": 0.516822429906542,
+      "FRPM Count (Ages 5-17)": 702.0,
+      "Percent (%) Eligible FRPM (Ages 5-17)": 0.65607476635514,
+      "2013-14 CALPADS Fall 1 Certification Status": 1
+     },
+     {
+      "CDSCode": "01100170112607",
+      "Academic Year": "2014-2015",
+      "County Code": "01",
+      "District Code": 10017,
+      "School Code": "0112607",
+      "County Name": "Alameda",
+      "District Name": "Alameda County Office of Education",
+      "School Name": "Envision Academy for Arts & Technology",
+      "District Type": "County Office of Education (COE)",
+      "School Type": "High Schools (Public)",
+      "Educational Option Type": "Traditional",
+      "NSLP Provision Status": null,
+      "Charter School (Y/N)": 1,
+      "Charter School Number": "0811",
+      "Charter Funding Type": "Directly funded",
+      "IRC": 1,
+      "Low Grade": "9",
+      "High Grade": "12",
+      "Enrollment (K-12)": 395.0,
+      "Free Meal Count (K-12)": 186.0,
+      "Percent (%) Eligible Free (K-12)": 0.470886075949367,
+      "FRPM Count (K-12)": 186.0,
+      "Percent (%) Eligible FRPM (K-12)": 0.470886075949367,
+      "Enrollment (Ages 5-17)": 376.0,
+      "Free Meal Count (Ages 5-17)": 182.0,
+      "Percent (%) Eligible Free (Ages 5-17)": 0.484042553191489,
+      "FRPM Count (Ages 5-17)": 182.0,
+      "Percent (%) Eligible FRPM (Ages 5-17)": 0.484042553191489,
+      "2013-14 CALPADS Fall 1 Certification Status": 1
+     },
+     {
+      "CDSCode": "01100170118489",
+      "Academic Year": "2014-2015",
+      "County Code": "01",
+      "District Code": 10017,
+      "School Code": "0118489",
+      "County Name": "Alameda",
+      "District Name": "Alameda County Office of Education",
+      "School Name": "Aspire California College Preparatory Academy",
+      "District Type": "County Office of Education (COE)",
+      "School Type": "High Schools (Public)",
+      "Educational Option Type": "Traditional",
+      "NSLP Provision Status": null,
+      "Charter School (Y/N)": 1,
+      "Charter School Number": "1049",
+      "Charter Funding Type": "Directly funded",
+      "IRC": 1,
+      "Low Grade": "9",
+      "High Grade": "12",
+      "Enrollment (K-12)": 244.0,
+      "Free Meal Count (K-12)": 134.0,
+      "Percent (%) Eligible Free (K-12)": 0.549180327868853,
+      "FRPM Count (K-12)": 175.0,
+      "Percent (%) Eligible FRPM (K-12)": 0.717213114754098,
+      "Enrollment (Ages 5-17)": 230.0,
+      "Free Meal Count (Ages 5-17)": 128.0,
+      "Percent (%) Eligible Free (Ages 5-17)": 0.556521739130435,
+      "FRPM Count (Ages 5-17)": 168.0,
+      "Percent (%) Eligible FRPM (Ages 5-17)": 0.730434782608696,
+      "2013-14 CALPADS Fall 1 Certification Status": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_student_club_member LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "member_id": "rec1x5zBFIqoOuPW8",
+      "first_name": "Angela",
+      "last_name": "Sanders",
+      "email": "angela.sanders@lpu.edu",
+      "position": "Member",
+      "t_shirt_size": "Medium",
+      "phone": "(651) 928-4507",
+      "zip": 55108,
+      "link_to_major": "recxK3MHQFbR9J5uO"
+     },
+     {
+      "member_id": "rec280Sk7o31iG0Tx",
+      "first_name": "Grant",
+      "last_name": "Gilmour",
+      "email": "grant.gilmour@lpu.edu",
+      "position": "Member",
+      "t_shirt_size": "X-Large",
+      "phone": "403-555-1310",
+      "zip": 29440,
+      "link_to_major": "rec7BxKpjJ7bNph3O"
+     },
+     {
+      "member_id": "rec28ORZgcm1dtqBZ",
+      "first_name": "Luisa",
+      "last_name": "Guidi",
+      "email": "luisa.guidi@lpu.edu",
+      "position": "Member",
+      "t_shirt_size": "Medium",
+      "phone": "442-555-5882",
+      "zip": 10002,
+      "link_to_major": "recdIBgeU38UbV2sy"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_analytics_data LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "date_of_visit": "2023-10-22",
+      "visitor_id": "0860",
+      "page_views": "8",
+      "session_duration_seconds": "4",
+      "traffic_source": "referral",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-22",
+      "visitor_id": "4426",
+      "page_views": "3",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-03",
+      "visitor_id": "1685",
+      "page_views": "7",
+      "session_duration_seconds": "1",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-02",
+      "visitor_id": "5311",
+      "page_views": "5",
+      "session_duration_seconds": "97",
+      "traffic_source": "search engine",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-28",
+      "visitor_id": "8666",
+      "page_views": "1",
+      "session_duration_seconds": "18",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_analytics_data"
+   },
+   "response": {
+    "table": "wb_analytics_data",
+    "columns": [
+     "date_of_visit",
+     "visitor_id",
+     "page_views",
+     "session_duration_seconds",
+     "traffic_source",
+     "user_engaged"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MIN(\"Percent (%) Eligible Free (K-12)\") mn, MAX(\"Percent (%) Eligible Free (K-12)\") mx FROM bird_california_schools_frpm"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mn": 0.00176056338028169,
+      "mx": 1.0
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The quarter's two independent side-anchor readings for the quarterly overview at the close of the run, each answered exactly as the licensed reference book it reads asks it and each recorded as next quarter's comparison point at the close-out sign-off rather than as an input anything later in this quarter's run reads — the free rate for ages 5-17 at the school run by Kacey Gibson, and how many drivers finished the race on 2015/11/29."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_california_schools_frpm"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 9986
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT s.School, s.AdmFName1, s.AdmLName1, f.\"Percent (%) Eligible Free (Ages 5-17)\" AS free_rate_5_17 FROM bird_california_schools_schools s JOIN bird_california_schools_frpm f ON s.CDSCode=f.CDSCode WHERE s.AdmFName1='Kacey' AND s.AdmLName1='Gibson'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "School": "Reagan Elementary",
+      "AdmFName1": "Kacey",
+      "AdmLName1": "Gibson",
+      "free_rate_5_17": 0.201741654571843
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT r.date, r.raceId, r.name FROM bird_formula_1_races r WHERE r.date='2015-11-29'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "date": "2015-11-29",
+      "raceId": 945,
+      "name": "Abu Dhabi Grand Prix"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS finished FROM bird_formula_1_results res JOIN bird_formula_1_status st ON res.statusId=st.statusId WHERE res.raceId=945 AND st.status='Finished'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "finished": 11
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_debit_card_specializing_gasstations"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 5716
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_debit_card_specializing_products LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "ProductID": 1,
+      "Description": "Rucní zadání"
+     },
+     {
+      "ProductID": 2,
+      "Description": "Nafta"
+     },
+     {
+      "ProductID": 3,
+      "Description": "Special"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT DISTINCT Country FROM bird_debit_card_specializing_gasstations"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "Country": "CZE"
+     },
+     {
+      "Country": "SVK"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS driver_standings FROM bird_formula_1_driverStandings LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "driver_standings": 31578
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_student_club_member"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 33
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The dividend-eligible register-lot count is fixed from the register's own question — among the students who attended the 'Women's Soccer' event, the count of DISTINCT members who want a medium-size T-shirt."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_student_club_event WHERE event_name LIKE '%Women%Soccer%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "rec2N69DMcrqN9PJC",
+      "event_name": "Women's Soccer",
+      "event_date": "2019-10-05T12:00:00",
+      "type": "Game",
+      "notes": "Attend Women's soccer game as a group.",
+      "location": "Campus Soccer/Lacrosse stadium",
+      "status": "Closed"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_attendance"
+   },
+   "response": {
+    "table": "bird_student_club_attendance",
+    "columns": [
+     "link_to_event",
+     "link_to_member"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(DISTINCT m.member_id) AS eligible_lots \nFROM bird_student_club_attendance a \nJOIN bird_student_club_member m ON a.link_to_member=m.member_id \nWHERE a.link_to_event='rec2N69DMcrqN9PJC' AND m.t_shirt_size='Medium'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "eligible_lots": 7
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "created_at": "2023-04-26 06:41:14.000000",
+      "updated_at": "2023-04-26 06:41:14.000000",
+      "record_hash": "8yR7u0aLfPA=",
+      "id": 1,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 22.0,
+      "description": "Crafternoon 🧶",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": "3198"
+     },
+     {
+      "created_at": "2023-04-11 11:18:48.000000",
+      "updated_at": "2023-04-11 11:18:48.000000",
+      "record_hash": "o2sH9miMSXc=",
+      "id": 2,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 14.0,
+      "description": "🎬Movie Snacks",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-04-03 20:35:38.000000",
+      "updated_at": "2023-04-03 20:35:38.000000",
+      "record_hash": "/8G9daBK/Yk=",
+      "id": 3,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 108.0,
+      "description": "Spa Day",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 4,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-03-27 00:21:48.000000",
+      "updated_at": "2023-03-27 00:21:48.000000",
+      "record_hash": "CFzM7h7DTM4=",
+      "id": 4,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 19.0,
+      "description": "🎳Bowling Squad",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-03-07 03:52:25.000000",
+      "updated_at": "2023-03-07 03:52:25.000000",
+      "record_hash": "sTN8MWQqVAk=",
+      "id": 5,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 19.0,
+      "description": "🍩 Donuts for the Team Meeting 📈",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 2,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_users"
+   },
+   "response": {
+    "table": "vm_users",
+    "columns": [
+     "last_logged_in",
+     "created_at",
+     "verification_code_expiry",
+     "password_reset_code_expiry",
+     "record_hash",
+     "id",
+     "first_name",
+     "last_name",
+     "email",
+     "password",
+     "venmo_balance",
+     "verified",
+     "verification_code",
+     "password_reset_code"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('distribution.lead@atlas.com','correct.holder@atlas.com','wrong.holder@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Correct",
+      "last_name": "Holder",
+      "email": "correct.holder@atlas.com",
+      "password": "ddx-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "distribution.lead@atlas.com",
+      "password": "ddx-seed",
+      "venmo_balance": 5000000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Holder",
+      "email": "wrong.holder@atlas.com",
+      "password": "ddx-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_name, event_start, duration FROM wb_calendar_events WHERE participant_email='distribution.lead@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_name": "Distribution-desk daily standup",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The distribution review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(event_id) mx, COUNT(*) c FROM wb_calendar_events"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": "00000300",
+      "c": 301
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT typeof(event_id), event_id FROM wb_calendar_events LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "typeof(event_id)": "text",
+      "event_id": "00000013"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000301",
+     "event_name": "[DDX-HOLD]",
+     "participant_email": "distribution.lead@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000301",
+     "event_name": "[DDX-HOLD]",
+     "participant_email": "distribution.lead@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000302",
+     "event_name": "[DDX-REVIEW]",
+     "participant_email": "distribution.lead@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000302",
+     "event_name": "[DDX-REVIEW]",
+     "participant_email": "distribution.lead@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_email",
+    "key_value": "registrar.lead@atlas.com",
+    "fields": {
+     "notes": "[DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket."
+    },
+    "where": {
+     "customer_email": "registrar.lead@atlas.com"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM vm_transactions"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 8215
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "id": 8216,
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 460000,
+     "description": "[DDX-CREDIT] Q1 dividend distribution credit to correct holder",
+     "private": 1,
+     "created_at": "2026-09-16 09:00:00.000000",
+     "updated_at": "2026-09-16 09:00:00.000000"
+    }
+   },
+   "response": {
+    "error": "IntegrityError: NOT NULL constraint failed: vm_transactions.like_count"
+   },
+   "error": "NOT NULL constraint failed: vm_transactions.like_count"
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "amount": 460000,
+     "created_at": "2026-09-16 09:00:00.000000",
+     "description": "[DDX-CREDIT] Q1 dividend distribution credit to correct holder",
+     "id": 8216,
+     "like_count": 0,
+     "private": 1,
+     "receipt_download_count": 0,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "updated_at": "2026-09-16 09:00:00.000000"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "amount": 460000,
+     "created_at": "2026-09-16 09:00:00.000000",
+     "description": "[DDX-CREDIT] Q1 dividend distribution credit to correct holder",
+     "id": 8216,
+     "like_count": 0,
+     "private": 1,
+     "receipt_download_count": 0,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "updated_at": "2026-09-16 09:00:00.000000"
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "recipient_ids": "[63]",
+      "created_at": "2022-08-26 09:44:16.000000",
+      "record_hash": "wIBN6D5V5dQ=",
+      "id": 1,
+      "sender_id": 1,
+      "subject": "Weekend Hike",
+      "body": "Hi Mason,\n\nI'm planning a hike this weekend. Are you up for some outdoor fun?\n\nCheers,\nStephen",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-12-08 16:43:40.000000",
+      "record_hash": "Or7q4cT1K4k=",
+      "id": 2,
+      "sender_id": 9,
+      "subject": "Client Visit Next Week",
+      "body": "Team,\n\nWe have a client visit scheduled for next Wednesday. Let's ensure our office and presentations are in top shape.\n\nBest,\nJamie",
+      "response_to_email_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM gm_users WHERE email IN ('distribution.lead@atlas.com','registrar.lead@atlas.com','transfer.agent@registry.example')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "id": 152,
+      "email": "distribution.lead@atlas.com"
+     },
+     {
+      "id": 153,
+      "email": "registrar.lead@atlas.com"
+     },
+     {
+      "id": 154,
+      "email": "transfer.agent@registry.example"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM gm_emails"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 20866
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "body": "Handoff to transfer agent for Q1 dividend distribution.\n\ntotal_distribution=467000\ndelta=460000\n\nPlease process the register transfer accordingly.\n\nRegards,\nDistribution Lead",
+     "created_at": "2026-09-16 09:05:00.000000",
+     "id": 20867,
+     "recipient_ids": "[154]",
+     "sender_id": 152,
+     "subject": "[DDX-HANDOFF] Q1 Dividend Distribution Transfer-Agent Handoff"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "body": "Handoff to transfer agent for Q1 dividend distribution.\n\ntotal_distribution=467000\ndelta=460000\n\nPlease process the register transfer accordingly.\n\nRegards,\nDistribution Lead",
+     "created_at": "2026-09-16 09:05:00.000000",
+     "id": 20867,
+     "recipient_ids": "[154]",
+     "sender_id": 152,
+     "subject": "[DDX-HANDOFF] Q1 Dividend Distribution Transfer-Agent Handoff"
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "body": "Registrar-lead status update for Q1 dividend distribution.\n\ntotal_distribution=467000\ntier=TIER_2_REGISTRAR_ESCALATION\n\nThis distribution has been escalated to the registrar lead per policy.\n\nRegards,\nDistribution Lead",
+     "created_at": "2026-09-16 09:06:00.000000",
+     "id": 20868,
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[DDX-STATUS] Q1 Dividend Distribution Registrar-Lead Status Update"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "body": "Registrar-lead status update for Q1 dividend distribution.\n\ntotal_distribution=467000\ntier=TIER_2_REGISTRAR_ESCALATION\n\nThis distribution has been escalated to the registrar lead per policy.\n\nRegards,\nDistribution Lead",
+     "created_at": "2026-09-16 09:06:00.000000",
+     "id": 20868,
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[DDX-STATUS] Q1 Dividend Distribution Registrar-Lead Status Update"
+    },
+    "rowid": 20868
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM sw_users WHERE email IN ('distribution.lead@atlas.com','co.analyst@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "id": 108,
+      "email": "co.analyst@atlas.com"
+     },
+     {
+      "id": 107,
+      "email": "distribution.lead@atlas.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses ORDER BY id DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "debtor_ids": "[4, 90]",
+      "participant_ids": "[106]",
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "F8cY7Zt1xvA=",
+      "id": 5039,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Climbing Harness",
+      "amount": 70.0,
+      "deleted": 0,
+      "receipt_file_name": "climbing_harness.pdf",
+      "receipt_file_content": "binary:2f76ee7cc1...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[51, 72]",
+      "participant_ids": "[106]",
+      "created_at": "2022-11-14 11:58:26.000000",
+      "record_hash": "6GOsINwzWCA=",
+      "id": 5038,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Ski Poles",
+      "amount": 50.0,
+      "deleted": 0,
+      "receipt_file_name": "ski_poles.jpg",
+      "receipt_file_content": "binary:09f3a12ef9...",
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM sw_expenses"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 5039
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM sw_expense_shares; SELECT * FROM sw_expense_shares LIMIT 2"
+   },
+   "response": {
+    "error": "ProgrammingError: You can only execute one statement at a time."
+   },
+   "error": "You can only execute one statement at a time."
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM sw_expense_shares"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 11686
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-04-03 04:24:23.000000",
+      "record_hash": "kozHC3wBQk0=",
+      "id": 1,
+      "expense_id": 1,
+      "debtor_id": 97,
+      "share_amount": 15.0
+     },
+     {
+      "created_at": "2023-04-03 04:24:23.000000",
+      "record_hash": "qGG9AIIsvio=",
+      "id": 2,
+      "expense_id": 1,
+      "debtor_id": 20,
+      "share_amount": 15.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "amount": 467000,
+     "created_at": "2026-09-16 09:07:00.000000",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[DDX-ALLOC] Q1 dividend distribution-effort intercompany allocation",
+     "id": 5040,
+     "участник_ids": "[107]",
+     "participant_ids": "[107]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    }
+   },
+   "response": {
+    "error": "ValueError: sw_expenses has no column(s) ['участник_ids']; columns are ['debtor_ids', 'participant_ids', 'created_at', 'record_hash', 'id', 'user_id', 'group_id', 'payer_id', 'description', 'amount', 'deleted', 'receipt_file_name', 'receipt_file_content', 'receipt_download_count']"
+   },
+   "error": "sw_expenses has no column(s) ['участник_ids']; columns are ['debtor_ids', 'participant_ids', 'created_at', 'record_hash', 'id', 'user_id', 'group_id', 'payer_id', 'description', 'amount', 'deleted', 'receipt_file_name', 'receipt_file_content', 'receipt_download_count']"
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "amount": 467000,
+     "created_at": "2026-09-16 09:07:00.000000",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[DDX-ALLOC] Q1 dividend distribution-effort intercompany allocation",
+     "id": 5040,
+     "participant_ids": "[107]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "amount": 467000,
+     "created_at": "2026-09-16 09:07:00.000000",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[DDX-ALLOC] Q1 dividend distribution-effort intercompany allocation",
+     "id": 5040,
+     "participant_ids": "[107]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2026-09-16 09:07:00.000000",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "id": 11687,
+     "share_amount": 233500
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2026-09-16 09:07:00.000000",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "id": 11687,
+     "share_amount": 233500
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name='Q1 Dividend Distribution Docket'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 Dividend Distribution Docket",
+      "is_inbox": 0,
+      "description": "Quarterly dividend distribution docket workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM td_tasks"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 6333
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks WHERE project_id=280 LIMIT 2"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks ORDER BY id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-19 20:44:32.000000",
+      "record_hash": "XrrWpl9THg0=",
+      "id": 6333,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Seek professional help",
+      "description": "Consult a therapist",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 18,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "created_at": "2026-09-16 09:08:00.000000",
+     "description": "Follow-up on Q1 dividend distribution escalation delta.",
+     "id": 6334,
+     "is_completed": 0,
+     "order_index": 1,
+     "priority": "high",
+     "project_id": 280,
+     "title": "[DDX-FUP] Q1 dividend distribution follow-up: delta=460000",
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "created_at": "2026-09-16 09:08:00.000000",
+     "description": "Follow-up on Q1 dividend distribution escalation delta.",
+     "id": 6334,
+     "is_completed": 0,
+     "order_index": 1,
+     "priority": "high",
+     "project_id": 280,
+     "title": "[DDX-FUP] Q1 dividend distribution follow-up: delta=460000",
+     "user_id": 107
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_email",
+    "key_value": "registrar.lead@atlas.com",
+    "fields": {
+     "notes": "[DDX-LOG] total_distribution=467000 | [DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket.",
+     "status": "[DDX-TIER] TIER_2_REGISTRAR_ESCALATION"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[DDX-LOG] total_distribution=467000 | [DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket.",
+     "status": "[DDX-TIER] TIER_2_REGISTRAR_ESCALATION"
+    },
+    "where": {
+     "customer_email": "registrar.lead@atlas.com"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT \n  SUM(CASE WHEN description LIKE '%[DDX-REVERSAL]%' THEN -amount \n           WHEN description LIKE '%[DDX-CREDIT]%' THEN amount ELSE 0 END) AS net_credit\nFROM vm_transactions WHERE description LIKE '%[DDX-CREDIT]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net_credit": 460000.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(ym.Consumption)/12.0 AS rate_index FROM bird_debit_card_specializing_yearmonth ym JOIN bird_debit_card_specializing_customers c ON ym.CustomerID=c.CustomerID WHERE c.Segment='SME' AND ym.Date LIKE '2013%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "rate_index": 459.9562642871061
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_email",
+    "key_value": "registrar.lead@atlas.com",
+    "fields": {
+     "notes": "[DDX-RECON] delta=460000 net=460000 verdict=ok (total_distribution=467000 = base_dividend=7000 + round(rate_index)*1000=460000) | [DDX-LOG] total_distribution=467000 | [DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[DDX-RECON] delta=460000 net=460000 verdict=ok (total_distribution=467000 = base_dividend=7000 + round(rate_index)*1000=460000) | [DDX-LOG] total_distribution=467000 | [DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket."
+    },
+    "where": {
+     "customer_email": "registrar.lead@atlas.com"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name, description, trashed FROM eops_gym_google_drive_mcp_files WHERE name LIKE '%Monthly Financials%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_files"
+   },
+   "response": {
+    "table": "eops_gym_google_drive_mcp_files",
+    "columns": [
+     "id",
+     "drive_id",
+     "name",
+     "mime_type",
+     "size_bytes",
+     "description",
+     "md5_checksum",
+     "parent_ids",
+     "parent_id",
+     "starred",
+     "trashed",
+     "trashed_time",
+     "copy_requires_writer_permission",
+     "download_restricted_for_readers",
+     "download_restricted_for_writers",
+     "created_by",
+     "modified_by",
+     "created_time",
+     "modified_time",
+     "viewed_by_me_time",
+     "properties",
+     "app_properties",
+     "is_shortcut",
+     "shortcut_target_id",
+     "shortcut_target_mime",
+     "kind",
+     "space",
+     "file_extension",
+     "full_file_extension",
+     "original_filename",
+     "web_view_link",
+     "web_content_link",
+     "thumbnail_link",
+     "icon_link",
+     "shared",
+     "owned_by_me",
+     "viewed_by_me",
+     "modified_by_me",
+     "explicitly_trashed",
+     "writers_can_share",
+     "version",
+     "head_revision_id",
+     "sha1_checksum",
+     "quota_bytes_used"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name, description, trashed FROM eops_gym_google_drive_mcp_files WHERE name LIKE '%Monthly%' OR name LIKE '%Financ%' OR name LIKE '%.xlsx%'"
+   },
+   "response": {
+    "n_rows": 34,
+    "rows": [
+     {
+      "id": "256DF2D607564EB3897D78AA14",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "BC3484C6D43343DBBF51EC493F",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "30B365CCD0A248BFA911A41D0C",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "C6CC2EE6E7234969A83C805282",
+      "name": "Financials Q1.pdf Shortcut",
+      "description": "Shortcut to Financials Q1.pdf",
+      "trashed": 0
+     },
+     {
+      "id": "4FA391EF0AFB4C18B850D542F4",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "312F9CB48C424806A1207E005E",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "5C542F5C3F034E45B4BE298019",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "F01E016ECDA5492E86CF9FD8C4",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "DC25F21132144F578A5B4FCD78",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "ADE96A783C2146E8A0D3176E31",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "1FD4AF2CB39D4440B0FB2181B5",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "7583BA5DE4994FF8B16C1DB953",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "4254D5AB95D04D72809D9C7C57",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "B2DE77CDBCBA414F91D2AAFA45",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "98DDF4C165F54AEB8089F0AF00",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "A7EABFA546594FEEAB566F2A4B",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "6103D8531E5A4FC1B47DC40FAC",
+      "name": "Sales Data.xlsx Shortcut",
+      "description": "Shortcut to Sales Data.xlsx",
+      "trashed": 0
+     },
+     {
+      "id": "5014CD8979D74F148358B8DEED",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "EE6B6546C3ED4B9EB494D6213D",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "5E7026C4CA354FBF967653DF9A",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "5ED7D2199A6744FBB9C4913449",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "27E50AFE3DDB4C9796B2DC11D6",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "8359236634894534BEF592FE9F",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "568D4A40683848DBB78D7762A0",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "A2E22AB0AD574321A2214D335C",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "108014B269854522A9BB5B0E7D",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "37BAF648DA5A43F9B12BFA87B2",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "A67F502BC96948A681179F4C57",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "013EE2B6C7774E6C8525726168",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "F5A254BD580745999C513B46BC",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "08D18AD783384834B9CCC6EF90",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "8D29E07199994C49AF69EA084C",
+      "name": "Sales Data.xlsx",
+      "description": "Compiled sales statistics and data for review.",
+      "trashed": 0
+     },
+     {
+      "id": "7168E254A32C4F23A259E75580",
+      "name": "Financials Q1.pdf",
+      "description": "Comprehensive financial report for the first quarter.",
+      "trashed": 0
+     },
+     {
+      "id": "18F656B827784871AE7B6FAD84",
+      "name": "Sales Data.xlsx Shortcut",
+      "description": "Shortcut to Sales Data.xlsx",
+      "trashed": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name, description, trashed FROM eops_gym_google_drive_mcp_files WHERE name = 'Monthly Financials.xls.xlsx'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name, trashed FROM eops_gym_google_drive_mcp_files WHERE name LIKE '%.xls%' AND name NOT LIKE '%Sales%' AND name NOT LIKE '%Financials Q1%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_google_drive_mcp_files WHERE name='Sales Data.xlsx' LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": "256DF2D607564EB3897D78AA14",
+      "drive_id": "8A020794136546509CBC7426F2",
+      "name": "Sales Data.xlsx",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 1456451,
+      "description": "Compiled sales statistics and data for review.",
+      "md5_checksum": "42413e61cfcfbb7a93710abb0f110533",
+      "parent_ids": "[\"C88E174064844E138FBED0553E\"]",
+      "parent_id": "C88E174064844E138FBED0553E",
+      "starred": 0,
+      "trashed": 0,
+      "trashed_time": null,
+      "copy_requires_writer_permission": 0,
+      "download_restricted_for_readers": 0,
+      "download_restricted_for_writers": 0,
+      "created_by": "0dfaa4cb21a849ce8a97858e16",
+      "modified_by": "0dfaa4cb21a849ce8a97858e16",
+      "created_time": "2025-10-31T16:58:42.708065",
+      "modified_time": "2025-11-03T23:31:26.952148",
+      "viewed_by_me_time": "2025-11-24T11:18:43.806302",
+      "properties": null,
+      "app_properties": null,
+      "is_shortcut": 0,
+      "shortcut_target_id": null,
+      "shortcut_target_mime": null,
+      "kind": "drive#file",
+      "space": "drive",
+      "file_extension": "xlsx",
+      "full_file_extension": "xlsx",
+      "original_filename": "sales_data.xlsx",
+      "web_view_link": "https://docs.google.com/document/d/256DF2D607564EB3897D78AA14/edit",
+      "web_content_link": "https://drive.google.com/uc?id=256DF2D607564EB3897D78AA14&export=download",
+      "thumbnail_link": null,
+      "icon_link": "https://ssl.gstatic.com/docs/doclist/images/icon_12_excel_list.png",
+      "shared": 0,
+      "owned_by_me": 1,
+      "viewed_by_me": 1,
+      "modified_by_me": 1,
+      "explicitly_trashed": 0,
+      "writers_can_share": 1,
+      "version": 1,
+      "head_revision_id": "A54D99CD25284AB2B4C3D4DAA6",
+      "sha1_checksum": "419b146f27610c93ed6a06db8efba8aa54687f26",
+      "quota_bytes_used": 1456451
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email, display_name FROM eops_gym_google_drive_mcp_users WHERE email='carmenalvarez22@airbnb.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": "9e2a66d40a13450dbef56d074f",
+      "email": "carmenalvarez22@airbnb.com",
+      "display_name": "Carmen Alvarez"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_comments"
+   },
+   "response": {
+    "table": "eops_gym_google_drive_mcp_comments",
+    "columns": [
+     "id",
+     "file_id",
+     "author_id",
+     "content",
+     "anchor",
+     "resolved",
+     "deleted",
+     "quoted_file_content_mime_type",
+     "quoted_file_content_value",
+     "created_time",
+     "modified_time",
+     "kind",
+     "html_content",
+     "assignee_email_address"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_channels"
+   },
+   "response": {
+    "table": "eops_gym_google_drive_mcp_channels",
+    "columns": [
+     "id",
+     "resource_id",
+     "resource_uri",
+     "type",
+     "address",
+     "token",
+     "payload",
+     "params",
+     "expiration",
+     "active",
+     "user_id",
+     "created_time"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_files",
+    "fields": {
+     "id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "drive_id": "8A020794136546509CBC7426F2",
+     "name": "Monthly Financials.xls.xlsx",
+     "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "description": "Under comprehensive monitoring - all changes tracked and audited.",
+     "parent_ids": "[\"C88E174064844E138FBED0553E\"]",
+     "parent_id": "C88E174064844E138FBED0553E",
+     "starred": 0,
+     "trashed": 0,
+     "created_by": "9e2a66d40a13450dbef56d074f",
+     "modified_by": "9e2a66d40a13450dbef56d074f",
+     "created_time": "2026-09-16T09:10:00.000000",
+     "modified_time": "2026-09-16T09:10:00.000000",
+     "kind": "drive#file",
+     "space": "drive",
+     "file_extension": "xlsx",
+     "full_file_extension": "xlsx",
+     "original_filename": "monthly_financials.xls.xlsx",
+     "shared": 0,
+     "owned_by_me": 1,
+     "explicitly_trashed": 0,
+     "writers_can_share": 1,
+     "version": 1
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_google_drive_mcp_files",
+    "created": {
+     "id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "drive_id": "8A020794136546509CBC7426F2",
+     "name": "Monthly Financials.xls.xlsx",
+     "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "description": "Under comprehensive monitoring - all changes tracked and audited.",
+     "parent_ids": "[\"C88E174064844E138FBED0553E\"]",
+     "parent_id": "C88E174064844E138FBED0553E",
+     "starred": 0,
+     "trashed": 0,
+     "created_by": "9e2a66d40a13450dbef56d074f",
+     "modified_by": "9e2a66d40a13450dbef56d074f",
+     "created_time": "2026-09-16T09:10:00.000000",
+     "modified_time": "2026-09-16T09:10:00.000000",
+     "kind": "drive#file",
+     "space": "drive",
+     "file_extension": "xlsx",
+     "full_file_extension": "xlsx",
+     "original_filename": "monthly_financials.xls.xlsx",
+     "shared": 0,
+     "owned_by_me": 1,
+     "explicitly_trashed": 0,
+     "writers_can_share": 1,
+     "version": 1
+    },
+    "rowid": 501
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_google_drive_mcp_comments LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": "BD8146B653914F7FB84318B113",
+      "file_id": "07F0A1307C9E4D66A9F9C04C56",
+      "author_id": "94182a759dca486b90115f84e1",
+      "content": "The lighting on the left side could use some balance.",
+      "anchor": null,
+      "resolved": 0,
+      "deleted": 0,
+      "quoted_file_content_mime_type": "image/jpeg",
+      "quoted_file_content_value": "Lighting issues on left side",
+      "created_time": "2025-08-30T14:08:24.922990",
+      "modified_time": "2025-08-30T14:08:24.922990",
+      "kind": "drive#comment",
+      "html_content": "<p>The lighting on the <strong>left side</strong> could use some balance.</p>",
+      "assignee_email_address": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_comments",
+    "fields": {
+     "author_id": "9e2a66d40a13450dbef56d074f",
+     "content": "Comprehensive Audit System Active: Permissions reviewed, labels verified, revision history analyzed, real-time monitoring enabled as of December 9, 2025.",
+     "created_time": "2026-09-16T09:11:00.000000",
+     "deleted": 0,
+     "file_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "id": "DDXCOMMENTAUDIT0001",
+     "kind": "drive#comment",
+     "modified_time": "2026-09-16T09:11:00.000000",
+     "resolved": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_google_drive_mcp_comments",
+    "created": {
+     "author_id": "9e2a66d40a13450dbef56d074f",
+     "content": "Comprehensive Audit System Active: Permissions reviewed, labels verified, revision history analyzed, real-time monitoring enabled as of December 9, 2025.",
+     "created_time": "2026-09-16T09:11:00.000000",
+     "deleted": 0,
+     "file_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "id": "DDXCOMMENTAUDIT0001",
+     "kind": "drive#comment",
+     "modified_time": "2026-09-16T09:11:00.000000",
+     "resolved": 0
+    },
+    "rowid": 501
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_comments",
+    "fields": {
+     "author_id": "9e2a66d40a13450dbef56d074f",
+     "content": "Q1 dividend distribution classification: total_distribution=467000; tier=TIER_2_REGISTRAR_ESCALATION.",
+     "created_time": "2026-09-16T09:11:30.000000",
+     "deleted": 0,
+     "file_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "id": "DDXCOMMENTCLASS0001",
+     "kind": "drive#comment",
+     "modified_time": "2026-09-16T09:11:30.000000",
+     "resolved": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_google_drive_mcp_comments",
+    "created": {
+     "author_id": "9e2a66d40a13450dbef56d074f",
+     "content": "Q1 dividend distribution classification: total_distribution=467000; tier=TIER_2_REGISTRAR_ESCALATION.",
+     "created_time": "2026-09-16T09:11:30.000000",
+     "deleted": 0,
+     "file_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "id": "DDXCOMMENTCLASS0001",
+     "kind": "drive#comment",
+     "modified_time": "2026-09-16T09:11:30.000000",
+     "resolved": 0
+    },
+    "rowid": 502
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_google_drive_mcp_channels LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": "95cb72f079e54981b896b789ce38b57c",
+      "resource_id": "939b1182eec64f489ad7f4b89090",
+      "resource_uri": "https://www.googleapis.com/drive/v3/files/591271219f93478fa1d000ee7e62?alt=json",
+      "type": "web_hook",
+      "address": "https://webhooks.acmecorp.io/webhooks/drive/95cb72f079e54981b896b789ce38b57c",
+      "token": "token_b8f5e8fbce754a3eab5de740",
+      "payload": 0,
+      "params": "{\"x-tracking-id\": \"trk_68b4c5cc3489\", \"x-source\": \"web-app\", \"x-feature\": \"monitoring\", \"x-session-id\": \"sess_10bbe05130c740b3\"}",
+      "expiration": "1756904660262",
+      "active": 0,
+      "user_id": "6479de596f574615949b844c51",
+      "created_time": "2025-09-02T20:23:42.657467"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_google_drive_mcp_channels",
+    "fields": {
+     "active": 1,
+     "address": "https://monitoring.company.com/drive-changes",
+     "created_time": "2026-09-16T09:12:00.000000",
+     "expiration": "4102444800000",
+     "id": "DDXCHANNELWATCH00000001",
+     "payload": 0,
+     "resource_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "resource_uri": "https://www.googleapis.com/drive/v3/files/DDXMONTHLYFIN0001WORKBOOK01?alt=json",
+     "type": "web_hook",
+     "user_id": "9e2a66d40a13450dbef56d074f"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_google_drive_mcp_channels",
+    "created": {
+     "active": 1,
+     "address": "https://monitoring.company.com/drive-changes",
+     "created_time": "2026-09-16T09:12:00.000000",
+     "expiration": "4102444800000",
+     "id": "DDXCHANNELWATCH00000001",
+     "payload": 0,
+     "resource_id": "DDXMONTHLYFIN0001WORKBOOK01",
+     "resource_uri": "https://www.googleapis.com/drive/v3/files/DDXMONTHLYFIN0001WORKBOOK01?alt=json",
+     "type": "web_hook",
+     "user_id": "9e2a66d40a13450dbef56d074f"
+    },
+    "rowid": 181
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT service_id, status FROM eops_gym_itsm_mcp_service WHERE service_id='SVC_041'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "service_id": "SVC_041",
+      "status": "repair_in_progress"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT service_offering_id, status FROM eops_gym_itsm_mcp_service_offering WHERE service_offering_id='SVCOFF_050'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "service_offering_id": "SVCOFF_050",
+      "status": "repair_in_progress"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT incident_id, status, close_notes FROM eops_gym_itsm_mcp_incident WHERE incident_id IN ('INC_015','INC_064')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "incident_id": "INC_015",
+      "status": "new",
+      "close_notes": null
+     },
+     {
+      "incident_id": "INC_064",
+      "status": "new",
+      "close_notes": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "columns": [
+     "incident_id",
+     "number",
+     "short_description",
+     "caller_id",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "resolved_by",
+     "problem",
+     "change_request",
+     "caused_by_change",
+     "incident_template",
+     "parent_incident",
+     "org_id",
+     "channel",
+     "contact_type",
+     "status",
+     "category",
+     "description",
+     "worknotes",
+     "resolution_notes",
+     "close_notes",
+     "impact",
+     "urgency",
+     "priority",
+     "resolution_code",
+     "on_hold_reason",
+     "resolved",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_service",
+    "key_column": "service_id",
+    "key_value": "SVC_041",
+    "fields": {
+     "status": "retired"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_service",
+    "updated": {
+     "status": "retired"
+    },
+    "where": {
+     "service_id": "SVC_041"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_service_offering",
+    "key_column": "service_offering_id",
+    "key_value": "SVCOFF_050",
+    "fields": {
+     "status": "retired"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_service_offering",
+    "updated": {
+     "status": "retired"
+    },
+    "where": {
+     "service_offering_id": "SVCOFF_050"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "key_column": "incident_id",
+    "key_value": "INC_015",
+    "fields": {
+     "close_notes": "Closed as part of legacy-service retirement for Q1 dividend distribution engagement.",
+     "status": "closed"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident",
+    "updated": {
+     "close_notes": "Closed as part of legacy-service retirement for Q1 dividend distribution engagement.",
+     "status": "closed"
+    },
+    "where": {
+     "incident_id": "INC_015"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "key_column": "incident_id",
+    "key_value": "INC_064",
+    "fields": {
+     "close_notes": "Closed as part of legacy-service retirement for Q1 dividend distribution engagement.",
+     "status": "closed"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident",
+    "updated": {
+     "close_notes": "Closed as part of legacy-service retirement for Q1 dividend distribution engagement.",
+     "status": "closed"
+    },
+    "where": {
+     "incident_id": "INC_064"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_contract"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_contract",
+    "columns": [
+     "contract_id",
+     "account_id",
+     "contract_type",
+     "status",
+     "contract_price",
+     "start_date",
+     "end_date",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_contract WHERE account_id=7"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "contract_id": 18,
+      "account_id": "7",
+      "contract_type": "support",
+      "status": "active",
+      "contract_price": 15249,
+      "start_date": "2025-09-23",
+      "end_date": "2026-12-03",
+      "sys_created_on": "2025-08-27 15:38:55",
+      "sys_updated_on": "2026-01-24 15:05:51"
+     },
+     {
+      "contract_id": 19,
+      "account_id": "7",
+      "contract_type": "subscription",
+      "status": "active",
+      "contract_price": 5465,
+      "start_date": "2025-09-16",
+      "end_date": "2027-06-16",
+      "sys_created_on": "2025-08-27 15:36:39",
+      "sys_updated_on": "2026-02-25 13:43:42"
+     },
+     {
+      "contract_id": 20,
+      "account_id": "7",
+      "contract_type": "warranty",
+      "status": "active",
+      "contract_price": 3721,
+      "start_date": "2025-09-07",
+      "end_date": "2028-03-16",
+      "sys_created_on": "2025-08-27 15:37:08",
+      "sys_updated_on": "2026-05-13 06:54:18"
+     },
+     {
+      "contract_id": 137,
+      "account_id": "7",
+      "contract_type": "subscription",
+      "status": "suspended",
+      "contract_price": 14655,
+      "start_date": "2025-09-09",
+      "end_date": "2027-01-28",
+      "sys_created_on": "2025-08-27 15:46:26",
+      "sys_updated_on": "2026-05-27 01:01:14"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_contract",
+    "key_column": "contract_id",
+    "key_value": "18",
+    "fields": {
+     "contract_price": 150000,
+     "end_date": "2026-12-31",
+     "start_date": "2026-01-01",
+     "status": "active"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_contract",
+    "updated": {
+     "contract_price": 150000,
+     "end_date": "2026-12-31",
+     "start_date": "2026-01-01",
+     "status": "active"
+    },
+    "where": {
+     "contract_id": "18"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_entitlement"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_entitlement",
+    "columns": [
+     "entitlement_id",
+     "account_id",
+     "product_id",
+     "contract_id",
+     "support_level",
+     "coverage_hours",
+     "max_cases_per_month",
+     "active",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_entitlement WHERE account_id=7 OR contract_id=18"
+   },
+   "response": {
+    "n_rows": 13,
+    "rows": [
+     {
+      "entitlement_id": 55,
+      "account_id": "7",
+      "product_id": null,
+      "contract_id": "18",
+      "support_level": "standard",
+      "coverage_hours": "h8x5",
+      "max_cases_per_month": 50,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:46:02",
+      "sys_updated_on": "2025-10-09 12:10:41"
+     },
+     {
+      "entitlement_id": 56,
+      "account_id": "7",
+      "product_id": "188",
+      "contract_id": "18",
+      "support_level": "premium",
+      "coverage_hours": "h12x6",
+      "max_cases_per_month": 10,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:33:42",
+      "sys_updated_on": "2026-03-27 22:36:12"
+     },
+     {
+      "entitlement_id": 57,
+      "account_id": "7",
+      "product_id": "84",
+      "contract_id": "18",
+      "support_level": "enterprise",
+      "coverage_hours": "h24x7",
+      "max_cases_per_month": 50,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:40:08",
+      "sys_updated_on": "2025-09-16 01:11:08"
+     },
+     {
+      "entitlement_id": 58,
+      "account_id": "7",
+      "product_id": "161",
+      "contract_id": "18",
+      "support_level": "standard",
+      "coverage_hours": "h8x5",
+      "max_cases_per_month": 10,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:43:21",
+      "sys_updated_on": "2026-06-17 07:40:33"
+     },
+     {
+      "entitlement_id": 59,
+      "account_id": "7",
+      "product_id": null,
+      "contract_id": "19",
+      "support_level": "premium",
+      "coverage_hours": "h12x6",
+      "max_cases_per_month": 20,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:33:11",
+      "sys_updated_on": "2025-12-21 05:20:04"
+     },
+     {
+      "entitlement_id": 60,
+      "account_id": "7",
+      "product_id": "106",
+      "contract_id": "19",
+      "support_level": "enterprise",
+      "coverage_hours": "h24x7",
+      "max_cases_per_month": 50,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:43:28",
+      "sys_updated_on": "2026-04-17 21:10:35"
+     },
+     {
+      "entitlement_id": 61,
+      "account_id": "7",
+      "product_id": "161",
+      "contract_id": "19",
+      "support_level": "standard",
+      "coverage_hours": "h8x5",
+      "max_cases_per_month": 10,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:45:29",
+      "sys_updated_on": "2026-03-25 16:50:49"
+     },
+     {
+      "entitlement_id": 62,
+      "account_id": "7",
+      "product_id": null,
+      "contract_id": "20",
+      "support_level": "premium",
+      "coverage_hours": "h12x6",
+      "max_cases_per_month": 0,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:48:13",
+      "sys_updated_on": "2025-12-30 20:54:37"
+     },
+     {
+      "entitlement_id": 63,
+      "account_id": "7",
+      "product_id": "106",
+      "contract_id": "20",
+      "support_level": "enterprise",
+      "coverage_hours": "h24x7",
+      "max_cases_per_month": 0,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:39:40",
+      "sys_updated_on": "2025-08-31 04:53:06"
+     },
+     {
+      "entitlement_id": 64,
+      "account_id": "7",
+      "product_id": "84",
+      "contract_id": "20",
+      "support_level": "standard",
+      "coverage_hours": "h8x5",
+      "max_cases_per_month": 50,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:32:06",
+      "sys_updated_on": "2025-10-18 16:28:17"
+     },
+     {
+      "entitlement_id": 65,
+      "account_id": "7",
+      "product_id": "188",
+      "contract_id": "20",
+      "support_level": "premium",
+      "coverage_hours": "h12x6",
+      "max_cases_per_month": 0,
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:33:31",
+      "sys_updated_on": "2026-03-26 10:54:23"
+     },
+     {
+      "entitlement_id": 66,
+      "account_id": "7",
+      "product_id": null,
+      "contract_id": "137",
+      "support_level": "enterprise",
+      "coverage_hours": "h24x7",
+      "max_cases_per_month": 50,
+      "active": 0,
+      "sys_created_on": "2025-08-27 15:40:54",
+      "sys_updated_on": "2025-08-29 05:53:41"
+     },
+     {
+      "entitlement_id": 67,
+      "account_id": "7",
+      "product_id": "84",
+      "contract_id": "137",
+      "support_level": "standard",
+      "coverage_hours": "h8x5",
+      "max_cases_per_month": 10,
+      "active": 0,
+      "sys_created_on": "2025-08-27 15:42:39",
+      "sys_updated_on": "2025-12-17 14:45:27"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT product_id, name FROM eops_sn_csm_server_product WHERE name LIKE '%Windows Server 2022 Datacenter%'"
+   },
+   "response": {
+    "n_rows": 6,
+    "rows": [
+     {
+      "product_id": 1,
+      "name": "Windows Server 2022 Datacenter"
+     },
+     {
+      "product_id": 21,
+      "name": "Windows Server 2022 Datacenter Update 1"
+     },
+     {
+      "product_id": 41,
+      "name": "Windows Server 2022 Datacenter Update 21"
+     },
+     {
+      "product_id": 61,
+      "name": "Windows Server 2022 Datacenter Update 41"
+     },
+     {
+      "product_id": 81,
+      "name": "Windows Server 2022 Datacenter Update 61"
+     },
+     {
+      "product_id": 101,
+      "name": "Windows Server 2022 Datacenter Update 81"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_entitlement WHERE product_id='1'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(entitlement_id) mx FROM eops_sn_csm_server_entitlement"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 431
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_csm_server_entitlement",
+    "fields": {
+     "account_id": "7",
+     "active": 1,
+     "contract_id": "18",
+     "coverage_hours": "h24x7",
+     "entitlement_id": 432,
+     "max_cases_per_month": 50,
+     "product_id": "1",
+     "support_level": "premium",
+     "sys_created_on": "2026-09-16 09:15:00",
+     "sys_updated_on": "2026-09-16 09:15:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_entitlement",
+    "created": {
+     "account_id": "7",
+     "active": 1,
+     "contract_id": "18",
+     "coverage_hours": "h24x7",
+     "entitlement_id": 432,
+     "max_cases_per_month": 50,
+     "product_id": "1",
+     "support_level": "premium",
+     "sys_created_on": "2026-09-16 09:15:00",
+     "sys_updated_on": "2026-09-16 09:15:00"
+    },
+    "rowid": 432
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_customer_case",
+    "columns": [
+     "case_id",
+     "number",
+     "account_id",
+     "contact_id",
+     "product_id",
+     "installed_product_id",
+     "channel",
+     "priority",
+     "state",
+     "short_description",
+     "assignment_group_id",
+     "assigned_to",
+     "escalation",
+     "escalation_reason",
+     "reopen_count",
+     "sys_created_on",
+     "sys_updated_on",
+     "closed_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT contact_id, account_id, is_primary_contact, active FROM eops_sn_csm_server_contact WHERE account_id=7"
+   },
+   "response": {
+    "error": "OperationalError: no such column: is_primary_contact"
+   },
+   "error": "no such column: is_primary_contact"
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_contact"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_contact",
+    "columns": [
+     "contact_id",
+     "account_id",
+     "portal_user_id",
+     "active",
+     "is_primary",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT contact_id, account_id, active, is_primary FROM eops_sn_csm_server_contact WHERE account_id=7 AND is_primary=1 AND active=1"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT case_id, number, account_id, contact_id, channel, priority, state, short_description FROM eops_sn_csm_server_customer_case WHERE short_description LIKE '%SSL termination%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT contact_id, account_id, active, is_primary FROM eops_sn_csm_server_contact WHERE account_id=7"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "contact_id": 9,
+      "account_id": "7",
+      "active": 0,
+      "is_primary": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_contact",
+    "key_column": "contact_id",
+    "key_value": "9",
+    "fields": {
+     "active": 1,
+     "is_primary": 1
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_contact",
+    "updated": {
+     "active": 1,
+     "is_primary": 1
+    },
+    "where": {
+     "contact_id": "9"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_customer_case WHERE account_id=7 LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "case_id": 152,
+      "number": "CS-0000152",
+      "account_id": "7",
+      "contact_id": "9",
+      "product_id": null,
+      "installed_product_id": null,
+      "channel": "web",
+      "priority": "critical",
+      "state": "new",
+      "short_description": "Product: (unspecified), Issue: is not working as expected.",
+      "assignment_group_id": null,
+      "assigned_to": null,
+      "escalation": 1,
+      "escalation_reason": "impact",
+      "reopen_count": 0,
+      "sys_created_on": "2025-08-27 15:49:31",
+      "sys_updated_on": "2026-05-26 17:53:14",
+      "closed_on": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(case_id) mx FROM eops_sn_csm_server_customer_case"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 1232
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case",
+    "fields": {
+     "account_id": "7",
+     "case_id": 1233,
+     "channel": "phone",
+     "contact_id": "9",
+     "escalation": 0,
+     "number": "CS-0001233",
+     "priority": "high",
+     "product_id": "1",
+     "reopen_count": 0,
+     "short_description": "SSL termination issue on Windows Server node",
+     "state": "in_progress",
+     "sys_created_on": "2026-09-16 09:16:00",
+     "sys_updated_on": "2026-09-16 09:16:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_customer_case",
+    "created": {
+     "account_id": "7",
+     "case_id": 1233,
+     "channel": "phone",
+     "contact_id": "9",
+     "escalation": 0,
+     "number": "CS-0001233",
+     "priority": "high",
+     "product_id": "1",
+     "reopen_count": 0,
+     "short_description": "SSL termination issue on Windows Server node",
+     "state": "in_progress",
+     "sys_created_on": "2026-09-16 09:16:00",
+     "sys_updated_on": "2026-09-16 09:16:00"
+    },
+    "rowid": 1233
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_case_sla"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_case_sla",
+    "columns": [
+     "case_sla_id",
+     "case_id",
+     "sla_def_id",
+     "stage",
+     "start_time",
+     "breach_time",
+     "has_breached",
+     "completed_time"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_sla_definition WHERE name LIKE '%SLA Response - High%'"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "sla_def_id": 2,
+      "name": "SLA Response - High",
+      "metric": "response",
+      "target_mins": 30,
+      "pause_on_pending": 1,
+      "applies_to_priority": "high",
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:35:42",
+      "sys_updated_on": "2026-01-06 06:06:32"
+     },
+     {
+      "sla_def_id": 11,
+      "name": "SLA Response - High (No Pause)",
+      "metric": "response",
+      "target_mins": 25,
+      "pause_on_pending": 0,
+      "applies_to_priority": "high",
+      "active": 1,
+      "sys_created_on": "2025-08-27 15:43:45",
+      "sys_updated_on": "2026-06-10 01:04:22"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 110,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(case_sla_id) mx FROM eops_sn_csm_server_case_sla"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 2464
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 111,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_csm_server_case_sla",
+    "fields": {
+     "case_id": 1233,
+     "case_sla_id": 2465,
+     "has_breached": 0,
+     "sla_def_id": 2,
+     "stage": "in_progress",
+     "start_time": "2026-09-16 09:16:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_case_sla",
+    "created": {
+     "case_id": 1233,
+     "case_sla_id": 2465,
+     "has_breached": 0,
+     "sla_def_id": 2,
+     "stage": "in_progress",
+     "start_time": "2026-09-16 09:16:00"
+    },
+    "rowid": 2465
+   },
+   "error": null
+  },
+  {
+   "call": 112,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT notes, status FROM wb_customer_relationship_manager_data WHERE customer_email='registrar.lead@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notes": "[DDX-RECON] delta=460000 net=460000 verdict=ok (total_distribution=467000 = base_dividend=7000 + round(rate_index)*1000=460000) | [DDX-LOG] total_distribution=467000 | [DDX-BASE] base_dividend=7000 | Q1 dividend distribution docket.",
+      "status": "[DDX-TIER] TIER_2_REGISTRAR_ESCALATION"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 113,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN description LIKE '%[DDX-REVERSAL]%' THEN -amount WHEN description LIKE '%[DDX-CREDIT]%' THEN amount ELSE 0 END) net FROM vm_transactions WHERE description LIKE '%[DDX-CREDIT]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net": 460000.0
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_dividend_distribution__0001",
+ "provider": "claude",
+ "model": "claude-opus-4-8",
+ "attempt": 1,
+ "variant_sha": null,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 14,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 30,
+  "fsv_n_checks": 100,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "base_dividend": "7000",
+  "branch": "REGISTRAR_ESCALATION",
+  "delta": "460000",
+  "distribution_uplift": "460000",
+  "eligible_lots": "7",
+  "rate_index": "459.956264287106",
+  "reconciled": "ok",
+  "side_cohort": "460",
+  "side_ratio": "0.201741654571843",
+  "total_distribution": "467000"
+ },
+ "extraction_scored": true,
+ "transport": {}
+}

@@ -1,0 +1,16 @@
+Run the quarterly consumer-goods lot-recall notification for the regional recall desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+branch: the recall-class route — exactly one of {VOLUNTARY, REPORTABLE, MANDATORY}
+delta: the recall delta — whole number
+lot_uplift: the flagged-lot uplift — whole number
+notification_base: the notification base — whole number
+parts_index: the recall reference index — the average value as computed by the book
+recall_account: the reference distribution account number — whole number
+recall_account_staged1: the desk's staging re-record 1 of 3 of recall_account — the identical value
+recall_account_staged2: the desk's staging re-record 2 of 3 of recall_account — the identical value
+recall_account_staged3: the desk's staging re-record 3 of 3 of recall_account — the identical value
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the notification ledger nets to the delta
+retailer_batch_pool: the recalled-lot retail value — whole number, no thousands separators
+side_lead_supplier: the side-reference lead supplier — a surname
+total_notifications: the total notifications — whole number

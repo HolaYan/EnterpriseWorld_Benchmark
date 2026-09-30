@@ -1,0 +1,14 @@
+Run the quarterly dividend distribution for the wealth-management dividend desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+base_dividend: the base dividend — whole number
+branch: the distribution route — exactly one of {STANDARD_PAYOUT, REGISTRAR_ESCALATION, SPECIAL_REVIEW}
+delta: the escalation delta — whole number
+distribution_uplift: the distribution uplift — whole number, no thousands separators
+eligible_lots: the dividend-eligible register-lot count — whole number
+eligible_lots_staged1: the desk's staging re-record 1 of 1 of eligible_lots — the identical value
+rate_index: the benchmark rate index — the book's exact decimal value
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta
+side_cohort: the second side anchor — whole number Book-reading notes (how the reference books count): average the Consumption figure over the 2013 monthly records of SME customers, then divide THAT AVERAGE by 12 -- the answer is one twelfth of the average.
+side_ratio: the first side anchor — the book's exact decimal value (a ratio below 1)
+total_distribution: the total distribution — whole number

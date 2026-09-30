@@ -1,0 +1,186 @@
+[
+ {
+  "id": "m01",
+  "node": "n02",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Set the change RISK SCORE from the change-risk index has (1) a VALUE dependency on the step that For patient born between Year 1930 to 1940, how many percent of them were inpatient? — it consumes the figure 'risk_index' that step records."
+ },
+ {
+  "id": "m02",
+  "node": "n04",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Compute the change load from the stored answers has (1) a VALUE dependency on the step that Set the change RISK SCORE from the change-risk index — it consumes the figure 'risk_score' that step records; (2) a VALUE dependency on the step that Among players with an overall rating between 60 to 65, how many players will be in all your attacking moves, instead of defending? — it consumes the figure 'change_volume' that step records."
+ },
+ {
+  "id": "m03",
+  "node": "n05",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Decide the change-window branch on the computed state has (1) a VALUE dependency on the step that Set the change RISK SCORE from the change-risk index — it consumes the figure 'risk_score' that step records."
+ },
+ {
+  "id": "m04",
+  "node": "n06",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Once the release total is computed, place the change WINDOW on the owner's calendar (participant_email=parker.li@atlas.com): INSERT a wb_cal… has (1) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'release_total' that step records."
+ },
+ {
+  "id": "m05",
+  "node": "n07",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "note": "The step that Post the change-fee disbursement run for EXACTLY delta on the vendor ledger has (1) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m06",
+  "node": "n08",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that If the change-window branch is 'EXTENDED_WINDOW' or 'EMERGENCY_HOLD', send the rollback partner a handoff email has (1) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'release_total' that step records; (2) a VALUE dependency on the step that Decide the change-window branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m07",
+  "node": "n09",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Log the change reconciliation on the CAB lead CRM record has (1) a STATE dependency on the step that If the change-window branch is 'EXTENDED_WINDOW' or 'EMERGENCY_HOLD', send the rollback partner a handoff email — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'release_total' that step records; (3) a VALUE dependency on the step that Decide the change-window branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m08",
+  "node": "n10",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "note": "The step that Post the intercompany change-cost ALLOCATION on the sw_* cost-share ledger has (1) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'release_total' that step records."
+ },
+ {
+  "id": "m09",
+  "node": "n11",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "note": "The step that Open the change follow-up has (1) a STATE dependency on the step that Log the change reconciliation on the CAB lead CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m10",
+  "node": "n12",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Classify the change TIER. RE-DERIVE it from the live change-risk index: score = round(the inpatient percentage), TIER = 'EMERGENCY_CHANGE' i… has (1) a STATE dependency on the step that Open the change follow-up — it must follow the record that step files in td_tasks."
+ },
+ {
+  "id": "m11",
+  "node": "n13",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_itsm_mcp_change",
+   "eops_gym_itsm_mcp_change_request_mapping"
+  ],
+  "note": "The step that Raise this cycle's CHANGE RECORD on the desk's ITSM change register (per the recording handbook) and map it to the production incident the d… has (1) a STATE dependency on the step that Classify the change TIER. RE-DERIVE it from the live change-risk index: score = round(the inpatient percentage), TIER = 'EMERGENCY_CHANGE' i… — it must follow the record that step files in wb_customer_relationship_manager_data."
+ },
+ {
+  "id": "m12",
+  "node": "n14",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_itsm_mcp_incident"
+  ],
+  "note": "The step that Hold the production incident against the change that will fix it (per the recording handbook) has (1) a STATE dependency on the step that Raise this cycle's CHANGE RECORD on the desk's ITSM change register (per the recording handbook) and map it to the production incident the d… — it must follow the record that step files in eops_gym_itsm_mcp_change."
+ },
+ {
+  "id": "m13",
+  "node": "n15",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that Send the CAB lead a status update has (1) a STATE dependency on the step that Hold the production incident against the change that will fix it (per the recording handbook) — it must follow the record that step files in eops_gym_itsm_mcp_incident; (2) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'release_total' that step records."
+ },
+ {
+  "id": "m14",
+  "node": "n16",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_itsm_mcp_notification"
+  ],
+  "note": "The step that Inform the incident's caller of record that the resolution is being handled as part of this change (per the recording handbook): file notifi… has (1) a STATE dependency on the step that Send the CAB lead a status update — it must follow the record that step files in gm_emails."
+ },
+ {
+  "id": "m15",
+  "node": "n17",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_itsm_mcp_incident_sla"
+  ],
+  "note": "The step that Pause the held incident's SLA clock for the change window (per the recording handbook): set the incident's SLA row TSLA_022 (incident INC_05… has (1) a STATE dependency on the step that Inform the incident's caller of record that the resolution is being handled as part of this change (per the recording handbook): file notifi… — it must follow the record that step files in eops_gym_itsm_mcp_notification."
+ },
+ {
+  "id": "m16",
+  "node": "n18",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Reconcile the posted disbursement against the recorded delta has (1) a STATE dependency on the step that Post the change-fee disbursement run for EXACTLY delta on the vendor ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the change load from the stored answers — it consumes the figure 'delta' that step records; (3) a VALUE dependency on the step that Set the change RISK SCORE from the change-risk index — it consumes the figure 'risk_score' that step records; (4) a VALUE dependency on the step that Among players with an overall rating between 60 to 65, how many players will be in all your attacking moves, instead of defending? — it consumes the figure 'change_volume' that step records."
+ },
+ {
+  "id": "m17",
+  "node": "n19",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Schedule the post-implementation review (PIR) has (1) a STATE dependency on the step that Once the release total is computed, place the change WINDOW on the owner's calendar (participant_email=parker.li@atlas.com): INSERT a wb_cal… — it must follow the record that step files in wb_calendar_events; (2) a STATE dependency on the step that Reconcile the posted disbursement against the recorded delta — it must follow the record that step files in wb_customer_relationship_manager_data; (3) a STATE dependency on the step that Pause the held incident's SLA clock for the change window (per the recording handbook): set the incident's SLA row TSLA_022 (incident INC_05… — it must follow the record that step files in eops_gym_itsm_mcp_incident_sla."
+ }
+]

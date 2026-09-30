@@ -1,0 +1,4704 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_152_royalty_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "expected_royalty_is_round_index_over_150",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "expected_royalty_derives_from_stored_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "frdir_crm_expected_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_342_reference_catalog_item",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_342_reference_catalog_item"
+   ]
+  },
+  "n04": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "underpayment_is_count_times_1000",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_flow_equals_expected_plus_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "total_flow_derives_from_stored_expected_and_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n05": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n06": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n07": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_franchisee",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n08": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "collections_sent_iff_underpaid",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "collections_cites_reference_item",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "collections_sent_iff_underpaid",
+    "collections_cites_reference_item",
+    "ancestors_pass__n08"
+   ]
+  },
+  "n09": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_logged_total_flow_gated_by_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_logged_total_flow_gated_by_branch",
+    "ancestors_pass__n09"
+   ]
+  },
+  "n10": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n11": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n11"
+   ]
+  },
+  "n12": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n12"
+   ]
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "collections_case_escalation_reason_recorded",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "case_escalation_filed_at_the_tier_of_record",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n13"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "collections_review_session_created",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "collections_review_names_case_and_agent",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "collections_review_quotes_case_and_filed_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "collections_review_session_created",
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_flow_and_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "settlement_case_raised_critical",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "settlement_case_raised_at_the_reported_total",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n16"
+   ]
+  },
+  "n17": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "settlement_working_block_created",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "case_reviewer_added_to_working_block",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "working_block_cites_case_and_recorded_total",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n17"
+   ]
+  },
+  "n18": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n19": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__royalty_index_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__expected_royalty_is_fn_of_index",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reference_catalog_item_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__underpayment_amount_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__total_flow_is_expected_plus_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_underpayment",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_cohort_major_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n19",
+    "final_task_terminal",
+    "final_task_pin__reference_catalog_item_correct"
+   ]
+  },
+  "n20": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_1312_side_cohort_major",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  }
+ },
+ "terminal": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "royalty_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "expected_royalty_is_fn_of_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reference_catalog_item_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "underpayment_amount_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "total_flow_is_expected_plus_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_credit_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_account_credit_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "collections_email_matches_branch_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_total_flow",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "collections_case_escalated_at_the_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "collections_review_convened_at_the_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_flow_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "settlement_case_raised_at_the_total",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "case_working_block_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_cohort_major_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "no_fully_remitted_collections_email",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_legal_note_for_non_referral_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_account_credit",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_frdir",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_152_royalty_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__expected_royalty_is_round_index_over_150",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__expected_royalty_derives_from_stored_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__frdir_crm_expected_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_342_reference_catalog_item",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__underpayment_is_count_times_1000",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_flow_equals_expected_plus_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_flow_derives_from_stored_expected_and_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__review_window_hold_placed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_franchisee",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_credit_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__collections_sent_iff_underpaid",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__collections_cites_reference_item",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_total_flow_gated_by_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__collections_case_escalation_reason_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__case_escalation_filed_at_the_tier_of_record",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__collections_review_session_created",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__collections_review_names_case_and_agent",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__collections_review_quotes_case_and_filed_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_flow_and_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__settlement_case_raised_critical",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__settlement_case_raised_at_the_reported_total",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__ancestors_pass__n16",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__settlement_working_block_created",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__case_reviewer_added_to_working_block",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__working_block_cites_case_and_recorded_total",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_net_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_figures_consistent",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__review_after_window_conflict_free_gated",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__ancestors_pass__n19",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_terminal",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__royalty_index_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__expected_royalty_is_fn_of_index",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__reference_catalog_item_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__underpayment_amount_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__total_flow_is_expected_plus_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__delta_equals_underpayment",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__branch_matches_true_delta_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__side_cohort_major_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_1312_side_cohort_major",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ],
+  "n_ok": 75,
+  "n_checks": 94,
+  "failed": [
+   "reference_catalog_item_correct",
+   "collections_email_matches_branch_class",
+   "node_n03__src_birdsql_342_reference_catalog_item",
+   "node_n08__collections_sent_iff_underpaid",
+   "node_n08__collections_cites_reference_item",
+   "node_n08__ancestors_pass__n08",
+   "node_n09__crm_logged_total_flow_gated_by_branch",
+   "node_n09__ancestors_pass__n09",
+   "node_n11__ancestors_pass__n11",
+   "node_n12__ancestors_pass__n12",
+   "node_n13__ancestors_pass__n13",
+   "node_n14__collections_review_session_created",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__ancestors_pass__n15",
+   "node_n16__ancestors_pass__n16",
+   "node_n17__ancestors_pass__n17",
+   "node_n19__ancestors_pass__n19",
+   "node_n19__final_task_terminal",
+   "node_n19__final_task_pin__reference_catalog_item_correct"
+  ]
+ },
+ "n_tool_calls": 118,
+ "n_turns": 57,
+ "n_assistant_msgs": 49,
+ "usage": {
+  "steps_with_usage": 57,
+  "input": 57754,
+  "output": 25593,
+  "reasoning": 0,
+  "cache_read": 1848223,
+  "cache_write": 0,
+  "cost_usd": 0.0
+ },
+ "n_decoy_calls": 0,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 580.3,
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nRun the quarterly franchise royalty reconciliation for the regional franchisee base. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nbranch: the remittance-status route — exactly one of {FULLY_REMITTED, UNDERPAID_BELOW_THRESHOLD, UNDERPAID_COLLECTIONS_REFERRAL}\nexpected_royalty: the expected royalty base — whole number\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the settlement ledger nets to the delta\nreference_catalog_item: the flagship catalog reference — the exact card name\nroyalty_index: the regional royalty benchmark index — the reference average exactly as the book reports it (do not round)\nside_cohort_major: the reference franchisee-cohort discipline — the exact major name\ntotal_royalty_flow: the total royalty flow — whole number, no thousands separators\nunderpayment_amount: the underpayment shortfall — whole number\nunderpayment_delta: the underpayment delta — whole number\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nFRANCHISE OPERATIONS DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[FRR-EXPECTED]' — franchise-director CRM notes: the expected-royalty stamp, citing 'expected_royalty=<n>'.\n   - '[FRR-HOLD]' — wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[FRR-CREDIT]' — settlement ledger (vm) DESCRIPTION of every settlement credit entry.\n   - '[FRR-REVERSAL]' — settlement ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[FRR-CREDIT]' tag).\n   - '[FRR-COLLECTIONS]' — email SUBJECT of the collections-agency disclosure; the BODY must cite the total royalty flow, the delta and the flagship catalog reference item.\n   - '[FRR-LOG]' — franchise-director CRM notes: the reconciliation log, citing 'total_royalty_flow=<n>'.\n   - '[FRR-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany royalty-processing carry allocation. The expense books the full recorded total_royalty_flow as its amount, and its sw_expense_shares row assigns franchise.analyst@atlas.com a share of exactly half that amount.\n   - '[FRR-FUP]' — Todoist task TITLE (in your 'Q1 Franchise Royalty Reconciliation' project); the title cites the delta.\n   - '[FRR-TIER]' — franchise-director CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[FRR-STATUS]' — email SUBJECT of the franchise-director status update; the BODY must cite the total royalty flow, the tier word and the escalated collections case number.\n   - '[FRR-RECON]' — franchise-director CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[FRR-CREDIT]' ledger (credits minus reversals) at write time, and the recorded figure chain is re-derived before the 'ok' verdict (total_royalty_flow must still be expected_royalty + underpayment_amount).\n   - '[FRR-REVIEW]' — wb_calendar_events EVENT NAME of the post-window review.\n   - '[FRR-LEGAL]' — franchise-director CRM notes: the legal-referral note, filed ONLY on the COLLECTIONS-REFERRAL route.\n\n2. ROUTE AND TIER WORDS. The remittance route is always one of the desk's three route words: 'FULLY_REMITTED', 'UNDERPAID_BELOW_THRESHOLD', 'UNDERPAID_COLLECTIONS_REFERRAL' . The remittance tier is always one of the desk's three tier words: 'FULLY_REMITTED', 'UNDERPAID_BELOW_THRESHOLD', 'UNDERPAID_COLLECTIONS_REFERRAL'. A cited tier word is re-derived from the live loan book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (franchise.ops@atlas.com); the franchise director is written to at franchise.director@atlas.com, the collections partner at collections.agency@atlas.com. Settlement credits run on the vm ledger FROM you TO the correct franchisee (franchisee.underpay@atlas.com); a credit that lands on the wrong advance-pool account (advance.pool@atlas.com) is corrected by that account sending the same amount back to you, never deleted. The royalty-processing carry allocation runs on the sw ledger between you and the finance analyst (franchise.analyst@atlas.com). Follow-up work lives in your Todoist 'Q1 Franchise Royalty Reconciliation' project; the window and review on your own wb_calendar_events (participant_email = franchise.ops@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the director row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the director record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The post-window review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators; the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated — the registers' OTHER rows are background book, never modify them).\n   - This engagement is carried on the registers under the reference 'FRR-Q1-017', and it has TWO cases of record there, both worked by this desk's own collections staff: the COLLECTIONS case CS-0000071 (case_id 71) — the underpaying franchisee's case — assigned to the collections agent mary.molina@servicenow.com, and the SETTLEMENT case CS-0000345 (case_id 345) carrying the outstanding underpayment, reviewed by paige_collins.\n   - Case register (eops_sn_csm_server_* tables). The collections case is escalated by setting its escalation reason to 'impact' and prepending '[FRR-CASE] FRR-Q1-017 tier=<tier>' to its short_description — the tier word re-derived live, never quoted from an earlier citation. The settlement case is raised by setting its priority to 'critical' and prepending '[FRR-DELINQ] FRR-Q1-017 total=<n>' to its short_description, citing the recorded total_royalty_flow.\n   - Calendar register (eops_gym_calendar_* tables). The collections review is the 'SLA War Room' session on the desk's team calendar 'abigail_hunt69-team', starting 2025-11-15 17:00:00 in America/Los_Angeles, meeting link https://meet.up, its description written in the register's own form 'case_id: 71 assigned_to: mary.molina@servicenow.com' (the escalated case and the agent it is assigned to) and its source reference title carrying '[FRR-CASE] FRR-Q1-017 tier=<tier>'. The settlement working session is a private working-location block on the case owner's own calendar 'aaron_hicks-primary', for 2025-12-26 in America/New_York, at 'Home Office', flagged in the register's colour 11, with paige_collins attending; its summary, description and source reference each carry 'CS-0000345', and the summary also carries '[FRR-DELINQ] FRR-Q1-017 total=<n>'.\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_franchise_director\": [{\"customer_id\": \"00000002\", \"customer_email\": \"franchise.director@atlas.com\", \"customer_name\": \"Franchise Director\", \"assigned_to_email\": \"franchise.ops@atlas.com\", \"status\": \"Active\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"franchise.ops@atlas.com\", \"note\": \"\"}, {\"email\": \"franchisee.underpay@atlas.com\", \"note\": \"\"}, {\"email\": \"advance.pool@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"franchise.ops@atlas.com\", \"note\": \"\"}, {\"email\": \"franchise.director@atlas.com\", \"note\": \"\"}, {\"email\": \"collections.agency@atlas.com\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Franchise Royalty Reconciliation\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"franchise-ops daily standup\", \"participant_email\": \"franchise.ops@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"bird_district\": [{\"district_id\": 1, \"A2\": \"Hl.m. Praha\", \"note\": \"flagship lending district\"}], \"eops_sn_csm_server_customer_case\": [{\"number\": \"CS-0000071\", \"priority\": \"high\", \"escalation_reason\": null, \"note\": \"\"}, {\"number\": \"CS-0000345\", \"priority\": \"moderate\", \"escalation_reason\": null, \"note\": \"\"}], \"eops_gym_calendar_calendars\": [{\"calendar_id\": \"abigail_hunt69-team\", \"summary\": \"Team Coordination\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register escalation/resolution).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: settlement credits are compensatable — reverse a wrong-account credit, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "All checks pass:\n- Net settlement = 4000 = delta ✓\n- Alloc = 4065 (total_royalty_flow), analyst share = 2032.5 (half) ✓\n- CRM tier status stamp set ✓\n- Collections case escalated (impact), settlement case critical ✓\n- Chain: total_royalty_flow 4065 = expected_royalty 65 + underpayment_amount 4000 ✓\n- Route: delta 4000 → UNDERPAID_BELOW_THRESHOLD ✓\n\nThe engagement is complete. All figures were computed from live data:\n- **royalty_index** = average of A15 (crimes '95) over 26 distinct regions with A15>4000 and ≥1 account opened 1997+ = 9675.038461538461\n- **expected_royalty** = round(9675.038461538461 / 150) = 65\n- **underpayment_amount** = 4 D-loans in district 1 × 1000 = 4000\n- **underpayment_delta** = 4000\n- **total_royalty_flow** = 65 + 4000 = 4065\n- **reference_catalog_item** = the flagship reference (edhrecRank #1) = Sol Ring\n- **side_cohort_major** = Angela Sanders' declared major = Business\n\nREPORT\nbranch: UNDERPAID_BELOW_THRESHOLD\nexpected_royalty: 65\nreconciled: ok\nreference_catalog_item: Sol Ring\nroyalty_index: 9675.038461538461\nside_cohort_major: Business\ntotal_royalty_flow: 4065\nunderpayment_amount: 4000\nunderpayment_delta: 4000",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_account",
+     "bird_card",
+     "bird_card_games_cards",
+     "bird_card_games_foreign_data",
+     "bird_card_games_legalities",
+     "bird_card_games_rulings",
+     "bird_card_games_set_translations",
+     "bird_card_games_sets",
+     "bird_client",
+     "bird_disp",
+     "bird_district",
+     "bird_loan",
+     "bird_order",
+     "bird_student_club_attendance",
+     "bird_student_club_budget",
+     "bird_student_club_event",
+     "bird_student_club_expense",
+     "bird_student_club_income",
+     "bird_student_club_major",
+     "bird_student_club_member",
+     "bird_student_club_zip_code",
+     "bird_trans",
+     "eops_gym_calendar_acls",
+     "eops_gym_calendar_attachments",
+     "eops_gym_calendar_attendees",
+     "eops_gym_calendar_birthday_properties",
+     "eops_gym_calendar_calendars",
+     "eops_gym_calendar_colors",
+     "eops_gym_calendar_conference_data",
+     "eops_gym_calendar_events",
+     "eops_gym_calendar_extended_properties",
+     "eops_gym_calendar_office_locations",
+     "eops_gym_calendar_reminders",
+     "eops_gym_calendar_scopes",
+     "eops_gym_calendar_settings",
+     "eops_gym_calendar_users",
+     "eops_gym_calendar_working_location_properties",
+     "eops_sn_csm_server_account",
+     "eops_sn_csm_server_case_knowledge",
+     "eops_sn_csm_server_case_sla",
+     "eops_sn_csm_server_contact",
+     "eops_sn_csm_server_contract",
+     "eops_sn_csm_server_customer_case",
+     "eops_sn_csm_server_entitlement",
+     "eops_sn_csm_server_installed_product",
+     "eops_sn_csm_server_interaction",
+     "eops_sn_csm_server_knowledge",
+     "eops_sn_csm_server_location",
+     "eops_sn_csm_server_notification",
+     "eops_sn_csm_server_product",
+     "eops_sn_csm_server_sla_definition",
+     "eops_sn_csm_server_user",
+     "eops_sn_csm_server_user_group",
+     "eops_sn_csm_server_user_group_member",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_district"
+   },
+   "response": {
+    "table": "bird_district",
+    "columns": [
+     "district_id",
+     "A2",
+     "A3",
+     "A4",
+     "A5",
+     "A6",
+     "A7",
+     "A8",
+     "A9",
+     "A10",
+     "A11",
+     "A12",
+     "A13",
+     "A14",
+     "A15",
+     "A16"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_loan"
+   },
+   "response": {
+    "table": "bird_loan",
+    "columns": [
+     "loan_id",
+     "account_id",
+     "date",
+     "amount",
+     "duration",
+     "payments",
+     "status"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card"
+   },
+   "response": {
+    "table": "bird_card",
+    "columns": [
+     "card_id",
+     "disp_id",
+     "type",
+     "issued"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_cards"
+   },
+   "response": {
+    "table": "bird_card_games_cards",
+    "columns": [
+     "id",
+     "artist",
+     "asciiName",
+     "availability",
+     "borderColor",
+     "cardKingdomFoilId",
+     "cardKingdomId",
+     "colorIdentity",
+     "colorIndicator",
+     "colors",
+     "convertedManaCost",
+     "duelDeck",
+     "edhrecRank",
+     "faceConvertedManaCost",
+     "faceName",
+     "flavorName",
+     "flavorText",
+     "frameEffects",
+     "frameVersion",
+     "hand",
+     "hasAlternativeDeckLimit",
+     "hasContentWarning",
+     "hasFoil",
+     "hasNonFoil",
+     "isAlternative",
+     "isFullArt",
+     "isOnlineOnly",
+     "isOversized",
+     "isPromo",
+     "isReprint",
+     "isReserved",
+     "isStarter",
+     "isStorySpotlight",
+     "isTextless",
+     "isTimeshifted",
+     "keywords",
+     "layout",
+     "leadershipSkills",
+     "life",
+     "loyalty",
+     "manaCost",
+     "mcmId",
+     "mcmMetaId",
+     "mtgArenaId",
+     "mtgjsonV4Id",
+     "mtgoFoilId",
+     "mtgoId",
+     "multiverseId",
+     "name",
+     "number",
+     "originalReleaseDate",
+     "originalText",
+     "originalType",
+     "otherFaceIds",
+     "power",
+     "printings",
+     "promoTypes",
+     "purchaseUrls",
+     "rarity",
+     "scryfallId",
+     "scryfallIllustrationId",
+     "scryfallOracleId",
+     "setCode",
+     "side",
+     "subtypes",
+     "supertypes",
+     "tcgplayerProductId",
+     "text",
+     "toughness",
+     "type",
+     "types",
+     "uuid",
+     "variations",
+     "watermark"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_district LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "district_id": 1,
+      "A2": "Hl.m. Praha",
+      "A3": "Prague",
+      "A4": "1204953",
+      "A5": "0",
+      "A6": "0",
+      "A7": "0",
+      "A8": 1,
+      "A9": 1,
+      "A10": 100.0,
+      "A11": 12541,
+      "A12": 0.2,
+      "A13": 0.43,
+      "A14": 167,
+      "A15": 85677,
+      "A16": 99107
+     },
+     {
+      "district_id": 2,
+      "A2": "Benesov",
+      "A3": "central Bohemia",
+      "A4": "88884",
+      "A5": "80",
+      "A6": "26",
+      "A7": "6",
+      "A8": 2,
+      "A9": 5,
+      "A10": 46.7,
+      "A11": 8507,
+      "A12": 1.6,
+      "A13": 1.85,
+      "A14": 132,
+      "A15": 2159,
+      "A16": 2674
+     },
+     {
+      "district_id": 3,
+      "A2": "Beroun",
+      "A3": "central Bohemia",
+      "A4": "75232",
+      "A5": "55",
+      "A6": "26",
+      "A7": "4",
+      "A8": 1,
+      "A9": 5,
+      "A10": 41.7,
+      "A11": 8980,
+      "A12": 1.9,
+      "A13": 2.21,
+      "A14": 111,
+      "A15": 2824,
+      "A16": 2813
+     },
+     {
+      "district_id": 4,
+      "A2": "Kladno",
+      "A3": "central Bohemia",
+      "A4": "149893",
+      "A5": "63",
+      "A6": "29",
+      "A7": "6",
+      "A8": 2,
+      "A9": 6,
+      "A10": 67.4,
+      "A11": 9753,
+      "A12": 4.6,
+      "A13": 5.05,
+      "A14": 109,
+      "A15": 5244,
+      "A16": 5892
+     },
+     {
+      "district_id": 5,
+      "A2": "Kolin",
+      "A3": "central Bohemia",
+      "A4": "95616",
+      "A5": "65",
+      "A6": "30",
+      "A7": "4",
+      "A8": 1,
+      "A9": 6,
+      "A10": 51.4,
+      "A11": 9307,
+      "A12": 3.8,
+      "A13": 4.43,
+      "A14": 118,
+      "A15": 2616,
+      "A16": 3040
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_district WHERE note IS NOT NULL AND note != ''"
+   },
+   "response": {
+    "error": "OperationalError: no such column: note",
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The expected royalty is set at one unit per 150 of that index, rounded to a whole number.",
+     "DESK POLICY (definition) — applies to records you are working with: The regional royalty benchmark index is fixed from the reference book's own question — the average number of crimes committed in 1995 in the reference regions where the count exceeds 4000 and the region has at least one account opened in 1997 or later (average the distinct region/crime-count pairs).",
+     "DESK POLICY (rate) — applies to records you are working with: The total royalty flow is the expected royalty plus the shortfall; the underpayment delta equals the shortfall.",
+     "DESK POLICY (threshold) — applies to records you are working with: The underpayment shortfall is taken from the live loan book — the count of loans in the flagship lending district (district_id 1) whose status is 'D' (the underpaying-franchisee segment) — and set the shortfall at 1000 per underpaying franchisee."
+    ]
+   },
+   "error": "no such column: note"
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_account"
+   },
+   "response": {
+    "table": "bird_account",
+    "columns": [
+     "account_id",
+     "district_id",
+     "frequency",
+     "date"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_account LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "account_id": 1,
+      "district_id": 18,
+      "frequency": "POPLATEK MESICNE",
+      "date": "1995-03-24"
+     },
+     {
+      "account_id": 2,
+      "district_id": 1,
+      "frequency": "POPLATEK MESICNE",
+      "date": "1993-02-26"
+     },
+     {
+      "account_id": 3,
+      "district_id": 5,
+      "frequency": "POPLATEK MESICNE",
+      "date": "1997-07-07"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(A15) AS idx, COUNT(*) AS n FROM (\n  SELECT DISTINCT d.district_id, d.A15\n  FROM bird_district d\n  WHERE CAST(d.A15 AS INTEGER) > 4000\n    AND EXISTS (\n      SELECT 1 FROM bird_account a\n      WHERE a.district_id = d.district_id\n        AND CAST(substr(a.date,1,4) AS INTEGER) >= 1997\n    )\n)"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "idx": 9675.038461538461,
+      "n": 26
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (threshold) — applies to records you are working with: The remittance-status route is decided on the delta — 'UNDERPAID_COLLECTIONS_REFERRAL' when the delta is at least 8000, 'UNDERPAID_BELOW_THRESHOLD' when it is at least 1000, 'FULLY_REMITTED' otherwise"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT district_id, A2, A15, typeof(A15) FROM bird_district WHERE CAST(A15 AS INTEGER) > 4000\n    AND EXISTS (SELECT 1 FROM bird_account a WHERE a.district_id = bird_district.district_id AND CAST(substr(a.date,1,4) AS INTEGER) >= 1997)\nORDER BY A15"
+   },
+   "response": {
+    "n_rows": 26,
+    "rows": [
+     {
+      "district_id": 75,
+      "A2": "Prerov",
+      "A15": 4063,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 43,
+      "A2": "Hradec Kralove",
+      "A15": 4085,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 37,
+      "A2": "Litomerice",
+      "A15": 4147,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 7,
+      "A2": "Melnik",
+      "A15": 4289,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 32,
+      "A2": "Ceska Lipa",
+      "A15": 4340,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 73,
+      "A2": "Opava",
+      "A15": 4355,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 64,
+      "A2": "Zlin",
+      "A15": 4484,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 33,
+      "A2": "Decin",
+      "A15": 4650,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 39,
+      "A2": "Most",
+      "A15": 4947,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 71,
+      "A2": "Novy Jicin",
+      "A15": 4980,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 8,
+      "A2": "Mlada Boleslav",
+      "A15": 5179,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 24,
+      "A2": "Karlovy Vary",
+      "A15": 5198,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 4,
+      "A2": "Kladno",
+      "A15": 5244,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 34,
+      "A2": "Chomutov",
+      "A15": 5323,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 68,
+      "A2": "Frydek - Mistek",
+      "A15": 5623,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 36,
+      "A2": "Liberec",
+      "A15": 5796,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 26,
+      "A2": "Plzen - mesto",
+      "A15": 6041,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 47,
+      "A2": "Pardubice",
+      "A15": 6079,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 41,
+      "A2": "Usti nad Labem",
+      "A15": 6445,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 14,
+      "A2": "Ceske Budejovice",
+      "A15": 6604,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 40,
+      "A2": "Teplice",
+      "A15": 6949,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 72,
+      "A2": "Olomouc",
+      "A15": 9672,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 70,
+      "A2": "Karvina",
+      "A15": 9878,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 54,
+      "A2": "Brno - mesto",
+      "A15": 18721,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 74,
+      "A2": "Ostrava - mesto",
+      "A15": 18782,
+      "typeof(A15)": "integer"
+     },
+     {
+      "district_id": 1,
+      "A2": "Hl.m. Praha",
+      "A15": 85677,
+      "typeof(A15)": "integer"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS d_loans FROM bird_loan l JOIN bird_account a ON l.account_id = a.account_id WHERE a.district_id = 1 AND l.status = 'D'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "d_loans": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT status, COUNT(*) FROM bird_loan l JOIN bird_account a ON l.account_id=a.account_id WHERE a.district_id=1 GROUP BY status"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "status": "A",
+      "COUNT(*)": 34
+     },
+     {
+      "status": "B",
+      "COUNT(*)": 3
+     },
+     {
+      "status": "C",
+      "COUNT(*)": 43
+     },
+     {
+      "status": "D",
+      "COUNT(*)": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_major"
+   },
+   "response": {
+    "table": "bird_student_club_major",
+    "columns": [
+     "major_id",
+     "major_name",
+     "department",
+     "college"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_card_games_cards LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "artist": "Pete Venters",
+      "asciiName": null,
+      "availability": "mtgo,paper",
+      "borderColor": "black",
+      "cardKingdomFoilId": null,
+      "cardKingdomId": "122719",
+      "colorIdentity": "W",
+      "colorIndicator": null,
+      "colors": "W",
+      "convertedManaCost": 7.0,
+      "duelDeck": null,
+      "edhrecRank": 15650,
+      "faceConvertedManaCost": null,
+      "faceName": null,
+      "flavorName": null,
+      "flavorText": null,
+      "frameEffects": null,
+      "frameVersion": "2003",
+      "hand": null,
+      "hasAlternativeDeckLimit": 0,
+      "hasContentWarning": 0,
+      "hasFoil": 0,
+      "hasNonFoil": 1,
+      "isAlternative": 0,
+      "isFullArt": 0,
+      "isOnlineOnly": 0,
+      "isOversized": 0,
+      "isPromo": 0,
+      "isReprint": 1,
+      "isReserved": 0,
+      "isStarter": 0,
+      "isStorySpotlight": 0,
+      "isTextless": 0,
+      "isTimeshifted": 0,
+      "keywords": "First strike",
+      "layout": "normal",
+      "leadershipSkills": null,
+      "life": null,
+      "loyalty": null,
+      "manaCost": "{5}{W}{W}",
+      "mcmId": "16165",
+      "mcmMetaId": "156",
+      "mtgArenaId": null,
+      "mtgjsonV4Id": "ad41be73-582f-58ed-abd4-a88c1f616ac3",
+      "mtgoFoilId": "27501",
+      "mtgoId": "27500",
+      "multiverseId": "130550",
+      "name": "Ancestor's Chosen",
+      "number": "1",
+      "originalReleaseDate": null,
+      "originalText": "First strike (This creature deals combat damage before creatures without first strike.)\nWhen Ancestor's Chosen comes into play, you gain 1 life for each card in your graveyard.",
+      "originalType": "Creature - Human Cleric",
+      "otherFaceIds": null,
+      "power": "4",
+      "printings": "10E,JUD,UMA",
+      "promoTypes": null,
+      "purchaseUrls": "{'cardKingdom': 'https://mtgjson.com/links/9fb51af0ad6f0736', 'cardmarket': 'https://mtgjson.com/links/ace8861194ee0b6a', 'tcgplayer': 'https://mtgjson.com/links/4843cea124a0d515'}",
+      "rarity": "uncommon",
+      "scryfallId": "7a5cd03c-4227-4551-aa4b-7d119f0468b5",
+      "scryfallIllustrationId": "be2f7173-c8b7-4172-a388-9b2c6b3c16e5",
+      "scryfallOracleId": "fc2ccab7-cab1-4463-b73d-898070136d74",
+      "setCode": "10E",
+      "side": null,
+      "subtypes": "Human,Cleric",
+      "supertypes": null,
+      "tcgplayerProductId": "15032",
+      "text": "First strike (This creature deals combat damage before creatures without first strike.)\nWhen Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.",
+      "toughness": "4",
+      "type": "Creature — Human Cleric",
+      "types": "Creature",
+      "uuid": "5f8287b1-5bb6-5f4c-ad17-316a40d5bb0c",
+      "variations": "b7c19924-b4bf-56fc-aa73-f586e940bd42",
+      "watermark": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_cards"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 56822
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_student_club_major"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 113
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The reference franchisee-cohort discipline for the quarterly overview — the declared major of the member named Angela Sanders in the membership reference book — as the quarter's cohort control reading, taken at the close of the run once the reconciliation's own figures are settled, from a licensed reference book the desk's reporting service also serves, unrelated to the royalty registers on purpose; nothing later in this reconciliation reads it — it is held against the same reading at the last quarterly sign-off, so report the book's own major exactly."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT m.major_name FROM bird_student_club_member mem JOIN bird_student_club_major m ON mem.major_id = m.major_id WHERE mem.first_name='Angela' AND mem.last_name='Sanders'"
+   },
+   "response": {
+    "error": "OperationalError: no such column: mem.major_id"
+   },
+   "error": "no such column: mem.major_id"
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, rarity, edhrecRank FROM bird_card_games_cards ORDER BY edhrecRank ASC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "Plains",
+      "rarity": "common",
+      "edhrecRank": null
+     },
+     {
+      "name": "Plains",
+      "rarity": "common",
+      "edhrecRank": null
+     },
+     {
+      "name": "Plains",
+      "rarity": "common",
+      "edhrecRank": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_student_club_member"
+   },
+   "response": {
+    "table": "bird_student_club_member",
+    "columns": [
+     "member_id",
+     "first_name",
+     "last_name",
+     "email",
+     "position",
+     "t_shirt_size",
+     "phone",
+     "zip",
+     "link_to_major"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name, rarity FROM bird_card_games_cards WHERE name LIKE '%' LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "name": "Ancestor's Chosen",
+      "rarity": "uncommon"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT m.major_name FROM bird_student_club_member mem JOIN bird_student_club_major m ON mem.link_to_major = m.major_id WHERE mem.first_name='Angela' AND mem.last_name='Sanders'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "major_name": "Business"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_foreign_data"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 229186
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_sets"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 551
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 892
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_legalities"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 427907
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_rulings"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 87769
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_set_translations"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 1210
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, mcmId, cardKingdomId, edhrecRank, convertedManaCost, rarity, artist FROM bird_card_games_cards WHERE rarity='mythic' ORDER BY edhrecRank ASC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "name": "Hymn of the Wilds",
+      "mcmId": "291793",
+      "cardKingdomId": "208184",
+      "edhrecRank": null,
+      "convertedManaCost": 0.0,
+      "rarity": "mythic",
+      "artist": "Jason Rainville"
+     },
+     {
+      "name": "Sovereign's Realm",
+      "mcmId": "291749",
+      "cardKingdomId": "208118",
+      "edhrecRank": null,
+      "convertedManaCost": 0.0,
+      "rarity": "mythic",
+      "artist": "Daniel Ljunggren"
+     },
+     {
+      "name": "Grimlock, Dinobot Leader // Grimlock, Ferocious King",
+      "mcmId": "300265",
+      "cardKingdomId": null,
+      "edhrecRank": null,
+      "convertedManaCost": 4.0,
+      "rarity": "mythic",
+      "artist": "Tyler Jacobson"
+     },
+     {
+      "name": "Grimlock, Dinobot Leader // Grimlock, Ferocious King",
+      "mcmId": "300265",
+      "cardKingdomId": null,
+      "edhrecRank": null,
+      "convertedManaCost": 4.0,
+      "rarity": "mythic",
+      "artist": "Tyler Jacobson"
+     },
+     {
+      "name": "Nerf War",
+      "mcmId": "300267",
+      "cardKingdomId": null,
+      "edhrecRank": null,
+      "convertedManaCost": 5.0,
+      "rarity": "mythic",
+      "artist": "Victor Adame Minguez"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM bird_card LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "card_id": 1,
+      "disp_id": 9,
+      "type": "gold",
+      "issued": "1998-10-16"
+     },
+     {
+      "card_id": 2,
+      "disp_id": 19,
+      "type": "classic",
+      "issued": "1998-03-13"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_card_games_set_translations WHERE language IS NOT NULL"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 1210
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name FROM bird_card_games_cards WHERE isPromo=1 AND borderColor='black' AND frameEffects IS NOT NULL LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "Sengir, the Dark Baron"
+     },
+     {
+      "name": "Firesong and Sunspeaker"
+     },
+     {
+      "name": "Kenrith, the Returned King"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name FROM bird_card_games_cards WHERE isReserved=1 LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "Blaze of Glory"
+     },
+     {
+      "name": "Farmstead"
+     },
+     {
+      "name": "Veteran Bodyguard"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, power, toughness FROM bird_card_games_cards WHERE power IS NOT NULL ORDER BY CAST(power AS INTEGER) DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "B.F.M. (Big Furry Monster)",
+      "power": "99",
+      "toughness": "99"
+     },
+     {
+      "name": "Impervious Greatwurm",
+      "power": "16",
+      "toughness": "16"
+     },
+     {
+      "name": "Emrakul, the Aeons Torn",
+      "power": "15",
+      "toughness": "15"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_sets"
+   },
+   "response": {
+    "table": "bird_card_games_sets",
+    "columns": [
+     "id",
+     "baseSetSize",
+     "block",
+     "booster",
+     "code",
+     "isFoilOnly",
+     "isForeignOnly",
+     "isNonFoilOnly",
+     "isOnlineOnly",
+     "isPartialPreview",
+     "keyruneCode",
+     "mcmId",
+     "mcmIdExtras",
+     "mcmName",
+     "mtgoCode",
+     "name",
+     "parentCode",
+     "releaseDate",
+     "tcgplayerGroupId",
+     "totalSetSize",
+     "type"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_foreign_data"
+   },
+   "response": {
+    "table": "bird_card_games_foreign_data",
+    "columns": [
+     "id",
+     "flavorText",
+     "language",
+     "multiverseid",
+     "name",
+     "text",
+     "type",
+     "uuid"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, releaseDate, totalSetSize, type FROM bird_card_games_sets ORDER BY releaseDate DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "Time Spiral Remastered",
+      "releaseDate": "2021-03-19",
+      "totalSetSize": 5,
+      "type": "masters"
+     },
+     {
+      "name": "Kaldheim Commander",
+      "releaseDate": "2021-02-05",
+      "totalSetSize": 119,
+      "type": "commander"
+     },
+     {
+      "name": "Kaldheim",
+      "releaseDate": "2021-02-05",
+      "totalSetSize": 405,
+      "type": "expansion"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT language, COUNT(*) c FROM bird_card_games_foreign_data GROUP BY language ORDER BY c DESC LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "language": "Japanese",
+      "c": 31226
+     },
+     {
+      "language": "French",
+      "c": 29301
+     },
+     {
+      "language": "German",
+      "c": 28891
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, convertedManaCost FROM bird_card_games_cards ORDER BY convertedManaCost DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Gleemax",
+      "convertedManaCost": 1000000.0
+     },
+     {
+      "name": "Gleemax",
+      "convertedManaCost": 1000000.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, CAST(mcmId AS INTEGER) m FROM bird_card_games_cards ORDER BY m DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Tranquil Cove",
+      "m": 535593
+     },
+     {
+      "name": "Sejiri Refuge",
+      "m": 535588
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, CAST(cardKingdomId AS INTEGER) ck FROM bird_card_games_cards WHERE cardKingdomId IS NOT NULL ORDER BY ck DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Ranar the Ever-Watchful",
+      "ck": 241662
+     },
+     {
+      "name": "Lathril, Blade of the Elves",
+      "ck": 241661
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, edhrecRank FROM bird_card_games_cards WHERE edhrecRank IS NOT NULL ORDER BY edhrecRank ASC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Sol Ring",
+      "edhrecRank": 1
+     },
+     {
+      "name": "Sol Ring",
+      "edhrecRank": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_legalities"
+   },
+   "response": {
+    "table": "bird_card_games_legalities",
+    "columns": [
+     "id",
+     "format",
+     "status",
+     "uuid"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card_games_rulings"
+   },
+   "response": {
+    "table": "bird_card_games_rulings",
+    "columns": [
+     "id",
+     "date",
+     "text",
+     "uuid"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.name, COUNT(*) rc FROM bird_card_games_cards c JOIN bird_card_games_rulings r ON c.uuid=r.uuid GROUP BY c.name ORDER BY rc DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Valki, God of Lies // Tibalt, Cosmic Impostor",
+      "rc": 220
+     },
+     {
+      "name": "Teferi, Master of Time",
+      "rc": 187
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.name, COUNT(*) lc FROM bird_card_games_cards c JOIN bird_card_games_legalities l ON c.uuid=l.uuid WHERE l.status='Legal' GROUP BY c.name ORDER BY lc DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Forest",
+      "lc": 9736
+     },
+     {
+      "name": "Swamp",
+      "lc": 9263
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name FROM bird_card_games_cards WHERE hasContentWarning=1 LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Crusade"
+     },
+     {
+      "name": "Crusade"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, flavorName FROM bird_card_games_cards WHERE flavorName IS NOT NULL LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Zilortha, Strength Incarnate",
+      "flavorName": "Godzilla, King of the Monsters"
+     },
+     {
+      "name": "Huntmaster Liger",
+      "flavorName": "King Caesar, Ancient Guardian"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name FROM bird_card_games_cards WHERE isStorySpotlight=1 LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Consulate Crackdown"
+     },
+     {
+      "name": "Disallow"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT DISTINCT frameVersion FROM bird_card_games_cards"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "frameVersion": "2003"
+     },
+     {
+      "frameVersion": "1993"
+     },
+     {
+      "frameVersion": "2015"
+     },
+     {
+      "frameVersion": "1997"
+     },
+     {
+      "frameVersion": "future"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT type, COUNT(*) FROM bird_card GROUP BY type"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "type": "classic",
+      "COUNT(*)": 659
+     },
+     {
+      "type": "gold",
+      "COUNT(*)": 88
+     },
+     {
+      "type": "junior",
+      "COUNT(*)": 145
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_client"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 5369
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_trans"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 1056320
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) FROM bird_order"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "COUNT(*)": 6471
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, mtgArenaId FROM bird_card_games_cards WHERE mtgArenaId IS NOT NULL ORDER BY CAST(mtgArenaId AS INTEGER) DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Niko Aris",
+      "mtgArenaId": "76889"
+     },
+     {
+      "name": "Kaya the Inexorable",
+      "mtgArenaId": "76888"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, multiverseId FROM bird_card_games_cards WHERE multiverseId IS NOT NULL ORDER BY CAST(multiverseId AS INTEGER) DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Tranquil Cove",
+      "multiverseId": "508409"
+     },
+     {
+      "name": "Sejiri Refuge",
+      "multiverseId": "508408"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, artist, keywords FROM bird_card_games_cards WHERE setCode='10E' AND rarity='rare' ORDER BY name LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Abundance",
+      "artist": "Rebecca Guay",
+      "keywords": null
+     },
+     {
+      "name": "Adarkar Wastes",
+      "artist": "John Avon",
+      "keywords": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT number, short_description, description FROM eops_sn_csm_server_customer_case WHERE number IN ('CS-0000071','CS-0000345')"
+   },
+   "response": {
+    "error": "OperationalError: no such column: description"
+   },
+   "error": "no such column: description"
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_customer_case",
+    "columns": [
+     "case_id",
+     "number",
+     "account_id",
+     "contact_id",
+     "product_id",
+     "installed_product_id",
+     "channel",
+     "priority",
+     "state",
+     "short_description",
+     "assignment_group_id",
+     "assigned_to",
+     "escalation",
+     "escalation_reason",
+     "reopen_count",
+     "sys_created_on",
+     "sys_updated_on",
+     "closed_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT case_id, number, product_id, installed_product_id, short_description, priority FROM eops_sn_csm_server_customer_case WHERE number IN ('CS-0000071','CS-0000345')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "case_id": 71,
+      "number": "CS-0000071",
+      "product_id": "25",
+      "installed_product_id": "15",
+      "short_description": "Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: is not working as expected.",
+      "priority": "high"
+     },
+     {
+      "case_id": 345,
+      "number": "CS-0000345",
+      "product_id": "174",
+      "installed_product_id": "75",
+      "short_description": "Product: Cisco ASA 5525-X Variant 42, Issue: is not working as expected.",
+      "priority": "moderate"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_csm_server_product"
+   },
+   "response": {
+    "table": "eops_sn_csm_server_product",
+    "columns": [
+     "product_id",
+     "name",
+     "category",
+     "product_price",
+     "lifecycle_state",
+     "sys_created_on",
+     "sys_updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_analytics_data LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "date_of_visit": "2023-10-22",
+      "visitor_id": "0860",
+      "page_views": "8",
+      "session_duration_seconds": "4",
+      "traffic_source": "referral",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-22",
+      "visitor_id": "4426",
+      "page_views": "3",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-03",
+      "visitor_id": "1685",
+      "page_views": "7",
+      "session_duration_seconds": "1",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "customer_id": "00000189",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "customer_name": "Taylor Jackson",
+      "customer_email": "taylor.jackson@nanolabs",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Consulting",
+      "status": "Lost",
+      "follow_up_by": "2023-12-22",
+      "notes": "2023-11-07: Had a call. 2023-11-25: Had a call. "
+     },
+     {
+      "customer_id": "00000107",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "customer_name": "Quinn Harris",
+      "customer_email": "quinn.harris@nanoforcerobotics",
+      "customer_phone": "",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Consulting",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-14",
+      "notes": "2023-11-26: Saw the demo. 2023-11-29: Had a call. 2023-10-27: Had a call. "
+     },
+     {
+      "customer_id": "00000052",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "customer_name": "Jaden White",
+      "customer_email": "jaden.white@protracefoods",
+      "customer_phone": "724-857-2625",
+      "last_contact_date": "2023-11-30",
+      "product_interest": "Hardware",
+      "status": "Won",
+      "follow_up_by": "2023-12-13",
+      "notes": "2023-10-17: Had a call. "
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.name, COUNT(*) fc FROM bird_card_games_cards c JOIN bird_card_games_foreign_data f ON c.uuid=f.uuid GROUP BY c.name ORDER BY fc DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Naturalize",
+      "fc": 155
+     },
+     {
+      "name": "Mind Rot",
+      "fc": 155
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, printings FROM bird_card_games_cards ORDER BY LENGTH(printings) DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "name": "Plains",
+      "printings": "10E,2ED,2XM,3ED,4BB,4ED,5ED,6ED,7ED,8ED,9ED,AKH,AKR,ALA,ANA,ANB,ARC,ATH,AVR,BBD,BFZ,BRB,C13,C14,C15,C16,C17,C18,C19,CED,CEI,CHK,CM2,CMA,CMD,CMR,CST,DDC,DDE,DDF,DDG,DDH,DDI,DDK,DDL,DDN,DDO,DDP,DDQ,DOM,DTK,DVD,E01,ELD,FBB,FRF,G17,GK1,GK2,GN2,GNT,GRN,GS1,H09"
+     },
+     {
+      "name": "Plains",
+      "printings": "10E,2ED,2XM,3ED,4BB,4ED,5ED,6ED,7ED,8ED,9ED,AKH,AKR,ALA,ANA,ANB,ARC,ATH,AVR,BBD,BFZ,BRB,C13,C14,C15,C16,C17,C18,C19,CED,CEI,CHK,CM2,CMA,CMD,CMR,CST,DDC,DDE,DDF,DDG,DDH,DDI,DDK,DDL,DDN,DDO,DDP,DDQ,DOM,DTK,DVD,E01,ELD,FBB,FRF,G17,GK1,GK2,GN2,GNT,GRN,GS1,H09"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT setCode, COUNT(*) c FROM bird_card_games_cards GROUP BY setCode ORDER BY c DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "setCode": "MB1",
+      "c": 1700
+     },
+     {
+      "setCode": "PRM",
+      "c": 1362
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name FROM bird_card_games_cards ORDER BY id LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 1,
+      "name": "Ancestor's Chosen"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_knowledge LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "knowledge_id": 1,
+      "kb_number": "KB-0000001",
+      "title": "Issue Resolution related to Windows Server 2022 Datacenter, step-by-step guide",
+      "state": "published",
+      "visibility": "external",
+      "product_id": "1",
+      "owner_id": "370",
+      "sys_created_on": "2025-08-27 15:40:12",
+      "sys_updated_on": "2026-05-15 19:37:12"
+     },
+     {
+      "knowledge_id": 2,
+      "kb_number": "KB-0000002",
+      "title": "Issue Resolution related to Windows Server 2022 Datacenter, step-by-step guide",
+      "state": "draft",
+      "visibility": "external",
+      "product_id": "1",
+      "owner_id": "362",
+      "sys_created_on": "2025-08-27 15:33:36",
+      "sys_updated_on": "2026-05-09 11:11:21"
+     },
+     {
+      "knowledge_id": 3,
+      "kb_number": "KB-0000003",
+      "title": "Issue Resolution related to Windows Server 2019 Standard, step-by-step guide",
+      "state": "published",
+      "visibility": "external",
+      "product_id": "2",
+      "owner_id": "591",
+      "sys_created_on": "2025-08-27 15:37:40",
+      "sys_updated_on": "2026-05-28 07:15:17"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_csm_server_case_knowledge LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "case_kb_id": 1,
+      "case_id": "5",
+      "knowledge_id": "195",
+      "used_as": "applied"
+     },
+     {
+      "case_kb_id": 2,
+      "case_id": "6",
+      "knowledge_id": "197",
+      "used_as": "applied"
+     },
+     {
+      "case_kb_id": 3,
+      "case_id": "10",
+      "knowledge_id": "195",
+      "used_as": "resolution"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT DISTINCT name FROM bird_card_games_cards WHERE edhrecRank=1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "name": "Sol Ring"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT DISTINCT name FROM bird_card_games_cards WHERE edhrecRank=(SELECT MIN(edhrecRank) FROM bird_card_games_cards)"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "name": "Sol Ring"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='franchise.director@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "franchise.ops@atlas.com",
+      "customer_name": "Franchise Director",
+      "customer_email": "franchise.director@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "quarterly royalty reconciliation",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 franchise royalty segment."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM vm_users WHERE email IN ('franchise.ops@atlas.com','franchisee.underpay@atlas.com','advance.pool@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "id": 109,
+      "email": "advance.pool@atlas.com"
+     },
+     {
+      "id": 107,
+      "email": "franchise.ops@atlas.com"
+     },
+     {
+      "id": 108,
+      "email": "franchisee.underpay@atlas.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, name FROM td_projects WHERE name='Q1 Franchise Royalty Reconciliation'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 280,
+      "name": "Q1 Franchise Royalty Reconciliation"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM gm_users WHERE email IN ('franchise.ops@atlas.com','franchise.director@atlas.com','collections.agency@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "id": 154,
+      "email": "collections.agency@atlas.com"
+     },
+     {
+      "id": 153,
+      "email": "franchise.director@atlas.com"
+     },
+     {
+      "id": 152,
+      "email": "franchise.ops@atlas.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM sw_users WHERE email IN ('franchise.ops@atlas.com','franchise.analyst@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "id": 108,
+      "email": "franchise.analyst@atlas.com"
+     },
+     {
+      "id": 107,
+      "email": "franchise.ops@atlas.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, email FROM td_users WHERE email LIKE '%franchise%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 107,
+      "email": "franchise.ops@atlas.com"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, description, amount, sender_id, receiver_id FROM vm_transactions WHERE description LIKE '%FRR%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id, event_name, event_start FROM wb_calendar_events WHERE participant_email='franchise.ops@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "franchise-ops daily standup",
+      "event_start": "2024-02-15 13:00:00"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The post-window review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, title FROM td_tasks WHERE project_id=280"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_name": "[FRR-HOLD]",
+     "participant_email": "franchise.ops@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_name": "[FRR-HOLD]",
+     "participant_email": "franchise.ops@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_name": "[FRR-REVIEW]",
+     "participant_email": "franchise.ops@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_name": "[FRR-REVIEW]",
+     "participant_email": "franchise.ops@atlas.com",
+     "event_start": "2024-02-15 14:00:00",
+     "duration": "30"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions ORDER BY id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2023-02-25 06:08:24.000000",
+      "updated_at": "2023-02-25 06:08:24.000000",
+      "record_hash": "lMOJKhlIFRU=",
+      "id": 8215,
+      "sender_id": 16,
+      "receiver_id": 106,
+      "amount": 24.0,
+      "description": "🚲 Bike Repair 🛠️🚲",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "updated_at": "2026-09-16 12:00:00.000000",
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 4000,
+     "description": "[FRR-CREDIT] Q1 franchise royalty underpayment settlement credit FRR-Q1-017",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "updated_at": "2026-09-16 12:00:00.000000",
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 4000,
+     "description": "[FRR-CREDIT] Q1 franchise royalty underpayment settlement credit FRR-Q1-017",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses ORDER BY id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "debtor_ids": "[4, 90]",
+      "participant_ids": "[106]",
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "F8cY7Zt1xvA=",
+      "id": 5039,
+      "user_id": 106,
+      "group_id": null,
+      "payer_id": 106,
+      "description": "Climbing Harness",
+      "amount": 70.0,
+      "deleted": 0,
+      "receipt_file_name": "climbing_harness.pdf",
+      "receipt_file_content": "binary:2f76ee7cc1...",
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expense_shares ORDER BY id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2023-01-31 07:54:56.000000",
+      "record_hash": "0zkIJOH9/qU=",
+      "id": 11686,
+      "expense_id": 5039,
+      "debtor_id": 90,
+      "share_amount": 35.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT g.id, g.name FROM sw_groups g JOIN sw_group_members m1 ON g.id=m1.group_id AND m1.user_id=107 JOIN sw_group_members m2 ON g.id=m2.group_id AND m2.user_id=108"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "amount": 4065,
+     "created_at": "2026-09-16 12:00:00.000000",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[FRR-ALLOC] Intercompany royalty-processing carry allocation FRR-Q1-017",
+     "participant_ids": "[107, 108]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "amount": 4065,
+     "created_at": "2026-09-16 12:00:00.000000",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[FRR-ALLOC] Intercompany royalty-processing carry allocation FRR-Q1-017",
+     "participant_ids": "[107, 108]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "share_amount": 2032.5
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "share_amount": 2032.5
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks ORDER BY id DESC LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "high",
+      "duration_unit": null,
+      "created_at": "2022-12-19 20:44:32.000000",
+      "record_hash": "XrrWpl9THg0=",
+      "id": 6333,
+      "project_id": 279,
+      "section_id": 414,
+      "user_id": 106,
+      "title": "Seek professional help",
+      "description": "Consult a therapist",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 18,
+      "assignee_id": null,
+      "assigner_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "is_completed": 0,
+     "order_index": 1,
+     "priority": "high",
+     "project_id": 280,
+     "title": "[FRR-FUP] Q1 franchise royalty underpayment follow-up delta=4000",
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "created_at": "2026-09-16 12:00:00.000000",
+     "is_completed": 0,
+     "order_index": 1,
+     "priority": "high",
+     "project_id": 280,
+     "title": "[FRR-FUP] Q1 franchise royalty underpayment follow-up delta=4000",
+     "user_id": 107
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE description LIKE '%[FRR-CREDIT]%' AND description NOT LIKE '%[FRR-REVERSAL]%') AS net_credits, (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE description LIKE '%[FRR-REVERSAL]%') AS reversals"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net_credits": 4000.0,
+      "reversals": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_email",
+    "key_value": "franchise.director@atlas.com",
+    "fields": {
+     "notes": "[FRR-RECON] delta=4000; net re-read from ledger (credits minus reversals)=4000 matches delta; chain re-derived total_royalty_flow=4065 = expected_royalty=65 + underpayment_amount=4000; verdict ok. [FRR-LOG] total_royalty_flow=4065. [FRR-EXPECTED] expected_royalty=65. Q1 franchise royalty segment.",
+     "status": "[FRR-TIER] UNDERPAID_BELOW_THRESHOLD"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[FRR-RECON] delta=4000; net re-read from ledger (credits minus reversals)=4000 matches delta; chain re-derived total_royalty_flow=4065 = expected_royalty=65 + underpayment_amount=4000; verdict ok. [FRR-LOG] total_royalty_flow=4065. [FRR-EXPECTED] expected_royalty=65. Q1 franchise royalty segment.",
+     "status": "[FRR-TIER] UNDERPAID_BELOW_THRESHOLD"
+    },
+    "where": {
+     "customer_email": "franchise.director@atlas.com"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case",
+    "key_column": "number",
+    "key_value": "CS-0000071",
+    "fields": {
+     "escalation_reason": "impact",
+     "short_description": "[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: is not working as expected."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_customer_case",
+    "updated": {
+     "escalation_reason": "impact",
+     "short_description": "[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: is not working as expected."
+    },
+    "where": {
+     "number": "CS-0000071"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_csm_server_customer_case",
+    "key_column": "number",
+    "key_value": "CS-0000345",
+    "fields": {
+     "priority": "critical",
+     "short_description": "[FRR-DELINQ] FRR-Q1-017 total=4065 Product: Cisco ASA 5525-X Variant 42, Issue: is not working as expected."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_csm_server_customer_case",
+    "updated": {
+     "priority": "critical",
+     "short_description": "[FRR-DELINQ] FRR-Q1-017 total=4065 Product: Cisco ASA 5525-X Variant 42, Issue: is not working as expected."
+    },
+    "where": {
+     "number": "CS-0000345"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_events"
+   },
+   "response": {
+    "table": "eops_gym_calendar_events",
+    "columns": [
+     "event_id",
+     "calendar_id",
+     "user_id",
+     "summary",
+     "description",
+     "location",
+     "start_datetime",
+     "end_datetime",
+     "start_timezone",
+     "end_timezone",
+     "recurrence",
+     "status",
+     "visibility",
+     "color_id",
+     "eventType",
+     "focusTimeProperties",
+     "guestsCanInviteOthers",
+     "guestsCanModify",
+     "guestsCanSeeOtherGuests",
+     "outOfOfficeProperties",
+     "sequence",
+     "source",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_events LIMIT 1"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "event-corrected-001",
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "summary": "Sprint Planning & Architecture Review",
+      "description": "Detailed sprint planning session with architecture discussion for Q4 features. We'll review user stories, estimate effort, and plan the technical approach.",
+      "location": "Conference Room A, Building 1",
+      "start_datetime": "2025-10-06T09:00:00+00:00",
+      "end_datetime": "2025-10-06T11:00:00+00:00",
+      "start_timezone": "America/New_York",
+      "end_timezone": "America/New_York",
+      "recurrence": null,
+      "status": "confirmed",
+      "visibility": "default",
+      "color_id": "7",
+      "eventType": "default",
+      "focusTimeProperties": null,
+      "guestsCanInviteOthers": 1,
+      "guestsCanModify": 0,
+      "guestsCanSeeOtherGuests": 1,
+      "outOfOfficeProperties": null,
+      "sequence": 1,
+      "source": "{\"title\": \"Sprint Planning Board\", \"url\": \"https://jira.techcorp.com/sprint-planning-q4\"}",
+      "created_at": "2026-08-24 20:41:48",
+      "updated_at": "2026-08-24 20:41:48"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT calendar_id, summary FROM eops_gym_calendar_calendars WHERE calendar_id IN ('abigail_hunt69-team','aaron_hicks-primary')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "calendar_id": "aaron_hicks-primary",
+      "summary": "Aaron Hicks"
+     },
+     {
+      "calendar_id": "abigail_hunt69-team",
+      "summary": "Team Coordination"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_attendees LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "attendees_id": "att-corrected-001",
+      "event_id": "event-corrected-001",
+      "user_id": "alice_manager",
+      "comment": "Looking forward to planning Q4!",
+      "displayName": "Alice Johnson",
+      "additionalGuests": 0,
+      "optional": 0,
+      "resource": 0,
+      "responseStatus": "accepted"
+     },
+     {
+      "attendees_id": "att-corrected-002",
+      "event_id": "event-corrected-001",
+      "user_id": "bob_developer",
+      "comment": null,
+      "displayName": "Bob Smith",
+      "additionalGuests": 0,
+      "optional": 0,
+      "resource": 0,
+      "responseStatus": "accepted"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_working_location_properties LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "working_location_id": "wl-corrected-001",
+      "event_id": "event-corrected-004",
+      "type": "officeLocation",
+      "homeOffice": 0,
+      "customLocationLabel": null,
+      "officeLocationId": "office-building-2-floor-3"
+     },
+     {
+      "working_location_id": "wl-corrected-002",
+      "event_id": "event-corrected-005",
+      "type": "officeLocation",
+      "homeOffice": 0,
+      "customLocationLabel": null,
+      "officeLocationId": "office-building-1-floor-5"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id, summary, source, location, color_id, calendar_id, user_id, eventType, start_datetime, end_datetime FROM eops_gym_calendar_events WHERE calendar_id IN ('abigail_hunt69-team','aaron_hicks-primary') LIMIT 5"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "event_id": "aaron_hicks-evt-1114-1-workingLocation",
+      "summary": "[CS-0000005][Critical] Office Day",
+      "source": "{\"title\": \"CS-0000005 details\", \"url\": \"https://cases.example.com/CS-0000005\"}",
+      "location": "Home Office",
+      "color_id": "10",
+      "calendar_id": "aaron_hicks-primary",
+      "user_id": "aaron_hicks",
+      "eventType": "workingLocation",
+      "start_datetime": "2025-11-14T09:00:00+00:00",
+      "end_datetime": "2025-11-14T10:00:00+00:00"
+     },
+     {
+      "event_id": "aaron_hicks-evt-1008-2-birthday",
+      "summary": "Aaron Hicks's Birthday",
+      "source": null,
+      "location": "Collab Space, HQ South",
+      "color_id": "4",
+      "calendar_id": "aaron_hicks-primary",
+      "user_id": "aaron_hicks",
+      "eventType": "birthday",
+      "start_datetime": "2025-10-08T11:15:00+00:00",
+      "end_datetime": "2025-10-08T13:15:00+00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id, summary, source, description, start_datetime, start_timezone, calendar_id, user_id FROM eops_gym_calendar_events WHERE summary LIKE '%SLA War Room%' LIMIT 3"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_conference_data LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "id": "conf-corrected-001",
+      "event_id": "event-corrected-001",
+      "request_id": "req-sprint-planning-001",
+      "solution_type": "hangoutsMeet",
+      "status_code": "success",
+      "meeting_uri": "https://meet.google.com/abc-defg-hij",
+      "label": "Sprint Planning Meet"
+     },
+     {
+      "id": "conf-corrected-002",
+      "event_id": "event-corrected-006",
+      "request_id": "req-client-demo-001",
+      "solution_type": "hangoutsMeet",
+      "status_code": "success",
+      "meeting_uri": "https://meet.google.com/enterprise-demo-xyz",
+      "label": "Client Demo Backup"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 110,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_events",
+    "fields": {
+     "calendar_id": "abigail_hunt69-team",
+     "color_id": "9",
+     "created_at": "2026-09-16 12:00:00",
+     "description": "case_id: 71 assigned_to: mary.molina@servicenow.com",
+     "end_datetime": "2025-11-15T18:00:00-08:00",
+     "end_timezone": "America/Los_Angeles",
+     "event_id": "frr-q1-017-sla-war-room",
+     "eventType": "default",
+     "location": "https://meet.up",
+     "sequence": 1,
+     "source": "{\"title\": \"[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD\", \"url\": \"https://meet.up\"}",
+     "start_datetime": "2025-11-15T17:00:00-08:00",
+     "start_timezone": "America/Los_Angeles",
+     "status": "confirmed",
+     "summary": "SLA War Room",
+     "user_id": "abigail_hunt69",
+     "visibility": "default"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_events",
+    "created": {
+     "calendar_id": "abigail_hunt69-team",
+     "color_id": "9",
+     "created_at": "2026-09-16 12:00:00",
+     "description": "case_id: 71 assigned_to: mary.molina@servicenow.com",
+     "end_datetime": "2025-11-15T18:00:00-08:00",
+     "end_timezone": "America/Los_Angeles",
+     "event_id": "frr-q1-017-sla-war-room",
+     "eventType": "default",
+     "location": "https://meet.up",
+     "sequence": 1,
+     "source": "{\"title\": \"[FRR-CASE] FRR-Q1-017 tier=UNDERPAID_BELOW_THRESHOLD\", \"url\": \"https://meet.up\"}",
+     "start_datetime": "2025-11-15T17:00:00-08:00",
+     "start_timezone": "America/Los_Angeles",
+     "status": "confirmed",
+     "summary": "SLA War Room",
+     "user_id": "abigail_hunt69",
+     "visibility": "default"
+    },
+    "rowid": 147
+   },
+   "error": null
+  },
+  {
+   "call": 111,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_conference_data",
+    "fields": {
+     "event_id": "frr-q1-017-sla-war-room",
+     "id": "conf-frr-q1-017",
+     "label": "SLA War Room",
+     "meeting_uri": "https://meet.up",
+     "request_id": "req-frr-q1-017",
+     "solution_type": "hangoutsMeet",
+     "status_code": "success"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_conference_data",
+    "created": {
+     "event_id": "frr-q1-017-sla-war-room",
+     "id": "conf-frr-q1-017",
+     "label": "SLA War Room",
+     "meeting_uri": "https://meet.up",
+     "request_id": "req-frr-q1-017",
+     "solution_type": "hangoutsMeet",
+     "status_code": "success"
+    },
+    "rowid": 12
+   },
+   "error": null
+  },
+  {
+   "call": 112,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "fields": {
+     "additionalGuests": 0,
+     "attendees_id": "att-frr-q1-017-sla",
+     "displayName": "Mary Molina",
+     "event_id": "frr-q1-017-sla-war-room",
+     "optional": 0,
+     "resource": 0,
+     "responseStatus": "accepted",
+     "user_id": "mary.molina@servicenow.com"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "created": {
+     "additionalGuests": 0,
+     "attendees_id": "att-frr-q1-017-sla",
+     "displayName": "Mary Molina",
+     "event_id": "frr-q1-017-sla-war-room",
+     "optional": 0,
+     "resource": 0,
+     "responseStatus": "accepted",
+     "user_id": "mary.molina@servicenow.com"
+    },
+    "rowid": 43
+   },
+   "error": null
+  },
+  {
+   "call": 113,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_events",
+    "fields": {
+     "calendar_id": "aaron_hicks-primary",
+     "color_id": "11",
+     "created_at": "2026-09-16 12:00:00",
+     "description": "CS-0000345 settlement working session — outstanding underpayment review",
+     "end_datetime": "2025-12-26T17:00:00-05:00",
+     "end_timezone": "America/New_York",
+     "eventType": "workingLocation",
+     "event_id": "frr-q1-017-settlement-working",
+     "location": "Home Office",
+     "sequence": 1,
+     "source": "{\"title\": \"CS-0000345 details\", \"url\": \"https://cases.example.com/CS-0000345\"}",
+     "start_datetime": "2025-12-26T09:00:00-05:00",
+     "start_timezone": "America/New_York",
+     "status": "confirmed",
+     "summary": "[FRR-DELINQ] FRR-Q1-017 total=4065 CS-0000345 settlement working session",
+     "user_id": "aaron_hicks",
+     "visibility": "private"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_events",
+    "created": {
+     "calendar_id": "aaron_hicks-primary",
+     "color_id": "11",
+     "created_at": "2026-09-16 12:00:00",
+     "description": "CS-0000345 settlement working session — outstanding underpayment review",
+     "end_datetime": "2025-12-26T17:00:00-05:00",
+     "end_timezone": "America/New_York",
+     "eventType": "workingLocation",
+     "event_id": "frr-q1-017-settlement-working",
+     "location": "Home Office",
+     "sequence": 1,
+     "source": "{\"title\": \"CS-0000345 details\", \"url\": \"https://cases.example.com/CS-0000345\"}",
+     "start_datetime": "2025-12-26T09:00:00-05:00",
+     "start_timezone": "America/New_York",
+     "status": "confirmed",
+     "summary": "[FRR-DELINQ] FRR-Q1-017 total=4065 CS-0000345 settlement working session",
+     "user_id": "aaron_hicks",
+     "visibility": "private"
+    },
+    "rowid": 148
+   },
+   "error": null
+  },
+  {
+   "call": 114,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_working_location_properties",
+    "fields": {
+     "customLocationLabel": "Home Office",
+     "event_id": "frr-q1-017-settlement-working",
+     "homeOffice": 1,
+     "officeLocationId": null,
+     "type": "homeOffice",
+     "working_location_id": "wl-frr-q1-017"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_working_location_properties",
+    "created": {
+     "customLocationLabel": "Home Office",
+     "event_id": "frr-q1-017-settlement-working",
+     "homeOffice": 1,
+     "officeLocationId": null,
+     "type": "homeOffice",
+     "working_location_id": "wl-frr-q1-017"
+    },
+    "rowid": 18
+   },
+   "error": null
+  },
+  {
+   "call": 115,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "fields": {
+     "additionalGuests": 0,
+     "attendees_id": "att-frr-q1-017-settle",
+     "displayName": "Paige Collins",
+     "event_id": "frr-q1-017-settlement-working",
+     "optional": 0,
+     "resource": 0,
+     "responseStatus": "accepted",
+     "user_id": "paige_collins"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "created": {
+     "additionalGuests": 0,
+     "attendees_id": "att-frr-q1-017-settle",
+     "displayName": "Paige Collins",
+     "event_id": "frr-q1-017-settlement-working",
+     "optional": 0,
+     "resource": 0,
+     "responseStatus": "accepted",
+     "user_id": "paige_collins"
+    },
+    "rowid": 44
+   },
+   "error": null
+  },
+  {
+   "call": 116,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT recipient_ids, sender_id, subject, id FROM gm_emails ORDER BY id DESC LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "recipient_ids": "[44]",
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "id": 20866
+     },
+     {
+      "recipient_ids": "[84]",
+      "sender_id": 151,
+      "subject": "Todoist Project Invitation",
+      "id": 20865
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 117,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "body": "Q1 franchise royalty reconciliation status update (FRR-Q1-017). Total royalty flow = 4065. Remittance tier = UNDERPAID_BELOW_THRESHOLD. Escalated collections case number = CS-0000071. The underpayment shortfall of 4000 has been settled via credit to the franchisee and the settlement case CS-0000345 raised as critical. Delta is below the collections-referral threshold; no external collections referral required.",
+     "created_at": "2026-09-16 12:00:00",
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[FRR-STATUS] FRR-Q1-017 Q1 Franchise Royalty Reconciliation Status"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "body": "Q1 franchise royalty reconciliation status update (FRR-Q1-017). Total royalty flow = 4065. Remittance tier = UNDERPAID_BELOW_THRESHOLD. Escalated collections case number = CS-0000071. The underpayment shortfall of 4000 has been settled via credit to the franchisee and the settlement case CS-0000345 raised as critical. Delta is below the collections-referral threshold; no external collections referral required.",
+     "created_at": "2026-09-16 12:00:00",
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[FRR-STATUS] FRR-Q1-017 Q1 Franchise Royalty Reconciliation Status"
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 118,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT\n (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE description LIKE '%[FRR-CREDIT]%' AND description NOT LIKE '%[FRR-REVERSAL]%') \n - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE description LIKE '%[FRR-REVERSAL]%') AS net_settlement,\n (SELECT amount FROM sw_expenses WHERE description LIKE '%[FRR-ALLOC]%') AS alloc_amount,\n (SELECT share_amount FROM sw_expense_shares WHERE expense_id=(SELECT id FROM sw_expenses WHERE description LIKE '%[FRR-ALLOC]%')) AS analyst_share,\n (SELECT status FROM wb_customer_relationship_manager_data WHERE customer_email='franchise.director@atlas.com') AS crm_status,\n (SELECT escalation_reason FROM eops_sn_csm_server_customer_case WHERE number='CS-0000071') AS c71_esc,\n (SELECT priority FROM eops_sn_csm_server_customer_case WHERE number='CS-0000345') AS c345_pri"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net_settlement": 4000.0,
+      "alloc_amount": 4065.0,
+      "analyst_share": 2032.5,
+      "crm_status": "[FRR-TIER] UNDERPAID_BELOW_THRESHOLD",
+      "c71_esc": "impact",
+      "c345_pri": "critical"
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_franchise_royalty_reconciliation__0001",
+ "provider": "claude",
+ "model": "claude-opus-4-8",
+ "attempt": 1,
+ "variant_sha": null,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 9,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 25,
+  "fsv_n_checks": 94,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "branch": "UNDERPAID_BELOW_THRESHOLD",
+  "expected_royalty": "65",
+  "reconciled": "ok",
+  "reference_catalog_item": "Sol Ring",
+  "royalty_index": "9675.03846153846",
+  "side_cohort_major": "Business",
+  "total_royalty_flow": "4065",
+  "underpayment_amount": "4000",
+  "underpayment_delta": "4000"
+ },
+ "extraction_scored": true,
+ "transport": {}
+}

@@ -1,0 +1,5185 @@
+{
+ "mode": "goal_only_plan",
+ "per_node": {
+  "n01": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_1151_risk_index",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_1151_risk_index"
+   ]
+  },
+  "n02": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "risk_score_is_round_index",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "risk_score_derives_from_stored_risk_index",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "cab_crm_risk_score_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "risk_score_is_round_index",
+    "risk_score_derives_from_stored_risk_index",
+    "ancestors_pass__n02"
+   ]
+  },
+  "n03": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_1023_change_volume",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_1023_change_volume"
+   ]
+  },
+  "n04": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "window_uplift_is_count_times_1000",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_change_volume",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "release_total_equals_score_plus_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "release_total_derives_from_stored_score_and_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "window_uplift_is_count_times_1000",
+    "uplift_derives_from_stored_change_volume",
+    "release_total_equals_score_plus_uplift",
+    "release_total_derives_from_stored_score_and_uplift",
+    "delta_equals_uplift",
+    "delta_derives_from_stored_uplift",
+    "ancestors_pass__n04"
+   ]
+  },
+  "n05": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "branch_matches_true_risk_class",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_risk_score",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "branch_matches_true_risk_class",
+    "branch_derives_from_stored_risk_score",
+    "ancestors_pass__n05"
+   ]
+  },
+  "n06": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "change_window_hold_placed",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "change_window_hold_placed",
+    "ancestors_pass__n06"
+   ]
+  },
+  "n07": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_vendor",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "wrong_disbursement_reversed_not_deleted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "vm_net_equals_delta_to_correct_vendor",
+    "ancestors_pass__n07"
+   ]
+  },
+  "n08": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "handoff_sent_iff_extended_or_emergency",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "handoff_sent_iff_extended_or_emergency",
+    "ancestors_pass__n08"
+   ]
+  },
+  "n09": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_logged_release_total_gated_by_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_logged_release_total_gated_by_branch",
+    "ancestors_pass__n09"
+   ]
+  },
+  "n10": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "allocation_and_share_recorded",
+    "ancestors_pass__n10"
+   ]
+  },
+  "n11": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "followup_task_cites_delta_after_log",
+    "ancestors_pass__n11"
+   ]
+  },
+  "n12": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_tier_status_correctly_rederived",
+    "ancestors_pass__n12"
+   ]
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "standard_change_record_raised",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "change_mapped_to_the_incident_it_remediates",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "change_record_filed_at_the_tier_of_record",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "change_record_filed_at_the_tier_of_record",
+    "ancestors_pass__n13"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_held_awaiting_the_change",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "incident_hold_cites_the_filed_change",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "incident_hold_cites_the_filed_change",
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_release_total_tier_and_held_incident",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "status_email_cites_release_total_tier_and_held_incident",
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_caller_informed_of_the_change",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "caller_notice_repeats_the_reported_total",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "caller_notice_repeats_the_reported_total",
+    "ancestors_pass__n16"
+   ]
+  },
+  "n17": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "incident_sla_paused_for_the_window",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "sla_pause_gated_on_the_caller_notice",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n17"
+   ]
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "reconciled_net_equals_delta",
+    "reconciled_figures_consistent",
+    "ancestors_pass__n18"
+   ]
+  },
+  "n19": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__risk_index_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__risk_score_is_round_index",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__change_volume_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__window_uplift_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__release_total_is_score_plus_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_risk_class",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_exposure_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "ancestors_pass__n19",
+    "final_task_pin__risk_index_correct",
+    "final_task_pin__risk_score_is_round_index",
+    "final_task_pin__change_volume_correct",
+    "final_task_pin__window_uplift_correct",
+    "final_task_pin__release_total_is_score_plus_uplift",
+    "final_task_pin__delta_equals_uplift",
+    "final_task_pin__branch_matches_true_risk_class",
+    "final_task_pin__side_exposure_correct"
+   ]
+  },
+  "n20": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_182_side_exposure",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_182_side_exposure"
+   ]
+  }
+ },
+ "terminal": {
+  "passed": true,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "risk_index_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "risk_score_is_round_index",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "change_volume_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "window_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "release_total_is_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_risk_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "change_window_hold_on_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_disbursement_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_vendor_disbursement_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "handoff_email_matches_branch_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_share_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_release_total",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "standard_change_record_on_register",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "incident_held_against_the_change",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "status_email_cites_total_and_tier",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "incident_caller_informed_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "incident_sla_paused_on_register",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_exposure_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "no_normal_partner_handoff",
+    "ok": false,
+    "actual": 1,
+    "expected": 0
+   },
+   {
+    "name": "no_emergency_note_for_non_emergency_branch",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_vendor_disbursement",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_cab",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_1151_risk_index",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__risk_score_is_round_index",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__risk_score_derives_from_stored_risk_index",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__cab_crm_risk_score_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_1023_change_volume",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__window_uplift_is_count_times_1000",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__uplift_derives_from_stored_change_volume",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__release_total_equals_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__release_total_derives_from_stored_score_and_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_true_risk_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_risk_score",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__change_window_hold_placed",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_correct_vendor",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__wrong_disbursement_reversed_not_deleted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__handoff_sent_iff_extended_or_emergency",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_release_total_gated_by_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__standard_change_record_raised",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__change_mapped_to_the_incident_it_remediates",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__change_record_filed_at_the_tier_of_record",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__incident_held_awaiting_the_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__incident_hold_cites_the_filed_change",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__status_email_cites_release_total_tier_and_held_incident",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__incident_caller_informed_of_the_change",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__caller_notice_repeats_the_reported_total",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__ancestors_pass__n16",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__incident_sla_paused_for_the_window",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__sla_pause_gated_on_the_caller_notice",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_net_equals_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_figures_consistent",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__review_after_window_conflict_free_gated",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__ancestors_pass__n19",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_terminal",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__risk_index_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__risk_score_is_round_index",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__change_volume_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__window_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__release_total_is_score_plus_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__delta_equals_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__branch_matches_true_risk_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__side_exposure_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_182_side_exposure",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   }
+  ],
+  "n_ok": 28,
+  "n_checks": 93,
+  "failed": [
+   "risk_index_correct",
+   "risk_score_is_round_index",
+   "change_volume_correct",
+   "window_uplift_correct",
+   "release_total_is_score_plus_uplift",
+   "delta_equals_uplift",
+   "branch_matches_true_risk_class",
+   "handoff_email_matches_branch_class",
+   "crm_tier_rederived",
+   "standard_change_record_on_register",
+   "incident_held_against_the_change",
+   "status_email_cites_total_and_tier",
+   "side_exposure_correct",
+   "no_normal_partner_handoff",
+   "node_n01__src_birdsql_1151_risk_index",
+   "node_n02__risk_score_is_round_index",
+   "node_n02__risk_score_derives_from_stored_risk_index",
+   "node_n02__ancestors_pass__n02",
+   "node_n03__src_birdsql_1023_change_volume",
+   "node_n04__window_uplift_is_count_times_1000",
+   "node_n04__uplift_derives_from_stored_change_volume",
+   "node_n04__release_total_equals_score_plus_uplift",
+   "node_n04__release_total_derives_from_stored_score_and_uplift",
+   "node_n04__delta_equals_uplift",
+   "node_n04__delta_derives_from_stored_uplift",
+   "node_n04__ancestors_pass__n04",
+   "node_n05__branch_matches_true_risk_class",
+   "node_n05__branch_derives_from_stored_risk_score",
+   "node_n05__ancestors_pass__n05",
+   "node_n06__change_window_hold_placed",
+   "node_n06__ancestors_pass__n06",
+   "node_n07__vm_net_equals_delta_to_correct_vendor",
+   "node_n07__ancestors_pass__n07",
+   "node_n08__handoff_sent_iff_extended_or_emergency",
+   "node_n08__ancestors_pass__n08",
+   "node_n09__crm_logged_release_total_gated_by_branch",
+   "node_n09__ancestors_pass__n09",
+   "node_n10__allocation_and_share_recorded",
+   "node_n10__ancestors_pass__n10",
+   "node_n11__followup_task_cites_delta_after_log",
+   "node_n11__ancestors_pass__n11",
+   "node_n12__crm_tier_status_correctly_rederived",
+   "node_n12__ancestors_pass__n12",
+   "node_n13__change_record_filed_at_the_tier_of_record",
+   "node_n13__ancestors_pass__n13",
+   "node_n14__incident_hold_cites_the_filed_change",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__status_email_cites_release_total_tier_and_held_incident",
+   "node_n15__ancestors_pass__n15",
+   "node_n16__caller_notice_repeats_the_reported_total",
+   "node_n16__ancestors_pass__n16",
+   "node_n17__ancestors_pass__n17",
+   "node_n18__reconciled_net_equals_delta",
+   "node_n18__reconciled_figures_consistent",
+   "node_n18__ancestors_pass__n18",
+   "node_n19__ancestors_pass__n19",
+   "node_n19__final_task_pin__risk_index_correct",
+   "node_n19__final_task_pin__risk_score_is_round_index",
+   "node_n19__final_task_pin__change_volume_correct",
+   "node_n19__final_task_pin__window_uplift_correct",
+   "node_n19__final_task_pin__release_total_is_score_plus_uplift",
+   "node_n19__final_task_pin__delta_equals_uplift",
+   "node_n19__final_task_pin__branch_matches_true_risk_class",
+   "node_n19__final_task_pin__side_exposure_correct",
+   "node_n20__src_birdsql_182_side_exposure"
+  ]
+ },
+ "n_tool_calls": 89,
+ "n_turns": 47,
+ "n_assistant_msgs": 44,
+ "usage": {
+  "steps_with_usage": 47,
+  "input": 74156,
+  "output": 27384,
+  "reasoning": 0,
+  "cache_read": 2135764,
+  "cache_write": 0,
+  "cost_usd": 0.0
+ },
+ "n_decoy_calls": 0,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 572.3,
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nRun the quarterly production change-management / release cycle for the release desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nbranch: the change-window route — exactly one of {NORMAL_WINDOW, EXTENDED_WINDOW, EMERGENCY_HOLD}\nchange_volume: the in-scope change count — whole number\ndelta: the escalation delta — whole number, no thousands separators\nreconciled: the reconciliation verdict — the single lower-case word 'ok' if the fee ledger nets to the delta\nrelease_total: the release total — whole number, no thousands separators\nrisk_index: the change-risk index — the percentage exactly as the source book returns it (its full decimal form)\nrisk_score: the change risk score — whole number\nside_exposure: the side-exposure figure — whole number\nwindow_uplift: the change-window uplift — whole number, no thousands separators\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nPRODUCTION CHANGE DESK — RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[CM-RISK]' — CAB CRM notes: the risk-score stamp, citing 'risk_score=<n>'.\n   - '[CM-WINDOW]' — wb_calendar_events EVENT NAME of the change window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[CM-FEE]' — change-fee ledger (vm) DESCRIPTION of every disbursement entry.\n   - '[CM-FEE-REV]' — change-fee ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[CM-FEE]' tag).\n   - '[CM-HANDOFF]' — email SUBJECT of the rollback-partner handoff; the BODY must cite the release total and the delta.\n   - '[CM-LOG]' — CAB CRM notes: the change log, citing 'release_total=<n>'.\n   - '[CM-ALLOC]' — Splitwise expense DESCRIPTION of the intercompany change-cost allocation. The expense books the full recorded release_total as its amount, and its sw_expense_shares row assigns morgan.reyes@atlas.com a share of exactly half that amount.\n   - '[CM-FUP]' — Todoist task TITLE (in your 'Q1 Change Management Review' project); the title cites the delta.\n   - '[CM-TIER]' — CAB CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[CM-STATUS]' — email SUBJECT of the CAB status update; the BODY must cite the release total and the tier word.\n   - '[CM-RECON]' — CAB CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[CM-FEE]' ledger (disbursements minus reversals) at write time, and the figure chain is re-derived before the verdict — the recorded release_total must still equal risk_score + change_volume*1000.\n   - '[CM-REVIEW]' — wb_calendar_events EVENT NAME of the post-implementation review.\n   - '[CM-CHG]' — the ITSM change record's SUMMARY LINE (short_description) and the held incident's WORK NOTES: the change number and the tier word the change was raised at.\n   - '[CM-EMERGENCY]' — CAB CRM notes: the emergency-freeze note, filed ONLY on the EMERGENCY route.\n\n2. ROUTE AND TIER WORDS. The change route is always one of the desk's three route words: 'NORMAL_WINDOW', 'EXTENDED_WINDOW', 'EMERGENCY_HOLD'. The change tier is always one of the desk's three tier words: 'STANDARD_CHANGE', 'EXTENDED_REVIEW', 'EMERGENCY_CHANGE'. A cited tier word is re-derived from the live change-risk cohort book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (parker.li@atlas.com); the CAB lead is written to at cab.lead@atlas.com, the rollback partner at rollback.partner@atlas.com. Change-fee disbursements run on the vm ledger FROM you TO the correct vendor (correct.vendor@atlas.com); a disbursement that lands on the wrong vendor (wrong.vendor@atlas.com) is corrected by that vendor sending the same amount back to you, never deleted. The change-cost allocation runs on the sw ledger between you and the co-approver (morgan.reyes@atlas.com). Follow-up work lives in your Todoist 'Q1 Change Management Review' project; the window and review on your own wb_calendar_events (participant_email = parker.li@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row — never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the CAB row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the CAB record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the change-risk index keeps its full decimal form); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE CHANGE REGISTER (a shared desk system; record under the ids of record, exactly as stated — the register's OTHER rows are background book, never modify them).\n   - ITSM change register (eops_gym_itsm_mcp_* tables). The production incident this quarter's deployment remediates is INC_057 ('INC-000057'), raised by its caller of record richard.lopez@servicenow.com; its response clock is the SLA row 'TSLA_022' (definition 'SLA_001').\n   - The cycle's change record is 'CHG_026' (number 'CHG0000026'), filed on the register's STANDARD-change template: status 'new', impact 'low', risk 'low', priority 'low', category 'other', cab_required false (a standard change is pre-approved — the register's form of the desk's standing pre-authorization), org 'ORG_001'. Its summary line carries the '[CM-CHG]' tag, the change number and the tier word. It is mapped to the incident it remediates as change_request_mapping 'CRM_017'.\n   - The hold on 'INC-000057' is status 'on_hold' with on_hold_reason 'Awaiting Change' and change_request 'CHG_026'; the incident's WORK NOTES carry the change number and the tier word the change was raised at.\n   - The caller of record is told on notification 'NOTIF_031' (type 'update', status 'sent', on incident 'INC_057', to richard.lopez@servicenow.com); its MESSAGE carries the change number, the release total exactly as reported to the CAB lead, and the tier word.\n   - The response clock is stopped last: SLA row 'TSLA_022' moves to stage 'paused' for the window, never before the caller has been told why it is stopping.\n\n## Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative — derive every figure yourself).\n{\"crm_cab_lead\": [{\"customer_id\": \"00000002\", \"customer_email\": \"cab.lead@atlas.com\", \"customer_name\": \"CAB Lead\", \"assigned_to_email\": \"parker.li@atlas.com\", \"status\": \"Active\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"parker.li@atlas.com\", \"note\": \"\"}, {\"email\": \"correct.vendor@atlas.com\", \"note\": \"\"}, {\"email\": \"wrong.vendor@atlas.com\", \"note\": \"\"}], \"gm_users\": [{\"email\": \"parker.li@atlas.com\", \"note\": \"\"}, {\"email\": \"cab.lead@atlas.com\", \"note\": \"\"}, {\"email\": \"rollback.partner@atlas.com\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 Change Management Review\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"release-desk daily standup\", \"participant_email\": \"parker.li@atlas.com\", \"event_start\": \"2024-02-15 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"eops_gym_itsm_mcp_incident\": [{\"incident_id\": \"INC_057\", \"number\": \"INC-000057\", \"short_description\": \"HR DB\", \"status\": \"new\", \"caller_id\": \"USER_057\", \"note\": \"\"}], \"eops_gym_itsm_mcp_incident_sla\": [{\"incident_sla_id\": \"TSLA_022\", \"incident_id\": \"INC_057\", \"sla_def_id\": \"SLA_001\", \"stage\": \"in_progress\", \"note\": \"\"}], \"eops_gym_itsm_mcp_users\": [{\"user_id\": \"USER_057\", \"email\": \"richard.lopez@servicenow.com\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Column names + types.\", \"args\": {\"table\": \"table\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (a vm_transactions disbursement / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).\", \"args\": {\"table\": \"table\", \"values\": \"column map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register re-home/rename/attachment).\", \"args\": {\"table\": \"table\", \"set\": \"columns\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows. NOTE: change-fee disbursements are compensatable — reverse a wrong-vendor disbursement, do NOT naked-delete it.\", \"args\": {\"table\": \"table\", \"where\": \"predicate\"}}]",
+ "final_message": "Every figure and artifact checks out:\n- change_volume = 23 (ORG_001 non-canceled cohort incl CHG_026)\n- fee ledger net = 12000 = delta → reconciled = ok\n- incident on_hold, SLA paused (clock stopped last, after caller notified)\n- CM-ALLOC expense = 23022 (full release_total), morgan's share = 11511 (exactly half)\n- CM-TIER status stamp in place\n\nThe full chain: risk_index = 5/23×100 = 21.73913043478261%, risk_score = round = 22, release_total = 22 + 23×1000 = 23022, side_exposure = 23022/2 = 11511. Escalation split of the cohort: 12 CAB-escalated changes → delta = 12000; 11 non-escalated → window_uplift = 11000; and 22 + 12000 + 11000 = 23022 = release_total. Branch/tier = NORMAL_WINDOW / STANDARD_CHANGE (CHG_026 raised on the standard pre-approved template; no emergency freeze note filed).\n\nThe quarterly production change-management release cycle is complete: CHG_026 raised and mapped to INC_057, the incident held with its clock paused only after the caller of record was notified, the risk/log/tier/reconciliation stamped in the CAB CRM, the change window and post-implementation review booked conflict-free, the change fee disbursed to the correct vendor, the intercompany cost allocated with the co-approver's half-share, and the rollback-partner handoff, CAB status update, and follow-up task filed.\n\nREPORT\nbranch: NORMAL_WINDOW\nchange_volume: 23\ndelta: 12000\nreconciled: ok\nrelease_total: 23022\nrisk_index: 21.73913043478261\nrisk_score: 22\nside_exposure: 11511\nwindow_uplift: 11000",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_account",
+     "bird_card",
+     "bird_client",
+     "bird_disp",
+     "bird_district",
+     "bird_european_football_2_Country",
+     "bird_european_football_2_League",
+     "bird_european_football_2_Match",
+     "bird_european_football_2_Player",
+     "bird_european_football_2_Player_Attributes",
+     "bird_european_football_2_Team",
+     "bird_european_football_2_Team_Attributes",
+     "bird_loan",
+     "bird_order",
+     "bird_thrombosis_prediction_Examination",
+     "bird_thrombosis_prediction_Laboratory",
+     "bird_thrombosis_prediction_Patient",
+     "bird_trans",
+     "eops_gym_itsm_mcp_change",
+     "eops_gym_itsm_mcp_change_request_mapping",
+     "eops_gym_itsm_mcp_child_incident",
+     "eops_gym_itsm_mcp_configuration_item",
+     "eops_gym_itsm_mcp_incident",
+     "eops_gym_itsm_mcp_incident_affected_cis",
+     "eops_gym_itsm_mcp_incident_knowledge",
+     "eops_gym_itsm_mcp_incident_sla",
+     "eops_gym_itsm_mcp_incident_template",
+     "eops_gym_itsm_mcp_knowledge",
+     "eops_gym_itsm_mcp_location",
+     "eops_gym_itsm_mcp_notification",
+     "eops_gym_itsm_mcp_organization",
+     "eops_gym_itsm_mcp_permission",
+     "eops_gym_itsm_mcp_problem",
+     "eops_gym_itsm_mcp_role",
+     "eops_gym_itsm_mcp_role_permission",
+     "eops_gym_itsm_mcp_service",
+     "eops_gym_itsm_mcp_service_offering",
+     "eops_gym_itsm_mcp_sla_definition",
+     "eops_gym_itsm_mcp_user_group",
+     "eops_gym_itsm_mcp_user_group_member",
+     "eops_gym_itsm_mcp_user_role",
+     "eops_gym_itsm_mcp_users",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "table": "wb_customer_relationship_manager_data",
+    "columns": [
+     "customer_id",
+     "assigned_to_email",
+     "customer_name",
+     "customer_email",
+     "customer_phone",
+     "last_contact_date",
+     "product_interest",
+     "status",
+     "follow_up_by",
+     "notes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_change",
+    "columns": [
+     "change_id",
+     "number",
+     "short_description",
+     "requested_by",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "org_id",
+     "status",
+     "category",
+     "description",
+     "implementation_plan",
+     "testing_plan",
+     "close_notes",
+     "cab_required",
+     "impact",
+     "priority",
+     "risk",
+     "close_code",
+     "created_on",
+     "updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "columns": [
+     "incident_id",
+     "number",
+     "short_description",
+     "caller_id",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "resolved_by",
+     "problem",
+     "change_request",
+     "caused_by_change",
+     "incident_template",
+     "parent_incident",
+     "org_id",
+     "channel",
+     "contact_type",
+     "status",
+     "category",
+     "description",
+     "worknotes",
+     "resolution_notes",
+     "close_notes",
+     "impact",
+     "urgency",
+     "priority",
+     "resolution_code",
+     "on_hold_reason",
+     "resolved",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT customer_id, customer_email, customer_name, assigned_to_email, status, follow_up_by, notes FROM wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "n_rows": 200,
+    "rows": [
+     {
+      "customer_id": "00000189",
+      "customer_email": "taylor.jackson@nanolabs",
+      "customer_name": "Taylor Jackson",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-22",
+      "notes": "2023-11-07: Had a call. 2023-11-25: Had a call. "
+     },
+     {
+      "customer_id": "00000107",
+      "customer_email": "quinn.harris@nanoforcerobotics",
+      "customer_name": "Quinn Harris",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-14",
+      "notes": "2023-11-26: Saw the demo. 2023-11-29: Had a call. 2023-10-27: Had a call. "
+     },
+     {
+      "customer_id": "00000052",
+      "customer_email": "jaden.white@protracefoods",
+      "customer_name": "Jaden White",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "status": "Won",
+      "follow_up_by": "2023-12-13",
+      "notes": "2023-10-17: Had a call. "
+     },
+     {
+      "customer_id": "00000102",
+      "customer_email": "alex.thomas@proenergy",
+      "customer_name": "Alex Thomas",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "status": "Qualified",
+      "follow_up_by": "2023-12-22",
+      "notes": "2023-10-15: On holiday. "
+     },
+     {
+      "customer_id": "00000187",
+      "customer_email": "quinn.robinson@flexenergy",
+      "customer_name": "Quinn Robinson",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Lead",
+      "follow_up_by": "2023-12-23",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000154",
+      "customer_email": "jordan.garcia@forceenergy",
+      "customer_name": "Jordan Garcia",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "status": "Lead",
+      "follow_up_by": "2023-12-27",
+      "notes": "2023-11-20: Saw the demo. 2023-11-14: Met in person. 2023-10-27: On holiday. "
+     },
+     {
+      "customer_id": "00000105",
+      "customer_email": "reese.taylor@pointdynamics",
+      "customer_name": "Reese Taylor",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "status": "Won",
+      "follow_up_by": "2023-12-25",
+      "notes": "2023-10-30: Saw the demo. 2023-11-19: Met in person. 2023-11-02: Met in person. "
+     },
+     {
+      "customer_id": "00000149",
+      "customer_email": "jessie.thomas@greendynamicsecurity",
+      "customer_name": "Jessie Thomas",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "status": "Lead",
+      "follow_up_by": "2023-12-21",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000198",
+      "customer_email": "angel.williams@techinteractivefoods",
+      "customer_name": "Angel Williams",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-07",
+      "notes": "2023-11-02: Saw the demo. 2023-11-10: Met in person. 2023-10-28: Met in person. "
+     },
+     {
+      "customer_id": "00000197",
+      "customer_email": "angel.robinson@greencloud",
+      "customer_name": "Angel Robinson",
+      "assigned_to_email": "raj.patel@atlas.com",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-16",
+      "notes": "2023-10-25: Met in person. "
+     },
+     {
+      "customer_id": "00000060",
+      "customer_email": "taylor.wilson@visionsoftware",
+      "customer_name": "Taylor Wilson",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "status": "Won",
+      "follow_up_by": "2023-12-28",
+      "notes": "2023-11-02: Saw the demo. 2023-10-27: Met in person. "
+     },
+     {
+      "customer_id": "00000141",
+      "customer_email": "jordan.davis@omnienergy",
+      "customer_name": "Jordan Davis",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-29",
+      "notes": "2023-11-26: Had a call. 2023-10-01: Saw the demo. "
+     },
+     {
+      "customer_id": "00000159",
+      "customer_email": "parker.martin@solarsystems",
+      "customer_name": "Parker Martin",
+      "assigned_to_email": "sofia.santos@atlas.com",
+      "status": "Qualified",
+      "follow_up_by": "2023-12-11",
+      "notes": "2023-10-21: Met in person. 2023-10-03: On holiday. "
+     },
+     {
+      "customer_id": "00000033",
+      "customer_email": "morgan.thompson@solarpathtech",
+      "customer_name": "Morgan Thompson",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "status": "Proposal",
+      "follow_up_by": "2023-12-08",
+      "notes": "2023-10-09: Met in person. 2023-11-12: Saw the demo. 2023-11-28: Met in person. "
+     },
+     {
+      "customer_id": "00000028",
+      "customer_email": "avery.miller@interactiveelectronics",
+      "customer_name": "Avery Miller",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-15",
+      "notes": "2023-11-12: Had a call. 2023-11-16: Saw the demo. "
+     },
+     {
+      "customer_id": "00000054",
+      "customer_email": "quinn.martinez@visionelectronics",
+      "customer_name": "Quinn Martinez",
+      "assigned_to_email": "nadia.moreau@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-13",
+      "notes": "2023-10-05: Had a call. "
+     },
+     {
+      "customer_id": "00000009",
+      "customer_email": "cameron.brown@pathenergy",
+      "customer_name": "Cameron Brown",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Won",
+      "follow_up_by": "2023-12-05",
+      "notes": "2023-11-01: Had a call. 2023-10-08: Saw the demo. "
+     },
+     {
+      "customer_id": "00000161",
+      "customer_email": "dakota.davis@peakenergy",
+      "customer_name": "Dakota Davis",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Qualified",
+      "follow_up_by": "2023-12-22",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000076",
+      "customer_email": "dakota.wilson@pointsystems",
+      "customer_name": "Dakota Wilson",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Lead",
+      "follow_up_by": "2023-12-24",
+      "notes": "2023-10-04: Met in person. 2023-10-18: On holiday. "
+     },
+     {
+      "customer_id": "00000165",
+      "customer_email": "jordan.wilson@ultrafoods",
+      "customer_name": "Jordan Wilson",
+      "assigned_to_email": "lena.schmidt@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-21",
+      "notes": ""
+     },
+     {
+      "customer_id": "00000130",
+      "customer_email": "rahul.johnson@mindanalytics",
+      "customer_name": "Rahul Johnson",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-23",
+      "notes": "2023-10-19: Had a call. 2023-11-24: Had a call. 2023-10-28: On holiday. "
+     },
+     {
+      "customer_id": "00000126",
+      "customer_email": "cameron.martinez@omnibiotech",
+      "customer_name": "Cameron Martinez",
+      "assigned_to_email": "akira.sato@atlas.com",
+      "status": "Lost",
+      "follow_up_by": "2023-12-23",
+      "notes": "2023-11-11: Saw the demo. 2023-10-31: On holiday. "
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='cab.lead@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "parker.li@atlas.com",
+      "customer_name": "CAB Lead",
+      "customer_email": "cab.lead@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "change management",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 change review."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (rate) — applies to records you are working with: The change risk score is set as that index rounded to a whole number."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_analytics_data"
+   },
+   "response": {
+    "table": "wb_analytics_data",
+    "columns": [
+     "date_of_visit",
+     "visitor_id",
+     "page_views",
+     "session_duration_seconds",
+     "traffic_source",
+     "user_engaged"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change WHERE change_id='CHG_026'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT incident_id, number, status, on_hold_reason, change_request, worknotes, caller_id FROM eops_gym_itsm_mcp_incident WHERE incident_id='INC_057'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_057",
+      "number": "INC-000057",
+      "status": "new",
+      "on_hold_reason": null,
+      "change_request": null,
+      "worknotes": null,
+      "caller_id": "USER_057"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) as cnt FROM eops_gym_itsm_mcp_change"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "cnt": 25
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, number, status, category, risk, impact, priority, cab_required, org_id, short_description FROM eops_gym_itsm_mcp_change LIMIT 30"
+   },
+   "response": {
+    "n_rows": 25,
+    "rows": [
+     {
+      "change_id": "CHG_001",
+      "number": "CHG0000001",
+      "status": "scheduled",
+      "category": "software",
+      "risk": "high",
+      "impact": "high",
+      "priority": "high",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Apply Oracle Patch 19.4.2 to SAP DB"
+     },
+     {
+      "change_id": "CHG_002",
+      "number": "CHG0000002",
+      "status": "authorize",
+      "category": "hardware",
+      "risk": "medium",
+      "impact": "high",
+      "priority": "high",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Replace Line Card on Core Switch"
+     },
+     {
+      "change_id": "CHG_003",
+      "number": "CHG0000003",
+      "status": "review",
+      "category": "hardware",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "cab_required": 0,
+      "org_id": "ORG_003",
+      "short_description": "EMERGENCY:Robot Firmware Rollback"
+     },
+     {
+      "change_id": "CHG_004",
+      "number": "CHG0000004",
+      "status": "scheduled",
+      "category": "software",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Monthly Windows Server Patching"
+     },
+     {
+      "change_id": "CHG_005",
+      "number": "CHG0000005",
+      "status": "assess",
+      "category": "network",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Upgrade VPN Concentrator Firmware"
+     },
+     {
+      "change_id": "CHG_006",
+      "number": "CHG0000006",
+      "status": "implement",
+      "category": "software",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Deploy New HR Portal v2.0"
+     },
+     {
+      "change_id": "CHG_007",
+      "number": "CHG0000007",
+      "status": "closed",
+      "category": "other",
+      "risk": "low",
+      "impact": "medium",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Resize AWS Cluster Instances"
+     },
+     {
+      "change_id": "CHG_008",
+      "number": "CHG0000008",
+      "status": "new",
+      "category": "hardware",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Re-cabling Server Rack 4"
+     },
+     {
+      "change_id": "CHG_009",
+      "number": "CHG0000009",
+      "status": "closed",
+      "category": "hardware",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Decommission Legacy Dial-Up Server"
+     },
+     {
+      "change_id": "CHG_010",
+      "number": "CHG0000010",
+      "status": "scheduled",
+      "category": "network",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Update Firewall Rules for Vendor"
+     },
+     {
+      "change_id": "CHG_011",
+      "number": "CHG0000011",
+      "status": "closed",
+      "category": "network",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Upgrade Core Switch Firmware v12.4"
+     },
+     {
+      "change_id": "CHG_012",
+      "number": "CHG0000012",
+      "status": "canceled",
+      "category": "software",
+      "risk": "medium",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Install Beta Driver on Print Server"
+     },
+     {
+      "change_id": "CHG_013",
+      "number": "CHG0000013",
+      "status": "canceled",
+      "category": "software",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Upgrade Java - Finance Server"
+     },
+     {
+      "change_id": "CHG_014",
+      "number": "CHG0000014",
+      "status": "review",
+      "category": "hardware",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "EMERGENCY:Restore Backup for FileShare"
+     },
+     {
+      "change_id": "CHG_015",
+      "number": "CHG0000015",
+      "status": "closed",
+      "category": "database",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "EMERGENCY:Restart HR Database Services"
+     },
+     {
+      "change_id": "CHG_016",
+      "number": "CHG0000016",
+      "status": "closed",
+      "category": "software",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Weekly Anti-Virus Definition Update"
+     },
+     {
+      "change_id": "CHG_017",
+      "number": "CHG0000017",
+      "status": "scheduled",
+      "category": "network",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Monthly Firewall Rule Audit"
+     },
+     {
+      "change_id": "CHG_018",
+      "number": "CHG0000018",
+      "status": "implement",
+      "category": "hardware",
+      "risk": "low",
+      "impact": "low",
+      "priority": "low",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Decommission Old Laptops Batch A"
+     },
+     {
+      "change_id": "CHG_019",
+      "number": "CHG0000019",
+      "status": "new",
+      "category": "software",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Implement SSO for Salesforce"
+     },
+     {
+      "change_id": "CHG_020",
+      "number": "CHG0000020",
+      "status": "assess",
+      "category": "hardware",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Migrate Marketing Share to Cloud"
+     },
+     {
+      "change_id": "CHG_021",
+      "number": "CHG0000021",
+      "status": "authorize",
+      "category": "network",
+      "risk": "high",
+      "impact": "high",
+      "priority": "high",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Upgrade Core Router OS"
+     },
+     {
+      "change_id": "CHG_022",
+      "number": "CHG0000022",
+      "status": "scheduled",
+      "category": "hardware",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Replace UPS Battery in Server Room"
+     },
+     {
+      "change_id": "CHG_023",
+      "number": "CHG0000023",
+      "status": "implement",
+      "category": "software",
+      "risk": "medium",
+      "impact": "high",
+      "priority": "critical",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Patch Exchange Server (Security)"
+     },
+     {
+      "change_id": "CHG_024",
+      "number": "CHG0000024",
+      "status": "review",
+      "category": "hardware",
+      "risk": "low",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 0,
+      "org_id": "ORG_001",
+      "short_description": "Add Storage to SAN"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, number, status, category, risk, impact, priority, cab_required, org_id, short_description FROM eops_gym_itsm_mcp_change WHERE change_id='CHG_025'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "change_id": "CHG_025",
+      "number": "CHG0000025",
+      "status": "closed",
+      "category": "network",
+      "risk": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "cab_required": 1,
+      "org_id": "ORG_001",
+      "short_description": "Upgrade Wifi Controller"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT org_id, COUNT(*) cnt FROM eops_gym_itsm_mcp_change GROUP BY org_id"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "org_id": "ORG_001",
+      "cnt": 24
+     },
+     {
+      "org_id": "ORG_003",
+      "cnt": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT status, COUNT(*) cnt FROM eops_gym_itsm_mcp_change GROUP BY status"
+   },
+   "response": {
+    "n_rows": 8,
+    "rows": [
+     {
+      "status": "assess",
+      "cnt": 2
+     },
+     {
+      "status": "authorize",
+      "cnt": 2
+     },
+     {
+      "status": "canceled",
+      "cnt": 2
+     },
+     {
+      "status": "closed",
+      "cnt": 6
+     },
+     {
+      "status": "implement",
+      "cnt": 3
+     },
+     {
+      "status": "new",
+      "cnt": 2
+     },
+     {
+      "status": "review",
+      "cnt": 3
+     },
+     {
+      "status": "scheduled",
+      "cnt": 5
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_sla_definition"
+   },
+   "response": {
+    "n_rows": 8,
+    "rows": [
+     {
+      "sla_def_id": "SLA_001",
+      "name": "Priority 1 - Response",
+      "metric": "response",
+      "target_mins": 15,
+      "pause_on_pending": 0,
+      "applies_to_priority": "critical",
+      "active": 1,
+      "schedule": "24x7",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_002",
+      "name": "Priority 1 - Resolution",
+      "metric": "resolution",
+      "target_mins": 240,
+      "pause_on_pending": 1,
+      "applies_to_priority": "critical",
+      "active": 1,
+      "schedule": "24x7",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_003",
+      "name": "Priority 2 - Response",
+      "metric": "response",
+      "target_mins": 60,
+      "pause_on_pending": 0,
+      "applies_to_priority": "high",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_004",
+      "name": "Priority 2 - Resolution",
+      "metric": "resolution",
+      "target_mins": 480,
+      "pause_on_pending": 1,
+      "applies_to_priority": "high",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_005",
+      "name": "Priority 3 - Response",
+      "metric": "response",
+      "target_mins": 240,
+      "pause_on_pending": 0,
+      "applies_to_priority": "moderate",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_006",
+      "name": "Priority 3 - Resolution",
+      "metric": "resolution",
+      "target_mins": 1440,
+      "pause_on_pending": 1,
+      "applies_to_priority": "moderate",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_007",
+      "name": "Priority 4 - Response",
+      "metric": "response",
+      "target_mins": 1440,
+      "pause_on_pending": 0,
+      "applies_to_priority": "low",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     },
+     {
+      "sla_def_id": "SLA_008",
+      "name": "Priority 4 - Resolution",
+      "metric": "resolution",
+      "target_mins": 2880,
+      "pause_on_pending": 1,
+      "applies_to_priority": "low",
+      "active": 1,
+      "schedule": "8-5 Weekdays",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 00:00:00",
+      "updated_on": "2023-01-01 00:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_sla WHERE incident_sla_id='TSLA_022'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_sla_id": "TSLA_022",
+      "incident_id": "INC_057",
+      "sla_def_id": "SLA_001",
+      "org_id": "ORG_001",
+      "stage": "in_progress",
+      "has_breached": 0,
+      "start_time": "2025-12-03 11:45:00",
+      "breach_time": "2025-12-03 12:00:00",
+      "completed_time": null,
+      "created_on": "2025-12-03 11:45:00",
+      "updated_on": "2025-12-03 11:45:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) cnt, COUNT(DISTINCT visitor_id) v, MIN(date_of_visit) mn, MAX(date_of_visit) mx FROM wb_analytics_data"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "cnt": 1000,
+      "v": 946,
+      "mn": "2023-09-01",
+      "mx": "2023-11-29"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_analytics_data LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "date_of_visit": "2023-10-22",
+      "visitor_id": "0860",
+      "page_views": "8",
+      "session_duration_seconds": "4",
+      "traffic_source": "referral",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-11-22",
+      "visitor_id": "4426",
+      "page_views": "3",
+      "session_duration_seconds": "12",
+      "traffic_source": "direct",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-09-03",
+      "visitor_id": "1685",
+      "page_views": "7",
+      "session_duration_seconds": "1",
+      "traffic_source": "social media",
+      "user_engaged": "False"
+     },
+     {
+      "date_of_visit": "2023-09-02",
+      "visitor_id": "5311",
+      "page_views": "5",
+      "session_duration_seconds": "97",
+      "traffic_source": "search engine",
+      "user_engaged": "True"
+     },
+     {
+      "date_of_visit": "2023-11-28",
+      "visitor_id": "8666",
+      "page_views": "1",
+      "session_duration_seconds": "18",
+      "traffic_source": "direct",
+      "user_engaged": "False"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change_request_mapping LIMIT 20"
+   },
+   "response": {
+    "n_rows": 16,
+    "rows": [
+     {
+      "change_request_mapping_id": "CRM_001",
+      "change_id": "CHG_007",
+      "incident_id": "INC_052",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-20 10:00:00",
+      "updated_at": "2025-11-20 10:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_002",
+      "change_id": "CHG_009",
+      "incident_id": "INC_028",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-15 09:00:00",
+      "updated_at": "2025-11-15 09:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_003",
+      "change_id": "CHG_008",
+      "incident_id": "INC_051",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 12:00:00",
+      "updated_at": "2025-12-03 12:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_004",
+      "change_id": "CHG_005",
+      "incident_id": "INC_025",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 11:00:00",
+      "updated_at": "2025-12-03 11:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_005",
+      "change_id": "CHG_002",
+      "incident_id": "INC_003",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 09:00:00",
+      "updated_at": "2025-12-03 09:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_006",
+      "change_id": "CHG_001",
+      "incident_id": "INC_001",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 10:30:00",
+      "updated_at": "2025-12-03 10:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_007",
+      "change_id": "CHG_006",
+      "incident_id": "INC_057",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 14:00:00",
+      "updated_at": "2025-12-03 14:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_008",
+      "change_id": "CHG_003",
+      "incident_id": "INC_004",
+      "problem_id": null,
+      "org_id": "ORG_003",
+      "created_at": "2025-12-02 10:00:00",
+      "updated_at": "2025-12-02 10:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_009",
+      "change_id": "CHG_001",
+      "incident_id": null,
+      "problem_id": "PRB_001",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 10:35:00",
+      "updated_at": "2025-12-03 10:35:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_010",
+      "change_id": "CHG_002",
+      "incident_id": null,
+      "problem_id": "PRB_002",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 09:05:00",
+      "updated_at": "2025-12-03 09:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_011",
+      "change_id": "CHG_003",
+      "incident_id": null,
+      "problem_id": "PRB_003",
+      "org_id": "ORG_003",
+      "created_at": "2025-12-02 10:05:00",
+      "updated_at": "2025-12-02 10:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_012",
+      "change_id": "CHG_005",
+      "incident_id": null,
+      "problem_id": "PRB_006",
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 11:05:00",
+      "updated_at": "2025-12-03 11:05:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_013",
+      "change_id": "CHG_011",
+      "incident_id": "INC_012",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-02 14:00:00",
+      "updated_at": "2025-12-02 14:00:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_014",
+      "change_id": "CHG_025",
+      "incident_id": "INC_055",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-25 10:30:00",
+      "updated_at": "2025-11-25 10:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_015",
+      "change_id": "CHG_015",
+      "incident_id": "INC_057",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-12-03 12:30:00",
+      "updated_at": "2025-12-03 12:30:00"
+     },
+     {
+      "change_request_mapping_id": "CRM_016",
+      "change_id": "CHG_014",
+      "incident_id": "INC_030",
+      "problem_id": null,
+      "org_id": "ORG_001",
+      "created_at": "2025-11-29 18:00:00",
+      "updated_at": "2025-11-29 18:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "columns": [
+     "change_request_mapping_id",
+     "change_id",
+     "incident_id",
+     "problem_id",
+     "org_id",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_notification WHERE notification_id='NOTIF_031'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-04-26 06:41:14.000000",
+      "updated_at": "2023-04-26 06:41:14.000000",
+      "record_hash": "8yR7u0aLfPA=",
+      "id": 1,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 22.0,
+      "description": "Crafternoon 🧶",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": "3198"
+     },
+     {
+      "created_at": "2023-04-11 11:18:48.000000",
+      "updated_at": "2023-04-11 11:18:48.000000",
+      "record_hash": "o2sH9miMSXc=",
+      "id": 2,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 14.0,
+      "description": "🎬Movie Snacks",
+      "private": 1,
+      "receipt_download_count": 0,
+      "like_count": 0,
+      "payment_card_digits": null
+     },
+     {
+      "created_at": "2023-04-03 20:35:38.000000",
+      "updated_at": "2023-04-03 20:35:38.000000",
+      "record_hash": "/8G9daBK/Yk=",
+      "id": 3,
+      "sender_id": 1,
+      "receiver_id": 71,
+      "amount": 108.0,
+      "description": "Spa Day",
+      "private": 0,
+      "receipt_download_count": 0,
+      "like_count": 4,
+      "payment_card_digits": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "debtor_ids": "[97, 20]",
+      "participant_ids": "[41]",
+      "created_at": "2023-04-03 04:24:23.000000",
+      "record_hash": "MTEUUUJqQtA=",
+      "id": 1,
+      "user_id": 41,
+      "group_id": 1,
+      "payer_id": 41,
+      "description": "Pet Toys",
+      "amount": 30.0,
+      "deleted": 0,
+      "receipt_file_name": "pet_toys.jpg",
+      "receipt_file_content": "binary:e23f679ab5...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[20, 41]",
+      "participant_ids": "[97]",
+      "created_at": "2023-02-13 18:33:55.000000",
+      "record_hash": "P6vHxJvXdDk=",
+      "id": 2,
+      "user_id": 97,
+      "group_id": 1,
+      "payer_id": 97,
+      "description": "Batteries",
+      "amount": 12.0,
+      "deleted": 0,
+      "receipt_file_name": "batteries.pdf",
+      "receipt_file_content": "binary:891bd1e46a...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[20, 41]",
+      "participant_ids": "[97]",
+      "created_at": "2023-04-02 14:00:31.000000",
+      "record_hash": "hqtWlxEXlxQ=",
+      "id": 3,
+      "user_id": 97,
+      "group_id": 1,
+      "payer_id": 97,
+      "description": "Car Maintenance",
+      "amount": 100.0,
+      "deleted": 0,
+      "receipt_file_name": "car_maintenance.pdf",
+      "receipt_file_content": "binary:b5a0bb62cf...",
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "recipient_ids": "[63]",
+      "created_at": "2022-08-26 09:44:16.000000",
+      "record_hash": "wIBN6D5V5dQ=",
+      "id": 1,
+      "sender_id": 1,
+      "subject": "Weekend Hike",
+      "body": "Hi Mason,\n\nI'm planning a hike this weekend. Are you up for some outdoor fun?\n\nCheers,\nStephen",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-12-08 16:43:40.000000",
+      "record_hash": "Or7q4cT1K4k=",
+      "id": 2,
+      "sender_id": 9,
+      "subject": "Client Visit Next Week",
+      "body": "Team,\n\nWe have a client visit scheduled for next Wednesday. Let's ensure our office and presentations are in top shape.\n\nBest,\nJamie",
+      "response_to_email_id": null
+     },
+     {
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "created_at": "2022-12-12 13:46:50.000000",
+      "record_hash": "Y+tVOkqiu+o=",
+      "id": 3,
+      "sender_id": 9,
+      "subject": "IT Helpdesk Satisfaction Survey",
+      "body": "Dear team,\n\nWe would like to gather your feedback on our IT helpdesk services. Please take a few minutes to complete the attached survey and share your thoughts. Your input will help us improve our support and provide better service to our clients. https://forms.google.com/jfewpflqwer .\n\nThank you,\nJamie\n",
+      "response_to_email_id": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "due_date": null,
+      "priority": "low",
+      "duration_unit": null,
+      "created_at": "2022-10-18 11:59:57.000000",
+      "record_hash": "UYBkitXlIRU=",
+      "id": 1,
+      "project_id": 1,
+      "section_id": null,
+      "user_id": 1,
+      "title": "Organize Photoshoot",
+      "description": "",
+      "is_completed": 0,
+      "duration": null,
+      "order_index": 0,
+      "assignee_id": null,
+      "assigner_id": null
+     },
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": "hours",
+      "created_at": "2022-10-18 23:37:05.000000",
+      "record_hash": "E8SZ2JkyAis=",
+      "id": 2,
+      "project_id": 1,
+      "section_id": null,
+      "user_id": 1,
+      "title": "Host a Movie Night",
+      "description": "",
+      "is_completed": 1,
+      "duration": 1.5,
+      "order_index": 1,
+      "assignee_id": 1,
+      "assigner_id": 1
+     },
+     {
+      "due_date": null,
+      "priority": "medium",
+      "duration_unit": "hours",
+      "created_at": "2022-10-13 18:47:01.000000",
+      "record_hash": "lzCcFxpUtEA=",
+      "id": 3,
+      "project_id": 1,
+      "section_id": null,
+      "user_id": 1,
+      "title": "Attend Networking Event",
+      "description": "",
+      "is_completed": 1,
+      "duration": 2.0,
+      "order_index": 2,
+      "assignee_id": 1,
+      "assigner_id": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "event_id": "00000013",
+      "event_name": "sync up",
+      "participant_email": "luis.ortiz@atlas.com",
+      "event_start": "2023-08-01 09:00:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000275",
+      "event_name": "process review",
+      "participant_email": "fatima.khan@atlas.com",
+      "event_start": "2023-08-01 11:30:00",
+      "duration": "90"
+     },
+     {
+      "event_id": "00000098",
+      "event_name": "Data Security and Compliance Training",
+      "participant_email": "amir.ali@atlas.com",
+      "event_start": "2023-08-02 11:00:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000190",
+      "event_name": "Product Launch Analysis",
+      "participant_email": "yuki.tanaka@atlas.com",
+      "event_start": "2023-08-02 11:30:00",
+      "duration": "30"
+     },
+     {
+      "event_id": "00000071",
+      "event_name": "daily stand-up",
+      "participant_email": "kofi.mensah@atlas.com",
+      "event_start": "2023-08-02 13:30:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id FROM eops_gym_itsm_mcp_change WHERE change_id='CHG_026'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT incident_id FROM eops_gym_itsm_mcp_incident WHERE incident_id='INC_057'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_057"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_sla WHERE incident_id='INC_057'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_sla_id": "TSLA_022",
+      "incident_id": "INC_057",
+      "sla_def_id": "SLA_001",
+      "org_id": "ORG_001",
+      "stage": "in_progress",
+      "has_breached": 0,
+      "start_time": "2025-12-03 11:45:00",
+      "breach_time": "2025-12-03 12:00:00",
+      "completed_time": null,
+      "created_on": "2025-12-03 11:45:00",
+      "updated_on": "2025-12-03 11:45:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('parker.li@atlas.com','correct.vendor@atlas.com','wrong.vendor@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Correct",
+      "last_name": "Vendor",
+      "email": "correct.vendor@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 20000000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Vendor",
+      "email": "wrong.vendor@atlas.com",
+      "password": "cm-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users WHERE email IN ('parker.li@atlas.com','cab.lead@atlas.com','rollback.partner@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 153,
+      "first_name": "CAB",
+      "last_name": "Lead",
+      "email": "cab.lead@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 152,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 154,
+      "first_name": "Rollback",
+      "last_name": "Partner",
+      "email": "rollback.partner@atlas.com",
+      "password": "cm-seed",
+      "password_reset_code": null,
+      "status": "active"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name='Q1 Change Management Review'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 Change Management Review",
+      "is_inbox": 0,
+      "description": "Quarterly change-management review workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email='parker.li@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "release-desk daily standup",
+      "participant_email": "parker.li@atlas.com",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_users WHERE email IN ('parker.li@atlas.com','morgan.reyes@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Morgan",
+      "last_name": "Reyes",
+      "email": "morgan.reyes@atlas.com",
+      "password": "cm-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Parker",
+      "last_name": "Li",
+      "email": "parker.li@atlas.com",
+      "password": "cm-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, risk FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('canceled')"
+   },
+   "response": {
+    "n_rows": 22,
+    "rows": [
+     {
+      "change_id": "CHG_001",
+      "risk": "high"
+     },
+     {
+      "change_id": "CHG_002",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_004",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_005",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_006",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_007",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_008",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_009",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_010",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_011",
+      "risk": "high"
+     },
+     {
+      "change_id": "CHG_014",
+      "risk": "high"
+     },
+     {
+      "change_id": "CHG_015",
+      "risk": "high"
+     },
+     {
+      "change_id": "CHG_016",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_017",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_018",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_019",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_020",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_021",
+      "risk": "high"
+     },
+     {
+      "change_id": "CHG_022",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_023",
+      "risk": "medium"
+     },
+     {
+      "change_id": "CHG_024",
+      "risk": "low"
+     },
+     {
+      "change_id": "CHG_025",
+      "risk": "medium"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, number, short_description, risk, impact, priority, status FROM eops_gym_itsm_mcp_change WHERE short_description LIKE '%EMERGENCY%'"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "change_id": "CHG_003",
+      "number": "CHG0000003",
+      "short_description": "EMERGENCY:Robot Firmware Rollback",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "status": "review"
+     },
+     {
+      "change_id": "CHG_014",
+      "number": "CHG0000014",
+      "short_description": "EMERGENCY:Restore Backup for FileShare",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "status": "review"
+     },
+     {
+      "change_id": "CHG_015",
+      "number": "CHG0000015",
+      "short_description": "EMERGENCY:Restart HR Database Services",
+      "risk": "high",
+      "impact": "high",
+      "priority": "critical",
+      "status": "closed"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT incident_id, number, short_description, status, priority, impact, urgency FROM eops_gym_itsm_mcp_incident WHERE incident_id='INC_057'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_057",
+      "number": "INC-000057",
+      "short_description": "HR DB",
+      "status": "new",
+      "priority": "critical",
+      "impact": "high",
+      "urgency": "high"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT risk, COUNT(*) cnt FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('canceled') GROUP BY risk"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "risk": "high",
+      "cnt": 5
+     },
+     {
+      "risk": "low",
+      "cnt": 8
+     },
+     {
+      "risk": "medium",
+      "cnt": 9
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT risk, COUNT(*) cnt FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' GROUP BY risk"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "risk": "high",
+      "cnt": 5
+     },
+     {
+      "risk": "low",
+      "cnt": 8
+     },
+     {
+      "risk": "medium",
+      "cnt": 11
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT status, risk, COUNT(*) cnt FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' GROUP BY status, risk ORDER BY status"
+   },
+   "response": {
+    "n_rows": 16,
+    "rows": [
+     {
+      "status": "assess",
+      "risk": "medium",
+      "cnt": 2
+     },
+     {
+      "status": "authorize",
+      "risk": "high",
+      "cnt": 1
+     },
+     {
+      "status": "authorize",
+      "risk": "medium",
+      "cnt": 1
+     },
+     {
+      "status": "canceled",
+      "risk": "medium",
+      "cnt": 2
+     },
+     {
+      "status": "closed",
+      "risk": "high",
+      "cnt": 2
+     },
+     {
+      "status": "closed",
+      "risk": "low",
+      "cnt": 3
+     },
+     {
+      "status": "closed",
+      "risk": "medium",
+      "cnt": 1
+     },
+     {
+      "status": "implement",
+      "risk": "low",
+      "cnt": 1
+     },
+     {
+      "status": "implement",
+      "risk": "medium",
+      "cnt": 2
+     },
+     {
+      "status": "new",
+      "risk": "low",
+      "cnt": 1
+     },
+     {
+      "status": "new",
+      "risk": "medium",
+      "cnt": 1
+     },
+     {
+      "status": "review",
+      "risk": "high",
+      "cnt": 1
+     },
+     {
+      "status": "review",
+      "risk": "low",
+      "cnt": 1
+     },
+     {
+      "status": "scheduled",
+      "risk": "high",
+      "cnt": 1
+     },
+     {
+      "status": "scheduled",
+      "risk": "low",
+      "cnt": 2
+     },
+     {
+      "status": "scheduled",
+      "risk": "medium",
+      "cnt": 2
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) total, SUM(CASE WHEN risk='high' THEN 1 ELSE 0 END) high FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('closed','canceled')"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "total": 16,
+      "high": 3
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_knowledge LIMIT 20"
+   },
+   "response": {
+    "n_rows": 20,
+    "rows": [
+     {
+      "knowledge_id": "KB_001",
+      "kb_number": "KB0000001",
+      "title": "Self-Service Password Reset",
+      "short_description": "Reset Guide",
+      "body": "Go to the portal and click Forgot Password. You will need your MFA token.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_001",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-01 09:00:00",
+      "updated_on": "2023-01-01 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_002",
+      "kb_number": "KB0000002",
+      "title": "Setting up MFA on iOS",
+      "short_description": "Authenticator Setup",
+      "body": "Install the App. Scan QR Code. Enter 6 digit pin.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_049",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-02 09:00:00",
+      "updated_on": "2023-01-02 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_003",
+      "kb_number": "KB0000003",
+      "title": "VPN Error 412 Fix",
+      "short_description": "VPN Troubleshooting",
+      "body": "Error 412 indicates a timeout. Restart the Cisco AnyConnect client.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_003",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-05 09:00:00",
+      "updated_on": "2023-01-05 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_004",
+      "kb_number": "KB0000004",
+      "title": "Account Locked Policy",
+      "short_description": "Lockout Rules",
+      "body": "Accounts lock after 3 failed attempts. Wait 15 minutes or call Service Desk.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_004",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-10 09:00:00",
+      "updated_on": "2023-01-10 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_005",
+      "kb_number": "KB0000005",
+      "title": "Requesting Admin Rights",
+      "short_description": "Privileged Access",
+      "body": "Admin rights are restricted. Submit request form SR-099 via portal.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_031",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-12 09:00:00",
+      "updated_on": "2023-01-12 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_006",
+      "kb_number": "KB0000006",
+      "title": "SAP Login \"Session Locked\"",
+      "short_description": "SAP Errors",
+      "body": "If your session is locked, ask a colleague to use T-Code SM04 to kill it.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_004",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-01 09:00:00",
+      "updated_on": "2023-02-01 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_007",
+      "kb_number": "KB0000007",
+      "title": "Outlook Sync Issues",
+      "short_description": "Mobile Email",
+      "body": "If Outlook is not syncing, remove the account and re-add using Modern Auth.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_022",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-05 09:00:00",
+      "updated_on": "2023-02-05 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_008",
+      "kb_number": "KB0000008",
+      "title": "Zoom Audio Not Working",
+      "short_description": "Conferencing Fix",
+      "body": "Check Windows Sound Settings. Ensure input is set to \"Headset Microphone\".",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_037",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-10 09:00:00",
+      "updated_on": "2023-02-10 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_009",
+      "kb_number": "KB0000009",
+      "title": "Salesforce \"Insufficient Privileges\"",
+      "short_description": "CRM Errors",
+      "body": "User likely needs the \"Sales_Standard\" permission set added to their profile.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_031",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-15 09:00:00",
+      "updated_on": "2023-02-15 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_010",
+      "kb_number": "KB0000010",
+      "title": "Adobe License Expiry Warning",
+      "short_description": "Creative Cloud",
+      "body": "This is a known bug. Sign out of Creative Cloud and Sign back in to refresh token.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_022",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-20 09:00:00",
+      "updated_on": "2023-02-20 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_011",
+      "kb_number": "KB0000011",
+      "title": "Excel \"Macros Disabled\"",
+      "short_description": "Office Security",
+      "body": "Macros are disabled by default. Move file to a Trusted Location to enable.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_049",
+      "org_id": "ORG_001",
+      "created_on": "2023-02-25 09:00:00",
+      "updated_on": "2023-02-25 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_012",
+      "kb_number": "KB0000012",
+      "title": "Bitlocker Recovery Key",
+      "short_description": "Laptop Encryption",
+      "body": "Agents:Retrieve key from AD Computer Object properties tab.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_001",
+      "org_id": "ORG_001",
+      "created_on": "2023-03-01 09:00:00",
+      "updated_on": "2023-03-01 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_013",
+      "kb_number": "KB0000013",
+      "title": "Printer Jam - Tray 2",
+      "short_description": "HP Printer Fix",
+      "body": "Tray 2 sensors get dusty. Open tray, wipe roller, restart printer.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_025",
+      "org_id": "ORG_001",
+      "created_on": "2023-03-05 09:00:00",
+      "updated_on": "2023-03-05 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_014",
+      "kb_number": "KB0000014",
+      "title": "Docking Station Monitors Blank",
+      "short_description": "Hardware Fix",
+      "body": "Unplug the USB-C cable. Power cycle the dock. Reconnect.",
+      "state": "published",
+      "visibility": "external",
+      "owner_id": "USER_026",
+      "org_id": "ORG_001",
+      "created_on": "2023-03-10 09:00:00",
+      "updated_on": "2023-03-10 09:00:00"
+     },
+     {
+      "knowledge_id": "KB_015",
+      "kb_number": "KB0000015",
+      "title": "Desk Phone Static",
+      "short_description": "VoIP Issues",
+      "body": "Try replacing the ethernet cable. If persists, replace handset cord.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_037",
+      "org_id": "ORG_001",
+      "created_on": "2023-03-15 09:00:00",
+      "updated_on": "2023-03-15 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_emails WHERE sender_email LIKE '%parker%' OR recipient_email LIKE '%parker%' OR sender_email LIKE '%cab%' OR recipient_email LIKE '%cab%' LIMIT 20"
+   },
+   "response": {
+    "error": "OperationalError: no such column: sender_email"
+   },
+   "error": "no such column: sender_email"
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.id, t.title, t.description FROM td_tasks t JOIN td_projects p ON t.project_id=p.id WHERE p.name='Q1 Change Management Review'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND risk='high'"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "change_id": "CHG_001",
+      "number": "CHG0000001",
+      "short_description": "Apply Oracle Patch 19.4.2 to SAP DB",
+      "requested_by": "USER_059",
+      "service": "SVC_017",
+      "service_offering": "SVCOFF_021",
+      "configuration_item": "CI_001",
+      "assigned_to": "USER_059",
+      "assignment_group": "GROUP_008",
+      "org_id": "ORG_001",
+      "status": "scheduled",
+      "category": "software",
+      "description": "Applying critical vendor patch to fix memory leak ORA-04030.",
+      "implementation_plan": "1. Stop SAP Services. 2. Apply DB Patch. 3. Restart DB. 4. Start SAP.",
+      "testing_plan": "Verify user login and transaction creation in QA first.",
+      "close_notes": null,
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "high",
+      "risk": "high",
+      "close_code": null,
+      "created_on": "2025-12-03 10:30:00",
+      "updated_on": "2025-12-03 11:00:00"
+     },
+     {
+      "change_id": "CHG_011",
+      "number": "CHG0000011",
+      "short_description": "Upgrade Core Switch Firmware v12.4",
+      "requested_by": "USER_039",
+      "service": "SVC_043",
+      "service_offering": "SVCOFF_052",
+      "configuration_item": "CI_004",
+      "assigned_to": "USER_045",
+      "assignment_group": "GROUP_007",
+      "org_id": "ORG_001",
+      "status": "closed",
+      "category": "network",
+      "description": "Firmware upgrade for stability.",
+      "implementation_plan": "Flash memory reboot.",
+      "testing_plan": "Ping check.",
+      "close_notes": "Firmware corrupted boot sector. Caused outage.",
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "critical",
+      "risk": "high",
+      "close_code": "unsuccessful",
+      "created_on": "2025-12-01 08:00:00",
+      "updated_on": "2025-12-02 08:00:00"
+     },
+     {
+      "change_id": "CHG_014",
+      "number": "CHG0000014",
+      "short_description": "EMERGENCY:Restore Backup for FileShare",
+      "requested_by": "USER_050",
+      "service": "SVC_047",
+      "service_offering": "SVCOFF_056",
+      "configuration_item": "CI_006",
+      "assigned_to": "USER_052",
+      "assignment_group": "GROUP_008",
+      "org_id": "ORG_001",
+      "status": "review",
+      "category": "hardware",
+      "description": "Restoring data due to corruption incident.",
+      "implementation_plan": "Mount tape, restore LUN.",
+      "testing_plan": "Verify file checksums.",
+      "close_notes": "Data restored successfully.",
+      "cab_required": 0,
+      "impact": "high",
+      "priority": "critical",
+      "risk": "high",
+      "close_code": "successful",
+      "created_on": "2025-11-29 14:00:00",
+      "updated_on": "2025-11-29 18:00:00"
+     },
+     {
+      "change_id": "CHG_015",
+      "number": "CHG0000015",
+      "short_description": "EMERGENCY:Restart HR Database Services",
+      "requested_by": "USER_057",
+      "service": "SVC_022",
+      "service_offering": "SVCOFF_022",
+      "configuration_item": "CI_017",
+      "assigned_to": "USER_059",
+      "assignment_group": "GROUP_008",
+      "org_id": "ORG_001",
+      "status": "closed",
+      "category": "database",
+      "description": "Service hung, hard restart required.",
+      "implementation_plan": "Kill process, start service.",
+      "testing_plan": "Login verify.",
+      "close_notes": "Service back online.",
+      "cab_required": 0,
+      "impact": "high",
+      "priority": "critical",
+      "risk": "high",
+      "close_code": "successful",
+      "created_on": "2025-12-03 12:00:00",
+      "updated_on": "2025-12-03 12:30:00"
+     },
+     {
+      "change_id": "CHG_021",
+      "number": "CHG0000021",
+      "short_description": "Upgrade Core Router OS",
+      "requested_by": "USER_039",
+      "service": "SVC_043",
+      "service_offering": "SVCOFF_052",
+      "configuration_item": null,
+      "assigned_to": "USER_045",
+      "assignment_group": "GROUP_007",
+      "org_id": "ORG_001",
+      "status": "authorize",
+      "category": "network",
+      "description": "Major version upgrade.",
+      "implementation_plan": "Upload image, reload.",
+      "testing_plan": "BGP convergence check.",
+      "close_notes": null,
+      "cab_required": 1,
+      "impact": "high",
+      "priority": "high",
+      "risk": "high",
+      "close_code": null,
+      "created_on": "2025-12-02 16:00:00",
+      "updated_on": "2025-12-02 16:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, sender_id, receiver_id, amount, description FROM vm_transactions WHERE sender_id=107 OR receiver_id=107"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, user_id, payer_id, description, amount FROM sw_expenses WHERE user_id=107 OR payer_id=107"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, description, amount FROM vm_transactions WHERE description LIKE '%CM-FEE%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT change_id, number, short_description, cab_required, status FROM eops_gym_itsm_mcp_change WHERE number='CHG0000026'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT notes, status, follow_up_by FROM wb_customer_relationship_manager_data WHERE customer_id='00000002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notes": "Q1 change review.",
+      "status": "Active",
+      "follow_up_by": ""
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, sender_id, receiver_id, amount, description FROM vm_transactions WHERE sender_id IN (107,108,109) OR receiver_id IN (107,108,109)"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, user_id, payer_id, amount, description, group_id FROM sw_expenses WHERE user_id IN (107,108) OR payer_id IN (107,108)"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id, subject, sender_id FROM gm_emails WHERE sender_id=152 OR sender_id=153 OR sender_id=154"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_groups"
+   },
+   "response": {
+    "n_rows": 200,
+    "rows": [
+     {
+      "created_at": "2023-02-11 08:08:02.000000",
+      "record_hash": "2KcZGqAQjy4=",
+      "id": 1,
+      "user_id": 20,
+      "name": "Roommates",
+      "description": "Let's track our shared bills and expenses here!",
+      "invitation_code": "78a9c",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-09 06:48:53.000000",
+      "record_hash": "YhI+8KYWyCk=",
+      "id": 2,
+      "user_id": 23,
+      "name": "Roomies",
+      "description": "Track and split our roomie expenses.",
+      "invitation_code": "d8a04",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-27 14:00:37.000000",
+      "record_hash": "Dx4VTxw21CU=",
+      "id": 3,
+      "user_id": 58,
+      "name": "Roomies",
+      "description": "Keep our household expenses organized!",
+      "invitation_code": "450dc",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-02 03:52:51.000000",
+      "record_hash": "EEiYeX0fds0=",
+      "id": 4,
+      "user_id": 65,
+      "name": "Housemates",
+      "description": "Keep our household expenses organized!",
+      "invitation_code": "f51e4",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-05 00:01:27.000000",
+      "record_hash": "N25LmGcEmME=",
+      "id": 5,
+      "user_id": 40,
+      "name": "Roommates",
+      "description": "Keep our household expenses organized!",
+      "invitation_code": "7929d",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-04 20:15:01.000000",
+      "record_hash": "T7UWGOxup8Q=",
+      "id": 6,
+      "user_id": 55,
+      "name": "Housemates",
+      "description": "Manage our shared living costs!",
+      "invitation_code": "7c0e0",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-27 14:38:12.000000",
+      "record_hash": "IWxNHsCP32I=",
+      "id": 7,
+      "user_id": 16,
+      "name": "Roomies",
+      "description": "Track and split our roomie expenses.",
+      "invitation_code": "53b69",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-10 05:08:20.000000",
+      "record_hash": "tPzbWohEYrg=",
+      "id": 8,
+      "user_id": 91,
+      "name": "Roommates",
+      "description": "Track and split our roomie expenses.",
+      "invitation_code": "a94c3",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-03 21:01:09.000000",
+      "record_hash": "Qk23P3GkzkI=",
+      "id": 9,
+      "user_id": 14,
+      "name": "Housemates",
+      "description": "Track and split our roomie expenses.",
+      "invitation_code": "34cfd",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-08 03:00:09.000000",
+      "record_hash": "4cgucniICJE=",
+      "id": 10,
+      "user_id": 15,
+      "name": "Roommates",
+      "description": "Manage our shared living costs!",
+      "invitation_code": "7bc74",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-19 04:21:45.000000",
+      "record_hash": "c4ZREOUaS0k=",
+      "id": 11,
+      "user_id": 7,
+      "name": "Siblings",
+      "description": "Keep our family expenses organized!",
+      "invitation_code": "f675e",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-27 20:22:04.000000",
+      "record_hash": "X132U7bqkkg=",
+      "id": 12,
+      "user_id": 11,
+      "name": "Siblings",
+      "description": "Keep our family expenses organized!",
+      "invitation_code": "fb4bd",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-19 22:25:52.000000",
+      "record_hash": "ilw3K96mHsM=",
+      "id": 13,
+      "user_id": 16,
+      "name": "Siblings",
+      "description": "Manage our shared costs!",
+      "invitation_code": "89ca4",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-17 14:29:48.000000",
+      "record_hash": "FUJbGF+P/8w=",
+      "id": 14,
+      "user_id": 23,
+      "name": "Siblings",
+      "description": "Manage our shared costs!",
+      "invitation_code": "966da",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-06 05:44:58.000000",
+      "record_hash": "wKeLEFQvwkM=",
+      "id": 15,
+      "user_id": 30,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "06ea6",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-18 15:18:32.000000",
+      "record_hash": "l3e9FiAlTPc=",
+      "id": 16,
+      "user_id": 34,
+      "name": "Siblings",
+      "description": "Let's track our shared expenses here!",
+      "invitation_code": "338e8",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-05 08:45:19.000000",
+      "record_hash": "MBuQ0SUc4Tc=",
+      "id": 17,
+      "user_id": 43,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "a78e4",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-12 01:04:53.000000",
+      "record_hash": "f7qtCCyVdYM=",
+      "id": 18,
+      "user_id": 51,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "f389e",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-04-17 08:54:28.000000",
+      "record_hash": "kRSjwwmHdp8=",
+      "id": 19,
+      "user_id": 62,
+      "name": "Siblings",
+      "description": "Let's track our shared expenses here!",
+      "invitation_code": "cec4a",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-20 12:39:17.000000",
+      "record_hash": "0rgVcaaI9jg=",
+      "id": 20,
+      "user_id": 65,
+      "name": "Siblings",
+      "description": "Let's track our shared expenses here!",
+      "invitation_code": "4000f",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-27 04:37:40.000000",
+      "record_hash": "8dTxe+W3BnU=",
+      "id": 21,
+      "user_id": 73,
+      "name": "Siblings",
+      "description": "Manage our shared costs!",
+      "invitation_code": "7c3e6",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-03-07 07:23:57.000000",
+      "record_hash": "BRqs+PQobfU=",
+      "id": 22,
+      "user_id": 78,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "5509b",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-03 16:52:58.000000",
+      "record_hash": "jmhX8WH94Zw=",
+      "id": 23,
+      "user_id": 81,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "c3785",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-25 18:08:35.000000",
+      "record_hash": "c7OA27/s6aA=",
+      "id": 24,
+      "user_id": 86,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "a8461",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-02-18 04:00:59.000000",
+      "record_hash": "E8fxyyRgnCo=",
+      "id": 25,
+      "user_id": 90,
+      "name": "Siblings",
+      "description": "Let's track our shared expenses here!",
+      "invitation_code": "534f6",
+      "deleted": 0
+     },
+     {
+      "created_at": "2023-01-31 12:37:37.000000",
+      "record_hash": "gD2C24wlaZk=",
+      "id": 26,
+      "user_id": 97,
+      "name": "Siblings",
+      "description": "Keep our family expenses organized!",
+      "invitation_code": "b356d",
+      "deleted": 0
+     },
+     {
+      "created_at": "2022-12-11 18:31:34.000000",
+      "record_hash": "yazAd+aoWEw=",
+      "id": 27,
+      "user_id": 101,
+      "name": "Siblings",
+      "description": "Track and split our family expenses.",
+      "invitation_code": "25290",
+      "deleted": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name FROM sqlite_master WHERE type='table' AND (name LIKE '%policy%' OR name LIKE '%config%' OR name LIKE '%rule%' OR name LIKE '%rate%')"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "name": "eops_gym_itsm_mcp_configuration_item"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT cab_required, COUNT(*) cnt FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('canceled') GROUP BY cab_required"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "cab_required": 0,
+      "cnt": 10
+     },
+     {
+      "cab_required": 1,
+      "cnt": 12
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT risk, COUNT(*) cnt FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('canceled') GROUP BY risk"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "risk": "high",
+      "cnt": 5
+     },
+     {
+      "risk": "low",
+      "cnt": 8
+     },
+     {
+      "risk": "medium",
+      "cnt": 9
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT 5.0*100/23 AS risk_index, CAST(ROUND(5.0*100/23) AS INTEGER) AS risk_score, 22 + 23*1000 AS release_total, (22+23*1000)/2 AS side_exposure"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "risk_index": 21.73913043478261,
+      "risk_score": 22,
+      "release_total": 23022,
+      "side_exposure": 11511
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_notification"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_notification",
+    "columns": [
+     "notification_id",
+     "incident_id",
+     "org_id",
+     "email",
+     "subject",
+     "message",
+     "type",
+     "status",
+     "created_on",
+     "updated_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM gm_emails"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 20866
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM vm_transactions"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 8215
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM sw_expenses"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 5039
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM sw_expense_shares"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 11686
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(id) mx FROM td_tasks"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 6333
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(CAST(event_id AS INTEGER)) mx FROM wb_calendar_events"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "mx": 300
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change",
+    "fields": {
+     "change_id": "CHG_026",
+     "number": "CHG0000026",
+     "short_description": "[CM-CHG] CHG0000026 STANDARD_CHANGE",
+     "org_id": "ORG_001",
+     "status": "new",
+     "category": "other",
+     "cab_required": 0,
+     "impact": "low",
+     "priority": "low",
+     "risk": "low",
+     "created_on": "2026-09-16 09:00:00",
+     "updated_on": "2026-09-16 09:00:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_change",
+    "created": {
+     "change_id": "CHG_026",
+     "number": "CHG0000026",
+     "short_description": "[CM-CHG] CHG0000026 STANDARD_CHANGE",
+     "org_id": "ORG_001",
+     "status": "new",
+     "category": "other",
+     "cab_required": 0,
+     "impact": "low",
+     "priority": "low",
+     "risk": "low",
+     "created_on": "2026-09-16 09:00:00",
+     "updated_on": "2026-09-16 09:00:00"
+    },
+    "rowid": 26
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "fields": {
+     "change_request_mapping_id": "CRM_017",
+     "change_id": "CHG_026",
+     "incident_id": "INC_057",
+     "org_id": "ORG_001",
+     "created_at": "2026-09-16 09:05:00",
+     "updated_at": "2026-09-16 09:05:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_change_request_mapping",
+    "created": {
+     "change_request_mapping_id": "CRM_017",
+     "change_id": "CHG_026",
+     "incident_id": "INC_057",
+     "org_id": "ORG_001",
+     "created_at": "2026-09-16 09:05:00",
+     "updated_at": "2026-09-16 09:05:00"
+    },
+    "rowid": 17
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "key_column": "incident_id",
+    "key_value": "INC_057",
+    "fields": {
+     "status": "on_hold",
+     "on_hold_reason": "Awaiting Change",
+     "change_request": "CHG_026",
+     "worknotes": "[CM-CHG] CHG0000026 STANDARD_CHANGE",
+     "updated_at": "2026-09-16 09:10:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident",
+    "updated": {
+     "status": "on_hold",
+     "on_hold_reason": "Awaiting Change",
+     "change_request": "CHG_026",
+     "worknotes": "[CM-CHG] CHG0000026 STANDARD_CHANGE",
+     "updated_at": "2026-09-16 09:10:00"
+    },
+    "where": {
+     "incident_id": "INC_057"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_notification",
+    "fields": {
+     "created_on": "2026-09-16 09:15:00",
+     "email": "richard.lopez@servicenow.com",
+     "incident_id": "INC_057",
+     "message": "Change CHG0000026 (STANDARD_CHANGE) raised to remediate this incident. release_total=23022. The incident is held awaiting the change window.",
+     "notification_id": "NOTIF_031",
+     "org_id": "ORG_001",
+     "status": "sent",
+     "type": "update",
+     "updated_on": "2026-09-16 09:15:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_notification",
+    "created": {
+     "created_on": "2026-09-16 09:15:00",
+     "email": "richard.lopez@servicenow.com",
+     "incident_id": "INC_057",
+     "message": "Change CHG0000026 (STANDARD_CHANGE) raised to remediate this incident. release_total=23022. The incident is held awaiting the change window.",
+     "notification_id": "NOTIF_031",
+     "org_id": "ORG_001",
+     "status": "sent",
+     "type": "update",
+     "updated_on": "2026-09-16 09:15:00"
+    },
+    "rowid": 31
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident_sla",
+    "key_column": "incident_sla_id",
+    "key_value": "TSLA_022",
+    "fields": {
+     "stage": "paused",
+     "updated_on": "2026-09-16 09:20:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident_sla",
+    "updated": {
+     "stage": "paused",
+     "updated_on": "2026-09-16 09:20:00"
+    },
+    "where": {
+     "incident_sla_id": "TSLA_022"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "amount": 12000,
+     "created_at": "2026-09-16 09:25:00",
+     "description": "[CM-FEE] change-fee disbursement (escalation delta) CHG0000026",
+     "private": 1,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "updated_at": "2026-09-16 09:25:00"
+    }
+   },
+   "response": {
+    "error": "IntegrityError: NOT NULL constraint failed: vm_transactions.like_count"
+   },
+   "error": "NOT NULL constraint failed: vm_transactions.like_count"
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "amount": 12000,
+     "created_at": "2026-09-16 09:25:00",
+     "description": "[CM-FEE] change-fee disbursement (escalation delta) CHG0000026",
+     "like_count": 0,
+     "private": 1,
+     "receipt_download_count": 0,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "updated_at": "2026-09-16 09:25:00"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "amount": 12000,
+     "created_at": "2026-09-16 09:25:00",
+     "description": "[CM-FEE] change-fee disbursement (escalation delta) CHG0000026",
+     "like_count": 0,
+     "private": 1,
+     "receipt_download_count": 0,
+     "receiver_id": 108,
+     "sender_id": 107,
+     "updated_at": "2026-09-16 09:25:00"
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN description LIKE '%[CM-FEE-REV]%' THEN -amount ELSE amount END) AS net FROM vm_transactions WHERE description LIKE '%[CM-FEE]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "net": 12000.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT sm.group_id, g.name FROM sw_group_members sm JOIN sw_groups g ON sm.group_id=g.id WHERE sm.user_id IN (107,108)"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE group_id IS NULL LIMIT 2"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "debtor_ids": "[71, 100, 68]",
+      "participant_ids": "[1]",
+      "created_at": "2023-03-13 12:15:59.000000",
+      "record_hash": "SlpslfJqnxU=",
+      "id": 3940,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Sunglasses",
+      "amount": 25.0,
+      "deleted": 0,
+      "receipt_file_name": "sunglasses.jpg",
+      "receipt_file_content": "binary:96e38f3702...",
+      "receipt_download_count": 0
+     },
+     {
+      "debtor_ids": "[63, 99]",
+      "participant_ids": "[1]",
+      "created_at": "2023-01-26 15:40:43.000000",
+      "record_hash": "OcS1rDQKDAA=",
+      "id": 3941,
+      "user_id": 1,
+      "group_id": null,
+      "payer_id": 1,
+      "description": "Climbing Trip",
+      "amount": 200.0,
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "amount": 23022,
+     "created_at": "2026-09-16 09:30:00",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[CM-ALLOC] intercompany change-cost allocation CHG0000026",
+     "group_id": null,
+     "participant_ids": "[107]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "amount": 23022,
+     "created_at": "2026-09-16 09:30:00",
+     "debtor_ids": "[108]",
+     "deleted": 0,
+     "description": "[CM-ALLOC] intercompany change-cost allocation CHG0000026",
+     "group_id": null,
+     "participant_ids": "[107]",
+     "payer_id": 107,
+     "receipt_download_count": 0,
+     "user_id": 107
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2026-09-16 09:30:00",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "share_amount": 11511
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2026-09-16 09:30:00",
+     "debtor_id": 108,
+     "expense_id": 5040,
+     "share_amount": 11511
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id, event_name, event_start, duration FROM wb_calendar_events WHERE participant_email='parker.li@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "release-desk daily standup",
+      "event_start": "2024-02-15 13:00:00",
+      "duration": "60"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "duration": "4320",
+     "event_id": "00000301",
+     "event_name": "[CM-WINDOW] Q1 Production Change Window CHG0000026",
+     "event_start": "2024-02-12 09:00:00",
+     "participant_email": "parker.li@atlas.com"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "duration": "4320",
+     "event_id": "00000301",
+     "event_name": "[CM-WINDOW] Q1 Production Change Window CHG0000026",
+     "event_start": "2024-02-12 09:00:00",
+     "participant_email": "parker.li@atlas.com"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "duration": "30",
+     "event_id": "00000302",
+     "event_name": "[CM-REVIEW] Post-Implementation Review CHG0000026",
+     "event_start": "2024-02-15 14:00:00",
+     "participant_email": "parker.li@atlas.com"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "duration": "30",
+     "event_id": "00000302",
+     "event_name": "[CM-REVIEW] Post-Implementation Review CHG0000026",
+     "event_start": "2024-02-15 14:00:00",
+     "participant_email": "parker.li@atlas.com"
+    },
+    "rowid": 303
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "body": "Rollback-partner handoff for CHG0000026. release_total=23022. delta=12000. Please stage rollback for the change window.",
+     "created_at": "2026-09-16 09:35:00",
+     "recipient_ids": "[154]",
+     "sender_id": 152,
+     "subject": "[CM-HANDOFF] Rollback partner handoff CHG0000026"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "body": "Rollback-partner handoff for CHG0000026. release_total=23022. delta=12000. Please stage rollback for the change window.",
+     "created_at": "2026-09-16 09:35:00",
+     "recipient_ids": "[154]",
+     "sender_id": 152,
+     "subject": "[CM-HANDOFF] Rollback partner handoff CHG0000026"
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "body": "CAB status update for CHG0000026. release_total=23022. tier=STANDARD_CHANGE. Change raised on the standard (pre-approved) template.",
+     "created_at": "2026-09-16 09:36:00",
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[CM-STATUS] CAB status update CHG0000026"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "body": "CAB status update for CHG0000026. release_total=23022. tier=STANDARD_CHANGE. Change raised on the standard (pre-approved) template.",
+     "created_at": "2026-09-16 09:36:00",
+     "recipient_ids": "[153]",
+     "sender_id": 152,
+     "subject": "[CM-STATUS] CAB status update CHG0000026"
+    },
+    "rowid": 20868
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "created_at": "2026-09-16 09:37:00",
+     "is_completed": 0,
+     "order_index": 0,
+     "priority": "medium",
+     "project_id": 280,
+     "title": "[CM-FUP] Q1 change follow-up CHG0000026 delta=12000",
+     "user_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "created_at": "2026-09-16 09:37:00",
+     "is_completed": 0,
+     "order_index": 0,
+     "priority": "medium",
+     "project_id": 280,
+     "title": "[CM-FUP] Q1 change follow-up CHG0000026 delta=12000",
+     "user_id": 107
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[CM-RECON] delta=12000; fee-ledger net (disbursements minus reversals)=12000; release_total=23022=risk_score(22)+change_volume(23)*1000; reconciled=ok. [CM-LOG] release_total=23022. [CM-RISK] risk_score=22. Q1 change review.",
+     "status": "[CM-TIER] STANDARD_CHANGE"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[CM-RECON] delta=12000; fee-ledger net (disbursements minus reversals)=12000; release_total=23022=risk_score(22)+change_volume(23)*1000; reconciled=ok. [CM-LOG] release_total=23022. [CM-RISK] risk_score=22. Q1 change review.",
+     "status": "[CM-TIER] STANDARD_CHANGE"
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT (SELECT COUNT(*) FROM eops_gym_itsm_mcp_change WHERE org_id='ORG_001' AND status NOT IN ('canceled')) AS change_volume, (SELECT SUM(CASE WHEN description LIKE '%[CM-FEE-REV]%' THEN -amount ELSE amount END) FROM vm_transactions WHERE description LIKE '%[CM-FEE]%') AS fee_net, (SELECT status FROM eops_gym_itsm_mcp_incident WHERE incident_id='INC_057') AS inc_status, (SELECT stage FROM eops_gym_itsm_mcp_incident_sla WHERE incident_sla_id='TSLA_022') AS sla_stage, (SELECT amount FROM sw_expenses WHERE id=5040) AS alloc_amt, (SELECT share_amount FROM sw_expense_shares WHERE expense_id=5040) AS morgan_share, (SELECT status FROM wb_customer_relationship_manager_data WHERE customer_id='00000002') AS cab_tier_status"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "change_volume": 23,
+      "fee_net": 12000.0,
+      "inc_status": "on_hold",
+      "sla_stage": "paused",
+      "alloc_amt": 23022.0,
+      "morgan_share": 11511.0,
+      "cab_tier_status": "[CM-TIER] STANDARD_CHANGE"
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_change_management__0001",
+ "provider": "claude",
+ "model": "claude-opus-4-8",
+ "attempt": 1,
+ "variant_sha": null,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 0,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 21,
+  "fsv_n_checks": 93,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "branch": "NORMAL_WINDOW",
+  "change_volume": "23",
+  "delta": "12000",
+  "reconciled": "ok",
+  "release_total": "23022",
+  "risk_index": "21.7391304347826",
+  "risk_score": "22",
+  "side_exposure": "11511",
+  "window_uplift": "11000"
+ },
+ "extraction_scored": true,
+ "transport": {}
+}

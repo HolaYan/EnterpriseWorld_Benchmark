@@ -1,0 +1,108 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The regional royalty benchmark index is fixed from the reference book's own question — the average number of crimes committed in 1995 in the reference regions where the count exceeds 4000 and the region has at least one account opened in 1997 or later (average the distinct region/crime-count pairs).",
+  "kinds": [
+   "royalty_index"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_account",
+   "bird_district"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The reference franchisee-cohort discipline for the quarterly overview — the declared major of the member named Angela Sanders in the membership reference book — as the quarter's cohort control reading, taken at the close of the run once the reconciliation's own figures are settled, from a licensed reference book the desk's reporting service also serves, unrelated to the royalty registers on purpose; nothing later in this reconciliation reads it — it is held against the same reading at the last quarterly sign-off, so report the book's own major exactly.",
+  "kinds": [
+   "side_cohort_major"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_student_club_major",
+   "bird_student_club_member"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "rate",
+  "note": "The expected royalty is set at one unit per 150 of that index, rounded to a whole number.",
+  "kinds": [
+   "expected_royalty",
+   "royalty_index"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_account",
+   "bird_district",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The total royalty flow is the expected royalty plus the shortfall; the underpayment delta equals the shortfall.",
+  "kinds": [
+   "expected_royalty",
+   "total_royalty_flow",
+   "underpayment_amount",
+   "underpayment_delta"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_account",
+   "bird_district",
+   "bird_loan"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "threshold",
+  "note": "The underpayment shortfall is taken from the live loan book — the count of loans in the flagship lending district (district_id 1) whose status is 'D' (the underpaying-franchisee segment) — and set the shortfall at 1000 per underpaying franchisee.",
+  "kinds": [
+   "expected_royalty",
+   "total_royalty_flow",
+   "underpayment_amount",
+   "underpayment_delta"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_account",
+   "bird_district",
+   "bird_loan"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The remittance-status route is decided on the delta — 'UNDERPAID_COLLECTIONS_REFERRAL' when the delta is at least 8000, 'UNDERPAID_BELOW_THRESHOLD' when it is at least 1000, 'FULLY_REMITTED' otherwise",
+  "kinds": [
+   "branch",
+   "underpayment_delta"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_account",
+   "bird_loan"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The post-window review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

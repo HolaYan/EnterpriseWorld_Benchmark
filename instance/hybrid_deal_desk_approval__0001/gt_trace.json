@@ -1,0 +1,672 @@
+{
+ "uid": "hybrid_deal_desk_approval__0001",
+ "generated_from_build_sha": "dccb22e7ca9a",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "compliance_index": "11",
+  "bar": "11000",
+  "deal_count": "236",
+  "discount_impact": "23600",
+  "total_exposure": "34600",
+  "delta": "23600",
+  "branch": "MULTI_LEVEL_APPROVE",
+  "reconciled": "ok",
+  "side_report": "3.48039215686275"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:199",
+   "verdict_basis": "figure is judged by birdsql:199's own official gold SQL rerun LIVE on the bird_toxicology_-prefixed book \u2014 a true single-row COUNT(DISTINCT) scalar; the stored answer must equal the recipe's live result at scoring time",
+   "answers_written": {
+    "compliance_index": "11"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(DISTINCT T2.molecule_id) FROM bird_toxicology_atom AS T1 INNER JOIN bird_toxicology_molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.element = 'na' AND T2.label = '-'",
+    "result": 11
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_199_compliance_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "bar = figure * 1000",
+   "follows": "count-scaled-by-rate; the multiplier 1000 is a declared delegation constant, no source counterpart",
+   "inputs": [
+    "figure <- birdsql:199 (live rerun)"
+   ],
+   "answers_written": {
+    "bar": "11000"
+   },
+   "checks": [
+    {
+     "name": "bar_is_figure_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "bar_derives_from_stored_figure",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "client_crm_bar_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:536",
+   "verdict_basis": "deal_count is judged by birdsql:536's own official gold SQL rerun LIVE on the bird_codebase_community_-prefixed book \u2014 a true single-row COUNT scalar; the cross-book input woven into the deal-desk arithmetic",
+   "answers_written": {
+    "deal_count": "236"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(id) FROM bird_codebase_community_users WHERE STRFTIME('%Y', CreationDate) > '2013' AND Views > 10",
+    "result": 236
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_536_deal_count",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "discount_impact = deal_count*100; total_exposure = bar + discount_impact; delta = discount_impact",
+   "follows": "count-scaled-by-rate + additive combine; the per-deal 100 is a declared constant",
+   "inputs": [
+    "bar <- n02",
+    "deal_count <- n03 (birdsql:536 live rerun)"
+   ],
+   "answers_written": {
+    "discount_impact": "23600",
+    "total_exposure": "34600",
+    "delta": "23600"
+   },
+   "checks": [
+    {
+     "name": "discount_impact_is_count_times_100",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "impact_derives_from_stored_deal_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_exposure_equals_bar_plus_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_bar_and_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'AUTO_APPROVE' if impact<=bar; 'MULTI_LEVEL_APPROVE' if impact<=3*bar; else 'ESCALATE_TO_CEO'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 1x/3x bands are declared constants; the branch predicate is source-expressed (impact from the live codebase_community book, bar from the live toxicology book)",
+   "inputs": [
+    "discount_impact <- n04 (deal_count*100)",
+    "bar <- n02"
+   ],
+   "answers_written": {
+    "branch": "MULTI_LEVEL_APPROVE"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_routing",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_impact_and_bar",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [DDA-HOLD] window's duration is the declared 2-day approval window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DDA-HOLD]",
+      "event_name": "Deal-desk approval window [DDA-HOLD]",
+      "participant_email": "sam.chen@atlas.com",
+      "event_start": "2024-03-08 09:00:00",
+      "duration": "2880"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "approval_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong credit corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_recipient",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [DDA-CHAIN-EMAIL] email lead->VP citing total_exposure+delta, present IFF branch in MULTI/ESCALATE",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "total_exposure/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "chain_email_sent_iff_multi_or_escalate",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [DDA-LOGGED] total_exposure marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_exposure; co-lead share = total_exposure/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_exposure <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [DDA-FUP] task citing delta in the lead's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [DDA-LOGGED]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'ESCALATED_REVIEW' if the live flagged-deal count*100 >= 100000; 'PRIORITY_REVIEW' if >= 20000; else 'STANDARD_TRACK'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the codebase_community flagged-deal count), not a relabel of a stored value",
+   "inputs": [
+    "deal count <- live bird_codebase_community (re-derived at write time)",
+    "gate <- n11 td_tasks [DDA-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20260106_185201_238_00364ece_8ab4fd80",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task (the key account's own review case): its three native database_state checks \u2014 the new email/high/new customer_case for Marc Henry's Stark Industries contact on 'SUSE Linux Enterprise Server 15 Variant 5' assigned to Tabitha Bullock in 'Proactive Case Monitoring', the monitor's group membership, and the 'report' notification on CS-0001233 to marc.henry@stark-industries.com \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); the dependency coupling (the case text CITING the CRM [DDA-TIER] tier, which must equal the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "CSM review case == the source task's own 3 checks, gated on AND citing the n12 tier relay",
+   "inputs": [
+    "tier relay <- n12 CRM [DDA-TIER] (cited in the case text; must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "csm_review_case_opened_for_key_account",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_monitor_in_proactive_group",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_report_notification_to_client",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_beat_gated_on_tier_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20260107_141655_644_911d75d7_9516dfe1",
+   "verdict_basis": "EnterpriseOps-Gym gym-email-mcp oracle task (remove the stale meeting filter and create a Review/in:chats filter onto labels 006/007/001): its two native database_state checks are inherited VERBATIM; the coupling (the CSM case beat on the register) is a SEPARATE composition glue check",
+   "rule": "filter cleanup+create == the source task's own checks, gated on the CSM case beat",
+   "inputs": [
+    "gate <- n13 eops_sn_csm_server_customer_case case CS-0001233 row state (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "old_meeting_filter_removed",
+     "expected": 0,
+     "achieved": 0
+    },
+    {
+     "name": "review_chats_filter_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "email_beat_gated_on_csm_case",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [DDA-STATUS] email lead->client citing total_exposure + the live tier, gated on the email beat",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "gate <- n14 eops email beat",
+    "total_exposure <- n04",
+    "tier truth <- live codebase_community banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20260108_133740_739_13762b97_41fc6ac0",
+   "verdict_basis": "EnterpriseOps-Gym gym-google-drive-mcp oracle task (the deal packet's spec-annex review close-out): its seven native database_state checks \u2014 the open review thread resolved, the reviewer's audit reply on it, the reviewer's confirm replies on the two closed threads, the 'Q4 Comment Audit Report' file, its description/properties, and the reviewer's commenter permission on it \u2014 are inherited VERBATIM on the TRACKED seed (no patch, no copy); the coupling is TWO SEPARATE composition glue checks: the [DDA-STATUS] gate, and the report description citing the status email's tag + total_exposure + tier (consumption)",
+   "rule": "dossier == the source task's own thread-audit + report + share septet; the report exists only once the status email is out AND its description cites the email's total_exposure + tier",
+   "inputs": [
+    "gate <- n15 gm_emails [DDA-STATUS]",
+    "total_exposure + tier word <- n15 gm_emails body / n04 answers"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "drive_spec_open_thread_resolved",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_spec_open_thread_audit_reply",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_spec_closed_thread_confirm_reply_1",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_spec_closed_thread_confirm_reply_2",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_audit_report_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_audit_report_described",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_audit_report_shared_with_reviewer",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_dossier_gated_on_status_email",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_audit_report_cites_status_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "enterpriseops:task_20251203_080219_432_6f5b66fc_03eb353c",
+   "verdict_basis": "EnterpriseOps-Gym gym-calendar oracle task (Enterprise Client Demo): its five native database_state checks \u2014 the confidential color-11 demo event with its source/location, the 3 attachments, the two matching confidential demo events, the private deal-value extended property, and the 2 attendees \u2014 are inherited VERBATIM; the coupling (the dossier) is a SEPARATE composition glue check",
+   "rule": "client-demo calendar beat == the source task's own event+children, gated on the drive dossier",
+   "inputs": [
+    "gate <- n16 eops_gym_google_drive_mcp_files 'Q4 Comment Audit Report' (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "cal_demo_event_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "cal_demo_attachments",
+     "expected": 3,
+     "achieved": 3
+    },
+    {
+     "name": "cal_demo_confidential_pair",
+     "expected": 2,
+     "achieved": 2
+    },
+    {
+     "name": "cal_demo_extended_property",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "cal_demo_attendees",
+     "expected": 2,
+     "achieved": 2
+    },
+    {
+     "name": "calendar_beat_gated_on_drive_dossier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [DDA-REBATE] net (credits - reversals) to the correct recipient == delta AND the recorded total_exposure == bar + deal_count*100 (figure chain re-derived), with the CRM [DDA-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 14)",
+    "bar <- n02, deal_count <- n03 (figure-chain re-derivation)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [DDA-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops client-demo beat",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DDA-REVIEW]",
+      "event_name": "QBR pricing review Marc Henry [DDA-REVIEW]",
+      "participant_email": "sam.chen@atlas.com",
+      "event_start": "2024-03-11 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__figure_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__bar_is_fn_of_figure",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__deal_count_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__discount_impact_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_exposure_is_bar_plus_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_impact",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_routing",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_report_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:1492",
+   "verdict_basis": "side_report is judged by birdsql:1492's own official gold SQL rerun LIVE on the bird_debit_card_specializing_-prefixed book \u2014 a true single-row FLOAT scalar; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_report": "3.48039215686275"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(Currency = 'EUR') AS FLOAT) * 100 / COUNT(CustomerID) FROM bird_debit_card_specializing_customers WHERE Segment = 'KAM'",
+    "result": 3.480392156862745
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1492_side_report",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

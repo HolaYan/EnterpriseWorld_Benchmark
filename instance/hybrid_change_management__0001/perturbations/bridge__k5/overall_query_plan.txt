@@ -1,0 +1,17 @@
+Run the quarterly production change-management / release cycle for the release desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+branch: the change-window route — exactly one of {NORMAL_WINDOW, EXTENDED_WINDOW, EMERGENCY_HOLD}
+change_volume: the in-scope change count — whole number
+delta: the escalation delta — whole number, no thousands separators
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the fee ledger nets to the delta
+release_total: the release total — whole number, no thousands separators
+risk_index: the change-risk index — the percentage exactly as the source book returns it (its full decimal form)
+risk_index_staged1: the desk's staging re-record 1 of 5 of risk_index — the identical value
+risk_index_staged2: the desk's staging re-record 2 of 5 of risk_index — the identical value
+risk_index_staged3: the desk's staging re-record 3 of 5 of risk_index — the identical value
+risk_index_staged4: the desk's staging re-record 4 of 5 of risk_index — the identical value
+risk_index_staged5: the desk's staging re-record 5 of 5 of risk_index — the identical value
+risk_score: the change risk score — whole number
+side_exposure: the side-exposure figure — whole number
+window_uplift: the change-window uplift — whole number, no thousands separators

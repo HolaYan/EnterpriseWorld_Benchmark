@@ -1,0 +1,644 @@
+{
+ "uid": "hybrid_dividend_distribution__0001",
+ "generated_from_build_sha": "d67c7a96cb6f",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "eligible_lots": "7",
+  "base_dividend": "7000",
+  "rate_index": "459.956264287089",
+  "distribution_uplift": "460000",
+  "total_distribution": "467000",
+  "delta": "460000",
+  "branch": "REGISTRAR_ESCALATION",
+  "reconciled": "ok",
+  "side_ratio": "0.201741654571843",
+  "side_cohort": "11"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:1317",
+   "verdict_basis": "eligible_lots is judged by birdsql:1317's own official gold SQL rerun LIVE on the bird_student_club_-prefixed book \u2014 a true single-row COUNT(DISTINCT) scalar; the spine root, scaled by a declared per-lot multiplier downstream",
+   "answers_written": {
+    "eligible_lots": "7"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(DISTINCT T3.member_id) FROM bird_student_club_event AS T1 INNER JOIN bird_student_club_attendance AS T2 ON T1.event_id = T2.link_to_event INNER JOIN bird_student_club_member AS T3 ON T2.link_to_member = T3.member_id WHERE T1.event_name = 'Women''s Soccer' AND T3.t_shirt_size = 'Medium'",
+    "result": 7
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1317_eligible_lots",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "base_dividend = eligible_lots * 1000",
+   "follows": "count-scaled-by-rate; the per-lot dividend 1000 is a declared constant, no source counterpart",
+   "inputs": [
+    "eligible_lots <- birdsql:1317 (live rerun)"
+   ],
+   "answers_written": {
+    "base_dividend": "7000"
+   },
+   "checks": [
+    {
+     "name": "base_dividend_is_lots_times_per_lot",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "base_dividend_derives_from_stored_eligible_lots",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "rego_crm_base_dividend_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:1473",
+   "verdict_basis": "rate_index is judged by birdsql:1473's own official gold SQL rerun LIVE on the bird_debit_card_specializing_-prefixed book \u2014 a true single-row REAL scalar stored in the book's own CAST-text form; the cross-book input woven into the distribution arithmetic, rounded downstream into the uplift",
+   "answers_written": {
+    "rate_index": "459.956264287089"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT AVG(T2.Consumption) / 12 FROM bird_debit_card_specializing_customers AS T1 INNER JOIN bird_debit_card_specializing_yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTR(T2.Date, 1, 4) = '2013' AND T1.Segment = 'SME'",
+    "result": 459.9562642870894
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1473_rate_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "distribution_uplift = round(rate_index)*1000; total_distribution = base_dividend + distribution_uplift; delta = distribution_uplift",
+   "follows": "value-scaled-by-rate + additive combine; the per-index 1000 is a declared constant",
+   "inputs": [
+    "base_dividend <- n02",
+    "rate_index <- n03 (birdsql:1473 live rerun)"
+   ],
+   "answers_written": {
+    "distribution_uplift": "460000",
+    "total_distribution": "467000",
+    "delta": "460000"
+   },
+   "checks": [
+    {
+     "name": "uplift_is_round_rate_index_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_rate_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'SPECIAL_REVIEW' if delta>=100000000; 'REGISTRAR_ESCALATION' if delta>=100000; else 'STANDARD_PAYOUT'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 100000/100000000 bands are declared constants; the branch predicate is source-expressed (delta from the live debit_card_specializing book)",
+   "inputs": [
+    "delta <- n04 (round(rate_index)*1000)"
+   ],
+   "answers_written": {
+    "branch": "REGISTRAR_ESCALATION"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [DDX-HOLD] window's duration is the declared 3-day review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DDX-HOLD]",
+      "event_name": "Q1 distribution review window [DDX-HOLD]",
+      "participant_email": "distribution.lead@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong transfer corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_holder",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [DDX-HANDOFF] email lead->transfer agent citing total_distribution+delta, present IFF branch in B/C",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "total_distribution/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_escalation_or_special",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [DDX-LOG] total_distribution marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_distribution; co-analyst share = total_distribution/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_distribution <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [DDX-FUP] task citing delta in the lead's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [DDX-LOG]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'TIER_3_SPECIAL_REVIEW' if round(the live rate index)*1000 >= 100000000; 'TIER_2_REGISTRAR_ESCALATION' if >= 100000; else 'TIER_1_STANDARD_PAYOUT'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the debit_card_specializing rate index), not a relabel of a stored value",
+   "inputs": [
+    "rate index <- live bird_debit_card_specializing (re-derived at write time)",
+    "gate <- n11 td_tasks [DDX-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20260101_122222_300_ad5a67e3_3757206c",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task (set up an institutional account's support engagement): its five native database_state checks \u2014 the active support contract, the premium h24x7 entitlement on the product, the high-priority in-progress SSL case with a primary/active contact, the response SLA in progress, and the entitlement under the support contract \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); PRE-ASSIGNED and kept (all checks equals, no schema patch, fail untouched); the dependency coupling (the CRM [DDX-TIER] stamp matching the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "service engagement == the source task's own five checks, gated on the n12 tier relay",
+   "inputs": [
+    "tier relay <- n12 CRM [DDX-TIER] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "csm_support_contract_active",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_premium_entitlement_on_product",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_ssl_case_high_in_progress",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_response_sla_in_progress",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_entitlement_under_support_contract",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_engagement_gated_on_tier_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251222_140957_029_c5ca08eb_3c4271f0",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task (retire a legacy service and close its incidents): its four native database_state checks \u2014 the retired service, the retired service offering, and the two closed incidents with close notes \u2014 are inherited VERBATIM; PRE-ASSIGNED and kept (all checks equals, no schema patch, fail untouched); the coupling (the CSM engagement on the register) is a SEPARATE composition glue check",
+   "rule": "legacy-service retirement == the source task's own four checks, gated on the CSM engagement",
+   "inputs": [
+    "gate <- n13 eops_sn_csm_server_contract Wayne Enterprises contract (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "itsm_service_retired",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_service_offering_retired",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_incident_a_closed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_incident_b_closed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "itsm_beat_gated_on_csm_engagement",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [DDX-STATUS] email lead->registrar lead citing total_distribution + the live tier, gated on the itsm beat",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "gate <- n14 eops itsm beat",
+    "total_distribution <- n04",
+    "tier truth <- live debit_card_specializing banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20260109_145235_208_64a4ebb9_9befb3ae",
+   "verdict_basis": "EnterpriseOps-Gym gym-google-drive-mcp oracle task (file a financials workbook on the document register, attest it and put it under change-watch): its three native database_state checks \u2014 the workbook standing untrashed with the monitoring description of record, the register's audit attestation posted on it under the records-analyst id of record, and the change-watch open on that workbook to the desk's monitoring endpoint with an unexpired expiration \u2014 are inherited VERBATIM (all clean equals); RE-SEATED (pilot-10 loop-2, F1) onto this case's own document of record, the beat previously seated here having had no party in this case; the coupling (the workbook citing the [DDX-STATUS] total and tier word) is a SEPARATE composition glue check",
+   "rule": "workbook of record filed == the source task's own three checks, plus the filing citing the [DDX-STATUS] total_distribution and tier word",
+   "inputs": [
+    "total_distribution + tier <- n15 gm_emails [DDX-STATUS] body"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "workbook_description_of_record",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "workbook_audit_attestation_filed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "workbook_change_watch_open",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "workbook_filing_cites_total_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net and to the re-derived figure chain",
+   "rule": "reconciled = 'ok' iff the [DDX-CREDIT] net (credits - reversals) to the correct holder == delta AND the recorded total_distribution still equals base_dividend + round(rate_index)*1000 (the figure cross-check), with the CRM [DDX-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 13)",
+    "base_dividend <- n02 (figure cross-check, long-range)",
+    "rate_index <- n03 (figure cross-check, long-range)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [DDX-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops HR catalog",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DDX-REVIEW]",
+      "event_name": "Registrar distribution review [DDX-REVIEW] \u2014 record: Monthly Financials.xls.xlsx",
+      "participant_email": "distribution.lead@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__eligible_lots_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__base_dividend_is_fn_of_lots",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__rate_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__distribution_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_ratio_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_cohort_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "birdsql:34",
+   "verdict_basis": "side_ratio is judged by birdsql:34's own official gold SQL rerun LIVE on the bird_california_schools_-prefixed book \u2014 a true single-row REAL<1 ratio stored in the book's own CAST-text form; an independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_ratio": "0.201741654571843"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL) / T2.`Enrollment (Ages 5-17)` FROM bird_california_schools_schools AS T1 INNER JOIN bird_california_schools_frpm AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.AdmFName1 = 'Kacey' AND T1.AdmLName1 = 'Gibson'",
+    "result": 0.20174165457184326
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_34_side_ratio",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:864",
+   "verdict_basis": "side_cohort is judged by birdsql:864's own official gold SQL rerun LIVE on the bird_formula_1_-prefixed book \u2014 a true single-row COUNT scalar; a second independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_cohort": "11"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T2.driverId) FROM bird_formula_1_races AS T1 INNER JOIN bird_formula_1_results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NOT NULL",
+    "result": 11
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_864_side_cohort",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

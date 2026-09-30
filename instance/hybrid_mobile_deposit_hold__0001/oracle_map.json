@@ -1,0 +1,155 @@
+[
+ {
+  "id": "m01",
+  "node": "n02",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Set the auto-release base from the flagged mobile-deposit case count has (1) a VALUE dependency on the step that How many of the patients with the most serious thrombosis cases examined in 1997 are women? — it consumes the figure 'hold_case_count' that step records."
+ },
+ {
+  "id": "m02",
+  "node": "n04",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Compute the hold envelope from the stored answers and decide the hold-outcome branch has (1) a VALUE dependency on the step that Set the auto-release base from the flagged mobile-deposit case count — it consumes the figure 'auto_release_base' that step records; (2) a VALUE dependency on the step that Find the average number of long-shot done by Ahmed Samir Farag — it consumes the figure 'overlimit_index' that step records."
+ },
+ {
+  "id": "m03",
+  "node": "n06",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email=riley.che… has (1) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_carry' that step records."
+ },
+ {
+  "id": "m04",
+  "node": "n07",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "note": "The step that Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger has (1) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_delta' that step records."
+ },
+ {
+  "id": "m05",
+  "node": "n08",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification has (1) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'branch' that step records; (2) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_carry' that step records."
+ },
+ {
+  "id": "m06",
+  "node": "n09",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Log the hold disposition on the depositor CRM record has (1) a STATE dependency on the step that If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_carry' that step records."
+ },
+ {
+  "id": "m07",
+  "node": "n10",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "note": "The step that Post the intercompany hold-review carry ALLOCATION on the sw_* line-share ledger has (1) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_carry' that step records."
+ },
+ {
+  "id": "m08",
+  "node": "n11",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "note": "The step that Open the reconciliation follow-up has (1) a STATE dependency on the step that Log the hold disposition on the depositor CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_delta' that step records."
+ },
+ {
+  "id": "m09",
+  "node": "n12",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXTENDED_REVI… has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks."
+ },
+ {
+  "id": "m10",
+  "node": "n13",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_email_mcp_send_as_aliases",
+   "eops_sn_csm_server_user"
+  ],
+  "note": "The step that File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems has (1) a STATE dependency on the step that Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXTENDED_REVI… — it must follow the record that step files in wb_customer_relationship_manager_data."
+ },
+ {
+  "id": "m11",
+  "node": "n14",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_project_tasks"
+  ],
+  "note": "The step that Open the hold-management priority task has (1) a STATE dependency on the step that File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems — it must follow the record that step files in eops_sn_csm_server_user."
+ },
+ {
+  "id": "m12",
+  "node": "n15",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that Send the depositor a status update has (1) a STATE dependency on the step that Open the hold-management priority task — it must follow the record that step files in wb_project_tasks; (2) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_carry' that step records."
+ },
+ {
+  "id": "m13",
+  "node": "n17",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Reconcile the posted hold release against the recorded hold_delta — only after the depositor '[MDH-STATUS]' status email is out has (1) a STATE dependency on the step that Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch — it consumes the figure 'hold_delta' that step records; (3) a VALUE dependency on the step that Set the auto-release base from the flagged mobile-deposit case count — it consumes the figure 'auto_release_base' that step records; (4) a VALUE dependency on the step that Find the average number of long-shot done by Ahmed Samir Farag — it consumes the figure 'overlimit_index' that step records; (5) a STATE dependency on the step that Send the depositor a status update — it must follow the record that step files in gm_emails."
+ },
+ {
+  "id": "m14",
+  "node": "n18",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Schedule the post-release hold review has (1) a STATE dependency on the step that Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email=riley.che… — it must follow the record that step files in wb_calendar_events; (2) a STATE dependency on the step that Reconcile the posted hold release against the recorded hold_delta — only after the depositor '[MDH-STATUS]' status email is out — it must follow the record that step files in wb_customer_relationship_manager_data."
+ }
+]

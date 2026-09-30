@@ -1,0 +1,1478 @@
+{
+  "instance_id": "hybrid_deal_desk_approval__0001",
+  "agent_visible": {
+    "overall_query": "Run the quarterly deal-desk non-standard-deal approval cycle for the key account. Fix the deal-desk baseline compliance index from the lab reference book's own question \u2014 in the molecule containing sodium atoms, how many are non-carcinogenic (count the DISTINCT molecules that contain a sodium atom and are labelled non-carcinogenic). Set the delegation bar at 1000 per index point. Pull the flagged non-standard-deal count from the pipeline registry's own question \u2014 how many users with more than 10 views created their account after 2013 (count the accounts joined after 2013 with more than 10 views) \u2014 and set the aggregate discount impact at 100 per flagged deal. The total exposure is the bar plus the impact; the escalation delta equals the impact. Decide the routing branch on the impact against the bar \u2014 'AUTO_APPROVE' when the impact is at most the bar, 'MULTI_LEVEL_APPROVE' when it is at most three times the bar, 'ESCALATE_TO_CEO' otherwise \u2014 and work the cycle end to end: place the approval window on your calendar (a 2-day window starting 2024-03-08 09:00:00, held ONLY on the calendar); post the rebate-credit run so the net credit received by the correct recipient equals the delta (a credit that lands on the wrong recipient is reversed, never deleted, then the correct recipient is credited); unless the branch is AUTO_APPROVE, send the sales VP the approval-chain email citing the total exposure and the delta; log the total exposure on the key-account record and open the follow-up; allocate the legal carry evenly with the co-lead; RE-DERIVE the rep tier from the live pipeline registry (ESCALATED_REVIEW when the flagged count times 100 is at least 100000, PRIORITY_REVIEW when at least 20000, else STANDARD_TRACK) and stamp it on the account record; file the CSM key-account review case (citing the tier), the review mail filter, the deal-packet dossier close-out (the spec annex's review threads audited into the comment-audit report, citing the total exposure and the tier), and the client-demo calendar in the desk's enterprise registers (per the recording handbook); send the client the status update citing the total exposure and the tier; reconcile the credit ledger to the delta, re-deriving before the 'ok' verdict that the recorded total_exposure still equals bar + deal_count*100; and schedule the post-window QBR review after the window ends, conflict-free. Once those figures are settled, take the quarter's side-region FX control reading for the quarterly overview, held against the same probe's reading at the last quarterly sign-off; nothing in the run reads it, and the overview is signed only when this quarter's reading lines up with the last. Also pull the independent side-region FX exposure for the quarterly overview \u2014 what percentage of KAM-segment customers pay in euros (the euro-paying share of KAM customers).\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\ncompliance_index: the compliance index \u2014 whole number\nbar: the delegation bar \u2014 whole number, no thousands separators\ndeal_count: the flagged non-standard-deal count \u2014 whole number\ndiscount_impact: the aggregate discount impact \u2014 whole number\ntotal_exposure: the total exposure \u2014 whole number\ndelta: the escalation delta \u2014 whole number\nbranch: the routing branch \u2014 exactly one of {AUTO_APPROVE, MULTI_LEVEL_APPROVE, ESCALATE_TO_CEO}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the credit ledger nets to the delta\nside_report: the side-region FX exposure \u2014 the euro-paying percentage of KAM customers",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: three source reference books \u2014 the compliance lab book (bird_toxicology_atom, bird_toxicology_molecule, ...), the pipeline registry (bird_codebase_community_users, ...) and the side-region FX reference (bird_debit_card_specializing_customers, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the rebate-credit ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the legal-fee ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's four shared enterprise registers \u2014 CSM (eops_sn_csm_server_account, eops_sn_csm_server_contact, eops_sn_csm_server_customer_case, eops_sn_csm_server_user_group_member, eops_sn_csm_server_notification, ...), email (eops_gym_email_mcp_filters, ...), drive (eops_gym_google_drive_mcp_files, eops_gym_google_drive_mcp_comments, eops_gym_google_drive_mcp_replies, eops_gym_google_drive_mcp_permissions, ...) and the shared calendar (eops_gym_calendar_events, ...). You are sam.chen@atlas.com (Sam Chen), the deal-desk lead, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist review project, and a calendar on wb_calendar_events; the correct rebate recipient is correct.rebate@stark-industries.com, the wrong (mis-keyed) recipient is wrong.rebate@stark-industries.com, the co-lead is quinn.rivera@atlas.com, the sales VP is alex.morgan@atlas.com, and ONE CRM record \u2014 the key account marc.henry@stark-industries.com (Marc Henry) \u2014 is assigned to you; the same key account is on the CSM register as account 'Stark Industries' with Marc Henry as its contact. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the compliance index, delegation bar, impact, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "DEAL DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[DDA-BAR]' \u2014 key-account CRM notes: the delegation-bar stamp, citing 'bar=<n>'.\n   - '[DDA-HOLD]' \u2014 wb_calendar_events EVENT NAME of the approval window: your own calendar, event_start '2024-03-08 09:00:00', duration 2880 minutes (a 2-day window). The window's dates live ONLY on the calendar.\n   - '[DDA-REBATE]' \u2014 rebate-credit ledger (vm) DESCRIPTION of every rebate credit entry.\n   - '[DDA-REVERSAL]' \u2014 payment ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[DDA-REBATE]' tag).\n   - '[DDA-CHAIN-EMAIL]' \u2014 email SUBJECT of the sales-VP approval-chain email; the BODY must cite the total exposure and the delta.\n   - '[DDA-LOGGED]' \u2014 key-account CRM notes: the approval log, citing 'total_exposure=<n>'.\n   - '[DDA-SPLIT]' \u2014 Splitwise expense DESCRIPTION of the legal-review fee allocation. The expense books the full recorded total_exposure as its amount, and its sw_expense_shares row assigns quinn.rivera@atlas.com a share of exactly half that amount.\n   - '[DDA-FUP]' \u2014 Todoist task TITLE (in your 'Deal Desk Review' project); the title cites the delta.\n   - '[DDA-TIER]' \u2014 key-account CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[DDA-STATUS]' \u2014 email SUBJECT of the client status update; the BODY must cite the total exposure and the tier word.\n   - '[DDA-RECON]' \u2014 key-account CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[DDA-REBATE]' ledger (credits minus reversals) at write time, and the figure chain is re-derived at the same time \u2014 the recorded total_exposure must still equal bar + deal_count*100 before the 'ok' verdict is written, since a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing.\n   - '[DDA-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window QBR review.\n   - '[DDA-ESCALATION]' \u2014 key-account CRM notes: the CEO-escalation note, filed ONLY on the ESCALATE_TO_CEO route.\n\n2. ROUTE AND TIER WORDS. The routing branch is always one of the desk's three route words: 'AUTO_APPROVE', 'MULTI_LEVEL_APPROVE', 'ESCALATE_TO_CEO'. The rep tier is always one of the desk's three tier words: 'STANDARD_TRACK', 'PRIORITY_REVIEW', 'ESCALATED_REVIEW'. A cited tier word is re-derived from the live pipeline registry at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (sam.chen@atlas.com); the sales VP is written to at alex.morgan@atlas.com, the key-account client at marc.henry@stark-industries.com. Rebate credits run on the vm ledger FROM you TO the correct recipient (correct.rebate@stark-industries.com); a credit that lands on the wrong recipient (wrong.rebate@stark-industries.com) is corrected by that recipient sending the same amount back to you, never deleted. The legal-carry allocation runs on the sw ledger between you and the co-lead (quinn.rivera@atlas.com). Follow-up work lives in your Todoist 'Deal Desk Review' project; the window and review on your own wb_calendar_events (participant_email = sam.chen@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the key-account row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the key-account record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The QBR review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the approval window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators; the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The key account's CSM record is account 8 'Stark Industries' (stark-industries.com); its contact 10 is Marc Henry (portal user 20, marc.henry@stark-industries.com); the deal's licence line is product 25 'SUSE Linux Enterprise Server 15 Variant 5' (the account's installed seat is installed_product_id 40). The review-case beat opens ONE new customer_case on that account/contact/product (case_id = the next id, number 'CS-' + 7 digits, channel 'email', priority 'high', state 'new'), assigned_to the desk's case monitor Tabitha Bullock (user 3) with assignment_group_id 11 ('Proactive Case Monitoring') \u2014 add the monitor's user_group_member row (next member_id) for that group; the short_description reads 'Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: <text>' and MUST cite the '[DDA-TIER]' tier word exactly as stamped on the CRM status (e.g. '... Issue: deal-desk review [DDA-TIER] <TIER>'); then ONE notification on that case (next notification_id, case_id = the new case's id) to marc.henry@stark-industries.com, type 'report', status 'success', knowledge_id NULL.\n   - Email register (eops_gym_email_mcp_* tables). The review-routing beat (mailbox 'user_001') REMOVES the stale '\"subject\": \"meeting\"' filter and creates a NEW filter whose criteria route 'Review' mail 'in:chats' onto the labels label_006, label_007 and label_001.\n   - Drive register (eops_gym_google_drive_mcp_* tables). The dossier close-out audits the review threads on the deal packet's Technical Spec annex (file 01JBQM3K8TGHZX9RNVQM5Y2P8R): it adds a reply 'Reviewed as part of Q4 2024 audit - please reopen if still relevant' on the still-open thread 01JBQM3K8TGHZX9RNVQM5Y2P95 and sets that comment resolved; adds a reply 'Confirmed closed during Q4 2024 audit' on each already-resolved thread (01JBQM3K8TGHZX9RNVQM5Y2P96, 01JBQM3K8TGHZX9RNVQM5Y2P99); every reply's author_id is the desk's packet reviewer 01JBQM3K8TGHZX9RNVQM5Y2P7Y, deleted 0. It then creates the file 'Q4 Comment Audit Report' (mime_type 'application/vnd.google-apps.document', trashed 0) whose description cites '[DDA-STATUS]', the total exposure and the tier word of the status email, and grants 01JBQM3K8TGHZX9RNVQM5Y2P7Y the 'commenter' role on it (permissions row, type 'user', deleted 0).\n   - Calendar register (eops_gym_calendar_events + attachments/extended_properties/attendees). The client-demo beat schedules the 'Enterprise Client Demo' event on the 'dave-sales' calendar (start '2025-12-09 11:00:00.000000', end '2025-12-09 13:00:00.000000', timezones 'America/New_York', status 'confirmed', color_id '11', visibility 'confidential', location 'MegaCorp Headquarters', source 'CRM System - MegaCorp Deal' with the deal URL); attaches 3 files; adds a 'private' extended property with dealValue '$500000'; adds 2 attendees; and stands up a second matching confidential color-11 demo event.\n",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_key_account": [
+        {
+          "customer_id": "00000001",
+          "customer_email": "marc.henry@stark-industries.com",
+          "customer_name": "Marc Henry",
+          "assigned_to_email": "sam.chen@atlas.com",
+          "status": "Qualified",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "sam.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "correct.rebate@stark-industries.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.rebate@stark-industries.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "sam.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "marc.henry@stark-industries.com",
+          "note": ""
+        },
+        {
+          "email": "alex.morgan@atlas.com",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Deal Desk Review",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "Weekly deal-desk standup",
+          "participant_email": "sam.chen@atlas.com",
+          "event_start": "2024-03-11 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_account": [
+        {
+          "account_id": "8",
+          "name": "Stark Industries",
+          "email_domain": "stark-industries.com",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_user_group": [
+        {
+          "group_id": "11",
+          "name": "Proactive Case Monitoring",
+          "note": ""
+        }
+      ],
+      "eops_gym_google_drive_mcp_files": [
+        {
+          "id": "01JBQM3K8TGHZX9RNVQM5Y2P8R",
+          "name": "Technical Spec.pdf",
+          "note": ""
+        }
+      ],
+      "eops_gym_google_drive_mcp_comments": [
+        {
+          "id": "01JBQM3K8TGHZX9RNVQM5Y2P95",
+          "file_id": "01JBQM3K8TGHZX9RNVQM5Y2P8R",
+          "resolved": 0,
+          "note": ""
+        }
+      ],
+      "eops_gym_calendar_events": [
+        {
+          "summary": "Enterprise Client Demo - TechCorp Solutions",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row \u2014 the CSM case, membership and notification rows, a mail filter, the drive audit report, its replies and its permission).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register update \u2014 e.g. a drive review thread set resolved).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: rebate credits are compensatable \u2014 reverse a wrong-recipient credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across THREE bird books (toxicology/codebase_community/debit_card_specializing) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/email/drive/calendar). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n17->n19 with long-range edges: delta n04 reconciled at n18 (gap 14); the [DDA-HOLD] window n06 gates the review n19 (gap 13); total_exposure n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (codebase_community) woven into the arithmetic/branch; n20 is an independent debit_card_specializing side anchor.",
+    "protagonist": {
+      "email": "sam.chen@atlas.com",
+      "role": "deal-desk lead running the quarterly non-standard-deal approval cycle"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "In the molecule containing sodium atoms, how many are non-carcinogenic? (Read it as the book does: count the DISTINCT molecules that contain at least one sodium atom (element 'na') and are labelled non-carcinogenic (label '-').) Record the answer in answers as kind='compliance_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_toxicology_atom.element",
+          "bird_toxicology_atom.molecule_id",
+          "bird_toxicology_molecule.label"
+        ],
+        "writes": [
+          "answers.compliance_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the deal-desk delegation BAR from the compliance index. Read the stored figure and compute bar = figure * 1000. Record it in answers as kind='bar' and stamp the key account's CRM row (customer_email marc.henry@stark-industries.com) by prepending '[DDA-BAR] bar=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.compliance_index"
+        ],
+        "writes": [
+          "answers.bar",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "How many users with more than 10 views created their account after the year 2013? (Read it as the book does: count the user accounts whose creation year is after 2013 and whose Views exceeds 10.) Record the answer in answers as kind='deal_count'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_codebase_community_users.CreationDate",
+          "bird_codebase_community_users.Views"
+        ],
+        "writes": [
+          "answers.deal_count"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the deal-desk exposure from the stored answers. Read answers.bar AND answers.deal_count. discount_impact = deal_count * 100; total_exposure = bar + discount_impact; delta = discount_impact. Record all three: answers kind='discount_impact', kind='total_exposure', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.bar",
+          "answers.deal_count"
+        ],
+        "writes": [
+          "answers.discount_impact",
+          "answers.total_exposure",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the approval-routing branch on the computed state. Read answers.discount_impact and answers.bar and set answers kind='branch' to 'AUTO_APPROVE' if discount_impact <= bar, else 'MULTI_LEVEL_APPROVE' if discount_impact <= 3*bar, else 'ESCALATE_TO_CEO'. Check the auto tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.discount_impact",
+          "answers.bar"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04",
+          "n02"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total exposure is computed, place the approval-review WINDOW on the lead's calendar (participant_email=sam.chen@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[DDA-HOLD]', event_start='2024-03-08 09:00:00', duration=2880 (a 2-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_exposure",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the rebate credit run for EXACTLY delta on the recipient ledger. Record vm_transactions rows tagged '[DDA-REBATE]' so the NET credit posted FROM the lead (sam.chen@atlas.com) TO the correct recipient (correct.rebate@stark-industries.com) equals delta. If the first credit lands on the WRONG recipient (wrong.rebate@stark-industries.com), DO NOT delete it: write a matching '[DDA-REVERSAL] [DDA-REBATE]' entry (wrong recipient sends the SAME amount back to the lead) which cancels the wrong credit, then the correct credit to the right recipient.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the routing branch is 'MULTI_LEVEL_APPROVE' or 'ESCALATE_TO_CEO', send the sales VP the approval-chain email. INSERT a gm_emails row from the lead (sam.chen@atlas.com) to the VP (alex.morgan@atlas.com) whose subject carries '[DDA-CHAIN-EMAIL]' and whose body CITES the total_exposure and the delta. On the AUTO_APPROVE branch, the email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_exposure",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the approval kickoff on the key-account CRM record. Prepend '[DDA-LOGGED] total_exposure=<n>' to the notes \u2014 but for the multi-level/escalation branches, ONLY after the '[DDA-CHAIN-EMAIL]' email has been sent to the sales VP. For AUTO_APPROVE the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_exposure",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the legal-review fee ALLOCATION on the sw_* deal-desk ledger. INSERT a sw_expenses row paid by the lead (sam.chen@atlas.com) for the full total_exposure with description '[DDA-SPLIT]', and a sw_expense_shares row assigning the co-lead (quinn.rivera@atlas.com) a share_amount = total_exposure/2 (its half of the joint legal carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_exposure",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the approval follow-up. INSERT a td_tasks row in the 'Deal Desk Review' project owned by the lead whose title carries '[DDA-FUP]' and the delta value \u2014 only after the key-account CRM record carries the '[DDA-LOGGED]' approval log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the rep TIER. RE-DERIVE it from the live pipeline registry: exposure = (the flagged-deal count) * 100, TIER = 'ESCALATED_REVIEW' if exposure >= 100000, 'PRIORITY_REVIEW' if exposure >= 20000, else 'STANDARD_TRACK'. Write it to the key-account CRM row's DEDICATED status column (set status='[DDA-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_codebase_community_users.Views"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Open the key account's deal-desk review case in the desk's CSM register. Insert ONE new customer_case for Stark Industries's contact Marc Henry (account_id 8, contact_id 10) on the deal's licence line 'SUSE Linux Enterprise Server 15 Variant 5' (product_id 25, installed_product_id 40): channel 'email', priority 'high', state 'new', assigned to the desk's case monitor Tabitha Bullock (user_id 3) in the 'Proactive Case Monitoring' group (group_id 11; add the monitor's membership row), with a short_description of the form 'Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: ...' that CITES the '[DDA-TIER]' tier word the CRM status carries (the same tier the live re-derivation gives); then send marc.henry@stark-industries.com one 'report' notification on that case (status 'success', no knowledge article) \u2014 only after the CRM status carries the '[DDA-TIER]' rep-tier stamp.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_customer_case.state",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_user_group_member.group_id",
+          "eops_sn_csm_server_notification.status"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "File the review-routing mail filter in the desk's email register (mailbox 'user_001'). Remove the stale '\"subject\":\"meeting\"' filter, and create a new filter whose criteria route 'Review' mail 'in:chats' onto the labels label_006, label_007 and label_001 \u2014 only after the CSM case beat is on the register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.state"
+        ],
+        "writes": [
+          "eops_gym_email_mcp_filters.criteria_json",
+          "eops_gym_email_mcp_filters.action_json"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the key account a status update. INSERT a gm_emails row from the lead (sam.chen@atlas.com) to the client (marc.henry@stark-industries.com) whose subject carries '[DDA-STATUS]' and whose body cites the total_exposure and the rep tier word (re-derived from the live registry) \u2014 only after the review mail-filter beat is on the desk register.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_email_mcp_filters.criteria_json",
+          "answers.total_exposure",
+          "bird_codebase_community_users.Views",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Close out the review of the deal packet's Technical Spec annex (01JBQM3K8TGHZX9RNVQM5Y2P8R) in the desk's shared drive register and file the comment-audit report (the dossier). Reply 'Reviewed as part of Q4 2024 audit - please reopen if still relevant' on its still-open review thread (01JBQM3K8TGHZX9RNVQM5Y2P95) and mark that thread resolved; reply 'Confirmed closed during Q4 2024 audit' on each of its two already-resolved threads (01JBQM3K8TGHZX9RNVQM5Y2P96, 01JBQM3K8TGHZX9RNVQM5Y2P99); every reply is authored by the desk's packet reviewer (01JBQM3K8TGHZX9RNVQM5Y2P7Y). Then create the 'Q4 Comment Audit Report' Google Doc whose description cites '[DDA-STATUS]', the total exposure and the same tier word as the status email, and share it with the packet reviewer as 'commenter' \u2014 only after the '[DDA-STATUS]' status email is out.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "gm_emails.body",
+          "answers.total_exposure",
+          "bird_codebase_community_users.Views"
+        ],
+        "writes": [
+          "eops_gym_google_drive_mcp_comments.resolved",
+          "eops_gym_google_drive_mcp_replies.content",
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_permissions.role"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Stand up the client demo on the desk's shared coordination calendar. Schedule the confidential (color 11) 'Enterprise Client Demo' event with its CRM source and MegaCorp location, add its 3 attachments, its private deal-value extended property and its 2 attendees, plus a second matching demo event \u2014 only once the dossier is on the drive register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_gym_google_drive_mcp_files.description"
+        ],
+        "writes": [
+          "eops_gym_calendar_events.summary"
+        ],
+        "depends_on": [
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted rebate against the recorded delta. Confirm the Venmo NET credit posted to the correct recipient matches delta (re-read from the '[DDA-REBATE]' ledger rows, credits minus reversals, never from memory), and re-derive the figure chain before the 'ok' verdict: re-read the recorded bar and deal_count and confirm the recorded total_exposure still matches bar + deal_count*100 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[DDA-RECON] delta=<delta>' note to the key-account CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.bar",
+          "answers.deal_count",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the QBR pricing review. INSERT a wb_calendar_events row on the lead's calendar whose event_name carries '[DDA-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[DDA-HOLD]' approval window and does NOT overlap any of the lead's other events. Only for a client whose CRM carries '[DDA-RECON]' AND with the shared 'Enterprise Client Demo' demo up in the desk's calendar register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_calendar_events.summary"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n18",
+          "n17"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's side-region FX control reading for the quarterly overview, at the close of the run, once the deal desk's own figures are settled and the close-out is ready to sign, so the quarter's entry records the FX exposure as it stood at the sign-off rather than mid-run. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the deal-desk registers is the one that separates drift in the desk's own reporting from a real shift in FX exposure \u2014 and is answered exactly as that book asks it: \"What percentage of KAM customers pay in euros?\" (Read it as the book does: of the KAM-segment customers, the share whose currency is 'EUR', as a percentage \u2014 the EUR count times 100 over the KAM customer count.) Record the answer in answers as kind='side_report'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly overview is signed only when this quarter's reading lines up with the last \u2014 so nothing else in this run reads it, and what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as an FX move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_debit_card_specializing_customers.Currency",
+          "bird_debit_card_specializing_customers.Segment"
+        ],
+        "writes": [
+          "answers.side_report"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 14,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 29,
+      "dependency_depth": 14,
+      "max_dependency_gap": 16,
+      "mean_dependency_gap": 4.62,
+      "long_range_edge_ratio": 0.31,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 8,
+      "cross_system_edge_ratio": 0.793,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n18",
+          "gap": 16,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n18",
+          "gap": 15,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 14,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (routing branch on impact/bar bands) -> MULTI_LEVEL_APPROVE on real data",
+      "long_range_edges": [
+        "n04->n18 delta reconciled 14 steps later (gap 14, max)",
+        "n06->n19 [DDA-HOLD] window (type-B) gates the review (gap 13)",
+        "n04->n15 total_exposure resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n20 (independent birdsql:1492 debit_card_specializing side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:536 codebase_community) woven into the impact/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "sam.chen@atlas.com",
+      "client": "marc.henry@stark-industries.com",
+      "correct_recipient": "correct.rebate@stark-industries.com",
+      "wrong_recipient": "wrong.rebate@stark-industries.com",
+      "co_lead": "quinn.rivera@atlas.com",
+      "vp_sales": "alex.morgan@atlas.com",
+      "client_crm_id": "00000001",
+      "source_questions": {
+        "compliance_index": "birdsql:199 (toxicology) \u2014 In the molecule containing sodium atoms, how many are non-carcinogenic?",
+        "deal_count": "birdsql:536 (codebase_community) \u2014 How many users with more than 10 views created their account after the year 2013?",
+        "side_report": "birdsql:1492 (debit_card_specializing) \u2014 What percentage of KAM customers pay in euros?"
+      },
+      "eops_source_tasks": {
+        "csm_case": "enterpriseops:task_20260106_185201_238_00364ece_8ab4fd80 (sn-csm-server) \u2014 Stark Industries / Marc Henry review case CS-0001233 on 'SUSE Linux Enterprise Server 15 Variant 5' -> Tabitha Bullock @ Proactive Case Monitoring (+membership) + 'report' notification to marc.henry@stark-industries.com; case text cites [DDA-TIER]",
+        "email_filter": "enterpriseops:task_20260107_141655_644_911d75d7_9516dfe1 (gym-email-mcp) \u2014 meeting filter removed + Review/in:chats filter to label_006/label_007/label_001",
+        "drive_dossier": "enterpriseops:task_20260108_133740_739_13762b97_41fc6ac0 (gym-google-drive-mcp) \u2014 review threads on 01JBQM3K8TGHZX9RNVQM5Y2P8R audited + 'Q4 Comment Audit Report' (description cites [DDA-STATUS] + total_exposure + tier) shared commenter with 01JBQM3K8TGHZX9RNVQM5Y2P7Y",
+        "calendar_demo": "enterpriseops:task_20251203_080219_432_6f5b66fc_03eb353c (gym-calendar) \u2014 'Enterprise Client Demo' confidential color 11 + attachments/attendees"
+      },
+      "bar_policy": "bar = figure * 1000 (the multiplier 1000 is a declared constant)",
+      "impact_policy": "discount_impact = deal_count * 100 (per-deal 100 is declared)",
+      "branch_policy": "AUTO_APPROVE (impact<=bar, no chain email); MULTI_LEVEL_APPROVE (impact<=3*bar, VP chain email, no escalation note); ESCALATE_TO_CEO (impact>3*bar, chain email + escalation note) \u2014 the 1x/3x bands are declared constants",
+      "durable_tags": {
+        "bar_note": "[DDA-BAR]",
+        "approval_window": "[DDA-HOLD]",
+        "credit": "[DDA-REBATE]",
+        "reversal": "[DDA-REVERSAL]",
+        "allocation": "[DDA-SPLIT]",
+        "chain_email": "[DDA-CHAIN-EMAIL]",
+        "crm_log": "[DDA-LOGGED]",
+        "followup": "[DDA-FUP]",
+        "tier": "[DDA-TIER]",
+        "status_email": "[DDA-STATUS]",
+        "crm_reconcile": "[DDA-RECON]",
+        "calendar_review": "[DDA-REVIEW]",
+        "escalation_note_only_for_ceo": "[DDA-ESCALATION]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.compliance_index",
+          "answers.bar",
+          "answers.deal_count",
+          "answers.discount_impact",
+          "answers.total_exposure",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_report"
+        ],
+        "B_domain_state": "approval-window dates \u2014 ONLY on the wb_calendar_events [DDA-HOLD] event (n19 reads them there); the four eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "rep tier \u2014 re-derived at n12 from the live codebase_community book (flagged-count banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (lead->wrong recipient) + reversal delta (wrong recipient->lead) + correct delta (lead->correct recipient); net lead->correct recipient = delta",
+      "approval_window_hold": "[DDA-HOLD] 2024-03-08 09:00:00 for 2880 min -> ends 2024-03-10 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-03-11 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 deal-desk standup)",
+      "true_compliance_index": 11,
+      "true_bar": 11000,
+      "true_deal_count": 236,
+      "true_discount_impact": 23600,
+      "true_total_exposure": 34600,
+      "true_delta": 23600,
+      "true_branch": "MULTI_LEVEL_APPROVE",
+      "true_tier": "PRIORITY_REVIEW",
+      "true_reconciled": "ok",
+      "true_side_report": 3.480392156862745
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.compliance_index"
+        ],
+        "change": "In the molecule containing sodium atoms, how many are non-carcinogenic? (Read it as the book does: count the DISTINCT molecules th"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.bar",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the deal-desk delegation BAR from the compliance index. Read the stored figure and compute bar = figure * 1000. Record it in a"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.deal_count"
+        ],
+        "change": "How many users with more than 10 views created their account after the year 2013? (Read it as the book does: count the user accoun"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.discount_impact",
+          "answers.total_exposure",
+          "answers.delta"
+        ],
+        "change": "Compute the deal-desk exposure from the stored answers. Read answers.bar AND answers.deal_count. discount_impact = deal_count * 10"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the approval-routing branch on the computed state. Read answers.discount_impact and answers.bar and set answers kind='branc"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total exposure is computed, place the approval-review WINDOW on the lead's calendar (participant_email=sam.chen@atlas.com"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the rebate credit run for EXACTLY delta on the recipient ledger. Record vm_transactions rows tagged '[DDA-REBATE]' so the NET"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the routing branch is 'MULTI_LEVEL_APPROVE' or 'ESCALATE_TO_CEO', send the sales VP the approval-chain email. INSERT a gm_email"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the approval kickoff on the key-account CRM record. Prepend '[DDA-LOGGED] total_exposure=<n>' to the notes \u2014 but for the multi"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the legal-review fee ALLOCATION on the sw_* deal-desk ledger. INSERT a sw_expenses row paid by the lead (sam.chen@atlas.com) "
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the approval follow-up. INSERT a td_tasks row in the 'Deal Desk Review' project owned by the lead whose title carries '[DDA-F"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the rep TIER. RE-DERIVE it from the live pipeline registry: exposure = (the flagged-deal count) * 100, TIER = 'ESCALATED_"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_customer_case.state",
+          "eops_sn_csm_server_customer_case.short_description",
+          "eops_sn_csm_server_user_group_member.group_id",
+          "eops_sn_csm_server_notification.status"
+        ],
+        "change": "Open the key account's deal-desk review case in the desk's CSM register. Insert ONE new customer_case for Stark Industries's conta"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_email_mcp_filters.criteria_json",
+          "eops_gym_email_mcp_filters.action_json"
+        ],
+        "change": "File the review-routing mail filter in the desk's email register (mailbox 'user_001'). Remove the stale '\"subject\":\"meeting\"' filt"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the key account a status update. INSERT a gm_emails row from the lead (sam.chen@atlas.com) to the client (marc.henry@stark-in"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_google_drive_mcp_comments.resolved",
+          "eops_gym_google_drive_mcp_replies.content",
+          "eops_gym_google_drive_mcp_files.description",
+          "eops_gym_google_drive_mcp_permissions.role"
+        ],
+        "change": "Close out the review of the deal packet's Technical Spec annex (01JBQM3K8TGHZX9RNVQM5Y2P8R) in the desk's shared drive register an"
+      },
+      {
+        "subgoal": "n17",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_calendar_events.summary"
+        ],
+        "change": "Stand up the client demo on the desk's shared coordination calendar. Schedule the confidential (color 11) 'Enterprise Client Demo'"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted rebate against the recorded delta. Confirm the Venmo NET credit posted to the correct recipient matches delta"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the QBR pricing review. INSERT a wb_calendar_events row on the lead's calendar whose event_name carries '[DDA-REVIEW]', d"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_report"
+        ],
+        "change": "Take the quarter's side-region FX control reading for the quarterly overview, at the close of the run, once the deal desk's own fi"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the routing branch the data selects (MULTI_LEVEL_APPROVE). The three source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (figure == the birdsql:199 COUNT(DISTINCT); deal_count == the birdsql:536 COUNT; side_report == the birdsql:1492 FLOAT percentage), and the four EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the CSM key-account review case + monitor membership + client report-notification trio; the removed meeting filter + the Review/in:chats filter; the spec annex's open review thread resolved + 3 reviewer replies + the comment-audit report with its description + the reviewer's commenter permission; the confidential color-11 Enterprise Client Demo event + 3 attachments + private deal-value property + 2 attendees). COMPLETENESS: bar == figure*1000; discount_impact == deal_count*100; total_exposure == bar+impact; delta == impact=23600; branch == 'MULTI_LEVEL_APPROVE' (11000 < 23600 <= 33000); the [DDA-HOLD] window on the calendar; the vm ledger NETS delta to the correct recipient (a wrong-recipient credit offset by a [DDA-REVERSAL] + the correct credit, net == delta AND wrong-recipient net == 0); the VP chain email exists IFF the branch is MULTI/ESCALATE and cites the total + delta; the allocation + co-lead share on Splitwise; the CRM logs total_exposure; the follow-up cites delta; the rep TIER is RE-DERIVED from the live codebase_community book (type-C, never in answers) and stamped; the four eops register beats match the inherited checks; the status email cites total + tier; reconciled == 'ok'; the QBR review is conflict-free, after the window end, with the client-demo up; side_report == the KAM euro percentage. COLLATERAL (each 0): NO VP chain email on an AUTO_APPROVE path; NO [DDA-ESCALATION] note for an AUTO/MULTI branch; NO naked delete of a wrong-recipient credit (it must keep its [DDA-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged client; no CRM row outside the key account's record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped figure).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the key-account CRM row and confirm it is homed to sam.chen@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='marc.henry@stark-industries.com'"
+          }
+        },
+        "tool_result": "1 row: marc.henry@stark-industries.com assigned_to sam.chen@atlas.com.",
+        "state_delta": "none (CLIENT ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the compliance index from the lab reference book's own question.",
+        "reasoning": "Count DISTINCT sodium-containing non-carcinogenic molecules.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(DISTINCT T2.molecule_id) FROM bird_toxicology_atom T1 JOIN bird_toxicology_molecule T2 ON T1.molecule_id=T2.molecule_id WHERE T1.element='na' AND T2.label='-'"
+          }
+        },
+        "tool_result": "11.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Compliance index = 11.",
+        "reasoning": "n01: record figure.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "compliance_index",
+              "value": "11"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+figure=11"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the delegation bar from the index.",
+        "reasoning": "n02: bar=11*1000=11000; stamp the key-account CRM [DDA-BAR].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "bar",
+              "value": "11000"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[DDA-BAR] bar=11000').",
+        "state_delta": "answers:+bar=11000; CRM:+bar note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the flagged-deal count from the pipeline registry.",
+        "reasoning": "Count accounts created after 2013 with more than 10 views.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(id) FROM bird_codebase_community_users WHERE STRFTIME('%Y',CreationDate)>'2013' AND Views>10"
+          }
+        },
+        "tool_result": "236.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Flagged-deal count = 236.",
+        "reasoning": "n03: record deal_count.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "deal_count",
+              "value": "236"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+deal_count=236"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have bar=11000, count=236.",
+        "reasoning": "n04: discount_impact=236*100=23600; total_exposure=11000+23600=34600; delta=23600.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "discount_impact",
+              "value": "23600"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_exposure=34600,+delta=23600).",
+        "state_delta": "answers:+discount_impact=23600,+total_exposure=34600,+delta=23600"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "impact=23600, bar=11000, 3*bar=33000.",
+        "reasoning": "n05: BRANCH DECISION. 11000 < 23600 <= 33000 -> MULTI_LEVEL_APPROVE.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 23600 <= 11000 AS is_auto, 23600 <= 3*11000 AS within_3x"
+          }
+        },
+        "tool_result": "0,1 -> MULTI_LEVEL_APPROVE.",
+        "state_delta": "none (BRANCH SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch MULTI_LEVEL_APPROVE.",
+        "reasoning": "n05: record branch.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "MULTI_LEVEL_APPROVE"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=MULTI_LEVEL_APPROVE"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the approval WINDOW [DDA-HOLD] on the lead's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Deal-desk approval window [DDA-HOLD]",
+              "participant_email": "sam.chen@atlas.com",
+              "event_start": "2024-03-08 09:00:00",
+              "duration": "2880"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+approval window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the rebate for delta. Instinct: credit the WRONG recipient (wrong.rebate@stark-industries.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 23600 credit to the wrong (mis-keyed) recipient.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<sam_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 23600.0,
+              "description": "Rebate credit (wrong recipient) [DDA-REBATE]"
+            }
+          }
+        },
+        "tool_result": "1 row (lead->wrong recipient).",
+        "state_delta": "venmo:+WRONG-recipient credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct recipient.",
+        "reasoning": "The net lead->correct recipient is currently 0, not delta=23600.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND description LIKE '%[DDA-REBATE]%' AND description NOT LIKE '%[DDA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND description LIKE '%[DDA-REBATE]%' AND description LIKE '%[DDA-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 23600.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [DDA-REVERSAL] as a positive 23600 in the OPPOSITE direction (wrong->lead).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<sam_vm>",
+              "amount": 23600.0,
+              "description": "Reversal of wrong-recipient credit [DDA-REVERSAL] [DDA-REBATE]"
+            }
+          }
+        },
+        "tool_result": "1 row (23600, wrong->lead).",
+        "state_delta": "venmo:+reversal (wrong-recipient net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 23600 (lead->correct recipient); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<sam_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 23600.0,
+              "description": "Rebate credit (correct recipient) [DDA-REBATE]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 23600=delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: MULTI_LEVEL_APPROVE requires the VP approval-chain email.",
+        "reasoning": "Email alex.morgan@atlas.com a [DDA-CHAIN-EMAIL] citing total_exposure=34600, delta=23600.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<sam_gm>",
+              "recipient_ids": "[<vp_gm>]",
+              "subject": "Approval routing [DDA-CHAIN-EMAIL]",
+              "body": "... total_exposure 34600 delta 23600 branch MULTI_LEVEL_APPROVE ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+chain email (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total on the key-account CRM (chain email sent).",
+        "reasoning": "Prepend '[DDA-LOGGED] total_exposure=34600' to the CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[DDA-LOGGED] total_exposure=34600 <existing>"
+            },
+            "where": "lower(customer_email)='marc.henry@stark-industries.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the legal-review fee allocation.",
+        "reasoning": "INSERT sw_expenses [DDA-SPLIT] amount=total_exposure (34600) with a co-lead share (17300).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<sam_sw>",
+              "amount": 34600.0,
+              "description": "Legal review split [DDA-SPLIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-lead share 17300).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [DDA-FUP] in 'Deal Desk Review' citing delta=23600.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<sam_td>",
+              "title": "Reconcile deal-desk approval [DDA-FUP] [delta=23600]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the rep TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live registry: count*100=23600 -> PRIORITY_REVIEW; write [DDA-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN ((SELECT COUNT(id) FROM bird_codebase_community_users WHERE STRFTIME('%Y', CreationDate) > '2013' AND Views > 10)*100) >= 100000 THEN 'ESCALATED_REVIEW' WHEN ((SELECT COUNT(id) FROM bird_codebase_community_users WHERE STRFTIME('%Y', CreationDate) > '2013' AND Views > 10)*100) >= 20000 THEN 'PRIORITY_REVIEW' ELSE 'STANDARD_TRACK' END)"
+          }
+        },
+        "tool_result": "'PRIORITY_REVIEW' (23600 in [20000,100000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the CRM status='[DDA-TIER] PRIORITY_REVIEW'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[DDA-TIER] PRIORITY_REVIEW"
+            },
+            "where": "lower(customer_email)='marc.henry@stark-industries.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=PRIORITY_REVIEW"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: open the key account's CSM review case (gated on the tier stamp, citing it).",
+        "reasoning": "Per the handbook: new customer_case CS-0001233 for Stark Industries/Marc Henry on 'SUSE Linux Enterprise Server 15 Variant 5', email/high/new, assigned to Tabitha Bullock in Proactive Case Monitoring (+membership row), short_description citing [DDA-TIER] PRIORITY_REVIEW; then the 'report' notification to marc.henry@stark-industries.com.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_sn_csm_server_customer_case",
+            "values": {
+              "number": "CS-0001233",
+              "account_id": "8",
+              "contact_id": "10",
+              "product_id": "25",
+              "installed_product_id": "40",
+              "channel": "email",
+              "priority": "high",
+              "state": "new",
+              "assigned_to": "3",
+              "assignment_group_id": "11",
+              "short_description": "Product: SUSE Linux Enterprise Server 15 Variant 5, Issue: deal-desk non-standard-deal review [DDA-TIER] PRIORITY_REVIEW"
+            }
+          }
+        },
+        "tool_result": "1 row (+membership row + report notification).",
+        "state_delta": "CSM register: +key-account review case"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: file the review mail filter (gated on the key account's CSM review case).",
+        "reasoning": "Per the handbook: remove the meeting filter, create the Review/in:chats filter to labels label_006/label_007/label_001.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_email_mcp_filters",
+            "values": {
+              "user_id": "user_001",
+              "criteria_json": "{\"query\": \"Review in:chats\"}",
+              "action_json": "{\"addLabelIds\": [\"label_006\", \"label_007\", \"label_001\"]}"
+            }
+          }
+        },
+        "tool_result": "1 row (+meeting filter removed).",
+        "state_delta": "email register: +review filter"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the client.",
+        "reasoning": "INSERT gm_emails lead->client [DDA-STATUS] citing total_exposure=34600 and tier PRIORITY_REVIEW.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<sam_gm>",
+              "recipient_ids": "[<client_gm>]",
+              "subject": "Deal-desk status [DDA-STATUS]",
+              "body": "... total_exposure 34600 ... PRIORITY_REVIEW ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: close out the spec-annex review and file the comment-audit report (gated on the status email).",
+        "reasoning": "Per the handbook: reply on + resolve the open thread 01JBQM3K8TGHZX9RNVQM5Y2P95, confirm the two closed threads (author 01JBQM3K8TGHZX9RNVQM5Y2P7Y), create 'Q4 Comment Audit Report' citing [DDA-STATUS] + total_exposure + the tier, share it commenter with 01JBQM3K8TGHZX9RNVQM5Y2P7Y.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_google_drive_mcp_files",
+            "values": {
+              "name": "Q4 Comment Audit Report",
+              "mime_type": "application/vnd.google-apps.document",
+              "trashed": 0,
+              "description": "[DDA-STATUS] ... total_exposure=34600 ... tier PRIORITY_REVIEW ..."
+            }
+          }
+        },
+        "tool_result": "1 row (+1 thread resolved + 3 replies + 1 commenter permission).",
+        "state_delta": "drive register: +dossier close-out"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: stand up the client-demo calendar beat (gated on the dossier).",
+        "reasoning": "Per the handbook: schedule the confidential color-11 'Enterprise Client Demo' event + 3 attachments + private deal-value property + 2 attendees + a second matching demo.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_calendar_events",
+            "values": {
+              "summary": "Enterprise Client Demo",
+              "color_id": "11",
+              "visibility": "confidential",
+              "start_datetime": "2025-12-09 11:00:00.000000"
+            }
+          }
+        },
+        "tool_result": "1 row (+children + second demo).",
+        "state_delta": "calendar register: +client demo"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n18: reconcile the credit ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct recipient == delta (23600), and re-derive the figure chain before the 'ok' verdict: re-read the recorded bar (11000) and deal_count (236) and confirm the recorded total_exposure (34600) still equals 11000 + 236*100; then record reconciled='ok' + [DDA-RECON] delta=23600.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND description LIKE '%[DDA-REBATE]%' AND description NOT LIKE '%[DDA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND description LIKE '%[DDA-REBATE]%' AND description LIKE '%[DDA-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AND (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='total_exposure')=(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='bar')+(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='deal_count')*100 THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (23600==23600; 34600==11000+236*100).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "n18: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[DDA-RECON] delta=23600' to the CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 28,
+        "phase": "discovery",
+        "observation": "n19: read the window end and the lead's busy slots.",
+        "reasoning": "Read the [DDA-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[DDA-HOLD]%' AND lower(participant_email)=lower('sam.chen@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-03-10 09:00; busy 2024-03-11 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "Window ends 03-10 09:00; 13:00-14:00 busy on 03-11.",
+        "reasoning": "n19: schedule the '[DDA-REVIEW]' review 2024-03-11 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "QBR pricing review Marc Henry [DDA-REVIEW]",
+              "participant_email": "sam.chen@atlas.com",
+              "event_start": "2024-03-11 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+QBR review"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent side-region FX exposure (birdsql:1492).",
+        "reasoning": "Compute the euro-paying percentage of KAM customers.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(Currency='EUR') AS FLOAT)*100/COUNT(CustomerID) FROM bird_debit_card_specializing_customers WHERE Segment='KAM'"
+          }
+        },
+        "tool_result": "3.480392156862745.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "Side FX exposure computed.",
+        "reasoning": "n20: record side_report.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_report",
+              "value": "3.480392156862745"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_report"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct recipient == delta and branch recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND description LIKE '%[DDA-REBATE]%' AND description NOT LIKE '%[DDA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.rebate@stark-industries.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='sam.chen@atlas.com') AND description LIKE '%[DDA-REBATE]%' AND description LIKE '%[DDA-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "23600.0, 'MULTI_LEVEL_APPROVE' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no escalation note / no AUTO path email and every wrong-recipient credit has a [DDA-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[DDA-ESCALATION]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[DDA-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> escalation absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', all four eops register beats are in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_calendar_events WHERE summary LIKE '%Enterprise Client Demo%' AND color_id='11')"
+          }
+        },
+        "tool_result": "ok, 2 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the credit posting, the window and the allocation) and joins (n19 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n18 (gap 14), the [DDA-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n19 (gap 13), and total_exposure resurfaces in the status email at n15. The cross-book mid value (deal_count from the codebase_community book, birdsql:536) is woven into the impact and thus into the branch and the whole downstream; n20 (debit_card_specializing, birdsql:1492) is an independent side anchor no downstream check reads. The rep tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live codebase_community book, and the CSM beat's composition gate binds the tier the review case CITES to the STAMPED tier and to that live re-derivation. The four EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The rebate credit is COMPENSATABLE: the first (wrong-recipient) credit must be corrected by a matching [DDA-REVERSAL] then the correct credit \u2014 the net lead->correct-recipient credit == delta, and the collateral 'no_naked_delete_of_wrong_recipient_credit' forbids removing the wrong row. On the real data impact=23600 mandates branch MULTI_LEVEL_APPROVE (VP chain email, no escalation note); the FSV accepts MULTI complete AND rejects a spurious escalation note or an extra VP email on the AUTO path.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  }
+}

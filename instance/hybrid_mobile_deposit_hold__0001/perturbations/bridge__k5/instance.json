@@ -1,0 +1,1455 @@
+{
+  "instance_id": "hybrid_mobile_deposit_hold__0001",
+  "agent_visible": {
+    "overall_query": "Run the Q1 mobile-deposit-hold batch for the daily deposit book. Fix the flagged mobile-deposit case count from the reference book's own question \u2014 the number of female patients whose 1997 examination records the most serious thrombosis case (the book grades severity so that Thrombosis = 1 is the MOST serious; 2 and 3 are milder, so the most serious grade is the lowest positive code, not the highest). Set the auto-release base as that count times the declared per-case base of 100. Pull the over-limit index from its book's own question \u2014 the average long-shot attribute for Ahmed Samir Farag, reported exactly as the book computes it \u2014 and set the over-limit uplift as that index rounded and multiplied by the declared per-unit rate of 1000. The hold carry is the base plus the uplift; the hold delta equals the uplift. Decide the hold-outcome branch on the delta \u2014 'EXTENDED_REVIEW' when the delta is at least 1000000, 'PARTIAL_HOLD' when it is at least 1000, 'AUTO_RELEASE' otherwise \u2014 and work the cycle end to end: place the post-release hold-review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the hold release so the net release received by the correct depositor equals the delta (a release that lands on the name-match wrong depositor is reversed, never deleted, then the correct depositor is paid); unless the branch is auto-release, send the fraud-review desk the handoff notification citing the hold carry and the delta; log the hold carry on the depositor record and open the follow-up; allocate the hold-review carry evenly with the ops controller; RE-DERIVE the hold tier from the live over-limit-index book (EXTENDED_REVIEW_TIER when the rounded-and-scaled index is at least 1000000, PARTIAL_HOLD_TIER when at least 1000, else AUTO_RELEASE_TIER) and stamp it on the depositor record; file the depositor-contact identity beat \u2014 set the flagged depositor's CSM contact record (email 'jessicabrown83@gmail.com') to first_name 'Linda' and last_name 'Hernandez', AND provision a verified send-as alias 'jb@gmail.com' for user_id '104daf4b-2023-49f1-8def-39b4e9dcda5e' (display 'Jessica Brown', reply-to 'jessicabrown83@gmail.com', treat_as_alias, verification 'accepted') per the recording handbook; open the priority task carrying the tier; send the depositor the status update citing the hold carry and the tier; reconcile the release ledger to the delta, re-deriving the figure chain first (the recorded hold carry must still come to the recorded auto-release base + the rounded over-limit index times 1000, or the reconciliation certifies nothing); and schedule the post-release hold review after the window ends, conflict-free. Also pull the four independent side anchors for the daily deposit overview \u2014 the number of bond connections summed over every atom whose id ends in _19 (across all molecules, not one), the number of cards with toughness 99, the funds the Vice President received, and the number of over-1000-price transactions at Czech-Republic gas stations \u2014 each a period-over-period anchor compared with its prior-cycle counterpart when the overview is countersigned, consumed by no figure downstream, and given as the book's own value.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nhold_case_count: the flagged mobile-deposit case count \u2014 whole number\nauto_release_base: the auto-release base \u2014 whole number\noverlimit_index: the over-limit index \u2014 the book's exact decimal value\noverlimit_uplift: the over-limit uplift \u2014 whole number, no thousands separators\nhold_carry: the hold carry \u2014 whole number\nhold_delta: the hold delta \u2014 whole number\nbranch: the hold-outcome route \u2014 exactly one of {AUTO_RELEASE, PARTIAL_HOLD, EXTENDED_REVIEW}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the release ledger nets to the delta\nside_atom_connections: the first side anchor \u2014 whole number\nside_toughness_cards: the second side anchor \u2014 whole number\nside_vp_funds: the third side anchor \u2014 the book's exact value\nside_gas_txns: the fourth side anchor \u2014 whole number\nhold_case_count_staged1: the desk's staging re-record 1 of 5 of hold_case_count \u2014 the identical value\nhold_case_count_staged2: the desk's staging re-record 2 of 5 of hold_case_count \u2014 the identical value\nhold_case_count_staged3: the desk's staging re-record 3 of 5 of hold_case_count \u2014 the identical value\nhold_case_count_staged4: the desk's staging re-record 4 of 5 of hold_case_count \u2014 the identical value\nhold_case_count_staged5: the desk's staging re-record 5 of 5 of hold_case_count \u2014 the identical value\n",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: six source reference books \u2014 the flagged-case book (bird_thrombosis_prediction_Patient, bird_thrombosis_prediction_Examination, ...), the over-limit-index book (bird_european_football_2_Player, bird_european_football_2_Player_Attributes, ...), the side connection book (bird_toxicology_connected, ...), the side card book (bird_card_games_cards, ...), the side officer-funds book (bird_student_club_member, bird_student_club_income, ...) and the side gas-transaction book (bird_debit_card_specializing_transactions_1k, bird_debit_card_specializing_gasstations, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the hold-release ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany hold-review carry ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's shared enterprise systems \u2014 the CSM user register (eops_sn_csm_server_user, ...) and the email-alias system (eops_gym_email_mcp_send_as_aliases, ...). You are riley.chen@atlas.com (Riley Chen), the deposit-review rep, with your own Venmo-payer treasury, Gmail, Splitwise and Todoist identities, a Todoist deposit-hold project, and a calendar on wb_calendar_events; the correct depositor is deposit.desk@atlas.com, the name-match wrong depositor is wrong.depositor@atlas.com, the ops controller is ops.controller@atlas.com, the fraud-review desk is fraud.review@krotov.cz, and ONE CRM record \u2014 the depositor deposit.desk@atlas.com \u2014 is assigned to you. The CSM user register and the email-alias system are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the flagged-case count, auto-release base, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "MOBILE DEPOSIT HOLD DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[MDH-BASE]' \u2014 depositor CRM notes: the auto-release-base stamp, citing 'auto_release_base=<n>'.\n   - '[MDH-HOLD]' \u2014 wb_calendar_events EVENT NAME of the hold-review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[MDH-RELEASE]' \u2014 hold-release ledger (vm) DESCRIPTION of every release entry (also carrying the hold citation token 'MDH-2024-Q1-042').\n   - '[MDH-REVERSAL]' \u2014 release ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[MDH-RELEASE]' tag).\n   - '[MDH-HANDOFF]' \u2014 email SUBJECT of the fraud-review-desk handoff notification; the BODY must cite the hold carry and the delta.\n   - '[MDH-LOG]' \u2014 depositor CRM notes: the disposition log, citing 'hold_carry=<n>'.\n   - '[MDH-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany hold-review carry allocation. The expense books the full recorded hold_carry as its amount, and its sw_expense_shares row assigns ops.controller@atlas.com a share of exactly half that amount.\n   - '[MDH-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Mobile Deposit Hold Batch' project); the title cites the delta.\n   - '[MDH-TIER]' \u2014 depositor CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[MDH-PRIOTASK]' \u2014 wb_project_tasks TASK NAME of the hold-management priority task assigned to you (list_name 'In Progress'); the name carries the tier word.\n   - '[MDH-STATUS]' \u2014 email SUBJECT of the depositor status update; the BODY must cite the hold carry and the tier word.\n   - '[MDH-RECON]' \u2014 depositor CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[MDH-RELEASE]' ledger (releases minus reversals) at write time, and the note is written only after the figure chain is re-derived: the recorded hold_carry must still come to auto_release_base + round(overlimit_index)*1000.\n   - '[MDH-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-release hold review.\n   - '[MDH-ESCALATE]' \u2014 depositor CRM notes: the extended-review escalation note, filed ONLY on the extended-review route.\n\n2. ROUTE AND TIER WORDS. The hold-outcome route is always one of the desk's three route words: 'AUTO_RELEASE', 'PARTIAL_HOLD', 'EXTENDED_REVIEW'. The hold tier is always one of the desk's three tier words: 'AUTO_RELEASE_TIER', 'PARTIAL_HOLD_TIER', 'EXTENDED_REVIEW_TIER'. A cited tier word is re-derived from the live over-limit-index book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (riley.chen@atlas.com); the depositor is written to at deposit.desk@atlas.com, the fraud-review desk at fraud.review@krotov.cz. Hold releases run on the vm ledger FROM the hold treasury (hold.treasury@atlas.com) TO the correct depositor (deposit.desk@atlas.com); a release that lands on the name-match wrong depositor (wrong.depositor@atlas.com) is corrected by that wrong depositor sending the same amount back to the treasury, never deleted. The hold-review carry allocation runs on the sw ledger between you and the ops controller (ops.controller@atlas.com). Follow-up work lives in your Todoist 'Q1 Mobile Deposit Hold Batch' project; the window and hold review on your own wb_calendar_events (participant_email = riley.chen@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Release rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the depositor row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the depositor record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The hold review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the over-limit index keeps its exact decimal; the side connection, card, officer-funds and gas-transaction figures are reported as the book computes them); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTER (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - Depositor-contact identity beat (spanning two desk systems). On the CSM user register (eops_sn_csm_server_* tables) set the flagged depositor's contact record (email 'jessicabrown83@gmail.com') to first_name 'Linda' and last_name 'Hernandez'. On the email-alias system (eops_gym_email_mcp_* tables) provision the verified send-as alias for user_id '104daf4b-2023-49f1-8def-39b4e9dcda5e': send_as_email 'jb@gmail.com', display_name 'Jessica Brown', reply_to_address 'jessicabrown83@gmail.com', signature 'Warm wishes, Jessica Brown - Client Services: +44 7911 234567', is_primary 0, treat_as_alias 1, verification_status 'accepted'.\n\nSTAGING: before the downstream step reads hold_case_count, this desk re-records it through 5 staging entries in order \u2014 kind='hold_case_count_staged1', then kind='hold_case_count_staged2', then kind='hold_case_count_staged3', then kind='hold_case_count_staged4', then kind='hold_case_count_staged5' (each the identical value, each copied from the previous one); file every staging record as an explicit intermediate step.",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_depositor": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "deposit.desk@atlas.com",
+          "customer_name": "Deposit Desk",
+          "assigned_to_email": "riley.chen@atlas.com",
+          "status": "Open",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "hold.treasury@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "deposit.desk@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.depositor@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "riley.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "deposit.desk@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "fraud.review@krotov.cz",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Mobile Deposit Hold Batch",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "Deposit-desk daily standup",
+          "participant_email": "riley.chen@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_user": [
+        {
+          "first_name": "Thomas",
+          "last_name": "Green",
+          "email": "thomas.green@servicenow.com",
+          "role": "agent",
+          "note": ""
+        }
+      ],
+      "eops_gym_email_mcp_send_as_aliases": [
+        {
+          "send_as_email": "jessicabrown83@gmail.com",
+          "display_name": "Linda Hernandez",
+          "verification_status": "accepted",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the six reference books, the ledgers, CRM state, the eops_ CSM user register and email-alias system).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions release / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / a wb_project_tasks task / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register row).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: hold releases are compensatable \u2014 reverse a wrong-depositor release, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across SIX bird books (thrombosis_prediction/european_football_2/toxicology/card_games/student_club/debit_card_specializing) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (MULTI-GYM: gym-email-mcp + sn-csm-server). Depth spine n01->n02->n04->n08->n09->n11->n12->n13->n14->n15->n17->n18 with long-range edges: hold_delta n04 reconciled at n17 (gap 13); the [MDH-HOLD] window n06 gates the hold review n18 (gap 12); hold_carry n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (european_football_2) woven into the arithmetic/branch; n05 (toxicology), n16 (card_games), n19 (student_club) and n20 (debit_card_specializing) are four independent side anchors reported verbatim.",
+    "protagonist": {
+      "email": "riley.chen@atlas.com",
+      "role": "deposit-review rep running the daily mobile-deposit-hold batch"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "How many of the patients with the most serious thrombosis cases examined in 1997 are women? (Read it as the book does: count the female patients whose 1997 examination records the most serious thrombosis case.) Record the answer in answers as kind='hold_case_count'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_thrombosis_prediction_Patient.ID",
+          "bird_thrombosis_prediction_Patient.SEX",
+          "bird_thrombosis_prediction_Examination.ID",
+          "bird_thrombosis_prediction_Examination.Thrombosis"
+        ],
+        "writes": [
+          "answers.hold_case_count"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the auto-release base from the flagged mobile-deposit case count. Read the stored hold_case_count and compute auto_release_base = round(hold_case_count) * 100 (the declared per-case base). Record it in answers as kind='auto_release_base' and stamp the depositor's CRM row (customer_email deposit.desk@atlas.com) by prepending '[MDH-BASE] auto_release_base=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.hold_case_count"
+        ],
+        "writes": [
+          "answers.auto_release_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "Find the average number of long-shot done by Ahmed Samir Farag. (Read it as the book does: the average of the player's long-shot attribute over its records, as a real number; report the index EXACTLY as the book computes it \u2014 keep the book's own decimal value.) Record the answer in answers as kind='overlimit_index'. (This over-limit index feeds the hold uplift, rounded downstream.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_european_football_2_Player.player_api_id",
+          "bird_european_football_2_Player.player_name",
+          "bird_european_football_2_Player_Attributes.player_api_id",
+          "bird_european_football_2_Player_Attributes.long_shots"
+        ],
+        "writes": [
+          "answers.overlimit_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the hold envelope from the stored answers and decide the hold-outcome branch. Read answers.auto_release_base AND answers.overlimit_index. overlimit_uplift = round(overlimit_index) * 1000 (the declared per-unit rate); hold_carry = auto_release_base + overlimit_uplift; hold_delta = overlimit_uplift. Record all three: answers kind='overlimit_uplift', kind='hold_carry', kind='hold_delta'. Then set answers kind='branch' to 'EXTENDED_REVIEW' if hold_delta >= 1000000, else 'PARTIAL_HOLD' if hold_delta >= 1000, else 'AUTO_RELEASE'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.auto_release_base",
+          "answers.overlimit_index"
+        ],
+        "writes": [
+          "answers.overlimit_uplift",
+          "answers.hold_carry",
+          "answers.hold_delta",
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Take the batch's first control reading \u2014 the bond-connection count \u2014 mid-run, once the hold envelope is sized (flagged case count, over-limit index, hold carry and delta recorded) and before any release is posted, so it carries the envelope's as-of date rather than the close-out's. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the hold registers (the flagged-case count, the over-limit index, the release ledger) is the one that separates drift in the desk's own reporting from a real shift in the connection count \u2014 and is answered exactly as that book asks it: \"How many connections does the atom 19 have?\" (Read it as the book does: count the bonds recorded for every atom whose id ends in _19 \u2014 the 19th atom in each molecule, taken across ALL molecules in the table, not one single molecule's atom.) Record the answer in answers as kind='side_atom_connections'. (A reading means nothing on its own: it means something held against this same probe's reading at the last batch sign-off, and the deposit overview is signed only when this batch's control readings line up with the last. Nothing later in this hold batch reads it; what is recorded here is the next batch's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a connection-count move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_toxicology_connected.bond_id",
+          "bird_toxicology_connected.atom_id"
+        ],
+        "writes": [
+          "answers.side_atom_connections"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n06",
+        "description": "Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email=riley.chen@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[MDH-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.hold_carry",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger. Record vm_transactions rows tagged '[MDH-RELEASE]' so the NET release posted FROM the hold treasury (hold.treasury@atlas.com) TO the correct depositor (deposit.desk@atlas.com) equals hold_delta. If the first release lands on the name-match wrong depositor (wrong.depositor@atlas.com), DO NOT delete it: write a matching '[MDH-REVERSAL] [MDH-RELEASE]' entry (the wrong depositor sends the SAME amount back to the treasury) which cancels the wrong release, then the correct release to the right depositor.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.hold_delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification. INSERT a gm_emails row from the rep (riley.chen@atlas.com) to the fraud-review desk (fraud.review@krotov.cz) whose subject carries '[MDH-HANDOFF]' and whose body CITES the hold_carry and the hold_delta. On the AUTO_RELEASE route (in-house), the handoff email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.hold_carry",
+          "answers.hold_delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the hold disposition on the depositor CRM record. Prepend '[MDH-LOG] hold_carry=<n>' to the notes \u2014 but for the 'PARTIAL_HOLD' and 'EXTENDED_REVIEW' routes, ONLY after the '[MDH-HANDOFF]' handoff email has been sent to the fraud-review desk. For the 'AUTO_RELEASE' route the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.hold_carry",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany hold-review carry ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the rep (riley.chen@atlas.com) for the full hold_carry with description '[MDH-ALLOC]', and a sw_expense_shares row assigning the ops controller (ops.controller@atlas.com) a share_amount = hold_carry/2 (its half of the joint hold-review carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.hold_carry",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Mobile Deposit Hold Batch' project owned by the rep whose title carries '[MDH-FUP]' and the hold_delta value \u2014 only after the depositor CRM record carries the '[MDH-LOG]' disposition log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.hold_delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXTENDED_REVIEW_TIER' if uplift >= 1000000, 'PARTIAL_HOLD_TIER' if uplift >= 1000, else 'AUTO_RELEASE_TIER'. Write it to the depositor CRM row's DEDICATED status column (set status='[MDH-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_european_football_2_Player_Attributes.long_shots"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems. On the CSM user register, set the flagged depositor's contact record (email 'jessicabrown83@gmail.com') to first_name 'Linda' and last_name 'Hernandez'. On the email-alias system, provision a verified send-as alias for user_id '104daf4b-2023-49f1-8def-39b4e9dcda5e': send_as_email 'jb@gmail.com', display_name 'Jessica Brown', reply_to_address 'jessicabrown83@gmail.com', signature 'Warm wishes, Jessica Brown - Client Services: +44 7911 234567', is_primary 0, treat_as_alias 1, verification_status 'accepted'. Only after the depositor CRM status carries the '[MDH-TIER]' tier stamp whose tier matches the live re-derivation.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_user.first_name",
+          "eops_sn_csm_server_user.last_name",
+          "eops_gym_email_mcp_send_as_aliases.send_as_email"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Open the hold-management priority task. INSERT a wb_project_tasks row assigned to riley.chen@atlas.com whose task_name carries '[MDH-PRIOTASK]' and the tier word (from the CRM '[MDH-TIER]' status field), list_name='In Progress' \u2014 only after the depositor-contact beat (the renamed CSM contact record AND the provisioned verified send-as alias) is on the desk register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_user.first_name",
+          "eops_gym_email_mcp_send_as_aliases.send_as_email",
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "wb_project_tasks.task_name"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the depositor a status update. INSERT a gm_emails row from the rep (riley.chen@atlas.com) to the depositor (deposit.desk@atlas.com) whose subject carries '[MDH-STATUS]' and whose body cites the hold_carry and the hold tier word (re-derived from the live over-limit-index book) \u2014 only after the WorkBench '[MDH-PRIOTASK]' priority task exists.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "wb_project_tasks.task_name",
+          "answers.hold_carry",
+          "bird_european_football_2_Player_Attributes.long_shots",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Take the batch's second control reading \u2014 the high-toughness card count \u2014 late in the run, once the depositor's status update is out and before the release ledger is reconciled, so the batch's entry carries the card baseline as it stood when the hold disposition went firm. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the hold registers (the flagged-case count, the over-limit index, the release ledger) is the one that separates drift in the desk's own reporting from a real shift in the card count \u2014 and is answered exactly as that book asks it: \"How many cards are there with toughness of 99?\" (Read it as the book does: count the cards whose toughness equals 99.) Record the answer in answers as kind='side_toughness_cards'. (A reading means nothing on its own: it means something held against this same probe's reading at the last batch sign-off, and the deposit overview is signed only when this batch's control readings line up with the last. Nothing later in this hold batch reads it; what is recorded here is the next batch's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a card-count move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.id",
+          "bird_card_games_cards.toughness"
+        ],
+        "writes": [
+          "answers.side_toughness_cards"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n17",
+        "description": "Reconcile the posted hold release against the recorded hold_delta \u2014 only after the depositor '[MDH-STATUS]' status email is out. Confirm the Venmo NET release posted to the correct depositor matches hold_delta (re-read from the '[MDH-RELEASE]' ledger rows, releases minus reversals, never from memory), and re-derive the figure chain before the 'ok' verdict: re-read the recorded auto_release_base and overlimit_index and confirm the recorded hold_carry still comes to auto_release_base + round(overlimit_index)*1000 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[MDH-RECON] delta=<n>' note to the depositor CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.hold_delta",
+          "answers.auto_release_base",
+          "answers.overlimit_index",
+          "vm_transactions.amount",
+          "gm_emails.subject"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03",
+          "n15"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Schedule the post-release hold review. INSERT a wb_calendar_events row on the rep's calendar whose event_name carries '[MDH-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[MDH-HOLD]' review window and does NOT overlap any of the rep's other events. Only for a depositor record whose CRM carries the '[MDH-RECON]' reconciliation note.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n17"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Take the batch's third control reading \u2014 the officer-funds figure \u2014 at the close of the run, once the hold review is on the calendar and the hold's own figures are settled, so it carries the same as-of date as the overview it is filed with. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the hold registers (the flagged-case count, the over-limit index, the release ledger) is the one that separates drift in the desk's own reporting from a real shift in the officer funds \u2014 and is answered exactly as that book asks it: \"What is the amount of the funds that the Vice President received?\" (Read it as the book does: the income amount linked to the member whose position is 'Vice President'.) Record the answer in answers as kind='side_vp_funds'. (A reading means nothing on its own: it means something held against this same probe's reading at the last batch sign-off, and the deposit overview is signed only when this batch's control readings line up with the last. Nothing later in this hold batch reads it; what is recorded here is the next batch's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a funds move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_student_club_member.member_id",
+          "bird_student_club_member.position",
+          "bird_student_club_income.link_to_member",
+          "bird_student_club_income.amount"
+        ],
+        "writes": [
+          "answers.side_vp_funds"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n20",
+        "description": "Take the batch's fourth and last control reading \u2014 the high-value gas-transaction count \u2014 at the close of the run, alongside the officer-funds figure and once the overview is ready to sign, so all the readings share one as-of date. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the hold registers (the flagged-case count, the over-limit index, the release ledger) is the one that separates drift in the desk's own reporting from a real shift in the transaction count \u2014 and is answered exactly as that book asks it: \"How many transactions taken place in the gas station in the Czech Republic are with a price of over 1000?\" (Read it as the book does: count the transactions at Czech-Republic ('CZE') gas stations whose price exceeds 1000.) Record the answer in answers as kind='side_gas_txns'. (A reading means nothing on its own: it means something held against this same probe's reading at the last batch sign-off, and the deposit overview is signed only when this batch's control readings line up with the last. Nothing later in this hold batch reads it; what is recorded here is the next batch's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a transaction-count move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_debit_card_specializing_transactions_1k.TransactionID",
+          "bird_debit_card_specializing_transactions_1k.GasStationID",
+          "bird_debit_card_specializing_transactions_1k.Price",
+          "bird_debit_card_specializing_gasstations.GasStationID",
+          "bird_debit_card_specializing_gasstations.Country"
+        ],
+        "writes": [
+          "answers.side_gas_txns"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 12,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 23,
+      "dependency_depth": 12,
+      "max_dependency_gap": 15,
+      "mean_dependency_gap": 5.04,
+      "long_range_edge_ratio": 0.391,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 8,
+      "fan_in": 5,
+      "fork_count": 3,
+      "join_count": 6,
+      "cross_system_edge_ratio": 0.87,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n17",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n17",
+          "gap": 15,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n17",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n18",
+          "gap": 12,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n17",
+        "n18"
+      ],
+      "primary_chain_len": 12,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "venmo",
+        "splitwise",
+        "gmail",
+        "todoist",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n04 (hold-outcome branch on delta bands) -> PARTIAL_HOLD on real data",
+      "long_range_edges": [
+        "n04->n17 hold_delta reconciled 13 steps later (gap 13, max)",
+        "n06->n18 [MDH-HOLD] window (type-B) gates the hold review (gap 12)",
+        "n04->n15 hold_carry resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n05 (independent birdsql:239 toxicology side anchor)",
+        "n16 (independent birdsql:372 card_games side anchor)",
+        "n19 (independent birdsql:1331 student_club side anchor)",
+        "n20 (independent birdsql:1508 debit_card_specializing side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:1039 european_football_2) woven into the uplift/delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "riley.chen@atlas.com",
+      "depositor": "deposit.desk@atlas.com",
+      "wrong_depositor": "wrong.depositor@atlas.com",
+      "ops_controller": "ops.controller@atlas.com",
+      "fraud_review_desk": "fraud.review@krotov.cz",
+      "release_treasury": "hold.treasury@atlas.com",
+      "depositor_crm_id": "00000002",
+      "hold_id": "MDH-2024-Q1-042",
+      "source_questions": {
+        "hold_case_count": "birdsql:1164 (thrombosis_prediction) \u2014 How many of the patients with the most serious thrombosis cases examined in 1997 are women?",
+        "overlimit_index": "birdsql:1039 (european_football_2) \u2014 Find the average number of long-shot done by Ahmed Samir Farag.",
+        "side_atom_connections": "birdsql:239 (toxicology) \u2014 How many connections does the atom 19 have?",
+        "side_toughness_cards": "birdsql:372 (card_games) \u2014 How many cards are there with toughness of 99?",
+        "side_vp_funds": "birdsql:1331 (student_club) \u2014 What is the amount of the funds that the Vice President received?",
+        "side_gas_txns": "birdsql:1508 (debit_card_specializing) \u2014 How many transactions taken place in the gas station in the Czech Republic are with a price of over 1000?"
+      },
+      "eops_source_tasks": {
+        "depositor_contact_beat": "enterpriseops:task_20251217_140216_182_701c5774_9fcdf867 (MULTI-GYM: gym-email-mcp + sn-csm-server) \u2014 the flagged depositor's CSM contact record renamed to Linda Hernandez + a verified send-as alias 'jb@gmail.com' on the email system"
+      },
+      "base_policy": "auto_release_base = round(hold_case_count) * 100 (declared per-case base)",
+      "uplift_policy": "overlimit_uplift = round(overlimit_index) * 1000 (declared per-unit rate)",
+      "branch_policy": "AUTO_RELEASE (delta<1000, no handoff email); PARTIAL_HOLD (delta>=1000, fraud-desk handoff email, no escalation note); EXTENDED_REVIEW (delta>=1000000, handoff email + escalation note) \u2014 the 1000/1000000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[MDH-BASE]",
+        "hold_window": "[MDH-HOLD]",
+        "release": "[MDH-RELEASE]",
+        "reversal": "[MDH-REVERSAL]",
+        "allocation": "[MDH-ALLOC]",
+        "handoff_email": "[MDH-HANDOFF]",
+        "crm_log": "[MDH-LOG]",
+        "followup": "[MDH-FUP]",
+        "tier": "[MDH-TIER]",
+        "priority_task": "[MDH-PRIOTASK]",
+        "status_email": "[MDH-STATUS]",
+        "crm_reconcile": "[MDH-RECON]",
+        "calendar_review": "[MDH-REVIEW]",
+        "escalation_note_only_for_C": "[MDH-ESCALATE]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.hold_case_count",
+          "answers.auto_release_base",
+          "answers.overlimit_index",
+          "answers.overlimit_uplift",
+          "answers.hold_carry",
+          "answers.hold_delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_atom_connections",
+          "answers.side_toughness_cards",
+          "answers.side_vp_funds",
+          "answers.side_gas_txns"
+        ],
+        "B_domain_state": "hold-review-window dates \u2014 ONLY on the wb_calendar_events [MDH-HOLD] event (n18 reads them there); the eops depositor-contact beat is a register-state gate the later hops read directly",
+        "C_not_persisted": "hold tier \u2014 re-derived at n12 from the live european_football_2 book (over-limit-index banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (treasury->wrong depositor) + reversal delta (wrong depositor->treasury) + correct delta (treasury->correct depositor); net treasury->correct depositor = hold_delta",
+      "hold_window_hold": "[MDH-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 deposit-desk daily standup)",
+      "true_hold_case_count": 1,
+      "true_auto_release_base": 100,
+      "true_overlimit_index": "61.5714285714286",
+      "true_overlimit_uplift": 62000,
+      "true_hold_carry": 62100,
+      "true_hold_delta": 62000,
+      "true_branch": "PARTIAL_HOLD",
+      "true_tier": "PARTIAL_HOLD_TIER",
+      "true_reconciled": "ok",
+      "true_side_atom_connections": 498,
+      "true_side_toughness_cards": 1,
+      "true_side_vp_funds": 50,
+      "true_side_gas_txns": 56
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.hold_case_count"
+        ],
+        "change": "How many of the patients with the most serious thrombosis cases examined in 1997 are women? (Read it as the book does: count the f"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.auto_release_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the auto-release base from the flagged mobile-deposit case count. Read the stored hold_case_count and compute auto_release_bas"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.overlimit_index"
+        ],
+        "change": "Find the average number of long-shot done by Ahmed Samir Farag. (Read it as the book does: the average of the player's long-shot a"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.overlimit_uplift",
+          "answers.hold_carry",
+          "answers.hold_delta",
+          "answers.branch"
+        ],
+        "change": "Compute the hold envelope from the stored answers and decide the hold-outcome branch. Read answers.auto_release_base AND answers.o"
+      },
+      {
+        "subgoal": "n05",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_atom_connections"
+        ],
+        "change": "Take the batch's first control reading \u2014 the bond-connection count \u2014 mid-run, once the hold envelope is sized (flagged case count,"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger. Record vm_transactions rows tagged"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification. INSERT "
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the hold disposition on the depositor CRM record. Prepend '[MDH-LOG] hold_carry=<n>' to the notes \u2014 but for the 'PARTIAL_HOLD'"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany hold-review carry ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the rep (riley."
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Mobile Deposit Hold Batch' project owned by the rep whose titl"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXT"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_user.first_name",
+          "eops_sn_csm_server_user.last_name",
+          "eops_gym_email_mcp_send_as_aliases.send_as_email"
+        ],
+        "change": "File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems. "
+      },
+      {
+        "subgoal": "n14",
+        "system": "workbench",
+        "writes": [
+          "wb_project_tasks.task_name"
+        ],
+        "change": "Open the hold-management priority task. INSERT a wb_project_tasks row assigned to riley.chen@atlas.com whose task_name carries '[M"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the depositor a status update. INSERT a gm_emails row from the rep (riley.chen@atlas.com) to the depositor (deposit.desk@atla"
+      },
+      {
+        "subgoal": "n16",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_toughness_cards"
+        ],
+        "change": "Take the batch's second control reading \u2014 the high-toughness card count \u2014 late in the run, once the depositor's status update is o"
+      },
+      {
+        "subgoal": "n17",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted hold release against the recorded hold_delta \u2014 only after the depositor '[MDH-STATUS]' status email is out. C"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the post-release hold review. INSERT a wb_calendar_events row on the rep's calendar whose event_name carries '[MDH-REVIEW"
+      },
+      {
+        "subgoal": "n19",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_vp_funds"
+        ],
+        "change": "Take the batch's third control reading \u2014 the officer-funds figure \u2014 at the close of the run, once the hold review is on the calend"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_gas_txns"
+        ],
+        "change": "Take the batch's fourth and last control reading \u2014 the high-value gas-transaction count \u2014 at the close of the run, alongside the o"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the hold-outcome branch the data selects (PARTIAL_HOLD). The six source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (hold_case_count == the birdsql:1164 COUNT; overlimit_index == the birdsql:1039 REAL, stored verbatim; side_atom_connections == the birdsql:239 COUNT; side_toughness_cards == the birdsql:372 COUNT; side_vp_funds == the birdsql:1331 scalar; side_gas_txns == the birdsql:1508 COUNT), and the one EnterpriseOps beat by its source task's OWN database_state checks across TWO gyms (prefix-rewritten only: the flagged depositor's CSM contact record renamed to Linda Hernandez, and a verified send-as alias 'jb@gmail.com' provisioned on the email system). COMPLETENESS: auto_release_base == round(hold_case_count)*100; overlimit_uplift == round(overlimit_index)*1000; hold_carry == base+uplift; hold_delta == uplift (62000); branch == 'PARTIAL_HOLD' (1000 <= 62000 < 1000000); the [MDH-HOLD] window on the calendar; the vm ledger NETS hold_delta to the correct depositor (a wrong-depositor release offset by an [MDH-REVERSAL] + the correct release, net == delta AND wrong-depositor net == 0); the handoff email exists IFF the branch is PARTIAL_HOLD or EXTENDED_REVIEW and cites the hold carry + delta; the allocation + ops-controller share on Splitwise; the CRM logs the hold carry; the follow-up cites the delta; the hold TIER is RE-DERIVED from the live european_football_2 book (type-C, never in answers) and stamped; the depositor-contact beat matches the inherited checks; the priority task carries the tier; the status email cites the hold carry + tier; reconciled == 'ok'; the hold review is conflict-free, after the window end. COLLATERAL (each 0): NO handoff email on an auto-release (AUTO_RELEASE) path; NO [MDH-ESCALATE] note for an AUTO_RELEASE or PARTIAL_HOLD branch; NO naked delete of a wrong-depositor release (it must keep its [MDH-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged depositor; no CRM row outside the depositor's record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped hold_case_count).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the depositor CRM row and confirm it is homed to riley.chen@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='deposit.desk@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: deposit.desk@atlas.com assigned_to riley.chen@atlas.com.",
+        "state_delta": "none (DEPOSITOR ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the flagged mobile-deposit case count from the reference book's own question.",
+        "reasoning": "Count the female patients whose 1997 examination records the most serious thrombosis case.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient T1 JOIN bird_thrombosis_prediction_Examination T2 ON T1.ID=T2.ID WHERE T1.SEX='F' AND STRFTIME('%Y', T2.`Examination Date`)='1997' AND T2.Thrombosis=1"
+          }
+        },
+        "tool_result": "1.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Flagged case count = 1.",
+        "reasoning": "n01: record hold_case_count.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "hold_case_count",
+              "value": "1"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+hold_case_count"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the auto-release base from the flagged case count.",
+        "reasoning": "n02: auto_release_base=round(1)*100=100; stamp the depositor CRM [MDH-BASE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "auto_release_base",
+              "value": "100"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[MDH-BASE] auto_release_base=100').",
+        "state_delta": "answers:+auto_release_base; CRM:+base note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the over-limit index from its book's own question.",
+        "reasoning": "The average long-shot attribute for Ahmed Samir Farag.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(t2.long_shots) AS REAL)/COUNT(t2.long_shots) FROM bird_european_football_2_Player t1 JOIN bird_european_football_2_Player_Attributes t2 ON t1.player_api_id=t2.player_api_id WHERE t1.player_name='Ahmed Samir Farag'"
+          }
+        },
+        "tool_result": "61.5714285714286.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Over-limit index = 61.5714285714286.",
+        "reasoning": "n03: record overlimit_index verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "overlimit_index",
+              "value": "61.5714285714286"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+overlimit_index"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=100, overlimit_index=61.57...",
+        "reasoning": "n04: overlimit_uplift=round(61.57)*1000=62000; hold_carry=100+62000=62100; hold_delta=62000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "overlimit_uplift",
+              "value": "62000"
+            }
+          }
+        },
+        "tool_result": "1 row (+hold_carry=62100,+hold_delta=62000).",
+        "state_delta": "answers:+overlimit_uplift=62000,+hold_carry=62100,+hold_delta=62000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "hold_delta=62000.",
+        "reasoning": "n04: BRANCH DECISION on delta. 1000 <= 62000 < 1000000 -> PARTIAL_HOLD.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "PARTIAL_HOLD"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=PARTIAL_HOLD (PARTIAL_HOLD SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Independent connection-count side anchor (birdsql:239).",
+        "reasoning": "n05: count the bonds recorded for atom 19.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T.bond_id) FROM bird_toxicology_connected T WHERE T.atom_id LIKE '%_19'"
+          }
+        },
+        "tool_result": "498.",
+        "state_delta": "answers:+side_atom_connections=498"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Hold carry computed.",
+        "reasoning": "n06: place the hold-review WINDOW [MDH-HOLD] on the rep's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 post-release hold review window [MDH-HOLD]",
+              "participant_email": "riley.chen@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+hold window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the release for hold_delta. Instinct: pay the wrong depositor (wrong.depositor@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 62000 release to the name-match wrong depositor.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<treasury_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 62000.0,
+              "description": "Hold release (wrong depositor) [MDH-RELEASE] MDH-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (treasury->wrong depositor).",
+        "state_delta": "venmo:+WRONG release",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct depositor.",
+        "reasoning": "The net treasury->correct depositor is currently 0, not hold_delta=62000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description NOT LIKE '%[MDH-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description LIKE '%[MDH-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='hold_delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 62000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [MDH-REVERSAL] as a positive 62000 in the OPPOSITE direction (wrong depositor->treasury).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<treasury_vm>",
+              "amount": 62000.0,
+              "description": "Reversal of wrong-depositor release [MDH-REVERSAL] [MDH-RELEASE] MDH-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (62000, wrong depositor->treasury).",
+        "state_delta": "venmo:+reversal (wrong-depositor net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct release.",
+        "reasoning": "n07: post the correct 62000 (treasury->correct depositor); ledger nets hold_delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<treasury_vm>",
+              "receiver_id": "<depositor_vm>",
+              "amount": 62000.0,
+              "description": "Hold release (correct depositor) [MDH-RELEASE] MDH-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 62000=hold_delta).",
+        "state_delta": "venmo:+correct release (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the PARTIAL_HOLD route requires a fraud-desk handoff notification.",
+        "reasoning": "Email fraud.review@krotov.cz a [MDH-HANDOFF] citing hold_carry=62100, hold_delta=62000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<fraud_gm>]",
+              "subject": "hold handoff [MDH-HANDOFF]",
+              "body": "... hold_carry 62100 hold_delta 62000 branch PARTIAL_HOLD ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+handoff notice (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the hold carry on the depositor CRM (notice sent).",
+        "reasoning": "Prepend '[MDH-LOG] hold_carry=62100' to the depositor CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[MDH-LOG] hold_carry=62100 <existing>"
+            },
+            "where": "lower(customer_email)='deposit.desk@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany hold-review carry allocation.",
+        "reasoning": "INSERT sw_expenses [MDH-ALLOC] amount=hold_carry (62100) with an ops-controller share (31050.0).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 62100.0,
+              "description": "Q1 intercompany hold-review carry allocation [MDH-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+ops-controller share 31050.0).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [MDH-FUP] in 'Q1 Mobile Deposit Hold Batch' citing delta=62000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "Reconcile Q1 hold MDH-2024-Q1-042 [MDH-FUP] [delta=62000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the hold TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live over-limit-index book: round(index)*1000=62000 -> PARTIAL_HOLD_TIER; write [MDH-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN (CAST(ROUND((SELECT CAST(SUM(t2.long_shots) AS REAL) / COUNT(t2.long_shots) FROM bird_european_football_2_Player AS t1 INNER JOIN bird_european_football_2_Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t1.player_name = 'Ahmed Samir Farag')) AS INTEGER)*1000) >= 1000000 THEN 'EXTENDED_REVIEW_TIER' WHEN (CAST(ROUND((SELECT CAST(SUM(t2.long_shots) AS REAL) / COUNT(t2.long_shots) FROM bird_european_football_2_Player AS t1 INNER JOIN bird_european_football_2_Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t1.player_name = 'Ahmed Samir Farag')) AS INTEGER)*1000) >= 1000 THEN 'PARTIAL_HOLD_TIER' ELSE 'AUTO_RELEASE_TIER' END)"
+          }
+        },
+        "tool_result": "'PARTIAL_HOLD_TIER' (62000 in [1000,1000000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the depositor CRM status='[MDH-TIER] PARTIAL_HOLD_TIER'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[MDH-TIER] PARTIAL_HOLD_TIER"
+            },
+            "where": "lower(customer_email)='deposit.desk@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=PARTIAL_HOLD_TIER"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: file the depositor-contact beat across the CSM user register and email-alias system (gated on the tier stamp).",
+        "reasoning": "Per the handbook: rename the CSM contact (jessicabrown83@gmail.com) to Linda Hernandez; provision the verified send-as alias 'jb@gmail.com'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_user",
+            "set": {
+              "first_name": "Linda",
+              "last_name": "Hernandez"
+            },
+            "where": "email='jessicabrown83@gmail.com'"
+          }
+        },
+        "tool_result": "1 CSM contact renamed (+1 verified send-as alias).",
+        "state_delta": "eops register: +depositor-contact beat"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: open the hold-management priority task (gated on the depositor-contact beat).",
+        "reasoning": "INSERT wb_project_tasks [MDH-PRIOTASK] carrying PARTIAL_HOLD_TIER, assigned to me, list 'In Progress'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_project_tasks",
+            "values": {
+              "task_name": "Deposit hold management [MDH-PRIOTASK] PARTIAL_HOLD_TIER",
+              "assigned_to_email": "riley.chen@atlas.com",
+              "list_name": "In Progress"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "tasks:+priority task"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the depositor.",
+        "reasoning": "INSERT gm_emails riley->depositor [MDH-STATUS] citing hold_carry=62100 and tier PARTIAL_HOLD_TIER.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<depositor_gm>]",
+              "subject": "hold status [MDH-STATUS]",
+              "body": "... hold_carry 62100 ... PARTIAL_HOLD_TIER ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: independent high-toughness card side anchor (birdsql:372).",
+        "reasoning": "Count the cards whose toughness equals 99.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(id) FROM bird_card_games_cards WHERE toughness=99"
+          }
+        },
+        "tool_result": "1.",
+        "state_delta": "answers:+side_toughness_cards=1"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: reconcile the release ledger to hold_delta (after the status email).",
+        "reasoning": "Re-derive the figure chain first \u2014 hold_carry 62100 == auto_release_base 100 + round(61.57)*1000 \u2014 then confirm the net posted to the correct depositor == hold_delta (62000); record reconciled='ok' + [MDH-RECON] delta=62000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description NOT LIKE '%[MDH-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description LIKE '%[MDH-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='hold_delta') AND (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='hold_carry')=(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='auto_release_base')+CAST(ROUND((SELECT CAST(value AS REAL) FROM answers WHERE kind='overlimit_index')) AS INTEGER)*1000 THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (62100==100+62000; 62000==62000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n17: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[MDH-RECON] delta=62000' to the depositor CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 27,
+        "phase": "discovery",
+        "observation": "n18: read the hold-review-window end and the rep's busy slots.",
+        "reasoning": "Read the [MDH-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[MDH-HOLD]%' AND lower(participant_email)=lower('riley.chen@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n18: schedule the '[MDH-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Post-release hold review \u2014 MDH-2024-Q1-042 [MDH-REVIEW]",
+              "participant_email": "riley.chen@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+hold review"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "n19: independent officer-funds side anchor (birdsql:1331).",
+        "reasoning": "The income amount linked to the Vice President member.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T2.amount FROM bird_student_club_member T1 JOIN bird_student_club_income T2 ON T1.member_id=T2.link_to_member WHERE T1.position='Vice President'"
+          }
+        },
+        "tool_result": "50.",
+        "state_delta": "answers:+side_vp_funds=50"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent high-value gas-transaction side anchor (birdsql:1508).",
+        "reasoning": "Count CZE gas-station transactions with price over 1000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T1.TransactionID) FROM bird_debit_card_specializing_transactions_1k T1 JOIN bird_debit_card_specializing_gasstations T2 ON T1.GasStationID=T2.GasStationID WHERE T2.Country='CZE' AND T1.Price>1000"
+          }
+        },
+        "tool_result": "56.",
+        "state_delta": "answers:+side_gas_txns=56"
+      },
+      {
+        "turn": 31,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct depositor == hold_delta and branch PARTIAL_HOLD recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description NOT LIKE '%[MDH-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='deposit.desk@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hold.treasury@atlas.com') AND description LIKE '%[MDH-RELEASE]%' AND description LIKE '%[MDH-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "62000.0, 'PARTIAL_HOLD' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no escalation note / extra handoff email for an auto-release branch and every wrong-depositor release has a [MDH-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[MDH-ESCALATE]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[MDH-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> EXTENDED_REVIEW escalation absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', the depositor-contact beat is in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_sn_csm_server_user WHERE email='jessicabrown83@gmail.com' AND first_name='Linda')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the hold release, the handoff email, the window and the allocation) and joins (n17 and n18 are multi-input), not a chain; the difficulty is long-range: hold_delta set at n04 is reconciled only at n17 (gap 13), the [MDH-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the hold review at n18 (gap 12), and hold_carry resurfaces in the status email at n15. The cross-book mid value (overlimit_index from the european_football_2 book, birdsql:1039) is woven into the uplift, delta and branch and thus the whole downstream; n05 (toxicology, birdsql:239), n16 (card_games, birdsql:372), n19 (student_club, birdsql:1331) and n20 (debit_card_specializing, birdsql:1508) are four independent side anchors no downstream check reads, reported verbatim. The hold tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live european_football_2 book, and the depositor-contact beat's composition gate binds the STAMPED tier to that live re-derivation. The EnterpriseOps beat is judged by the source task's own checks across two gyms, so any order that leaves the same register end-state passes; its register witness is a state gate the next hop reads directly. The hold release is COMPENSATABLE: the first (wrong-depositor) release must be corrected by a matching [MDH-REVERSAL] then the correct release \u2014 the net treasury->correct-depositor release == hold_delta, and the collateral 'no_naked_delete_of_wrong_disbursement' forbids removing the wrong row. On the real data hold_delta 62000 mandates the PARTIAL_HOLD route (fraud-desk handoff email, no escalation note); the FSV accepts PARTIAL_HOLD complete AND rejects a spurious escalation note or a handoff email on the AUTO_RELEASE route.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "bridge",
+    "probe_edge": {
+      "from": "n01",
+      "to": "n02"
+    },
+    "staged_value": "hold_case_count",
+    "k": 5,
+    "relays": [
+      "nbridge1",
+      "nbridge2",
+      "nbridge3",
+      "nbridge4",
+      "nbridge5"
+    ],
+    "added_kinds": [
+      "hold_case_count_staged1",
+      "hold_case_count_staged2",
+      "hold_case_count_staged3",
+      "hold_case_count_staged4",
+      "hold_case_count_staged5"
+    ],
+    "signature": {
+      "dG": 5,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

@@ -1,0 +1,451 @@
+[
+ {
+  "id": "h01",
+  "node": "n02",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n01",
+    "type": "value",
+    "kind": "hold_case_count",
+    "value": "1"
+   }
+  ],
+  "note": "For the step that Set the auto-release base from the flagged mobile-deposit case count, the upstream results it depends on, exactly as the reference run produced them: hold_case_count = 1 (the figure recorded by the step that How many of the patients with the most serious thrombosis cases examined in 1997 are women?)."
+ },
+ {
+  "id": "h02",
+  "node": "n04",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "start",
+  "tables": [],
+  "items": [
+   {
+    "from": "n02",
+    "type": "value",
+    "kind": "auto_release_base",
+    "value": "100"
+   },
+   {
+    "from": "n03",
+    "type": "value",
+    "kind": "overlimit_index",
+    "value": "61.5714285714286"
+   }
+  ],
+  "note": "For the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch, the upstream results it depends on, exactly as the reference run produced them: auto_release_base = 100 (the figure recorded by the step that Set the auto-release base from the flagged mobile-deposit case count); overlimit_index = 61.5714285714286 (the figure recorded by the step that Find the average number of long-shot done by Ahmed Samir Farag)."
+ },
+ {
+  "id": "h03",
+  "node": "n06",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_carry",
+    "value": "62100"
+   }
+  ],
+  "note": "For the step that Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email=riley.che…, the upstream results it depends on, exactly as the reference run produced them: hold_carry = 62100 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h04",
+  "node": "n07",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_delta",
+    "value": "62000"
+   }
+  ],
+  "note": "For the step that Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger, the upstream results it depends on, exactly as the reference run produced them: hold_delta = 62000 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h05",
+  "node": "n08",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "branch",
+    "value": "PARTIAL_HOLD"
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_carry",
+    "value": "62100"
+   }
+  ],
+  "note": "For the step that If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification, the upstream results it depends on, exactly as the reference run produced them: branch = PARTIAL_HOLD (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch); hold_carry = 62100 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h06",
+  "node": "n09",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n08",
+    "type": "state",
+    "table": "gm_emails",
+    "tags": [
+     "[MDH-HANDOFF]"
+    ],
+    "record": {
+     "recipient_ids": "[154]",
+     "created_at": "2024-02-09 09:30:00",
+     "id": 20867,
+     "sender_id": 152,
+     "subject": "Q1 hold handoff — notification [MDH-HANDOFF]",
+     "body": "Fraud desk, the Q1 hold MDH-2024-Q1-042 disposition carries hold_carry=62100 and hold_delta=62000 (branch PARTIAL_HOLD). Please review."
+    },
+    "n_candidates": 2
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_carry",
+    "value": "62100"
+   }
+  ],
+  "note": "For the step that Log the hold disposition on the depositor CRM record, the upstream results it depends on, exactly as the reference run produced them: the record the step that If the hold-outcome branch is 'PARTIAL_HOLD' or 'EXTENDED_REVIEW', send the fraud-review desk a hold handoff notification files in gm_emails: {\"recipient_ids\": \"[154]\", \"created_at\": \"2024-02-09 09:30:00\", \"id\": 20867, \"sender_id\": 152, \"subject\": \"Q1 hold handoff — notification [MDH-HANDOFF]\", \"body\": \"Fraud desk, the Q1 hold MDH-2024-Q1-042 disposition carries hold_carry=62100 and hold_delta=62000 (branch PARTIAL_HOLD). Please review.\"}; hold_carry = 62100 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h07",
+  "node": "n10",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "items": [
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_carry",
+    "value": "62100"
+   }
+  ],
+  "note": "For the step that Post the intercompany hold-review carry ALLOCATION on the sw_* line-share ledger, the upstream results it depends on, exactly as the reference run produced them: hold_carry = 62100 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h08",
+  "node": "n11",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "items": [
+   {
+    "from": "n09",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[MDH-LOG]"
+    ],
+    "record": {
+     "customer_id": "00000002",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "customer_name": "Deposit Desk",
+     "customer_email": "deposit.desk@atlas.com",
+     "customer_phone": "847-570-9785",
+     "last_contact_date": "2023-10-08",
+     "product_interest": "mobile deposit hold review",
+     "status": "[MDH-TIER] PARTIAL_HOLD_TIER",
+     "notes": "[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch."
+    },
+    "n_candidates": 1
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_delta",
+    "value": "62000"
+   }
+  ],
+  "note": "For the step that Open the reconciliation follow-up, the upstream results it depends on, exactly as the reference run produced them: the record the step that Log the hold disposition on the depositor CRM record files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000002\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"customer_name\": \"Deposit Desk\", \"customer_email\": \"deposit.desk@atlas.com\", \"customer_phone\": \"847-570-9785\", \"last_contact_date\": \"2023-10-08\", \"product_interest\": \"mobile deposit hold review\", \"status\": \"[MDH-TIER] PARTIAL_HOLD_TIER\", \"notes\": \"[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch.\"}; hold_delta = 62000 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h09",
+  "node": "n12",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n11",
+    "type": "state",
+    "table": "td_tasks",
+    "tags": [
+     "[MDH-FUP]"
+    ],
+    "record": {
+     "priority": "p2",
+     "created_at": "2024-02-10 09:00:00",
+     "id": 6334,
+     "project_id": 280,
+     "user_id": 107,
+     "title": "Reconcile Q1 hold MDH-2024-Q1-042 [MDH-FUP] [delta=62000]",
+     "description": "Post-disbursement reconciliation follow-up",
+     "is_completed": 0,
+     "order_index": 1
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXTENDED_REVI…, the upstream results it depends on, exactly as the reference run produced them: the record the step that Open the reconciliation follow-up files in td_tasks: {\"priority\": \"p2\", \"created_at\": \"2024-02-10 09:00:00\", \"id\": 6334, \"project_id\": 280, \"user_id\": 107, \"title\": \"Reconcile Q1 hold MDH-2024-Q1-042 [MDH-FUP] [delta=62000]\", \"description\": \"Post-disbursement reconciliation follow-up\", \"is_completed\": 0, \"order_index\": 1}."
+ },
+ {
+  "id": "h10",
+  "node": "n13",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_email_mcp_send_as_aliases",
+   "eops_sn_csm_server_user"
+  ],
+  "items": [
+   {
+    "from": "n12",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[MDH-TIER]"
+    ],
+    "record": {
+     "customer_id": "00000002",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "customer_name": "Deposit Desk",
+     "customer_email": "deposit.desk@atlas.com",
+     "customer_phone": "847-570-9785",
+     "last_contact_date": "2023-10-08",
+     "product_interest": "mobile deposit hold review",
+     "status": "[MDH-TIER] PARTIAL_HOLD_TIER",
+     "notes": "[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch."
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems, the upstream results it depends on, exactly as the reference run produced them: the record the step that Classify the hold TIER. RE-DERIVE it from the live over-limit-index book: uplift = round(the over-limit index) * 1000, TIER = 'EXTENDED_REVI… files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000002\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"customer_name\": \"Deposit Desk\", \"customer_email\": \"deposit.desk@atlas.com\", \"customer_phone\": \"847-570-9785\", \"last_contact_date\": \"2023-10-08\", \"product_interest\": \"mobile deposit hold review\", \"status\": \"[MDH-TIER] PARTIAL_HOLD_TIER\", \"notes\": \"[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch.\"}."
+ },
+ {
+  "id": "h11",
+  "node": "n14",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_project_tasks"
+  ],
+  "items": [
+   {
+    "from": "n13",
+    "type": "state",
+    "table": "eops_sn_csm_server_user",
+    "tags": [],
+    "record": {
+     "user_id": 2,
+     "first_name": "Linda",
+     "last_name": "Hernandez",
+     "email": "jessicabrown83@gmail.com",
+     "phone": "+919079913295",
+     "role": "customer",
+     "location_id": "2",
+     "active": 1,
+     "sys_created_on": "2025-08-27 15:43:46",
+     "sys_updated_on": "2024-02-09 09:41:00"
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Open the hold-management priority task, the upstream results it depends on, exactly as the reference run produced them: the record the step that File the depositor-contact identity beat for the hold correspondence (per the recording handbook), spanning the two desk systems files in eops_sn_csm_server_user: {\"user_id\": 2, \"first_name\": \"Linda\", \"last_name\": \"Hernandez\", \"email\": \"jessicabrown83@gmail.com\", \"phone\": \"+919079913295\", \"role\": \"customer\", \"location_id\": \"2\", \"active\": 1, \"sys_created_on\": \"2025-08-27 15:43:46\", \"sys_updated_on\": \"2024-02-09 09:41:00\"}."
+ },
+ {
+  "id": "h12",
+  "node": "n15",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "items": [
+   {
+    "from": "n14",
+    "type": "state",
+    "table": "wb_project_tasks",
+    "tags": [
+     "[MDH-PRIOTASK]"
+    ],
+    "record": {
+     "task_id": "00000300",
+     "task_name": "Deposit hold management [MDH-PRIOTASK] PARTIAL_HOLD_TIER — MDH-2024-Q1-042",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "list_name": "In Progress",
+     "due_date": "2024-02-20",
+     "board": "Back end"
+    },
+    "n_candidates": 1
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_carry",
+    "value": "62100"
+   }
+  ],
+  "note": "For the step that Send the depositor a status update, the upstream results it depends on, exactly as the reference run produced them: the record the step that Open the hold-management priority task files in wb_project_tasks: {\"task_id\": \"00000300\", \"task_name\": \"Deposit hold management [MDH-PRIOTASK] PARTIAL_HOLD_TIER — MDH-2024-Q1-042\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"list_name\": \"In Progress\", \"due_date\": \"2024-02-20\", \"board\": \"Back end\"}; hold_carry = 62100 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch)."
+ },
+ {
+  "id": "h13",
+  "node": "n17",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "items": [
+   {
+    "from": "n07",
+    "type": "state",
+    "table": "vm_transactions",
+    "tags": [],
+    "record": {
+     "created_at": "2024-02-09 09:00:00",
+     "id": 8216,
+     "sender_id": 107,
+     "receiver_id": 109,
+     "amount": 62000.0,
+     "description": "Hold release (wrong depositor) [MDH-RELEASE] MDH-2024-Q1-042",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0
+    },
+    "n_candidates": 3
+   },
+   {
+    "from": "n04",
+    "type": "value",
+    "kind": "hold_delta",
+    "value": "62000"
+   },
+   {
+    "from": "n02",
+    "type": "value",
+    "kind": "auto_release_base",
+    "value": "100"
+   },
+   {
+    "from": "n03",
+    "type": "value",
+    "kind": "overlimit_index",
+    "value": "61.5714285714286"
+   },
+   {
+    "from": "n15",
+    "type": "state",
+    "table": "gm_emails",
+    "tags": [
+     "[MDH-STATUS]"
+    ],
+    "record": {
+     "recipient_ids": "[153]",
+     "created_at": "2024-02-12 09:00:00",
+     "id": 20868,
+     "sender_id": 152,
+     "subject": "Q1 hold MDH-2024-Q1-042 status [MDH-STATUS]",
+     "body": "Depositor, wrapping the Q1 hold (hold_carry=62100). Hold tier: PARTIAL_HOLD_TIER. Best, Riley."
+    },
+    "n_candidates": 2
+   }
+  ],
+  "note": "For the step that Reconcile the posted hold release against the recorded hold_delta — only after the depositor '[MDH-STATUS]' status email is out, the upstream results it depends on, exactly as the reference run produced them: the record the step that Post the hold-release run for 'MDH-2024-Q1-042' for EXACTLY hold_delta on the depositor ledger files in vm_transactions: {\"created_at\": \"2024-02-09 09:00:00\", \"id\": 8216, \"sender_id\": 107, \"receiver_id\": 109, \"amount\": 62000.0, \"description\": \"Hold release (wrong depositor) [MDH-RELEASE] MDH-2024-Q1-042\", \"private\": 0, \"receipt_download_count\": 0, \"like_count\": 0}; hold_delta = 62000 (the figure recorded by the step that Compute the hold envelope from the stored answers and decide the hold-outcome branch); auto_release_base = 100 (the figure recorded by the step that Set the auto-release base from the flagged mobile-deposit case count); overlimit_index = 61.5714285714286 (the figure recorded by the step that Find the average number of long-shot done by Ahmed Samir Farag); the record the step that Send the depositor a status update files in gm_emails: {\"recipient_ids\": \"[153]\", \"created_at\": \"2024-02-12 09:00:00\", \"id\": 20868, \"sender_id\": 152, \"subject\": \"Q1 hold MDH-2024-Q1-042 status [MDH-STATUS]\", \"body\": \"Depositor, wrapping the Q1 hold (hold_carry=62100). Hold tier: PARTIAL_HOLD_TIER. Best, Riley.\"}."
+ },
+ {
+  "id": "h14",
+  "node": "n18",
+  "category": "handoff",
+  "prefix": "HANDOFF",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "items": [
+   {
+    "from": "n06",
+    "type": "state",
+    "table": "wb_calendar_events",
+    "tags": [
+     "[MDH-HOLD]"
+    ],
+    "record": {
+     "event_id": "00000301",
+     "event_name": "Q1 post-release hold review window [MDH-HOLD]",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2024-02-12 09:00:00",
+     "duration": "4320"
+    },
+    "n_candidates": 2
+   },
+   {
+    "from": "n17",
+    "type": "state",
+    "table": "wb_customer_relationship_manager_data",
+    "tags": [
+     "[MDH-RECON]"
+    ],
+    "record": {
+     "customer_id": "00000002",
+     "assigned_to_email": "riley.chen@atlas.com",
+     "customer_name": "Deposit Desk",
+     "customer_email": "deposit.desk@atlas.com",
+     "customer_phone": "847-570-9785",
+     "last_contact_date": "2023-10-08",
+     "product_interest": "mobile deposit hold review",
+     "status": "[MDH-TIER] PARTIAL_HOLD_TIER",
+     "notes": "[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch."
+    },
+    "n_candidates": 1
+   }
+  ],
+  "note": "For the step that Schedule the post-release hold review, the upstream results it depends on, exactly as the reference run produced them: the record the step that Once the hold carry is computed, place the post-release hold-review WINDOW on the deposit-review rep's calendar (participant_email=riley.che… files in wb_calendar_events: {\"event_id\": \"00000301\", \"event_name\": \"Q1 post-release hold review window [MDH-HOLD]\", \"participant_email\": \"riley.chen@atlas.com\", \"event_start\": \"2024-02-12 09:00:00\", \"duration\": \"4320\"}; the record the step that Reconcile the posted hold release against the recorded hold_delta — only after the depositor '[MDH-STATUS]' status email is out files in wb_customer_relationship_manager_data: {\"customer_id\": \"00000002\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"customer_name\": \"Deposit Desk\", \"customer_email\": \"deposit.desk@atlas.com\", \"customer_phone\": \"847-570-9785\", \"last_contact_date\": \"2023-10-08\", \"product_interest\": \"mobile deposit hold review\", \"status\": \"[MDH-TIER] PARTIAL_HOLD_TIER\", \"notes\": \"[MDH-RECON] delta=62000 [MDH-LOG] hold_carry=62100 logged [MDH-BASE] auto_release_base=100 Q1 mobile deposit hold batch.\"}."
+ }
+]

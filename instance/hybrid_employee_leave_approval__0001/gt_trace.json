@@ -1,0 +1,616 @@
+{
+ "uid": "hybrid_employee_leave_approval__0001",
+ "generated_from_build_sha": "1d0f545ec610",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "leave_index": "1.41666666666667",
+  "base_entitlement": "14167",
+  "cohort_index": "11",
+  "adjustment_uplift": "11000",
+  "total_scope": "25167",
+  "delta": "11000",
+  "branch": "EXTENDED_REVIEW",
+  "side_ratio": "6.12352630652824",
+  "reconciled": "ok",
+  "side_roster": "234",
+  "side_records": "121"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:47",
+   "verdict_basis": "leave_index is judged by birdsql:47's own official gold SQL rerun LIVE on the bird_california_schools_-prefixed book \u2014 a true single-row REAL scalar stored in the book's own CAST-text form; the spine root, scaled downstream into the entitlement arithmetic",
+   "answers_written": {
+    "leave_index": "1.41666666666667"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(COUNT(School) AS REAL) / 12 FROM bird_california_schools_schools WHERE DOC = 52 AND County = 'Alameda' AND strftime('%Y', OpenDate) = '1980'",
+    "result": 1.4166666666666667
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_47_leave_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "base_entitlement = round(leave_index * 10000)",
+   "follows": "whole-unit scaling of the fractional leave index (the ~1.4 index would round degenerately to 1); the 10000 is a declared constant, no source counterpart",
+   "inputs": [
+    "leave_index <- birdsql:47 (live rerun)"
+   ],
+   "answers_written": {
+    "base_entitlement": "14167"
+   },
+   "checks": [
+    {
+     "name": "base_entitlement_is_scaled_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "base_entitlement_derives_from_stored_leave_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "hrdir_crm_base_entitlement_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:864",
+   "verdict_basis": "cohort_index is judged by birdsql:864's own official gold SQL rerun LIVE on the bird_formula_1_-prefixed book \u2014 a true single-row COUNT scalar; the cross-book input woven into the adjustment arithmetic",
+   "answers_written": {
+    "cohort_index": "11"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T2.driverId) FROM bird_formula_1_races AS T1 INNER JOIN bird_formula_1_results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NOT NULL",
+    "result": 11
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_864_cohort_index",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "adjustment_uplift = cohort_index*1000; total_scope = base_entitlement + adjustment_uplift; delta = adjustment_uplift",
+   "follows": "count-scaled-by-rate + additive combine; the per-cohort 1000 is a declared constant",
+   "inputs": [
+    "base_entitlement <- n02",
+    "cohort_index <- n03 (birdsql:864 live rerun)"
+   ],
+   "answers_written": {
+    "adjustment_uplift": "11000",
+    "total_scope": "25167",
+    "delta": "11000"
+   },
+   "checks": [
+    {
+     "name": "adjustment_uplift_is_cohort_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_cohort_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_scope_equals_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_derives_from_stored_base_and_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'BOARD_ESCALATION' if delta>=100000; 'EXTENDED_REVIEW' if delta>=10000; else 'STANDARD_LEAVE'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 10000/100000 bands are declared constants; the branch predicate is source-expressed (delta from the live formula_1 book)",
+   "inputs": [
+    "delta <- n04 (cohort_index*1000)"
+   ],
+   "answers_written": {
+    "branch": "EXTENDED_REVIEW"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [ELA-HOLD] window's duration is the declared 3-day review window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[ELA-HOLD]",
+      "event_name": "Q1 leave review window [ELA-HOLD]",
+      "participant_email": "hr.specialist@atlas.com",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong transfer corrected by an offsetting transaction, never a delete; the net target is the recomputed delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_correct_employee",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_credit_reversed_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [ELA-HANDOFF] email specialist->appeals board citing total_scope+delta, present IFF branch in B/C",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "branch <- n05",
+    "total_scope/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_extended_or_escalation",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [ELA-LOG] total_scope marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_scope; co-HR partner share = total_scope/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "total_scope <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [ELA-FUP] task citing delta in the specialist's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [ELA-LOG]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'TIER_3_BOARD' if the live cohort count*1000 >= 100000; 'TIER_2_EXTENDED' if >= 10000; else 'TIER_1_STANDARD'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the formula_1 cohort count), not a relabel of a stored value",
+   "inputs": [
+    "cohort count <- live bird_formula_1 (re-derived at write time)",
+    "gate <- n11 td_tasks [ELA-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20260102_080409_151_d4a463c3_56c32265",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task (close out the benefits-services case): its 5 native database_state checks are 5 distinct specs; two (case_knowledge kb_id-1/knowledge_id-195 already absent -> count 0, and case_sla 2465 already 'canceled') PASS on the untouched seed (Rule-7 preconditions) so those two are DROPPED and noted; the remaining 3 \u2014 the case_sla 9 and 10 'completed' stages and the customer_case 5 'closed' state \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); the dependency coupling (the CRM [ELA-TIER] stamp matching the live re-derivation) is a SEPARATE composition glue check on the same node",
+   "rule": "benefits-case closure == the source task's own kept checks, gated on the n12 tier relay",
+   "inputs": [
+    "tier relay <- n12 CRM [ELA-TIER] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "csm_sla9_completed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_case5_closed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_sla10_completed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_closure_gated_on_tier_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251226_153702_699_ad5a67e3_43cd2d47",
+   "verdict_basis": "EnterpriseOps-Gym sn-hr-internal oracle task (file the employee's Leave-of-Absence request case): its 3 native database_state checks \u2014 the hr_case for account 'HRC0000772' under the 'Leave Of Absence' service at status 'ready', hr_case 61 assigned to the 'HR Service Desk' group, and the 'update' notification on that case to the employee's register user \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical; all fail on the untouched seed); RESEATED 2026-09-07 off a site build-out beat whose subjects belonged to no party of the case onto the leave employee's own HR case; the coupling (the LOA short_description citing the closed benefits case's number of record and the tier of record, gated on the CSM closure) is a SEPARATE composition glue check",
+   "rule": "LOA case == the source task's own three checks; its short_description cites the n13 closed benefits case number and the CRM [ELA-TIER] tier word, gated on the CSM closure",
+   "inputs": [
+    "benefits case number + closed state <- n13 eops_sn_csm_server_customer_case case 5 (cited)",
+    "tier word <- CRM [ELA-TIER] status relay (cited; must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "hr_loa_case_ready_for_account",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "hr_loa_case_assigned_service_desk",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "hr_employee_update_notified",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "loa_case_cites_closed_benefits_case_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [ELA-STATUS] email specialist->HR director citing total_scope + the live tier + the n14 LOA case number of record, gated on the LOA case",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "LOA case number <- n14 eops_sn_hr_internal_hr_case hr_case 61 (cited in the body)",
+    "total_scope <- n04",
+    "tier truth <- live formula_1 banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_tier_and_loa_case",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "birdsql:1160",
+   "verdict_basis": "side_ratio is judged by birdsql:1160's own official gold SQL rerun LIVE on the bird_thrombosis_prediction_-prefixed book \u2014 a true single-row REAL scalar stored in the book's own CAST-text form; the third independent side anchor no downstream check reads, reported verbatim (the former hr node slot)",
+   "answers_written": {
+    "side_ratio": "6.12352630652824"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(CASE WHEN T1.SEX = 'F' AND (T2.TP < 6.0 OR T2.TP > 8.5) THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM bird_thrombosis_prediction_Patient AS T1 INNER JOIN bird_thrombosis_prediction_Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F'",
+    "result": 6.123526306528242
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_1160_side_ratio",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [ELA-CREDIT] net (credits - reversals) to the correct employee == delta, with the CRM [ELA-RECON] note citing delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "delta <- n04 (gap 13)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [ELA-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the [ELA-STATUS] email out",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[ELA-REVIEW]",
+      "event_name": "HR-director leave review [ELA-REVIEW]",
+      "participant_email": "hr.specialist@atlas.com",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__leave_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__base_entitlement_is_fn_of_index",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__cohort_index_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__adjustment_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_scope_is_base_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_ratio_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_roster_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_records_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "birdsql:721",
+   "verdict_basis": "side_roster is judged by birdsql:721's own official gold SQL rerun LIVE on the bird_superhero_-prefixed book \u2014 a true single-row COUNT scalar; an independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_roster": "234"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.id) FROM bird_superhero_superhero AS T1 INNER JOIN bird_superhero_colour AS T2 ON T1.eye_colour_id = T2.id WHERE T2.colour = 'Blue'",
+    "result": 234
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_721_side_roster",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:537",
+   "verdict_basis": "side_records is judged by birdsql:537's own official gold SQL rerun LIVE on the bird_codebase_community_-prefixed book \u2014 a true single-row COUNT scalar; a second independent side question no downstream check reads, reported verbatim",
+   "answers_written": {
+    "side_records": "121"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.id) FROM bird_codebase_community_posts AS T1 INNER JOIN bird_codebase_community_users AS T2 ON T1.OwnerUserId = T2.Id WHERE T2.DisplayName = 'csgillespie'",
+    "result": 121
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_537_side_records",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

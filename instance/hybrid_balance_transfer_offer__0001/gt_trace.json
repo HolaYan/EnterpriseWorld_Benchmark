@@ -1,0 +1,610 @@
+{
+ "uid": "hybrid_balance_transfer_offer__0001",
+ "generated_from_build_sha": "51ab6bf7266c",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "source_balance": "149609.180487805",
+  "transfer_base": "748",
+  "promo_uplift": "65",
+  "total_transfer": "813",
+  "delta": "65",
+  "branch": "CONDITIONAL_UW_REVIEW",
+  "reconciled": "ok",
+  "side_scan_count": "74"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:132",
+   "answers_written": {
+    "source_balance": "149609.180487805"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT AVG(T4.amount) FROM bird_client AS T1 INNER JOIN bird_disp AS T2 ON T1.client_id = T2.client_id INNER JOIN bird_account AS T3 ON T2.account_id = T3.account_id INNER JOIN bird_loan AS T4 ON T3.account_id = T4.account_id WHERE T1.gender = 'M'",
+    "result": 149609.18048780487
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_132_source_balance",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "outcome form follows workbench:crm/0 'Update the status of Cameron Anderson to qualified in the crm' \u2014 a single CRM field write judged by the resulting row state; here the field is notes and the stamped value is bound to the computed transfer_base",
+   "rule": "transfer_base = round(source_balance / 200)",
+   "follows": "scalar-division-of-an-aggregate as in birdsql:132 gold_sql AVG shape (SUM/COUNT division); the divisor 200 is a declared constant, no source counterpart",
+   "inputs": [
+    "source_balance <- birdsql:132 (live rerun)"
+   ],
+   "answers_written": {
+    "transfer_base": "748"
+   },
+   "checks": [
+    {
+     "name": "transfer_base_is_round_source_over_200",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "transfer_base_derives_from_stored_source_balance",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "mgr_crm_transfer_base_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:136",
+   "answers_written": {
+    "promo_uplift": "65"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.account_id) FROM bird_account AS T1 INNER JOIN bird_loan AS T2 ON T1.account_id = T2.account_id WHERE T2.date BETWEEN '1995-01-01' AND '1997-12-31' AND T1.frequency = 'POPLATEK MESICNE' AND T2.amount >= 250000",
+    "result": 65
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_136_promo_uplift",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "total_transfer = transfer_base + promo_uplift; delta = promo_uplift",
+   "follows": "additive roll-up of component amounts into one total as in travelplanner:train/easy/0 budget evaluation (trip total = sum of leg costs held against the $1,700 budget); each-record-scores-one pass-through delta = promo_uplift per birdsql:136 gold_sql COUNT semantics",
+   "inputs": [
+    "transfer_base <- birdsql:132 (live rerun, round(/200))",
+    "promo_uplift <- birdsql:136 (live rerun)"
+   ],
+   "answers_written": {
+    "total_transfer": "813",
+    "delta": "65"
+   },
+   "checks": [
+    {
+     "name": "total_transfer_equals_base_plus_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "total_transfer_derives_from_stored_transfer_base_and_promo_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_promo_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_promo_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "branch = 'DECLINED_ALTERNATIVE' if delta >= 100 or transfer_base >= base_bar else 'CONDITIONAL_UW_REVIEW' if delta >= cond_floor and transfer_base >= 200 else 'AUTO_APPROVE_STANDARD_PROMO'",
+   "follows": "threshold-comparison banding as in travelplanner:train/easy/0 budget constraint (total held against a bar); each cut thresholds in its own unit: cond_floor is the LIVE answer-set size of birdsql:142 (Pisek household-payment accounts, 32 \u2014 an account count on the count-typed delta) and base_bar the LIVE birdsql:192 amount answer (average running-contract loan amount) through the same declared round(/200) policy as the base (= 964 \u2014 an amount bar on the amount-typed base); the delta decline cut 100 and the base floor 200 are declared constants, no unit-compatible source counterpart",
+   "inputs": [
+    "delta <- birdsql:136 (live rerun)",
+    "transfer_base <- birdsql:132 (live rerun, round(/200))",
+    "cond_floor <- birdsql:142 (live rerun, COUNT of answer rows)",
+    "base_bar <- birdsql:192 (live rerun, round(answer/200))"
+   ],
+   "answers_written": {
+    "branch": "CONDITIONAL_UW_REVIEW"
+   },
+   "checks": [
+    {
+     "name": "branch_matches_delta_thresholds",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta_and_base",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "transfer_base_read_witness",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "enterpriseops:task_20260106_103319_873_baf0b358_69ce7445",
+   "verdict_basis": "EnterpriseOps-Gym gym-calendar oracle task (a launch-calendar set-up: create the 'Product Launches' calendar in the fixed colour, move the corrected event record onto it, grant exactly four ACLs, and register the NOVAX_MONITOR watch channel on its webhook): its five native database_state checks \u2014 coloured launch calendar, calendar created once, the reserved hold record on that calendar, four ACLs, the monitor watch channel \u2014 are inherited VERBATIM (prefix rewrite only); none pins a person, so the calendar, the record and the four ACL scopes are the BT desk's own (rep login riley_chen, manager, underwriting team, underwriting review desk)",
+   "rule": "promo-window HOLD == the desk's launch calendar + four desk-party ACLs + the reserved hold record re-cut in place (title cites total_transfer) + the launch-control watch channel; review window end == hold end_datetime (type-B, scheduler-only)",
+   "inputs": [
+    "cited figure <- answers.total_transfer (n04)",
+    "window end -> n19 reads eops_gym_calendar_events.end_datetime"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "launch_calendar_handbook_colour",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "launch_calendar_created_once",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "promo_hold_record_on_launch_calendar",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "launch_calendar_four_party_acls",
+     "expected": 4,
+     "achieved": 4
+    },
+    {
+     "name": "launch_monitor_watch_channel",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "promo_hold_cites_total_transfer",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 'The last Venmo payment request I sent to Robert was an accident and they approved it. Send them the money back.' \u2014 a wrong transfer is corrected by an offsetting transaction, never a delete; the posting form follows appworld:dev/37a8675_1 'Send $91 privately on Venmo to the person with this phone number'; the amount is bound to the upstream delta",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_source_payoff",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "handoff email sent iff branch in ('CONDITIONAL_UW_REVIEW','DECLINED_ALTERNATIVE'); body must cite total_transfer and delta; for branch 'AUTO_APPROVE_STANDARD_PROMO' no [BTO-HANDOFF] email may exist",
+   "follows": "appworld:dev/0d8a4ee_1 evaluator's conditional-send state assert ('Send the following phone message to my parents and siblings, who do not have a venmo account' \u2014 the message reaches exactly the computed qualifying set); same send-iff-condition outcome form as workbench:multi_domain/72 'If chenwei has any overdue tasks, send them an email'; the AppWorld pool has no gmail SEND task",
+   "inputs": [
+    "branch <- n05 composition (bands over birdsql:132/136/142/192 live reruns)",
+    "total_transfer <- birdsql:132+136 (live rerun sum)",
+    "delta <- birdsql:136 (live rerun)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_conditional_or_declined",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "outcome form follows workbench:crm/0 'Update the status of Cameron Anderson to qualified in the crm' \u2014 a single CRM field write; here the field is notes, the stamped value is the upstream total_transfer, and the write is gated on the [BTO-HANDOFF] email on the CONDITIONAL_UW_REVIEW/DECLINED_ALTERNATIVE branches",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_total_transfer_gated_by_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = total_transfer; UW share_amount = total_transfer / 2 (equal 2-way split)",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert ('I paid for our last month's electricity bill. Its amount is supposed to be shared equally among my roommates and me. Make venmo requests' \u2014 each request amount is recomputed as the bill over the head count); the AppWorld pool has no Splitwise task",
+   "inputs": [
+    "total_transfer <- birdsql:132+136 (live rerun sum)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "follow-up task title carries [BTO-FUP] and cites delta; created only after the CRM [BTO-LOG] note exists",
+   "follows": "workbench:project_mgmt/10 'Add a new task to the Design backlog called Implement user profile management API and assign it to fatima' task-create outcome form, asserted via the AppWorld evaluator's table-state pattern as in appworld:train/cf6abd2_1; the AppWorld pool has no Todoist task",
+   "inputs": [
+    "delta <- birdsql:136 (live rerun)",
+    "gate <- n09 CRM [BTO-LOG] note"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "outcome form follows workbench:crm/0 'Update the status of Cameron Anderson to qualified in the crm' \u2014 the same dedicated status-column write; the status value is bound to the re-derived tier band",
+   "rule": "tier = 'DECLINED_ALTERNATIVE' if uplift >= 100 else 'CONDITIONAL_UW_REVIEW' if uplift >= cond_floor else 'AUTO_APPROVE_STANDARD_PROMO'; uplift and cond_floor both re-derived from the live bird tables",
+   "follows": "threshold banding as in travelplanner:train/easy/0 budget constraint; cond_floor is the LIVE answer-set size of birdsql:142; the decline cut 100 is a declared constant, no source counterpart",
+   "inputs": [
+    "uplift <- birdsql:136 (live rerun)",
+    "cond_floor <- birdsql:142 (live rerun, COUNT of answer rows)",
+    "promo_uplift stamp <- answers.promo_uplift (n03)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20251217_030654_663_99ba2325_f931fd42",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task ('Please create a new incident ... associate the knowledge article ... and assign the ticket to the ... work group'): its two native database_state checks \u2014 the incident carrying the pinned intake codes and the incident_knowledge link used_as='suggested' \u2014 are inherited VERBATIM (prefix rewrite only), except the incident check's status literal is carried through a CASE gated on the CRM [BTO-TIER] relay matching the live re-derivation AND the recorded transfer_base (the single dependency-literal substitution)",
+   "rule": "card-servicing intake == the source task's own incident+KB-link pair, gated on the n12 tier stamp relay (mis-stamped tier cascades here)",
+   "inputs": [
+    "tier relay <- n12 CRM [BTO-TIER] status (artifact relay, must equal the live birdsql:136+142 banding)",
+    "gate <- answers.transfer_base (n02)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "card_servicing_intake_filed_after_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "servicing_playbook_linked",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "card_servicing_intake_gated_on_tier_and_base",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "composition",
+   "rule": "status email to the manager cites total_transfer and the re-derived tier; sent only after the card-servicing intake INC_024 is filed",
+   "follows": "appworld:train/29caf6f_1 evaluator's derived-content message assert ('Reply to them with a list of comma-separated movie titles from my note' \u2014 the sent message must carry values read from another table); status-update send form as workbench:email/20 'Task Update on Improve UX of onboarding process'; the AppWorld pool has no gmail SEND task",
+   "inputs": [
+    "total_transfer <- birdsql:132+136 (live rerun sum)",
+    "tier <- birdsql:136+142 (live rerun banding)",
+    "gate <- n13 eops_gym_itsm_mcp_incident INC_024 (status new)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_total_transfer_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "enterpriseops:task_20251224_074251_092_46ca2862_b5b99f66",
+   "verdict_basis": "EnterpriseOps-Gym sn-hr-internal oracle task ('The case HRC0000714 has been sitting in progress ... move the case to someone within the group who currently has the lightest workload ... and update him about this'): its two native database_state checks \u2014 the case reassigned to officer 33 awaiting_acceptance/requested and the 'update' notification to that officer \u2014 are inherited VERBATIM (prefix rewrite only), except the case check's request_status literal is carried through a CASE gated on the [BTO-STATUS] email AND the recorded branch (the single dependency-literal substitution)",
+   "rule": "manager BRIEFED == the source task's own reassign+notify pair; the briefing-case state is the downstream gate n17/n19 read",
+   "inputs": [
+    "gate <- n14 gm_emails [BTO-STATUS]",
+    "gate <- answers.branch (n05; coupling guard binds it to the live two-factor banding)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "briefing_case_reassigned_after_status_email",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "briefing_reassignment_notified",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "briefing_reassignment_gated_on_status_email_and_branch",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "composition",
+   "rule": "sw_payments.amount = total_transfer / 2, matching the recorded sw_expense_shares amount",
+   "follows": "appworld:dev/530b157_1 evaluator's owed-money settle assert ('Kristin paid for my grocery recently... Send them the owed money with a description' \u2014 the posted payment must equal the amount recorded elsewhere); the AppWorld pool has no Splitwise task",
+   "inputs": [
+    "share <- n10 sw_expense_shares (itself total_transfer/2)",
+    "total_transfer <- birdsql:132+136 (live rerun sum)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "settle_payment_matches_share",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "composition",
+   "rule": "wrap-up comment on the [BTO-FUP] task quotes transfer_total recomputed from the [BTO-ALLOC] ledger sum (== 2x the [BTO-SETTLE] payment == stored total_transfer); gated on the handed-off manager-briefing case (eops_sn_hr_internal_hr_case 4 awaiting acceptance with officer 33)",
+   "follows": "appworld:train/afc0fce_1 evaluator's comment-content assert ('Add a comment, \"Thank you!\", to all the venmo payments I received from my coworkers...' \u2014 a comment with prescribed content attached to each matching parent record); the AppWorld pool has no Todoist task",
+   "inputs": [
+    "transfer_total <- n10 sw_expenses [BTO-ALLOC] sum (artifact relay)",
+    "cross-check <- n16 sw_payments [BTO-SETTLE] x2",
+    "total_transfer <- birdsql:132+136 (live rerun sum)",
+    "gate <- n15 eops_sn_hr_internal_hr_case (handed-off briefing case)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "wrapup_comment_after_briefed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "outcome form follows workbench:crm/0 'Update the status of Cameron Anderson to qualified in the crm' \u2014 a CRM field write (notes) judged by the resulting row; the cited delta is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff SUM([BTO-XFER] transfers to the payoff account) - SUM([BTO-REVERSAL] send-backs) == delta",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1 (an accidental payment cancelled by an equal send-back); equality reconcile against the recorded figure as in travelplanner:train/easy/0 total-vs-budget check",
+   "inputs": [
+    "vm net <- n07 vm_transactions [BTO-XFER]/[BTO-REVERSAL] (live SUM)",
+    "delta <- birdsql:136 (live rerun)"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "outcome form follows workbench:calendar/61 \"If I haven't met with aisha in the last 4 days, schedule a 30-minute meeting called 'catch-up' for my first free slot from tomorrow\" \u2014 a conditional, conflict-free first-free-slot 30-minute booking; here the slot grid starts at the end of the promo-window hold record in the EOps scheduler (n06's inherited artifact) and the gate is the logged CRM record + the handed-off briefing case (n15's inherited artifact)",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[BTO-REVIEW]",
+      "event_name": "BT-ops review \u2014 cardholder book [BTO-REVIEW] src_bal=149609.180487805",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2025-11-17 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_for_logged_mgr",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__source_balance_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__transfer_base_is_fn_of_source_balance",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__promo_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__total_transfer_is_base_plus_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_promo_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_scan_count_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:130",
+   "answers_written": {
+    "side_scan_count": "74"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T3.account_id) FROM bird_district AS T1 INNER JOIN bird_client AS T2 ON T1.district_id = T2.district_id INNER JOIN bird_disp AS T3 ON T2.client_id = T3.client_id WHERE T1.A3 = 'south Bohemia' AND T3.type != 'OWNER'",
+    "result": 74
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_130_side_scan_count",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "side_scan_recorded_on_clean_control_book",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

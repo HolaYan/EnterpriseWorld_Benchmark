@@ -1,0 +1,663 @@
+{
+ "uid": "hybrid_dental_insurance_prior_auth__0001",
+ "generated_from_build_sha": "a9bf72a86bb7",
+ "note": "RECORD, not oracle \u2014 scoring recomputes live; regenerate this file after any build change",
+ "answers_final": {
+  "exposure": "29",
+  "refund_units": "1450",
+  "claim_score": "10.0",
+  "review_uplift": "29000",
+  "sla_hours": "11450",
+  "delta": "29000",
+  "priority": "HIGH",
+  "reconciled": "ok",
+  "side_page": "http://en.wikipedia.org/wiki/2014_Formula_One_season"
+ },
+ "nodes": [
+  {
+   "node_id": "n01",
+   "verdict_source": "birdsql:370",
+   "verdict_basis": "exposure is judged by birdsql:370's own official gold SQL rerun LIVE on the bird_card_games_-prefixed book \u2014 a true single-row COUNT scalar; the stored answer must equal the recipe's live result at scoring time",
+   "answers_written": {
+    "exposure": "29"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT COUNT(T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.borderColor = 'borderless' AND T2.language = 'Russian'",
+    "result": 29
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_370_exposure",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n02",
+   "verdict_source": "composition",
+   "rule": "refund_units = exposure * 50",
+   "follows": "count-scaled-by-rate; the $50-per-unit rate is a declared prior-auth constant, no source counterpart",
+   "inputs": [
+    "exposure <- birdsql:370 (live rerun)"
+   ],
+   "answers_written": {
+    "refund_units": "1450"
+   },
+   "checks": [
+    {
+     "name": "refund_units_is_exposure_times_50",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "refund_units_derives_from_stored_exposure",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "pm_crm_exposure_noted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n03",
+   "verdict_source": "birdsql:371",
+   "verdict_basis": "claim_score is judged by birdsql:371's own official gold SQL rerun LIVE on the bird_card_games_-prefixed book \u2014 a true single-row REAL percentage scalar; the cross-book input woven into the review arithmetic",
+   "answers_written": {
+    "claim_score": "10.0"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.isStorySpotlight = 1",
+    "result": 10.0
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_371_claim_score",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n04",
+   "verdict_source": "composition",
+   "rule": "review_uplift = exposure*1000; sla_hours = refund_units + claim_score*1000; delta = review_uplift",
+   "follows": "count-scaled-by-rate + additive combine; the per-unit and per-point 1000 are declared constants",
+   "inputs": [
+    "exposure <- n01 (birdsql:370 live rerun)",
+    "refund_units <- n02",
+    "claim_score <- n03 (birdsql:371 live rerun)"
+   ],
+   "answers_written": {
+    "review_uplift": "29000",
+    "sla_hours": "11450",
+    "delta": "29000"
+   },
+   "checks": [
+    {
+     "name": "review_uplift_is_exposure_times_1000",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "uplift_derives_from_stored_exposure",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "sla_hours_equals_refund_plus_claim_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "sla_hours_derives_from_stored_refund_and_claim",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "delta_derives_from_stored_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n05",
+   "verdict_source": "composition",
+   "rule": "priority = 'URGENT' if delta>=100000; 'HIGH' if delta>=10000; else 'LOW'",
+   "follows": "threshold-comparison-to-categorical-label CASE; the 10000/100000 bands are declared constants; the branch predicate is source-expressed (delta from the live card_games exposure count)",
+   "inputs": [
+    "delta <- n04 (exposure*1000)"
+   ],
+   "answers_written": {
+    "priority": "HIGH"
+   },
+   "checks": [
+    {
+     "name": "priority_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "priority_derives_from_stored_delta",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n06",
+   "verdict_source": "workbench:calendar/100",
+   "verdict_basis": "fixed-slot calendar event creation judged by the resulting row; the [DIP-HOLD] window's duration is the declared 3-day embargo window",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DIP-HOLD]",
+      "event_name": "Q1 prior-auth embargo window [DIP-HOLD]",
+      "participant_email": "dr.singh@carrier.example",
+      "event_start": "2024-02-12 09:00:00",
+      "duration": "4320"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "embargo_window_hold_placed",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n07",
+   "verdict_source": "appworld:train/60d0b5b_1",
+   "verdict_basis": "net-amount judging follows appworld:train/60d0b5b_1 \u2014 a wrong payout corrected by an offsetting clawback, never a delete; the net target is the recomputed refund_units",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "vm_net_equals_refund_units_to_correct_patient",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "wrong_payout_clawed_back_not_deleted",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n08",
+   "verdict_source": "composition",
+   "rule": "one [DIP-LEAD] email coordinator->director citing sla_hours+delta, present IFF priority is 'HIGH' or 'URGENT'",
+   "follows": "appworld:train/29caf6f_1 evaluator's send-a-message-whose-body-is-computed assert; the AppWorld pool has no email-send task, so the gm_emails assert is composition glue with an iff-branch guard",
+   "inputs": [
+    "priority <- n05",
+    "sla_hours/delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "handoff_sent_iff_high_or_urgent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n09",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "single CRM field write judged by the resulting row; the field is notes and the stamp is the [DIP-LOG] sla_hours marker",
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_logged_sla_hours_gated_by_priority",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n10",
+   "verdict_source": "composition",
+   "rule": "sw_expenses.amount = sla_hours; co-triage share = sla_hours/2",
+   "follows": "appworld:train/3c13f5a_1 evaluator's equal-split assert; the AppWorld pool has no Splitwise task, so the sw_expenses assert is composition glue",
+   "inputs": [
+    "sla_hours <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "chargeback_and_share_recorded",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n11",
+   "verdict_source": "composition",
+   "rule": "one [DIP-FUP] task citing delta in the coordinator's project, gated on the CRM log",
+   "follows": "workbench:project_mgmt/10 task-create outcome form, asserted via the AppWorld table-state pattern",
+   "inputs": [
+    "gate <- n09 CRM [DIP-LOG]",
+    "delta <- n04"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n12",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "dedicated CRM status write; the value is bound to the re-derived tier",
+   "rule": "tier = 'URGENT' if the live borderless-Russian card count*1000 >= 100000; 'HIGH' if >= 10000; else 'LOW'; re-derived live (type-C, never in answers)",
+   "follows": "threshold banding on a live source aggregate (the card_games borderless-Russian card count), not a relabel of a stored value",
+   "inputs": [
+    "count <- live bird_card_games (re-derived at write time)",
+    "gate <- n11 td_tasks [DIP-FUP]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n13",
+   "verdict_source": "enterpriseops:task_20260102_080520_113_d4a463c3_90b440a8",
+   "verdict_basis": "EnterpriseOps-Gym sn-csm-server oracle task (reconcile a carrier office/location move): its three native database_state checks \u2014 the installed-product-4 row re-homed to location 803, location 803 reactivated, location 804 deactivated \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical, expected/comparison untouched); the dependency coupling (the CRM [DIP-TIER] stamp matching the live re-derivation) is a SEPARATE composition glue check on the same node. FALLBACK pick for the pre-assigned hybrid csm task whose 2nd (calendar) seed collided with this instance's dedicated calendar gym",
+   "rule": "CSM move == the source task's own product+location triple, gated on the n12 tier relay",
+   "inputs": [
+    "tier relay <- n12 CRM [DIP-TIER] (must equal the live re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "installed_product_moved_to_new_location",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "new_location_reactivated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "old_location_deactivated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "csm_move_gated_on_tier_stamp",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n14",
+   "verdict_source": "enterpriseops:task_20251218_183102_136_391f1eff_ac9a6986",
+   "verdict_basis": "EnterpriseOps-Gym gym-itsm-mcp oracle task (raise an intake ticket to high urgency/priority and send its requester the register's written reminder): its TWO distinct native database_state checks \u2014 the INC-000021 row at the raised urgency and priority, and the NOTIF_031 reminder to the requester of record on that ticket \u2014 are inherited VERBATIM (prefix rewrite only, byte-identical; the task repeats each of the two in its own spec). RE-SEATED 2026-09-06 off the gym-email-mcp manager-label beat, whose subject belonged to no party of this case. The dependency coupling (the site of record from the CSM move, the tier of record from the CRM stamp, and the live tier re-derivation the ticket's severity must equal) is a SEPARATE composition glue check on the same node",
+   "rule": "intake ticket severity + requester reminder == the source task's own checks, with the determination citing the tier, the case id and the site of record",
+   "inputs": [
+    "site of record <- n13 eops_sn_csm_server_location location 803 (cited in the determination note)",
+    "tier of record <- n12 CRM [DIP-TIER] status (artifact relay)",
+    "tier truth <- live card_games banding (type-C re-derivation)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "intake_requester_reminder_sent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "intake_ticket_raised_to_severity",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "intake_determination_cites_tier_case_and_site",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n15",
+   "verdict_source": "composition",
+   "rule": "one [DIP-STATUS] email coordinator->patient citing refund_units + the live tier, gated on the intake ticket carrying that same tier",
+   "follows": "appworld:train/29caf6f_1 evaluator's message-send assert; no email-send task in the AppWorld pool",
+   "inputs": [
+    "tier on the register <- n14 eops_gym_itsm_mcp_incident urgency/priority",
+    "refund_units <- n02",
+    "tier truth <- live card_games banding"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "status_email_cites_refund_units_and_tier",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n16",
+   "verdict_source": "enterpriseops:task_20251126_122314_557_be6c9105_daf0aae1",
+   "verdict_basis": "EnterpriseOps-Gym gym-google-drive-mcp oracle task (establish the Q2 Innovation Project documentation): its four native database_state checks \u2014 the Q2 doc created with the right description in the Project Documents folder, the three team permissions, the implementation reply, the documentation comment + budget reply \u2014 are inherited VERBATIM. The seed's files table lacks the verifier-referenced `description` column, so a NEW seed copy is materialised and NULL-column patched (the tracked shared seed is never touched); the coupling (the [DIP-STATUS] email) is a SEPARATE composition glue check",
+   "rule": "dossier archive == the source task's own doc+permissions+comments set, gated on the status email",
+   "inputs": [
+    "gate <- n15 gm_emails [DIP-STATUS]"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "q2_doc_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "team_access_permissions",
+     "expected": 3,
+     "achieved": 3
+    },
+    {
+     "name": "implementation_reply_created",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "documentation_comment_and_budget_reply",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "drive_archive_gated_on_status_email",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n17",
+   "verdict_source": "enterpriseops:task_20260106_143218_938_79b3b025_ce953a94",
+   "verdict_basis": "EnterpriseOps-Gym gym-calendar oracle task (secure the Sprint Planning event's assets + stand up the audit shadow schedule): its seven native database_state checks \u2014 the two resource attendees, the On-site location, the private audit_status property, the freeBusyReader ACL, the 3-event weekly Audit Shadow Sync series and its calculated start/end times \u2014 are inherited VERBATIM; the coupling (the dossier archive) is a SEPARATE composition glue check",
+   "rule": "audit calendar beat == the source task's own event asset + shadow series, gated on the drive archive",
+   "inputs": [
+    "gate <- n16 eops_gym_google_drive_mcp_files 'Q2 Innovation Project Plan.docx' (register-state gate)"
+   ],
+   "answers_written": {},
+   "checks": [
+    {
+     "name": "sprint_resource_attendees",
+     "expected": 2,
+     "achieved": 2
+    },
+    {
+     "name": "sprint_location_onsite",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "sprint_audit_status_initiated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "shared_acl_freebusy_reader",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "shadow_sync_series_weekly",
+     "expected": 3,
+     "achieved": 3
+    },
+    {
+     "name": "shadow_sync_start_time",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "shadow_sync_end_time",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "calendar_beat_gated_on_drive_archive",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n18",
+   "verdict_source": "workbench:crm/0",
+   "verdict_basis": "CRM field write judged by the resulting row; the reconcile verdict is bound to the vm ledger net",
+   "rule": "reconciled = 'ok' iff the [DIP-PAYOUT] net (payouts - clawbacks) to the correct patient == refund_units, with the CRM [DIP-RECON] note citing sla_hours",
+   "follows": "offset-to-net shape as in appworld:train/60d0b5b_1",
+   "inputs": [
+    "vm net <- n07 vm_transactions (live SUM)",
+    "refund_units <- n02 (gap 16)",
+    "delta <- n04"
+   ],
+   "answers_written": {
+    "reconciled": "ok"
+   },
+   "checks": [
+    {
+     "name": "reconciled_net_equals_refund_units",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "reconciled_figures_consistent",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n19",
+   "verdict_source": "workbench:calendar/61",
+   "verdict_basis": "conditional, conflict-free first-free-slot 30-minute booking; the slot grid starts at the end of the [DIP-HOLD] window (type-B, read off the calendar) and the gate is the CRM reconcile note + the eops audit shadow series",
+   "answers_written": {},
+   "gold_artifacts": {
+    "wb_calendar_events": [
+     {
+      "tag": "[DIP-DEBRIEF]",
+      "event_name": "Disclosure debrief DEN-2024-Q1-042 [DIP-DEBRIEF]",
+      "participant_email": "dr.singh@carrier.example",
+      "event_start": "2024-02-15 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "debrief_after_window_conflict_free_gated",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__exposure_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__refund_units_is_fn_of_exposure",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__claim_score_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__review_uplift_correct",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__sla_hours_is_refund_plus_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_uplift",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__priority_matches_true_delta_class",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "expected": 1,
+     "achieved": 1
+    },
+    {
+     "name": "final_task_pin__side_page_correct",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  },
+  {
+   "node_id": "n20",
+   "verdict_source": "birdsql:863",
+   "verdict_basis": "side_page is judged by birdsql:863's own official gold SQL rerun LIVE on the bird_formula_1_-prefixed book \u2014 a true single-row TEXT (url) scalar / identity anchor; an independent side question no downstream check reads",
+   "answers_written": {
+    "side_page": "http://en.wikipedia.org/wiki/2014_Formula_One_season"
+   },
+   "source_recipe": {
+    "executed_sql": "SELECT T2.url FROM bird_formula_1_races AS T1 INNER JOIN bird_formula_1_seasons AS T2 ON T2.year = T1.year WHERE T1.raceId = 901",
+    "result": "http://en.wikipedia.org/wiki/2014_Formula_One_season"
+   },
+   "checks": [
+    {
+     "name": "src_birdsql_863_side_page",
+     "expected": 1,
+     "achieved": 1
+    }
+   ]
+  }
+ ]
+}

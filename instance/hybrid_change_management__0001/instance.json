@@ -1,0 +1,1457 @@
+{
+  "instance_id": "hybrid_change_management__0001",
+  "agent_visible": {
+    "overall_query": "Run the quarterly production change-management / release cycle for the release desk. Fix the change-risk index from the source cohort book's own question \u2014 for patients born between 1930 and 1940, the percentage that were inpatients (100 * inpatient-count / cohort-count, an inpatient being an Admission of '+'). Set the change risk score as that index rounded to a whole number. Pull the in-scope change count from the cross-book register's own question \u2014 among players with an overall rating between 60 and 65, how many have a 'low' defensive work rate \u2014 and set the change-window uplift at 1000 per in-scope change. The release total is the risk score plus the uplift; the escalation delta equals the uplift. Decide the change-window branch on the risk score \u2014 'EMERGENCY_HOLD' when the score is at least 100, 'EXTENDED_WINDOW' when it is at least 20, 'NORMAL_WINDOW' otherwise \u2014 and work the cycle end to end: place the change window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar \u2014 it is the standing quarterly maintenance slot the release calendar publishes ahead of the cycle, so it goes down unchanged on every route; what the route decides is the escort worked around it, not the slot); post the change-fee disbursement run so the net paid to the correct vendor equals the delta (a disbursement that lands on the wrong vendor is reversed, never deleted, then the correct vendor is paid); unless the branch is NORMAL, send the rollback partner the handoff email citing the release total and the delta; log the release total on the CAB-lead record and open the follow-up; allocate the change carry evenly with the co-approver; RE-DERIVE the change tier from the live cohort index (EMERGENCY_CHANGE when the rounded score is at least 100, EXTENDED_REVIEW when at least 20, else STANDARD_CHANGE) and stamp it on the CAB-lead record; raise this cycle's standard change record on the enterprise change register and map it to the production incident the deployment remediates, hold that incident against the change, tell its caller of record, and pause its response clock for the window (per the recording handbook); send the CAB lead the status update citing the release total, the tier and the held incident; reconcile the fee ledger to the delta \u2014 re-deriving the recorded figure chain (release_total = risk_score + change_volume*1000) before the 'ok' verdict; and schedule the post-implementation review after the window ends, conflict-free. Once those figures are settled, take the quarter's sign-off control reading for the quarterly overview, held against the same probe's reading at the last quarterly sign-off; nothing in the run reads it, and the overview is signed only when this quarter's reading lines up with the last. Also pull the independent side-exposure figure for the quarterly overview \u2014 how many home-payment transactions (k_symbol 'SIPO', amount over 4000) were made on accounts held by male clients born between 1974 and 1976.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nrisk_index: the change-risk index \u2014 the percentage exactly as the source book returns it (its full decimal form)\nrisk_score: the change risk score \u2014 whole number\nchange_volume: the in-scope change count \u2014 whole number\nwindow_uplift: the change-window uplift \u2014 whole number, no thousands separators\nrelease_total: the release total \u2014 whole number, no thousands separators\ndelta: the escalation delta \u2014 whole number, no thousands separators\nbranch: the change-window route \u2014 exactly one of {NORMAL_WINDOW, EXTENDED_WINDOW, EMERGENCY_HOLD}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the fee ledger nets to the delta\nside_exposure: the side-exposure figure \u2014 whole number",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: three source reference books \u2014 the change-risk cohort book (bird_thrombosis_prediction_Patient, bird_thrombosis_prediction_Laboratory, ...), the cross-book change register (bird_european_football_2_Player_Attributes, ...) and the side-exposure book (bird_trans, bird_account, bird_client, bird_disp, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the change-fee ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany change-cost ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's shared enterprise CHANGE register (eops_gym_itsm_mcp_change, eops_gym_itsm_mcp_change_request_mapping, eops_gym_itsm_mcp_incident, eops_gym_itsm_mcp_incident_sla, eops_gym_itsm_mcp_notification, ...), which carries this cycle's change record, the production incident INC-000057 the deployment remediates, that incident's SLA clock and its caller notifications. You are parker.li@atlas.com (Parker Li), the release / change-management owner, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist review project, and a calendar on wb_calendar_events; the correct change-fee vendor is correct.vendor@atlas.com, the wrong (cached) payee is wrong.vendor@atlas.com, the co-approver is morgan.reyes@atlas.com, the rollback partner is rollback.partner@atlas.com, and ONE CRM record \u2014 the CAB lead cab.lead@atlas.com \u2014 is assigned to you. The enterprise change register is a shared desk system recorded under the ids of record (see the recording handbook). NOTHING marks the change-risk index, risk score, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "PRODUCTION CHANGE DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[CM-RISK]' \u2014 CAB CRM notes: the risk-score stamp, citing 'risk_score=<n>'.\n   - '[CM-WINDOW]' \u2014 wb_calendar_events EVENT NAME of the change window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[CM-FEE]' \u2014 change-fee ledger (vm) DESCRIPTION of every disbursement entry.\n   - '[CM-FEE-REV]' \u2014 change-fee ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[CM-FEE]' tag).\n   - '[CM-HANDOFF]' \u2014 email SUBJECT of the rollback-partner handoff; the BODY must cite the release total and the delta.\n   - '[CM-LOG]' \u2014 CAB CRM notes: the change log, citing 'release_total=<n>'.\n   - '[CM-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany change-cost allocation. The expense books the full recorded release_total as its amount, and its sw_expense_shares row assigns morgan.reyes@atlas.com a share of exactly half that amount.\n   - '[CM-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Change Management Review' project); the title cites the delta.\n   - '[CM-TIER]' \u2014 CAB CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[CM-STATUS]' \u2014 email SUBJECT of the CAB status update; the BODY must cite the release total and the tier word.\n   - '[CM-RECON]' \u2014 CAB CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[CM-FEE]' ledger (disbursements minus reversals) at write time, and the figure chain is re-derived before the verdict \u2014 the recorded release_total must still equal risk_score + change_volume*1000.\n   - '[CM-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-implementation review.\n   - '[CM-CHG]' \u2014 the ITSM change record's SUMMARY LINE (short_description) and the held incident's WORK NOTES: the change number and the tier word the change was raised at.\n   - '[CM-EMERGENCY]' \u2014 CAB CRM notes: the emergency-freeze note, filed ONLY on the EMERGENCY route.\n\n2. ROUTE AND TIER WORDS. The change route is always one of the desk's three route words: 'NORMAL_WINDOW', 'EXTENDED_WINDOW', 'EMERGENCY_HOLD'. The change tier is always one of the desk's three tier words: 'STANDARD_CHANGE', 'EXTENDED_REVIEW', 'EMERGENCY_CHANGE'. A cited tier word is re-derived from the live change-risk cohort book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (parker.li@atlas.com); the CAB lead is written to at cab.lead@atlas.com, the rollback partner at rollback.partner@atlas.com. Change-fee disbursements run on the vm ledger FROM you TO the correct vendor (correct.vendor@atlas.com); a disbursement that lands on the wrong vendor (wrong.vendor@atlas.com) is corrected by that vendor sending the same amount back to you, never deleted. The change-cost allocation runs on the sw ledger between you and the co-approver (morgan.reyes@atlas.com). Follow-up work lives in your Todoist 'Q1 Change Management Review' project; the window and review on your own wb_calendar_events (participant_email = parker.li@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the CAB row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the CAB record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the change window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the change-risk index keeps its full decimal form); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE CHANGE REGISTER (a shared desk system; record under the ids of record, exactly as stated \u2014 the register's OTHER rows are background book, never modify them).\n   - ITSM change register (eops_gym_itsm_mcp_* tables). The production incident this quarter's deployment remediates is INC_057 ('INC-000057'), raised by its caller of record richard.lopez@servicenow.com; its response clock is the SLA row 'TSLA_022' (definition 'SLA_001').\n   - The cycle's change record is 'CHG_026' (number 'CHG0000026'), filed on the register's STANDARD-change template: status 'new', impact 'low', risk 'low', priority 'low', category 'other', cab_required false (a standard change is pre-approved \u2014 the register's form of the desk's standing pre-authorization), org 'ORG_001'. Its summary line carries the '[CM-CHG]' tag, the change number and the tier word. It is mapped to the incident it remediates as change_request_mapping 'CRM_017'.\n   - The hold on 'INC-000057' is status 'on_hold' with on_hold_reason 'Awaiting Change' and change_request 'CHG_026'; the incident's WORK NOTES carry the change number and the tier word the change was raised at.\n   - The caller of record is told on notification 'NOTIF_031' (type 'update', status 'sent', on incident 'INC_057', to richard.lopez@servicenow.com); its MESSAGE carries the change number, the release total exactly as reported to the CAB lead, and the tier word.\n   - The response clock is stopped last: SLA row 'TSLA_022' moves to stage 'paused' for the window, never before the caller has been told why it is stopping.\n",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_cab_lead": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "cab.lead@atlas.com",
+          "customer_name": "CAB Lead",
+          "assigned_to_email": "parker.li@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "parker.li@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "correct.vendor@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.vendor@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "parker.li@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "cab.lead@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "rollback.partner@atlas.com",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Change Management Review",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "release-desk daily standup",
+          "participant_email": "parker.li@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_incident": [
+        {
+          "incident_id": "INC_057",
+          "number": "INC-000057",
+          "short_description": "HR DB",
+          "status": "new",
+          "caller_id": "USER_057",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_incident_sla": [
+        {
+          "incident_sla_id": "TSLA_022",
+          "incident_id": "INC_057",
+          "sla_def_id": "SLA_001",
+          "stage": "in_progress",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_users": [
+        {
+          "user_id": "USER_057",
+          "email": "richard.lopez@servicenow.com",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the three reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions disbursement / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register re-home/rename/attachment).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: change-fee disbursements are compensatable \u2014 reverse a wrong-vendor disbursement, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across THREE bird books (thrombosis_prediction/european_football_2/financial) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (the itsm change register). Depth-13 spine n01->n02->n04->n08->n09->n11->n12->n13->n14->n15->n16->n17->n19 with long-range edges: delta n04 reconciled at n18 (gap 14); the [CM-WINDOW] window n06 gates the review n19 (gap 13); release_total n04 resurfaces at n15. The branch n05 forks off the rounded risk_score at n02; n03 is the MID-GRAPH cross-book value (european_football_2) woven into the arithmetic; n20 is an independent financial side anchor.",
+    "protagonist": {
+      "email": "parker.li@atlas.com",
+      "role": "release / change-management owner running the quarterly change cycle"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "For patient born between Year 1930 to 1940, how many percent of them were inpatient? (Read it as the book does: over patients whose birth year is between 1930 and 1940, the percentage that were inpatients \u2014 100 * inpatient-count / cohort-count, an inpatient being an Admission of '+'.) Record the answer in answers as kind='risk_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_thrombosis_prediction_Patient.Admission",
+          "bird_thrombosis_prediction_Patient.Birthday"
+        ],
+        "writes": [
+          "answers.risk_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the change RISK SCORE from the change-risk index. Read the stored risk_index and compute risk_score = round(risk_index) (to a whole number). Record it in answers as kind='risk_score' and stamp the CAB lead CRM row (customer_email cab.lead@atlas.com) by prepending '[CM-RISK] risk_score=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.risk_index"
+        ],
+        "writes": [
+          "answers.risk_score",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "Among players with an overall rating between 60 to 65, how many players will be in all your attacking moves, instead of defending? (Read it as the book does: count the player-attribute rows whose overall_rating is between 60 and 65 inclusive and whose defensive_work_rate is 'low'.) Record the answer in answers as kind='change_volume'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_european_football_2_Player_Attributes.overall_rating",
+          "bird_european_football_2_Player_Attributes.defensive_work_rate"
+        ],
+        "writes": [
+          "answers.change_volume"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the change load from the stored answers. Read answers.risk_score AND answers.change_volume. window_uplift = change_volume * 1000; release_total = risk_score + window_uplift; delta = window_uplift. Record all three: answers kind='window_uplift', kind='release_total', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.risk_score",
+          "answers.change_volume"
+        ],
+        "writes": [
+          "answers.window_uplift",
+          "answers.release_total",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the change-window branch on the computed state. Read answers.risk_score and set answers kind='branch' to 'EMERGENCY_HOLD' if risk_score >= 100, else 'EXTENDED_WINDOW' if risk_score >= 20, else 'NORMAL_WINDOW'. Check the higher tier first; the bands do not overlap. What the route decides is the ESCORT around the window, not its dates: the change window itself is the standing quarterly maintenance slot the release calendar publishes a quarter ahead \u2014 same slot, same 3-day duration, on every route, because the slot is negotiated with the business and the desk does not move it. The route decides who works it: 'NORMAL_WINDOW' is worked unescorted; 'EXTENDED_WINDOW' stands up the rollback partner, briefs them before the window and holds the change log behind that briefing; 'EMERGENCY_HOLD' does both and additionally files the '[CM-EMERGENCY]' freeze note on the CAB record.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.risk_score"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n02"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the release total is computed, place the change WINDOW on the owner's calendar (participant_email=parker.li@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[CM-WINDOW]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers. The slot is the standing quarterly maintenance window the release calendar already published, so it is placed unchanged on EVERY route \u2014 the window-route branch neither moves nor resizes it; it decides the escort worked around it (the rollback-partner briefing, the gated change log, and on the emergency route the freeze note).",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.release_total",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the change-fee disbursement run for EXACTLY delta on the vendor ledger. Record vm_transactions rows tagged '[CM-FEE]' so the NET disbursement posted FROM the change owner (parker.li@atlas.com) TO the correct vendor (correct.vendor@atlas.com) equals delta. If the first disbursement lands on the WRONG vendor (wrong.vendor@atlas.com), DO NOT delete it: write a matching '[CM-FEE-REV] [CM-FEE]' entry (wrong vendor sends the SAME amount back to the owner) which cancels the wrong disbursement, then the correct disbursement to the right vendor.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the change-window branch is 'EXTENDED_WINDOW' or 'EMERGENCY_HOLD', send the rollback partner a handoff email. INSERT a gm_emails row from the change owner (parker.li@atlas.com) to the rollback partner (rollback.partner@atlas.com) whose subject carries '[CM-HANDOFF]' and whose body CITES the release_total and the delta. On the NORMAL_WINDOW branch (normal), the email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.release_total",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the change reconciliation on the CAB lead CRM record. Prepend '[CM-LOG] release_total=<n>' to the notes \u2014 but on the extended/emergency branches (EXTENDED_WINDOW/EMERGENCY_HOLD), ONLY after the '[CM-HANDOFF]' email has been sent to the rollback partner. On the NORMAL_WINDOW branch the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.release_total",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany change-cost ALLOCATION on the sw_* cost-share ledger. INSERT a sw_expenses row paid by the release desk (parker.li@atlas.com) for the full release_total with description '[CM-ALLOC]', and a sw_expense_shares row assigning the co-approver (morgan.reyes@atlas.com) a share_amount = release_total/2 (its half of the joint change carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.release_total",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the change follow-up. INSERT a td_tasks row in the 'Q1 Change Management Review' project owned by the change owner whose title carries '[CM-FUP]' and the delta value \u2014 only after the CAB lead CRM record carries the '[CM-LOG]' change log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the change TIER. RE-DERIVE it from the live change-risk index: score = round(the inpatient percentage), TIER = 'EMERGENCY_CHANGE' if score >= 100, 'EXTENDED_REVIEW' if score >= 20, else 'STANDARD_CHANGE'. Write it to the CAB lead CRM row's DEDICATED status column (set status='[CM-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_thrombosis_prediction_Patient.Admission"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Raise this cycle's CHANGE RECORD on the desk's ITSM change register (per the recording handbook) and map it to the production incident the deployment remediates. File change CHG_026 (CHG0000026) on the register's STANDARD-change template \u2014 status new, impact low, risk low, priority low, category other, cab_required false: a standard change is pre-approved, which is what the desk's standing pre-authorization for this cycle means in the register \u2014 and restate its summary line by prepending '[CM-CHG] CHG0000026 tier=<tier>' to the short_description, the tier word being the classification re-derived from the live change-risk cohort book, the same one stamped on the CAB-lead record. Then map it to incident INC_057 (INC-000057) as mapping CRM_017. File it only once the CAB lead CRM status carries the '[CM-TIER]' tier stamp whose tier matches that live re-derivation \u2014 the record is filed AT that classification, so until it is on record there is nothing to file the change at.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_change.short_description",
+          "eops_gym_itsm_mcp_change.status",
+          "eops_gym_itsm_mcp_change_request_mapping.change_id"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Hold the production incident against the change that will fix it (per the recording handbook). Put incident INC_057 (INC-000057) on hold: status on_hold, on_hold_reason 'Awaiting Change', change_request CHG_026; and write into that incident's WORK NOTES the change number CHG0000026 AND the tier word the change was raised at \u2014 take that tier word off the change record's own '[CM-CHG]' summary line, so the incident and the register agree. Hold it only after the change record is filed with that summary line in place: before it there is no filed change for the incident to be held against.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_gym_itsm_mcp_change.short_description",
+          "eops_gym_itsm_mcp_change.status"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_incident.status",
+          "eops_gym_itsm_mcp_incident.on_hold_reason",
+          "eops_gym_itsm_mcp_incident.worknotes"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the CAB lead a status update. INSERT a gm_emails row from the change owner (parker.li@atlas.com) to the CAB lead (cab.lead@atlas.com) whose subject carries '[CM-STATUS]' and whose body cites the release_total, the change tier word (re-derived from the live index) and the production incident the change now holds \u2014 INC-000057, the incident whose work note carries this change \u2014 only after that incident is on hold awaiting the change: the status the CAB is given reports which production work this cycle's window is holding, so it names the incident already parked against the change rather than one nobody has parked yet.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_itsm_mcp_incident.worknotes",
+          "answers.release_total",
+          "bird_thrombosis_prediction_Patient.Admission",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Inform the incident's caller of record that the resolution is being handled as part of this change (per the recording handbook): file notification NOTIF_031 of type 'update' on incident INC_057 to richard.lopez@servicenow.com, whose message carries the change number CHG0000026, the release total EXACTLY as reported to the CAB lead in the '[CM-STATUS]' status update, and the tier word the change was raised at. File it only after that status update is out \u2014 the notice repeats the figure of record, so before the status is filed there is no figure of record for it to repeat.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.body",
+          "eops_gym_itsm_mcp_incident.worknotes"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_notification.message",
+          "eops_gym_itsm_mcp_notification.type"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Pause the held incident's SLA clock for the change window (per the recording handbook): set the incident's SLA row TSLA_022 (incident INC_057, definition SLA_001) to stage 'paused'. Pause it only once the caller of record has been told the resolution is being handled as part of this change \u2014 the desk never stops a caller's response clock before the caller has been informed why it is stopping.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_gym_itsm_mcp_notification.message"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_incident_sla.stage"
+        ],
+        "depends_on": [
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted disbursement against the recorded delta. Confirm the Venmo NET disbursement posted to the correct vendor equals delta (re-read from the '[CM-FEE]' ledger rows, disbursements minus reversals, never from memory). Re-derive the figure chain before the 'ok' verdict: re-read the recorded risk_score and change_volume and confirm the recorded release_total still equals risk_score + change_volume*1000 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[CM-RECON] delta=<delta>' note to the CAB lead CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.risk_score",
+          "answers.change_volume",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the post-implementation review (PIR). INSERT a wb_calendar_events row on the owner's calendar whose event_name carries '[CM-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[CM-WINDOW]' change window and does NOT overlap any of the owner's other events. Only for a CAB record whose CRM carries '[CM-RECON]' AND once the held incident's SLA clock is paused for the window on the register \u2014 the review closes out a change whose production clock the desk has already stopped; booking it while INC-000057 is still running against its SLA would put the review on a change the register shows as live.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_itsm_mcp_incident_sla.stage"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n18",
+          "n17"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's sign-off control reading for the quarterly overview once the change run's own figures are settled and the close-out is ready to sign, so the quarter's entry records the side-exposure figure as it stood at the sign-off rather than mid-run. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the change registers is the one that separates drift in the desk's own reporting from a real shift in side exposure \u2014 and is answered exactly as that book asks it: \"How many male customers who were born between 1974 and 1976 have made a payment on their home in excess of $4000?\" (Read it as the book does: count the home-payment transactions \u2014 k_symbol 'SIPO', amount over 4000 \u2014 on accounts held by male clients born between 1974 and 1976.) Record the answer in answers as kind='side_exposure'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly overview is signed only when this quarter's reading lines up with the last \u2014 so nothing later in this change run reads it, and what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one trimmed to look tidy would read as a side-exposure move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_trans.amount",
+          "bird_trans.k_symbol",
+          "bird_client.birth_date",
+          "bird_client.gender"
+        ],
+        "writes": [
+          "answers.side_exposure"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 13,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 28,
+      "dependency_depth": 13,
+      "max_dependency_gap": 16,
+      "mean_dependency_gap": 4.75,
+      "long_range_edge_ratio": 0.321,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 8,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.821,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n18",
+          "gap": 16,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n18",
+          "gap": 15,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 13,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (change-window branch on risk_score bands, off n02) -> EXTENDED_WINDOW on real data",
+      "long_range_edges": [
+        "n04->n18 delta reconciled 14 steps later (gap 14, max)",
+        "n06->n19 [CM-WINDOW] window (type-B) gates the review (gap 13)",
+        "n04->n15 release_total resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n20 (independent birdsql:182 financial side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:1023 european_football_2) woven into the uplift/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "parker.li@atlas.com",
+      "cab": "cab.lead@atlas.com",
+      "correct_vendor": "correct.vendor@atlas.com",
+      "wrong_vendor": "wrong.vendor@atlas.com",
+      "co_approver": "morgan.reyes@atlas.com",
+      "partner": "rollback.partner@atlas.com",
+      "cab_crm_id": "00000002",
+      "source_questions": {
+        "risk_index": "birdsql:1151 (thrombosis_prediction) \u2014 For patient born between Year 1930 to 1940, how many percent of them were inpatient?",
+        "change_volume": "birdsql:1023 (european_football_2) \u2014 Among players with an overall rating between 60 to 65, how many players will be in all your attacking moves, instead of defending?",
+        "side_exposure": "birdsql:182 (financial) \u2014 How many male customers who were born between 1974 and 1976 have made a payment on their home in excess of $4000?"
+      },
+      "eops_source_tasks": {
+        "change_record": "enterpriseops:task_20251223_063905_655_30600918_3e736be9 (gym-itsm-mcp) \u2014 standard change CHG0000026 + mapping CRM_017 to INC-000057",
+        "incident_hold": "enterpriseops:task_20251223_063905_655_30600918_3e736be9 (gym-itsm-mcp) \u2014 INC-000057 on hold 'Awaiting Change' against CHG0000026",
+        "caller_notice": "enterpriseops:task_20251223_063905_655_30600918_3e736be9 (gym-itsm-mcp) \u2014 NOTIF_031 update to richard.lopez@servicenow.com",
+        "sla_pause": "enterpriseops:task_20251223_063905_655_30600918_3e736be9 (gym-itsm-mcp) \u2014 TSLA_022 paused for the window"
+      },
+      "score_policy": "risk_score = round(risk_index) (the index is the source cohort ratio)",
+      "uplift_policy": "window_uplift = change_volume * 1000 (per-change 1000 is declared)",
+      "branch_policy": "NORMAL_WINDOW (risk_score<20, no handoff); EXTENDED_WINDOW (risk_score>=20, partner handoff, no freeze note); EMERGENCY_HOLD (risk_score>=100, handoff + freeze note) \u2014 the 20/100 bands are declared constants. The route decides the ESCORT worked around the window, never the window itself: the 3-day slot is the standing quarterly maintenance window the release calendar publishes ahead of the cycle and is placed unchanged on every route",
+      "durable_tags": {
+        "risk_note": "[CM-RISK]",
+        "change_window": "[CM-WINDOW]",
+        "fee": "[CM-FEE]",
+        "reversal": "[CM-FEE-REV]",
+        "allocation": "[CM-ALLOC]",
+        "handoff": "[CM-HANDOFF]",
+        "crm_log": "[CM-LOG]",
+        "followup": "[CM-FUP]",
+        "tier": "[CM-TIER]",
+        "status_email": "[CM-STATUS]",
+        "crm_reconcile": "[CM-RECON]",
+        "calendar_review": "[CM-REVIEW]",
+        "change_record": "[CM-CHG]",
+        "emergency_note_only_for_C": "[CM-EMERGENCY]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.risk_index",
+          "answers.risk_score",
+          "answers.change_volume",
+          "answers.window_uplift",
+          "answers.release_total",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_exposure"
+        ],
+        "B_domain_state": "change-window dates \u2014 ONLY on the wb_calendar_events [CM-WINDOW] event (n19 reads them there); the four eops register beats are register artifacts the later hops read and cite directly (the change summary line, the incident work note, the caller notice, the paused SLA)",
+        "C_not_persisted": "change tier \u2014 re-derived at n12 from the live thrombosis book (risk-score banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (owner->wrong vendor) + reversal delta (wrong vendor->owner) + correct delta (owner->correct vendor); net owner->correct vendor = delta",
+      "change_window_hold": "[CM-WINDOW] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 release-desk standup)",
+      "true_risk_index": "37.5838926174497",
+      "true_risk_score": 38,
+      "true_change_volume": 3594,
+      "true_window_uplift": 3594000,
+      "true_release_total": 3594038,
+      "true_delta": 3594000,
+      "true_branch": "EXTENDED_WINDOW",
+      "true_tier": "EXTENDED_REVIEW",
+      "true_reconciled": "ok",
+      "true_side_exposure": 1556
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.risk_index"
+        ],
+        "change": "For patient born between Year 1930 to 1940, how many percent of them were inpatient? (Read it as the book does: over patients whos"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.risk_score",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the change RISK SCORE from the change-risk index. Read the stored risk_index and compute risk_score = round(risk_index) (to a "
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.change_volume"
+        ],
+        "change": "Among players with an overall rating between 60 to 65, how many players will be in all your attacking moves, instead of defending?"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.window_uplift",
+          "answers.release_total",
+          "answers.delta"
+        ],
+        "change": "Compute the change load from the stored answers. Read answers.risk_score AND answers.change_volume. window_uplift = change_volume "
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the change-window branch on the computed state. Read answers.risk_score and set answers kind='branch' to 'EMERGENCY_HOLD' i"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the release total is computed, place the change WINDOW on the owner's calendar (participant_email=parker.li@atlas.com): INSER"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the change-fee disbursement run for EXACTLY delta on the vendor ledger. Record vm_transactions rows tagged '[CM-FEE]' so the "
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the change-window branch is 'EXTENDED_WINDOW' or 'EMERGENCY_HOLD', send the rollback partner a handoff email. INSERT a gm_email"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the change reconciliation on the CAB lead CRM record. Prepend '[CM-LOG] release_total=<n>' to the notes \u2014 but on the extended/"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany change-cost ALLOCATION on the sw_* cost-share ledger. INSERT a sw_expenses row paid by the release desk (par"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the change follow-up. INSERT a td_tasks row in the 'Q1 Change Management Review' project owned by the change owner whose titl"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the change TIER. RE-DERIVE it from the live change-risk index: score = round(the inpatient percentage), TIER = 'EMERGENCY"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_change.short_description",
+          "eops_gym_itsm_mcp_change.status",
+          "eops_gym_itsm_mcp_change_request_mapping.change_id"
+        ],
+        "change": "Raise this cycle's CHANGE RECORD on the desk's ITSM change register (per the recording handbook) and map it to the production inci"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_incident.status",
+          "eops_gym_itsm_mcp_incident.on_hold_reason",
+          "eops_gym_itsm_mcp_incident.worknotes"
+        ],
+        "change": "Hold the production incident against the change that will fix it (per the recording handbook). Put incident INC_057 (INC-000057) o"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the CAB lead a status update. INSERT a gm_emails row from the change owner (parker.li@atlas.com) to the CAB lead (cab.lead@at"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_notification.message",
+          "eops_gym_itsm_mcp_notification.type"
+        ],
+        "change": "Inform the incident's caller of record that the resolution is being handled as part of this change (per the recording handbook): f"
+      },
+      {
+        "subgoal": "n17",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_incident_sla.stage"
+        ],
+        "change": "Pause the held incident's SLA clock for the change window (per the recording handbook): set the incident's SLA row TSLA_022 (incid"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted disbursement against the recorded delta. Confirm the Venmo NET disbursement posted to the correct vendor equa"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the post-implementation review (PIR). INSERT a wb_calendar_events row on the owner's calendar whose event_name carries '["
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_exposure"
+        ],
+        "change": "Take the quarter's sign-off control reading for the quarterly overview once the change run's own figures are settled and the close"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the change-window branch the data selects (EXTENDED_WINDOW). The three source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (risk_index == the birdsql:1151 REAL inpatient ratio, stored in the book's own CAST-text form; change_volume == the birdsql:1023 COUNT; side_exposure == the birdsql:182 COUNT), and the four EnterpriseOps beats by their source task's OWN database_state checks (prefix-rewritten only: the standard change record CHG_026 and its CRM_017 mapping to the incident it remediates; INC_057 on hold with reason 'Awaiting Change' against that change; the NOTIF_031 'update' notification to that incident's caller of record; the TSLA_022 SLA row paused for the window). COMPLETENESS: risk_score == round(risk_index)=38; window_uplift == change_volume*1000; release_total == score+uplift; delta == uplift=3594000; branch == 'EXTENDED_WINDOW' (20 <= 38 < 100); the [CM-WINDOW] window on the calendar; the vm ledger NETS delta to the correct vendor (a wrong-vendor disbursement offset by a [CM-FEE-REV] + the correct disbursement, net == delta AND wrong-vendor net == 0); the rollback-partner handoff exists IFF the branch is EXTENDED_WINDOW/EMERGENCY_HOLD and cites the total + delta; the allocation + co-approver share on Splitwise; the CRM logs release_total; the follow-up cites delta; the change TIER is RE-DERIVED from the live thrombosis book (type-C, never in answers) and stamped; the four eops register beats match the inherited checks AND carry their relays (the change summary line cites the change number + tier, the incident work note quotes them, the caller notice repeats the reported release_total); the status email cites total + tier + the held incident; reconciled == 'ok' with the figure chain re-derived; the review is conflict-free, after the window end, with the incident's SLA paused; side_exposure == 1556. COLLATERAL (each 0): NO partner handoff on a normal (NORMAL_WINDOW) path; NO [CM-EMERGENCY] note on a NORMAL_WINDOW/EXTENDED_WINDOW branch; NO naked delete of a wrong-vendor disbursement (it must keep its [CM-FEE-REV]); the review never double-books, never precedes the window end, and never fires for an unlogged CAB record; no CRM row outside the CAB lead's record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped risk_index).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the CAB lead change-desk CRM row and confirm it is homed to parker.li@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='cab.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: cab.lead@atlas.com assigned_to parker.li@atlas.com.",
+        "state_delta": "none (CAB ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the change-risk index from the source cohort book's own question.",
+        "reasoning": "Compute the 1930-1940 inpatient percentage on the thrombosis book.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(CASE WHEN Admission='+' THEN 1 ELSE 0 END) AS REAL)*100/COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE STRFTIME('%Y',Birthday) BETWEEN '1930' AND '1940'"
+          }
+        },
+        "tool_result": "37.5838926174497.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Change-risk index = 37.5838926174497.",
+        "reasoning": "n01: record risk_index (full decimal form).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "risk_index",
+              "value": "37.5838926174497"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+risk_index=37.5838926174497"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the risk score from the index.",
+        "reasoning": "n02: risk_score=round(37.58...)=38; stamp the CAB CRM [CM-RISK].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "risk_score",
+              "value": "38"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[CM-RISK] risk_score=38').",
+        "state_delta": "answers:+risk_score=38; CRM:+risk note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the in-scope change count from the cross-book register.",
+        "reasoning": "Count low-defensive players rated 60-65 on the european_football_2 book.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(id) FROM bird_european_football_2_Player_Attributes WHERE overall_rating BETWEEN 60 AND 65 AND defensive_work_rate='low'"
+          }
+        },
+        "tool_result": "3594.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "In-scope change count = 3594.",
+        "reasoning": "n03: record change_volume.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "change_volume",
+              "value": "3594"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+change_volume=3594"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have score=38, count=3594.",
+        "reasoning": "n04: window_uplift=3594*1000=3594000; release_total=38+3594000=3594038; delta=3594000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "window_uplift",
+              "value": "3594000"
+            }
+          }
+        },
+        "tool_result": "1 row (+release_total=3594038,+delta=3594000).",
+        "state_delta": "answers:+window_uplift=3594000,+release_total=3594038,+delta=3594000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "risk_score=38.",
+        "reasoning": "n05: BRANCH DECISION on risk_score. 20 <= 38 < 100 -> EXTENDED_WINDOW.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 38 >= 100 AS is_c, 38 >= 20 AS is_b_or_c"
+          }
+        },
+        "tool_result": "0,1 -> EXTENDED_WINDOW.",
+        "state_delta": "none (EXTENDED_WINDOW SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "EXTENDED_WINDOW.",
+        "reasoning": "n05: record branch='EXTENDED_WINDOW'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "EXTENDED_WINDOW"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=EXTENDED_WINDOW"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the change WINDOW [CM-WINDOW] on the owner's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 change window [CM-WINDOW]",
+              "participant_email": "parker.li@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+change window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the change fee for delta. Instinct: pay the WRONG vendor (wrong.vendor@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 3594000 disbursement to the wrong (cached) vendor.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<parker_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 3594000.0,
+              "description": "Change-fee disbursement (wrong vendor) [CM-FEE]"
+            }
+          }
+        },
+        "tool_result": "1 row (owner->wrong vendor).",
+        "state_delta": "venmo:+WRONG-vendor disbursement",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct vendor.",
+        "reasoning": "The net owner->correct vendor is currently 0, not delta=3594000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND description LIKE '%[CM-FEE]%' AND description NOT LIKE '%[CM-FEE-REV]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND description LIKE '%[CM-FEE]%' AND description LIKE '%[CM-FEE-REV]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 3594000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [CM-FEE-REV] as a positive 3594000 in the OPPOSITE direction (wrong->owner).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<parker_vm>",
+              "amount": 3594000.0,
+              "description": "Reversal of wrong-vendor disbursement [CM-FEE-REV] [CM-FEE]"
+            }
+          }
+        },
+        "tool_result": "1 row (3594000, wrong->owner).",
+        "state_delta": "venmo:+reversal (wrong-vendor net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct disbursement.",
+        "reasoning": "n07: post the correct 3594000 (owner->correct vendor); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<parker_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 3594000.0,
+              "description": "Change-fee disbursement (correct vendor) [CM-FEE]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 3594000=delta).",
+        "state_delta": "venmo:+correct disbursement (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: EXTENDED_WINDOW requires a rollback-partner handoff.",
+        "reasoning": "Email rollback.partner@atlas.com a [CM-HANDOFF] citing release_total=3594038, delta=3594000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<parker_gm>",
+              "recipient_ids": "[<partner_gm>]",
+              "subject": "Extended-window change handoff [CM-HANDOFF]",
+              "body": "... release_total 3594038 delta 3594000 branch EXTENDED_WINDOW ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+handoff email (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the release total on the CAB CRM (handoff sent).",
+        "reasoning": "Prepend '[CM-LOG] release_total=3594038' to the CAB CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[CM-LOG] release_total=3594038 <existing>"
+            },
+            "where": "lower(customer_email)='cab.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany change-cost allocation.",
+        "reasoning": "INSERT sw_expenses [CM-ALLOC] amount=release_total (3594038) with a co-approver share (1797019).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<parker_sw>",
+              "amount": 3594038.0,
+              "description": "Q1 intercompany change-cost [CM-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-approver share 1797019).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the change follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [CM-FUP] in 'Q1 Change Management Review' citing delta=3594000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<parker_td>",
+              "title": "Reconcile Q1 change review [CM-FUP] [delta=3594000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the change TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live thrombosis book: round(index)=38 -> EXTENDED_REVIEW; write [CM-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN CAST(ROUND((100.0 * (SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE Admission='+' AND STRFTIME('%Y',Birthday) BETWEEN '1930' AND '1940') / (SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE STRFTIME('%Y',Birthday) BETWEEN '1930' AND '1940'))) AS INTEGER) >= 100 THEN 'EMERGENCY_CHANGE' WHEN CAST(ROUND((100.0 * (SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE Admission='+' AND STRFTIME('%Y',Birthday) BETWEEN '1930' AND '1940') / (SELECT COUNT(*) FROM bird_thrombosis_prediction_Patient WHERE STRFTIME('%Y',Birthday) BETWEEN '1930' AND '1940'))) AS INTEGER) >= 20 THEN 'EXTENDED_REVIEW' ELSE 'STANDARD_CHANGE' END)"
+          }
+        },
+        "tool_result": "'EXTENDED_REVIEW' (38 in [20,100)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the CAB CRM status='[CM-TIER] EXTENDED_REVIEW'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[CM-TIER] EXTENDED_REVIEW"
+            },
+            "where": "lower(customer_email)='cab.lead@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=EXTENDED_REVIEW"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: raise the cycle's change record on the ITSM change register (gated on the tier stamp).",
+        "reasoning": "Per the handbook: file standard change CHG0000026 (new/low/low/low, category other, cab_required false), summary line '[CM-CHG] CHG0000026 tier=EXTENDED_REVIEW', mapped to INC-000057 as CRM_017.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_change",
+            "values": {
+              "change_id": "CHG_026",
+              "number": "CHG0000026",
+              "short_description": "[CM-CHG] CHG0000026 tier=EXTENDED_REVIEW ...",
+              "status": "new",
+              "cab_required": 0
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM_017 mapping to INC-000057).",
+        "state_delta": "ITSM change register: +change record"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: hold INC-000057 against the filed change (gated on the change record).",
+        "reasoning": "Per the handbook: set on_hold / 'Awaiting Change' / change_request CHG_026, and write the work note citing CHG0000026 and the tier read off the change's summary line.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_incident",
+            "set": {
+              "status": "on_hold",
+              "on_hold_reason": "Awaiting Change",
+              "change_request": "CHG_026",
+              "worknotes": "[CM-CHG] held for CHG0000026 (tier=EXTENDED_REVIEW) ..."
+            },
+            "where": "incident_id='INC_057'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "ITSM register: +incident held"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the CAB lead.",
+        "reasoning": "INSERT gm_emails parker->CAB [CM-STATUS] citing release_total=3594038, tier EXTENDED_REVIEW and the held incident INC-000057.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<parker_gm>",
+              "recipient_ids": "[<cab_gm>]",
+              "subject": "change status [CM-STATUS]",
+              "body": "... release_total 3594038 ... EXTENDED_REVIEW ... INC-000057 ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: inform the incident's caller of record (gated on the status email).",
+        "reasoning": "Per the handbook: file NOTIF_031 ('update', on INC_057, to richard.lopez@servicenow.com) whose message repeats CHG0000026, the reported release_total=3594038 and the tier.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_notification",
+            "values": {
+              "notification_id": "NOTIF_031",
+              "incident_id": "INC_057",
+              "email": "richard.lopez@servicenow.com",
+              "type": "update",
+              "message": "... CHG0000026 ... release_total=3594038 ... EXTENDED_REVIEW ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "ITSM register: +caller notice"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: pause the held incident's SLA clock for the window (gated on the caller notice).",
+        "reasoning": "Per the handbook: move SLA row TSLA_022 (INC_057, SLA_001) to stage 'paused' \u2014 never before the caller is told.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_incident_sla",
+            "set": {
+              "stage": "paused"
+            },
+            "where": "incident_sla_id='TSLA_022'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "ITSM register: +SLA paused"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n18: reconcile the fee ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct vendor == delta (3594000) AND re-derive the figure chain: the recorded release_total (3594038) must still equal risk_score + change_volume*1000 (38 + 3594*1000).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND description LIKE '%[CM-FEE]%' AND description NOT LIKE '%[CM-FEE-REV]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND description LIKE '%[CM-FEE]%' AND description LIKE '%[CM-FEE-REV]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AND (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='release_total')=(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='risk_score')+(SELECT CAST(value AS INTEGER) FROM answers WHERE kind='change_volume')*1000 THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (3594000==3594000 and 3594038==38+3594000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "n18: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[CM-RECON] delta=3594000' to the CAB CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 28,
+        "phase": "discovery",
+        "observation": "n19: read the window end and the owner's busy slots.",
+        "reasoning": "Read the [CM-WINDOW] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[CM-WINDOW]%' AND lower(participant_email)=lower('parker.li@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n19: schedule the '[CM-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Change PIR [CM-REVIEW]",
+              "participant_email": "parker.li@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+PIR review"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent side-exposure figure (birdsql:182).",
+        "reasoning": "Count male-1974-76 home-payment (SIPO, >4000) transactions on the financial book.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T1.account_id) FROM bird_trans T1 JOIN bird_account T2 ON T1.account_id=T2.account_id JOIN bird_disp T4 ON T2.account_id=T4.account_id JOIN bird_client T3 ON T4.client_id=T3.client_id WHERE STRFTIME('%Y',T3.birth_date) BETWEEN '1974' AND '1976' AND T3.gender='M' AND T1.amount>4000 AND T1.k_symbol='SIPO'"
+          }
+        },
+        "tool_result": "1556.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "Side exposure = 1556.",
+        "reasoning": "n20: record side_exposure.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_exposure",
+              "value": "1556"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_exposure=1556"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct vendor == delta and branch EXTENDED_WINDOW recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND description LIKE '%[CM-FEE]%' AND description NOT LIKE '%[CM-FEE-REV]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='correct.vendor@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='parker.li@atlas.com') AND description LIKE '%[CM-FEE]%' AND description LIKE '%[CM-FEE-REV]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "3594000.0, 'EXTENDED_WINDOW' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no freeze note / partner email for a NORMAL branch and every wrong-vendor disbursement has a [CM-FEE-REV].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[CM-EMERGENCY]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[CM-FEE-REV]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> EMERGENCY_HOLD absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', the four eops change-register beats are in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_itsm_mcp_incident_sla WHERE incident_sla_id='TSLA_022' AND stage='paused')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the fee posting, the window and the allocation) and joins (n19 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n18 (gap 14), the [CM-WINDOW] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n19 (gap 13), and release_total resurfaces in the status email at n15. The cross-book mid value (change_volume from the european_football_2 book, birdsql:1023) is woven into the uplift/delta and thus into the whole downstream; n20 (financial, birdsql:182) is an independent side anchor no downstream check reads. The change tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live thrombosis book, and the change record's composition gate binds the STAMPED tier to that live re-derivation. The four EnterpriseOps beats are judged by the source task's own checks, so any order that leaves the same register end-state passes; each beat's register artifact is what the next hop reads and cites (the change summary line's tier is quoted onto the held incident's work note; the incident number reaches the [CM-STATUS] update; the reported release_total is repeated in the caller notice). The change fee is COMPENSATABLE: the first (wrong-vendor) disbursement must be corrected by a matching [CM-FEE-REV] then the correct disbursement \u2014 the net owner->correct-vendor disbursement == delta, and the collateral 'no_naked_delete_of_wrong_vendor_disbursement' forbids removing the wrong row. On the real data risk_score=38 mandates EXTENDED_WINDOW (partner handoff, no freeze note); the FSV accepts EXTENDED_WINDOW complete AND rejects a spurious freeze note or an extra partner email on NORMAL_WINDOW.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  }
+}

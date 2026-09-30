@@ -1,0 +1,190 @@
+[
+ {
+  "id": "m01",
+  "node": "n02",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Size the recalled-lot retail value and set the notification base has (1) a VALUE dependency on the step that List out the account numbers of clients who are youngest and have highest average salary? — it consumes the figure 'recall_account' that step records."
+ },
+ {
+  "id": "m02",
+  "node": "n04",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Compute the recall load from the stored answers has (1) a VALUE dependency on the step that Size the recalled-lot retail value and set the notification base — it consumes the figure 'notification_base' that step records; (2) a VALUE dependency on the step that What is the average height of players born between 1990 and 1995? — it consumes the figure 'parts_index' that step records."
+ },
+ {
+  "id": "m03",
+  "node": "n05",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "start",
+  "tables": [],
+  "note": "The step that Decide the recall-class branch on the computed state has (1) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m04",
+  "node": "n06",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Once the total notifications is computed, place the recall-committee review WINDOW on the coordinator's calendar (participant_email=recall.c… has (1) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'total_notifications' that step records."
+ },
+ {
+  "id": "m05",
+  "node": "n07",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "vm_transactions"
+  ],
+  "note": "The step that Post the recall notification run for EXACTLY delta on the retailer ledger has (1) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m06",
+  "node": "n08",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that If the recall-class branch is 'REPORTABLE' or 'MANDATORY', send CPSC a handoff report email has (1) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'total_notifications' that step records; (2) a VALUE dependency on the step that Decide the recall-class branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m07",
+  "node": "n09",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Log the lot recall on the quality-manager CRM record has (1) a STATE dependency on the step that If the recall-class branch is 'REPORTABLE' or 'MANDATORY', send CPSC a handoff report email — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'total_notifications' that step records; (3) a VALUE dependency on the step that Decide the recall-class branch on the computed state — it consumes the figure 'branch' that step records."
+ },
+ {
+  "id": "m08",
+  "node": "n10",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "sw_users"
+  ],
+  "note": "The step that Post the intercompany recall-cost-share ALLOCATION on the sw_* line-share ledger has (1) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'total_notifications' that step records."
+ },
+ {
+  "id": "m09",
+  "node": "n11",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "td_tasks"
+  ],
+  "note": "The step that Open the reconciliation follow-up has (1) a STATE dependency on the step that Log the lot recall on the quality-manager CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'delta' that step records."
+ },
+ {
+  "id": "m10",
+  "node": "n12",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Classify the recall CLASS. RE-DERIVE it from the live reference index: reach = round(the reference index) * 100, CLASS = 'MANDATORY_RECALL_S… has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks."
+ },
+ {
+  "id": "m11",
+  "node": "n13",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_calendar_calendars",
+   "eops_sn_csm_server_user",
+   "eops_sn_csm_server_user_group_member"
+  ],
+  "note": "The step that Onboard the incoming recall lead in the desk's CSM register has (1) a STATE dependency on the step that Classify the recall CLASS. RE-DERIVE it from the live reference index: reach = round(the reference index) * 100, CLASS = 'MANDATORY_RECALL_S… — it must follow the record that step files in wb_customer_relationship_manager_data."
+ },
+ {
+  "id": "m12",
+  "node": "n14",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_teams_mcp_channel_members",
+   "eops_gym_teams_mcp_channels"
+  ],
+  "note": "The step that Open the flagged-lot engineering-review channel on the desk's Teams register has (1) a STATE dependency on the step that Onboard the incoming recall lead in the desk's CSM register — it must follow the record that step files in eops_sn_csm_server_user."
+ },
+ {
+  "id": "m13",
+  "node": "n15",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "gm_emails"
+  ],
+  "note": "The step that Send the quality manager a status update has (1) a STATE dependency on the step that Open the flagged-lot engineering-review channel on the desk's Teams register — it must follow the record that step files in eops_gym_teams_mcp_channels; (2) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'total_notifications' that step records."
+ },
+ {
+  "id": "m14",
+  "node": "n16",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_teams_mcp_channel_messages",
+   "eops_gym_teams_mcp_channels"
+  ],
+  "note": "The step that Complete the 'Technical discussions' engineering-review channel on the desk's Teams register: add exactly one OneNote tab named 'Engineering… has (1) a STATE dependency on the step that Send the quality manager a status update — it must follow the record that step files in gm_emails."
+ },
+ {
+  "id": "m15",
+  "node": "n17",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "eops_gym_teams_mcp_channels",
+   "eops_gym_teams_mcp_teams_channel_tabs"
+  ],
+  "note": "The step that Stand up the recall coordination workspace on the desk's Teams register has (1) a STATE dependency on the step that Complete the 'Technical discussions' engineering-review channel on the desk's Teams register: add exactly one OneNote tab named 'Engineering… — it must follow the record that step files in eops_gym_teams_mcp_channel_messages."
+ },
+ {
+  "id": "m16",
+  "node": "n18",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_customer_relationship_manager_data"
+  ],
+  "note": "The step that Reconcile the posted notification against the recorded delta has (1) a STATE dependency on the step that Post the recall notification run for EXACTLY delta on the retailer ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the recall load from the stored answers — it consumes the figure 'delta' that step records; (3) a VALUE dependency on the step that Size the recalled-lot retail value and set the notification base — it consumes the figure 'notification_base' that step records; (4) a VALUE dependency on the step that What is the average height of players born between 1990 and 1995? — it consumes the figure 'parts_index' that step records."
+ },
+ {
+  "id": "m17",
+  "node": "n19",
+  "category": "dependency_map",
+  "prefix": "DEPENDENCY MAP",
+  "trigger": "work",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "note": "The step that Schedule the recall committee review has (1) a STATE dependency on the step that Once the total notifications is computed, place the recall-committee review WINDOW on the coordinator's calendar (participant_email=recall.c… — it must follow the record that step files in wb_calendar_events; (2) a STATE dependency on the step that Reconcile the posted notification against the recorded delta — it must follow the record that step files in wb_customer_relationship_manager_data; (3) a STATE dependency on the step that Stand up the recall coordination workspace on the desk's Teams register — it must follow the record that step files in eops_gym_teams_mcp_teams_channel_tabs."
+ }
+]

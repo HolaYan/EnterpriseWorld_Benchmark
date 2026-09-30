@@ -1,0 +1,1588 @@
+{
+  "instance_id": "hybrid_balance_transfer_offer__0001",
+  "agent_visible": {
+    "overall_query": "Process the cardholder's balance-transfer request: the new promo-APR line pays off the high-APR source card. Size the source-card portfolio balance as the account book's average loan amount held by male borrowers \u2014 the average is taken over every male-client-to-loan link in the book: a loan counts once for each man linked to its account, whether he is the account's owner or an authorized non-owner user (a loan on an account linked to two men enters twice) \u2014 set the transfer base at 1/200 (rounded) of it, and add the promo-window uplift: the count of approved loans of at least 250,000 written between 1/1/1995 and 12/31/1997 on accounts with monthly statement issuance (the UW-flagged proxies - each scores 1). Decide the BT decision branch on the escalation delta and the absolute transfer base (AUTO_APPROVE_STANDARD_PROMO / CONDITIONAL_UW_REVIEW / DECLINED_ALTERNATIVE) \u2014 the decision bars are the book's own: the conditional-review floor is the number of distinct accounts based in the Pisek district that show household-payment transactions on their statements, and the absolute-base decline bar is the average amount of the loans still on running contract (running contracts include those currently in debt) on accounts with statement issuance after each transaction, converted into transfer-base units with the same round(/200) policy as the base. Post the payoff transfer FROM the BT ops desk TO the source-card payoff account (correcting any wrong-card payoff with a reversal + a correct-card reissue \u2014 NEVER a delete) \u2014 the desk posts under its standing pre-authorization on every route, reversible on the ledger until ratified, and the branch decides only who must ratify the payoff afterwards and how that handoff is filed; allocate the BT-fee charge-back across the BT ops desk and the underwriting team on the intercompany ledger and record the underwriting settle-up, hand off to underwriting review if conditional or declined \u2014 that handoff is the ratification filing the branch named \u2014 log the CRM record, book the promo-window hold in the enterprise scheduler (the desk's launch calendar + desk-party access + the closing hold record citing the total transfer + the launch monitor, per the desk handbook), open + wrap the follow-up work, re-derive the BT decision tier from the account book into the CRM status column, file the card-servicing intake ticket in the ITSM mirror under the desk's standard intake codes with the servicing playbook linked, brief the manager and hand the manager-briefing case in the people-services tracker to the lightest-loaded officer of its handling group (with an update notification), reconcile the transfer ledger to the delta, and schedule the BT-ops review after the promo-window hold ends, conflict-free. Also answer the independent side question for the quarterly BT overview: how many South Bohemia account holders still do not own credit cards \u2014 count it as the book does: every client-to-account link held by a South Bohemia client in a non-owner, authorized-user capacity counts (such authorized users hold no card-bearing ownership of their own on the account), one count per link \u2014 the quarter's control reading, held against the same probe's reading at the last quarterly sign-off and read by nothing else in this case.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nsource_balance: the audited source-card portfolio balance \u2014 the full unrounded figure as the book computes it (report all the digits it yields; do not deliberately round or truncate), no thousands separators\ntransfer_base: the nominal transfer base \u2014 whole number, no thousands separators\npromo_uplift: the promo-window uplift count \u2014 whole number\ntotal_transfer: the combined transfer figure \u2014 whole number, no thousands separators\ndelta: the escalation delta (the uplift restated) \u2014 whole number\nbranch: the BT decision branch \u2014 exactly one upper-case one of {AUTO_APPROVE_STANDARD_PROMO, CONDITIONAL_UW_REVIEW, DECLINED_ALTERNATIVE}: 'AUTO_APPROVE_STANDARD_PROMO', 'CONDITIONAL_UW_REVIEW', 'DECLINED_ALTERNATIVE'\nreconciled: the ledger reconciliation verdict \u2014 the single lower-case word 'ok' once the payoff ledger nets to the delta\nside_scan_count: the quarterly-overview side-question count \u2014 whole number\nsource_balance_staged1: the desk's staging re-record 1 of 5 of source_balance \u2014 the identical value\nsource_balance_staged2: the desk's staging re-record 2 of 5 of source_balance \u2014 the identical value\nsource_balance_staged3: the desk's staging re-record 3 of 5 of source_balance \u2014 the identical value\nsource_balance_staged4: the desk's staging re-record 4 of 5 of source_balance \u2014 the identical value\nsource_balance_staged5: the desk's staging re-record 5 of 5 of source_balance \u2014 the identical value\n",
+    "initial_state_summary": "The world is ONE merged SQLite connection over ten sources, each under a table prefix: BIRD-financial (bird_loan, bird_account, bird_district, ... \u2014 the cardholder account book this desk works from), WorkBench (CRM, calendar, project tasks), Venmo (vm_users, vm_transactions \u2014 the card-payoff ledger), Splitwise (the intercompany BT-fee ledger between the BT ops desk and the underwriting team), Gmail (BT-ops manager + underwriting comms), Todoist (follow-up work), and three EnterpriseOps mirrors the desk adopted this quarter: the enterprise scheduler (eops_gym_calendar_* \u2014 calendars, events, acls, scopes; the rep books under their own scheduler login riley_chen), the card-servicing intake desk (eops_gym_itsm_mcp_* \u2014 incident, incident_knowledge, knowledge), and the people-services case tracker (eops_sn_hr_internal_* \u2014 hr_case, notification, user, user_group_member). You are the BT ops rep (riley.chen@atlas.com), present in every desk system: WorkBench assignments and calendar, the card-payoff ledger, the intercompany ledger, a Gmail mailbox, and a Todoist project; the EOps mirrors are worked through their own resident accounts (see the recording handbook). A small overlay seeds this engagement's counterparties: on the card-payoff ledger, the source-card payoff account (src.card.payoff@atlas.com) and a second card account (wrong.card.payoff@atlas.com); on the intercompany ledger, the underwriting team (underwriting.team@atlas.com). The BT-ops manager CRM record (btops.manager@atlas.com) is re-homed to be owned by the BT ops rep. The cardholder account portfolio for this engagement is the live bird_* account book itself; it carries no special markings.",
+    "initial_state_sample_caption": "Illustrative RAW rows from s0 (seed values only; all computed figures come from the live tables).",
+    "initial_state_sample": {
+      "crm_mgr": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "btops.manager@atlas.com",
+          "customer_name": "BT Ops Manager",
+          "assigned_to_email": "riley.chen@atlas.com",
+          "note": ""
+        }
+      ],
+      "bird_district": [
+        {
+          "A3": "south Bohemia",
+          "note": ""
+        }
+      ],
+      "bird_client": [
+        {
+          "gender": "M",
+          "note": ""
+        }
+      ],
+      "bird_loan": [
+        {
+          "amount": 250000,
+          "date": "1995-01-01",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "riley.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "src.card.payoff@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "wrong.card.payoff@atlas.com",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "BT-desk daily standup",
+          "participant_email": "riley.chen@atlas.com",
+          "event_start": "2025-11-17 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 balance transfer Run",
+          "note": ""
+        }
+      ],
+      "eops_gym_calendar_users": [
+        {
+          "user_id": "riley_chen",
+          "email": "riley.chen@atlas.com",
+          "note": "the BT ops rep's own scheduler login"
+        }
+      ],
+      "eops_gym_calendar_scopes": [
+        {
+          "id": "scope-riley",
+          "type": "user",
+          "value": "riley.chen@atlas.com",
+          "note": ""
+        },
+        {
+          "id": "scope-btops-mgr",
+          "type": "user",
+          "value": "btops.manager@atlas.com",
+          "note": ""
+        },
+        {
+          "id": "scope-uw-team",
+          "type": "user",
+          "value": "underwriting.team@atlas.com",
+          "note": ""
+        },
+        {
+          "id": "scope-uw-review",
+          "type": "user",
+          "value": "uw.review@krotov.cz",
+          "note": ""
+        }
+      ],
+      "eops_gym_calendar_events": [
+        {
+          "event_id": "event-corrected-001",
+          "note": "the desk's reserved promo-hold record \u2014 still carries a placeholder booking; re-cut it in place"
+        }
+      ],
+      "eops_gym_itsm_mcp_incident": [
+        {
+          "incident_id": "INC_024",
+          "number": "INC-000024",
+          "status": "in_progress",
+          "category": "hardware",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_knowledge": [
+        {
+          "knowledge_id": "KB_003",
+          "note": ""
+        }
+      ],
+      "eops_sn_hr_internal_hr_case": [
+        {
+          "hr_case_id": 4,
+          "number": "HRC0000714",
+          "status": "work_in_progress",
+          "assignment_group": 7,
+          "note": ""
+        }
+      ],
+      "eops_sn_hr_internal_user": [
+        {
+          "user_id": 33,
+          "email": "zachary.mcintosh3@servicenow.com",
+          "note": ""
+        }
+      ]
+    },
+    "conventions": "OPERATING CONVENTIONS \u2014 BT desk recording handbook (HOW results are recorded; the engagement brief says WHAT to do).\n\nA. FIGURE-BOOK NORMS.\nEvery computed figure is written plain \u2014 digits only, no thousands separators. The audited source-card portfolio balance (source_balance) is quoted at the book's full precision, as computed \u2014 report the digits the book yields rather than deliberately rounding or truncating. The BT decision branch is referred to by its single upper-case word: 'AUTO_APPROVE_STANDARD_PROMO', 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE'; the ledger reconciliation verdict is the single lower-case word 'ok' once the payoff ledger nets to the delta. The re-derived BT decision tier word lives ONLY in the CRM status column (see [BTO-TIER]), and the promo-window dates live ONLY in the enterprise scheduler (see section E).\n\nB. DURABLE-TAG GLOSSARY (every workflow artifact carries its [TAG]; formats are exact).\n  [BTO-BASE]    CRM notes on the BT ops manager row \u2014 prepend '[BTO-BASE] transfer_base=<n>'.\n  [BTO-XFER]    payoff-ledger (vm_transactions) description \u2014 every payoff-run entry carries it.\n  [BTO-REVERSAL] payoff-ledger description of a correcting send-back \u2014 carries BOTH tags: '... [BTO-REVERSAL] [BTO-XFER]'.\n  [BTO-ALLOC]   intercompany expense (sw_expenses) description of the BT-fee allocation. The expense books the full recorded total_transfer as its amount, and its sw_expense_shares row assigns underwriting.team@atlas.com a share of exactly half that amount.\n  [BTO-SETTLE]  intercompany payment (sw_payments) description of the underwriting settle-up.\n  [BTO-HANDOFF] email SUBJECT of the underwriting-review handoff; the body cites the recorded total_transfer and delta figures.\n  [BTO-LOG]     CRM notes \u2014 prepend '[BTO-LOG] total_transfer=<n>'.\n  [BTO-FUP]     Todoist follow-up task TITLE \u2014 carries the tag plus the recorded delta figure.\n  [BTO-TIER]    CRM STATUS column (dedicated) \u2014 set to '[BTO-TIER] <tier word> promo_uplift=<n>' (the recorded promo_uplift); the tier word is the single token immediately after the tag.\n  [BTO-STATUS]  email SUBJECT of the manager status update; the body cites the recorded total_transfer and the tier word.\n  [BTO-WRAP]    Todoist comment CONTENT on the [BTO-FUP] task \u2014 carries 'transfer_total=<n>', the figure quoted as the [BTO-ALLOC] ledger entries sum (whole number).\n  [BTO-RECON]   CRM notes \u2014 prepend '[BTO-RECON] delta=<n>', the figure cited as the [BTO-XFER]-minus-[BTO-REVERSAL] ledger net.\n  [BTO-HOLD]    scheduler (eops_gym_calendar_events) SUMMARY of the promo-window hold \u2014 '[BTO-HOLD] promo-window hold total_transfer=<n>' (the recorded total_transfer).\n  [BTO-REVIEW]  calendar event NAME of the BT-ops review \u2014 carries the tag plus 'src_bal=<v>' (the recorded source_balance figure, at the book's full precision as computed).\n  [BTO-DECLINED_ALTERNATIVE]  CRM notes \u2014 written ONLY on a declined (branch 'DECLINED_ALTERNATIVE') outcome; it must NOT exist on 'AUTO_APPROVE_STANDARD_PROMO'/'CONDITIONAL_UW_REVIEW'.\n\nC. COUNTERPARTY DIRECTORY (where each kind of record goes).\n  BT ops rep (you)            riley.chen@atlas.com \u2014 sender/owner of every artifact; the calendar and Todoist work live under this identity.\n  BT ops manager CRM record   btops.manager@atlas.com \u2014 the ONE CRM row every notes/status stamp goes to; manager status updates are emailed to this mailbox.\n  Underwriting review desk    uw.review@krotov.cz \u2014 the mailbox the [BTO-HANDOFF] handoff goes to (conditional/declined outcomes only; NO email to this desk on an auto-approve).\n  Source-card payoff account  src.card.payoff@atlas.com \u2014 the ledger party payoff transfers are paid TO.\n  Wrong card account          wrong.card.payoff@atlas.com \u2014 never a legitimate payoff destination; a payoff landing there is offset, not deleted.\n  Underwriting team           underwriting.team@atlas.com \u2014 the intercompany ledger party carrying its BT-fee share and paying the settle-up back to the BT ops desk.\n  Todoist project             'Q1 balance transfer Run' \u2014 the follow-up task opens here.\n\nD. BOOKKEEPING NORMS.\n  - Corrections are NEW entries, never deletes or edits: a posted payoff transfer stays on the ledger; a mis-directed one is offset by an equal reversal entry in the OPPOSITE direction, then the correct entry is written fresh.\n  - Notices are NEW emails, never edits of earlier ones.\n  - CRM notes stamps are PREPENDED so history is preserved; status is a dedicated single-value field.\n  - The BT-fee carry is booked ONCE at the full combined transfer figure owed by the BT ops desk, with the underwriting team assigned its equal half-share; the settle-up payment mirrors that assigned share exactly.\n  - The promo-window HOLD this quarter lives ONLY in the enterprise scheduler as the hold record described in section E; the review window ends when that hold ends.\n  - Reviews are 30-minute business-day (Mon-Fri) afternoon bookings (start between 13:00 and 16:30), at the EARLIEST such slot at/after the hold end, and must be conflict-free against every other event on the rep's calendar.\n  - Only the BT ops manager CRM row is ever touched; every other CRM row is read-only.\n  - Figures cited in stamps/emails/comments quote the recorded or ledger value as-is (no separators).\n\nE. ENTERPRISE MIRRORS (three EnterpriseOps systems joined the desk this quarter; exact recording formats).\n  Scheduler (eops_gym_calendar_*): the rep books under their OWN scheduler login 'riley_chen' (riley.chen@atlas.com). The desk's card-product launch calendar is the SECONDARY calendar 'Product Launches' (is_primary=0, time_zone 'UTC', color_id '5' \u2014 the fixed launch-calendar colour); exactly four acls rows sit on it \u2014 the rep 'owner' (scope 'scope-riley'), the BT ops manager 'writer' (scope 'scope-btops-mgr'), the underwriting team and the underwriting review desk 'reader' (scopes 'scope-uw-team', 'scope-uw-review'). The promo-window HOLD is the desk's reserved record 'event-corrected-001' re-cut IN PLACE (UPDATE; clear its stale attendees; never a second record) onto that calendar under 'riley_chen' with summary '[BTO-HOLD] promo-window hold total_transfer=<n>', status 'confirmed', start '2025-11-14 16:00:00.000000', end '2025-11-14 17:00:00.000000' (the closing hour of the offer's promo window, Friday 14 November 2025), start_timezone and end_timezone both 'UTC'. The group's launch-control monitor is the watch_channels row 'NOVAX_MONITOR' with webhook_address 'https://hooks.launch.corp.com/novax'. The promo review window ends when that hold ends; those dates live ONLY in the scheduler.\n  Card-servicing intake (eops_gym_itsm_mcp_*): the desk's card-servicing intake is ticket INC_024, (re)filed under the standard intake codes \u2014 service_offering 'SVCOFF_004', caller 'USER_006', assignment_group 'GROUP_002', category 'hardware', impact 'medium', urgency 'low', status 'new' \u2014 with the servicing playbook article 'KB_003' linked via an incident_knowledge row as used_as='suggested'.\n  People-services tracker (eops_sn_hr_internal_*): the manager-briefing case is HRC0000714 (hr_case_id 4); it is handed to the lightest-loaded officer of its handling group \u2014 Zachary Mcintosh, officer id 33 \u2014 with status='awaiting_acceptance' and request_status='requested', and a notification row of type 'update' to zachary.mcintosh3@servicenow.com recorded on that case.\n\nSTAGING: before the downstream step reads source_balance, this desk re-records it through 5 staging entries in order \u2014 kind='source_balance_staged1', then kind='source_balance_staged2', then kind='source_balance_staged3', then kind='source_balance_staged4', then kind='source_balance_staged5' (each the identical value, each copied from the previous one); file every staging record as an explicit intermediate step.",
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (source balance, UW-flag count, ledger nets, CRM state, and the eops_* mirrors: the eops_gym_calendar_* scheduler, the eops_gym_itsm_mcp_* card-servicing intake desk, the eops_sn_hr_internal_* people-services tracker).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Return column names/types of one table.",
+        "args": {
+          "table": "table name"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (vm_transactions, sw_expenses, gm_emails, td_tasks, wb_calendar_events, eops_gym_calendar_calendars/acls/watch_channels, eops_gym_itsm_mcp_incident_knowledge, eops_sn_hr_internal_notification, ...).",
+        "args": {
+          "table": "table name",
+          "values": "{column: value} map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status stamps; the eops_gym_calendar_events reserved hold record re-cut in place; the eops_gym_itsm_mcp_incident intake re-file; the eops_sn_hr_internal_hr_case briefing-case handoff).",
+        "args": {
+          "table": "table name",
+          "set": "{column: value}",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows matching a WHERE predicate (the stale eops_gym_calendar_attendees rows of the re-cut hold record). NOTE: payoff transfers are compensatable \u2014 correct a wrong-card payoff with a reversal + correct reissue, do NOT naked-delete it.",
+        "args": {
+          "table": "table name",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across birdsql -> workbench -> venmo -> splitwise -> gmail -> todoist -> enterpriseops (eops scheduler / ITSM intake / people-services mirrors). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n17->n19 with long-range edges: transfer_base n02 -> reconciliation gap 14 via delta; the eops scheduler promo-window hold n06 gates review n19 (gap 13); total_transfer n04 resurfaces at n14/n16. n20 is an independent BIRD side question (South Bohemia no-card holders), recorded only after the clean-control precheck on the north Bohemia control book (0 defaulted loans).",
+    "protagonist": {
+      "email": "riley.chen@atlas.com",
+      "role": "BT ops rep \u2014 owns the BT ops manager CRM record and drives the card-payoff ledger, BT-fee allocation, manager comms, and follow-up work",
+      "exists_in": [
+        "workbench (assigned_to_email + calendar)",
+        "venmo (vm_users)",
+        "splitwise (sw_users)",
+        "gmail (gm_users)",
+        "todoist (td_users + a project)"
+      ]
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "What is the average loan amount by male borrowers? (Take the average over every male-client-to-loan link in the book: a loan counts once for each man linked to its account \u2014 whether he is the account's owner or an authorized non-owner user \u2014 so a loan on an account linked to two men enters twice.) Record the answer in answers as kind='source_balance'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_client.gender",
+          "bird_disp.client_id",
+          "bird_account.account_id",
+          "bird_loan.amount"
+        ],
+        "writes": [
+          "answers.source_balance"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200). Record it in answers as kind='transfer_base' and stamp the BT ops manager's CRM row (customer_email btops.manager@atlas.com) by prepending '[BTO-BASE] transfer_base=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.source_balance"
+        ],
+        "writes": [
+          "answers.transfer_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "Between 1/1/1995 and 12/31/1997, how many loans in the amount of at least 250,000 per account that chose monthly statement issuance were approved? Record the answer in answers as kind='promo_uplift'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_loan.amount",
+          "bird_loan.date",
+          "bird_account.frequency"
+        ],
+        "writes": [
+          "answers.promo_uplift"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the TOTAL transfer. total_transfer = transfer_base + promo_uplift, and delta = promo_uplift. Record BOTH: answers kind='total_transfer' and answers kind='delta'.",
+        "system": "answers",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.transfer_base",
+          "answers.promo_uplift"
+        ],
+        "writes": [
+          "answers.total_transfer",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the BT decision branch from BOTH figures you have already recorded \u2014 read answers.delta AND answers.transfer_base \u2014 against the book's own decision bars: the CONDITIONAL-REVIEW FLOOR is the number of distinct accounts based in the Pisek district that show household-payment transactions on their statements, and the ABSOLUTE-BASE DECLINE BAR is the average amount of the loans still on running contract (running contracts include those currently in debt) on accounts with statement issuance after each transaction, converted into transfer-base units with the SAME policy as the base itself: bar = round(that average / 200) (compute both from the live bird tables). Escalation fires on either: set answers kind='branch' to 'DECLINED_ALTERNATIVE' (declined with alternative offer) if delta >= 100 OR transfer_base >= the decline bar; otherwise 'CONDITIONAL_UW_REVIEW' (conditional UW review) if delta >= the conditional-review floor AND transfer_base >= 200; otherwise 'AUTO_APPROVE_STANDARD_PROMO' (auto-approve standard promo). Check the higher tier first; the bands do not overlap. What this branch word routes is the RATIFICATION OF RECORD, not the desk's authority to act: the BT ops desk works this balance-transfer run under the standing pre-authorization its delegation-of-authority handbook grants \u2014 that mandate covers payoff postings up to the envelope the run itself computes, on every route \u2014 so the decision you record here fixes WHO must ratify the payoff afterwards and how that handoff is filed, never whether the payoff may be posted.",
+        "system": "answers",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.transfer_base",
+          "bird_trans.k_symbol",
+          "bird_district.A2",
+          "bird_loan.status",
+          "bird_loan.amount"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n02",
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Reserve the promo-window HOLD in the enterprise scheduler, under your own scheduler login 'riley_chen' (riley.chen@atlas.com). Create the desk's card-product launch calendar 'Product Launches' as a SECONDARY calendar (is_primary=0, time_zone 'UTC', color_id '5' \u2014 the launch-calendar colour the handbook fixes) and give exactly the four desk parties access with acls rows on that calendar: you as 'owner' (scope 'scope-riley'), the BT ops manager btops.manager@atlas.com as 'writer' (scope 'scope-btops-mgr'), the underwriting team underwriting.team@atlas.com and the underwriting review desk uw.review@krotov.cz as 'reader' (scopes 'scope-uw-team' and 'scope-uw-review'). Then \u2014 only once the total transfer is recorded \u2014 re-cut the desk's reserved hold record (event_id 'event-corrected-001'; it still carries the placeholder booking it was cloned from, so UPDATE it in place and clear its stale attendees rows \u2014 never a second record) as the hold: calendar 'Product Launches', user_id 'riley_chen', summary '[BTO-HOLD] promo-window hold total_transfer=<the stored answers.total_transfer value>', status 'confirmed', blocking the closing hour of the offer's promo window: start '2025-11-14 16:00:00.000000', end '2025-11-14 17:00:00.000000' (Friday 14 November 2025, 16:00-17:00 UTC), start/end timezones 'UTC'. Finally subscribe the group's launch-control monitor to that calendar: a watch_channels row with id 'NOVAX_MONITOR' and webhook_address 'https://hooks.launch.corp.com/novax'. The promo review window ends when this hold ends; the dates are held ONLY in the scheduler.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_transfer",
+          "eops_gym_calendar_events.calendar_id"
+        ],
+        "writes": [
+          "eops_gym_calendar_calendars.summary",
+          "eops_gym_calendar_acls.role",
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.start_datetime",
+          "eops_gym_calendar_events.end_datetime",
+          "eops_gym_calendar_watch_channels.webhook_address"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the payoff transfer run for EXACTLY delta on the card-payoff ledger. The posting is made under the desk's standing pre-authorization, which covers every route the branch may take \u2014 so the payoff run goes out on all three branches and it is only the ratification filing that follows which differs by branch; do NOT hold the posting for an approval to come back. What keeps that safe is the ledger itself: the payoff remains reversible until it is ratified, since nothing posted here is ever deleted and a misposting is unwound by an offsetting entry. Record vm_transactions rows tagged '[BTO-XFER]' so the NET transfer posted FROM the BT ops rep (riley.chen@atlas.com) TO the correct source-card payoff account (src.card.payoff@atlas.com) equals delta. If the first transfer lands on the WRONG card account (wrong.card.payoff@atlas.com), DO NOT delete it: write a matching '[BTO-REVERSAL] [BTO-XFER]' entry (the wrong card account sends back to the BT ops rep the SAME amount) which cancels the wrong transfer, then the correct reissue to the right payoff account.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the BT decision branch is 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE', send the underwriting review desk a handoff email. INSERT a gm_emails row from the BT ops rep (riley.chen@atlas.com) to the underwriting review desk (uw.review@krotov.cz) whose subject carries '[BTO-HANDOFF]' and whose body CITES the total_transfer and the delta from answers. On the AUTO_APPROVE_STANDARD_PROMO branch (auto-approve), the email MUST NOT be sent. This handoff IS the ratification filing the branch named at the decision step: it puts the payoff run already posted under the standing mandate in front of the underwriting authority that must ratify it, which is why the body carries the run's figures. On 'AUTO_APPROVE_STANDARD_PROMO' the standing mandate ratifies itself in house and no filing leaves the desk.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_transfer",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the balance transfer run on the BT ops manager CRM record. Prepend '[BTO-LOG] total_transfer=<n>' to the notes \u2014 but on the conditional/declined branches (CONDITIONAL_UW_REVIEW / DECLINED_ALTERNATIVE), ONLY after the '[BTO-HANDOFF]' email has been sent to the underwriting review desk. On the AUTO_APPROVE_STANDARD_PROMO branch the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_transfer",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany BT-FEE ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row owed by the BT ops desk (riley.chen@atlas.com) for the full total_transfer with description '[BTO-ALLOC]', and a sw_expense_shares row assigning the underwriting team (underwriting.team@atlas.com) a share_amount = total_transfer/2 (its half of the joint BT-fee carry).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_transfer",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 balance transfer Run' project owned by the BT ops rep whose title carries '[BTO-FUP]' and the delta value \u2014 only after the BT ops manager CRM record carries the '[BTO-LOG]' transfer log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the BT decision TIER. RE-DERIVE the uplift from the live bird tables by re-answering the flagged-loan count question (the same question the promo uplift was taken from: approved loans of at least 250,000 dated 1/1/1995-12/31/1997 on accounts with monthly statement issuance), and re-derive the conditional-review floor the same way (the number of distinct Pisek-district accounts that show household-payment transactions on their statements). TIER = 'DECLINED_ALTERNATIVE' if uplift >= 100, 'CONDITIONAL_UW_REVIEW' if uplift >= that floor, else 'AUTO_APPROVE_STANDARD_PROMO'. Write it to the BT ops manager CRM row's DEDICATED status column, stamping the recorded promo uplift beside it (set status='[BTO-TIER] <tier> promo_uplift=<the stored answers.promo_uplift value>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_loan.amount",
+          "bird_trans.k_symbol",
+          "bird_district.A2",
+          "answers.promo_uplift"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11",
+          "n03"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "File the card-servicing intake. In the ITSM intake mirror, (re)file ticket INC_024 under the desk's card-servicing intake codes: service_offering 'SVCOFF_004', caller 'USER_006', assignment_group 'GROUP_002', category 'hardware', impact 'medium', urgency 'low', status 'new', and link the servicing playbook article 'KB_003' to it (incident_knowledge row with used_as='suggested') \u2014 only after the BT ops manager CRM row carries the '[BTO-TIER]' stamp whose tier token matches the book's re-derivation, and the transfer base has been recorded.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status",
+          "answers.transfer_base",
+          "eops_gym_itsm_mcp_knowledge.knowledge_id"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_incident.status",
+          "eops_gym_itsm_mcp_incident.caller_id",
+          "eops_gym_itsm_mcp_incident_knowledge.knowledge_id"
+        ],
+        "depends_on": [
+          "n12",
+          "n02"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Send the BT ops manager a status update. INSERT a gm_emails row from the BT ops rep (riley.chen@atlas.com) to the BT ops manager (btops.manager@atlas.com) whose subject carries '[BTO-STATUS]' and whose body cites the total_transfer and the tier word \u2014 only after the card-servicing intake ticket INC_024 has been filed (status 'new') in the ITSM mirror.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_itsm_mcp_incident.status",
+          "answers.total_transfer",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n13",
+          "n04"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Record that the BT ops manager has been briefed. In the people-services mirror, hand the manager-briefing case HRC0000714 (hr_case_id 4) to the lightest-loaded officer of its handling group \u2014 Zachary Mcintosh (officer id 33) \u2014 setting status='awaiting_acceptance' and request_status='requested', and record a notification row of type 'update' to zachary.mcintosh3@servicenow.com on that case \u2014 only after the '[BTO-STATUS]' status email has been sent to the BT ops manager and the decided offer branch is on record.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.branch",
+          "eops_sn_hr_internal_hr_case.assigned_to",
+          "eops_sn_hr_internal_user_group_member.user_id"
+        ],
+        "writes": [
+          "eops_sn_hr_internal_hr_case.status",
+          "eops_sn_hr_internal_hr_case.assigned_to",
+          "eops_sn_hr_internal_notification.type"
+        ],
+        "depends_on": [
+          "n14",
+          "n05"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Post the underwriting-team intercompany SETTLE on the sw_* line-share ledger. INSERT a sw_payments row where the underwriting team (underwriting.team@atlas.com) pays the BT ops desk (riley.chen@atlas.com) its assigned share (total_transfer/2) with description '[BTO-SETTLE]', matching the recorded intercompany line-share amount.",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "sw_expense_shares.share_amount",
+          "answers.total_transfer",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_payments.amount"
+        ],
+        "depends_on": [
+          "n10",
+          "n04"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Wrap up the reconciliation task. INSERT a td_task_comments row on the '[BTO-FUP]' task whose content carries '[BTO-WRAP]' and quotes the full transfer figure as 'transfer_total=<n>' \u2014 cite the figure exactly as the '[BTO-ALLOC]' ledger entries sum: recompute <n> from the intercompany sw_* ledger (the sum of the BT ops desk's '[BTO-ALLOC]' sw_expenses amounts, which must also equal twice the underwriting-team '[BTO-SETTLE]' payment and the stored answers.total_transfer) \u2014 only after the manager-briefing case HRC0000714 sits with officer 33 awaiting acceptance in the people-services mirror.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "eops_sn_hr_internal_hr_case.status",
+          "answers.total_transfer",
+          "sw_expenses.amount",
+          "sw_payments.amount"
+        ],
+        "writes": [
+          "td_task_comments.content"
+        ],
+        "depends_on": [
+          "n11",
+          "n15",
+          "n04",
+          "n10",
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted transfer against the recorded delta. Confirm the ledger's NET transfer posted to the source-card payoff account equals delta, then record answers kind='reconciled'='ok' and prepend a '[BTO-RECON] delta=<delta>' note to the BT ops manager CRM row \u2014 cite the delta exactly as the '[BTO-XFER]' ledger entries net (transfers minus '[BTO-REVERSAL]' reversals), recomputed from vm_transactions, not from memory.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the BT-ops review. INSERT a wb_calendar_events row on the BT ops rep's calendar whose event_name carries '[BTO-REVIEW]' plus the audited source-card book written as 'src_bal=<the stored answers.source_balance value>', duration 30, on a business day (Mon-Fri) in afternoon hours (13:00-17:00), at the earliest such 30-minute slot that starts AT/AFTER the end of the '[BTO-HOLD]' promo-window hold (record 'event-corrected-001') in the enterprise scheduler and does NOT overlap any of the BT ops rep's other events. Only for a BT ops manager record whose CRM carries '[BTO-LOG]' and whose manager-briefing case has been handed off in the people-services mirror.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_sn_hr_internal_hr_case.status",
+          "eops_gym_calendar_events.end_datetime",
+          "answers.source_balance"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n09",
+          "n15",
+          "n01"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's control reading at the close of the run, once the offer's own figures are recorded and the BT case is ready to go to the quarterly BT overview. The probe reads a licensed reference book the desk's reporting service also serves \u2014 kept because that book cannot follow the run: a control figure with no tie to the BT registers (the payoff ledger, the CRM record, the answers figures) is the one that separates drift in the desk's own reporting from a real shift in the region's prospect pool \u2014 and is answered exactly as that book asks it: \"How many of the account holders in South Bohemia still do not own credit cards?\" (Count it as the book does: every client-to-account link held by a South Bohemia client in a non-owner, authorized-user capacity counts \u2014 such authorized users hold no card of their own on the account; one count per link, so a client with several authorized-user links counts once per link.) Before recording, run the overview's clean-control precheck: confirm the 'north Bohemia' control book carries NO defaulted (status 'D') loan records (bird_loan joined via bird_account and bird_district on A3='north Bohemia') \u2014 the overview count is only recorded against a clean control book. Record the answer in answers as kind='side_scan_count'. A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the BT overview is signed off only when this quarter's reading lines up with the last. Nothing later in this BT case reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 a tidier or neighbouring count would read as a shift in the prospect pool that never happened.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_district.A3",
+          "bird_client.client_id",
+          "bird_disp.type",
+          "bird_loan.status",
+          "bird_account.district_id"
+        ],
+        "writes": [
+          "answers.side_scan_count"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 12,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 34,
+      "dependency_depth": 12,
+      "max_dependency_gap": 18,
+      "mean_dependency_gap": 5.74,
+      "long_range_edge_ratio": 0.471,
+      "n_long_range_edges": 16,
+      "long_range_threshold": 5,
+      "fan_out": 10,
+      "fan_in": 5,
+      "fork_count": 9,
+      "join_count": 12,
+      "cross_system_edge_ratio": 0.882,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n03",
+          "to": "n12",
+          "gap": 9,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n13",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n14",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n05",
+          "to": "n15",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n10",
+          "to": "n16",
+          "gap": 6,
+          "cross_system": false
+        },
+        {
+          "from": "n04",
+          "to": "n16",
+          "gap": 12,
+          "cross_system": true
+        },
+        {
+          "from": "n11",
+          "to": "n17",
+          "gap": 6,
+          "cross_system": false
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n10",
+          "to": "n17",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n09",
+          "to": "n19",
+          "gap": 10,
+          "cross_system": false
+        },
+        {
+          "from": "n01",
+          "to": "n19",
+          "gap": 18,
+          "cross_system": true
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 13,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "venmo",
+        "splitwise",
+        "gmail",
+        "todoist",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (branch decision on delta magnitude) -> CONDITIONAL_UW_REVIEW: underwriting handoff email + no declined-alternative note",
+      "long_range_edges": [
+        "n04->n18 delta reconciled 14 steps later (gap 14, max)",
+        "n06->n19 eops-scheduler hold dates (type-B) gate the review (gap 13)",
+        "n04->n14 total_transfer resurfaces in the status email (gap 10)",
+        "n07->n18 vm ledger net read at reconciliation (gap 11)"
+      ],
+      "side_branch": [
+        "n20 (independent BIRD side question \u2014 South Bohemia no-card holders)"
+      ]
+    },
+    "entity_bindings": {
+      "protagonist": "riley.chen@atlas.com",
+      "bt_ops_manager": "btops.manager@atlas.com",
+      "src_payoff": "src.card.payoff@atlas.com",
+      "wrong_card": "wrong.card.payoff@atlas.com",
+      "uw_team": "underwriting.team@atlas.com",
+      "uw_desk": "uw.review@krotov.cz",
+      "mgr_crm_id": "00000002",
+      "source_questions": {
+        "source_balance": "birdsql:132 (avg male-borrower loan amount)",
+        "promo_uplift": "birdsql:136 (count of approved 250k+ monthly-statement loans 1995-97)",
+        "side_scan_count": "birdsql:130 (South Bohemia holders without credit cards)"
+      },
+      "band_cut_questions": {
+        "conditional_floor": "birdsql:142 \u2014 'Which accounts placed orders for household payment in Pisek?' (the cut is the answer-set size: the Pisek household-payment account pool \u2014 an account COUNT thresholding the count-typed delta)",
+        "base_decline_bar": "birdsql:192 \u2014 'What is the average amount of loan which are still on running contract with statement issuance after each transaction?' (the cut is the AMOUNT answer itself, converted into transfer-base units via the same declared round(/200) policy as the base: bar = round(192836.57.../200) = 964 \u2014 an amount thresholding the amount-typed base)"
+      },
+      "true_conditional_floor": 32,
+      "true_base_bar": 964,
+      "declared_constants": "delta decline cut 100, base floor 200, and base divisor 200 stay literal \u2014 no unit-compatible source counterpart (declared constants)",
+      "side_region": "South Bohemia",
+      "control_region": "north Bohemia",
+      "control_precheck": "clean-control precheck on n20: the 'north Bohemia' control book carries 0 defaulted (status 'D') loan records on the real data, so the side count is recorded against a clean control book (composition check; the birdsql:130 recipe itself is untouched)",
+      "true_source_balance": 149609.180487805,
+      "base_policy": "transfer_base = round(source_balance/200)",
+      "true_transfer_base": 748,
+      "true_uw_flag_count": 65,
+      "uplift_policy": "promo_uplift = the source question's flagged-loan count (each qualifying record scores 1)",
+      "true_promo_uplift": 65,
+      "true_total_transfer": 813,
+      "true_delta": 65,
+      "true_branch": "CONDITIONAL_UW_REVIEW",
+      "branch_reason": "32 <= delta=65 < 100 AND 200 <= base=748 < 964 -> CONDITIONAL_UW_REVIEW (the conditional-review branch); floor 32 = live birdsql:142 answer-set size (count vs count), bar 964 = live birdsql:192 amount answer through the round(/200) base policy (amount vs amount)",
+      "true_tier": "CONDITIONAL_UW_REVIEW",
+      "true_side_scan_count": 74,
+      "vm_compensation": "wrong 65 (BT ops rep->wrong card account) + reversal 65 (wrong card account->BT ops rep) + correct 65 (BT ops rep->source-card payoff account); net BT ops rep->payoff account = 65 == delta",
+      "review_window_hold": "promo-window hold record 'event-corrected-001' ('[BTO-HOLD] promo-window hold total_transfer=<n>') 2025-11-14 16:00:00.000000 -> 2025-11-14 17:00:00.000000 UTC on the desk's 'Product Launches' calendar in the EOps scheduler (type-B: only in eops_gym_calendar_events; the review window ends when the hold ends)",
+      "review_slot": "2025-11-17 14:00 (earliest business-day afternoon slot at/after the hold end Fri 2025-11-14 17:00 \u2014 nothing left that Friday, weekend skipped \u2014 skipping the Monday 13:00-14:00 standup)",
+      "eops_verdict_tasks": {
+        "n06_scheduler": "task_20260106_103319_873_baf0b358_69ce7445",
+        "n13_itsm_intake": "task_20251217_030654_663_99ba2325_f931fd42",
+        "n15_people_services": "task_20251224_074251_092_46ca2862_b5b99f66",
+        "pins": {
+          "launch_calendar": "Product Launches (color 5)",
+          "hold_record": "event-corrected-001",
+          "acl_count": 4,
+          "monitor": "NOVAX_MONITOR -> https://hooks.launch.corp.com/novax",
+          "scheduler_login": "riley_chen",
+          "intake": "INC_024 / SVCOFF_004 / USER_006 / GROUP_002 / KB_003",
+          "briefing_case": "HRC0000714 (id 4) -> officer 33 (zachary.mcintosh3@servicenow.com)"
+        }
+      },
+      "durable_tags": {
+        "base_note": "[BTO-BASE]",
+        "uplift_note": "[BTO-UPLIFT]",
+        "transfer": "[BTO-XFER]",
+        "reversal": "[BTO-REVERSAL]",
+        "allocation": "[BTO-ALLOC]",
+        "settle": "[BTO-SETTLE]",
+        "handoff": "[BTO-HANDOFF]",
+        "log": "[BTO-LOG]",
+        "followup": "[BTO-FUP]",
+        "tier": "[BTO-TIER]",
+        "status_email": "[BTO-STATUS]",
+        "wrapup": "[BTO-WRAP]",
+        "recon": "[BTO-RECON]",
+        "review": "[BTO-REVIEW]",
+        "declined_note_only_for_C": "[BTO-DECLINED_ALTERNATIVE]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.source_balance",
+          "answers.transfer_base",
+          "answers.promo_uplift",
+          "answers.total_transfer",
+          "answers.delta",
+          "answers.branch"
+        ],
+        "B_domain_state": "promo window dates \u2014 ONLY in the eops_gym_calendar_events hold record; n19 reads the window end there, not in answers",
+        "C_not_persisted": "BT decision tier (CONDITIONAL_UW_REVIEW) \u2014 re-derived at n12 from bird_loan; never in answers"
+      },
+      "true_reconciled": "ok"
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.source_balance"
+        ],
+        "change": "What is the average loan amount by male borrowers? (Take the average over every male-client-to-loan link in the book: a loan count"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.transfer_base",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200). Record it in answers as kind='transf"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.promo_uplift"
+        ],
+        "change": "Between 1/1/1995 and 12/31/1997, how many loans in the amount of at least 250,000 per account that chose monthly statement issuanc"
+      },
+      {
+        "subgoal": "n04",
+        "system": "answers",
+        "writes": [
+          "answers.total_transfer",
+          "answers.delta"
+        ],
+        "change": "Compute the TOTAL transfer. total_transfer = transfer_base + promo_uplift, and delta = promo_uplift. Record BOTH: answers kind='to"
+      },
+      {
+        "subgoal": "n05",
+        "system": "answers",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the BT decision branch from BOTH figures you have already recorded \u2014 read answers.delta AND answers.transfer_base \u2014 against"
+      },
+      {
+        "subgoal": "n06",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_calendar_calendars.summary",
+          "eops_gym_calendar_acls.role",
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_events.start_datetime",
+          "eops_gym_calendar_events.end_datetime",
+          "eops_gym_calendar_watch_channels.webhook_address"
+        ],
+        "change": "Reserve the promo-window HOLD in the enterprise scheduler, under your own scheduler login 'riley_chen' (riley.chen@atlas.com). Cre"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the payoff transfer run for EXACTLY delta on the card-payoff ledger. The posting is made under the desk's standing pre-author"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the BT decision branch is 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE', send the underwriting review desk a handoff email."
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the balance transfer run on the BT ops manager CRM record. Prepend '[BTO-LOG] total_transfer=<n>' to the notes \u2014 but on the co"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany BT-FEE ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row owed by the BT ops desk (riley.che"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 balance transfer Run' project owned by the BT ops rep whose ti"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the BT decision TIER. RE-DERIVE the uplift from the live bird tables by re-answering the flagged-loan count question (the"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_incident.status",
+          "eops_gym_itsm_mcp_incident.caller_id",
+          "eops_gym_itsm_mcp_incident_knowledge.knowledge_id"
+        ],
+        "change": "File the card-servicing intake. In the ITSM intake mirror, (re)file ticket INC_024 under the desk's card-servicing intake codes: s"
+      },
+      {
+        "subgoal": "n14",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the BT ops manager a status update. INSERT a gm_emails row from the BT ops rep (riley.chen@atlas.com) to the BT ops manager ("
+      },
+      {
+        "subgoal": "n15",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_hr_internal_hr_case.status",
+          "eops_sn_hr_internal_hr_case.assigned_to",
+          "eops_sn_hr_internal_notification.type"
+        ],
+        "change": "Record that the BT ops manager has been briefed. In the people-services mirror, hand the manager-briefing case HRC0000714 (hr_case"
+      },
+      {
+        "subgoal": "n16",
+        "system": "splitwise",
+        "writes": [
+          "sw_payments.amount"
+        ],
+        "change": "Post the underwriting-team intercompany SETTLE on the sw_* line-share ledger. INSERT a sw_payments row where the underwriting team"
+      },
+      {
+        "subgoal": "n17",
+        "system": "todoist",
+        "writes": [
+          "td_task_comments.content"
+        ],
+        "change": "Wrap up the reconciliation task. INSERT a td_task_comments row on the '[BTO-FUP]' task whose content carries '[BTO-WRAP]' and quot"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted transfer against the recorded delta. Confirm the ledger's NET transfer posted to the source-card payoff accou"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the BT-ops review. INSERT a wb_calendar_events row on the BT ops rep's calendar whose event_name carries '[BTO-REVIEW]' p"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_scan_count"
+        ],
+        "change": "Take the quarter's control reading at the close of the run, once the offer's own figures are recorded and the BT case is ready to "
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the BT decision branch the data selects (CONDITIONAL_UW_REVIEW). Every figure is re-derived from LIVE tables, and each check reads the prior hop's actual answers row or durable tag, never a baked constant \u2014 and the three roots are judged by the SOURCE dataset itself: their checks re-run the official BIRD-financial gold SQL live. COMPLETENESS (19 checks): source_balance == the book's male-borrower average loan amount (BIRD 132) = 149609.180487805; transfer_base == round(source_balance/200) = 748; promo_uplift == the count of approved 250k+ monthly-statement loans 1995-97 (BIRD 136) = 65; total_transfer == transfer_base + promo_uplift, giving 813; delta == promo_uplift (65); branch == the two-factor class (32<=65<100 with 200<=748<964 -> CONDITIONAL_UW_REVIEW; the floor 32 is the LIVE birdsql:142 answer-set size \u2014 the Pisek household-payment account pool, a count thresholding the count-typed delta \u2014 and the bar 964 the LIVE birdsql:192 amount answer \u2014 the average running-contract loan amount 192836.57... \u2014 through the same round(/200) policy as the base, an amount thresholding the amount-typed base); the card-payoff ledger NETS delta FROM the BT ops rep to the source-card payoff account (a wrong-card payoff is offset by a [BTO-REVERSAL] + the correct reissue, net == delta AND wrong-card net == 0); the underwriting handoff email exists iff the branch is CONDITIONAL_UW_REVIEW or DECLINED_ALTERNATIVE; the Splitwise allocation + settle are recorded; the BT ops manager CRM logs total_transfer; the follow-up task cites delta; the BT decision TIER is RE-DERIVED from bird_loan (type-C, never in answers) and gates the card-servicing intake INC_024 in the EOps ITSM mirror (inherited enterpriseops verdict: intake codes + KB_003 'suggested' link); the promo-window hold is the EOps-scheduler launch calendar + four desk-party ACLs + reserved hold record + monitor watch channel (inherited enterpriseops verdict; the hold title cites total_transfer); the status email is sent and the manager-briefing case HRC0000714 is handed to officer 33 awaiting acceptance with an 'update' notification (inherited enterpriseops verdict, gated on the status email + recorded branch); the wrap-up comment is on the follow-up; reconciled=='ok'; the review is conflict-free and after the scheduler hold end; side_scan_count == the South Bohemia no-credit-card holder count (BIRD 130) = 74, recorded on a clean north Bohemia control book (0 status-'D' loans \u2014 the composition precheck on n20). COLLATERAL (each 0): NO underwriting handoff on an auto-approve (AUTO_APPROVE_STANDARD_PROMO) path; NO [BTO-DECLINED_ALTERNATIVE] note for a CONDITIONAL_UW_REVIEW branch; NO UW email when auto-approved; NO naked delete of a wrong-card payoff (it must keep its [BTO-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged BT ops manager; no CRM row outside the BT ops manager's record is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (naked-delete of the wrong-card payoff; a tampered VM amount; a double-booked review) and the SKIP-TEST (delete transfer_base -> total_transfer and the reconciliation can no longer hold).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged six-dataset world; no computed figures are labelled.",
+        "reasoning": "Find the BT ops manager CRM row and the region to base the source balance on.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='btops.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row, owned by riley.chen@atlas.com.",
+        "state_delta": "none (BT ops manager ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "Need the source balance S.",
+        "reasoning": "n01: answer the source question \u2014 the average loan amount by male borrowers \u2014 as source_balance.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT AVG(l.amount) FROM bird_client c JOIN bird_disp dp ON c.client_id=dp.client_id JOIN bird_account a ON dp.account_id=a.account_id JOIN bird_loan l ON a.account_id=l.account_id WHERE c.gender='M'"
+          }
+        },
+        "tool_result": "149609.180487805.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Have S=149609.180487805.",
+        "reasoning": "n01: record answers.source_balance.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "source_balance",
+              "value": "149609.180487805"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+source_balance=149609.180487805"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the transfer base from the source balance.",
+        "reasoning": "n02: base = round(149609.180487805/200) -> 748.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "transfer_base",
+              "value": "748"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+transfer_base=748"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Base set.",
+        "reasoning": "n02: stamp the BT ops manager CRM with [BTO-BASE] transfer_base=748.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[BTO-BASE] transfer_base=748 <existing>"
+            },
+            "where": "lower(customer_email)='btops.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+base note"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "n03: compute the uplift delta.",
+        "reasoning": "Answer the source question \u2014 approved loans of at least 250,000 dated 1995-97 on monthly-statement accounts -> 65; the count IS the uplift; record answers.promo_uplift.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(a.account_id) FROM bird_account a JOIN bird_loan l ON a.account_id=l.account_id WHERE l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='POPLATEK MESICNE' AND l.amount>=250000"
+          }
+        },
+        "tool_result": "65 -> uplift 65.",
+        "state_delta": "answers:+promo_uplift=65"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=748, uplift=65.",
+        "reasoning": "n04: total_transfer = 748+65 = 813; delta = 65.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "total_transfer",
+              "value": "813"
+            }
+          }
+        },
+        "tool_result": "1 row (+delta=65).",
+        "state_delta": "answers:+total_transfer=813,+delta=65"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=65, base=748. Band cuts computed from the book, each in the unit it thresholds: conditional floor = the Pisek household-payment pool = 32 distinct accounts (a count, vs the delta count); decline bar = the average running-contract loan amount 192836.57 over the same 1/200 base policy = round(192836.57/200) = 964 (an amount in transfer-base units, vs the base).",
+        "reasoning": "n05: BRANCH DECISION on delta AND base against the book's own bars. 32 <= 65 < 100 and 200 <= 748 < 964 -> the CONDITIONAL_UW_REVIEW branch.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 65 >= 100 AS is_declined_alternative, 65 >= 32 AS is_conditional_or_declined, 748 >= 964 AS base_bar, 748 >= 200 AS base_floor"
+          }
+        },
+        "tool_result": "0,1,0,1 -> CONDITIONAL_UW_REVIEW.",
+        "state_delta": "none (CONDITIONAL_UW_REVIEW SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch CONDITIONAL_UW_REVIEW.",
+        "reasoning": "n05: record answers.branch='CONDITIONAL_UW_REVIEW'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "CONDITIONAL_UW_REVIEW"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=CONDITIONAL_UW_REVIEW"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "total transfer computed.",
+        "reasoning": "n06: reserve the promo-window HOLD in the EOps scheduler under my own login riley_chen \u2014 create the 'Product Launches' launch calendar (secondary, colour 5), add the four desk-party acls (owner/writer/reader/reader), clear the stale attendees of the reserved record event-corrected-001 and re-cut it in place as the hold citing total_transfer=813 for the closing hour Fri 14 Nov 2025 16:00-17:00 UTC, then subscribe the launch-control monitor NOVAX_MONITOR.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_calendar_events",
+            "set": {
+              "calendar_id": "btdesk-product-launches",
+              "user_id": "riley_chen",
+              "summary": "[BTO-HOLD] promo-window hold total_transfer=813",
+              "start_datetime": "2025-11-14 16:00:00.000000",
+              "end_datetime": "2025-11-14 17:00:00.000000",
+              "start_timezone": "UTC",
+              "end_timezone": "UTC",
+              "status": "confirmed"
+            },
+            "where": "event_id='event-corrected-001'"
+          }
+        },
+        "tool_result": "1 row (+calendar, +4 acls, +watch channel).",
+        "state_delta": "eops scheduler:+launch calendar/+4 acls/+promo hold/+monitor (window end 2025-11-14 17:00)"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the payoff transfer for delta on the card-payoff ledger.",
+        "reasoning": "[MISTAKE] post the 65 payoff to the WRONG card account (wrong.card.payoff instead of src.card.payoff).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<wrong_card_vm>",
+              "amount": 65.0,
+              "description": "Payoff transfer (wrong card) [BTO-XFER]"
+            }
+          }
+        },
+        "tool_result": "1 row (BT ops rep->wrong card account).",
+        "state_delta": "venmo:+WRONG-card payoff",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the [BTO-XFER] net FROM the BT ops rep to the source-card payoff account against delta.",
+        "reasoning": "The net posted to the payoff account is currently 0, not delta=65.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description NOT LIKE '%[BTO-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description LIKE '%[BTO-REVERSAL]%')), (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta')"
+          }
+        },
+        "tool_result": "0.0 vs 65.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be deleted.",
+        "reasoning": "Post a [BTO-REVERSAL] as a positive 65 in the OPPOSITE direction (wrong card account->BT ops rep) rather than deleting the wrong row.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_card_vm>",
+              "receiver_id": "<riley_vm>",
+              "amount": 65.0,
+              "description": "Reversal of wrong-card payoff [BTO-REVERSAL] [BTO-XFER]"
+            }
+          }
+        },
+        "tool_result": "1 row (65, wrong card account->BT ops rep).",
+        "state_delta": "venmo:+reversal (wrong-card net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the corrected reissue to the source-card payoff account.",
+        "reasoning": "n07: post the correct 65 (BT ops rep->payoff account); ledger nets delta=65 to the payoff account.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<src_payoff_vm>",
+              "amount": 65.0,
+              "description": "Payoff transfer (correct source card) [BTO-XFER]"
+            }
+          }
+        },
+        "tool_result": "1 row (65).",
+        "state_delta": "venmo:+correct (net 65=delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the CONDITIONAL_UW_REVIEW branch requires an underwriting handoff email.",
+        "reasoning": "INSERT gm_emails riley->UW desk [BTO-HANDOFF] citing total_transfer=813, delta=65, branch=CONDITIONAL_UW_REVIEW.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<uw_desk_gm>]",
+              "subject": "BT underwriting handoff [BTO-HANDOFF]",
+              "body": "... total_transfer 813 delta 65 branch CONDITIONAL_UW_REVIEW ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+handoff email"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the balance transfer on the BT ops manager CRM (handoff sent).",
+        "reasoning": "Prepend [BTO-LOG] total_transfer=813 to the BT ops manager CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[BTO-LOG] total_transfer=813 <existing>"
+            },
+            "where": "lower(customer_email)='btops.manager@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany BT-fee allocation.",
+        "reasoning": "INSERT sw_expenses [BTO-ALLOC] amount=total_transfer (813) owed by the BT ops desk with a UW-team share.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 813.0,
+              "description": "BT-fee allocation [BTO-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+UW-team share).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [BTO-FUP] in 'Q1 balance transfer Run' citing delta=65.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "BT reconciliation follow-up [BTO-FUP] delta=65",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the BT decision TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE by re-answering the flagged-loan count question on the live bird tables, and the conditional floor (the Pisek household-payment pool = 32); 32<=65<100 -> CONDITIONAL_UW_REVIEW; write [BTO-TIER] stamping promo_uplift=65 (stored kind).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(a.account_id) FROM bird_account a JOIN bird_loan l ON a.account_id=l.account_id WHERE l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='POPLATEK MESICNE' AND l.amount>=250000"
+          }
+        },
+        "tool_result": "65 -> CONDITIONAL_UW_REVIEW.",
+        "state_delta": "CRM:+tier=CONDITIONAL_UW_REVIEW"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier=CONDITIONAL_UW_REVIEW stamped on the CRM.",
+        "reasoning": "n13: file the card-servicing intake in the ITSM mirror \u2014 (re)file INC_024 under the desk codes (offering SVCOFF_004, caller USER_006, group GROUP_002, category hardware, impact medium, urgency low, status new) and link playbook KB_003 as 'suggested'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_incident",
+            "set": {
+              "service_offering": "SVCOFF_004",
+              "caller_id": "USER_006",
+              "status": "new",
+              "impact": "medium",
+              "urgency": "low",
+              "assignment_group": "GROUP_002",
+              "category": "hardware"
+            },
+            "where": "incident_id='INC_024'"
+          }
+        },
+        "tool_result": "1 row (+incident_knowledge link).",
+        "state_delta": "eops itsm:+card-servicing intake filed"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n14: status update to the BT ops manager.",
+        "reasoning": "INSERT gm_emails riley->BT ops manager [BTO-STATUS] citing total_transfer=813 (resurfaces from n04).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<mgr_gm>]",
+              "subject": "BT status [BTO-STATUS]",
+              "body": "... total_transfer 813 ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n15: mark the BT ops manager briefed (status email sent).",
+        "reasoning": "Hand the manager-briefing case HRC0000714 to the lightest-loaded officer of its group (29 vs 33 -> Zachary Mcintosh, id 33): awaiting_acceptance/requested + an 'update' notification to zachary.mcintosh3@servicenow.com.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_hr_internal_hr_case",
+            "set": {
+              "assigned_to": 33,
+              "status": "awaiting_acceptance",
+              "request_status": "requested"
+            },
+            "where": "hr_case_id=4"
+          }
+        },
+        "tool_result": "1 row (+notification).",
+        "state_delta": "eops people-services:+briefing case handed off"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n16: post the underwriting-team intercompany settle.",
+        "reasoning": "INSERT sw_payments where the underwriting team pays the BT ops desk its share [BTO-SETTLE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_payments",
+            "values": {
+              "payer_email": "underwriting.team@atlas.com",
+              "receiver_email": "riley.chen@atlas.com",
+              "amount": 406.5,
+              "description": "UW-team settle [BTO-SETTLE]"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "splitwise:+settlement"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n17: wrap up the reconciliation task (BT ops manager briefed).",
+        "reasoning": "INSERT td_task_comments [BTO-WRAP] on the [BTO-FUP] task quoting transfer_total=813 \u2014 recomputed from the [BTO-ALLOC] ledger sum (== 2x the [BTO-SETTLE] payment).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_task_comments",
+            "values": {
+              "content": "BT reconciliation wrapped [BTO-WRAP] transfer_total=813"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+wrap comment"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n18: reconcile the payoff transfers to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the ledger net posted to the payoff account == delta (65); record reconciled='ok' + [BTO-RECON] delta=65 cited as the [BTO-XFER] ledger net.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description NOT LIKE '%[BTO-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description LIKE '%[BTO-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (65==65).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 26,
+        "phase": "discovery",
+        "observation": "n19: need the promo-window hold end and the BT ops rep's busy slots.",
+        "reasoning": "Read the '[BTO-HOLD]' hold record's end from the EOps scheduler and riley's wb calendar to book the review conflict-free and after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(end_datetime) FROM eops_gym_calendar_events WHERE event_id='event-corrected-001' AND summary LIKE '%[BTO-HOLD]%'), (SELECT GROUP_CONCAT(event_start||'/'||duration) FROM wb_calendar_events WHERE lower(participant_email)='riley.chen@atlas.com')"
+          }
+        },
+        "tool_result": "Window ends Fri 2025-11-14 17:00 (no afternoon slot left that day); a 13:00-14:00 standup on 2025-11-17.",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "Window ends Fri 2025-11-14 17:00; weekend skipped; Mon 11-17 13:00-14:00 busy.",
+        "reasoning": "n19: schedule the BT-ops review at the earliest business-day afternoon slot at/after the window end -> Mon 2025-11-17 14:00, carrying src_bal=149609.180487805.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "BT-ops review \u2014 cardholder book [BTO-REVIEW] src_bal=149609.180487805",
+              "participant_email": "riley.chen@atlas.com",
+              "event_start": "2025-11-17 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+conflict-free review"
+      },
+      {
+        "turn": 28,
+        "phase": "execution",
+        "observation": "n20: independent quarterly-overview side question.",
+        "reasoning": "Run the clean-control precheck first \u2014 the north Bohemia control book carries 0 defaulted (status 'D') loans \u2014 then answer the source question \u2014 South Bohemia account holders still without credit cards -> 74 \u2014 as answers.side_scan_count (the quarter's control reading \u2014 read by nothing else in this case).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_scan_count",
+              "value": "74"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_scan_count=74"
+      },
+      {
+        "turn": 29,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the ledger net posted to the payoff account == delta and CONDITIONAL_UW_REVIEW recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description NOT LIKE '%[BTO-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='src.card.payoff@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='riley.chen@atlas.com') AND description LIKE '%[BTO-XFER]%' AND description LIKE '%[BTO-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "65.0, CONDITIONAL_UW_REVIEW \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 30,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no declined-alternative note / UW email for an AUTO_APPROVE_STANDARD_PROMO branch and every wrong-card payoff has a [BTO-REVERSAL] (no naked delete).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[BTO-DECLINED_ALTERNATIVE]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[BTO-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> DECLINED_ALTERNATIVE branch absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 31,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok' and the review sits after the window end, conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM wb_calendar_events WHERE event_name LIKE '%[BTO-REVIEW]%' AND event_start >= '2025-11-14 17:00:00')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The order n01..n20 is a DAG with genuine forks (n04 fans out to the branch, payoff posting, window, allocation) and joins (n14, n18, n19 are multi-input), not a chain; the metrics report dependency_depth, long-range edge ratio and forks/joins over the real W\u2229R edge set. Long-range memories dominate: delta set at n04 is only reconciled at n18 (gap 14, type-A); the promo-window hold dates placed at n06 are type-B (they live ONLY in the EOps scheduler mirror) and gate the review at n19 (gap 13); total_transfer (n04) resurfaces in the status email at n14 (gap 10); the Venmo ledger (n07) is read at reconciliation (n18, gap 11). The BT decision tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it by re-answering the source question over the live bird tables. The branch is real: delta=65 mandates CONDITIONAL_UW_REVIEW (hand off to underwriting review, no declined-alternative note); the FSV is a guarded disjunction that accepts the CONDITIONAL_UW_REVIEW branch complete AND rejects a spurious declined-alternative note or extra UW email on the AUTO_APPROVE_STANDARD_PROMO branch. action_semantics are enforced: the Venmo payoff transfer is COMPENSATABLE, so the reference trajectory's mistake (the 65 payoff sent to the WRONG card account) is fixed NOT by deleting but by a matching [BTO-REVERSAL] (the wrong card account sends 65 back to the BT ops rep) then the correct 65 reissue (BT ops rep sends to the CORRECT payoff account) \u2014 the net posted FROM the BT ops rep TO the payoff account == delta (65), the wrong-card payoff preserved; the collateral 'no_naked_delete_of_wrong_card_transfer' forbids removing it. n20 is an independent side question inherited verbatim from the source dataset; every cross-system value a later hop consumes is the ACTUAL value a prior hop wrote.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "irreversible",
+      "n15": "reversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "bridge",
+    "probe_edge": {
+      "from": "n01",
+      "to": "n02"
+    },
+    "staged_value": "source_balance",
+    "k": 5,
+    "relays": [
+      "nbridge1",
+      "nbridge2",
+      "nbridge3",
+      "nbridge4",
+      "nbridge5"
+    ],
+    "added_kinds": [
+      "source_balance_staged1",
+      "source_balance_staged2",
+      "source_balance_staged3",
+      "source_balance_staged4",
+      "source_balance_staged5"
+    ],
+    "signature": {
+      "dG": 5,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

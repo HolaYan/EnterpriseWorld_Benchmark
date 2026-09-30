@@ -1,0 +1,293 @@
+{
+ "op": "tool",
+ "signature": {
+  "dG": 0,
+  "ds0": 0,
+  "dPi": 0,
+  "dg": 0,
+  "dT": 10
+ },
+ "axis": "tool",
+ "capability": "tool selection under a wider surface",
+ "change": "add:10_decoys",
+ "n_tools": 10,
+ "decoy_tools": [
+  {
+   "name": "send_sms",
+   "purpose": "Send a short text message to a phone number.",
+   "args": {
+    "to": "E.164 phone number",
+    "message": "text, up to 160 characters"
+   },
+   "response": {
+    "status": "queued",
+    "message_id": "sms_7f3a21",
+    "to": "{to}"
+   }
+  },
+  {
+   "name": "lookup_fx_rate",
+   "purpose": "Latest mid-market FX rate for a currency pair.",
+   "args": {
+    "base": "ISO currency, e.g. USD",
+    "quote": "ISO currency, e.g. EUR"
+   },
+   "response": {
+    "pair": "{base}/{quote}",
+    "rate": 1.0842,
+    "as_of": "2026-09-15T16:00:00Z"
+   }
+  },
+  {
+   "name": "geocode_address",
+   "purpose": "Resolve a postal address to coordinates.",
+   "args": {
+    "address": "free-text postal address"
+   },
+   "response": {
+    "address": "{address}",
+    "lat": 40.7291,
+    "lon": -73.9965,
+    "confidence": "low"
+   }
+  },
+  {
+   "name": "translate_text",
+   "purpose": "Translate a text into a target language.",
+   "args": {
+    "text": "text to translate",
+    "target_lang": "ISO 639-1 code"
+   },
+   "response": {
+    "detected": "en",
+    "target": "{target_lang}",
+    "translation": "{text}"
+   }
+  },
+  {
+   "name": "fetch_public_holidays",
+   "purpose": "Public holidays for a country and year.",
+   "args": {
+    "country": "ISO 3166-1 alpha-2",
+    "year": "four-digit year"
+   },
+   "response": {
+    "country": "{country}",
+    "year": "{year}",
+    "holidays": [
+     "{year}-01-01",
+     "{year}-07-04",
+     "{year}-12-25"
+    ]
+   }
+  },
+  {
+   "name": "create_reminder",
+   "purpose": "Schedule a personal reminder for the desk owner.",
+   "args": {
+    "when": "ISO 8601 date-time",
+    "note": "reminder text"
+   },
+   "response": {
+    "status": "scheduled",
+    "reminder_id": "rem_2c91",
+    "when": "{when}"
+   }
+  },
+  {
+   "name": "search_knowledge_base",
+   "purpose": "Full-text search over the internal help-centre articles.",
+   "args": {
+    "query": "search terms"
+   },
+   "response": {
+    "query": "{query}",
+    "results": [],
+    "note": "no article matched"
+   }
+  },
+  {
+   "name": "export_csv",
+   "purpose": "Export a table to a CSV file in the shared drive.",
+   "args": {
+    "table": "table name",
+    "filename": "target file name"
+   },
+   "response": {
+    "status": "queued",
+    "job_id": "exp_51d0",
+    "filename": "{filename}"
+   }
+  },
+  {
+   "name": "archive_thread",
+   "purpose": "Move an email thread to the archive folder.",
+   "args": {
+    "thread_id": "email thread identifier"
+   },
+   "response": {
+    "status": "archived",
+    "thread_id": "{thread_id}"
+   }
+  },
+  {
+   "name": "schedule_report",
+   "purpose": "Schedule a recurring report run.",
+   "args": {
+    "name": "report name",
+    "cron": "cron expression"
+   },
+   "response": {
+    "status": "scheduled",
+    "job_id": "rpt_9be4",
+    "name": "{name}",
+    "cron": "{cron}"
+   }
+  }
+ ],
+ "answer_changed": false,
+ "changed_region": {
+  "V_new": [],
+  "E_new": [],
+  "E_ret": [
+   [
+    "n01",
+    "n02"
+   ],
+   [
+    "n02",
+    "n04"
+   ],
+   [
+    "n02",
+    "n05"
+   ],
+   [
+    "n02",
+    "n18"
+   ],
+   [
+    "n03",
+    "n04"
+   ],
+   [
+    "n03",
+    "n18"
+   ],
+   [
+    "n04",
+    "n06"
+   ],
+   [
+    "n04",
+    "n07"
+   ],
+   [
+    "n04",
+    "n08"
+   ],
+   [
+    "n04",
+    "n09"
+   ],
+   [
+    "n04",
+    "n10"
+   ],
+   [
+    "n04",
+    "n11"
+   ],
+   [
+    "n04",
+    "n15"
+   ],
+   [
+    "n04",
+    "n18"
+   ],
+   [
+    "n05",
+    "n08"
+   ],
+   [
+    "n05",
+    "n09"
+   ],
+   [
+    "n06",
+    "n19"
+   ],
+   [
+    "n07",
+    "n18"
+   ],
+   [
+    "n08",
+    "n09"
+   ],
+   [
+    "n09",
+    "n11"
+   ],
+   [
+    "n11",
+    "n12"
+   ],
+   [
+    "n12",
+    "n13"
+   ],
+   [
+    "n13",
+    "n14"
+   ],
+   [
+    "n14",
+    "n15"
+   ],
+   [
+    "n15",
+    "n16"
+   ],
+   [
+    "n16",
+    "n17"
+   ],
+   [
+    "n17",
+    "n19"
+   ],
+   [
+    "n18",
+    "n19"
+   ]
+  ],
+  "V_down": null,
+  "frontier": {
+   "node": null,
+   "edge": null,
+   "unchanged_required_ancestors": []
+  },
+  "gold_suffix_calls": null,
+  "gold_suffix_calls_note": "requires world replay; deferred"
+ },
+ "base_build_sha": "edc67e9d95c3",
+ "gate": {
+  "rule7": true,
+  "rule7_violations": [],
+  "gold": true,
+  "gold_error": null,
+  "fsv": "93/93",
+  "fsv_on_damage": true,
+  "changed_region": true,
+  "added_kinds": true,
+  "added_kinds_violations": [],
+  "s2_sidecar": true,
+  "s2_sidecar_problems": [],
+  "reliable": true,
+  "checked_at": "2026-09-16T21:22:33+00:00",
+  "gate_version": "2026-09-07.1",
+  "gate_code_sha": "1ee1bae3c4e5"
+ }
+}

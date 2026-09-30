@@ -1,0 +1,143 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The source-card portfolio balance is sized as the account book's average loan amount held by male borrowers — the average is taken over every male-client-to-loan link in the book: a loan counts once for each man linked to its account, whether he is the account's owner or an authorized non-owner user (a loan on an account linked to two men enters twice).",
+  "kinds": [
+   "source_balance"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_loan"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The promo-window uplift is the count of approved loans of at least 250,000 written between 1/1/1995 and 12/31/1997 on accounts with monthly statement issuance (the UW-flagged proxies - each scores 1).",
+  "kinds": [
+   "promo_uplift"
+  ],
+  "node": "n12",
+  "tables": [
+   "bird_account",
+   "bird_district",
+   "bird_loan",
+   "bird_trans",
+   "td_projects",
+   "td_tasks",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "definition",
+  "note": "The conditional-review floor is the number of distinct accounts based in the Pisek district that show household-payment transactions on their statements.",
+  "kinds": [
+   "branch",
+   "delta",
+   "transfer_base"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_loan",
+   "bird_trans"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "definition",
+  "note": "The absolute-base decline bar is the average amount of the loans still on running contract (running contracts include those currently in debt) on accounts with statement issuance after each transaction, converted into transfer-base units with the same round(/200) policy as the base.",
+  "kinds": [
+   "branch",
+   "delta",
+   "transfer_base"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_loan",
+   "bird_trans"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "definition",
+  "note": "The independent side question for the quarterly BT overview: how many South Bohemia account holders still do not own credit cards — count it as the book does: every client-to-account link held by a South Bohemia client in a non-owner, authorized-user capacity counts (such authorized users hold no card-bearing ownership of their own on the account), one count per link.",
+  "kinds": [
+   "side_scan_count"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_loan"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "rate",
+  "note": "The transfer base is set at 1/200 (rounded) of the portfolio balance.",
+  "kinds": [
+   "source_balance",
+   "transfer_base"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_loan",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "threshold",
+  "note": "The BT decision branch is decided on the escalation delta and the absolute transfer base — AUTO_APPROVE_STANDARD_PROMO / CONDITIONAL_UW_REVIEW / DECLINED_ALTERNATIVE — with the decision bars the book's own: the conditional-review floor on the delta, and the absolute-base decline bar on the base.",
+  "kinds": [
+   "branch",
+   "delta",
+   "transfer_base"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_account",
+   "bird_client",
+   "bird_disp",
+   "bird_district",
+   "bird_loan",
+   "bird_trans"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c08",
+  "category": "policy",
+  "note": "Reviews are 30-minute business-day (Mon-Fri) afternoon bookings (start between 13:00 and 16:30), at the EARLIEST such slot at/after the hold end, and must be conflict-free against every other event on the rep's calendar.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

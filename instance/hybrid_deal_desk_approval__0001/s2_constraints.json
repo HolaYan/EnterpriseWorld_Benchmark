@@ -1,0 +1,105 @@
+[
+ {
+  "id": "c01",
+  "category": "definition",
+  "note": "The deal-desk baseline compliance index is fixed from the lab reference book's own question — in the molecule containing sodium atoms, how many are non-carcinogenic (count the DISTINCT molecules that contain a sodium atom and are labelled non-carcinogenic).",
+  "kinds": [
+   "compliance_index"
+  ],
+  "node": "n01",
+  "tables": [
+   "bird_toxicology_atom",
+   "bird_toxicology_molecule"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c02",
+  "category": "definition",
+  "note": "The independent side-region FX exposure for the quarterly overview — what percentage of KAM-segment customers pay in euros (the euro-paying share of KAM customers).",
+  "kinds": [
+   "side_report"
+  ],
+  "node": "n20",
+  "tables": [
+   "bird_debit_card_specializing_customers"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c03",
+  "category": "rate",
+  "note": "The delegation bar is set at 1000 per index point.",
+  "kinds": [
+   "bar",
+   "compliance_index"
+  ],
+  "node": "n02",
+  "tables": [
+   "bird_toxicology_atom",
+   "bird_toxicology_molecule",
+   "wb_customer_relationship_manager_data"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c04",
+  "category": "rate",
+  "note": "The flagged non-standard-deal count is taken from the pipeline registry's own question — how many users with more than 10 views created their account after 2013 (count the accounts joined after 2013 with more than 10 views) — and set the aggregate discount impact at 100 per flagged deal.",
+  "kinds": [
+   "deal_count"
+  ],
+  "node": "n03",
+  "tables": [
+   "bird_codebase_community_users"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c05",
+  "category": "rate",
+  "note": "The total exposure is the bar plus the impact; the escalation delta equals the impact.",
+  "kinds": [
+   "bar",
+   "deal_count",
+   "delta",
+   "discount_impact",
+   "total_exposure"
+  ],
+  "node": "n04",
+  "tables": [
+   "bird_codebase_community_users",
+   "bird_toxicology_atom",
+   "bird_toxicology_molecule"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c06",
+  "category": "threshold",
+  "note": "The routing branch is decided on the impact against the bar — 'AUTO_APPROVE' when the impact is at most the bar, 'MULTI_LEVEL_APPROVE' when it is at most three times the bar, 'ESCALATE_TO_CEO' otherwise",
+  "kinds": [
+   "bar",
+   "branch",
+   "discount_impact"
+  ],
+  "node": "n05",
+  "tables": [
+   "bird_codebase_community_users",
+   "bird_toxicology_atom",
+   "bird_toxicology_molecule"
+  ],
+  "trigger": "work"
+ },
+ {
+  "id": "c07",
+  "category": "policy",
+  "note": "The QBR review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the approval window's end that does not overlap any of your other events.",
+  "kinds": [],
+  "node": "n19",
+  "tables": [
+   "wb_calendar_events"
+  ],
+  "trigger": "work"
+ }
+]

@@ -1,0 +1,1500 @@
+{
+  "instance_id": "hybrid_dental_insurance_prior_auth__0001",
+  "agent_visible": {
+    "overall_query": "Adjudicate dental prior-authorization case DEN-2024-Q1-042 on the carrier prior-auth desk. Fix the exposure envelope from the benefit-reference catalog's own question \u2014 how many borderless catalog cards are illustrated in Russian (count the 'borderless' cards with a Russian foreign-data illustration). Set the refund envelope at $50 per benefit-reference unit of that exposure, and set the review uplift at 1000 per benefit-reference unit of the exposure. Pull the utilization signal from the same reference book's own question \u2014 the percentage of French-language cards among the Story-Spotlight cards (isStorySpotlight = 1). The response SLA is the refund envelope plus 1000 per whole utilization point; the review delta equals the review uplift. Decide the review-tier branch on the delta \u2014 'URGENT' when the delta is at least 100000, 'HIGH' when it is at least 10000, 'LOW' otherwise \u2014 and work the case end to end: place the carrier embargo window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the reimbursement so the net payout received by the correct patient equals refund_units (a payout that lands on the duplicate patient is clawed back, never deleted, then the correct patient is paid); unless the branch is LOW, send the dental director the handoff email citing the sla_hours and the delta; log the sla_hours on the program-manager record and open the follow-up; charge the chart-review effort evenly with the co-triage; RE-DERIVE the severity tier from the live reference book (URGENT when the review uplift is at least 100000, HIGH when at least 10000, else LOW) and stamp it on the manager record; reconcile the carrier location move, put the case's determination on the service register's intake ticket, archive the Q2 case dossier, and stand up the shared audit calendar series in the desk's enterprise registers (per the recording handbook); send the patient the status update citing the refund_units and the tier; reconcile the reimbursement ledger to the refund_units, re-deriving before the 'ok' verdict that the recorded sla_hours still equals refund_units + claim_score*1000; and schedule the post-embargo debrief after the window ends, conflict-free. Also pull the independent side reference page for the quarterly oversight overview \u2014 the season page URL of the year in which race No. 901 took place (the quarter's oversight control reading, taken at the close of the run once this case's own figures are settled: a reading means something only held against this same reading at the last quarterly sign-off, so nothing later in this case reads it, and it is recorded exactly as the book gives it).\nDELIVERABLE. When the case is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nexposure: the benefit-reference exposure \u2014 whole number, no thousands separators\nrefund_units: the prior-auth refund envelope \u2014 whole number\nclaim_score: the utilization percentage \u2014 a number (decimals allowed)\nreview_uplift: the review uplift \u2014 whole number\nsla_hours: the response SLA \u2014 whole number\ndelta: the review delta \u2014 whole number\npriority: the review-tier route \u2014 exactly one of {LOW, HIGH, URGENT}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the reimbursement ledger nets to the refund_units\nside_page: the side reference page \u2014 the season page URL Book-reading notes (how the reference books count): the French percentage is taken over the TRANSLATION ENTRIES of Story Spotlight cards (one row per card-and-language), not over the cards themselves.\n\nCONDITIONAL ESCALATIONS (evaluate each carefully): the desk carries the escalation rules below. Apply an escalation only if its condition genuinely holds for this case's figures \u2014 do not record any of these entries otherwise.\n1. LEGAL HOLD: if delta reaches the regulatory ceiling of 1,000,000, you must ALSO open a legal hold by recording an entry with kind='legal_hold'.\n2. REGULATOR NOTICE: if exposure reaches the mandatory-reporting threshold of 2,000,000, you must ALSO file a regulator notification by recording an entry with kind='regulator_notice'.\n3. BOARD MEMO: if refund_units reaches the board-notification threshold of 5,000,000, you must ALSO record a board notification memo by recording an entry with kind='board_memo'.\n4. EXTERNAL AUDIT: if delta reaches the external-audit trigger of 10,000,000, you must ALSO open an external audit referral by recording an entry with kind='external_audit'.\n5. FRAUD REFERRAL: if exposure reaches the fraud-referral threshold of 1,000,000, you must ALSO open a fraud referral by recording an entry with kind='fraud_referral'.\n6. EXECUTIVE ESCALATION: if refund_units reaches the executive-escalation limit of 2,000,000, you must ALSO escalate to the executive on call by recording an entry with kind='exec_escalation'.\n7. INSURER NOTICE: if delta reaches the insurer-notification threshold of 5,000,000, you must ALSO notify the insurer by recording an entry with kind='insurer_notice'.\n8. PRESS HOLDING STATEMENT: if exposure reaches the public-disclosure threshold of 10,000,000, you must ALSO record a press holding statement by recording an entry with kind='press_holding'.\n9. LAW-ENFORCEMENT REFERRAL: if refund_units reaches the criminal-referral threshold of 1,000,000, you must ALSO refer the case to law enforcement by recording an entry with kind='law_enforcement'.\n10. EMERGENCY RESERVE: if delta reaches the reserve-booking threshold of 2,000,000, you must ALSO book an emergency reserve entry by recording an entry with kind='emergency_reserve'.",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: two source reference books \u2014 the benefit-reference catalog (bird_card_games_cards, bird_card_games_foreign_data, ...) and the side reference book (bird_formula_1_races, bird_formula_1_seasons, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the reimbursement ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the chart-review chargeback ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's four shared enterprise registers \u2014 CSM (eops_sn_csm_server_installed_product, eops_sn_csm_server_location, ...), the service register (eops_gym_itsm_mcp_incident, eops_gym_itsm_mcp_notification, ...), drive (eops_gym_google_drive_mcp_files, eops_gym_google_drive_mcp_permissions, ...) and the shared calendar (eops_gym_calendar_events, eops_gym_calendar_attendees, ...). You are dr.singh@carrier.example (Avery Singh), the prior-auth coordinator, with your own Venmo (as the pre-auth program payer preauth@carrier.example), Splitwise, Gmail and Todoist identities, a Todoist review project, and a calendar on wb_calendar_events; the correct patient is patient.zeta@patients.example, the duplicate submitter is wrong.patient.omega@patients.example, the co-triage is nurse.tan@carrier.example, the dental director is dental.director@carrier.example, and ONE CRM record \u2014 the program manager preauth.pm@carrier.example \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the exposure, refund envelope, uplift, delta, priority or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "DENTAL PRIOR-AUTH DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[DIP-EXPOSURE]' \u2014 PM CRM notes: the exposure stamp, citing 'exposure=<n> refund_units=<n>'.\n   - '[DIP-HOLD]' \u2014 wb_calendar_events EVENT NAME of the embargo window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[DIP-PAYOUT]' \u2014 reimbursement ledger (vm) DESCRIPTION of every prior-auth payout entry (memo the case id 'DEN-2024-Q1-042').\n   - '[DIP-REVERSAL]' \u2014 reimbursement ledger DESCRIPTION of a clawback entry (same amount as the row it reverses, opposite direction, alongside the '[DIP-PAYOUT]' tag).\n   - '[DIP-LEAD]' \u2014 email SUBJECT of the dental-director handoff; the BODY must cite the sla_hours and the delta.\n   - '[DIP-LOG]' \u2014 PM CRM notes: the prior-auth log, citing 'sla_hours=<n>'.\n   - '[DIP-CHARGE]' \u2014 Splitwise expense DESCRIPTION of the chart-review chargeback The expense books the full recorded sla_hours as its amount, and its sw_expense_shares row assigns nurse.tan@carrier.example a share of exactly half that amount..\n   - '[DIP-FUP]' \u2014 Todoist task TITLE (in your 'Dental Prior-Auth Queue' project); the title cites the delta.\n   - '[DIP-TIER]' \u2014 PM CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[DIP-STATUS]' \u2014 email SUBJECT of the patient status update; the BODY must cite the refund_units and the tier word.\n   - '[DIP-RECON]' \u2014 PM CRM notes: the reconciliation note, citing 'sla_hours=<n>'; the net is re-read from the '[DIP-PAYOUT]' ledger (payouts minus clawbacks) at write time, and the cited sla_hours is re-derived at the same moment from the recorded refund_units and claim_score (refund_units + claim_score*1000), never quoted from the earlier entry.\n   - '[DIP-DEBRIEF]' \u2014 wb_calendar_events EVENT NAME of the post-embargo debrief.\n   - '[DIP-ESCALATE]' \u2014 PM CRM notes: the executive-escalation note, filed ONLY on the URGENT route.\n\n2. ROUTE AND TIER WORDS. The review route is always one of the desk's three route words: 'LOW', 'HIGH', 'URGENT'. The severity tier is always one of the desk's three tier words: 'LOW', 'HIGH', 'URGENT'. A cited tier word is re-derived from the live reference book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (dr.singh@carrier.example); the patient is written to at patient.zeta@patients.example, the dental director at dental.director@carrier.example. Prior-auth payouts run on the vm ledger FROM the pre-auth program (preauth@carrier.example) TO the correct patient (patient.zeta@patients.example); a payout that lands on the duplicate patient (wrong.patient.omega@patients.example) is corrected by that patient sending the same amount back to the program, never deleted. The chart-review chargeback runs on the sw ledger between you and the co-triage (nurse.tan@carrier.example). Follow-up work lives in your Todoist 'Dental Prior-Auth Queue' project; the window and debrief on your own wb_calendar_events (participant_email = dr.singh@carrier.example).\n\n4. BOOKKEEPING NORMS.\n   - Money rows are append-only: a wrong ledger entry is corrected by a NEW clawback row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the PM row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the PM record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The debrief is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the embargo window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the utilization percentage may carry decimals); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The carrier office move re-homes the installed product (installed_product_id 4, serial_number 'P237-136518-2272') to location_id 803; reactivates location 803 (active true); and deactivates location 804 (active false).\n   - Service register (eops_gym_itsm_mcp_* tables). This case's intake ticket of record is 'INC-000021' (row INC_021); its requester of record is brandon.davis@vehementcap.com. The determination is recorded by setting the ticket's urgency AND priority to the severity tier word, written the way the register stores severities, in lower case, and by writing a determination note into the ticket's description that cites the case id 'DEN-2024-Q1-042' and the carrier site the chart review sits at. The requester is then written to with the register's reminder notification NOTIF_031 on that ticket (org ORG_005, type 'reminder', status 'queued'), whose message cites the case id and the same tier word.\n   - Drive register (eops_gym_google_drive_mcp_* tables). The dossier archive creates 'Q2 Innovation Project Plan.docx' (a Word document) in the 'Project Documents' folder (01JBQM3K8TGHZX9RNVQM5Y2P8Q) with the description 'Q2 Innovation Project - Strategic Initiative Planning Document'; grants sarah.johnson@company.com the writer role, emily.davis@company.com the commenter role, and mike.chen@company.com the reader role; posts an implementation-approach reply on comment 01JBQM3K8TGHZX9RNVQM5Y2P95 \u2014 its text begins 'Updated:' and states that the implementation approach expanded for Q2 innovation project integration; and posts a documentation comment on the Technical Spec file (01JBQM3K8TGHZX9RNVQM5Y2P8R) plus a budget-approved reply on comment 01JBQM3K8TGHZX9RNVQM5Y2P99 (all authored by john.smith@company.com, the desk drive account).\n   - Calendar register (eops_gym_calendar_* tables). The audit beat secures the 'Sprint Planning & Architecture Review' event on the 'alice-projects' calendar \u2014 two resource attendees ('Conference Room B' and 'Projector 1', resource true), location 'On-site - Room B', a private extended property carrying audit_status 'initiated', and the shared ACL 'acl-shared-1' set to freeBusyReader; then schedules the 'Audit Shadow Sync' series on the 'alice-team' calendar as 3 weekly (RRULE:FREQ=WEEKLY;COUNT=2) event rows, one running 11:15:00-12:15:00.\n",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_preauth_pm": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "preauth.pm@carrier.example",
+          "customer_name": "Prior-Auth PM",
+          "assigned_to_email": "dr.singh@carrier.example",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "preauth@carrier.example",
+          "note": ""
+        },
+        {
+          "email": "patient.zeta@patients.example",
+          "note": ""
+        },
+        {
+          "email": "wrong.patient.omega@patients.example",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "dr.singh@carrier.example",
+          "note": ""
+        },
+        {
+          "email": "patient.zeta@patients.example",
+          "note": ""
+        },
+        {
+          "email": "dental.director@carrier.example",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Dental Prior-Auth Queue",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "prior-auth desk daily standup",
+          "participant_email": "dr.singh@carrier.example",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_installed_product": [
+        {
+          "installed_product_id": 4,
+          "serial_number": "P237-136518-2272",
+          "note": ""
+        }
+      ],
+      "eops_gym_itsm_mcp_incident": [
+        {
+          "incident_id": "INC_021",
+          "number": "INC-000021",
+          "caller_id": "USER_010",
+          "note": "this case's intake ticket of record"
+        }
+      ],
+      "eops_gym_google_drive_mcp_files": [
+        {
+          "name": "Technical Spec.pdf",
+          "note": ""
+        }
+      ],
+      "eops_gym_calendar_events": [
+        {
+          "summary": "Sprint Planning & Architecture Review",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the two reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions payout / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register location move / filter / event update).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: reimbursements are compensatable \u2014 claw back a duplicate-patient payout, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across TWO bird books (card_games spine+mid / formula_1 side) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/email/drive/calendar). Depth-13 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n16->n17->n19 with long-range edges: refund_units n02 reconciled at n18 (gap 16); the [DIP-HOLD] window n06 gates the debrief n19 (gap 13); refund_units n02 resurfaces at n15. n03 is the MID-GRAPH cross-book value (card_games:371) woven into the arithmetic/branch; n20 is an independent formula_1 side anchor.",
+    "protagonist": {
+      "email": "dr.singh@carrier.example",
+      "role": "prior-auth coordinator running the DEN-2024-Q1-042 adjudication"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "How many borderless cards are illustrated in Russian? (Read it as the book does: count the catalog cards whose borderColor is 'borderless' that have a foreign-data illustration whose language is 'Russian'.) Record the answer in answers as kind='exposure'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.borderColor",
+          "bird_card_games_foreign_data.language",
+          "bird_card_games_cards.uuid"
+        ],
+        "writes": [
+          "answers.exposure"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the prior-auth REFUND envelope from the exposure. Read the stored exposure and compute refund_units = exposure * 50. Record it in answers as kind='refund_units' and stamp the PM's CRM row (customer_email preauth.pm@carrier.example) by prepending '[DIP-EXPOSURE] exposure=<n> refund_units=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.exposure"
+        ],
+        "writes": [
+          "answers.refund_units",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "What is the percentage of cards whose language is French among the Story Spotlight cards? Read it as the book does: the base is the set of TRANSLATION ENTRIES belonging to Story Spotlight cards \u2014 one row per card-and-language \u2014 not the cards themselves. Divide the French entries by all such entries; a Story Spotlight card with no translation entry at all is absent from both sides. Record the answer in answers as kind='claim_score'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_card_games_cards.isStorySpotlight",
+          "bird_card_games_foreign_data.language",
+          "bird_card_games_cards.uuid"
+        ],
+        "writes": [
+          "answers.claim_score"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the review load from the stored answers. Read answers.exposure, answers.refund_units AND answers.claim_score. review_uplift = exposure * 1000; sla_hours = refund_units + (claim_score as whole points) * 1000; delta = review_uplift. Record all three: answers kind='review_uplift', kind='sla_hours', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.exposure",
+          "answers.refund_units",
+          "answers.claim_score"
+        ],
+        "writes": [
+          "answers.review_uplift",
+          "answers.sla_hours",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n01",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the review-tier branch on the computed state. Read answers.delta and set answers kind='priority' to 'URGENT' if delta >= 100000, else 'HIGH' if delta >= 10000, else 'LOW'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta"
+        ],
+        "writes": [
+          "answers.priority"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the sla_hours is computed, place the embargo WINDOW on the coordinator's calendar (participant_email=dr.singh@carrier.example): INSERT a wb_calendar_events row whose event_name carries '[DIP-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.sla_hours",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the prior-auth reimbursement for EXACTLY refund_units on the patient ledger. Record vm_transactions rows tagged '[DIP-PAYOUT]' (memo 'DEN-2024-Q1-042') so the NET payout posted FROM the pre-auth program (preauth@carrier.example) TO the correct patient (patient.zeta@patients.example) equals refund_units. If the first payout lands on the DUPLICATE patient (wrong.patient.omega@patients.example), DO NOT delete it: write a matching '[DIP-REVERSAL] [DIP-PAYOUT]' clawback (the duplicate patient sends the SAME amount back to the program) which cancels the wrong payout, then the correct payout to the right patient.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.refund_units",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n02"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the review-tier branch is 'HIGH' or 'URGENT', send the dental-director a handoff email. INSERT a gm_emails row from the coordinator (dr.singh@carrier.example) to the dental-director (dental.director@carrier.example) whose subject carries '[DIP-LEAD]' and whose body CITES the sla_hours and the delta. For branch 'LOW' (LOW / auto-issue), the email MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.priority",
+          "answers.sla_hours",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the prior-auth processing on the PM CRM record. Prepend '[DIP-LOG] sla_hours=<n>' to the notes \u2014 but for the HIGH/URGENT branches, ONLY after the '[DIP-LEAD]' email has been sent to the dental-director. For the LOW branch the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.sla_hours",
+          "answers.priority",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the chart-review effort CHARGEBACK on the sw_* triage ledger. INSERT a sw_expenses row paid by the coordinator (dr.singh@carrier.example) for the full sla_hours with description '[DIP-CHARGE]', and a sw_expense_shares row assigning the co-triage (nurse.tan@carrier.example) a share_amount = sla_hours/2 (its half of the joint review effort).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.sla_hours",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the prior-auth follow-up. INSERT a td_tasks row in the 'Dental Prior-Auth Queue' project owned by the coordinator whose title carries '[DIP-FUP]' and the delta value \u2014 only after the PM CRM record carries the '[DIP-LOG]' prior-auth log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the severity TIER. RE-DERIVE it from the live reference book: uplift = (the live count of borderless cards illustrated in Russian) * 1000, TIER = 'URGENT' if uplift >= 100000, 'HIGH' if uplift >= 10000, else 'LOW'. Write it to the PM CRM row's DEDICATED status column (set status='[DIP-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_card_games_foreign_data.language"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Reconcile the carrier office/location move in the desk's CSM register. Move the installed product (installed_product_id 4, serial 'P237-136518-2272') to the reopening location 803; reactivate location 803; and deactivate the closing location 804 \u2014 only after the PM CRM status carries the '[DIP-TIER]' severity stamp whose tier matches the live re-derivation.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_installed_product.location_id",
+          "eops_sn_csm_server_location.active"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "Put this case's determination on the desk's service register. Raise this case's intake ticket ('INC-000021', row INC_021) to the severity the determination carries: set BOTH its urgency and its priority to the severity tier word of record, re-derived from the live reference book and written the way the register stores severities, in lower case. Write the determination onto that ticket's description, citing the case id 'DEN-2024-Q1-042' AND the carrier site the chart review now sits at (location 803 \u2014 the site the CSM move re-homed it to). Then send the requester of record on that intake (brandon.davis@vehementcap.com) the register's written reminder (notification NOTIF_031 on that ticket, type 'reminder') that the outstanding chart notes are still due before the file closes; its message must carry the case id and the same tier word. Only after the carrier site move is on the CSM register: the determination note names the site of record, so while the move is unbooked the ticket would name a site the register does not carry.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_installed_product.location_id",
+          "wb_customer_relationship_manager_data.status",
+          "bird_card_games_foreign_data.language"
+        ],
+        "writes": [
+          "eops_gym_itsm_mcp_incident.urgency",
+          "eops_gym_itsm_mcp_incident.priority",
+          "eops_gym_itsm_mcp_incident.description",
+          "eops_gym_itsm_mcp_notification.type"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the patient a status update. INSERT a gm_emails row from the coordinator (dr.singh@carrier.example) to the patient (patient.zeta@patients.example) whose subject carries '[DIP-STATUS]' and whose body cites the refund_units and the severity tier word (re-derived from the live book) \u2014 only after this case's intake ticket ('INC-000021') on the service register carries that same severity. The register is the desk's record of the tier the case closed at, and the desk never quotes a claimant a tier its own register does not yet carry.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_gym_itsm_mcp_incident.priority",
+          "answers.refund_units",
+          "bird_card_games_foreign_data.language",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n02"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Archive the Q2 case dossier in the desk's shared drive register. Create the 'Q2 Innovation Project Plan.docx' document in the Project Documents folder with the strategic-planning description; grant the three team members their access (writer/commenter/reader); post the implementation-approach reply, the documentation comment, and the budget reply \u2014 only after the '[DIP-STATUS]' status email is out.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject"
+        ],
+        "writes": [
+          "eops_gym_google_drive_mcp_files.name",
+          "eops_gym_google_drive_mcp_permissions.role"
+        ],
+        "depends_on": [
+          "n15"
+        ]
+      },
+      {
+        "id": "n17",
+        "description": "Coordinate the audit handoff on the desk's shared coordination calendar. On the Project Management calendar ('alice-projects'), secure the 'Sprint Planning & Architecture Review' event's resource attendees (Conference Room B + Projector 1), set its location 'On-site - Room B', mark its private audit_status 'initiated', and give the shared ACL 'acl-shared-1' free/busy-reader access; then stand up the 'Audit Shadow Sync' series on the Team Coordination calendar ('alice-team') as 3 weekly event rows \u2014 only once the dossier archive is on the drive register.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_gym_google_drive_mcp_files.name"
+        ],
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_attendees.displayName"
+        ],
+        "depends_on": [
+          "n16"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Reconcile the posted reimbursement against the recorded refund_units. Confirm the Venmo NET payout posted to the correct patient equals refund_units (re-read from the '[DIP-PAYOUT]' ledger rows, payouts minus clawbacks, never from memory), and re-derive the figure chain before the 'ok' verdict: re-read the recorded refund_units and claim_score and confirm the recorded sla_hours still equals refund_units + claim_score*1000 \u2014 a reconciliation that nets the ledger against a figure whose own arithmetic no longer holds certifies nothing. Then record answers kind='reconciled'='ok' and prepend a '[DIP-RECON] sla_hours=<n>' note to the PM CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.refund_units",
+          "answers.claim_score",
+          "answers.sla_hours",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Schedule the post-embargo disclosure debrief. INSERT a wb_calendar_events row on the coordinator's calendar whose event_name carries '[DIP-DEBRIEF]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[DIP-HOLD]' embargo window and does NOT overlap any of the coordinator's other events. Only for a PM record whose CRM carries '[DIP-RECON]' AND with the shared 'Audit Shadow Sync' coordination series up in the desk's calendar register.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "eops_gym_calendar_events.summary"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n18",
+          "n17"
+        ]
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's oversight control reading, at the close of the run, once this case's own figures are settled and the close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the benefit-reference catalog and the reimbursement registers on purpose \u2014 and is answered exactly as that book asks it: \"Show me the season page of year when the race No. 901 took place.\" (Read it as the book does: the season page URL of the year in which the race whose raceId is 901 took place.) Record the answer in answers as kind='side_page'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarterly sign-off, and the quarterly oversight close-out is signed only when this quarter's reading lines up with the last. Nothing later in this case reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own page exactly as the book gives it \u2014 a URL trimmed or tidied to look neat would read as a change of oversight source that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_formula_1_races.raceId",
+          "bird_formula_1_seasons.url",
+          "bird_formula_1_seasons.year"
+        ],
+        "writes": [
+          "answers.side_page"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 14,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 29,
+      "dependency_depth": 14,
+      "max_dependency_gap": 16,
+      "mean_dependency_gap": 4.76,
+      "long_range_edge_ratio": 0.345,
+      "n_long_range_edges": 10,
+      "long_range_threshold": 5,
+      "fan_out": 7,
+      "fan_in": 4,
+      "fork_count": 5,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.793,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n02",
+          "to": "n07",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n15",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n18",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n18",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n18",
+          "gap": 16,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n18",
+          "gap": 15,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n19",
+          "gap": 13,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n19"
+      ],
+      "primary_chain_len": 14,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (review-tier branch on delta bands) -> 'HIGH' on real data",
+      "long_range_edges": [
+        "n02->n18 refund_units reconciled 16 steps later (gap 16, max)",
+        "n06->n19 [DIP-HOLD] window (type-B) gates the debrief (gap 13)",
+        "n02->n15 refund_units resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n20 (independent birdsql:863 formula_1 side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:371 card_games) woven into the sla_hours arithmetic"
+    },
+    "entity_bindings": {
+      "protagonist": "dr.singh@carrier.example",
+      "pm": "preauth.pm@carrier.example",
+      "payer": "preauth@carrier.example",
+      "correct_patient": "patient.zeta@patients.example",
+      "wrong_patient": "wrong.patient.omega@patients.example",
+      "co_triage": "nurse.tan@carrier.example",
+      "director": "dental.director@carrier.example",
+      "pm_crm_id": "00000002",
+      "case_id": "DEN-2024-Q1-042",
+      "source_questions": {
+        "exposure": "birdsql:370 (card_games) \u2014 How many borderless cards are illustrated in Russian?",
+        "claim_score": "birdsql:371 (card_games) \u2014 What is the percentage of cards whose language is French among the Story Spotlight cards? Read it as the book does: the base is the set of TRANSLATION ENTRIES belonging to Story Spotlight cards \u2014 one row per card-and-language \u2014 not the cards themselves. Divide the French entries by all such entries; a Story Spotlight card with no translation entry at all is absent from both sides.",
+        "side_page": "birdsql:863 (formula_1) \u2014 Show me the season page of year when the race No. 901 took place."
+      },
+      "eops_source_tasks": {
+        "csm_location_move": "enterpriseops:task_20260102_080520_113_d4a463c3_90b440a8 (sn-csm-server) \u2014 installed product 4 -> location 803, 803 on / 804 off (FALLBACK for the hybrid pre-assigned csm task)",
+        "itsm_intake_determination": "enterpriseops:task_20251218_183102_136_391f1eff_ac9a6986 (gym-itsm-mcp) \u2014 intake ticket INC-000021 at the severity of record + the NOTIF_031 reminder to brandon.davis@vehementcap.com (both distinct checks inherited; RE-SEATED 2026-09-06)",
+        "drive_dossier": "enterpriseops:task_20251126_122314_557_be6c9105_daf0aae1 (gym-google-drive-mcp) \u2014 'Q2 Innovation Project Plan.docx' + team access + comment/reply set (NEW seed copy, files.description NULL-column patch)",
+        "calendar_audit": "enterpriseops:task_20260106_143218_938_79b3b025_ce953a94 (gym-calendar) \u2014 'Sprint Planning & Architecture Review' assets + 3x 'Audit Shadow Sync' series"
+      },
+      "refund_policy": "refund_units = exposure * 50 (the $50/unit rate is a declared constant)",
+      "uplift_policy": "review_uplift = exposure * 1000 (per-unit 1000 declared); sla_hours = refund_units + claim_score * 1000 (per-point 1000 declared)",
+      "branch_policy": "'LOW' (delta<10000, no handoff); 'HIGH' (delta>=10000, director handoff, no escalation); 'URGENT' (delta>=100000, handoff + escalation) \u2014 the 10000/100000 bands are declared constants",
+      "durable_tags": {
+        "exposure_note": "[DIP-EXPOSURE]",
+        "embargo_window": "[DIP-HOLD]",
+        "payout": "[DIP-PAYOUT]",
+        "clawback": "[DIP-REVERSAL]",
+        "chargeback": "[DIP-CHARGE]",
+        "handoff": "[DIP-LEAD]",
+        "crm_log": "[DIP-LOG]",
+        "followup": "[DIP-FUP]",
+        "tier": "[DIP-TIER]",
+        "status_email": "[DIP-STATUS]",
+        "crm_reconcile": "[DIP-RECON]",
+        "calendar_debrief": "[DIP-DEBRIEF]",
+        "escalate_only_for_URGENT": "[DIP-ESCALATE]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.exposure",
+          "answers.refund_units",
+          "answers.claim_score",
+          "answers.review_uplift",
+          "answers.sla_hours",
+          "answers.delta",
+          "answers.priority",
+          "answers.reconciled",
+          "answers.side_page"
+        ],
+        "B_domain_state": "embargo-window dates \u2014 ONLY on the wb_calendar_events [DIP-HOLD] event (n19 reads them there); the four eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "severity tier \u2014 re-derived at n12 from the live card_games book (borderless-Russian count*1000 banding); never in answers"
+      },
+      "vm_compensation": "wrong payout (payer->duplicate) + clawback (duplicate->payer) + correct payout (payer->patient); net payer->correct patient = refund_units",
+      "embargo_window_hold": "[DIP-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "debrief_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 standup)",
+      "true_exposure": 29,
+      "true_refund_units": 1450,
+      "true_claim_score": "10.0",
+      "true_review_uplift": 29000,
+      "true_sla_hours": 11450,
+      "true_delta": 29000,
+      "true_priority": "HIGH",
+      "true_tier": "HIGH",
+      "true_reconciled": "ok",
+      "true_side_page": "http://en.wikipedia.org/wiki/2014_Formula_One_season"
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.exposure"
+        ],
+        "change": "How many borderless cards are illustrated in Russian? (Read it as the book does: count the catalog cards whose borderColor is 'bor"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.refund_units",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the prior-auth REFUND envelope from the exposure. Read the stored exposure and compute refund_units = exposure * 50. Record it"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.claim_score"
+        ],
+        "change": "What is the percentage of cards whose language is French among the Story Spotlight cards? Read it as the book does: the base is th"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.review_uplift",
+          "answers.sla_hours",
+          "answers.delta"
+        ],
+        "change": "Compute the review load from the stored answers. Read answers.exposure, answers.refund_units AND answers.claim_score. review_uplif"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.priority"
+        ],
+        "change": "Decide the review-tier branch on the computed state. Read answers.delta and set answers kind='priority' to 'URGENT' if delta >= 10"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the sla_hours is computed, place the embargo WINDOW on the coordinator's calendar (participant_email=dr.singh@carrier.example"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the prior-auth reimbursement for EXACTLY refund_units on the patient ledger. Record vm_transactions rows tagged '[DIP-PAYOUT]"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the review-tier branch is 'HIGH' or 'URGENT', send the dental-director a handoff email. INSERT a gm_emails row from the coordin"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the prior-auth processing on the PM CRM record. Prepend '[DIP-LOG] sla_hours=<n>' to the notes \u2014 but for the HIGH/URGENT branc"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the chart-review effort CHARGEBACK on the sw_* triage ledger. INSERT a sw_expenses row paid by the coordinator (dr.singh@carr"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the prior-auth follow-up. INSERT a td_tasks row in the 'Dental Prior-Auth Queue' project owned by the coordinator whose title"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the severity TIER. RE-DERIVE it from the live reference book: uplift = (the live count of borderless cards illustrated in"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_installed_product.location_id",
+          "eops_sn_csm_server_location.active"
+        ],
+        "change": "Reconcile the carrier office/location move in the desk's CSM register. Move the installed product (installed_product_id 4, serial "
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_itsm_mcp_incident.urgency",
+          "eops_gym_itsm_mcp_incident.priority",
+          "eops_gym_itsm_mcp_incident.description",
+          "eops_gym_itsm_mcp_notification.type"
+        ],
+        "change": "Put this case's determination on the desk's service register. Raise this case's intake ticket ('INC-000021', row INC_021) to the s"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the patient a status update. INSERT a gm_emails row from the coordinator (dr.singh@carrier.example) to the patient (patient.z"
+      },
+      {
+        "subgoal": "n16",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_google_drive_mcp_files.name",
+          "eops_gym_google_drive_mcp_permissions.role"
+        ],
+        "change": "Archive the Q2 case dossier in the desk's shared drive register. Create the 'Q2 Innovation Project Plan.docx' document in the Proj"
+      },
+      {
+        "subgoal": "n17",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_gym_calendar_events.summary",
+          "eops_gym_calendar_attendees.displayName"
+        ],
+        "change": "Coordinate the audit handoff on the desk's shared coordination calendar. On the Project Management calendar ('alice-projects'), se"
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted reimbursement against the recorded refund_units. Confirm the Venmo NET payout posted to the correct patient e"
+      },
+      {
+        "subgoal": "n19",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the post-embargo disclosure debrief. INSERT a wb_calendar_events row on the coordinator's calendar whose event_name carri"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_page"
+        ],
+        "change": "Take the quarter's oversight control reading, at the close of the run, once this case's own figures are settled and the close-out "
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the review-tier route the data selects (the 'HIGH' route). The three source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (exposure == the birdsql:370 COUNT; claim_score == the birdsql:371 REAL percentage; side_page == the birdsql:863 url), and the four EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the CSM installed-product-4/location-803 move + 803-on/804-off; the INC-000021 intake ticket at the raised urgency/priority + the NOTIF_031 requester reminder; the Q2 Innovation Project Plan.docx + three team permissions + implementation/documentation/budget comment-replies; the Sprint event resource attendees + On-site location + audit_status property + freeBusyReader ACL + the 3-event Audit Shadow Sync series). COMPLETENESS: refund_units == exposure*50; review_uplift == exposure*1000; sla_hours == refund_units+claim_score*1000; delta == review_uplift=29000; priority == 'HIGH' (10000 <= 29000 < 100000); the [DIP-HOLD] window on the calendar; the vm ledger NETS refund_units to the correct patient (a duplicate-patient payout offset by a [DIP-REVERSAL] clawback + the correct payout, net == refund_units AND duplicate-patient net == 0); the director handoff exists IFF the route is 'HIGH' or 'URGENT' and cites the sla_hours + delta; the chargeback + co-triage share on Splitwise; the CRM logs sla_hours; the follow-up cites delta; the severity TIER is RE-DERIVED from the live card_games book (type-C, never in answers) and stamped; the four eops register beats match the inherited checks; the status email cites refund_units + tier; reconciled == 'ok'; the debrief is conflict-free, after the window end, with the audit series up; side_page == the birdsql:863 url. COLLATERAL (each 0): NO director handoff on a 'LOW' route; NO [DIP-ESCALATE] note on a 'LOW' or 'HIGH' route; NO naked delete of a duplicate-patient payout (it must keep its [DIP-REVERSAL]); the debrief never double-books, never precedes the window end, and never fires for an unlogged PM; no unrelated CRM row is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong route; naked delete; skipped exposure).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the PM prior-auth-desk CRM row and confirm it is homed to dr.singh@carrier.example.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='preauth.pm@carrier.example'"
+          }
+        },
+        "tool_result": "1 row: preauth.pm@carrier.example assigned_to dr.singh@carrier.example.",
+        "state_delta": "none (PM ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the exposure from the benefit-reference catalog's own question.",
+        "reasoning": "Count borderless catalog cards with a Russian foreign-data illustration.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T1.id) FROM bird_card_games_cards T1 JOIN bird_card_games_foreign_data T2 ON T1.uuid=T2.uuid WHERE T1.borderColor='borderless' AND T2.language='Russian'"
+          }
+        },
+        "tool_result": "29.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Exposure = 29.",
+        "reasoning": "n01: record exposure.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "exposure",
+              "value": "29"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+exposure=29"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the refund envelope from the exposure.",
+        "reasoning": "n02: refund_units=29*50=1450; stamp the PM CRM [DIP-EXPOSURE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "refund_units",
+              "value": "1450"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[DIP-EXPOSURE] exposure=29 refund_units=1450').",
+        "state_delta": "answers:+refund_units=1450; CRM:+exposure note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the utilization percentage from the reference book.",
+        "reasoning": "Percentage of French-language cards among the Story-Spotlight cards.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(CASE WHEN T2.language='French' THEN 1 ELSE 0 END) AS REAL)*100/COUNT(T1.id) FROM bird_card_games_cards T1 JOIN bird_card_games_foreign_data T2 ON T1.uuid=T2.uuid WHERE T1.isStorySpotlight=1"
+          }
+        },
+        "tool_result": "10.0.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Utilization percentage = 10.0.",
+        "reasoning": "n03: record claim_score.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "claim_score",
+              "value": "10.0"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+claim_score=10.0"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have refund=1450, pct=10.0.",
+        "reasoning": "n04: review_uplift=29*1000=29000; sla_hours=1450+10*1000=11450; delta=29000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "review_uplift",
+              "value": "29000"
+            }
+          }
+        },
+        "tool_result": "1 row (+sla_hours=11450,+delta=29000).",
+        "state_delta": "answers:+review_uplift=29000,+sla_hours=11450,+delta=29000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=29000.",
+        "reasoning": "n05: BRANCH DECISION on delta. 10000 <= 29000 < 100000 -> the 'HIGH' route.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 29000 >= 100000 AS is_urgent, 29000 >= 10000 AS is_high_or_urgent"
+          }
+        },
+        "tool_result": "0,1 -> the 'HIGH' route.",
+        "state_delta": "none ('HIGH' ROUTE SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "The 'HIGH' route.",
+        "reasoning": "n05: record priority='HIGH'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "priority",
+              "value": "HIGH"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+priority=HIGH"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "SLA computed.",
+        "reasoning": "n06: place the embargo WINDOW [DIP-HOLD] on the coordinator's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 prior-auth embargo window [DIP-HOLD]",
+              "participant_email": "dr.singh@carrier.example",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+embargo window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the reimbursement for refund_units. Instinct: pay the DUPLICATE patient (wrong.patient.omega@patients.example).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 1450 payout to the duplicate submitter.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<payer_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 1450.0,
+              "description": "Prior-auth payout (duplicate patient) [DIP-PAYOUT] DEN-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (payer->duplicate).",
+        "state_delta": "venmo:+WRONG payout",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct patient.",
+        "reasoning": "The net payer->correct patient is currently 0, not refund_units=1450.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND description LIKE '%[DIP-PAYOUT]%' AND description NOT LIKE '%[DIP-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND description LIKE '%[DIP-PAYOUT]%' AND description LIKE '%[DIP-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='refund_units') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 1450.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post a [DIP-REVERSAL] clawback as a positive 1450 in the OPPOSITE direction (duplicate->payer).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<payer_vm>",
+              "amount": 1450.0,
+              "description": "Clawback of duplicate payout [DIP-REVERSAL] [DIP-PAYOUT] DEN-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (1450, duplicate->payer).",
+        "state_delta": "venmo:+clawback (duplicate net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct payout.",
+        "reasoning": "n07: post the correct 1450 (payer->correct patient); ledger nets refund_units.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<payer_vm>",
+              "receiver_id": "<patient_vm>",
+              "amount": 1450.0,
+              "description": "Prior-auth payout (correct patient) [DIP-PAYOUT] DEN-2024-Q1-042"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 1450=refund_units).",
+        "state_delta": "venmo:+correct payout (net==refund_units)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: the 'HIGH' route requires a dental-director handoff.",
+        "reasoning": "Email dental.director@carrier.example a [DIP-LEAD] citing sla_hours=11450, delta=29000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<avery_gm>",
+              "recipient_ids": "[<lead_gm>]",
+              "subject": "Prior-auth director sign-off [DIP-LEAD]",
+              "body": "... sla_hours 11450 delta 29000 priority HIGH ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+director handoff (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the sla_hours on the PM CRM (handoff sent).",
+        "reasoning": "Prepend '[DIP-LOG] sla_hours=11450' to the PM CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[DIP-LOG] sla_hours=11450 <existing>"
+            },
+            "where": "lower(customer_email)='preauth.pm@carrier.example'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: charge back the chart-review effort.",
+        "reasoning": "INSERT sw_expenses [DIP-CHARGE] amount=sla_hours (11450) with a co-triage share (5725).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<avery_sw>",
+              "amount": 11450.0,
+              "description": "Q1 prior-auth chart-review [DIP-CHARGE]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-triage share 5725).",
+        "state_delta": "splitwise:+chargeback"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the prior-auth follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [DIP-FUP] in 'Dental Prior-Auth Queue' citing delta=29000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<avery_td>",
+              "title": "Remediate DEN-2024-Q1-042 [DIP-FUP] [delta=29000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the severity TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live card_games book: borderless-Russian count*1000=29000 -> HIGH; write [DIP-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN ((SELECT COUNT(T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.borderColor = 'borderless' AND T2.language = 'Russian')*1000) >= 100000 THEN 'URGENT' WHEN ((SELECT COUNT(T1.id) FROM bird_card_games_cards AS T1 INNER JOIN bird_card_games_foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.borderColor = 'borderless' AND T2.language = 'Russian')*1000) >= 10000 THEN 'HIGH' ELSE 'LOW' END)"
+          }
+        },
+        "tool_result": "'HIGH' (29000 in [10000,100000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the PM CRM status='[DIP-TIER] HIGH'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[DIP-TIER] HIGH"
+            },
+            "where": "lower(customer_email)='preauth.pm@carrier.example'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=HIGH"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: reconcile the carrier location move in the CSM register (gated on the tier stamp).",
+        "reasoning": "Per the handbook: move installed product 4 to location 803; 803 on / 804 off.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_installed_product",
+            "set": {
+              "location_id": 803
+            },
+            "where": "installed_product_id=4"
+          }
+        },
+        "tool_result": "1 row (+location 803 on, 804 off).",
+        "state_delta": "CSM register: +location move"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: put the determination on the intake ticket (gated on the CSM move).",
+        "reasoning": "Per the handbook: raise INC-000021 to urgency/priority 'high' (the tier word of record, lower-cased), write the determination note citing DEN-2024-Q1-042 and site 803, then queue reminder NOTIF_031 to brandon.davis@vehementcap.com.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_itsm_mcp_incident",
+            "set": {
+              "urgency": "high",
+              "priority": "high"
+            },
+            "where": "incident_id='INC_021'"
+          }
+        },
+        "tool_result": "1 row (+1 notification).",
+        "state_delta": "service register: +intake determination"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the patient.",
+        "reasoning": "INSERT gm_emails avery->patient [DIP-STATUS] citing refund_units=1450 and tier HIGH.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<avery_gm>",
+              "recipient_ids": "[<patient_gm>]",
+              "subject": "Prior-auth DEN-2024-Q1-042 status [DIP-STATUS]",
+              "body": "... refund_units 1450 ... HIGH ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: archive the Q2 dossier in the drive register (gated on the status email).",
+        "reasoning": "Per the handbook: create 'Q2 Innovation Project Plan.docx', grant team access, post the comment/reply set.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_gym_google_drive_mcp_files",
+            "values": {
+              "id": "dip_q2_doc_0001",
+              "name": "Q2 Innovation Project Plan.docx",
+              "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "parent_id": "01JBQM3K8TGHZX9RNVQM5Y2P8Q"
+            }
+          }
+        },
+        "tool_result": "1 row (+3 permissions + comment/replies).",
+        "state_delta": "drive register: +Q2 dossier archive"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "n17: stand up the audit calendar beat (gated on the dossier archive).",
+        "reasoning": "Per the handbook: secure the sprint event assets; schedule 3 'Audit Shadow Sync' weekly events.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_gym_calendar_events",
+            "set": {
+              "location": "On-site - Room B"
+            },
+            "where": "event_id='event-corrected-001'"
+          }
+        },
+        "tool_result": "1 row (+2 attendees + ext prop + acl + 3 shadow events).",
+        "state_delta": "calendar register: +audit beat"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n18: reconcile the payout ledger to refund_units (long-range from n02/n07).",
+        "reasoning": "Confirm the net posted to the correct patient == refund_units (1450) AND re-derive the figure chain: the recorded sla_hours (11450) must still equal refund_units + claim_score*1000 (1450 + 10*1000). Only then record reconciled='ok' + [DIP-RECON] sla_hours=11450.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND description LIKE '%[DIP-PAYOUT]%' AND description NOT LIKE '%[DIP-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND description LIKE '%[DIP-PAYOUT]%' AND description LIKE '%[DIP-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='refund_units') THEN 1 ELSE 0 END AS net_ok, CASE WHEN (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='sla_hours') = (SELECT CAST(value AS INTEGER) FROM answers WHERE kind='refund_units') + CAST((SELECT CAST(value AS REAL) FROM answers WHERE kind='claim_score') AS INTEGER)*1000 THEN 1 ELSE 0 END AS chain_ok"
+          }
+        },
+        "tool_result": "1, 1 (1450==1450; 11450==1450+10*1000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "n18: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[DIP-RECON] sla_hours=11450' to the PM CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 28,
+        "phase": "discovery",
+        "observation": "n19: read the window end and the coordinator's busy slots.",
+        "reasoning": "Read the [DIP-HOLD] end and the calendar to book the debrief conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[DIP-HOLD]%' AND lower(participant_email)=lower('dr.singh@carrier.example') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n19: schedule the '[DIP-DEBRIEF]' debrief 2024-02-15 14:00 (30 min), conflict-free, after the window end.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Disclosure debrief DEN-2024-Q1-042 [DIP-DEBRIEF]",
+              "participant_email": "dr.singh@carrier.example",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+debrief"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n20: independent side reference page (birdsql:863).",
+        "reasoning": "The season page url of the year race 901 took place.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT T2.url FROM bird_formula_1_races T1 JOIN bird_formula_1_seasons T2 ON T2.year=T1.year WHERE T1.raceId=901"
+          }
+        },
+        "tool_result": "http://en.wikipedia.org/wiki/2014_Formula_One_season.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "Side page fetched.",
+        "reasoning": "n20: record side_page.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_page",
+              "value": "http://en.wikipedia.org/wiki/2014_Formula_One_season"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_page"
+      },
+      {
+        "turn": 32,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct patient == refund_units and the 'HIGH' route recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND description LIKE '%[DIP-PAYOUT]%' AND description NOT LIKE '%[DIP-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='patient.zeta@patients.example') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='preauth@carrier.example') AND description LIKE '%[DIP-PAYOUT]%' AND description LIKE '%[DIP-REVERSAL]%')), (SELECT value FROM answers WHERE kind='priority')"
+          }
+        },
+        "tool_result": "1450.0, 'HIGH' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 33,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no escalation note / director email for a 'LOW' route and every duplicate payout has a [DIP-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[DIP-ESCALATE]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[DIP-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> the 'URGENT' route absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', all four eops register beats are in place, and the debrief is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_gym_calendar_events WHERE summary='Audit Shadow Sync')"
+          }
+        },
+        "tool_result": "ok, 3 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the reimbursement, the window and the chargeback) and joins (n19 is multi-input), not a chain; the difficulty is long-range: refund_units set at n02 is reconciled only at n18 (gap 16), the [DIP-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the debrief at n19 (gap 13), and refund_units resurfaces in the status email at n15. The cross-book mid value (claim_score from the card_games book, birdsql:371) is woven into the sla_hours arithmetic and thus into the whole downstream; n20 (formula_1, birdsql:863) is an independent side anchor no downstream check reads. The severity tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live card_games book, and the CSM move's composition gate binds the STAMPED tier to that live re-derivation. The four EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The reimbursement is COMPENSATABLE: the first (duplicate-patient) payout must be corrected by a matching [DIP-REVERSAL] clawback then the correct payout \u2014 the net payer->correct-patient payout == refund_units, and the collateral 'no_naked_delete_of_wrong_payout' forbids removing the wrong row. On the real data delta=29000 mandates the 'HIGH' route (director handoff, no escalation); the FSV accepts the 'HIGH' route complete AND rejects a spurious escalation note or an extra director email on a 'LOW' route.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "distractor",
+    "n_arms": 10,
+    "arm_kinds": [
+      "legal_hold",
+      "regulator_notice",
+      "board_memo",
+      "external_audit",
+      "fraud_referral",
+      "exec_escalation",
+      "insurer_notice",
+      "press_holding",
+      "law_enforcement",
+      "emergency_reserve"
+    ],
+    "added_kinds": [
+      "legal_hold",
+      "regulator_notice",
+      "board_memo",
+      "external_audit",
+      "fraud_referral",
+      "exec_escalation",
+      "insurer_notice",
+      "press_holding",
+      "law_enforcement",
+      "emergency_reserve"
+    ],
+    "signature": {
+      "dG": 10,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 1,
+      "dT": 0
+    }
+  }
+}

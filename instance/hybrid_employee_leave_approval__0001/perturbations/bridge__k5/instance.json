@@ -1,0 +1,1507 @@
+{
+  "instance_id": "hybrid_employee_leave_approval__0001",
+  "agent_visible": {
+    "overall_query": "Adjudicate the quarterly employee-leave entitlement for the regional workforce. Fix the workforce leave index from the reference registry's own question \u2014 the monthly average number of schools opened in Alameda County under the Elementary School District jurisdiction in 1980 (the count of qualifying schools as a real number divided by 12), reported exactly as the book computes it (keep the decimal). Set the base entitlement as that leave index scaled to whole units (round it times 10000). Pull the eligible-cohort count from the roster book's own question \u2014 how many drivers finished the race dated 2015-11-29 (results rows with a recorded finishing time) \u2014 and set the adjustment uplift at 1000 per cohort member. The total scope is the base plus the uplift; the escalation delta equals the uplift. Decide the leave-route branch on the delta \u2014 'BOARD_ESCALATION' when the delta is at least 100000, 'EXTENDED_REVIEW' when it is at least 10000, 'STANDARD_LEAVE' otherwise \u2014 and work the cycle end to end: place the review window on your calendar (a 3-day window starting 2024-02-12 09:00:00, held ONLY on the calendar); post the entitlement credit run so the net credit received by the correct employee equals the delta (a credit that lands on the wrong employee is reversed, never deleted, then the correct employee is credited); unless the branch is standard leave, send the appeals board the handoff email citing the total scope and the delta; log the total scope on the HR-director record and open the follow-up; allocate the review effort evenly with the co-HR partner; RE-DERIVE the leave tier from the live roster book (TIER_3_BOARD when the cohort count times 1000 is at least 100000, TIER_2_EXTENDED when at least 10000, else TIER_1_STANDARD) and stamp it on the HR-director record; close out the benefits-services case and file the employee's leave-of-absence request case in the desk's enterprise registers (per the recording handbook); send the HR director the status update citing the total scope, the tier and the leave-of-absence case number; reconcile the credit ledger to the delta, re-deriving before the 'ok' verdict that the recorded total scope is still the recorded base entitlement + cohort count*1000; and schedule the post-window leave review after the window ends, conflict-free. Also pull the three independent side anchors for the quarterly workforce overview \u2014 the percentage of female patients with total protein outside the normal range, how many superheroes have blue eyes, and how many posts the user csgillespie owns \u2014 the period-over-period controls of the overview, each compared with its own prior-period value when the overview is approved and consumed by no other step.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nleave_index: the workforce leave index \u2014 the book's exact decimal value\nbase_entitlement: the base entitlement \u2014 whole number\ncohort_index: the eligible-cohort count \u2014 whole number\nadjustment_uplift: the adjustment uplift \u2014 whole number, no thousands separators\ntotal_scope: the total leave scope \u2014 whole number\ndelta: the escalation delta \u2014 whole number\nbranch: the leave route \u2014 exactly one of {STANDARD_LEAVE, EXTENDED_REVIEW, BOARD_ESCALATION}\nreconciled: the reconciliation verdict \u2014 the single lower-case word 'ok' once the credit ledger nets to the delta\nside_ratio: the first side anchor \u2014 the book's exact decimal value\nside_roster: the second side anchor \u2014 whole number\nside_records: the third side anchor \u2014 whole number\nleave_index_staged1: the desk's staging re-record 1 of 5 of leave_index \u2014 the identical value\nleave_index_staged2: the desk's staging re-record 2 of 5 of leave_index \u2014 the identical value\nleave_index_staged3: the desk's staging re-record 3 of 5 of leave_index \u2014 the identical value\nleave_index_staged4: the desk's staging re-record 4 of 5 of leave_index \u2014 the identical value\nleave_index_staged5: the desk's staging re-record 5 of 5 of leave_index \u2014 the identical value\n",
+    "initial_state_summary": "The world is ONE merged SQLite connection over the desk's systems, each under a table prefix: five source reference books \u2014 the leave-index reference registry (bird_california_schools_schools, bird_california_schools_frpm, ...), the eligible-cohort roster book (bird_formula_1_races, bird_formula_1_results, ...), the side-ratio clinical book (bird_thrombosis_prediction_Patient, bird_thrombosis_prediction_Laboratory, ...), the side-roster reference (bird_superhero_superhero, bird_superhero_colour, ...) and the side-records reference (bird_codebase_community_posts, bird_codebase_community_users, ...); WorkBench (the CRM, the calendar, project tasks); Venmo (vm_users, vm_transactions \u2014 the entitlement-credit ledger); Splitwise (sw_users, sw_expenses, sw_expense_shares \u2014 the intercompany review-line ledger); Gmail (gm_users, gm_emails); Todoist (td_users, td_projects, td_tasks); and the desk's two shared enterprise registers \u2014 CSM (eops_sn_csm_server_customer_case, eops_sn_csm_server_case_sla, ...) and HR (eops_sn_hr_internal_hr_case, eops_sn_hr_internal_notification, eops_sn_hr_internal_user, ...). You are hr.specialist@atlas.com (Riley Chen), the HR leave-approval specialist, with your own Venmo, Gmail, Splitwise and Todoist identities, a Todoist leave-docket project, and a calendar on wb_calendar_events; the correct employee is employee.correct@atlas.com, the wrong employee is employee.wrong@atlas.com, the co-HR partner is co.hr.partner@atlas.com, the appeals board is leave.appeals@benefitsboard.example, and ONE CRM record \u2014 the HR director hr.director@atlas.com \u2014 is assigned to you. The enterprise registers are shared desk systems recorded under desk ids of record (see the recording handbook). NOTHING marks the leave index, base entitlement, uplift, delta, branch or tier \u2014 derive every figure from the LIVE tables.",
+    "conventions": "HR LEAVE-APPROVAL DESK \u2014 RECORDING HANDBOOK (follow exactly; these say how the desk records its work, never what the quantities are).\n\n1. DURABLE TAG GLOSSARY. Every workflow artifact carries its bracket tag verbatim, placed as stated (cited figures are written as whole numbers; digit-grouping commas are tolerated):\n   - '[ELA-BASE]' \u2014 HR-director CRM notes: the base-entitlement stamp, citing 'base_entitlement=<n>'.\n   - '[ELA-HOLD]' \u2014 wb_calendar_events EVENT NAME of the review window: your own calendar, event_start '2024-02-12 09:00:00', duration 4320 minutes (a 3-day window). The window's dates live ONLY on the calendar.\n   - '[ELA-CREDIT]' \u2014 entitlement ledger (vm) DESCRIPTION of every entitlement-credit entry.\n   - '[ELA-REVERSAL]' \u2014 entitlement ledger DESCRIPTION of a reversal entry (same amount as the row it reverses, opposite direction, alongside the '[ELA-CREDIT]' tag).\n   - '[ELA-HANDOFF]' \u2014 email SUBJECT of the appeals-board handoff; the BODY must cite the total scope and the delta.\n   - '[ELA-LOG]' \u2014 HR-director CRM notes: the leave log, citing 'total_scope=<n>'.\n   - '[ELA-ALLOC]' \u2014 Splitwise expense DESCRIPTION of the intercompany review-line allocation. The expense books the full recorded total_scope as its amount, and its sw_expense_shares row assigns co.hr.partner@atlas.com a share of exactly half that amount.\n   - '[ELA-FUP]' \u2014 Todoist task TITLE (in your 'Q1 Leave Approval Docket' project); the title cites the delta.\n   - '[ELA-TIER]' \u2014 HR-director CRM STATUS column (a dedicated-field stamp): written exactly as the tag, then the tier word.\n   - '[ELA-STATUS]' \u2014 email SUBJECT of the HR-director status update; the BODY must cite the total scope and the tier word.\n   - '[ELA-RECON]' \u2014 HR-director CRM notes: the reconciliation note, citing 'delta=<n>'; the net is re-read from the '[ELA-CREDIT]' ledger (credits minus reversals) at write time, and the 'ok' verdict is written only after the recorded total_scope is re-derived from the recorded base_entitlement and cohort_index (the goal's own figure chain).\n   - '[ELA-REVIEW]' \u2014 wb_calendar_events EVENT NAME of the post-window leave review.\n   - '[ELA-ESCALATION]' \u2014 HR-director CRM notes: the board-escalation note, filed ONLY on the board-escalation route.\n\n2. ROUTE AND TIER WORDS. The leave route is always one of the desk's three route words: 'STANDARD_LEAVE', 'EXTENDED_REVIEW', 'BOARD_ESCALATION'. The leave tier is always one of the desk's three tier words: 'TIER_1_STANDARD', 'TIER_2_EXTENDED', 'TIER_3_BOARD'. A cited tier word is re-derived from the live roster book at write time, never quoted from an earlier citation.\n\n3. COUNTERPARTY DIRECTORY. All outbound email is sent from your own mailbox (hr.specialist@atlas.com); the HR director is written to at hr.director@atlas.com, the appeals board at leave.appeals@benefitsboard.example. Entitlement credits run on the vm ledger FROM you TO the correct employee (employee.correct@atlas.com); a credit that lands on the wrong employee (employee.wrong@atlas.com) is corrected by that employee sending the same amount back to you, never deleted. The review-effort allocation runs on the sw ledger between you and the co-HR partner (co.hr.partner@atlas.com). Follow-up work lives in your Todoist 'Q1 Leave Approval Docket' project; the window and review on your own wb_calendar_events (participant_email = hr.specialist@atlas.com).\n\n4. BOOKKEEPING NORMS.\n   - Entitlement rows are append-only: a wrong ledger entry is corrected by a NEW reversal row plus the NEW correct row \u2014 never delete or edit the original.\n   - Figures cited in notes/emails are re-checked against the live book or ledger at write time, never quoted from memory.\n   - CRM annotations are prepended to the HR-director row's notes column (the tier stamp alone uses the dedicated status column); never touch CRM rows outside the HR-director record.\n   - Sent email is irreversible: a correction is a NEW email, never an edit.\n   - The leave review is booked conflict-free on business days: a 30-minute event in afternoon hours (13:00-17:00), at the earliest weekday slot at/after the review window's end that does not overlap any of your other events.\n   - Report figures are whole numbers without thousands separators (the leave index and the side ratio keep their exact decimals); the reconciliation verdict is the single word 'ok'.\n\n5. ENTERPRISE REGISTERS (shared desk systems; record under the desk ids of record, exactly as stated \u2014 the registers' OTHER rows are background book, never modify them).\n   - CSM register (eops_sn_csm_server_* tables). The benefits-case closure sets the two open SLA stages (case_sla_id 9 and 10) to stage 'completed', and the benefits case (case_id 5) to state 'closed'.\n   - HR register (eops_sn_hr_internal_* tables). The employee is on file there under the register's own ids of record: user Christina Oliver (user_id 2, email christina.oliver@carsonllc.com), account 'HRC0000772'; the desk files under its own register user (user_id 4). The leave-of-absence case filing INSERTs one hr_case row: hr_case_id the next on the register, number in the register's HRC format (the next after the highest on file), status 'ready', hr_service 6 ('Leave Of Absence'), opened_for 2, assignment_group 4 ('HR Service Desk'), account_number 'HRC0000772', coe_type 'Total Rewards'; its short_description cites the closed benefits case's number as it reads on the CSM register (customer_case.number for case_id 5) and the tier word off the '[ELA-TIER]' stamp. Then one notification row on that case: type 'update', email = the employee's register email, status 'ready'. The status update to the HR director cites that case's number.\n\nSTAGING: before the downstream step reads leave_index, this desk re-records it through 5 staging entries in order \u2014 kind='leave_index_staged1', then kind='leave_index_staged2', then kind='leave_index_staged3', then kind='leave_index_staged4', then kind='leave_index_staged5' (each the identical value, each copied from the previous one); file every staging record as an explicit intermediate step.",
+    "initial_state_sample_caption": "Illustrative raw rows from s0 (seed values as stored; the live tables are authoritative \u2014 derive every figure yourself).",
+    "initial_state_sample": {
+      "crm_hr_director": [
+        {
+          "customer_id": "00000002",
+          "customer_email": "hr.director@atlas.com",
+          "customer_name": "HR Director",
+          "assigned_to_email": "hr.specialist@atlas.com",
+          "status": "Active",
+          "note": ""
+        }
+      ],
+      "vm_users": [
+        {
+          "email": "hr.specialist@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "employee.correct@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "employee.wrong@atlas.com",
+          "note": ""
+        }
+      ],
+      "gm_users": [
+        {
+          "email": "hr.specialist@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "hr.director@atlas.com",
+          "note": ""
+        },
+        {
+          "email": "leave.appeals@benefitsboard.example",
+          "note": ""
+        }
+      ],
+      "td_projects": [
+        {
+          "name": "Q1 Leave Approval Docket",
+          "note": ""
+        }
+      ],
+      "wb_calendar_events": [
+        {
+          "event_name": "HR-desk daily standup",
+          "participant_email": "hr.specialist@atlas.com",
+          "event_start": "2024-02-15 13:00:00",
+          "duration": "60",
+          "note": ""
+        }
+      ],
+      "eops_sn_csm_server_customer_case": [
+        {
+          "case_id": 5,
+          "state": "in_progress",
+          "note": ""
+        }
+      ],
+      "eops_sn_hr_internal_user": [
+        {
+          "user_id": 2,
+          "first_name": "Christina",
+          "last_name": "Oliver",
+          "email": "christina.oliver@carsonllc.com",
+          "note": ""
+        }
+      ],
+      "eops_sn_hr_internal_hr_service": [
+        {
+          "hr_service_id": 6,
+          "service_name": "Leave Of Absence",
+          "note": ""
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "query",
+        "purpose": "Run a read-only SQL SELECT over the merged world (the five reference books, ledgers, CRM state, the eops_ enterprise registers).",
+        "args": {
+          "sql": "a SELECT statement"
+        }
+      },
+      {
+        "name": "describe_table",
+        "purpose": "Column names + types.",
+        "args": {
+          "table": "table"
+        }
+      },
+      {
+        "name": "create_row",
+        "purpose": "INSERT one row (a vm_transactions credit / a gm_emails message / a sw_expenses line / a td_tasks item / a wb_calendar_events hold / an eops_ register row).",
+        "args": {
+          "table": "table",
+          "values": "column map"
+        }
+      },
+      {
+        "name": "update_row",
+        "purpose": "UPDATE columns of rows matching a WHERE predicate (CRM notes/status/follow_up_by stamps; an eops_ register closure).",
+        "args": {
+          "table": "table",
+          "set": "columns",
+          "where": "predicate"
+        }
+      },
+      {
+        "name": "delete_row",
+        "purpose": "DELETE rows. NOTE: entitlement credits are compensatable \u2014 reverse a wrong-employee credit, do NOT naked-delete it.",
+        "args": {
+          "table": "table",
+          "where": "predicate"
+        }
+      }
+    ]
+  },
+  "hidden": {
+    "topology": "20-node long-horizon DAG across FIVE bird books (california_schools/formula_1/thrombosis_prediction/superhero/codebase_community) + workbench + venmo + splitwise + gmail + todoist + enterpriseops (csm/hr). Depth-12 spine n01->n02->n04->n05->n08->n09->n11->n12->n13->n14->n15->n18 with long-range edges: delta n04 reconciled at n17 (gap 13); the [ELA-HOLD] window n06 gates the review n18 (gap 12); total_scope n04 resurfaces at n15. n03 is the MID-GRAPH cross-book value (formula_1) woven into the arithmetic/branch; n16 (thrombosis_prediction), n19 (superhero) and n20 (codebase_community) are three independent side anchors reported verbatim.",
+    "protagonist": {
+      "email": "hr.specialist@atlas.com",
+      "role": "HR leave-approval specialist running the quarterly leave adjudication"
+    },
+    "gold_subgoals": [
+      {
+        "id": "n01",
+        "description": "What is the monthly average number of schools that opened in Alameda County under the jurisdiction of the Elementary School District in 1980? (Read it as the book does: over schools with DOC 52 in Alameda County whose OpenDate year is 1980, take the count as a real number divided by 12; report the value EXACTLY as the book computes it \u2014 keep the book's own decimal.) Record the answer in answers as kind='leave_index'.",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_california_schools_schools.DOC",
+          "bird_california_schools_schools.County",
+          "bird_california_schools_schools.OpenDate"
+        ],
+        "writes": [
+          "answers.leave_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n02",
+        "description": "Set the base entitlement from the leave index. Read the stored leave_index and compute base_entitlement = round(leave_index * 10000) (the desk scales the fractional index to whole entitlement units). Record it in answers as kind='base_entitlement' and stamp the HR-director's CRM row (customer_email hr.director@atlas.com) by prepending '[ELA-BASE] base_entitlement=<n>' to its notes.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.leave_index"
+        ],
+        "writes": [
+          "answers.base_entitlement",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n01"
+        ]
+      },
+      {
+        "id": "n03",
+        "description": "For the race happened on 2015/11/29, how many drivers finished the game? (Read it as the book does: count the results rows for the race dated 2015-11-29 whose finishing time is recorded, joining races to results.) Record the answer in answers as kind='cohort_index'. (This eligible-cohort count feeds the adjustment uplift.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_formula_1_races.date",
+          "bird_formula_1_results.time",
+          "bird_formula_1_results.raceId"
+        ],
+        "writes": [
+          "answers.cohort_index"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n04",
+        "description": "Compute the leave-scope envelope from the stored answers. Read answers.base_entitlement AND answers.cohort_index. adjustment_uplift = cohort_index * 1000; total_scope = base_entitlement + adjustment_uplift; delta = adjustment_uplift. Record all three: answers kind='adjustment_uplift', kind='total_scope', kind='delta'.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.base_entitlement",
+          "answers.cohort_index"
+        ],
+        "writes": [
+          "answers.adjustment_uplift",
+          "answers.total_scope",
+          "answers.delta"
+        ],
+        "depends_on": [
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n05",
+        "description": "Decide the leave-route branch on the computed state. Read answers.delta and set answers kind='branch' to 'BOARD_ESCALATION' if delta >= 100000, else 'EXTENDED_REVIEW' if delta >= 10000, else 'STANDARD_LEAVE'. Check the higher tier first; the bands do not overlap.",
+        "system": "composition",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta"
+        ],
+        "writes": [
+          "answers.branch"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n06",
+        "description": "Once the total scope is computed, place the leave-review WINDOW on the specialist's calendar (participant_email=hr.specialist@atlas.com): INSERT a wb_calendar_events row whose event_name carries '[ELA-HOLD]', event_start='2024-02-12 09:00:00', duration=4320 (a 3-day window). These dates are held ONLY on the calendar, not in answers.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_scope",
+          "wb_calendar_events.event_start"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n07",
+        "description": "Post the entitlement credit run for EXACTLY delta on the employee ledger. Record vm_transactions rows tagged '[ELA-CREDIT]' so the NET credit posted FROM the specialist (hr.specialist@atlas.com) TO the correct employee (employee.correct@atlas.com) equals delta. If the first credit lands on the WRONG employee (employee.wrong@atlas.com), DO NOT delete it: write a matching '[ELA-REVERSAL] [ELA-CREDIT]' entry (the wrong employee sends the SAME amount back to the specialist) which cancels the wrong credit, then the correct credit to the right employee.",
+        "system": "venmo",
+        "action_semantics": "compensatable",
+        "reads": [
+          "answers.delta",
+          "vm_users.email",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n08",
+        "description": "If the leave-route branch is 'EXTENDED_REVIEW' or 'BOARD_ESCALATION', send the appeals board a handoff email. INSERT a gm_emails row from the specialist (hr.specialist@atlas.com) to the appeals board (leave.appeals@benefitsboard.example) whose subject carries '[ELA-HANDOFF]' and whose body CITES the total_scope and the delta. For branch 'STANDARD_LEAVE' (standard leave), the handoff MUST NOT be sent.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "answers.branch",
+          "answers.total_scope",
+          "answers.delta",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n09",
+        "description": "Log the leave review on the HR-director CRM record. Prepend '[ELA-LOG] total_scope=<n>' to the notes \u2014 but when the leave-route branch is 'EXTENDED_REVIEW' or 'BOARD_ESCALATION' (extended review / board escalation), ONLY after the '[ELA-HANDOFF]' email has been sent to the appeals board. When it is 'STANDARD_LEAVE' the log may proceed immediately.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "gm_emails.subject",
+          "answers.total_scope",
+          "answers.branch",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n08",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "id": "n10",
+        "description": "Post the intercompany review-line ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the specialist (hr.specialist@atlas.com) for the full total_scope with description '[ELA-ALLOC]', and a sw_expense_shares row assigning the co-HR partner (co.hr.partner@atlas.com) a share_amount = total_scope/2 (its half of the joint review effort).",
+        "system": "splitwise",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.total_scope",
+          "sw_users.email"
+        ],
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "depends_on": [
+          "n04"
+        ]
+      },
+      {
+        "id": "n11",
+        "description": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Leave Approval Docket' project owned by the specialist whose title carries '[ELA-FUP]' and the delta value \u2014 only after the HR-director CRM record carries the '[ELA-LOG]' leave log.",
+        "system": "todoist",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.notes",
+          "answers.delta",
+          "td_projects.name"
+        ],
+        "writes": [
+          "td_tasks.title"
+        ],
+        "depends_on": [
+          "n09",
+          "n04"
+        ]
+      },
+      {
+        "id": "n12",
+        "description": "Classify the leave TIER. RE-DERIVE it from the live roster book: uplift = (the eligible-cohort roster count) * 1000, TIER = 'TIER_3_BOARD' if uplift >= 100000, 'TIER_2_EXTENDED' if uplift >= 10000, else 'TIER_1_STANDARD'. Write it to the HR-director CRM row's DEDICATED status column (set status='[ELA-TIER] <tier>') \u2014 only after the follow-up task exists. (The tier is NOT written to answers.)",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "td_tasks.title",
+          "bird_formula_1_results.time"
+        ],
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "depends_on": [
+          "n11"
+        ]
+      },
+      {
+        "id": "n13",
+        "description": "Close out the employee's benefits-services case in the desk's CSM register. Mark the two open SLA stages (case_sla_id 9 and 10) 'completed', and set the benefits case (case_id 5) state to 'closed' \u2014 only after the HR-director CRM status carries the '[ELA-TIER]' tier stamp whose tier matches the live re-derivation.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_csm_server_case_sla.stage",
+          "eops_sn_csm_server_customer_case.state"
+        ],
+        "depends_on": [
+          "n12"
+        ]
+      },
+      {
+        "id": "n14",
+        "description": "File the employee's Leave-of-Absence request case on the desk's HR register (per the recording handbook). INSERT an hr_case row for the employee's account of record 'HRC0000772' under the 'Leave Of Absence' service (hr_service 6), opened for the employee's register user (Christina Oliver, user_id 2), status 'ready', assigned to the 'HR Service Desk' group (group 4), with a case number in the register's HRC format; its short_description must CITE the closed benefits case's number as it reads on the CSM register AND the leave tier word from the HR-director CRM '[ELA-TIER]' stamp (re-derived from the live roster book). Then record an 'update' notification on that case to the employee's register email (christina.oliver@carsonllc.com). Only after the CSM benefits-case closure is on the register: the LOA case cites the benefits case as closed, so while case 5 is still open there is nothing of record to cite.",
+        "system": "enterpriseops",
+        "action_semantics": "reversible",
+        "reads": [
+          "eops_sn_csm_server_customer_case.state",
+          "eops_sn_csm_server_customer_case.number",
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "writes": [
+          "eops_sn_hr_internal_hr_case.number",
+          "eops_sn_hr_internal_hr_case.short_description",
+          "eops_sn_hr_internal_notification.type"
+        ],
+        "depends_on": [
+          "n13"
+        ]
+      },
+      {
+        "id": "n15",
+        "description": "Send the HR director a status update. INSERT a gm_emails row from the specialist (hr.specialist@atlas.com) to the HR director (hr.director@atlas.com) whose subject carries '[ELA-STATUS]' and whose body cites the total_scope, the leave tier word (re-derived from the live roster book) AND the employee's Leave-of-Absence case number as it reads on the HR register \u2014 only after that LOA case is filed on the desk register: the update tells the director under which case of record the leave now runs, so there is nothing to cite until the case exists.",
+        "system": "gmail",
+        "action_semantics": "irreversible",
+        "reads": [
+          "eops_sn_hr_internal_hr_case.number",
+          "answers.total_scope",
+          "bird_formula_1_results.time",
+          "gm_users.email"
+        ],
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "depends_on": [
+          "n14",
+          "n04"
+        ]
+      },
+      {
+        "id": "n16",
+        "description": "Take the quarter's first control reading (a ratio), at the close of the run, once the entitlement's own figures are settled and the leave close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the leave and entitlement registers on purpose \u2014 and is answered exactly as that book asks it: \"What is the percentage of female patient had total protein not within the normal range?\" (Read it as the book does: over female patients, the count whose total protein TP is below 6.0 or above 8.5 as a real number, times 100, divided by the total female-patient laboratory rows; keep the book's own decimal.) Record the answer in answers as kind='side_ratio'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarter-end sign-off, and the leave close-out is signed only when each of this quarter's readings lines up with the last. Nothing later in this entitlement reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a staffing move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_thrombosis_prediction_Patient.SEX",
+          "bird_thrombosis_prediction_Laboratory.TP"
+        ],
+        "writes": [
+          "answers.side_ratio"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n17",
+        "description": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct employee matches delta (re-read from the '[ELA-CREDIT]' ledger rows, credits minus reversals, never from memory), AND re-derive the figure chain before the 'ok' verdict: re-read the recorded base_entitlement and cohort_index and confirm the recorded total_scope is still base_entitlement + cohort_index*1000 \u2014 a reconciliation that nets the ledger against an entitlement whose own arithmetic no longer holds certifies nothing. Only when both cross-checks hold, record answers kind='reconciled'='ok' and prepend a '[ELA-RECON] delta=<delta>' note to the HR-director CRM row.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "answers.delta",
+          "answers.base_entitlement",
+          "answers.cohort_index",
+          "vm_transactions.amount"
+        ],
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "depends_on": [
+          "n07",
+          "n04",
+          "n02",
+          "n03"
+        ]
+      },
+      {
+        "id": "n18",
+        "description": "Schedule the HR-director leave review. INSERT a wb_calendar_events row on the specialist's calendar whose event_name carries '[ELA-REVIEW]', duration 30, in afternoon hours (13:00-17:00), at the earliest 30-minute weekday slot that starts AT/AFTER the end of the '[ELA-HOLD]' review window and does NOT overlap any of the specialist's other events. Only for an HR-director record whose CRM carries '[ELA-RECON]' AND once the '[ELA-STATUS]' status update to the HR director is out.",
+        "system": "workbench",
+        "action_semantics": "reversible",
+        "reads": [
+          "wb_calendar_events.event_start",
+          "wb_customer_relationship_manager_data.notes",
+          "gm_emails.subject"
+        ],
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "depends_on": [
+          "n06",
+          "n17",
+          "n15"
+        ]
+      },
+      {
+        "id": "n19",
+        "description": "Take the quarter's second control reading (a headcount), at the close of the run, once the entitlement's own figures are settled and the leave close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the leave and entitlement registers on purpose \u2014 and is answered exactly as that book asks it: \"How many superheroes have blue eyes?\" (Read it as the book does: count the superheroes joined to the colour table whose eye colour is 'Blue'.) Record the answer in answers as kind='side_roster'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarter-end sign-off, and the leave close-out is signed only when each of this quarter's readings lines up with the last. Nothing later in this entitlement reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a staffing move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_superhero_superhero.eye_colour_id",
+          "bird_superhero_colour.colour"
+        ],
+        "writes": [
+          "answers.side_roster"
+        ],
+        "depends_on": []
+      },
+      {
+        "id": "n20",
+        "description": "Take the quarter's third control reading (a records count), at the close of the run, once the entitlement's own figures are settled and the leave close-out is ready to sign. The probe reads a licensed reference book the desk's reporting service also serves \u2014 unrelated to the leave and entitlement registers on purpose \u2014 and is answered exactly as that book asks it: \"How many posts does the user csgillespie own?\" (Read it as the book does: count the posts joined to the users table whose DisplayName is 'csgillespie'.) Record the answer in answers as kind='side_records'. (A reading means nothing on its own: it means something held against this same probe's reading at the last quarter-end sign-off, and the leave close-out is signed only when each of this quarter's readings lines up with the last. Nothing later in this entitlement reads it; what is recorded here is next quarter's comparison point at that sign-off. Report the book's own figure exactly \u2014 one rounded to look tidy would read as a staffing move that never happened.)",
+        "system": "birdsql",
+        "action_semantics": "reversible",
+        "reads": [
+          "bird_codebase_community_posts.OwnerUserId",
+          "bird_codebase_community_users.DisplayName"
+        ],
+        "writes": [
+          "answers.side_records"
+        ],
+        "depends_on": []
+      }
+    ],
+    "dependency_depth": 12,
+    "metrics": {
+      "n_nodes": 20,
+      "n_edges": 26,
+      "dependency_depth": 12,
+      "max_dependency_gap": 15,
+      "mean_dependency_gap": 4.81,
+      "long_range_edge_ratio": 0.346,
+      "n_long_range_edges": 9,
+      "long_range_threshold": 5,
+      "fan_out": 9,
+      "fan_in": 4,
+      "fork_count": 4,
+      "join_count": 7,
+      "cross_system_edge_ratio": 0.808,
+      "n_systems": 8,
+      "long_range_edges": [
+        {
+          "from": "n04",
+          "to": "n09",
+          "gap": 5,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n10",
+          "gap": 6,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n11",
+          "gap": 7,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n15",
+          "gap": 11,
+          "cross_system": true
+        },
+        {
+          "from": "n07",
+          "to": "n17",
+          "gap": 10,
+          "cross_system": true
+        },
+        {
+          "from": "n04",
+          "to": "n17",
+          "gap": 13,
+          "cross_system": true
+        },
+        {
+          "from": "n02",
+          "to": "n17",
+          "gap": 15,
+          "cross_system": false
+        },
+        {
+          "from": "n03",
+          "to": "n17",
+          "gap": 14,
+          "cross_system": true
+        },
+        {
+          "from": "n06",
+          "to": "n18",
+          "gap": 12,
+          "cross_system": false
+        }
+      ]
+    },
+    "spine_structure": {
+      "primary_chain": [
+        "n01",
+        "n02",
+        "n04",
+        "n05",
+        "n08",
+        "n09",
+        "n11",
+        "n12",
+        "n13",
+        "n14",
+        "n15",
+        "n18"
+      ],
+      "primary_chain_len": 12,
+      "systems": [
+        "birdsql",
+        "workbench",
+        "gmail",
+        "enterpriseops"
+      ],
+      "n_systems": 7,
+      "branch_point": "n05 (leave-route branch on delta bands) -> B on real data (EXTENDED_REVIEW)",
+      "long_range_edges": [
+        "n04->n17 delta reconciled 13 steps later (gap 13, max)",
+        "n06->n18 [ELA-HOLD] window (type-B) gates the review (gap 12)",
+        "n04->n15 total_scope resurfaces in the status email"
+      ],
+      "side_branch": [
+        "n16 (independent birdsql:1160 thrombosis_prediction side anchor)",
+        "n19 (independent birdsql:721 superhero side anchor)",
+        "n20 (independent birdsql:537 codebase_community side anchor)"
+      ],
+      "mid_cross_book": "n03 (birdsql:864 formula_1) woven into the delta/branch"
+    },
+    "entity_bindings": {
+      "protagonist": "hr.specialist@atlas.com",
+      "hr_director": "hr.director@atlas.com",
+      "correct_employee": "employee.correct@atlas.com",
+      "wrong_employee": "employee.wrong@atlas.com",
+      "co_hr_partner": "co.hr.partner@atlas.com",
+      "appeals_board": "leave.appeals@benefitsboard.example",
+      "hr_director_crm_id": "00000002",
+      "source_questions": {
+        "leave_index": "birdsql:47 (california_schools) \u2014 What is the monthly average number of schools that opened in Alameda County under the jurisdiction of the Elementary School District in 1980?",
+        "cohort_index": "birdsql:864 (formula_1) \u2014 For the race happened on 2015/11/29, how many drivers finished the game?",
+        "side_ratio": "birdsql:1160 (thrombosis_prediction) \u2014 What is the percentage of female patient had total protein not within the normal range?",
+        "side_roster": "birdsql:721 (superhero) \u2014 How many superheroes have blue eyes?",
+        "side_records": "birdsql:537 (codebase_community) \u2014 How many posts does the user csgillespie own?"
+      },
+      "eops_source_tasks": {
+        "csm_case_closure": "enterpriseops:task_20260102_080409_151_d4a463c3_56c32265 (sn-csm-server) \u2014 case_sla 9/10 completed + case 5 closed",
+        "hr_loa_case": "enterpriseops:task_20251226_153702_699_ad5a67e3_43cd2d47 (sn-hr-internal) \u2014 hr_case 61 'Leave Of Absence' ready for account HRC0000772 (Christina Oliver), assigned to HR Service Desk + 'update' notification to christina.oliver@carsonllc.com; short_description cites the closed benefits case number and the tier word"
+      },
+      "base_policy": "base_entitlement = round(leave_index * 10000) (whole-unit scaling)",
+      "uplift_policy": "adjustment_uplift = cohort_index * 1000 (per-cohort 1000 is declared)",
+      "branch_policy": "A STANDARD_LEAVE (delta<10000, no handoff); B EXTENDED_REVIEW (delta>=10000, appeals-board handoff, no escalation note); C BOARD_ESCALATION (delta>=100000, handoff + escalation note) \u2014 the 10000/100000 bands are declared constants",
+      "durable_tags": {
+        "base_note": "[ELA-BASE]",
+        "review_window": "[ELA-HOLD]",
+        "credit": "[ELA-CREDIT]",
+        "reversal": "[ELA-REVERSAL]",
+        "allocation": "[ELA-ALLOC]",
+        "handoff": "[ELA-HANDOFF]",
+        "crm_log": "[ELA-LOG]",
+        "followup": "[ELA-FUP]",
+        "tier": "[ELA-TIER]",
+        "status_email": "[ELA-STATUS]",
+        "crm_reconcile": "[ELA-RECON]",
+        "calendar_review": "[ELA-REVIEW]",
+        "escalation_note_only_for_C": "[ELA-ESCALATION]"
+      },
+      "dependency_persistence": {
+        "A_explicit": [
+          "answers.leave_index",
+          "answers.base_entitlement",
+          "answers.cohort_index",
+          "answers.adjustment_uplift",
+          "answers.total_scope",
+          "answers.delta",
+          "answers.branch",
+          "answers.reconciled",
+          "answers.side_ratio",
+          "answers.side_roster",
+          "answers.side_records"
+        ],
+        "B_domain_state": "review-window dates \u2014 ONLY on the wb_calendar_events [ELA-HOLD] event (n18 reads them there); the two eops register beats are register-state gates the later hops read directly",
+        "C_not_persisted": "leave tier \u2014 re-derived at n12 from the live formula_1 book (cohort-count banding); never in answers"
+      },
+      "vm_compensation": "wrong delta (specialist->wrong employee) + reversal delta (wrong employee->specialist) + correct delta (specialist->correct employee); net specialist->correct employee = delta",
+      "review_window_hold": "[ELA-HOLD] 2024-02-12 09:00:00 for 4320 min -> ends 2024-02-15 09:00 (type-B: only on the calendar)",
+      "review_slot": "2024-02-15 14:00 (earliest afternoon slot at/after the window end, skipping the 13:00-14:00 HR-desk standup)",
+      "true_leave_index": "1.41666666666667",
+      "true_base_entitlement": 14167,
+      "true_cohort_index": 11,
+      "true_adjustment_uplift": 11000,
+      "true_total_scope": 25167,
+      "true_delta": 11000,
+      "true_branch": "EXTENDED_REVIEW",
+      "true_tier": "TIER_2_EXTENDED",
+      "true_reconciled": "ok",
+      "true_side_ratio": "6.12352630652824",
+      "true_side_roster": 234,
+      "true_side_records": 121
+    },
+    "expected_state_transitions": [
+      {
+        "subgoal": "n01",
+        "system": "birdsql",
+        "writes": [
+          "answers.leave_index"
+        ],
+        "change": "What is the monthly average number of schools that opened in Alameda County under the jurisdiction of the Elementary School Distri"
+      },
+      {
+        "subgoal": "n02",
+        "system": "workbench",
+        "writes": [
+          "answers.base_entitlement",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Set the base entitlement from the leave index. Read the stored leave_index and compute base_entitlement = round(leave_index * 1000"
+      },
+      {
+        "subgoal": "n03",
+        "system": "birdsql",
+        "writes": [
+          "answers.cohort_index"
+        ],
+        "change": "For the race happened on 2015/11/29, how many drivers finished the game? (Read it as the book does: count the results rows for the"
+      },
+      {
+        "subgoal": "n04",
+        "system": "composition",
+        "writes": [
+          "answers.adjustment_uplift",
+          "answers.total_scope",
+          "answers.delta"
+        ],
+        "change": "Compute the leave-scope envelope from the stored answers. Read answers.base_entitlement AND answers.cohort_index. adjustment_uplif"
+      },
+      {
+        "subgoal": "n05",
+        "system": "composition",
+        "writes": [
+          "answers.branch"
+        ],
+        "change": "Decide the leave-route branch on the computed state. Read answers.delta and set answers kind='branch' to 'BOARD_ESCALATION' if del"
+      },
+      {
+        "subgoal": "n06",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Once the total scope is computed, place the leave-review WINDOW on the specialist's calendar (participant_email=hr.specialist@atla"
+      },
+      {
+        "subgoal": "n07",
+        "system": "venmo",
+        "writes": [
+          "vm_transactions.amount",
+          "vm_transactions.description"
+        ],
+        "change": "Post the entitlement credit run for EXACTLY delta on the employee ledger. Record vm_transactions rows tagged '[ELA-CREDIT]' so the"
+      },
+      {
+        "subgoal": "n08",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "If the leave-route branch is 'EXTENDED_REVIEW' or 'BOARD_ESCALATION', send the appeals board a handoff email. INSERT a gm_emails r"
+      },
+      {
+        "subgoal": "n09",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Log the leave review on the HR-director CRM record. Prepend '[ELA-LOG] total_scope=<n>' to the notes \u2014 but when the leave-route br"
+      },
+      {
+        "subgoal": "n10",
+        "system": "splitwise",
+        "writes": [
+          "sw_expenses.amount",
+          "sw_expense_shares.share_amount"
+        ],
+        "change": "Post the intercompany review-line ALLOCATION on the sw_* line-share ledger. INSERT a sw_expenses row paid by the specialist (hr.sp"
+      },
+      {
+        "subgoal": "n11",
+        "system": "todoist",
+        "writes": [
+          "td_tasks.title"
+        ],
+        "change": "Open the reconciliation follow-up. INSERT a td_tasks row in the 'Q1 Leave Approval Docket' project owned by the specialist whose t"
+      },
+      {
+        "subgoal": "n12",
+        "system": "workbench",
+        "writes": [
+          "wb_customer_relationship_manager_data.status"
+        ],
+        "change": "Classify the leave TIER. RE-DERIVE it from the live roster book: uplift = (the eligible-cohort roster count) * 1000, TIER = 'TIER_"
+      },
+      {
+        "subgoal": "n13",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_csm_server_case_sla.stage",
+          "eops_sn_csm_server_customer_case.state"
+        ],
+        "change": "Close out the employee's benefits-services case in the desk's CSM register. Mark the two open SLA stages (case_sla_id 9 and 10) 'c"
+      },
+      {
+        "subgoal": "n14",
+        "system": "enterpriseops",
+        "writes": [
+          "eops_sn_hr_internal_hr_case.number",
+          "eops_sn_hr_internal_hr_case.short_description",
+          "eops_sn_hr_internal_notification.type"
+        ],
+        "change": "File the employee's Leave-of-Absence request case on the desk's HR register (per the recording handbook). INSERT an hr_case row fo"
+      },
+      {
+        "subgoal": "n15",
+        "system": "gmail",
+        "writes": [
+          "gm_emails.subject",
+          "gm_emails.body"
+        ],
+        "change": "Send the HR director a status update. INSERT a gm_emails row from the specialist (hr.specialist@atlas.com) to the HR director (hr."
+      },
+      {
+        "subgoal": "n16",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_ratio"
+        ],
+        "change": "Take the quarter's first control reading (a ratio), at the close of the run, once the entitlement's own figures are settled and th"
+      },
+      {
+        "subgoal": "n17",
+        "system": "workbench",
+        "writes": [
+          "answers.reconciled",
+          "wb_customer_relationship_manager_data.notes"
+        ],
+        "change": "Reconcile the posted credit against the recorded delta. Confirm the Venmo NET credit posted to the correct employee matches delta "
+      },
+      {
+        "subgoal": "n18",
+        "system": "workbench",
+        "writes": [
+          "wb_calendar_events.event_start",
+          "wb_calendar_events.event_name"
+        ],
+        "change": "Schedule the HR-director leave review. INSERT a wb_calendar_events row on the specialist's calendar whose event_name carries '[ELA"
+      },
+      {
+        "subgoal": "n19",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_roster"
+        ],
+        "change": "Take the quarter's second control reading (a headcount), at the close of the run, once the entitlement's own figures are settled a"
+      },
+      {
+        "subgoal": "n20",
+        "system": "birdsql",
+        "writes": [
+          "answers.side_records"
+        ],
+        "change": "Take the quarter's third control reading (a records count), at the close of the run, once the entitlement's own figures are settle"
+      }
+    ],
+    "final_state_verifier": "V(sT,s0,G) is STATE-BASED on sT with reference to s0, a GUARDED DISJUNCTION over the leave-route branch the data selects (B: EXTENDED_REVIEW). The five source-native roots are judged by the SOURCE's own gold SQL recomputed LIVE at scoring time (leave_index == the birdsql:47 REAL open rate, stored in the book's exact CAST-text form; cohort_index == the birdsql:864 COUNT; side_ratio == the birdsql:1160 REAL percentage; side_roster == the birdsql:721 COUNT; side_records == the birdsql:537 COUNT), and the two EnterpriseOps beats by their source tasks' OWN database_state checks (prefix-rewritten only: the CSM case_sla 9/10 'completed' rows + the customer_case 5 'closed' row \u2014 the two Rule-7-precondition CSM specs are dropped and noted; the HR hr_case for account HRC0000772 under 'Leave Of Absence' at 'ready' + hr_case 61 assigned to the HR Service Desk + the 'update' notification to the employee's register user). COMPLETENESS: base_entitlement == round(leave_index*10000)=14167; adjustment_uplift == cohort_index*1000; total_scope == base+uplift; delta == uplift=11000; branch == 'EXTENDED_REVIEW' (10000 <= 11000 < 100000); the [ELA-HOLD] window on the calendar; the vm ledger NETS delta to the correct employee (a wrong-employee credit offset by an [ELA-REVERSAL] + the correct credit, net == delta AND wrong-employee net == 0); the appeals-board handoff exists IFF the branch is B/C and cites the total + delta; the allocation + co-HR-partner share on Splitwise; the CRM logs total_scope; the follow-up cites delta; the leave TIER is RE-DERIVED from the live formula_1 book (type-C, never in answers) and stamped; the two eops register beats match the inherited checks; the status email cites total + tier; reconciled == 'ok'; the review is conflict-free, after the window end, with the status email out; side_ratio == 6.12352630652824; side_roster == 234; side_records == 121. COLLATERAL (each 0): NO appeals-board handoff on a standard-leave (branch-A) path; NO [ELA-ESCALATION] note for an A/B branch; NO naked delete of a wrong-employee credit (it must keep its [ELA-REVERSAL]); the review never double-books, never precedes the window end, and never fires for an unlogged HR-director record; no unrelated CRM row is mutated. The executable form is FINAL_STATE_VERIFIER in build.py: it PASSES on the gold end-state and FAILS under injected damage (wrong branch; naked delete; skipped leave_index).",
+    "reference_trajectory": [
+      {
+        "turn": 1,
+        "phase": "discovery",
+        "observation": "Merged multi-system world; no computed figures are labelled.",
+        "reasoning": "Find the HR-director leave CRM row and confirm it is homed to hr.specialist@atlas.com.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT customer_id, customer_email, assigned_to_email FROM wb_customer_relationship_manager_data WHERE lower(customer_email)='hr.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row: hr.director@atlas.com assigned_to hr.specialist@atlas.com.",
+        "state_delta": "none (HR-DIRECTOR ROW FOUND)"
+      },
+      {
+        "turn": 2,
+        "phase": "execution",
+        "observation": "File the workforce leave index from the reference registry's own question.",
+        "reasoning": "Over Alameda DOC-52 schools opened in 1980, count as REAL / 12; keep the book's decimal.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(COUNT(School) AS REAL)/12 FROM bird_california_schools_schools WHERE DOC=52 AND County='Alameda' AND strftime('%Y',OpenDate)='1980'"
+          }
+        },
+        "tool_result": "1.41666666666667.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 3,
+        "phase": "execution",
+        "observation": "Leave index = 1.41666666666667.",
+        "reasoning": "n01: record leave_index verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "leave_index",
+              "value": "1.41666666666667"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+leave_index=1.41666666666667"
+      },
+      {
+        "turn": 4,
+        "phase": "execution",
+        "observation": "Set the base entitlement from the leave index.",
+        "reasoning": "n02: base_entitlement=round(1.41666666666667*10000)=14167; stamp the HR-director CRM [ELA-BASE].",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "base_entitlement",
+              "value": "14167"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM note '[ELA-BASE] base_entitlement=14167').",
+        "state_delta": "answers:+base_entitlement=14167; CRM:+base note"
+      },
+      {
+        "turn": 5,
+        "phase": "execution",
+        "observation": "Pull the eligible-cohort count from the roster book's own question.",
+        "reasoning": "Count results rows for the 2015-11-29 race with a recorded finishing time.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T2.driverId) FROM bird_formula_1_races T1 JOIN bird_formula_1_results T2 ON T2.raceId=T1.raceId WHERE T1.date='2015-11-29' AND T2.time IS NOT NULL"
+          }
+        },
+        "tool_result": "11.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 6,
+        "phase": "execution",
+        "observation": "Cohort count = 11.",
+        "reasoning": "n03: record cohort_index.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "cohort_index",
+              "value": "11"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+cohort_index=11"
+      },
+      {
+        "turn": 7,
+        "phase": "execution",
+        "observation": "Have base=14167, cohort=11.",
+        "reasoning": "n04: adjustment_uplift=11*1000=11000; total_scope=14167+11000=25167; delta=11000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "adjustment_uplift",
+              "value": "11000"
+            }
+          }
+        },
+        "tool_result": "1 row (+total_scope=25167,+delta=11000).",
+        "state_delta": "answers:+adjustment_uplift=11000,+total_scope=25167,+delta=11000"
+      },
+      {
+        "turn": 8,
+        "phase": "reasoning",
+        "observation": "delta=11000.",
+        "reasoning": "n05: BRANCH DECISION on delta. 10000 <= 11000 < 100000 -> branch B (EXTENDED_REVIEW).",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT 11000 >= 100000 AS is_c, 11000 >= 10000 AS is_b_or_c"
+          }
+        },
+        "tool_result": "0,1 -> branch B.",
+        "state_delta": "none (BRANCH B SELECTED)"
+      },
+      {
+        "turn": 9,
+        "phase": "execution",
+        "observation": "Branch B.",
+        "reasoning": "n05: record branch='EXTENDED_REVIEW'.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "branch",
+              "value": "EXTENDED_REVIEW"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+branch=B"
+      },
+      {
+        "turn": 10,
+        "phase": "execution",
+        "observation": "Total computed.",
+        "reasoning": "n06: place the review WINDOW [ELA-HOLD] on the specialist's calendar (dates live only here).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "Q1 leave review window [ELA-HOLD]",
+              "participant_email": "hr.specialist@atlas.com",
+              "event_start": "2024-02-12 09:00:00",
+              "duration": "4320"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "calendar:+review window"
+      },
+      {
+        "turn": 11,
+        "phase": "error",
+        "observation": "n07: post the entitlement credit for delta. Instinct: credit the WRONG employee (employee.wrong@atlas.com).",
+        "reasoning": "[MISTAKE-TEMPTATION] post the 11000 credit to the wrong employee.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<wrong_vm>",
+              "amount": 11000.0,
+              "description": "Leave entitlement credit (wrong employee) [ELA-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (specialist->wrong employee).",
+        "state_delta": "venmo:+WRONG-employee credit",
+        "error": true
+      },
+      {
+        "turn": 12,
+        "phase": "recovery",
+        "observation": "Cross-check the net posted to the correct employee.",
+        "reasoning": "The net specialist->correct employee is currently 0, not delta=11000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description NOT LIKE '%[ELA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description LIKE '%[ELA-REVERSAL]%')) AS net, (SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') AS owed"
+          }
+        },
+        "tool_result": "0.0 vs 11000.0 \u2014 MISMATCH.",
+        "state_delta": "none (MISMATCH DETECTED)"
+      },
+      {
+        "turn": 13,
+        "phase": "recovery",
+        "observation": "A posted Venmo row cannot be naked-deleted.",
+        "reasoning": "Post an [ELA-REVERSAL] as a positive 11000 in the OPPOSITE direction (wrong->specialist).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<wrong_vm>",
+              "receiver_id": "<riley_vm>",
+              "amount": 11000.0,
+              "description": "Reversal of wrong-employee credit [ELA-REVERSAL] [ELA-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (11000, wrong->specialist).",
+        "state_delta": "venmo:+reversal (wrong-employee net now 0)"
+      },
+      {
+        "turn": 14,
+        "phase": "recovery",
+        "observation": "Now post the correct credit.",
+        "reasoning": "n07: post the correct 11000 (specialist->correct employee); ledger nets delta.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "vm_transactions",
+            "values": {
+              "sender_id": "<riley_vm>",
+              "receiver_id": "<correct_vm>",
+              "amount": 11000.0,
+              "description": "Leave entitlement credit (correct employee) [ELA-CREDIT]"
+            }
+          }
+        },
+        "tool_result": "1 row (net now 11000=delta).",
+        "state_delta": "venmo:+correct credit (net==delta)"
+      },
+      {
+        "turn": 15,
+        "phase": "execution",
+        "observation": "n08: branch B requires an appeals-board handoff.",
+        "reasoning": "Email leave.appeals@benefitsboard.example an [ELA-HANDOFF] citing total_scope=25167, delta=11000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<board_gm>]",
+              "subject": "Leave review handoff [ELA-HANDOFF]",
+              "body": "... total_scope 25167 delta 11000 branch B ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+handoff email (irreversible)"
+      },
+      {
+        "turn": 16,
+        "phase": "execution",
+        "observation": "n09: log the total scope on the HR-director CRM (handoff sent).",
+        "reasoning": "Prepend '[ELA-LOG] total_scope=25167' to the HR-director CRM notes.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "notes": "[ELA-LOG] total_scope=25167 <existing>"
+            },
+            "where": "lower(customer_email)='hr.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+log"
+      },
+      {
+        "turn": 17,
+        "phase": "execution",
+        "observation": "n10: post the intercompany review-line allocation.",
+        "reasoning": "INSERT sw_expenses [ELA-ALLOC] amount=total_scope (25167) with a co-HR-partner share (12583.5).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "sw_expenses",
+            "values": {
+              "payer_id": "<riley_sw>",
+              "amount": 25167.0,
+              "description": "Q1 intercompany review-line [ELA-ALLOC]"
+            }
+          }
+        },
+        "tool_result": "1 row (+co-HR-partner share 12583.5).",
+        "state_delta": "splitwise:+allocation"
+      },
+      {
+        "turn": 18,
+        "phase": "execution",
+        "observation": "n11: open the reconciliation follow-up (CRM logged).",
+        "reasoning": "INSERT td_tasks [ELA-FUP] in 'Q1 Leave Approval Docket' citing delta=11000.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "td_tasks",
+            "values": {
+              "user_id": "<riley_td>",
+              "title": "Reconcile Q1 leave-entitlement review [ELA-FUP] [delta=11000]",
+              "is_completed": 0
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "todoist:+follow-up"
+      },
+      {
+        "turn": 19,
+        "phase": "execution",
+        "observation": "n12: classify the leave TIER (type-C, never in answers).",
+        "reasoning": "RE-DERIVE from the live roster book: cohort*1000=11000 -> TIER_2_EXTENDED; write [ELA-TIER].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (CASE WHEN ((SELECT COUNT(T2.driverId) FROM bird_formula_1_races AS T1 INNER JOIN bird_formula_1_results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NOT NULL)*1000) >= 100000 THEN 'TIER_3_BOARD' WHEN ((SELECT COUNT(T2.driverId) FROM bird_formula_1_races AS T1 INNER JOIN bird_formula_1_results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NOT NULL)*1000) >= 10000 THEN 'TIER_2_EXTENDED' ELSE 'TIER_1_STANDARD' END)"
+          }
+        },
+        "tool_result": "'TIER_2_EXTENDED' (11000 in [10000,100000)).",
+        "state_delta": "CRM:+tier stamp"
+      },
+      {
+        "turn": 20,
+        "phase": "execution",
+        "observation": "tier re-derived.",
+        "reasoning": "n12: set the HR-director CRM status='[ELA-TIER] TIER_2_EXTENDED'.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "wb_customer_relationship_manager_data",
+            "set": {
+              "status": "[ELA-TIER] TIER_2_EXTENDED"
+            },
+            "where": "lower(customer_email)='hr.director@atlas.com'"
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "CRM:+tier=TIER_2_EXTENDED"
+      },
+      {
+        "turn": 21,
+        "phase": "execution",
+        "observation": "n13: close the benefits-services case in the CSM register (gated on the tier stamp).",
+        "reasoning": "Per the handbook: SLA 9/10 completed; case 5 closed.",
+        "action": {
+          "tool": "update_row",
+          "args": {
+            "table": "eops_sn_csm_server_case_sla",
+            "set": {
+              "stage": "completed"
+            },
+            "where": "case_sla_id IN (9,10)"
+          }
+        },
+        "tool_result": "2 rows (+case closed).",
+        "state_delta": "CSM register: +closure"
+      },
+      {
+        "turn": 22,
+        "phase": "execution",
+        "observation": "n14: file the employee's leave-of-absence case on the HR register (gated on the CSM closure).",
+        "reasoning": "Per the handbook: hr_case 61 'HRC0000771' ready, 'Leave Of Absence', account HRC0000772, HR Service Desk; short_description cites benefits case CS-0000005 (closed) + TIER_2_EXTENDED; then the 'update' notification to christina.oliver@carsonllc.com.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "eops_sn_hr_internal_hr_case",
+            "values": {
+              "hr_case_id": 61,
+              "number": "HRC0000771",
+              "status": "ready",
+              "hr_service": 6,
+              "opened_for": 2,
+              "assignment_group": 4,
+              "account_number": "HRC0000772",
+              "short_description": "... benefits case CS-0000005 (closed); leave tier TIER_2_EXTENDED ..."
+            }
+          }
+        },
+        "tool_result": "1 row (+'update' notification).",
+        "state_delta": "HR register: +LOA case + notification"
+      },
+      {
+        "turn": 23,
+        "phase": "execution",
+        "observation": "n15: status update to the HR director.",
+        "reasoning": "INSERT gm_emails riley->HR-director [ELA-STATUS] citing total_scope=25167, tier TIER_2_EXTENDED and LOA case HRC0000771.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "gm_emails",
+            "values": {
+              "sender_id": "<riley_gm>",
+              "recipient_ids": "[<hrdir_gm>]",
+              "subject": "leave status [ELA-STATUS]",
+              "body": "... total_scope 25167 ... TIER_2_EXTENDED ... case HRC0000771 ..."
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "gmail:+status email (irreversible)"
+      },
+      {
+        "turn": 24,
+        "phase": "execution",
+        "observation": "n16: independent side-ratio anchor (birdsql:1160).",
+        "reasoning": "Over female patients, out-of-range TP count as REAL *100 / total female lab rows; keep the decimal.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CAST(SUM(CASE WHEN T1.SEX='F' AND (T2.TP<6.0 OR T2.TP>8.5) THEN 1 ELSE 0 END) AS REAL)*100/COUNT(*) FROM bird_thrombosis_prediction_Patient T1 JOIN bird_thrombosis_prediction_Laboratory T2 ON T1.ID=T2.ID WHERE T1.SEX='F'"
+          }
+        },
+        "tool_result": "6.12352630652824.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 25,
+        "phase": "execution",
+        "observation": "Side ratio = 6.12352630652824.",
+        "reasoning": "n16: record side_ratio verbatim.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_ratio",
+              "value": "6.12352630652824"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_ratio=6.12352630652824"
+      },
+      {
+        "turn": 26,
+        "phase": "execution",
+        "observation": "n17: reconcile the credit ledger to delta (long-range from n04/n07).",
+        "reasoning": "Confirm the net posted to the correct employee == delta (11000) AND re-derive the chain: total_scope 25167 is still base_entitlement 14167 + 11*1000; record reconciled='ok' + [ELA-RECON] delta=11000.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description NOT LIKE '%[ELA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description LIKE '%[ELA-REVERSAL]%'))=(SELECT CAST(value AS REAL) FROM answers WHERE kind='delta') THEN 1 ELSE 0 END"
+          }
+        },
+        "tool_result": "1 (11000==11000).",
+        "state_delta": "answers:+reconciled=ok; CRM:+recon"
+      },
+      {
+        "turn": 27,
+        "phase": "execution",
+        "observation": "n17: record the reconcile verdict.",
+        "reasoning": "INSERT answers reconciled='ok' + prepend '[ELA-RECON] delta=11000' to the HR-director CRM notes.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "reconciled",
+              "value": "ok"
+            }
+          }
+        },
+        "tool_result": "1 row (+CRM recon note).",
+        "state_delta": "answers:+reconciled=ok"
+      },
+      {
+        "turn": 28,
+        "phase": "discovery",
+        "observation": "n18: read the window end and the specialist's busy slots.",
+        "reasoning": "Read the [ELA-HOLD] end and the calendar to book the review conflict-free.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT datetime(event_start,'+'||duration||' minutes') FROM wb_calendar_events WHERE event_name LIKE '%[ELA-HOLD]%' AND lower(participant_email)=lower('hr.specialist@atlas.com') LIMIT 1) AS window_end"
+          }
+        },
+        "tool_result": "window_end 2024-02-15 09:00; busy 2024-02-15 13:00-14:00 (standup).",
+        "state_delta": "none (WINDOW+BUSY FOUND)"
+      },
+      {
+        "turn": 29,
+        "phase": "execution",
+        "observation": "Window ends 02-15 09:00; 13:00-14:00 busy on 02-15.",
+        "reasoning": "n18: schedule the '[ELA-REVIEW]' review 2024-02-15 14:00 (30 min), conflict-free, after the window end (status email out).",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "wb_calendar_events",
+            "values": {
+              "event_name": "HR-director leave review [ELA-REVIEW]",
+              "participant_email": "hr.specialist@atlas.com",
+              "event_start": "2024-02-15 14:00:00",
+              "duration": "30"
+            }
+          }
+        },
+        "tool_result": "1 row (conflict-free, after window end).",
+        "state_delta": "calendar:+leave review"
+      },
+      {
+        "turn": 30,
+        "phase": "execution",
+        "observation": "n19: independent side-roster anchor (birdsql:721).",
+        "reasoning": "Count superheroes joined to colour whose eye colour is Blue.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T1.id) FROM bird_superhero_superhero T1 JOIN bird_superhero_colour T2 ON T1.eye_colour_id=T2.id WHERE T2.colour='Blue'"
+          }
+        },
+        "tool_result": "234.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 31,
+        "phase": "execution",
+        "observation": "Side roster = 234.",
+        "reasoning": "n19: record side_roster.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_roster",
+              "value": "234"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_roster=234"
+      },
+      {
+        "turn": 32,
+        "phase": "execution",
+        "observation": "n20: independent side-records anchor (birdsql:537).",
+        "reasoning": "Count posts joined to users whose DisplayName is csgillespie.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT COUNT(T1.id) FROM bird_codebase_community_posts T1 JOIN bird_codebase_community_users T2 ON T1.OwnerUserId=T2.Id WHERE T2.DisplayName='csgillespie'"
+          }
+        },
+        "tool_result": "121.",
+        "state_delta": "none (read-only)"
+      },
+      {
+        "turn": 33,
+        "phase": "execution",
+        "observation": "Side records = 121.",
+        "reasoning": "n20: record side_records.",
+        "action": {
+          "tool": "create_row",
+          "args": {
+            "table": "answers",
+            "values": {
+              "kind": "side_records",
+              "value": "121"
+            }
+          }
+        },
+        "tool_result": "1 row.",
+        "state_delta": "answers:+side_records=121"
+      },
+      {
+        "turn": 34,
+        "phase": "verify",
+        "observation": "All 20 subgoals applied.",
+        "reasoning": "Confirm the net posted to the correct employee == delta and branch B recorded.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT ((SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description NOT LIKE '%[ELA-REVERSAL]%') - (SELECT COALESCE(SUM(amount),0) FROM vm_transactions WHERE sender_id=(SELECT id FROM vm_users WHERE lower(email)='employee.correct@atlas.com') AND receiver_id=(SELECT id FROM vm_users WHERE lower(email)='hr.specialist@atlas.com') AND description LIKE '%[ELA-CREDIT]%' AND description LIKE '%[ELA-REVERSAL]%')), (SELECT value FROM answers WHERE kind='branch')"
+          }
+        },
+        "tool_result": "11000.0, 'EXTENDED_REVIEW' \u2014 done.",
+        "state_delta": "none (DONE)"
+      },
+      {
+        "turn": 35,
+        "phase": "verify",
+        "observation": "Guarded-disjunction sanity.",
+        "reasoning": "Confirm no escalation note / board handoff for a STANDARD branch and every wrong-employee credit has an [ELA-REVERSAL].",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT COUNT(*) FROM wb_customer_relationship_manager_data WHERE notes LIKE '%[ELA-ESCALATION]%'), (SELECT COUNT(*) FROM vm_transactions WHERE description LIKE '%[ELA-REVERSAL]%')"
+          }
+        },
+        "tool_result": "0 and 1 -> branch C absent, compensation intact.",
+        "state_delta": "none (VERIFIED)"
+      },
+      {
+        "turn": 36,
+        "phase": "verify",
+        "observation": "Final consistency.",
+        "reasoning": "Confirm reconciled='ok', both eops register beats in place, and the review is after the window.",
+        "action": {
+          "tool": "query",
+          "args": {
+            "sql": "SELECT (SELECT value FROM answers WHERE kind='reconciled'), (SELECT COUNT(*) FROM eops_sn_hr_internal_hr_case WHERE hr_case_id=61 AND status='ready')"
+          }
+        },
+        "tool_result": "ok, 1 \u2014 verified.",
+        "state_delta": "none (VERIFIED)"
+      }
+    ],
+    "notes_on_alternatives": "Evaluation is STATE-BASED, not sequence imitation. The 20-node DAG has genuine forks (n04 fans to the branch, the credit posting, the window and the allocation) and joins (n18 is multi-input), not a chain; the difficulty is long-range: delta set at n04 is reconciled only at n17 (gap 13), the [ELA-HOLD] window placed at n06 is type-B (it lives only on the calendar) and gates the review at n18 (gap 12), and total_scope resurfaces in the status email at n15. The cross-book mid value (cohort_index from the formula_1 book, birdsql:864) is woven into the delta and thus into the branch and the whole downstream; n16 (thrombosis_prediction, birdsql:1160), n19 (superhero, birdsql:721) and n20 (codebase_community, birdsql:537) are three independent side anchors no downstream check reads, reported verbatim. The leave tier re-derived at n12 is TYPE-C \u2014 never written to answers, so the agent must recompute it from the live formula_1 book, and the CSM closure's composition gate binds the STAMPED tier to that live re-derivation. The two EnterpriseOps beats are judged by the source tasks' own checks, so any order that leaves the same register end-state passes; each beat's register witness is a state gate the next hop reads directly. The entitlement credit is COMPENSATABLE: the first (wrong-employee) credit must be corrected by a matching [ELA-REVERSAL] then the correct credit \u2014 the net specialist->correct-employee credit == delta, and the collateral 'no_naked_delete_of_wrong_employee_credit' forbids removing the wrong row. On the real data delta=11000 mandates branch B (EXTENDED_REVIEW: appeals-board handoff, no escalation note); the FSV accepts branch B complete AND rejects a spurious escalation note or an extra handoff on branch A.",
+    "action_semantics": {
+      "n01": "reversible",
+      "n02": "reversible",
+      "n03": "reversible",
+      "n04": "reversible",
+      "n05": "reversible",
+      "n06": "reversible",
+      "n07": "compensatable",
+      "n08": "irreversible",
+      "n09": "reversible",
+      "n10": "reversible",
+      "n11": "reversible",
+      "n12": "reversible",
+      "n13": "reversible",
+      "n14": "reversible",
+      "n15": "irreversible",
+      "n16": "reversible",
+      "n17": "reversible",
+      "n18": "reversible",
+      "n19": "reversible",
+      "n20": "reversible"
+    }
+  },
+  "perturbation": {
+    "op": "bridge",
+    "probe_edge": {
+      "from": "n01",
+      "to": "n02"
+    },
+    "staged_value": "leave_index",
+    "k": 5,
+    "relays": [
+      "nbridge1",
+      "nbridge2",
+      "nbridge3",
+      "nbridge4",
+      "nbridge5"
+    ],
+    "added_kinds": [
+      "leave_index_staged1",
+      "leave_index_staged2",
+      "leave_index_staged3",
+      "leave_index_staged4",
+      "leave_index_staged5"
+    ],
+    "signature": {
+      "dG": 5,
+      "ds0": 0,
+      "dPi": 0,
+      "dg": 0,
+      "dT": 0
+    }
+  }
+}

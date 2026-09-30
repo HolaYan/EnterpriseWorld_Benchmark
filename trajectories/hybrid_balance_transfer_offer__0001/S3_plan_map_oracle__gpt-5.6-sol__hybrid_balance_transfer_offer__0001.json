@@ -1,0 +1,6182 @@
+{
+ "mode": "goal_only_plan_map",
+ "per_node": {
+  "n01": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_132_source_balance",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n02": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "transfer_base_is_round_source_over_200",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "transfer_base_derives_from_stored_source_balance",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "mgr_crm_transfer_base_noted",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n02",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  },
+  "n03": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "src_birdsql_136_promo_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "src_birdsql_136_promo_uplift"
+   ]
+  },
+  "n04": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "total_transfer_equals_base_plus_delta",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "total_transfer_derives_from_stored_transfer_base_and_promo_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "delta_equals_promo_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "delta_derives_from_stored_promo_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n04",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "total_transfer_equals_base_plus_delta",
+    "total_transfer_derives_from_stored_transfer_base_and_promo_uplift",
+    "delta_equals_promo_uplift",
+    "delta_derives_from_stored_promo_uplift",
+    "ancestors_pass__n04"
+   ]
+  },
+  "n05": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "branch_matches_delta_thresholds",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "branch_derives_from_stored_delta_and_base",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "transfer_base_read_witness",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n05",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "branch_matches_delta_thresholds",
+    "branch_derives_from_stored_delta_and_base",
+    "ancestors_pass__n05"
+   ]
+  },
+  "n06": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "launch_calendar_handbook_colour",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "launch_calendar_created_once",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "promo_hold_record_on_launch_calendar",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "launch_calendar_four_party_acls",
+     "ok": true,
+     "actual": 4,
+     "expected": 4
+    },
+    {
+     "name": "launch_monitor_watch_channel",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "promo_hold_cites_total_transfer",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n06",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "promo_hold_cites_total_transfer",
+    "ancestors_pass__n06"
+   ]
+  },
+  "n07": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "vm_net_equals_delta_to_source_payoff",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n07",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "vm_net_equals_delta_to_source_payoff",
+    "ancestors_pass__n07"
+   ]
+  },
+  "n08": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "handoff_sent_iff_conditional_or_declined",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n08",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "handoff_sent_iff_conditional_or_declined",
+    "ancestors_pass__n08"
+   ]
+  },
+  "n09": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_logged_total_transfer_gated_by_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n09",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_logged_total_transfer_gated_by_branch",
+    "ancestors_pass__n09"
+   ]
+  },
+  "n10": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "allocation_and_share_recorded",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n10",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "allocation_and_share_recorded",
+    "ancestors_pass__n10"
+   ]
+  },
+  "n11": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "followup_task_cites_delta_after_log",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n11",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "followup_task_cites_delta_after_log",
+    "ancestors_pass__n11"
+   ]
+  },
+  "n12": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "crm_tier_status_correctly_rederived",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n12",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "crm_tier_status_correctly_rederived",
+    "ancestors_pass__n12"
+   ]
+  },
+  "n13": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "card_servicing_intake_filed_after_tier",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "servicing_playbook_linked",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "card_servicing_intake_gated_on_tier_and_base",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n13",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "card_servicing_intake_gated_on_tier_and_base",
+    "ancestors_pass__n13"
+   ]
+  },
+  "n14": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "status_email_cites_total_transfer_and_tier",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n14",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "status_email_cites_total_transfer_and_tier",
+    "ancestors_pass__n14"
+   ]
+  },
+  "n15": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "briefing_case_reassigned_after_status_email",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "briefing_reassignment_notified",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "briefing_reassignment_gated_on_status_email_and_branch",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n15",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "briefing_reassignment_gated_on_status_email_and_branch",
+    "ancestors_pass__n15"
+   ]
+  },
+  "n16": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "settle_payment_matches_share",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n16",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "settle_payment_matches_share",
+    "ancestors_pass__n16"
+   ]
+  },
+  "n17": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "wrapup_comment_after_briefed",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n17",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "wrapup_comment_after_briefed",
+    "ancestors_pass__n17"
+   ]
+  },
+  "n18": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "reconciled_net_equals_delta",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n18",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "reconciled_net_equals_delta",
+    "ancestors_pass__n18"
+   ]
+  },
+  "n19": {
+   "passed": false,
+   "checks": [
+    {
+     "name": "review_after_window_conflict_free_for_logged_mgr",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_slot_pinned",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "ancestors_pass__n19",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_terminal",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__source_balance_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__transfer_base_is_fn_of_source_balance",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__promo_uplift_correct",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__total_transfer_is_base_plus_delta",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__delta_equals_promo_uplift",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__branch_matches_true_delta_class",
+     "ok": false,
+     "actual": 0,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__reconciled_ok",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "final_task_pin__side_scan_count_correct",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": [
+    "review_after_window_conflict_free_for_logged_mgr",
+    "ancestors_pass__n19",
+    "final_task_terminal",
+    "final_task_pin__promo_uplift_correct",
+    "final_task_pin__total_transfer_is_base_plus_delta",
+    "final_task_pin__delta_equals_promo_uplift",
+    "final_task_pin__branch_matches_true_delta_class"
+   ]
+  },
+  "n20": {
+   "passed": true,
+   "checks": [
+    {
+     "name": "src_birdsql_130_side_scan_count",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    },
+    {
+     "name": "side_scan_recorded_on_clean_control_book",
+     "ok": true,
+     "actual": 1,
+     "expected": 1
+    }
+   ],
+   "failed": []
+  }
+ },
+ "terminal": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "workflow_end_to_end_complete",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   }
+  ]
+ },
+ "final_state_verifier": {
+  "passed": false,
+  "checks": [
+   {
+    "name": "source_balance_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "transfer_base_is_fn_of_source_balance",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "promo_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "total_transfer_is_base_plus_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "delta_equals_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "branch_matches_true_delta_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "vm_net_transfer_equals_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrong_card_transfer_net_is_zero",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "handoff_email_matches_branch_class",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "allocation_and_settle_recorded",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_logged_total_transfer",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "followup_task_cites_delta",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "crm_tier_rederived",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "card_servicing_intake_filed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "status_email_and_briefed",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "wrapup_comment_on_followup",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "review_after_window_conflict_free_logged",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "side_scan_count_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "no_routine_uw_handoff",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_declined_note_below_decline_bar",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_uw_email_when_routine",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_naked_delete_of_wrong_card_transfer",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_double_booked",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_before_window_end",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_review_for_unlogged_mgr",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "no_unrelated_crm_row_mutated",
+    "ok": true,
+    "actual": 0,
+    "expected": 0
+   },
+   {
+    "name": "node_n01__src_birdsql_132_source_balance",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__transfer_base_is_round_source_over_200",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__transfer_base_derives_from_stored_source_balance",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__mgr_crm_transfer_base_noted",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n02__ancestors_pass__n02",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n03__src_birdsql_136_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_transfer_equals_base_plus_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__total_transfer_derives_from_stored_transfer_base_and_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_equals_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__delta_derives_from_stored_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n04__ancestors_pass__n04",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_matches_delta_thresholds",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__branch_derives_from_stored_delta_and_base",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__transfer_base_read_witness",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n05__ancestors_pass__n05",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__launch_calendar_handbook_colour",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__launch_calendar_created_once",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__promo_hold_record_on_launch_calendar",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__launch_calendar_four_party_acls",
+    "ok": true,
+    "actual": 4,
+    "expected": 4
+   },
+   {
+    "name": "node_n06__launch_monitor_watch_channel",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__promo_hold_cites_total_transfer",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n06__ancestors_pass__n06",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__vm_net_equals_delta_to_source_payoff",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n07__ancestors_pass__n07",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__handoff_sent_iff_conditional_or_declined",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n08__ancestors_pass__n08",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__crm_logged_total_transfer_gated_by_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n09__ancestors_pass__n09",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__allocation_and_share_recorded",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n10__ancestors_pass__n10",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__followup_task_cites_delta_after_log",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n11__ancestors_pass__n11",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__crm_tier_status_correctly_rederived",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n12__ancestors_pass__n12",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__card_servicing_intake_filed_after_tier",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__servicing_playbook_linked",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__card_servicing_intake_gated_on_tier_and_base",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n13__ancestors_pass__n13",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__status_email_cites_total_transfer_and_tier",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n14__ancestors_pass__n14",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__briefing_case_reassigned_after_status_email",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__briefing_reassignment_notified",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__briefing_reassignment_gated_on_status_email_and_branch",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n15__ancestors_pass__n15",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__settle_payment_matches_share",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n16__ancestors_pass__n16",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__wrapup_comment_after_briefed",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n17__ancestors_pass__n17",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__reconciled_net_equals_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n18__ancestors_pass__n18",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__review_after_window_conflict_free_for_logged_mgr",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_slot_pinned",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__ancestors_pass__n19",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_terminal",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__source_balance_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__transfer_base_is_fn_of_source_balance",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__promo_uplift_correct",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__total_transfer_is_base_plus_delta",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__delta_equals_promo_uplift",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__branch_matches_true_delta_class",
+    "ok": false,
+    "actual": 0,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__reconciled_ok",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n19__final_task_pin__side_scan_count_correct",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__src_birdsql_130_side_scan_count",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   },
+   {
+    "name": "node_n20__side_scan_recorded_on_clean_control_book",
+    "ok": true,
+    "actual": 1,
+    "expected": 1
+   }
+  ],
+  "n_ok": 43,
+  "n_checks": 91,
+  "failed": [
+   "source_balance_correct",
+   "promo_uplift_correct",
+   "total_transfer_is_base_plus_delta",
+   "delta_equals_promo_uplift",
+   "branch_matches_true_delta_class",
+   "crm_tier_rederived",
+   "node_n03__src_birdsql_136_promo_uplift",
+   "node_n04__total_transfer_equals_base_plus_delta",
+   "node_n04__total_transfer_derives_from_stored_transfer_base_and_promo_uplift",
+   "node_n04__delta_equals_promo_uplift",
+   "node_n04__delta_derives_from_stored_promo_uplift",
+   "node_n04__ancestors_pass__n04",
+   "node_n05__branch_matches_delta_thresholds",
+   "node_n05__branch_derives_from_stored_delta_and_base",
+   "node_n05__ancestors_pass__n05",
+   "node_n06__promo_hold_cites_total_transfer",
+   "node_n06__ancestors_pass__n06",
+   "node_n07__vm_net_equals_delta_to_source_payoff",
+   "node_n07__ancestors_pass__n07",
+   "node_n08__handoff_sent_iff_conditional_or_declined",
+   "node_n08__ancestors_pass__n08",
+   "node_n09__crm_logged_total_transfer_gated_by_branch",
+   "node_n09__ancestors_pass__n09",
+   "node_n10__allocation_and_share_recorded",
+   "node_n10__ancestors_pass__n10",
+   "node_n11__followup_task_cites_delta_after_log",
+   "node_n11__ancestors_pass__n11",
+   "node_n12__crm_tier_status_correctly_rederived",
+   "node_n12__ancestors_pass__n12",
+   "node_n13__card_servicing_intake_gated_on_tier_and_base",
+   "node_n13__ancestors_pass__n13",
+   "node_n14__status_email_cites_total_transfer_and_tier",
+   "node_n14__ancestors_pass__n14",
+   "node_n15__briefing_reassignment_gated_on_status_email_and_branch",
+   "node_n15__ancestors_pass__n15",
+   "node_n16__settle_payment_matches_share",
+   "node_n16__ancestors_pass__n16",
+   "node_n17__wrapup_comment_after_briefed",
+   "node_n17__ancestors_pass__n17",
+   "node_n18__reconciled_net_equals_delta",
+   "node_n18__ancestors_pass__n18",
+   "node_n19__review_after_window_conflict_free_for_logged_mgr",
+   "node_n19__ancestors_pass__n19",
+   "node_n19__final_task_terminal",
+   "node_n19__final_task_pin__promo_uplift_correct",
+   "node_n19__final_task_pin__total_transfer_is_base_plus_delta",
+   "node_n19__final_task_pin__delta_equals_promo_uplift",
+   "node_n19__final_task_pin__branch_matches_true_delta_class"
+  ]
+ },
+ "n_tool_calls": 150,
+ "n_turns": 43,
+ "n_assistant_msgs": 1,
+ "opencode_event_types": [
+  "step_finish",
+  "step_start",
+  "text",
+  "tool_use"
+ ],
+ "n_blocked": 0,
+ "stopped": "done",
+ "error": null,
+ "wall_s": 448.6,
+ "usage": {
+  "input_tokens": 53736,
+  "output_tokens": 8578,
+  "reasoning_tokens": 7189,
+  "cache_read_tokens": 1323008,
+  "cache_write_tokens": 0,
+  "steps": 43
+ },
+ "runner_errors": [],
+ "transport": {
+  "api": "responses",
+  "reasoning_effort": "high"
+ },
+ "system_prompt": "You are an operations agent handed ONE business objective. You receive the overall goal, the case files that come with it, and your tools — NOTHING else: no step list, no task breakdown. Decide for yourself everything that must be computed, changed, recorded, sent, scheduled and reconciled to fully satisfy the goal, and do it. All state lives in ONE SQLite database; act ONLY through the provided tools; inspect schemas before writing. Values must be COMPUTED from the live data, never guessed. File your work exactly as the case files' recording handbook says. When the objective is fully satisfied, end your final reply with the deliverable report the goal asks for, then stop.",
+ "brief": "# USER GOAL\nProcess the cardholder's balance-transfer request: the new promo-APR line pays off the high-APR source card. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.\nDELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:\nREPORT\nbranch: the BT decision branch — exactly one upper-case one of {AUTO_APPROVE_STANDARD_PROMO, CONDITIONAL_UW_REVIEW, DECLINED_ALTERNATIVE}: 'AUTO_APPROVE_STANDARD_PROMO', 'CONDITIONAL_UW_REVIEW', 'DECLINED_ALTERNATIVE'\ndelta: the escalation delta (the uplift restated) — whole number\npromo_uplift: the promo-window uplift count — whole number\nreconciled: the ledger reconciliation verdict — the single lower-case word 'ok' if the payoff ledger nets to the delta\nside_scan_count: the quarterly-overview side-question count — whole number\nsource_balance: the audited source-card portfolio balance — the full unrounded figure as the book computes it (report all the digits it yields; do not deliberately round or truncate), no thousands separators\ntotal_transfer: the combined transfer figure — whole number, no thousands separators\ntransfer_base: the nominal transfer base — whole number, no thousands separators\n\n# CASE FILES\n## Recording handbook (how this desk files its work)\nOPERATING CONVENTIONS — BT desk recording handbook (HOW results are recorded; the engagement brief says WHAT to do).\n\nA. FIGURE-BOOK NORMS.\nEvery computed figure is written plain — digits only, no thousands separators. The audited source-card portfolio balance (source_balance) is quoted at the book's full precision, as computed — report the digits the book yields rather than deliberately rounding or truncating. The BT decision branch is referred to by its single upper-case word: 'AUTO_APPROVE_STANDARD_PROMO', 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE'; the ledger reconciliation verdict is the single lower-case word 'ok' once the payoff ledger nets to the delta. The re-derived BT decision tier word lives ONLY in the CRM status column (see [BTO-TIER]), and the promo-window dates live ONLY in the enterprise scheduler (see section E).\n\nB. DURABLE-TAG GLOSSARY (every workflow artifact carries its [TAG]; formats are exact).\n  [BTO-BASE]    CRM notes on the BT ops manager row — prepend '[BTO-BASE] transfer_base=<n>'.\n  [BTO-XFER]    payoff-ledger (vm_transactions) description — every payoff-run entry carries it.\n  [BTO-REVERSAL] payoff-ledger description of a correcting send-back — carries BOTH tags: '... [BTO-REVERSAL] [BTO-XFER]'.\n  [BTO-ALLOC]   intercompany expense (sw_expenses) description of the BT-fee allocation. The expense books the full recorded total_transfer as its amount, and its sw_expense_shares row assigns underwriting.team@atlas.com a share of exactly half that amount.\n  [BTO-SETTLE]  intercompany payment (sw_payments) description of the underwriting settle-up.\n  [BTO-HANDOFF] email SUBJECT of the underwriting-review handoff; the body cites the recorded total_transfer and delta figures.\n  [BTO-LOG]     CRM notes — prepend '[BTO-LOG] total_transfer=<n>'.\n  [BTO-FUP]     Todoist follow-up task TITLE — carries the tag plus the recorded delta figure.\n  [BTO-TIER]    CRM STATUS column (dedicated) — set to '[BTO-TIER] <tier word> promo_uplift=<n>' (the recorded promo_uplift); the tier word is the single token immediately after the tag.\n  [BTO-STATUS]  email SUBJECT of the manager status update; the body cites the recorded total_transfer and the tier word.\n  [BTO-WRAP]    Todoist comment CONTENT on the [BTO-FUP] task — carries 'transfer_total=<n>', the figure quoted as the [BTO-ALLOC] ledger entries sum (whole number).\n  [BTO-RECON]   CRM notes — prepend '[BTO-RECON] delta=<n>', the figure cited as the [BTO-XFER]-minus-[BTO-REVERSAL] ledger net.\n  [BTO-HOLD]    scheduler (eops_gym_calendar_events) SUMMARY of the promo-window hold — '[BTO-HOLD] promo-window hold total_transfer=<n>' (the recorded total_transfer).\n  [BTO-REVIEW]  calendar event NAME of the BT-ops review — carries the tag plus 'src_bal=<v>' (the recorded source_balance figure, at the book's full precision as computed).\n  [BTO-DECLINED_ALTERNATIVE]  CRM notes — written ONLY on a declined (branch 'DECLINED_ALTERNATIVE') outcome; it must NOT exist on 'AUTO_APPROVE_STANDARD_PROMO'/'CONDITIONAL_UW_REVIEW'.\n\nC. COUNTERPARTY DIRECTORY (where each kind of record goes).\n  BT ops rep (you)            riley.chen@atlas.com — sender/owner of every artifact; the calendar and Todoist work live under this identity.\n  BT ops manager CRM record   btops.manager@atlas.com — the ONE CRM row every notes/status stamp goes to; manager status updates are emailed to this mailbox.\n  Underwriting review desk    uw.review@krotov.cz — the mailbox the [BTO-HANDOFF] handoff goes to (conditional/declined outcomes only; NO email to this desk on an auto-approve).\n  Source-card payoff account  src.card.payoff@atlas.com — the ledger party payoff transfers are paid TO.\n  Wrong card account          wrong.card.payoff@atlas.com — never a legitimate payoff destination; a payoff landing there is offset, not deleted.\n  Underwriting team           underwriting.team@atlas.com — the intercompany ledger party carrying its BT-fee share and paying the settle-up back to the BT ops desk.\n  Todoist project             'Q1 balance transfer Run' — the follow-up task opens here.\n\nD. BOOKKEEPING NORMS.\n  - Corrections are NEW entries, never deletes or edits: a posted payoff transfer stays on the ledger; a mis-directed one is offset by an equal reversal entry in the OPPOSITE direction, then the correct entry is written fresh.\n  - Notices are NEW emails, never edits of earlier ones.\n  - CRM notes stamps are PREPENDED so history is preserved; status is a dedicated single-value field.\n  - The BT-fee carry is booked ONCE at the full combined transfer figure owed by the BT ops desk, with the underwriting team assigned its equal half-share; the settle-up payment mirrors that assigned share exactly.\n  - The promo-window HOLD this quarter lives ONLY in the enterprise scheduler as the hold record described in section E; the review window ends when that hold ends.\n  - Reviews are 30-minute business-day (Mon-Fri) afternoon bookings (start between 13:00 and 16:30), at the EARLIEST such slot at/after the hold end, and must be conflict-free against every other event on the rep's calendar.\n  - Only the BT ops manager CRM row is ever touched; every other CRM row is read-only.\n  - Figures cited in stamps/emails/comments quote the recorded or ledger value as-is (no separators).\n\nE. ENTERPRISE MIRRORS (three EnterpriseOps systems joined the desk this quarter; exact recording formats).\n  Scheduler (eops_gym_calendar_*): the rep books under their OWN scheduler login 'riley_chen' (riley.chen@atlas.com). The desk's card-product launch calendar is the SECONDARY calendar 'Product Launches' (is_primary=0, time_zone 'UTC', color_id '5' — the fixed launch-calendar colour); exactly four acls rows sit on it — the rep 'owner' (scope 'scope-riley'), the BT ops manager 'writer' (scope 'scope-btops-mgr'), the underwriting team and the underwriting review desk 'reader' (scopes 'scope-uw-team', 'scope-uw-review'). The promo-window HOLD is the desk's reserved record 'event-corrected-001' re-cut IN PLACE (UPDATE; clear its stale attendees; never a second record) onto that calendar under 'riley_chen' with summary '[BTO-HOLD] promo-window hold total_transfer=<n>', status 'confirmed', start '2025-11-14 16:00:00.000000', end '2025-11-14 17:00:00.000000' (the closing hour of the offer's promo window, Friday 14 November 2025), start_timezone and end_timezone both 'UTC'. The group's launch-control monitor is the watch_channels row 'NOVAX_MONITOR' with webhook_address 'https://hooks.launch.corp.com/novax'. The promo review window ends when that hold ends; those dates live ONLY in the scheduler.\n  Card-servicing intake (eops_gym_itsm_mcp_*): the desk's card-servicing intake is ticket INC_024, (re)filed under the standard intake codes — service_offering 'SVCOFF_004', caller 'USER_006', assignment_group 'GROUP_002', category 'hardware', impact 'medium', urgency 'low', status 'new' — with the servicing playbook article 'KB_003' linked via an incident_knowledge row as used_as='suggested'.\n  People-services tracker (eops_sn_hr_internal_*): the manager-briefing case is HRC0000714 (hr_case_id 4); it is handed to the lightest-loaded officer of its handling group — Zachary Mcintosh, officer id 33 — with status='awaiting_acceptance' and request_status='requested', and a notification row of type 'update' to zachary.mcintosh3@servicenow.com recorded on that case.\n\n## Illustrative RAW rows from s0 (seed values only; all computed figures come from the live tables).\n{\"crm_mgr\": [{\"customer_id\": \"00000002\", \"customer_email\": \"btops.manager@atlas.com\", \"customer_name\": \"BT Ops Manager\", \"assigned_to_email\": \"riley.chen@atlas.com\", \"note\": \"\"}], \"bird_district\": [{\"A3\": \"south Bohemia\", \"note\": \"\"}], \"bird_client\": [{\"gender\": \"M\", \"note\": \"\"}], \"bird_loan\": [{\"amount\": 250000, \"date\": \"1995-01-01\", \"note\": \"\"}], \"vm_users\": [{\"email\": \"riley.chen@atlas.com\", \"note\": \"\"}, {\"email\": \"src.card.payoff@atlas.com\", \"note\": \"\"}, {\"email\": \"wrong.card.payoff@atlas.com\", \"note\": \"\"}], \"wb_calendar_events\": [{\"event_name\": \"BT-desk daily standup\", \"participant_email\": \"riley.chen@atlas.com\", \"event_start\": \"2025-11-17 13:00:00\", \"duration\": \"60\", \"note\": \"\"}], \"td_projects\": [{\"name\": \"Q1 balance transfer Run\", \"note\": \"\"}], \"eops_gym_calendar_users\": [{\"user_id\": \"riley_chen\", \"email\": \"riley.chen@atlas.com\", \"note\": \"the BT ops rep's own scheduler login\"}], \"eops_gym_calendar_scopes\": [{\"id\": \"scope-riley\", \"type\": \"user\", \"value\": \"riley.chen@atlas.com\", \"note\": \"\"}, {\"id\": \"scope-btops-mgr\", \"type\": \"user\", \"value\": \"btops.manager@atlas.com\", \"note\": \"\"}, {\"id\": \"scope-uw-team\", \"type\": \"user\", \"value\": \"underwriting.team@atlas.com\", \"note\": \"\"}, {\"id\": \"scope-uw-review\", \"type\": \"user\", \"value\": \"uw.review@krotov.cz\", \"note\": \"\"}], \"eops_gym_calendar_events\": [{\"event_id\": \"event-corrected-001\", \"note\": \"the desk's reserved promo-hold record — still carries a placeholder booking; re-cut it in place\"}], \"eops_gym_itsm_mcp_incident\": [{\"incident_id\": \"INC_024\", \"number\": \"INC-000024\", \"status\": \"in_progress\", \"category\": \"hardware\", \"note\": \"\"}], \"eops_gym_itsm_mcp_knowledge\": [{\"knowledge_id\": \"KB_003\", \"note\": \"\"}], \"eops_sn_hr_internal_hr_case\": [{\"hr_case_id\": 4, \"number\": \"HRC0000714\", \"status\": \"work_in_progress\", \"assignment_group\": 7, \"note\": \"\"}], \"eops_sn_hr_internal_user\": [{\"user_id\": 33, \"email\": \"zachary.mcintosh3@servicenow.com\", \"note\": \"\"}]}\n\n# TOOLS\n[{\"name\": \"query\", \"purpose\": \"Run a read-only SQL SELECT over the merged world (source balance, UW-flag count, ledger nets, CRM state, and the eops_* mirrors: the eops_gym_calendar_* scheduler, the eops_gym_itsm_mcp_* card-servicing intake desk, the eops_sn_hr_internal_* people-services tracker).\", \"args\": {\"sql\": \"a SELECT statement\"}}, {\"name\": \"describe_table\", \"purpose\": \"Return column names/types of one table.\", \"args\": {\"table\": \"table name\"}}, {\"name\": \"create_row\", \"purpose\": \"INSERT one row (vm_transactions, sw_expenses, gm_emails, td_tasks, wb_calendar_events, eops_gym_calendar_calendars/acls/watch_channels, eops_gym_itsm_mcp_incident_knowledge, eops_sn_hr_internal_notification, ...).\", \"args\": {\"table\": \"table name\", \"values\": \"{column: value} map\"}}, {\"name\": \"update_row\", \"purpose\": \"UPDATE columns of rows matching a WHERE predicate (CRM notes/status stamps; the eops_gym_calendar_events reserved hold record re-cut in place; the eops_gym_itsm_mcp_incident intake re-file; the eops_sn_hr_internal_hr_case briefing-case handoff).\", \"args\": {\"table\": \"table name\", \"set\": \"{column: value}\", \"where\": \"predicate\"}}, {\"name\": \"delete_row\", \"purpose\": \"DELETE rows matching a WHERE predicate (the stale eops_gym_calendar_attendees rows of the re-cut hold record). NOTE: payoff transfers are compensatable — correct a wrong-card payoff with a reversal + correct reissue, do NOT naked-delete it.\", \"args\": {\"table\": \"table name\", \"where\": \"predicate\"}}]",
+ "final_message": "REPORT\nbranch: AUTO_APPROVE_STANDARD_PROMO\ndelta: 3\npromo_uplift: 3\nreconciled: ok\nside_scan_count: 74\nsource_balance: 149609.18048780487\ntotal_transfer: 751\ntransfer_base: 748",
+ "trace": [
+  {
+   "call": 1,
+   "turn": null,
+   "kind": "tool",
+   "name": "list_tables",
+   "args": {},
+   "response": {
+    "tables": [
+     "bird_account",
+     "bird_card",
+     "bird_client",
+     "bird_disp",
+     "bird_district",
+     "bird_loan",
+     "bird_order",
+     "bird_trans",
+     "eops_gym_calendar_acls",
+     "eops_gym_calendar_attachments",
+     "eops_gym_calendar_attendees",
+     "eops_gym_calendar_birthday_properties",
+     "eops_gym_calendar_calendars",
+     "eops_gym_calendar_colors",
+     "eops_gym_calendar_conference_data",
+     "eops_gym_calendar_events",
+     "eops_gym_calendar_extended_properties",
+     "eops_gym_calendar_office_locations",
+     "eops_gym_calendar_recurring_events",
+     "eops_gym_calendar_reminders",
+     "eops_gym_calendar_scopes",
+     "eops_gym_calendar_settings",
+     "eops_gym_calendar_users",
+     "eops_gym_calendar_watch_channels",
+     "eops_gym_calendar_working_location_properties",
+     "eops_gym_itsm_mcp_change",
+     "eops_gym_itsm_mcp_change_request_mapping",
+     "eops_gym_itsm_mcp_child_incident",
+     "eops_gym_itsm_mcp_configuration_item",
+     "eops_gym_itsm_mcp_incident",
+     "eops_gym_itsm_mcp_incident_affected_cis",
+     "eops_gym_itsm_mcp_incident_knowledge",
+     "eops_gym_itsm_mcp_incident_sla",
+     "eops_gym_itsm_mcp_incident_template",
+     "eops_gym_itsm_mcp_knowledge",
+     "eops_gym_itsm_mcp_location",
+     "eops_gym_itsm_mcp_notification",
+     "eops_gym_itsm_mcp_organization",
+     "eops_gym_itsm_mcp_permission",
+     "eops_gym_itsm_mcp_problem",
+     "eops_gym_itsm_mcp_role",
+     "eops_gym_itsm_mcp_role_permission",
+     "eops_gym_itsm_mcp_service",
+     "eops_gym_itsm_mcp_service_offering",
+     "eops_gym_itsm_mcp_sla_definition",
+     "eops_gym_itsm_mcp_user_group",
+     "eops_gym_itsm_mcp_user_group_member",
+     "eops_gym_itsm_mcp_user_role",
+     "eops_gym_itsm_mcp_users",
+     "eops_sn_hr_internal_assignment_rules",
+     "eops_sn_hr_internal_checklist",
+     "eops_sn_hr_internal_escalation_rule",
+     "eops_sn_hr_internal_hr_case",
+     "eops_sn_hr_internal_hr_case_knowledge",
+     "eops_sn_hr_internal_hr_case_task",
+     "eops_sn_hr_internal_hr_criteria",
+     "eops_sn_hr_internal_hr_profile",
+     "eops_sn_hr_internal_hr_service",
+     "eops_sn_hr_internal_knowledge",
+     "eops_sn_hr_internal_notification",
+     "eops_sn_hr_internal_organization",
+     "eops_sn_hr_internal_permission",
+     "eops_sn_hr_internal_role",
+     "eops_sn_hr_internal_role_permission",
+     "eops_sn_hr_internal_service_template",
+     "eops_sn_hr_internal_skill",
+     "eops_sn_hr_internal_survey",
+     "eops_sn_hr_internal_survey_instance",
+     "eops_sn_hr_internal_topic_category",
+     "eops_sn_hr_internal_topic_detail",
+     "eops_sn_hr_internal_user",
+     "eops_sn_hr_internal_user_group",
+     "eops_sn_hr_internal_user_group_member",
+     "eops_sn_hr_internal_user_role",
+     "eops_sn_hr_internal_user_skill",
+     "gm_attachments",
+     "gm_drafts",
+     "gm_emails",
+     "gm_global_email_threads",
+     "gm_user_email_threads",
+     "gm_users",
+     "sn_notes",
+     "sn_users",
+     "sqlite_sequence",
+     "sw_expense_comments",
+     "sw_expense_shares",
+     "sw_expenses",
+     "sw_group_members",
+     "sw_groups",
+     "sw_notifications",
+     "sw_payment_comments",
+     "sw_payments",
+     "sw_users",
+     "td_attachments",
+     "td_labels",
+     "td_notifications",
+     "td_project_collaborator_links",
+     "td_project_invites",
+     "td_projects",
+     "td_sections",
+     "td_sub_tasks",
+     "td_task_comments",
+     "td_task_label_links",
+     "td_tasks",
+     "td_users",
+     "vm_bank_transfers",
+     "vm_friendships",
+     "vm_notifications",
+     "vm_payment_cards",
+     "vm_payment_requests",
+     "vm_transaction_comment_likes",
+     "vm_transaction_comments",
+     "vm_transaction_likes",
+     "vm_transactions",
+     "vm_users",
+     "wb_analytics_data",
+     "wb_calendar_events",
+     "wb_customer_relationship_manager_data",
+     "wb_emails",
+     "wb_project_tasks"
+    ],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Compute the TOTAL transfer has (1) a VALUE dependency on the step that Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200) — it consumes the figure 'transfer_base' that step records; (2) a VALUE dependency on the step that Between 1/1/1995 and 12/31/1997, how many loans in the amount of at least 250,000 per account that chose monthly statement issuance were app… — it consumes the figure 'promo_uplift' that step records.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Decide the BT decision branch from BOTH figures you have already recorded — read answers.delta AND answers.transfer_base — against the book'… has (1) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'delta' that step records; (2) a VALUE dependency on the step that Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200) — it consumes the figure 'transfer_base' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 2,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_account"
+   },
+   "response": {
+    "table": "bird_account",
+    "columns": [
+     "account_id",
+     "district_id",
+     "frequency",
+     "date"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 3,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_card"
+   },
+   "response": {
+    "table": "bird_card",
+    "columns": [
+     "card_id",
+     "disp_id",
+     "type",
+     "issued"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 4,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_client"
+   },
+   "response": {
+    "table": "bird_client",
+    "columns": [
+     "client_id",
+     "gender",
+     "birth_date",
+     "district_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 5,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_disp"
+   },
+   "response": {
+    "table": "bird_disp",
+    "columns": [
+     "disp_id",
+     "client_id",
+     "account_id",
+     "type"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 6,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_district"
+   },
+   "response": {
+    "table": "bird_district",
+    "columns": [
+     "district_id",
+     "A2",
+     "A3",
+     "A4",
+     "A5",
+     "A6",
+     "A7",
+     "A8",
+     "A9",
+     "A10",
+     "A11",
+     "A12",
+     "A13",
+     "A14",
+     "A15",
+     "A16"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 7,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_loan"
+   },
+   "response": {
+    "table": "bird_loan",
+    "columns": [
+     "loan_id",
+     "account_id",
+     "date",
+     "amount",
+     "duration",
+     "payments",
+     "status"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 8,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "bird_trans"
+   },
+   "response": {
+    "table": "bird_trans",
+    "columns": [
+     "trans_id",
+     "account_id",
+     "date",
+     "type",
+     "operation",
+     "amount",
+     "balance",
+     "k_symbol",
+     "bank",
+     "account"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 9,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_customer_relationship_manager_data"
+   },
+   "response": {
+    "table": "wb_customer_relationship_manager_data",
+    "columns": [
+     "customer_id",
+     "assigned_to_email",
+     "customer_name",
+     "customer_email",
+     "customer_phone",
+     "last_contact_date",
+     "product_interest",
+     "status",
+     "follow_up_by",
+     "notes"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 10,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_transactions"
+   },
+   "response": {
+    "table": "vm_transactions",
+    "columns": [
+     "created_at",
+     "updated_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "receiver_id",
+     "amount",
+     "description",
+     "private",
+     "receipt_download_count",
+     "like_count",
+     "payment_card_digits"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 11,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "vm_users"
+   },
+   "response": {
+    "table": "vm_users",
+    "columns": [
+     "last_logged_in",
+     "created_at",
+     "verification_code_expiry",
+     "password_reset_code_expiry",
+     "record_hash",
+     "id",
+     "first_name",
+     "last_name",
+     "email",
+     "password",
+     "venmo_balance",
+     "verified",
+     "verification_code",
+     "password_reset_code"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 12,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expenses"
+   },
+   "response": {
+    "table": "sw_expenses",
+    "columns": [
+     "debtor_ids",
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "group_id",
+     "payer_id",
+     "description",
+     "amount",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 13,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_expense_shares"
+   },
+   "response": {
+    "table": "sw_expense_shares",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "expense_id",
+     "debtor_id",
+     "share_amount"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 14,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_payments"
+   },
+   "response": {
+    "table": "sw_payments",
+    "columns": [
+     "participant_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "group_id",
+     "user_id",
+     "payer_id",
+     "receiver_id",
+     "payer_email",
+     "payer_name",
+     "receiver_email",
+     "receiver_name",
+     "amount",
+     "description",
+     "deleted",
+     "receipt_file_name",
+     "receipt_file_content",
+     "receipt_download_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 15,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "sw_users"
+   },
+   "response": {
+    "table": "sw_users",
+    "columns": [
+     "created_at",
+     "last_logged_in",
+     "verification_code_expiry",
+     "password_reset_code_expiry",
+     "record_hash",
+     "id",
+     "first_name",
+     "last_name",
+     "email",
+     "password",
+     "verified",
+     "verification_code",
+     "password_reset_code"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 16,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_emails"
+   },
+   "response": {
+    "table": "gm_emails",
+    "columns": [
+     "recipient_ids",
+     "created_at",
+     "record_hash",
+     "id",
+     "sender_id",
+     "subject",
+     "body",
+     "response_to_email_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 17,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "gm_users"
+   },
+   "response": {
+    "table": "gm_users",
+    "columns": [
+     "created_at",
+     "last_logged_in",
+     "password_reset_code_expiry",
+     "record_hash",
+     "id",
+     "first_name",
+     "last_name",
+     "email",
+     "password",
+     "password_reset_code"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 18,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_projects"
+   },
+   "response": {
+    "table": "td_projects",
+    "columns": [
+     "color",
+     "created_at",
+     "record_hash",
+     "id",
+     "user_id",
+     "name",
+     "is_inbox",
+     "description"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 19,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_tasks"
+   },
+   "response": {
+    "table": "td_tasks",
+    "columns": [
+     "due_date",
+     "priority",
+     "duration_unit",
+     "created_at",
+     "record_hash",
+     "id",
+     "project_id",
+     "section_id",
+     "user_id",
+     "title",
+     "description",
+     "is_completed",
+     "duration",
+     "order_index",
+     "assignee_id",
+     "assigner_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 20,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_task_comments"
+   },
+   "response": {
+    "table": "td_task_comments",
+    "columns": [
+     "created_at",
+     "record_hash",
+     "id",
+     "task_id",
+     "user_id",
+     "content"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 21,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "td_users"
+   },
+   "response": {
+    "table": "td_users",
+    "columns": [
+     "created_at",
+     "last_logged_in",
+     "verification_code_expiry",
+     "password_reset_code_expiry",
+     "record_hash",
+     "id",
+     "first_name",
+     "last_name",
+     "email",
+     "password",
+     "verified",
+     "verification_code",
+     "password_reset_code"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 22,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='btops.manager@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "riley.chen@atlas.com",
+      "customer_name": "BT Ops Manager",
+      "customer_email": "btops.manager@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "balance transfer",
+      "status": "Active",
+      "follow_up_by": "",
+      "notes": "Q1 balance transfer."
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (definition) — applies to records you are working with: The promo-window uplift is the count of approved loans of at least 250,000 written between 1/1/1995 and 12/31/1997 on accounts with monthly statement issuance (the UW-flagged proxies - each scores 1).",
+     "DEPENDENCY MAP — for the records you are working with: The step that Classify the BT decision TIER. RE-DERIVE the uplift from the live bird tables by re-answering the flagged-loan count question (the same ques… has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks; (2) a VALUE dependency on the step that Between 1/1/1995 and 12/31/1997, how many loans in the amount of at least 250,000 per account that chose monthly statement issuance were app… — it consumes the figure 'promo_uplift' that step records.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Log the balance transfer run on the BT ops manager CRM record has (1) a STATE dependency on the step that If the BT decision branch is 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE', send the underwriting review desk a handoff email — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Reconcile the posted transfer against the recorded delta has (1) a STATE dependency on the step that Post the payoff transfer run for EXACTLY delta on the card-payoff ledger — it must follow the record that step files in vm_transactions; (2) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'delta' that step records.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200) has (1) a VALUE dependency on the step that What is the average loan amount by male borrowers? (Take the average over every male-client-to-loan link in the book: a loan counts once for… — it consumes the figure 'source_balance' that step records.",
+     "DESK POLICY (rate) — applies to records you are working with: The transfer base is set at 1/200 (rounded) of the portfolio balance."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 23,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS accounts, COUNT(DISTINCT district_id) AS districts, MIN(date) AS min_date, MAX(date) AS max_date FROM bird_account"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "accounts": 4500,
+      "districts": 77,
+      "min_date": "1993-01-01",
+      "max_date": "1997-12-29"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (threshold) — applies to records you are working with: The BT decision branch is decided on the escalation delta and the absolute transfer base — AUTO_APPROVE_STANDARD_PROMO / CONDITIONAL_UW_REVIEW / DECLINED_ALTERNATIVE — with the decision bars the book's own: the conditional-review floor on the delta, and the absolute-base decline bar on the base.",
+     "DESK POLICY (definition) — applies to records you are working with: The absolute-base decline bar is the average amount of the loans still on running contract (running contracts include those currently in debt) on accounts with statement issuance after each transaction, converted into transfer-base units with the same round(/200) policy as the base.",
+     "DESK POLICY (definition) — applies to records you are working with: The conditional-review floor is the number of distinct accounts based in the Pisek district that show household-payment transactions on their statements.",
+     "DESK POLICY (definition) — applies to records you are working with: The independent side question for the quarterly BT overview: how many South Bohemia account holders still do not own credit cards — count it as the book does: every client-to-account link held by a South Bohemia client in a non-owner, authorized-user capacity counts (such authorized users hold no card-bearing ownership of their own on the account), one count per link.",
+     "DESK POLICY (definition) — applies to records you are working with: The source-card portfolio balance is sized as the account book's average loan amount held by male borrowers — the average is taken over every male-client-to-loan link in the book: a loan counts once for each man linked to its account, whether he is the account's owner or an authorized non-owner user (a loan on an account linked to two men enters twice)."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 24,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n, MIN(date) AS min_date, MAX(date) AS max_date, SUM(amount) AS sum_amount, SUM(balance) AS sum_balance FROM bird_trans"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1056320,
+      "min_date": "1993-01-01",
+      "max_date": "1998-12-31",
+      "sum_amount": 6257862197,
+      "sum_balance": 40687734247
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 25,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT type, operation, k_symbol, COUNT(*) AS n, SUM(amount) AS total FROM bird_trans GROUP BY type,operation,k_symbol ORDER BY n DESC LIMIT 50"
+   },
+   "response": {
+    "n_rows": 17,
+    "rows": [
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": null,
+      "n": 257393,
+      "total": 2103015810
+     },
+     {
+      "type": "PRIJEM",
+      "operation": null,
+      "k_symbol": "UROK",
+      "n": 183114,
+      "total": 27479762
+     },
+     {
+      "type": "PRIJEM",
+      "operation": "VKLAD",
+      "k_symbol": null,
+      "n": 156743,
+      "total": 2418522949
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": "SLUZBY",
+      "n": 155832,
+      "total": 2744045
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "PREVOD NA UCET",
+      "k_symbol": "SIPO",
+      "n": 115254,
+      "total": 476103616
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "PREVOD NA UCET",
+      "k_symbol": " ",
+      "n": 52817,
+      "total": 105877033
+     },
+     {
+      "type": "PRIJEM",
+      "operation": "PREVOD Z UCTU",
+      "k_symbol": null,
+      "n": 34888,
+      "total": 614007835
+     },
+     {
+      "type": "PRIJEM",
+      "operation": "PREVOD Z UCTU",
+      "k_symbol": "DUCHOD",
+      "n": 30338,
+      "total": 167472118
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "PREVOD NA UCET",
+      "k_symbol": "POJISTNE",
+      "n": 18477,
+      "total": 24151293
+     },
+     {
+      "type": "VYBER",
+      "operation": "VYBER",
+      "k_symbol": null,
+      "n": 16666,
+      "total": 208603758
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "PREVOD NA UCET",
+      "k_symbol": "UVER",
+      "n": 13580,
+      "total": 55253001
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "PREVOD NA UCET",
+      "k_symbol": null,
+      "n": 8155,
+      "total": 11253541
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER KARTOU",
+      "k_symbol": null,
+      "n": 8036,
+      "total": 18170400
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": "SIPO",
+      "n": 2811,
+      "total": 22402800
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": "SANKC. UROK",
+      "n": 1577,
+      "total": 37736
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": " ",
+      "n": 616,
+      "total": 2742600
+     },
+     {
+      "type": "VYDAJ",
+      "operation": "VYBER",
+      "k_symbol": "POJISTNE",
+      "n": 23,
+      "total": 23900
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 26,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_users WHERE email IN ('riley.chen@atlas.com','src.card.payoff@atlas.com','wrong.card.payoff@atlas.com')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "riley.chen@atlas.com",
+      "password": "bto-seed",
+      "venmo_balance": 500000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Source",
+      "last_name": "Payoff",
+      "email": "src.card.payoff@atlas.com",
+      "password": "bto-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "last_logged_in": null,
+      "created_at": "2023-01-01 00:00:00",
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 109,
+      "first_name": "Wrong",
+      "last_name": "Card",
+      "email": "wrong.card.payoff@atlas.com",
+      "password": "bto-seed",
+      "venmo_balance": 100000.0,
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 27,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM vm_transactions WHERE description LIKE '%[BTO-%' ORDER BY created_at,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Post the payoff transfer run for EXACTLY delta on the card-payoff ledger has (1) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'delta' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 28,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_users WHERE email IN ('riley.chen@atlas.com','btops.manager@atlas.com','uw.review@krotov.cz')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 153,
+      "first_name": "BT",
+      "last_name": "Manager",
+      "email": "btops.manager@atlas.com",
+      "password": "bto-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 152,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "riley.chen@atlas.com",
+      "password": "bto-seed",
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 154,
+      "first_name": "UW",
+      "last_name": "Review",
+      "email": "uw.review@krotov.cz",
+      "password": "bto-seed",
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 29,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_users WHERE email IN ('riley.chen@atlas.com','underwriting.team@atlas.com')"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "BT",
+      "last_name": "Ops",
+      "email": "riley.chen@atlas.com",
+      "password": "bto-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     },
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 108,
+      "first_name": "Underwriting",
+      "last_name": "Team",
+      "email": "underwriting.team@atlas.com",
+      "password": "bto-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 30,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_users WHERE email='riley.chen@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "created_at": "2023-01-01 00:00:00",
+      "last_logged_in": null,
+      "verification_code_expiry": null,
+      "password_reset_code_expiry": null,
+      "record_hash": null,
+      "id": 107,
+      "first_name": "Riley",
+      "last_name": "Chen",
+      "email": "riley.chen@atlas.com",
+      "password": "bto-seed",
+      "verified": 1,
+      "verification_code": null,
+      "password_reset_code": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 31,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_projects WHERE name='Q1 balance transfer Run'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "color": "orange",
+      "created_at": "2023-01-01 00:00:00",
+      "record_hash": null,
+      "id": 280,
+      "user_id": 107,
+      "name": "Q1 balance transfer Run",
+      "is_inbox": 0,
+      "description": "Quarterly BALANCE TRANSFER OFFER workspace"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 32,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM wb_analytics_data"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1000
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 33,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT gender, COUNT(*) AS n FROM bird_client GROUP BY gender"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "gender": "F",
+      "n": 2645
+     },
+     {
+      "gender": "M",
+      "n": 2724
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 34,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT type, COUNT(*) AS n FROM bird_disp GROUP BY type"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "type": "DISPONENT",
+      "n": 869
+     },
+     {
+      "type": "OWNER",
+      "n": 4500
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 35,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT frequency, COUNT(*) AS n FROM bird_account GROUP BY frequency"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "frequency": "POPLATEK MESICNE",
+      "n": 4167
+     },
+     {
+      "frequency": "POPLATEK PO OBRATU",
+      "n": 93
+     },
+     {
+      "frequency": "POPLATEK TYDNE",
+      "n": 240
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 36,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT status, COUNT(*) AS n, AVG(amount) AS avg_amount FROM bird_loan GROUP BY status ORDER BY status"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "status": "A",
+      "n": 203,
+      "avg_amount": 91641.45812807881
+     },
+     {
+      "status": "B",
+      "n": 31,
+      "avg_amount": 140720.90322580645
+     },
+     {
+      "status": "C",
+      "n": 403,
+      "avg_amount": 171410.3523573201
+     },
+     {
+      "status": "D",
+      "n": 45,
+      "avg_amount": 249284.53333333333
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 37,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT A2,A3,COUNT(*) AS n FROM bird_district WHERE A2 LIKE '%Pisek%' OR A3 LIKE '%Bohemia%' GROUP BY A2,A3"
+   },
+   "response": {
+    "n_rows": 51,
+    "rows": [
+     {
+      "A2": "Benesov",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Beroun",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Ceska Lipa",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Ceske Budejovice",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Cesky Krumlov",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Cheb",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Chomutov",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Chrudim",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Decin",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Domazlice",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Havlickuv Brod",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Hradec Kralove",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Jablonec n. Nisou",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Jicin",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Jindrichuv Hradec",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Karlovy Vary",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Kladno",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Klatovy",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Kolin",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Kutna Hora",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Liberec",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Litomerice",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Louny",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Melnik",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Mlada Boleslav",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Most",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Nachod",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Nymburk",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Pardubice",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Pelhrimov",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Pisek",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Plzen - jih",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Plzen - mesto",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Plzen - sever",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Prachatice",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Praha - vychod",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Praha - zapad",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Pribram",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Rakovnik",
+      "A3": "central Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Rokycany",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Rychnov nad Kneznou",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Semily",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Sokolov",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Strakonice",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Svitavy",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Tabor",
+      "A3": "south Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Tachov",
+      "A3": "west Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Teplice",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Trutnov",
+      "A3": "east Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Usti nad Labem",
+      "A3": "north Bohemia",
+      "n": 1
+     },
+     {
+      "A2": "Usti nad Orlici",
+      "A3": "east Bohemia",
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 38,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(l.amount) AS source_balance, COUNT(*) AS male_loan_links FROM bird_client c JOIN bird_disp d ON d.client_id=c.client_id JOIN bird_loan l ON l.account_id=d.account_id WHERE c.gender='M'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "source_balance": 149609.18048780487,
+      "male_loan_links": 410
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 39,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS promo_uplift FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status='A' AND l.amount>=250000 AND l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='MESICNE'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "promo_uplift": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 40,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(DISTINCT a.account_id) AS conditional_floor FROM bird_account a JOIN bird_district z ON z.district_id=a.district_id JOIN bird_trans t ON t.account_id=a.account_id WHERE z.A2='Pisek' AND t.k_symbol='SIPO'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "conditional_floor": 32
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 41,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS side_scan_count FROM bird_client c JOIN bird_district z ON z.district_id=c.district_id JOIN bird_disp d ON d.client_id=c.client_id WHERE z.A3='south Bohemia' AND d.type<>'OWNER'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "side_scan_count": 74
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 42,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(l.amount) AS avg_running, ROUND(AVG(l.amount)/200.0) AS decline_bar FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status IN ('C','D') AND a.frequency='PO OBRATU'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "avg_running": null,
+      "decline_bar": null
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 43,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT ROUND((SELECT AVG(l.amount) FROM bird_client c JOIN bird_disp d ON d.client_id=c.client_id JOIN bird_loan l ON l.account_id=d.account_id WHERE c.gender='M')/200.0) AS transfer_base"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "transfer_base": 748.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 44,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS promo_uplift FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status='A' AND l.amount>=250000 AND l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='POPLATEK MESICNE'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "promo_uplift": 3
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 45,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(l.amount) AS avg_running, ROUND(AVG(l.amount)/200.0) AS decline_bar, COUNT(*) AS n FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status IN ('C','D') AND a.frequency='POPLATEK PO OBRATU'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "avg_running": 192836.57142857142,
+      "decline_bar": 964.0,
+      "n": 21
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 46,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT z.A2, COUNT(DISTINCT a.account_id) AS conditional_floor FROM bird_account a JOIN bird_district z ON z.district_id=a.district_id JOIN bird_trans t ON t.account_id=a.account_id WHERE z.A2='Pisek' AND t.k_symbol='SIPO' GROUP BY z.A2"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "A2": "Pisek",
+      "conditional_floor": 32
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 47,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_analytics_data"
+   },
+   "response": {
+    "table": "wb_analytics_data",
+    "columns": [
+     "date_of_visit",
+     "visitor_id",
+     "page_views",
+     "session_duration_seconds",
+     "traffic_source",
+     "user_engaged"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 48,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "wb_calendar_events"
+   },
+   "response": {
+    "table": "wb_calendar_events",
+    "columns": [
+     "event_id",
+     "event_name",
+     "participant_email",
+     "event_start",
+     "duration"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 49,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_users"
+   },
+   "response": {
+    "table": "eops_gym_calendar_users",
+    "columns": [
+     "user_id",
+     "email",
+     "name",
+     "given_name",
+     "family_name",
+     "static_token",
+     "timezone",
+     "is_active",
+     "is_verified",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 50,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_calendars"
+   },
+   "response": {
+    "table": "eops_gym_calendar_calendars",
+    "columns": [
+     "calendar_id",
+     "user_id",
+     "summary",
+     "description",
+     "time_zone",
+     "is_primary",
+     "color_id",
+     "hidden",
+     "selected",
+     "deleted",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 51,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_acls"
+   },
+   "response": {
+    "table": "eops_gym_calendar_acls",
+    "columns": [
+     "id",
+     "calendar_id",
+     "user_id",
+     "role",
+     "scope_id",
+     "etag"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 52,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_events"
+   },
+   "response": {
+    "table": "eops_gym_calendar_events",
+    "columns": [
+     "event_id",
+     "calendar_id",
+     "user_id",
+     "organizer_id",
+     "organizer_email",
+     "organizer_display_name",
+     "organizer_self",
+     "recurring_event_id",
+     "summary",
+     "description",
+     "location",
+     "start_datetime",
+     "end_datetime",
+     "start_timezone",
+     "end_timezone",
+     "originalStartTime_date",
+     "originalStartTime_dateTime",
+     "originalStartTime_timeZone",
+     "recurrence",
+     "status",
+     "visibility",
+     "color_id",
+     "iCalUID",
+     "eventType",
+     "focusTimeProperties",
+     "guestsCanInviteOthers",
+     "guestsCanModify",
+     "guestsCanSeeOtherGuests",
+     "outOfOfficeProperties",
+     "sequence",
+     "source",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 53,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_attendees"
+   },
+   "response": {
+    "table": "eops_gym_calendar_attendees",
+    "columns": [
+     "attendees_id",
+     "event_id",
+     "user_id",
+     "comment",
+     "displayName",
+     "additionalGuests",
+     "optional",
+     "resource",
+     "responseStatus"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 54,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_calendar_watch_channels"
+   },
+   "response": {
+    "table": "eops_gym_calendar_watch_channels",
+    "columns": [
+     "id",
+     "resource_id",
+     "resource_uri",
+     "resource_type",
+     "calendar_id",
+     "user_id",
+     "webhook_address",
+     "webhook_token",
+     "webhook_type",
+     "params",
+     "created_at",
+     "expires_at",
+     "last_notification_at",
+     "is_active",
+     "notification_count"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 55,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "columns": [
+     "incident_id",
+     "number",
+     "short_description",
+     "caller_id",
+     "service",
+     "service_offering",
+     "configuration_item",
+     "assigned_to",
+     "assignment_group",
+     "resolved_by",
+     "problem",
+     "change_request",
+     "caused_by_change",
+     "incident_template",
+     "parent_incident",
+     "org_id",
+     "channel",
+     "contact_type",
+     "status",
+     "category",
+     "description",
+     "worknotes",
+     "resolution_notes",
+     "close_notes",
+     "impact",
+     "urgency",
+     "priority",
+     "resolution_code",
+     "on_hold_reason",
+     "resolved",
+     "created_at",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 56,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident_knowledge"
+   },
+   "response": {
+    "table": "eops_gym_itsm_mcp_incident_knowledge",
+    "columns": [
+     "incident_kb_id",
+     "incident_id",
+     "knowledge_id",
+     "org_id",
+     "used_as",
+     "created_on"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 57,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_hr_internal_hr_case"
+   },
+   "response": {
+    "table": "eops_sn_hr_internal_hr_case",
+    "columns": [
+     "hr_case_id",
+     "number",
+     "status",
+     "hr_service",
+     "opened_for",
+     "opened_by",
+     "priority",
+     "source",
+     "assigned_to",
+     "assignment_group",
+     "short_description",
+     "worknotes",
+     "skills",
+     "approval_criteria",
+     "coe_type",
+     "approver",
+     "request_status",
+     "account_number",
+     "account_type",
+     "created_at",
+     "updated_at",
+     "org_id"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 58,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "eops_sn_hr_internal_notification"
+   },
+   "response": {
+    "table": "eops_sn_hr_internal_notification",
+    "columns": [
+     "notification_id",
+     "hr_case_id",
+     "email",
+     "type",
+     "status",
+     "created_at",
+     "org_id",
+     "updated_at"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 59,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_users WHERE user_id='riley_chen'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "user_id": "riley_chen",
+      "email": "riley.chen@atlas.com",
+      "name": "Riley Chen",
+      "given_name": "Riley",
+      "family_name": "Chen",
+      "static_token": "atlas-btops-riley",
+      "timezone": "UTC",
+      "is_active": 1,
+      "is_verified": 1,
+      "created_at": "2025-11-03 09:00:00",
+      "updated_at": "2025-11-03 09:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 60,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_calendars WHERE user_id='riley_chen' ORDER BY is_primary DESC, calendar_id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Reserve the promo-window HOLD in the enterprise scheduler, under your own scheduler login 'riley_chen' (riley.chen@atlas.com) has (1) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 61,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_acls WHERE user_id='riley_chen' OR calendar_id IN (SELECT calendar_id FROM eops_gym_calendar_calendars WHERE user_id='riley_chen') ORDER BY calendar_id,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 62,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_scopes WHERE id IN ('scope-riley','scope-btops-mgr','scope-uw-team','scope-uw-review')"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "id": "scope-riley",
+      "type": "user",
+      "value": "riley.chen@atlas.com"
+     },
+     {
+      "id": "scope-btops-mgr",
+      "type": "user",
+      "value": "btops.manager@atlas.com"
+     },
+     {
+      "id": "scope-uw-team",
+      "type": "user",
+      "value": "underwriting.team@atlas.com"
+     },
+     {
+      "id": "scope-uw-review",
+      "type": "user",
+      "value": "uw.review@krotov.cz"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 63,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_events WHERE event_id='event-corrected-001' OR user_id='riley_chen' OR organizer_email='riley.chen@atlas.com' ORDER BY start_datetime,event_id"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "event-corrected-001",
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "organizer_id": "alice_manager",
+      "organizer_email": "alice.johnson@techcorp.com",
+      "organizer_display_name": "Alice Johnson",
+      "organizer_self": 1,
+      "recurring_event_id": "NULL",
+      "summary": "Sprint Planning & Architecture Review",
+      "description": "Detailed sprint planning session with architecture discussion for Q4 features. We'll review user stories, estimate effort, and plan the technical approach.",
+      "location": "Conference Room A, Building 1",
+      "start_datetime": "2025-12-22T09:00:00+00:00",
+      "end_datetime": "2025-12-22T11:00:00+00:00",
+      "start_timezone": "America/New_York",
+      "end_timezone": "America/New_York",
+      "originalStartTime_date": null,
+      "originalStartTime_dateTime": "2025-12-22T09:00:00+00:00",
+      "originalStartTime_timeZone": "America/New_York",
+      "recurrence": null,
+      "status": "confirmed",
+      "visibility": "default",
+      "color_id": "7",
+      "iCalUID": "event-corrected-001@gmail.com",
+      "eventType": "default",
+      "focusTimeProperties": null,
+      "guestsCanInviteOthers": 1,
+      "guestsCanModify": 0,
+      "guestsCanSeeOtherGuests": 1,
+      "outOfOfficeProperties": null,
+      "sequence": 1,
+      "source": "{\"title\": \"Sprint Planning Board\", \"url\": \"https://jira.techcorp.com/sprint-planning-q4\"}",
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 64,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_attendees WHERE event_id='event-corrected-001'"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "attendees_id": "att-corrected-001",
+      "event_id": "event-corrected-001",
+      "user_id": "alice_manager",
+      "comment": "Looking forward to planning Q4!",
+      "displayName": "Alice Johnson",
+      "additionalGuests": 0,
+      "optional": 0,
+      "resource": 0,
+      "responseStatus": "accepted"
+     },
+     {
+      "attendees_id": "att-corrected-002",
+      "event_id": "event-corrected-001",
+      "user_id": "bob_developer",
+      "comment": null,
+      "displayName": "Bob Smith",
+      "additionalGuests": 0,
+      "optional": 0,
+      "resource": 0,
+      "responseStatus": "accepted"
+     },
+     {
+      "attendees_id": "att-corrected-003",
+      "event_id": "event-corrected-001",
+      "user_id": "carol_designer",
+      "comment": "Will join if no conflicts with user research session",
+      "displayName": "Carol White",
+      "additionalGuests": 0,
+      "optional": 1,
+      "resource": 0,
+      "responseStatus": "tentative"
+     },
+     {
+      "attendees_id": "att-corrected-004",
+      "event_id": "event-corrected-001",
+      "user_id": null,
+      "comment": null,
+      "displayName": "Conference Room A",
+      "additionalGuests": 0,
+      "optional": 0,
+      "resource": 1,
+      "responseStatus": "accepted"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 65,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_watch_channels WHERE id='NOVAX_MONITOR' OR user_id='riley_chen'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 66,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident WHERE incident_id='INC_024'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_024",
+      "number": "INC-000024",
+      "short_description": "Mixer Hum",
+      "caller_id": "USER_063",
+      "service": null,
+      "service_offering": null,
+      "configuration_item": "CI_074",
+      "assigned_to": "USER_029",
+      "assignment_group": "GROUP_005",
+      "resolved_by": null,
+      "problem": null,
+      "change_request": null,
+      "caused_by_change": null,
+      "incident_template": null,
+      "parent_incident": null,
+      "org_id": "ORG_012",
+      "channel": "phone",
+      "contact_type": "phone",
+      "status": "in_progress",
+      "category": "hardware",
+      "description": "Noise.",
+      "worknotes": "Testing cables.",
+      "resolution_notes": null,
+      "close_notes": null,
+      "impact": "low",
+      "urgency": "medium",
+      "priority": "low",
+      "resolution_code": null,
+      "on_hold_reason": null,
+      "resolved": null,
+      "created_at": "2025-12-03 09:45:00",
+      "updated_at": "2025-12-03 10:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 67,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_knowledge WHERE incident_id='INC_024'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 68,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_knowledge WHERE knowledge_id='KB_003'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "knowledge_id": "KB_003",
+      "kb_number": "KB0000003",
+      "title": "VPN Error 412 Fix",
+      "short_description": "VPN Troubleshooting",
+      "body": "Error 412 indicates a timeout. Restart the Cisco AnyConnect client.",
+      "state": "published",
+      "visibility": "internal",
+      "owner_id": "USER_003",
+      "org_id": "ORG_001",
+      "created_on": "2023-01-05 09:00:00",
+      "updated_on": "2023-01-05 09:00:00"
+     }
+    ],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that File the card-servicing intake has (1) a STATE dependency on the step that Classify the BT decision TIER. RE-DERIVE the uplift from the live bird tables by re-answering the flagged-loan count question (the same ques… — it must follow the record that step files in wb_customer_relationship_manager_data; (2) a VALUE dependency on the step that Set the TRANSFER base from the stored answers.source_balance S: transfer_base = round(S/200) — it consumes the figure 'transfer_base' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 69,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_hr_case WHERE hr_case_id=4 OR number='HRC0000714'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hr_case_id": 4,
+      "number": "HRC0000714",
+      "status": "work_in_progress",
+      "hr_service": 4,
+      "opened_for": 10,
+      "opened_by": 10,
+      "priority": "low",
+      "source": "chat",
+      "assigned_to": 6,
+      "assignment_group": 7,
+      "short_description": "Inquiry about HR account permissions",
+      "worknotes": "Case created via chat",
+      "skills": null,
+      "approval_criteria": null,
+      "coe_type": "HRIT",
+      "approver": null,
+      "request_status": null,
+      "account_number": "ACC-10-3",
+      "account_type": "checking",
+      "created_at": "2023-04-15 10:00:00",
+      "updated_at": "2023-04-15 10:00:00",
+      "org_id": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 70,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_notification WHERE hr_case_id=4"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "notification_id": 4,
+      "hr_case_id": 4,
+      "email": "brandon.davis.10@personal.example.com",
+      "type": "update",
+      "status": "ready",
+      "created_at": "2023-04-15 10:10:00",
+      "org_id": 4,
+      "updated_at": "2023-04-15 10:10:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 71,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_user WHERE user_id=33"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "user_id": 33,
+      "first_name": "Zachary",
+      "last_name": "Mcintosh",
+      "email": "zachary.mcintosh3@servicenow.com",
+      "phone": "+16463645351",
+      "role": "agent",
+      "active": 1,
+      "org_id": 1,
+      "static_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVU0VSXzAzMyIsImlzcyI6Iml0c20ifQ.Op4_dflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_ghi",
+      "created_at": "2025-08-27 15:31:57",
+      "updated_at": "2026-05-08 07:36:29"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 72,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_calendar_events WHERE participant_email='riley.chen@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "BT-desk daily standup",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2025-11-17 13:00:00",
+      "duration": "60"
+     }
+    ],
+    "desk_notes": [
+     "DESK POLICY (policy) — applies to records you are working with: Reviews are 30-minute business-day (Mon-Fri) afternoon bookings (start between 13:00 and 16:30), at the EARLIEST such slot at/after the hold end, and must be conflict-free against every other event on the rep's calendar.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Schedule the BT-ops review has (1) a STATE dependency on the step that Reserve the promo-window HOLD in the enterprise scheduler, under your own scheduler login 'riley_chen' (riley.chen@atlas.com) — it must follow the record that step files in eops_gym_calendar_events; (2) a STATE dependency on the step that Log the balance transfer run on the BT ops manager CRM record — it must follow the record that step files in wb_customer_relationship_manager_data; (3) a STATE dependency on the step that Record that the BT ops manager has been briefed — it must follow the record that step files in eops_sn_hr_internal_hr_case; (4) a VALUE dependency on the step that What is the average loan amount by male borrowers? (Take the average over every male-client-to-loan link in the book: a loan counts once for… — it consumes the figure 'source_balance' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 73,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_tasks WHERE user_id=107 OR project_id=280 ORDER BY created_at,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Open the reconciliation follow-up has (1) a STATE dependency on the step that Log the balance transfer run on the BT ops manager CRM record — it must follow the record that step files in wb_customer_relationship_manager_data."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 74,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM td_task_comments WHERE user_id=107 ORDER BY created_at,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Wrap up the reconciliation task has (1) a STATE dependency on the step that Open the reconciliation follow-up — it must follow the record that step files in td_tasks; (2) a STATE dependency on the step that Record that the BT ops manager has been briefed — it must follow the record that step files in eops_sn_hr_internal_hr_case; (3) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records; (4) a STATE dependency on the step that Post the intercompany BT-FEE ALLOCATION on the sw_* line-share ledger — it must follow the record that step files in sw_expenses; (5) a STATE dependency on the step that Post the underwriting-team intercompany SETTLE on the sw_* line-share ledger — it must follow the record that step files in sw_payments."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 75,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_expenses WHERE description LIKE '%[BTO-ALLOC]%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Post the intercompany BT-FEE ALLOCATION on the sw_* line-share ledger has (1) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 76,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_payments WHERE description LIKE '%[BTO-SETTLE]%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Post the underwriting-team intercompany SETTLE on the sw_* line-share ledger has (1) a STATE dependency on the step that Post the intercompany BT-FEE ALLOCATION on the sw_* line-share ledger — it must follow the record that step files in sw_expense_shares; (2) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 77,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM gm_emails WHERE subject LIKE '%[BTO-%' ORDER BY created_at,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": [],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that If the BT decision branch is 'CONDITIONAL_UW_REVIEW' or 'DECLINED_ALTERNATIVE', send the underwriting review desk a handoff email has (1) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records; (2) a VALUE dependency on the step that Decide the BT decision branch from BOTH figures you have already recorded — read answers.delta AND answers.transfer_base — against the book'… — it consumes the figure 'branch' that step records.",
+     "DEPENDENCY MAP — for the records you are working with: The step that Send the BT ops manager a status update has (1) a STATE dependency on the step that File the card-servicing intake — it must follow the record that step files in eops_gym_itsm_mcp_incident; (2) a VALUE dependency on the step that Compute the TOTAL transfer — it consumes the figure 'total_transfer' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 78,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.*, su.email AS sender_email, ru.email AS receiver_email FROM vm_transactions t JOIN vm_users su ON su.id=t.sender_id JOIN vm_users ru ON ru.id=t.receiver_id WHERE t.sender_id IN (107,108,109) OR t.receiver_id IN (107,108,109) ORDER BY t.created_at,t.id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 79,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.*, u.email AS user_email, p.email AS payer_email FROM sw_expenses e LEFT JOIN sw_users u ON u.id=e.user_id LEFT JOIN sw_users p ON p.id=e.payer_id WHERE e.user_id IN (107,108) OR e.payer_id IN (107,108) ORDER BY e.created_at,e.id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 80,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT p.* FROM sw_payments p WHERE p.user_id IN (107,108) OR p.payer_id IN (107,108) OR p.receiver_id IN (107,108) ORDER BY p.created_at,p.id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 81,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id,sender_id,recipient_ids,subject,body,created_at FROM gm_emails WHERE sender_id=152 OR recipient_ids LIKE '%153%' OR recipient_ids LIKE '%154%' ORDER BY created_at,id"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 82,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_user_group WHERE group_id=7"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "group_id": 7,
+      "name": "Network Infrastructure",
+      "type": "Infrastructure Problem Team",
+      "active": 1,
+      "org_id": 1,
+      "created_at": "2023-01-01 00:00:00",
+      "updated_at": "2023-01-01 00:00:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 83,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT u.user_id,u.first_name,u.last_name,u.email,COUNT(c.hr_case_id) AS active_cases FROM eops_sn_hr_internal_user u JOIN eops_sn_hr_internal_user_group_member m ON m.user_id=u.user_id LEFT JOIN eops_sn_hr_internal_hr_case c ON c.assigned_to=u.user_id AND c.status NOT IN ('closed','resolved','cancelled') WHERE m.group_id=7 GROUP BY u.user_id,u.first_name,u.last_name,u.email ORDER BY active_cases,u.user_id"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "user_id": 33,
+      "first_name": "Zachary",
+      "last_name": "Mcintosh",
+      "email": "zachary.mcintosh3@servicenow.com",
+      "active_cases": 0
+     },
+     {
+      "user_id": 29,
+      "first_name": "Anne",
+      "last_name": "Medina",
+      "email": "anne.medina@servicenow.com",
+      "active_cases": 1
+     }
+    ],
+    "desk_notes": [
+     "DEPENDENCY MAP — for the records you are working with: The step that Record that the BT ops manager has been briefed has (1) a STATE dependency on the step that Send the BT ops manager a status update — it must follow the record that step files in gm_emails; (2) a VALUE dependency on the step that Decide the BT decision branch from BOTH figures you have already recorded — read answers.delta AND answers.transfer_base — against the book'… — it consumes the figure 'branch' that step records."
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 84,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT status, COUNT(*) AS n FROM wb_customer_relationship_manager_data GROUP BY status ORDER BY status"
+   },
+   "response": {
+    "n_rows": 6,
+    "rows": [
+     {
+      "status": "Active",
+      "n": 1
+     },
+     {
+      "status": "Lead",
+      "n": 42
+     },
+     {
+      "status": "Lost",
+      "n": 42
+     },
+     {
+      "status": "Proposal",
+      "n": 37
+     },
+     {
+      "status": "Qualified",
+      "n": 33
+     },
+     {
+      "status": "Won",
+      "n": 45
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 85,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT customer_id,customer_email,status,notes FROM wb_customer_relationship_manager_data WHERE status LIKE '%TIER%' OR notes LIKE '%BTO-%'"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 86,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name,sql FROM sqlite_master WHERE type='table' AND (sql LIKE '%BTO%' OR name LIKE '%answer%' OR name LIKE '%policy%')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "sw_expenses",
+      "sql": "CREATE TABLE \"sw_expenses\" (\n\tdebtor_ids JSON, \n\tparticipant_ids JSON, \n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tuser_id INTEGER NOT NULL, \n\tgroup_id INTEGER, \n\tpayer_id INTEGER NOT NULL, \n\tdescription VARCHAR, \n\tamount FLOAT NOT NULL, \n\tdeleted BOOLEAN NOT NULL, \n\treceipt_file_name VARCHAR, \n\treceipt_file_content VARCHAR, \n\treceipt_download_count INTEGER NOT NULL DEFAULT 0, \n\tFOREIGN KEY(user_id) REFERENCES users (id), \n\tFOREIGN KEY(group_id) REFERENCES groups (id), \n\tFOREIGN KEY(payer_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "sw_expense_shares",
+      "sql": "CREATE TABLE \"sw_expense_shares\" (\n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\texpense_id INTEGER NOT NULL, \n\tdebtor_id INTEGER NOT NULL, \n\tshare_amount FLOAT NOT NULL, \n\tFOREIGN KEY(expense_id) REFERENCES expenses (id), \n\tFOREIGN KEY(debtor_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "answers",
+      "sql": "CREATE TABLE \"answers\" (kind TEXT PRIMARY KEY, value TEXT, meta_json TEXT)"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 87,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS approved_all, SUM(CASE WHEN amount>=250000 THEN 1 ELSE 0 END) AS approved_250 FROM bird_loan WHERE status='A' AND date BETWEEN '1995-01-01' AND '1997-12-31'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "approved_all": 114,
+      "approved_250": 3
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 88,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT l.status,a.frequency,COUNT(*) AS n,SUM(CASE WHEN l.amount>=250000 AND l.date BETWEEN '1995-01-01' AND '1997-12-31' THEN 1 ELSE 0 END) AS flagged FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id GROUP BY l.status,a.frequency ORDER BY l.status,a.frequency"
+   },
+   "response": {
+    "n_rows": 12,
+    "rows": [
+     {
+      "status": "A",
+      "frequency": "POPLATEK MESICNE",
+      "n": 168,
+      "flagged": 3
+     },
+     {
+      "status": "A",
+      "frequency": "POPLATEK PO OBRATU",
+      "n": 8,
+      "flagged": 0
+     },
+     {
+      "status": "A",
+      "frequency": "POPLATEK TYDNE",
+      "n": 27,
+      "flagged": 0
+     },
+     {
+      "status": "B",
+      "frequency": "POPLATEK MESICNE",
+      "n": 22,
+      "flagged": 0
+     },
+     {
+      "status": "B",
+      "frequency": "POPLATEK PO OBRATU",
+      "n": 3,
+      "flagged": 0
+     },
+     {
+      "status": "B",
+      "frequency": "POPLATEK TYDNE",
+      "n": 6,
+      "flagged": 1
+     },
+     {
+      "status": "C",
+      "frequency": "POPLATEK MESICNE",
+      "n": 332,
+      "flagged": 46
+     },
+     {
+      "status": "C",
+      "frequency": "POPLATEK PO OBRATU",
+      "n": 18,
+      "flagged": 2
+     },
+     {
+      "status": "C",
+      "frequency": "POPLATEK TYDNE",
+      "n": 53,
+      "flagged": 9
+     },
+     {
+      "status": "D",
+      "frequency": "POPLATEK MESICNE",
+      "n": 37,
+      "flagged": 16
+     },
+     {
+      "status": "D",
+      "frequency": "POPLATEK PO OBRATU",
+      "n": 3,
+      "flagged": 1
+     },
+     {
+      "status": "D",
+      "frequency": "POPLATEK TYDNE",
+      "n": 5,
+      "flagged": 3
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 89,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM answers ORDER BY kind"
+   },
+   "response": {
+    "n_rows": 0,
+    "rows": []
+   },
+   "error": null
+  },
+  {
+   "call": 90,
+   "turn": null,
+   "kind": "tool",
+   "name": "describe_table",
+   "args": {
+    "table": "answers"
+   },
+   "response": {
+    "table": "answers",
+    "columns": [
+     "kind",
+     "value",
+     "meta_json"
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 91,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name, sql FROM sqlite_master WHERE type='table' AND name IN ('answers','vm_transactions','sw_expenses','sw_expense_shares','sw_payments','gm_emails','td_tasks','td_task_comments','wb_calendar_events','eops_gym_calendar_calendars','eops_gym_calendar_acls','eops_gym_calendar_watch_channels','eops_gym_calendar_events','eops_gym_calendar_attendees','eops_gym_itsm_mcp_incident_knowledge','eops_sn_hr_internal_notification') ORDER BY name"
+   },
+   "response": {
+    "n_rows": 16,
+    "rows": [
+     {
+      "name": "answers",
+      "sql": "CREATE TABLE \"answers\" (kind TEXT PRIMARY KEY, value TEXT, meta_json TEXT)"
+     },
+     {
+      "name": "eops_gym_calendar_acls",
+      "sql": "CREATE TABLE \"eops_gym_calendar_acls\" (\"id\" TEXT, \"calendar_id\" TEXT, \"user_id\" TEXT, \"role\" TEXT, \"scope_id\" TEXT, \"etag\" TEXT)"
+     },
+     {
+      "name": "eops_gym_calendar_attendees",
+      "sql": "CREATE TABLE \"eops_gym_calendar_attendees\" (\"attendees_id\" TEXT, \"event_id\" TEXT, \"user_id\" TEXT, \"comment\" TEXT, \"displayName\" TEXT, \"additionalGuests\" INTEGER, \"optional\" INTEGER, \"resource\" INTEGER, \"responseStatus\" TEXT)"
+     },
+     {
+      "name": "eops_gym_calendar_calendars",
+      "sql": "CREATE TABLE \"eops_gym_calendar_calendars\" (\"calendar_id\" TEXT, \"user_id\" TEXT, \"summary\" TEXT, \"description\" TEXT, \"time_zone\" TEXT, \"is_primary\" INTEGER, \"color_id\" TEXT, \"hidden\" INTEGER, \"selected\" INTEGER, \"deleted\" INTEGER, \"created_at\" TEXT, \"updated_at\" TEXT)"
+     },
+     {
+      "name": "eops_gym_calendar_events",
+      "sql": "CREATE TABLE \"eops_gym_calendar_events\" (\"event_id\" TEXT, \"calendar_id\" TEXT, \"user_id\" TEXT, \"organizer_id\" TEXT, \"organizer_email\" TEXT, \"organizer_display_name\" TEXT, \"organizer_self\" INTEGER, \"recurring_event_id\" TEXT, \"summary\" TEXT, \"description\" TEXT, \"location\" TEXT, \"start_datetime\" TEXT, \"end_datetime\" TEXT, \"start_timezone\" TEXT, \"end_timezone\" TEXT, \"originalStartTime_date\" TEXT, \"originalStartTime_dateTime\" TEXT, \"originalStartTime_timeZone\" TEXT, \"recurrence\" TEXT, \"status\" TEXT, \"visibility\" TEXT, \"color_id\" TEXT, \"iCalUID\" TEXT, \"eventType\" TEXT, \"focusTimeProperties\" TEXT, \"guestsCanInviteOthers\" INTEGER, \"guestsCanModify\" INTEGER, \"guestsCanSeeOtherGuests\" INTEGER, \"outOfOfficeProperties\" TEXT, \"sequence\" INTEGER, \"source\" TEXT, \"created_at\" TEXT, \"updated_at\" TEXT)"
+     },
+     {
+      "name": "eops_gym_calendar_watch_channels",
+      "sql": "CREATE TABLE \"eops_gym_calendar_watch_channels\" (\"id\" TEXT, \"resource_id\" TEXT, \"resource_uri\" TEXT, \"resource_type\" TEXT, \"calendar_id\" TEXT, \"user_id\" TEXT, \"webhook_address\" TEXT, \"webhook_token\" TEXT, \"webhook_type\" TEXT, \"params\" TEXT, \"created_at\" TEXT, \"expires_at\" TEXT, \"last_notification_at\" TEXT, \"is_active\" TEXT, \"notification_count\" INTEGER)"
+     },
+     {
+      "name": "eops_gym_itsm_mcp_incident_knowledge",
+      "sql": "CREATE TABLE \"eops_gym_itsm_mcp_incident_knowledge\" (\"incident_kb_id\" TEXT, \"incident_id\" TEXT, \"knowledge_id\" TEXT, \"org_id\" TEXT, \"used_as\" TEXT, \"created_on\" TEXT)"
+     },
+     {
+      "name": "eops_sn_hr_internal_notification",
+      "sql": "CREATE TABLE \"eops_sn_hr_internal_notification\" (\"notification_id\" INTEGER, \"hr_case_id\" INTEGER, \"email\" TEXT, \"type\" TEXT, \"status\" TEXT, \"created_at\" TEXT, \"org_id\" INTEGER, \"updated_at\" TEXT)"
+     },
+     {
+      "name": "gm_emails",
+      "sql": "CREATE TABLE \"gm_emails\" (\n\trecipient_ids JSON, \n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tsender_id INTEGER NOT NULL, \n\tsubject VARCHAR NOT NULL, \n\tbody VARCHAR NOT NULL, \n\tresponse_to_email_id INTEGER, \n\tFOREIGN KEY(sender_id) REFERENCES users (id), \n\tFOREIGN KEY(response_to_email_id) REFERENCES emails (id)\n)"
+     },
+     {
+      "name": "sw_expense_shares",
+      "sql": "CREATE TABLE \"sw_expense_shares\" (\n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\texpense_id INTEGER NOT NULL, \n\tdebtor_id INTEGER NOT NULL, \n\tshare_amount FLOAT NOT NULL, \n\tFOREIGN KEY(expense_id) REFERENCES expenses (id), \n\tFOREIGN KEY(debtor_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "sw_expenses",
+      "sql": "CREATE TABLE \"sw_expenses\" (\n\tdebtor_ids JSON, \n\tparticipant_ids JSON, \n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tuser_id INTEGER NOT NULL, \n\tgroup_id INTEGER, \n\tpayer_id INTEGER NOT NULL, \n\tdescription VARCHAR, \n\tamount FLOAT NOT NULL, \n\tdeleted BOOLEAN NOT NULL, \n\treceipt_file_name VARCHAR, \n\treceipt_file_content VARCHAR, \n\treceipt_download_count INTEGER NOT NULL DEFAULT 0, \n\tFOREIGN KEY(user_id) REFERENCES users (id), \n\tFOREIGN KEY(group_id) REFERENCES groups (id), \n\tFOREIGN KEY(payer_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "sw_payments",
+      "sql": "CREATE TABLE \"sw_payments\" (\n\tparticipant_ids JSON, \n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tgroup_id INTEGER, \n\tuser_id INTEGER NOT NULL, \n\tpayer_id INTEGER NOT NULL, \n\treceiver_id INTEGER NOT NULL, \n\tpayer_email VARCHAR NOT NULL, \n\tpayer_name VARCHAR NOT NULL, \n\treceiver_email VARCHAR NOT NULL, \n\treceiver_name VARCHAR NOT NULL, \n\tamount FLOAT NOT NULL, \n\tdescription VARCHAR, \n\tdeleted BOOLEAN NOT NULL, \n\treceipt_file_name VARCHAR, \n\treceipt_file_content VARCHAR, \n\treceipt_download_count INTEGER NOT NULL DEFAULT 0, \n\tFOREIGN KEY(group_id) REFERENCES groups (id), \n\tFOREIGN KEY(user_id) REFERENCES users (id), \n\tFOREIGN KEY(payer_id) REFERENCES users (id), \n\tFOREIGN KEY(receiver_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "td_task_comments",
+      "sql": "CREATE TABLE \"td_task_comments\" (\n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\ttask_id INTEGER NOT NULL, \n\tuser_id INTEGER NOT NULL, \n\tcontent VARCHAR NOT NULL, \n\tFOREIGN KEY(task_id) REFERENCES tasks (id), \n\tFOREIGN KEY(user_id) REFERENCES users (id)\n)"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 92,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT datetime('now') AS now_utc, (SELECT COALESCE(MAX(id),0)+1 FROM vm_transactions) AS next_vm_id, (SELECT COALESCE(MAX(id),0)+1 FROM sw_expenses) AS next_expense_id, (SELECT COALESCE(MAX(id),0)+1 FROM sw_expense_shares) AS next_share_id, (SELECT COALESCE(MAX(id),0)+1 FROM sw_payments) AS next_payment_id, (SELECT COALESCE(MAX(id),0)+1 FROM gm_emails) AS next_email_id, (SELECT COALESCE(MAX(id),0)+1 FROM td_tasks) AS next_task_id, (SELECT COALESCE(MAX(id),0)+1 FROM td_task_comments) AS next_comment_id, (SELECT COALESCE(MAX(CAST(event_id AS INTEGER)),0)+1 FROM wb_calendar_events) AS next_wb_event_id, (SELECT COALESCE(MAX(notification_id),0)+1 FROM eops_sn_hr_internal_notification) AS next_hr_notification_id"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "now_utc": "2026-09-16 22:45:38",
+      "next_vm_id": 8216,
+      "next_expense_id": 5040,
+      "next_share_id": 11687,
+      "next_payment_id": 6015,
+      "next_email_id": 20867,
+      "next_task_id": 6334,
+      "next_comment_id": 4873,
+      "next_wb_event_id": 301,
+      "next_hr_notification_id": 61
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 93,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_calendars ORDER BY created_at,calendar_id LIMIT 8"
+   },
+   "response": {
+    "n_rows": 8,
+    "rows": [
+     {
+      "calendar_id": "alice-primary",
+      "user_id": "alice_manager",
+      "summary": "Alice Johnson",
+      "description": "Primary calendar for Alice Johnson - Project Manager",
+      "time_zone": "America/New_York",
+      "is_primary": 1,
+      "color_id": "1",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "summary": "Project Management",
+      "description": "Project meetings, deadlines, and milestones",
+      "time_zone": "America/New_York",
+      "is_primary": 0,
+      "color_id": "7",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "alice-team",
+      "user_id": "alice_manager",
+      "summary": "Team Coordination",
+      "description": "Team meetings, 1-on-1s, and team events",
+      "time_zone": "America/New_York",
+      "is_primary": 0,
+      "color_id": "11",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "bob-development",
+      "user_id": "bob_developer",
+      "summary": "Development Schedule",
+      "description": "Sprint planning, code reviews, and development tasks",
+      "time_zone": "America/Los_Angeles",
+      "is_primary": 0,
+      "color_id": "9",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "bob-personal",
+      "user_id": "bob_developer",
+      "summary": "Personal Time",
+      "description": "Personal appointments and time off",
+      "time_zone": "America/Los_Angeles",
+      "is_primary": 0,
+      "color_id": "14",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "bob-primary",
+      "user_id": "bob_developer",
+      "summary": "Bob Smith",
+      "description": "Primary calendar for Bob Smith - Senior Developer",
+      "time_zone": "America/Los_Angeles",
+      "is_primary": 1,
+      "color_id": "2",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "carol-design",
+      "user_id": "carol_designer",
+      "summary": "Design Work",
+      "description": "Design sessions, user research, and creative time",
+      "time_zone": "Europe/London",
+      "is_primary": 0,
+      "color_id": "16",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     },
+     {
+      "calendar_id": "carol-primary",
+      "user_id": "carol_designer",
+      "summary": "Carol White",
+      "description": "Primary calendar for Carol White - UX Designer",
+      "time_zone": "Europe/London",
+      "is_primary": 1,
+      "color_id": "4",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-08-25 03:58:57",
+      "updated_at": "2026-08-25 03:58:57"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 94,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_acls ORDER BY calendar_id,id LIMIT 12"
+   },
+   "response": {
+    "n_rows": 12,
+    "rows": [
+     {
+      "id": "acl-alice-primary",
+      "calendar_id": "alice-primary",
+      "user_id": "alice_manager",
+      "role": "owner",
+      "scope_id": "scope-alice",
+      "etag": "etag-alice-primary"
+     },
+     {
+      "id": "acl-alice-projects",
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "role": "owner",
+      "scope_id": "scope-alice",
+      "etag": "etag-alice-projects"
+     },
+     {
+      "id": "acl-shared-1",
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "role": "writer",
+      "scope_id": "scope-bob",
+      "etag": "etag-shared-1"
+     },
+     {
+      "id": "acl-shared-2",
+      "calendar_id": "alice-projects",
+      "user_id": "alice_manager",
+      "role": "reader",
+      "scope_id": "scope-carol",
+      "etag": "etag-shared-2"
+     },
+     {
+      "id": "acl-alice-team",
+      "calendar_id": "alice-team",
+      "user_id": "alice_manager",
+      "role": "owner",
+      "scope_id": "scope-alice",
+      "etag": "etag-alice-team"
+     },
+     {
+      "id": "acl-bob-development",
+      "calendar_id": "bob-development",
+      "user_id": "bob_developer",
+      "role": "owner",
+      "scope_id": "scope-bob",
+      "etag": "etag-bob-development"
+     },
+     {
+      "id": "acl-bob-personal",
+      "calendar_id": "bob-personal",
+      "user_id": "bob_developer",
+      "role": "owner",
+      "scope_id": "scope-bob",
+      "etag": "etag-bob-personal"
+     },
+     {
+      "id": "acl-bob-primary",
+      "calendar_id": "bob-primary",
+      "user_id": "bob_developer",
+      "role": "owner",
+      "scope_id": "scope-bob",
+      "etag": "etag-bob-primary"
+     },
+     {
+      "id": "acl-carol-design",
+      "calendar_id": "carol-design",
+      "user_id": "carol_designer",
+      "role": "owner",
+      "scope_id": "scope-carol",
+      "etag": "etag-carol-design"
+     },
+     {
+      "id": "acl-carol-primary",
+      "calendar_id": "carol-primary",
+      "user_id": "carol_designer",
+      "role": "owner",
+      "scope_id": "scope-carol",
+      "etag": "etag-carol-primary"
+     },
+     {
+      "id": "acl-dave-primary",
+      "calendar_id": "dave-primary",
+      "user_id": "dave_sales",
+      "role": "owner",
+      "scope_id": "scope-dave",
+      "etag": "etag-dave-primary"
+     },
+     {
+      "id": "acl-dave-sales",
+      "calendar_id": "dave-sales",
+      "user_id": "dave_sales",
+      "role": "owner",
+      "scope_id": "scope-dave",
+      "etag": "etag-dave-sales"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 95,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_watch_channels ORDER BY created_at,id LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "id": "watch-alice-expired-001",
+      "resource_id": "acl-alice-primary",
+      "resource_uri": "/calendars/alice-primary/acl",
+      "resource_type": "acl",
+      "calendar_id": "alice-primary",
+      "user_id": "alice_manager",
+      "webhook_address": "https://old-system.techcorp.com/webhooks/acl",
+      "webhook_token": "expired_token_mno345",
+      "webhook_type": "web_hook",
+      "params": "{\"ttl\": 2592000}",
+      "created_at": "2025-11-17T22:30:37.651956",
+      "expires_at": "2025-12-17T22:30:37.651956",
+      "last_notification_at": "2025-12-16T22:30:37.651956",
+      "is_active": "true",
+      "notification_count": 47
+     },
+     {
+      "id": "watch-dave-sales-001",
+      "resource_id": "acl-dave-sales",
+      "resource_uri": "/calendars/dave-sales/acl",
+      "resource_type": "acl",
+      "calendar_id": "dave-sales",
+      "user_id": "dave_sales",
+      "webhook_address": "https://crm.techcorp.com/calendar/sales-acl-sync",
+      "webhook_token": "sales_crm_token_jkl012",
+      "webhook_type": "web_hook",
+      "params": "{\"ttl\": 15600}",
+      "created_at": "2025-12-08T22:30:37.651956",
+      "expires_at": "2025-12-23T02:50:37.651956",
+      "last_notification_at": "2025-12-22T18:30:37.651956",
+      "is_active": "true",
+      "notification_count": 31
+     },
+     {
+      "id": "watch-bob-dev-001",
+      "resource_id": "acl-bob-development",
+      "resource_uri": "/calendars/bob-development/acl",
+      "resource_type": "acl",
+      "calendar_id": "bob-development",
+      "user_id": "bob_developer",
+      "webhook_address": "https://hooks.slack.com/services/T123/B456/dev-calendar-notifications",
+      "webhook_token": null,
+      "webhook_type": "web_hook",
+      "params": "{\"ttl\": 9700}",
+      "created_at": "2025-12-12T22:30:37.651956",
+      "expires_at": "2025-12-23T01:12:17.651956",
+      "last_notification_at": "2025-12-21T22:30:37.651956",
+      "is_active": "true",
+      "notification_count": 23
+     },
+     {
+      "id": "watch-bob-stopped-001",
+      "resource_id": "acl-bob-primary",
+      "resource_uri": "/calendars/bob-primary/acl",
+      "resource_type": "acl",
+      "calendar_id": "bob-primary",
+      "user_id": "bob_developer",
+      "webhook_address": "https://temp-webhook.example.com/test",
+      "webhook_token": "temp_token_pqr678",
+      "webhook_type": "web_hook",
+      "params": "{\"ttl\": 12000}",
+      "created_at": "2025-12-14T22:30:37.651956",
+      "expires_at": "2025-12-23T01:50:37.651956",
+      "last_notification_at": "2025-12-19T22:30:37.651956",
+      "is_active": "false",
+      "notification_count": 15
+     },
+     {
+      "id": "watch-carol-design-001",
+      "resource_id": "acl-carol-design",
+      "resource_uri": "/calendars/carol-design/acl",
+      "resource_type": "acl",
+      "calendar_id": "carol-design",
+      "user_id": "carol_designer",
+      "webhook_address": "https://design-tools.techcorp.com/calendar/acl-updates",
+      "webhook_token": "design_team_token_ghi789",
+      "webhook_type": "web_hook",
+      "params": "{\"ttl\": 13200}",
+      "created_at": "2025-12-15T22:30:37.651956",
+      "expires_at": "2025-12-23T02:10:37.651956",
+      "last_notification_at": "2025-12-22T10:30:37.651956",
+      "is_active": "true",
+      "notification_count": 8
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 96,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_itsm_mcp_incident_knowledge ORDER BY created_on,incident_kb_id LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "incident_kb_id": "IKB_004",
+      "incident_id": "INC_041",
+      "knowledge_id": "KB_001",
+      "org_id": "ORG_003",
+      "used_as": "resolution",
+      "created_on": "2025-11-01 09:05:00"
+     },
+     {
+      "incident_kb_id": "IKB_005",
+      "incident_id": "INC_059",
+      "knowledge_id": "KB_001",
+      "org_id": "ORG_003",
+      "used_as": "resolution",
+      "created_on": "2025-11-05 09:05:00"
+     },
+     {
+      "incident_kb_id": "IKB_006",
+      "incident_id": "INC_078",
+      "knowledge_id": "KB_001",
+      "org_id": "ORG_004",
+      "used_as": "resolution",
+      "created_on": "2025-11-07 09:05:00"
+     },
+     {
+      "incident_kb_id": "IKB_007",
+      "incident_id": "INC_085",
+      "knowledge_id": "KB_001",
+      "org_id": "ORG_007",
+      "used_as": "resolution",
+      "created_on": "2025-11-09 09:05:00"
+     },
+     {
+      "incident_kb_id": "IKB_008",
+      "incident_id": "INC_091",
+      "knowledge_id": "KB_001",
+      "org_id": "ORG_008",
+      "used_as": "resolution",
+      "created_on": "2025-11-11 09:05:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 97,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_sn_hr_internal_notification ORDER BY notification_id DESC LIMIT 5"
+   },
+   "response": {
+    "n_rows": 5,
+    "rows": [
+     {
+      "notification_id": 60,
+      "hr_case_id": 60,
+      "email": "sharon.fields.28@personal.example.com",
+      "type": "report",
+      "status": "closed_complete",
+      "created_at": "2023-06-15 10:10:00",
+      "org_id": 20,
+      "updated_at": "2023-06-15 10:10:00"
+     },
+     {
+      "notification_id": 59,
+      "hr_case_id": 59,
+      "email": "ashley.krueger.27@personal.example.com",
+      "type": "solution_proposal",
+      "status": "closed_complete",
+      "created_at": "2023-05-15 10:10:00",
+      "org_id": 19,
+      "updated_at": "2023-05-15 10:10:00"
+     },
+     {
+      "notification_id": 58,
+      "hr_case_id": 58,
+      "email": "andrew.bell.21@personal.example.com",
+      "type": "update",
+      "status": "ready",
+      "created_at": "2023-04-15 10:10:00",
+      "org_id": 18,
+      "updated_at": "2023-04-15 10:10:00"
+     },
+     {
+      "notification_id": 57,
+      "hr_case_id": 57,
+      "email": "marc.henry.20@personal.example.com",
+      "type": "alert",
+      "status": "ready",
+      "created_at": "2023-03-15 10:10:00",
+      "org_id": 17,
+      "updated_at": "2023-03-15 10:10:00"
+     },
+     {
+      "notification_id": 56,
+      "hr_case_id": 56,
+      "email": "angela.brooks.19@personal.example.com",
+      "type": "report",
+      "status": "ready",
+      "created_at": "2023-02-15 10:10:00",
+      "org_id": 16,
+      "updated_at": "2023-02-15 10:10:00"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 98,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "answers",
+    "fields": {
+     "kind": "source_balance",
+     "value": "149609.18048780487",
+     "meta_json": null
+    }
+   },
+   "response": {
+    "error": "ValueError: 'answers' is not part of the business world and is read-only. Record your work in the live business tables instead."
+   },
+   "error": "'answers' is not part of the business world and is read-only. Record your work in the live business tables instead."
+  },
+  {
+   "call": 99,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT name,sql FROM sqlite_master WHERE type='table' AND name IN ('vm_transactions','td_tasks','wb_calendar_events')"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "name": "wb_calendar_events",
+      "sql": "CREATE TABLE \"wb_calendar_events\" (\"event_id\", \"event_name\", \"participant_email\", \"event_start\", \"duration\")"
+     },
+     {
+      "name": "vm_transactions",
+      "sql": "CREATE TABLE \"vm_transactions\" (\n\tcreated_at DATETIME, \n\tupdated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tsender_id INTEGER NOT NULL, \n\treceiver_id INTEGER NOT NULL, \n\tamount FLOAT NOT NULL, \n\tdescription VARCHAR NOT NULL, \n\tprivate BOOLEAN NOT NULL, \n\treceipt_download_count INTEGER NOT NULL DEFAULT 0, \n\tlike_count INTEGER NOT NULL, \n\tpayment_card_digits VARCHAR(4), \n\tFOREIGN KEY(sender_id) REFERENCES users (id), \n\tFOREIGN KEY(receiver_id) REFERENCES users (id)\n)"
+     },
+     {
+      "name": "td_tasks",
+      "sql": "CREATE TABLE \"td_tasks\" (\n\tdue_date DATETIME, \n\tpriority VARCHAR(6), \n\tduration_unit VARCHAR(7), \n\tcreated_at DATETIME, \n\trecord_hash VARCHAR, \n\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \n\tproject_id INTEGER NOT NULL, \n\tsection_id INTEGER, \n\tuser_id INTEGER NOT NULL, \n\ttitle VARCHAR NOT NULL, \n\tdescription VARCHAR, \n\tis_completed BOOLEAN NOT NULL, \n\tduration FLOAT, \n\torder_index INTEGER NOT NULL DEFAULT 0, \n\tassignee_id INTEGER, \n\tassigner_id INTEGER, \n\tFOREIGN KEY(project_id) REFERENCES projects (id), \n\tFOREIGN KEY(section_id) REFERENCES sections (id), \n\tFOREIGN KEY(user_id) REFERENCES users (id), \n\tFOREIGN KEY(assignee_id) REFERENCES users (id), \n\tFOREIGN KEY(assigner_id) REFERENCES users (id)\n)"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 100,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 101,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "vm_transactions",
+    "fields": {
+     "created_at": "2026-09-16 22:45:38",
+     "updated_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 3,
+     "description": "[BTO-XFER] balance-transfer payoff delta=3",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0,
+     "payment_card_digits": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "vm_transactions",
+    "created": {
+     "created_at": "2026-09-16 22:45:38",
+     "updated_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "sender_id": 107,
+     "receiver_id": 108,
+     "amount": 3,
+     "description": "[BTO-XFER] balance-transfer payoff delta=3",
+     "private": 0,
+     "receipt_download_count": 0,
+     "like_count": 0,
+     "payment_card_digits": null
+    },
+    "rowid": 8216
+   },
+   "error": null
+  },
+  {
+   "call": 102,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[BTO-LOG] total_transfer=751\n[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[BTO-LOG] total_transfer=751\n[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 103,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_tasks",
+    "fields": {
+     "due_date": null,
+     "priority": "p2",
+     "duration_unit": "minute",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "project_id": 280,
+     "section_id": null,
+     "user_id": 107,
+     "title": "[BTO-FUP] delta=3",
+     "description": "Reconcile the balance-transfer payoff ledger.",
+     "is_completed": 0,
+     "duration": null,
+     "order_index": 0,
+     "assignee_id": 107,
+     "assigner_id": 107
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_tasks",
+    "created": {
+     "due_date": null,
+     "priority": "p2",
+     "duration_unit": "minute",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "project_id": 280,
+     "section_id": null,
+     "user_id": 107,
+     "title": "[BTO-FUP] delta=3",
+     "description": "Reconcile the balance-transfer payoff ledger.",
+     "is_completed": 0,
+     "duration": null,
+     "order_index": 0,
+     "assignee_id": 107,
+     "assigner_id": 107
+    },
+    "rowid": 6334
+   },
+   "error": null
+  },
+  {
+   "call": 104,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS promo_uplift FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status='A' AND l.amount>=250000 AND l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='POPLATEK MESICNE'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "promo_uplift": 3
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 105,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT MAX(CAST(SUBSTR(incident_kb_id,5) AS INTEGER)) AS max_ikb_num FROM eops_gym_itsm_mcp_incident_knowledge"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "max_ikb_num": 45
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 106,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM eops_gym_itsm_mcp_service_offering WHERE service_offering_id='SVCOFF_004'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 107,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM eops_gym_itsm_mcp_users WHERE user_id='USER_006'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 108,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT COUNT(*) AS n FROM eops_gym_itsm_mcp_user_group WHERE group_id='GROUP_002'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 109,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "status": "[BTO-TIER] STANDARD promo_uplift=3"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "status": "[BTO-TIER] STANDARD promo_uplift=3"
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 110,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident",
+    "key_column": "incident_id",
+    "key_value": "INC_024",
+    "fields": {
+     "service_offering": "SVCOFF_004",
+     "caller_id": "USER_006",
+     "assignment_group": "GROUP_002",
+     "category": "hardware",
+     "impact": "medium",
+     "urgency": "low",
+     "status": "new",
+     "updated_at": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident",
+    "updated": {
+     "service_offering": "SVCOFF_004",
+     "caller_id": "USER_006",
+     "assignment_group": "GROUP_002",
+     "category": "hardware",
+     "impact": "medium",
+     "urgency": "low",
+     "status": "new",
+     "updated_at": "2026-09-16 22:45:38"
+    },
+    "where": {
+     "incident_id": "INC_024"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 111,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_itsm_mcp_incident_knowledge",
+    "fields": {
+     "incident_kb_id": "IKB_046",
+     "incident_id": "INC_024",
+     "knowledge_id": "KB_003",
+     "org_id": "ORG_012",
+     "used_as": "suggested",
+     "created_on": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_itsm_mcp_incident_knowledge",
+    "created": {
+     "incident_kb_id": "IKB_046",
+     "incident_id": "INC_024",
+     "knowledge_id": "KB_003",
+     "org_id": "ORG_012",
+     "used_as": "suggested",
+     "created_on": "2026-09-16 22:45:38"
+    },
+    "rowid": 46
+   },
+   "error": null
+  },
+  {
+   "call": 112,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT id,recipient_ids,sender_id,subject FROM gm_emails LIMIT 3"
+   },
+   "response": {
+    "n_rows": 3,
+    "rows": [
+     {
+      "id": 1,
+      "recipient_ids": "[63]",
+      "sender_id": 1,
+      "subject": "Weekend Hike"
+     },
+     {
+      "id": 2,
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "sender_id": 9,
+      "subject": "Client Visit Next Week"
+     },
+     {
+      "id": 3,
+      "recipient_ids": "[1, 28, 37, 45, 68, 71, 76, 85, 89, 98, 100]",
+      "sender_id": 9,
+      "subject": "IT Helpdesk Satisfaction Survey"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 113,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "gm_emails",
+    "fields": {
+     "recipient_ids": "[153]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "sender_id": 152,
+     "subject": "[BTO-STATUS] balance-transfer update",
+     "body": "The balance-transfer run recorded total_transfer=751 at tier STANDARD.",
+     "response_to_email_id": null
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "gm_emails",
+    "created": {
+     "recipient_ids": "[153]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "sender_id": 152,
+     "subject": "[BTO-STATUS] balance-transfer update",
+     "body": "The balance-transfer run recorded total_transfer=751 at tier STANDARD.",
+     "response_to_email_id": null
+    },
+    "rowid": 20867
+   },
+   "error": null
+  },
+  {
+   "call": 114,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_sn_hr_internal_hr_case",
+    "key_column": "hr_case_id",
+    "key_value": "4",
+    "fields": {
+     "assigned_to": 33,
+     "status": "awaiting_acceptance",
+     "request_status": "requested",
+     "updated_at": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_hr_internal_hr_case",
+    "updated": {
+     "assigned_to": 33,
+     "status": "awaiting_acceptance",
+     "request_status": "requested",
+     "updated_at": "2026-09-16 22:45:38"
+    },
+    "where": {
+     "hr_case_id": "4"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 115,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_sn_hr_internal_notification",
+    "fields": {
+     "notification_id": 61,
+     "hr_case_id": 4,
+     "email": "zachary.mcintosh3@servicenow.com",
+     "type": "update",
+     "status": "ready",
+     "created_at": "2026-09-16 22:45:38",
+     "org_id": 4,
+     "updated_at": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_sn_hr_internal_notification",
+    "created": {
+     "notification_id": 61,
+     "hr_case_id": 4,
+     "email": "zachary.mcintosh3@servicenow.com",
+     "type": "update",
+     "status": "ready",
+     "created_at": "2026-09-16 22:45:38",
+     "org_id": 4,
+     "updated_at": "2026-09-16 22:45:38"
+    },
+    "rowid": 61
+   },
+   "error": null
+  },
+  {
+   "call": 116,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT resource_type,COUNT(*) AS n FROM eops_gym_calendar_watch_channels GROUP BY resource_type"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "resource_type": "acl",
+      "n": 9
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 117,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_calendars",
+    "fields": {
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "summary": "Product Launches",
+     "description": "Card-product launch calendar",
+     "time_zone": "UTC",
+     "is_primary": 0,
+     "color_id": "5",
+     "hidden": 0,
+     "selected": 1,
+     "deleted": 0,
+     "created_at": "2026-09-16 22:45:38",
+     "updated_at": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_calendars",
+    "created": {
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "summary": "Product Launches",
+     "description": "Card-product launch calendar",
+     "time_zone": "UTC",
+     "is_primary": 0,
+     "color_id": "5",
+     "hidden": 0,
+     "selected": 1,
+     "deleted": 0,
+     "created_at": "2026-09-16 22:45:38",
+     "updated_at": "2026-09-16 22:45:38"
+    },
+    "rowid": 11
+   },
+   "error": null
+  },
+  {
+   "call": 118,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_acls",
+    "fields": {
+     "id": "acl-riley-product-launches-owner",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "owner",
+     "scope_id": "scope-riley",
+     "etag": "etag-riley-product-launches-owner"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_acls",
+    "created": {
+     "id": "acl-riley-product-launches-owner",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "owner",
+     "scope_id": "scope-riley",
+     "etag": "etag-riley-product-launches-owner"
+    },
+    "rowid": 13
+   },
+   "error": null
+  },
+  {
+   "call": 119,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_acls",
+    "fields": {
+     "id": "acl-riley-product-launches-manager",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "writer",
+     "scope_id": "scope-btops-mgr",
+     "etag": "etag-riley-product-launches-manager"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_acls",
+    "created": {
+     "id": "acl-riley-product-launches-manager",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "writer",
+     "scope_id": "scope-btops-mgr",
+     "etag": "etag-riley-product-launches-manager"
+    },
+    "rowid": 14
+   },
+   "error": null
+  },
+  {
+   "call": 120,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_acls",
+    "fields": {
+     "id": "acl-riley-product-launches-uw-team",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "reader",
+     "scope_id": "scope-uw-team",
+     "etag": "etag-riley-product-launches-uw-team"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_acls",
+    "created": {
+     "id": "acl-riley-product-launches-uw-team",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "reader",
+     "scope_id": "scope-uw-team",
+     "etag": "etag-riley-product-launches-uw-team"
+    },
+    "rowid": 15
+   },
+   "error": null
+  },
+  {
+   "call": 121,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_acls",
+    "fields": {
+     "id": "acl-riley-product-launches-uw-review",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "reader",
+     "scope_id": "scope-uw-review",
+     "etag": "etag-riley-product-launches-uw-review"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_acls",
+    "created": {
+     "id": "acl-riley-product-launches-uw-review",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "role": "reader",
+     "scope_id": "scope-uw-review",
+     "etag": "etag-riley-product-launches-uw-review"
+    },
+    "rowid": 16
+   },
+   "error": null
+  },
+  {
+   "call": 122,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "eops_gym_calendar_watch_channels",
+    "fields": {
+     "id": "NOVAX_MONITOR",
+     "resource_id": "acl-riley-product-launches-owner",
+     "resource_uri": "/calendars/riley-product-launches/acl",
+     "resource_type": "acl",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "webhook_address": "https://hooks.launch.corp.com/novax",
+     "webhook_token": null,
+     "webhook_type": "web_hook",
+     "params": "{}",
+     "created_at": "2026-09-16 22:45:38",
+     "expires_at": null,
+     "last_notification_at": null,
+     "is_active": "true",
+     "notification_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_watch_channels",
+    "created": {
+     "id": "NOVAX_MONITOR",
+     "resource_id": "acl-riley-product-launches-owner",
+     "resource_uri": "/calendars/riley-product-launches/acl",
+     "resource_type": "acl",
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "webhook_address": "https://hooks.launch.corp.com/novax",
+     "webhook_token": null,
+     "webhook_type": "web_hook",
+     "params": "{}",
+     "created_at": "2026-09-16 22:45:38",
+     "expires_at": null,
+     "last_notification_at": null,
+     "is_active": "true",
+     "notification_count": 0
+    },
+    "rowid": 10
+   },
+   "error": null
+  },
+  {
+   "call": 123,
+   "turn": null,
+   "kind": "tool",
+   "name": "delete_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "key_column": "attendees_id",
+    "key_value": "att-corrected-001"
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "deleted": {
+     "attendees_id": "att-corrected-001"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 124,
+   "turn": null,
+   "kind": "tool",
+   "name": "delete_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "key_column": "attendees_id",
+    "key_value": "att-corrected-002"
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "deleted": {
+     "attendees_id": "att-corrected-002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 125,
+   "turn": null,
+   "kind": "tool",
+   "name": "delete_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "key_column": "attendees_id",
+    "key_value": "att-corrected-003"
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "deleted": {
+     "attendees_id": "att-corrected-003"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 126,
+   "turn": null,
+   "kind": "tool",
+   "name": "delete_row",
+   "args": {
+    "table": "eops_gym_calendar_attendees",
+    "key_column": "attendees_id",
+    "key_value": "att-corrected-004"
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_attendees",
+    "deleted": {
+     "attendees_id": "att-corrected-004"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 127,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "eops_gym_calendar_events",
+    "key_column": "event_id",
+    "key_value": "event-corrected-001",
+    "fields": {
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "organizer_id": "riley_chen",
+     "organizer_email": "riley.chen@atlas.com",
+     "organizer_display_name": "Riley Chen",
+     "organizer_self": 1,
+     "recurring_event_id": null,
+     "summary": "[BTO-HOLD] promo-window hold total_transfer=751",
+     "description": "Balance-transfer promotional window hold.",
+     "location": null,
+     "start_datetime": "2025-11-14 16:00:00.000000",
+     "end_datetime": "2025-11-14 17:00:00.000000",
+     "start_timezone": "UTC",
+     "end_timezone": "UTC",
+     "originalStartTime_date": null,
+     "originalStartTime_dateTime": null,
+     "originalStartTime_timeZone": null,
+     "recurrence": null,
+     "status": "confirmed",
+     "visibility": "default",
+     "color_id": "5",
+     "iCalUID": "event-corrected-001@atlas.com",
+     "eventType": "default",
+     "focusTimeProperties": null,
+     "guestsCanInviteOthers": 0,
+     "guestsCanModify": 0,
+     "guestsCanSeeOtherGuests": 0,
+     "outOfOfficeProperties": null,
+     "sequence": 2,
+     "source": null,
+     "updated_at": "2026-09-16 22:45:38"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "eops_gym_calendar_events",
+    "updated": {
+     "calendar_id": "riley-product-launches",
+     "user_id": "riley_chen",
+     "organizer_id": "riley_chen",
+     "organizer_email": "riley.chen@atlas.com",
+     "organizer_display_name": "Riley Chen",
+     "organizer_self": 1,
+     "recurring_event_id": null,
+     "summary": "[BTO-HOLD] promo-window hold total_transfer=751",
+     "description": "Balance-transfer promotional window hold.",
+     "location": null,
+     "start_datetime": "2025-11-14 16:00:00.000000",
+     "end_datetime": "2025-11-14 17:00:00.000000",
+     "start_timezone": "UTC",
+     "end_timezone": "UTC",
+     "originalStartTime_date": null,
+     "originalStartTime_dateTime": null,
+     "originalStartTime_timeZone": null,
+     "recurrence": null,
+     "status": "confirmed",
+     "visibility": "default",
+     "color_id": "5",
+     "iCalUID": "event-corrected-001@atlas.com",
+     "eventType": "default",
+     "focusTimeProperties": null,
+     "guestsCanInviteOthers": 0,
+     "guestsCanModify": 0,
+     "guestsCanSeeOtherGuests": 0,
+     "outOfOfficeProperties": null,
+     "sequence": 2,
+     "source": null,
+     "updated_at": "2026-09-16 22:45:38"
+    },
+    "where": {
+     "event_id": "event-corrected-001"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 128,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "wb_calendar_events",
+    "fields": {
+     "event_id": "00000301",
+     "event_name": "[BTO-REVIEW] src_bal=149609.18048780487",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2025-11-17 14:00:00",
+     "duration": "30"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_calendar_events",
+    "created": {
+     "event_id": "00000301",
+     "event_name": "[BTO-REVIEW] src_bal=149609.18048780487",
+     "participant_email": "riley.chen@atlas.com",
+     "event_start": "2025-11-17 14:00:00",
+     "duration": "30"
+    },
+    "rowid": 302
+   },
+   "error": null
+  },
+  {
+   "call": 129,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expenses",
+    "fields": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[BTO-ALLOC] BT-fee allocation total_transfer=751",
+     "amount": 751,
+     "deleted": 0,
+     "receipt_file_name": null,
+     "receipt_file_content": null,
+     "receipt_download_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expenses",
+    "created": {
+     "debtor_ids": "[108]",
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "user_id": 107,
+     "group_id": null,
+     "payer_id": 107,
+     "description": "[BTO-ALLOC] BT-fee allocation total_transfer=751",
+     "amount": 751,
+     "deleted": 0,
+     "receipt_file_name": null,
+     "receipt_file_content": null,
+     "receipt_download_count": 0
+    },
+    "rowid": 5040
+   },
+   "error": null
+  },
+  {
+   "call": 130,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_expense_shares",
+    "fields": {
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 375.5
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_expense_shares",
+    "created": {
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "expense_id": 5040,
+     "debtor_id": 108,
+     "share_amount": 375.5
+    },
+    "rowid": 11687
+   },
+   "error": null
+  },
+  {
+   "call": 131,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "sw_payments",
+    "fields": {
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "group_id": null,
+     "user_id": 107,
+     "payer_id": 108,
+     "receiver_id": 107,
+     "payer_email": "underwriting.team@atlas.com",
+     "payer_name": "Underwriting Team",
+     "receiver_email": "riley.chen@atlas.com",
+     "receiver_name": "BT Ops",
+     "amount": 375.5,
+     "description": "[BTO-SETTLE] underwriting settle-up share=375.5",
+     "deleted": 0,
+     "receipt_file_name": null,
+     "receipt_file_content": null,
+     "receipt_download_count": 0
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "sw_payments",
+    "created": {
+     "participant_ids": "[107, 108]",
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "group_id": null,
+     "user_id": 107,
+     "payer_id": 108,
+     "receiver_id": 107,
+     "payer_email": "underwriting.team@atlas.com",
+     "payer_name": "Underwriting Team",
+     "receiver_email": "riley.chen@atlas.com",
+     "receiver_name": "BT Ops",
+     "amount": 375.5,
+     "description": "[BTO-SETTLE] underwriting settle-up share=375.5",
+     "deleted": 0,
+     "receipt_file_name": null,
+     "receipt_file_content": null,
+     "receipt_download_count": 0
+    },
+    "rowid": 6015
+   },
+   "error": null
+  },
+  {
+   "call": 132,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(amount) AS transfer_total FROM sw_expenses WHERE deleted=0 AND description LIKE '%[BTO-ALLOC]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "transfer_total": 751.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 133,
+   "turn": null,
+   "kind": "tool",
+   "name": "create_row",
+   "args": {
+    "table": "td_task_comments",
+    "fields": {
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "task_id": 6334,
+     "user_id": 107,
+     "content": "[BTO-WRAP] transfer_total=751"
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "td_task_comments",
+    "created": {
+     "created_at": "2026-09-16 22:45:38",
+     "record_hash": null,
+     "task_id": 6334,
+     "user_id": 107,
+     "content": "[BTO-WRAP] transfer_total=751"
+    },
+    "rowid": 4873
+   },
+   "error": null
+  },
+  {
+   "call": 134,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN description LIKE '%[BTO-REVERSAL]%' THEN -amount ELSE amount END) AS ledger_net FROM vm_transactions WHERE description LIKE '%[BTO-XFER]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ledger_net": 3.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 135,
+   "turn": null,
+   "kind": "tool",
+   "name": "update_row",
+   "args": {
+    "table": "wb_customer_relationship_manager_data",
+    "key_column": "customer_id",
+    "key_value": "00000002",
+    "fields": {
+     "notes": "[BTO-RECON] delta=3\n[BTO-LOG] total_transfer=751\n[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    }
+   },
+   "response": {
+    "ok": true,
+    "table": "wb_customer_relationship_manager_data",
+    "updated": {
+     "notes": "[BTO-RECON] delta=3\n[BTO-LOG] total_transfer=751\n[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+    },
+    "where": {
+     "customer_id": "00000002"
+    }
+   },
+   "error": null
+  },
+  {
+   "call": 136,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT AVG(l.amount) AS source_balance, ROUND(AVG(l.amount)/200.0) AS transfer_base, COUNT(*) AS male_loan_links FROM bird_client c JOIN bird_disp d ON d.client_id=c.client_id JOIN bird_loan l ON l.account_id=d.account_id WHERE c.gender='M'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "source_balance": 149609.18048780487,
+      "transfer_base": 748.0,
+      "male_loan_links": 410
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 137,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT (SELECT COUNT(*) FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status='A' AND l.amount>=250000 AND l.date BETWEEN '1995-01-01' AND '1997-12-31' AND a.frequency='POPLATEK MESICNE') AS promo_uplift, (SELECT COUNT(*) FROM bird_client c JOIN bird_district z ON z.district_id=c.district_id JOIN bird_disp d ON d.client_id=c.client_id WHERE z.A3='south Bohemia' AND d.type='DISPONENT') AS side_scan_count, (SELECT COUNT(DISTINCT a.account_id) FROM bird_account a JOIN bird_district z ON z.district_id=a.district_id JOIN bird_trans t ON t.account_id=a.account_id WHERE z.A2='Pisek' AND t.k_symbol='SIPO') AS conditional_floor, (SELECT ROUND(AVG(l.amount)/200.0) FROM bird_loan l JOIN bird_account a ON a.account_id=l.account_id WHERE l.status IN ('C','D') AND a.frequency='POPLATEK PO OBRATU') AS decline_bar"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "promo_uplift": 3,
+      "side_scan_count": 74,
+      "conditional_floor": 32,
+      "decline_bar": 964.0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 138,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM wb_customer_relationship_manager_data WHERE customer_email='btops.manager@atlas.com'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "customer_id": "00000002",
+      "assigned_to_email": "riley.chen@atlas.com",
+      "customer_name": "BT Ops Manager",
+      "customer_email": "btops.manager@atlas.com",
+      "customer_phone": "847-570-9785",
+      "last_contact_date": "2023-10-08",
+      "product_interest": "balance transfer",
+      "status": "[BTO-TIER] STANDARD promo_uplift=3",
+      "follow_up_by": "",
+      "notes": "[BTO-RECON] delta=3\n[BTO-LOG] total_transfer=751\n[BTO-BASE] transfer_base=748\nQ1 balance transfer."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 139,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT SUM(CASE WHEN description LIKE '%[BTO-REVERSAL]%' THEN -amount ELSE amount END) AS ledger_net, COUNT(*) AS entry_count, SUM(CASE WHEN receiver_id=108 THEN 1 ELSE 0 END) AS correct_destination_count, SUM(CASE WHEN receiver_id=109 THEN 1 ELSE 0 END) AS wrong_destination_count FROM vm_transactions WHERE description LIKE '%[BTO-XFER]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "ledger_net": 3.0,
+      "entry_count": 1,
+      "correct_destination_count": 1,
+      "wrong_destination_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 140,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,e.user_id,e.payer_id,e.amount,e.description,s.debtor_id,s.share_amount FROM sw_expenses e JOIN sw_expense_shares s ON s.expense_id=e.id WHERE e.description LIKE '%[BTO-ALLOC]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 5040,
+      "user_id": 107,
+      "payer_id": 107,
+      "amount": 751.0,
+      "description": "[BTO-ALLOC] BT-fee allocation total_transfer=751",
+      "debtor_id": 108,
+      "share_amount": 375.5
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 141,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM sw_payments WHERE description LIKE '%[BTO-SETTLE]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "participant_ids": "[107, 108]",
+      "created_at": "2026-09-16 22:45:38",
+      "record_hash": null,
+      "id": 6015,
+      "group_id": null,
+      "user_id": 107,
+      "payer_id": 108,
+      "receiver_id": 107,
+      "payer_email": "underwriting.team@atlas.com",
+      "payer_name": "Underwriting Team",
+      "receiver_email": "riley.chen@atlas.com",
+      "receiver_name": "BT Ops",
+      "amount": 375.5,
+      "description": "[BTO-SETTLE] underwriting settle-up share=375.5",
+      "deleted": 0,
+      "receipt_file_name": null,
+      "receipt_file_content": null,
+      "receipt_download_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 142,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT t.id,t.project_id,t.user_id,t.title,t.is_completed,c.content FROM td_tasks t LEFT JOIN td_task_comments c ON c.task_id=t.id WHERE t.title LIKE '%[BTO-FUP]%'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 6334,
+      "project_id": 280,
+      "user_id": 107,
+      "title": "[BTO-FUP] delta=3",
+      "is_completed": 0,
+      "content": "[BTO-WRAP] transfer_total=751"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 143,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT e.id,s.email AS sender_email,e.recipient_ids,e.subject,e.body FROM gm_emails e JOIN gm_users s ON s.id=e.sender_id WHERE e.subject LIKE '%[BTO-%' ORDER BY e.id"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": 20867,
+      "sender_email": "riley.chen@atlas.com",
+      "recipient_ids": "[153]",
+      "subject": "[BTO-STATUS] balance-transfer update",
+      "body": "The balance-transfer run recorded total_transfer=751 at tier STANDARD."
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 144,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.*, (SELECT COUNT(*) FROM eops_gym_calendar_acls a WHERE a.calendar_id=c.calendar_id) AS acl_count FROM eops_gym_calendar_calendars c WHERE c.summary='Product Launches' AND c.user_id='riley_chen'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "summary": "Product Launches",
+      "description": "Card-product launch calendar",
+      "time_zone": "UTC",
+      "is_primary": 0,
+      "color_id": "5",
+      "hidden": 0,
+      "selected": 1,
+      "deleted": 0,
+      "created_at": "2026-09-16 22:45:38",
+      "updated_at": "2026-09-16 22:45:38",
+      "acl_count": 4
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 145,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_acls WHERE calendar_id='riley-product-launches' ORDER BY id"
+   },
+   "response": {
+    "n_rows": 4,
+    "rows": [
+     {
+      "id": "acl-riley-product-launches-manager",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "role": "writer",
+      "scope_id": "scope-btops-mgr",
+      "etag": "etag-riley-product-launches-manager"
+     },
+     {
+      "id": "acl-riley-product-launches-owner",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "role": "owner",
+      "scope_id": "scope-riley",
+      "etag": "etag-riley-product-launches-owner"
+     },
+     {
+      "id": "acl-riley-product-launches-uw-review",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "role": "reader",
+      "scope_id": "scope-uw-review",
+      "etag": "etag-riley-product-launches-uw-review"
+     },
+     {
+      "id": "acl-riley-product-launches-uw-team",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "role": "reader",
+      "scope_id": "scope-uw-team",
+      "etag": "etag-riley-product-launches-uw-team"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 146,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id,calendar_id,user_id,organizer_email,summary,status,start_datetime,end_datetime,start_timezone,end_timezone,(SELECT COUNT(*) FROM eops_gym_calendar_attendees a WHERE a.event_id=e.event_id) AS attendee_count FROM eops_gym_calendar_events e WHERE event_id='event-corrected-001'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "event_id": "event-corrected-001",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "organizer_email": "riley.chen@atlas.com",
+      "summary": "[BTO-HOLD] promo-window hold total_transfer=751",
+      "status": "confirmed",
+      "start_datetime": "2025-11-14 16:00:00.000000",
+      "end_datetime": "2025-11-14 17:00:00.000000",
+      "start_timezone": "UTC",
+      "end_timezone": "UTC",
+      "attendee_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 147,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT * FROM eops_gym_calendar_watch_channels WHERE id='NOVAX_MONITOR'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "id": "NOVAX_MONITOR",
+      "resource_id": "acl-riley-product-launches-owner",
+      "resource_uri": "/calendars/riley-product-launches/acl",
+      "resource_type": "acl",
+      "calendar_id": "riley-product-launches",
+      "user_id": "riley_chen",
+      "webhook_address": "https://hooks.launch.corp.com/novax",
+      "webhook_token": null,
+      "webhook_type": "web_hook",
+      "params": "{}",
+      "created_at": "2026-09-16 22:45:38",
+      "expires_at": null,
+      "last_notification_at": null,
+      "is_active": "true",
+      "notification_count": 0
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 148,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT event_id,event_name,participant_email,event_start,duration FROM wb_calendar_events WHERE participant_email='riley.chen@atlas.com' ORDER BY event_start"
+   },
+   "response": {
+    "n_rows": 2,
+    "rows": [
+     {
+      "event_id": "00000300",
+      "event_name": "BT-desk daily standup",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2025-11-17 13:00:00",
+      "duration": "60"
+     },
+     {
+      "event_id": "00000301",
+      "event_name": "[BTO-REVIEW] src_bal=149609.18048780487",
+      "participant_email": "riley.chen@atlas.com",
+      "event_start": "2025-11-17 14:00:00",
+      "duration": "30"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 149,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT i.incident_id,i.service_offering,i.caller_id,i.assignment_group,i.category,i.impact,i.urgency,i.status,k.knowledge_id,k.used_as FROM eops_gym_itsm_mcp_incident i LEFT JOIN eops_gym_itsm_mcp_incident_knowledge k ON k.incident_id=i.incident_id WHERE i.incident_id='INC_024'"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "incident_id": "INC_024",
+      "service_offering": "SVCOFF_004",
+      "caller_id": "USER_006",
+      "assignment_group": "GROUP_002",
+      "category": "hardware",
+      "impact": "medium",
+      "urgency": "low",
+      "status": "new",
+      "knowledge_id": "KB_003",
+      "used_as": "suggested"
+     }
+    ]
+   },
+   "error": null
+  },
+  {
+   "call": 150,
+   "turn": null,
+   "kind": "tool",
+   "name": "query",
+   "args": {
+    "sql": "SELECT c.hr_case_id,c.number,c.assigned_to,c.status,c.request_status,n.email,n.type,n.status AS notification_status FROM eops_sn_hr_internal_hr_case c LEFT JOIN eops_sn_hr_internal_notification n ON n.hr_case_id=c.hr_case_id AND n.email='zachary.mcintosh3@servicenow.com' WHERE c.hr_case_id=4"
+   },
+   "response": {
+    "n_rows": 1,
+    "rows": [
+     {
+      "hr_case_id": 4,
+      "number": "HRC0000714",
+      "assigned_to": 33,
+      "status": "awaiting_acceptance",
+      "request_status": "requested",
+      "email": "zachary.mcintosh3@servicenow.com",
+      "type": "update",
+      "notification_status": "ready"
+     }
+    ]
+   },
+   "error": null
+  }
+ ],
+ "graph": "hybrid_balance_transfer_offer__0001",
+ "provider": "openai",
+ "model": "gpt-5.6-sol",
+ "attempt": 1,
+ "runner": "opencode",
+ "AA": 0,
+ "nodes_passed": 3,
+ "n_nodes": 20,
+ "pre_extraction": {
+  "nodes_passed": 0,
+  "AA": 0,
+  "fsv_n_ok": 24,
+  "fsv_n_checks": 91,
+  "terminal_passed": false
+ },
+ "extracted_answers": {
+  "branch": "AUTO_APPROVE_STANDARD_PROMO",
+  "delta": "3",
+  "promo_uplift": "3",
+  "reconciled": "ok",
+  "side_scan_count": "74",
+  "source_balance": "149609.180487805",
+  "total_transfer": "751",
+  "transfer_base": "748"
+ },
+ "extraction_scored": true
+}

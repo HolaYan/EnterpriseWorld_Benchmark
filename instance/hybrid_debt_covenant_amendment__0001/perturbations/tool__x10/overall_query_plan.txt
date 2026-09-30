@@ -1,0 +1,13 @@
+Run the lender-consent solicitation for the covenant amendment on the regional syndicated credit facility. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the engagement is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+amendment_uplift: the amendment uplift — whole number, no thousands separators
+ballot_index: the ballot reference index — whole number
+base_consents: the base consent scope — whole number
+branch: the consent route — exactly one of {AUTO_FILE, SUPER_MAJORITY, DENIED_ESCALATION}
+covenant_index: the covenant-consent index — whole number
+delta: the escalation delta — whole number
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the credit ledger nets to the delta
+side_cohort: the second side anchor — the book's exact decimal value
+side_exposure: the first side anchor — the book's exact decimal value
+total_scope: the total amendment scope — whole number

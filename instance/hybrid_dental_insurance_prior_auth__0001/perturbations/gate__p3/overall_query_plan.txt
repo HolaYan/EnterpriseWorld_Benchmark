@@ -1,0 +1,12 @@
+Adjudicate dental prior-authorization case DEN-2024-Q1-042 on the carrier prior-auth desk. Plan and carry the engagement out end to end yourself: work out which figures are needed, which steps to take and in what order, from the case files and the live records. The desk's standing policies apply; its systems surface the governing policy note the first time you touch the records it covers.
+DELIVERABLE. When the case is complete, end your final message with a plain-text report block in exactly this form, one line per item:
+REPORT
+claim_score: the utilization percentage — a number (decimals allowed)
+delta: the review delta — whole number
+exposure: the benefit-reference exposure — whole number, no thousands separators
+priority: the review-tier route — exactly one of {LOW, HIGH, URGENT}
+reconciled: the reconciliation verdict — the single lower-case word 'ok' if the reimbursement ledger nets to the refund_units
+refund_units: the prior-auth refund envelope — whole number
+review_uplift: the review uplift — whole number
+side_page: the side reference page — the season page URL Book-reading notes (how the reference books count): the French percentage is taken over the TRANSLATION ENTRIES of Story Spotlight cards (one row per card-and-language), not over the cards themselves.
+sla_hours: the response SLA — whole number
