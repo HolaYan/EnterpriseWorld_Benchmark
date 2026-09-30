@@ -15,7 +15,7 @@
   --canvas:#f3f5f9; --paper:#ffffff; --band:#f6f8fc; --line:#dfe4ee; --line-soft:#e8ecf3;
   --grid:#e8ecf3; --shadow:0 1px 2px rgba(15,28,58,.06),0 12px 28px -14px rgba(15,28,58,.16);
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
-  --bar-top:#3273DC; --bar-bot:#2456B0;
+  --bar-top:#3273DC; --bar-bot:#2456B0; --fillA:#D3D9E1; --salmon:#F09E8C; --salmon-2:#DB7663; --amber-2:#b07d1f;
   --display:Georgia,"Times New Roman",serif;
   --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -30,7 +30,7 @@
     --canvas:#0b1426; --paper:#121d33; --band:#172440; --line:#24334f; --line-soft:#1d2a45;
     --grid:#1f2d4a; --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.6);
     --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
-    --bar-top:#79A8F5; --bar-bot:#4E7FD0;
+    --bar-top:#79A8F5; --bar-bot:#4E7FD0; --fillA:#4A5563; --salmon:#EE9180; --salmon-2:#D9836F; --amber-2:#a8781f;
   }
 }
 :root[data-theme="dark"]{
@@ -42,7 +42,7 @@
   --canvas:#0b1426; --paper:#121d33; --band:#172440; --line:#24334f; --line-soft:#1d2a45;
   --grid:#1f2d4a; --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.6);
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
-  --bar-top:#79A8F5; --bar-bot:#4E7FD0;
+  --bar-top:#79A8F5; --bar-bot:#4E7FD0; --fillA:#4A5563; --salmon:#EE9180; --salmon-2:#D9836F; --amber-2:#a8781f;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -227,6 +227,32 @@ figcaption{font-size:.9rem;color:var(--muted);margin-top:.7rem;line-height:1.55}
 :root[data-theme="dark"] .tip{background:#fff;color:#0f1c3a}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tip{background:#fff;color:#0f1c3a}}
 .chart.full{grid-column:1/-1}
+.vpanel .vtitle{font:600 11px var(--mono);letter-spacing:.16em;color:var(--muted);margin-bottom:22px}
+.vchart{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,2vw,22px)}
+.vchart.vchart6{grid-template-columns:repeat(6,1fr)}
+.vgroup{min-width:0}
+.vplot{position:relative;display:flex;gap:clamp(5px,1vw,12px);justify-content:center;align-items:flex-end;height:220px;padding:0 6px;border-bottom:1.5px solid var(--line);background:repeating-linear-gradient(to top,color-mix(in srgb,var(--line) 75%,transparent) 0 1px,transparent 1px 55px)}
+.vcol{position:relative;width:clamp(20px,5vw,44px);height:100%}
+.vchart5 .vcol{width:clamp(14px,2.6vw,30px)}
+.vfill{position:absolute;left:0;right:0;bottom:0;height:0;border-radius:8px 8px 0 0;transition:height 2.2s cubic-bezier(.26,.82,.3,1)}
+.vcol.a .vfill{background:var(--fillA)}
+.vcol.b .vfill{background:linear-gradient(180deg,var(--salmon),var(--salmon-2))}
+.vcol.d .vfill{background:linear-gradient(180deg,var(--amber),var(--amber-2))}
+.vcol.c .vfill{background:linear-gradient(180deg,var(--bar-top),var(--bar-bot));box-shadow:0 4px 16px -6px color-mix(in srgb,var(--bar-top) 40%,transparent)}
+.vcol.c .vfill::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.34),transparent 42%)}
+.vval{position:absolute;left:50%;translate:-50% 0;bottom:8px;font:600 11.5px var(--mono);color:var(--text);white-space:nowrap;opacity:0;font-variant-numeric:tabular-nums;transition:bottom 2.2s cubic-bezier(.26,.82,.3,1),opacity .8s ease .9s}
+.vcol.c .vval{color:var(--bar-bot)}
+.vval.in{opacity:1}
+.vdelta{position:absolute;left:50%;translate:-50% 0;bottom:8px;font:600 10px var(--mono);padding:2.5px 8px;border-radius:11px;white-space:nowrap;color:#fff;background:linear-gradient(120deg,var(--bar-bot),var(--bar-top));box-shadow:0 3px 14px -4px color-mix(in srgb,var(--bar-top) 70%,transparent);opacity:0;scale:.7;font-variant-numeric:tabular-nums;transition:bottom 2.2s cubic-bezier(.26,.82,.3,1),opacity .6s ease 1.4s,scale .6s ease 1.4s;z-index:2}
+.vdelta.neg{background:var(--muted)}
+.vdelta.in{opacity:1;scale:1}
+.vglab{margin-top:10px;text-align:center;font:12px var(--mono);color:var(--text);letter-spacing:.02em;line-height:1.3}
+.vpanel .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--text);margin-top:18px;padding:0;border:0;background:none}
+.vpanel .legend .sw{display:inline-block;width:8px;height:17px;border-radius:3px 3px 1.5px 1.5px;vertical-align:-3px;margin-right:8px;border:0}
+.sw.swa{background:var(--fillA)} .sw.swb{background:linear-gradient(180deg,var(--salmon),var(--salmon-2))} .sw.swd{background:linear-gradient(180deg,var(--amber),var(--amber-2))} .sw.swc{background:linear-gradient(180deg,var(--bar-top),var(--bar-bot));box-shadow:0 2px 8px -2px color-mix(in srgb,var(--bar-top) 55%,transparent)}
+.vpanel .sub{margin-top:12px}
+@media (prefers-reduced-motion:reduce){.vfill,.vval,.vdelta{transition:none}}
+@media (max-width:700px){.vchart,.vchart.vchart6{grid-template-columns:repeat(3,1fr);row-gap:28px}.vchart5 .vcol{width:14px}}
 .chead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .chead .sub{margin-bottom:0}
 .chart .bar{transition:y .6s cubic-bezier(.2,.7,.2,1),height .6s cubic-bezier(.2,.7,.2,1)}
@@ -368,8 +394,10 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
 
   <div class="rq"><div class="rq-head"><span class="rq-n">Q1</span><h3>Can agents maintain correct execution across long dependency chains?</h3></div>
     <div class="charts">
-    <div class="chart" id="c-main"><div class="chead"><div><h3>Workflow completion across dependency depth</h3><div class="sub">Five models, one attempt per workflow. Each group shows evaluation at required depth 5, depth 10, and over the full workflow; hover a bar for the value and its bootstrap standard deviation.</div></div>
-      <div class="seg" role="group" aria-label="Metric" id="mmetric"><button type="button" data-m="req" aria-pressed="true">LHCR-Req</button><button type="button" data-m="all" aria-pressed="false">LHCR-All</button><button type="button" data-m="tok" aria-pressed="false">Output tokens</button><button type="button" data-m="calls" aria-pressed="false">Tool calls</button></div></div></div>
+    <div class="chart vpanel" id="c-main"><div class="chead"><div class="vtitle" id="mtitle">FULL WORKFLOW · LHCR-REQ (%)</div>
+      <div class="seg" role="group" aria-label="Metric" id="mmetric"><button type="button" data-m="req" aria-pressed="true">LHCR-Req</button><button type="button" data-m="all" aria-pressed="false">LHCR-All</button><button type="button" data-m="tok" aria-pressed="false">Tokens</button><button type="button" data-m="calls" aria-pressed="false">Calls</button></div></div>
+      <div class="vchart" id="vmain"></div>
+      <div class="legend"><span><i class="sw swc"></i>Completion over the full workflow, one attempt per workflow (mean; hover for ± bootstrap std). † 50-workflow subset.</span></div></div>
     <div class="chart" id="c-quad"><h3>Accuracy against effort, relative to peers at each depth</h3><div class="sub">Each point is one model at one evaluation depth (3, 5, 10, full; larger marker = deeper), placed relative to the five-model mean at that depth: right means more accurate than peers, up means more output tokens than peers. Subtracting the per-depth mean removes the trend that every model gets slower and less reliable with depth.</div></div>
     </div>
     <div class="findings">
@@ -379,7 +407,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
   </div>
 
   <div class="rq"><div class="rq-head"><span class="rq-n">Q2</span><h3>What prevents agents from maintaining correct dependencies?</h3></div>
-    <div class="charts"><div class="chart full" id="c-orc"><h3>Targeted oracles remove one coordination demand at a time</h3><div class="sub">Full-workflow completion (LHCR-Req, %). Procedure: the required procedure and rules are given upfront. Dependency map: which upstream operations constrain each step, and how. Handoff: the correct upstream object is delivered when the consumer starts its step. Hover a bar for the value.</div></div></div>
+    <div class="charts"><div class="chart vpanel full" id="c-orc"><div class="vtitle">TARGETED ORACLES · LHCR-REQ (%)</div><div class="vchart vchart5" id="vorc"></div>
+      <div class="legend"><span><i class="sw swa"></i>Default (plan-level)</span><span><i class="sw swb"></i>+ Procedure oracle</span><span><i class="sw swd"></i>+ Dependency-map oracle</span><span><i class="sw swc"></i>+ Handoff oracle</span><span style="color:var(--muted)">pill = largest gain over Default</span></div>
+      <div class="sub">Procedure: the required procedure and rules are given upfront. Dependency map: which upstream operations constrain each step, and how. Handoff: the correct upstream object is delivered when the consumer starts its step. Hover a bar for the value and its std.</div></div></div>
     <div class="findings">
       <div class="f"><div class="q">Correct intermediate results matter more than dependency maps for most models.</div><p>Handing over the correct upstream object raises completion by <span class="num">up to 29.5 points</span>; exposing the dependency structure alone gives 7 to 14. Knowing which operations depend on one another is not the bottleneck; producing and carrying the result is.</p></div>
       <div class="f"><div class="q">Planning remains a major bottleneck for several agents, but not uniformly so.</div><p>The full procedure adds 20 to 26.5 points for four models and <span class="num">nothing for GPT-6 Astra</span> (46.5 to 46.0), which instead gains most from help with dependency execution.</p></div>
@@ -387,7 +417,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
   </div>
 
   <div class="rq"><div class="rq-head"><span class="rq-n">Q3</span><h3>Can agents adapt to workflow changes?</h3></div>
-    <div class="charts"><div class="chart full" id="c-brk"><h3>Fragility under matched perturbations</h3><div class="sub">Among workflows that succeed on the base version, the share that fail after the matched change (Broken-Req, %; 100 workflows, GPT-5.6 Sol, plan-level condition). Net completion can hide this, because some base failures also flip to success.</div></div></div>
+    <div class="charts"><div class="chart vpanel full" id="c-brk"><div class="vtitle">MATCHED PERTURBATIONS · BROKEN-REQ (%)</div><div class="vchart vchart6" id="vbrk"></div>
+      <div class="legend"><span><i class="sw swb"></i>Share of base-successful workflows that fail after the change (100 workflows, GPT-5.6 Sol, plan-level). Net completion can hide this, because some base failures also flip to success.</span></div></div></div>
     <div class="findings">
       <div class="f"><div class="q">Successful workflow execution is fragile to controlled changes.</div><p>Across settings, <span class="num">14.0 to 25.6%</span> of previously successful workflows fail after the perturbation; deepening the path by three relays breaks the most.</p></div>
       <div class="f"><div class="q">Dependency changes and distractors stress agents differently.</div><p>Path deepening raises output by 0.8k to 1.8k tokens and 2 to 9 tool calls per run; distractor branches and decoy tools change effort hardly at all, yet still break 18.6% and 20.9% of successful runs.</p></div>
@@ -592,40 +623,27 @@ var MAIN={req:{lab:'LHCR-Req (%)',max:100,fmt:function(v){return v.toFixed(1);},
  tok:{lab:'Output tokens per run (k)',max:35,fmt:function(v){return v.toFixed(1);},d:[[[5.0,.10],[9.9,.21],[12.9,.20]],[[6.0,.12],[10.8,.17],[14.4,.18]],[[10.4,.52],[19.0,.88],[23.9,.99]],[[11.3,.39],[19.3,.61],[24.1,.70]],[[15.1,.31],[24.8,.42],[30.7,.43]]]},
  calls:{lab:'Tool calls per run',max:160,fmt:function(v){return String(Math.round(v));},d:[[[59,1.0],[108,1.8],[137,1.8]],[[61,1.0],[111,1.5],[143,1.6]],[[54,2.4],[98,4.0],[124,4.5]],[[52,1.3],[88,1.8],[111,2.0]],[[60,1.2],[98,1.6],[122,1.7]]]}};
 var DEPTHS=['depth 5','depth 10','all depths'];
-var mainState={m:'req',built:false,armed:false};
-function countTo(tx,from,to,fmt){if(reduce){tx.textContent=fmt(to);return;}var t0=null;function f(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/900);var e=1-Math.pow(1-k,3);tx.textContent=fmt(from+(to-from)*e);if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
-function drawMain(){
-  var host=document.getElementById('c-main'),M=MAIN[mainState.m];
-  var Wc=480,Hc=330,ml=40,mr=8,mt=16,mb=46,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=Math.min(54,gw-24);
-  var ys=function(v){return mt+(1-v/M.max)*ph;};
-  var s=host.querySelector('svg');
-  if(!s||!mainState.built||mainState.rebuild){ if(s)s.remove(); var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Main results, one bar per model'});
-    var gd=el('defs');var lg=el('linearGradient',{id:'barg',x1:'0',y1:'0',x2:'0',y2:'1'});lg.appendChild(el('stop',{offset:'0','stop-color':cssv('--bar-top')}));lg.appendChild(el('stop',{offset:'1','stop-color':cssv('--bar-bot')}));gd.appendChild(lg);s.appendChild(gd);
-    s.appendChild(el('g',{class:'axis'}));
-    MODELS.forEach(function(m,i){var x=ml+i*gw+(gw-bw)/2;
-      s.appendChild(el('rect',{x:x,y:ys(0),width:bw,height:0,fill:'url(#barg)','fill-opacity':(i===2?.8:1),rx:4,class:'bar','data-i':i}));
-      s.appendChild(el('line',{x1:x+bw/2,x2:x+bw/2,y1:ys(0),y2:ys(0),class:'err','data-i':i}));
-      var nm=m.n.replace('Claude ','').replace(' †','†');s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-26,'text-anchor':'middle',class:'ax'},nm.split(' ')[0]));s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-13,'text-anchor':'middle',class:'ax'},nm.split(' ').slice(1).join(' ')));
-      s.appendChild(el('text',{x:x+bw/2,y:ys(0)-6,'text-anchor':'middle',class:'val big','data-i':i,'data-v':'0'},'0'));});
-    s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl','data-role':'xl'},''));
-    host.appendChild(s);
-    var leg=document.createElement('div');leg.className='leg';leg.innerHTML='<span style="color:var(--muted)">Full workflow (all required depths), one attempt per workflow, mean ± bootstrap std. † Claude Fable 5.1: 50-workflow subset.</span>';host.appendChild(leg);
-    var t=tip(host);s.querySelectorAll('rect.bar').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';var i=+r.getAttribute('data-i'),d=MAIN[mainState.m].d[i][2];t.textContent=MODELS[i].n+': '+MAIN[mainState.m].fmt(d[0])+' ± '+d[1];t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
-    var det=document.createElement('details');det.className='tbl';var rows='';MODELS.forEach(function(m,i){DEPTHS.forEach(function(dl,j){rows+='<tr><td>'+(j?'':m.n)+'</td><td>'+dl+'</td>'+['req','all','tok','calls'].map(function(k){var d=MAIN[k].d[i][j];return '<td>'+MAIN[k].fmt(d[0])+' ± '+d[1]+'</td>';}).join('')+'</tr>';});});
-    det.innerHTML='<summary>Table view, including depths 5 and 10</summary><div style="overflow-x:auto"><table class="data"><tr><th>Model</th><th>Req. depth</th><th>LHCR-Req</th><th>LHCR-All</th><th>Output tokens (k)</th><th>Calls</th></tr>'+rows+'</table></div>';host.appendChild(det);
-    mainState.built=true;mainState.rebuild=false;}
-  var ax=s.querySelector('g.axis');while(ax.firstChild)ax.removeChild(ax.firstChild);
-  var step=M.max===100?20:(M.max===35?5:40);for(var v=0;v<=M.max;v+=step){ax.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));ax.appendChild(el('text',{x:ml-8,y:ys(v)+4,'text-anchor':'end',class:'ax'},String(v)));}
-  s.querySelector('[data-role="xl"]').textContent=M.lab.toUpperCase();
-  if(!mainState.armed)return;
-  s.querySelectorAll('rect.bar').forEach(function(r){var i=+r.getAttribute('data-i'),v=M.d[i][2][0];r.setAttribute('y',ys(v));r.setAttribute('height',ys(0)-ys(v));});
-  s.querySelectorAll('line.err').forEach(function(l){var i=+l.getAttribute('data-i'),d=M.d[i][2];l.setAttribute('y1',ys(Math.min(M.max,d[0]+d[1])));l.setAttribute('y2',ys(Math.max(0,d[0]-d[1])));});
-  s.querySelectorAll('text.val').forEach(function(tx){var i=+tx.getAttribute('data-i'),v=M.d[i][2][0],from=+tx.getAttribute('data-v')||0;tx.setAttribute('y',ys(v)-8);tx.setAttribute('data-v',v);countTo(tx,from,v,M.fmt);});
-}
-document.querySelectorAll('#mmetric button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#mmetric button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');mainState.m=b.getAttribute('data-m');mainState.armed=true;drawMain();});});
-(function(){var host=document.getElementById('c-main');function arm(){if(mainState.armed)return;mainState.armed=true;drawMain();}
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){arm();io.disconnect();}});},{threshold:.35});io.observe(host);}else{arm();}})();
+var ORCSTD=[[3.5,3.6,3.6,3.2],[3.5,3.4,3.5,3.4],[7.1,6.7,7.0,3.5],[3.1,3.6,3.4,3.6],[3.3,3.5,3.4,3.5]];
+function vgroup(label,bars){var g=document.createElement('div');g.className='vgroup';var plot=document.createElement('div');plot.className='vplot';
+  bars.forEach(function(bd){var c=document.createElement('div');c.className='vcol '+bd.cls;c.setAttribute('data-h',bd.h);c.title=bd.tip||'';var v=document.createElement('span');v.className='vval';v.textContent=bd.val;c.appendChild(v);
+    if(bd.delta!=null){var d=document.createElement('span');d.className='vdelta'+(bd.delta<0?' neg':'');d.textContent=(bd.delta>=0?'↑ +':'↓ ')+bd.delta.toFixed(1);c.appendChild(d);}
+    var f=document.createElement('i');f.className='vfill';c.appendChild(f);plot.appendChild(c);});
+  g.appendChild(plot);var l=document.createElement('div');l.className='vglab';l.innerHTML=label;g.appendChild(l);return g;}
+function vanimate(host){host.querySelectorAll('.vcol').forEach(function(c){var h=+c.getAttribute('data-h');var px=Math.max(0,h)/100*220;c.querySelector('.vfill').style.height=h+'%';var v=c.querySelector('.vval');v.style.bottom=(px+6)+'px';v.classList.add('in');var d=c.querySelector('.vdelta');if(d){d.style.bottom=(px+24)+'px';d.classList.add('in');}});}
+function vreset(host){host.querySelectorAll('.vcol').forEach(function(c){c.querySelector('.vfill').style.height='0';var v=c.querySelector('.vval');v.style.bottom='8px';v.classList.remove('in');var d=c.querySelector('.vdelta');if(d){d.style.bottom='8px';d.classList.remove('in');}});}
+function varm(host){if(!('IntersectionObserver' in window)){vanimate(host);return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){vanimate(host);io.disconnect();}});},{threshold:.4});io.observe(host);}
+var mainState={m:'req'};
+function mlabel(m){return m.n.replace('Claude ','').replace(' †','†');}
+function buildMain(){var host=document.getElementById('vmain');host.innerHTML='';var M=MAIN[mainState.m];
+  MODELS.forEach(function(m,i){var d=M.d[i][2];host.appendChild(vgroup(mlabel(m),[{cls:'c',h:d[0]/M.max*100,val:M.fmt(d[0]),tip:m.n+': '+M.fmt(d[0])+' ± '+d[1]}]));});
+  document.getElementById('mtitle').textContent='FULL WORKFLOW · '+M.lab.toUpperCase();}
+buildMain();varm(document.getElementById('c-main'));
+document.querySelectorAll('#mmetric button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#mmetric button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');mainState.m=b.getAttribute('data-m');buildMain();vanimate(document.getElementById('c-main'));});});
+(function(){var host=document.getElementById('vorc');var CLS=['a','b','d','c'];
+  MODELS.forEach(function(m,i){var base=ORC[i][0];var gains=ORC[i].map(function(v){return v-base;});var best=1;for(var j=2;j<4;j++)if(gains[j]>gains[best])best=j;
+    host.appendChild(vgroup(mlabel(m),ORC[i].map(function(v,j){return {cls:CLS[j],h:v/80*100,val:v.toFixed(1),tip:m.n+' · '+ORCL[j]+': '+v.toFixed(1)+' ± '+ORCSTD[i][j],delta:(j===best?gains[j]:null)};})));});
+  varm(document.getElementById('c-orc'));})();
+(function(){var host=document.getElementById('vbrk');BRK.forEach(function(b){host.appendChild(vgroup(b[0].replace(', ','<br>'),[{cls:'b',h:b[1]/30*100,val:b[1].toFixed(1)+'%',tip:b[0]+': '+b[1]+'% of base-successful workflows fail'}]));});varm(document.getElementById('c-brk'));})();
 function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
 function tip(host){var t=host.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';host.appendChild(t);}return t;}
 var QD={req:[[86.0,81.0,59.0,46.5],[85.5,76.5,59.5,42.0],[92.0,84.0,62.0,46.0],[64.5,53.5,39.5,26.0],[62.0,55.0,46.0,30.0]],tok:[[2.5,5.0,9.9,12.9],[2.9,6.0,10.8,14.4],[4.7,10.4,19.0,23.9],[4.7,11.3,19.3,24.1],[8.0,15.1,24.8,30.7]]};
@@ -663,7 +681,6 @@ function drawQuad(){
 }
 function drawCharts(){
   drawQuad();
-  mainState.rebuild=true; drawMain();
   /* depth chart: A(d) dashed, S(d) solid, independent baseline light */
   (function(){var host=document.getElementById('c-depth');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
     var Wc=980,Hc=330,ml=44,mr=16,mt=12,mb=36,pw=Wc-ml-mr,ph=Hc-mt-mb;var xs=function(d){return ml+(d-1)/13*pw;},ys=function(v){return mt+(1-v/100)*ph;};
@@ -686,35 +703,6 @@ function drawCharts(){
       t.style.opacity=1;});s.addEventListener('mouseleave',function(){t.style.opacity=0;});
     var det=document.createElement('details');det.className='tbl';var hdr='<tr><th>Model</th><th>Curve</th>'+SURV[0].map(function(_,j){return '<th>d'+(j+1)+'</th>';}).join('')+'</tr>';var rows='';MODELS.forEach(function(m,i){[['S(d)',SURV[i]],['A(d)',AD[i]],['baseline',SIND[i]]].forEach(function(c,k){rows+='<tr><td>'+(k?'':m.n)+'</td><td>'+c[0]+'</td>'+c[1].map(function(v){return '<td>'+v+'</td>';}).join('')+'</tr>';});});
     det.innerHTML='<summary>Table view</summary><div style="overflow-x:auto"><table class="data">'+hdr+rows+'</table></div>';host.appendChild(det);
-  })();
-  /* oracle grouped bars */
-  (function(){var host=document.getElementById('c-orc');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    var Wc=980,Hc=320,ml=40,mr=10,mt=12,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=(gw-40)/4;var ys=function(v){return mt+(1-v/80)*ph;};
-    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Completion under oracles, grouped bars'});
-    [0,20,40,60,80].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-6,y:ys(v)+4,'text-anchor':'end',class:'ax'},v));});
-    var shades=[0.35,0.55,0.75,1];
-    MODELS.forEach(function(m,i){var col=cssv(m.c);ORC[i].forEach(function(v,j){var x=ml+i*gw+20+j*bw;var y=ys(v);var r=el('rect',{x:x+1,y:y,width:bw-2,height:ys(0)-y,fill:col,'fill-opacity':shades[j],rx:2});r.setAttribute('data-l',m.n+' · '+ORCL[j]+': '+v+'%');s.appendChild(r);});
-      var nm=m.n.replace('Claude ','').replace(' †','†');s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-26,'text-anchor':'middle',class:'ax'},nm.split(' ')[0]));s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-13,'text-anchor':'middle',class:'ax'},nm.split(' ').slice(1).join(' ')));
-      ORC[i].forEach(function(v,j){s.appendChild(el('text',{x:ml+i*gw+20+j*bw+bw/2,y:ys(v)-4,'text-anchor':'middle',class:'val'},v.toFixed(1)));});});
-    s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl'},'LHCR-REQ (%) · BARS LEFT TO RIGHT: '+ORCL.join(', ').toUpperCase()));
-    host.appendChild(s);
-    var leg=document.createElement('div');leg.className='leg';ORCL.forEach(function(l,j){leg.innerHTML+='<span><i style="background:var(--ink);opacity:'+shades[j]+'"></i>'+l+'</span>';});host.appendChild(leg);
-    var t=tip(host);s.querySelectorAll('rect[data-l]').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';t.textContent=r.getAttribute('data-l');t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
-    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><table class="data"><tr><th>Model</th>'+ORCL.map(function(l){return '<th>'+l+'</th>';}).join('')+'</tr>'+MODELS.map(function(m,i){return '<tr><td>'+m.n+'</td>'+ORC[i].map(function(v){return '<td>'+v.toFixed(1)+'</td>';}).join('')+'</tr>';}).join('')+'</table>';host.appendChild(det);
-  })();
-  /* break-rate bars */
-  (function(){var host=document.getElementById('c-brk');var old=host.querySelector('svg');if(old)old.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    var Wc=980,Hc=260,ml=200,mr=60,mt=14,mb=30,pw=Wc-ml-mr,ph=Hc-mt-mb,rh=ph/6;var xs=function(v){return ml+v/30*pw;};
-    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Broken-Req by perturbation'});
-    [0,10,20,30].forEach(function(v){s.appendChild(el('line',{x1:xs(v),x2:xs(v),y1:mt,y2:mt+ph,class:'gl'}));s.appendChild(el('text',{x:xs(v),y:Hc-12,'text-anchor':'middle',class:'ax'},v+'%'));});
-    var col=cssv('--brand');
-    BRK.forEach(function(b,i){var y=mt+i*rh+rh*0.2,h=rh*0.6;var r=el('rect',{x:ml,y:y,width:xs(b[1])-ml,height:h,fill:col,rx:3});r.setAttribute('data-l',b[0]+': '+b[1]+'% of base-successful workflows fail');s.appendChild(r);
-      s.appendChild(el('text',{x:ml-8,y:y+h/2+4,'text-anchor':'end',class:'lbl'},b[0]));s.appendChild(el('text',{x:xs(b[1])+6,y:y+h/2+4,class:'val'},b[1]+'%'));});
-    s.appendChild(el('line',{x1:ml,x2:ml,y1:mt,y2:mt+ph,stroke:cssv('--line')}));
-    
-    host.appendChild(s);
-    var t=tip(host);s.querySelectorAll('rect[data-l]').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';t.textContent=r.getAttribute('data-l');t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
-    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><table class="data"><tr><th>Perturbation</th><th>Broken-Req</th></tr>'+BRK.map(function(b){return '<tr><td>'+b[0]+'</td><td>'+b[1]+'%</td></tr>';}).join('')+'</table>';host.appendChild(det);
   })();
 }
 document.querySelectorAll('#dsel button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#dsel button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');depthSel=+b.getAttribute('data-i');drawCharts();});});
