@@ -211,7 +211,7 @@ figcaption{font-size:.9rem;color:var(--muted);margin-top:.7rem;line-height:1.55}
 .chart .gl{stroke:var(--grid);stroke-width:1}
 .chart .lbl{font:600 11px var(--body);fill:var(--text)}
 .chart .val{font:11px var(--mono);fill:var(--text)}
-.chart .val.big{font:600 15px var(--mono);fill:var(--ink)}
+.chart .val.big{font:600 13px var(--mono);fill:var(--ink)}
 .chart .bar{transition:y .9s cubic-bezier(.2,.7,.2,1),height .9s cubic-bezier(.2,.7,.2,1)}
 .chart .err{transition:y1 .9s,y2 .9s}
 .leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--text);margin:8px 0 0}
@@ -351,9 +351,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
   <div class="sec-head"><div class="eyebrow">Results</div><h2>Local competence does not compose into workflow reliability</h2></div>
   <p class="lead">Five frontier models, one harness, one attempt per workflow. Every cell is judged by executable checks on the saved final state: a workflow counts as complete only when the case-closing operation and all of its required ancestors pass.</p>
   <div class="charts">
-    <div class="chart full" id="c-main"><div class="chead"><div><h3>Workflow completion across dependency depth</h3><div class="sub">Five models, one attempt per workflow. Each group shows evaluation at required depth 5, depth 10, and over the full workflow; hover a bar for the value and its bootstrap standard deviation.</div></div>
+    <div class="chart" id="c-main"><div class="chead"><div><h3>Workflow completion across dependency depth</h3><div class="sub">Five models, one attempt per workflow. Each group shows evaluation at required depth 5, depth 10, and over the full workflow; hover a bar for the value and its bootstrap standard deviation.</div></div>
       <div class="seg" role="group" aria-label="Metric" id="mmetric"><button type="button" data-m="req" aria-pressed="true">LHCR-Req</button><button type="button" data-m="all" aria-pressed="false">LHCR-All</button><button type="button" data-m="tok" aria-pressed="false">Output tokens</button><button type="button" data-m="calls" aria-pressed="false">Tool calls</button></div></div></div>
-    <div class="chart full" id="c-quad"><h3>Accuracy against effort, relative to peers at each depth</h3><div class="sub">Each point is one model at one evaluation depth (3, 5, 10, full; larger marker = deeper), placed relative to the five-model mean at that depth: right means more accurate than peers, up means more output tokens than peers. Subtracting the per-depth mean removes the trend that every model gets slower and less reliable with depth.</div></div>
+    <div class="chart" id="c-quad"><h3>Accuracy against effort, relative to peers at each depth</h3><div class="sub">Each point is one model at one evaluation depth (3, 5, 10, full; larger marker = deeper), placed relative to the five-model mean at that depth: right means more accurate than peers, up means more output tokens than peers. Subtracting the per-depth mean removes the trend that every model gets slower and less reliable with depth.</div></div>
     <div class="chart full" id="c-surv"><h3>Survival along the required dependency chain</h3><div class="sub">Share of workflows whose required chain is still fully valid at depth d (plan-level condition). Hover for values.</div></div>
     <div class="chart" id="c-orc"><h3>What helps: structure or results?</h3><div class="sub">Full-workflow completion (LHCR-Req, %) under targeted oracles.</div></div>
     <div class="chart" id="c-brk"><h3>Fragility under matched perturbations</h3><div class="sub">Base-successful workflows that fail after the change (Broken-Req, %).</div></div>
@@ -559,14 +559,14 @@ var mainState={m:'req',built:false,armed:false};
 function countTo(tx,from,to,fmt){if(reduce){tx.textContent=fmt(to);return;}var t0=null;function f(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/900);var e=1-Math.pow(1-k,3);tx.textContent=fmt(from+(to-from)*e);if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 function drawMain(){
   var host=document.getElementById('c-main'),M=MAIN[mainState.m];
-  var Wc=980,Hc=320,ml=48,mr=12,mt=14,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=Math.min(120,gw-40);
+  var Wc=480,Hc=330,ml=40,mr=8,mt=16,mb=46,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=Math.min(54,gw-24);
   var ys=function(v){return mt+(1-v/M.max)*ph;};
   var s=host.querySelector('svg');
   if(!s||!mainState.built||mainState.rebuild){ if(s)s.remove(); var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
     s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Main results, one bar per model'});
     s.appendChild(el('g',{class:'axis'}));
-    MODELS.forEach(function(m,i){var col=cssv(m.c);var x=ml+i*gw+(gw-bw)/2;
-      s.appendChild(el('rect',{x:x,y:ys(0),width:bw,height:0,fill:col,rx:3,class:'bar','data-i':i}));
+    MODELS.forEach(function(m,i){var col=cssv('--brand');var x=ml+i*gw+(gw-bw)/2;
+      s.appendChild(el('rect',{x:x,y:ys(0),width:bw,height:0,fill:col,'fill-opacity':(i===2?.72:1),rx:3,class:'bar','data-i':i}));
       s.appendChild(el('line',{x1:x+bw/2,x2:x+bw/2,y1:ys(0),y2:ys(0),class:'err','data-i':i}));
       var nm=m.n.replace('Claude ','').replace(' †','†');s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-26,'text-anchor':'middle',class:'ax'},nm.split(' ')[0]));s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-13,'text-anchor':'middle',class:'ax'},nm.split(' ').slice(1).join(' ')));
       s.appendChild(el('text',{x:x+bw/2,y:ys(0)-6,'text-anchor':'middle',class:'val big','data-i':i,'data-v':'0'},'0'));});
@@ -602,7 +602,7 @@ function shape(kind,cx,cy,r,attrs){var a=attrs||{};var e;
 var QSHAPE=['circle','square','up','diamond','down'];
 function drawQuad(){
   var host=document.getElementById('c-quad');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-  var Wc=980,Hc=380,ml=54,mr=16,mt=16,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb;
+  var Wc=480,Hc=400,ml=46,mr=10,mt=16,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb;
   var mr_=[0,1,2,3].map(function(j){return QD.req.reduce(function(a,m){return a+m[j];},0)/5;}),mt_=[0,1,2,3].map(function(j){return QD.tok.reduce(function(a,m){return a+m[j];},0)/5;});
   var X=20,Y=11;var xs=function(v){return ml+(v+X)/(2*X)*pw;},ys=function(v){return mt+(1-(v+Y)/(2*Y))*ph;};
   var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Accuracy versus effort relative to the per-depth mean'});
@@ -611,9 +611,9 @@ function drawQuad(){
   [-20,-10,0,10,20].forEach(function(v){s.appendChild(el('line',{x1:xs(v),x2:xs(v),y1:mt,y2:mt+ph,class:'gl'}));s.appendChild(el('text',{x:xs(v),y:Hc-24,'text-anchor':'middle',class:'ax'},(v>0?'+':'')+v));});
   [-10,-5,0,5,10].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-8,y:ys(v)+4,'text-anchor':'end',class:'ax'},(v>0?'+':'')+v));});
   s.appendChild(el('line',{x1:xs(0),x2:xs(0),y1:mt,y2:mt+ph,stroke:cssv('--muted'),'stroke-width':1.2}));s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(0),y2:ys(0),stroke:cssv('--muted'),'stroke-width':1.2}));
-  [['Costly and inaccurate',ml+10,mt+16,'start'],['Costly but accurate',ml+pw-10,mt+16,'end'],['Cheap but inaccurate',ml+10,mt+ph-8,'start'],['Cheap and accurate',ml+pw-10,mt+ph-8,'end']].forEach(function(q){var t=el('text',{x:q[1],y:q[2],'text-anchor':q[3],class:'ax','font-style':'italic'},q[0]);s.appendChild(t);});
+  [['costly, inaccurate',ml+8,mt+14,'start'],['costly, accurate',ml+pw-8,mt+14,'end'],['cheap, inaccurate',ml+8,mt+ph-6,'start'],['cheap, accurate',ml+pw-8,mt+ph-6,'end']].forEach(function(q){var t=el('text',{x:q[1],y:q[2],'text-anchor':q[3],class:'ax','font-style':'italic'},q[0]);s.appendChild(t);});
   s.appendChild(el('text',{x:ml+pw/2,y:Hc-4,'text-anchor':'middle',class:'axl'},'Δ LHCR-REQ VS. DEPTH MEAN (POINTS)'));
-  s.appendChild(el('text',{x:14,y:mt+ph/2,'text-anchor':'middle',class:'axl',transform:'rotate(-90 14 '+(mt+ph/2)+')'},'Δ OUTPUT TOKENS (K)'));
+  s.appendChild(el('text',{x:11,y:mt+ph/2,'text-anchor':'middle',class:'axl',transform:'rotate(-90 11 '+(mt+ph/2)+')'},'Δ OUTPUT TOKENS (K)'));
   var t=tip(host);
   MODELS.forEach(function(m,i){var col=cssv(m.c);[0,1,2,3].forEach(function(j){var dx=QD.req[i][j]-mr_[j],dy=QD.tok[i][j]-mt_[j];var e=shape(QSHAPE[i],xs(dx),ys(dy),QR[j],{fill:col,stroke:cssv('--paper'),'stroke-width':1.5,class:'pt'});
     e.addEventListener('mouseenter',function(){t.style.left=(xs(dx)/Wc*100)+'%';t.style.top=((ys(dy)-QR[j])/Hc*100)+'%';t.textContent=m.n+' · depth '+QDEP[j]+': '+(dx>0?'+':'')+dx.toFixed(1)+' pts accuracy, '+(dy>0?'+':'')+dy.toFixed(1)+'k tokens vs. peers';t.style.opacity=1;});e.addEventListener('mouseleave',function(){t.style.opacity=0;});s.appendChild(e);});});
