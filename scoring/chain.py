@@ -14,12 +14,7 @@ Two metrics, nothing else:
     lhcr(run, "all")        share of ALL 20 nodes passing (closure verdict)
 
 both per instance, averaged by the caller over the shared denominator (a
-missing run counts 0). Node-completion diagnostics by class:
-
-    raw_node_pass_rate(run, cls)      share of the class's nodes passing their OWN check
-    ancestor_blocked_share(run, cls)  own passed but closure failed (= raw − lhcr)
-
-with cls in {"required", "optional", "all"}. Runs scored before the closure
+missing run counts 0). Runs scored before the closure
 guard existed carry per-node results without `ancestors_pass__*`; for those
 `node_pass` composes the same verdict from the recorded per-node results
 (own ∧ ancestors), and `closure_scored(run)` says which kind a run is.
@@ -129,29 +124,3 @@ def lhcr(run: dict, cls: str = "required", graphs_root: str | None = None) -> fl
     node-completion diagnostics below)."""
     vs = class_nodes(run["graph"], cls, graphs_root)
     return 1.0 if vs and all(node_pass(run, v, graphs_root) for v in vs) else 0.0
-
-
-def raw_node_pass_rate(run: dict, cls: str = "all", graphs_root: str | None = None) -> float:
-    vs = class_nodes(run["graph"], cls, graphs_root)
-    return sum(node_own(run, v) for v in vs) / max(1, len(vs))
-
-
-def closure_node_pass_rate(run: dict, cls: str = "all", graphs_root: str | None = None) -> float:
-    """Node-completion diagnostic: share of the class's nodes whose closure verdict
-    (own ∧ every ancestor) passes. Partial credit by construction — NOT the LHCR."""
-    vs = class_nodes(run["graph"], cls, graphs_root)
-    return sum(node_pass(run, v, graphs_root) for v in vs) / max(1, len(vs))
-
-
-def ancestor_blocked_share(run: dict, cls: str = "all", graphs_root: str | None = None) -> float:
-    """Own check passed but the closure failed (= raw − lhcr on the same class)."""
-    vs = class_nodes(run["graph"], cls, graphs_root)
-    return sum(node_own(run, v) and not node_pass(run, v, graphs_root) for v in vs) / max(1, len(vs))
-
-
-def survival_depth(run: dict, cls: str = "all", graphs_root: str | None = None) -> tuple[int, int]:
-    """(deepest depth at which some node of the class passes, the class's max depth)."""
-    _n, _d, _a, depth, _m, _deep = graph_meta(run["graph"], graphs_root)
-    vs = class_nodes(run["graph"], cls, graphs_root)
-    got = [depth[v] for v in vs if node_pass(run, v, graphs_root)]
-    return (max(got) if got else 0), max(depth[v] for v in vs)
