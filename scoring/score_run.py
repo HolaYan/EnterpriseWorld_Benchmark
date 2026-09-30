@@ -18,8 +18,7 @@ uid = run["graph"]
 r = chain.roles(uid)
 print(f"{uid}  model={run['model']}  mode={run['mode']}  tool_calls={run['n_tool_calls']}  stopped={run['stopped']}")
 print(f"LHCR-Req = {chain.lhcr(run, 'required'):.0f}   LHCR-All = {chain.lhcr(run, 'all'):.0f}")
-print(f"raw own-check pass rate (all nodes) = {chain.raw_node_pass_rate(run, 'all'):.2f}   "
-      f"ancestor-blocked share = {chain.ancestor_blocked_share(run, 'all'):.2f}\n")
+print()
 print(f"{'node':6} {'role':9} {'own':4} {'closure':8} first failed check")
 for v in chain.class_nodes(uid, "all"):
     pn = (run.get("per_node") or {}).get(v) or {}
