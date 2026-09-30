@@ -499,7 +499,7 @@ var REPORT=[['source_balance','149,609.18','149,609.18',true],['transfer_base','
 /* ---------- workflow board ---------- */
 var svgNS='http://www.w3.org/2000/svg';
 function el(n,a,txt){var e=document.createElementNS(svgNS,n);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;}
-var W=1040,LX=118,CW=46,NW=44,NH=30,LT=40,LH=78,H=LT+LH*LANES.length+14;
+var W=1040,LX=104,CW=46.5,NW=34,NH=30,LT=40,LH=78,H=LT+LH*LANES.length+14;
 function nx(k){return LX+(k-1)*CW+CW/2;} function ny(l){return LT+l*LH+LH/2;}
 var byId={}; NODES.forEach(function(n){byId[n.id]=n;});
 function buildBoard(host){
