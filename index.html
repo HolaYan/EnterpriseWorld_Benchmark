@@ -239,7 +239,15 @@ table.data{border-collapse:collapse;width:100%;margin-top:8px;font-variant-numer
 table.data th,table.data td{border-bottom:1px solid var(--line-soft);padding:4px 6px;text-align:right}
 table.data th:first-child,table.data td:first-child{text-align:left}
 /* findings */
-.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+.rq{margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.rq-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.rq-head h3{font-size:1.35rem}
+.rq-n{font:600 .78rem var(--mono);color:var(--brand);letter-spacing:.06em}
+.chart .sub b{color:var(--ink);font-weight:600}
+.chart .sub{line-height:1.5}
+.chart path.dim,.chart circle.dim{opacity:.13}
+.chart path.ln{transition:opacity .3s}
 .f{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
 .f .q{font-family:var(--display);font-size:1.05rem;color:var(--ink);line-height:1.3;margin-bottom:.4rem}
 .f p{font-size:.92rem;margin:0}
@@ -356,24 +364,43 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
 
 <section class="sec" id="results"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Results</div><h2>Local competence does not compose into workflow reliability</h2></div>
-  <p class="lead">Five frontier models, one harness, one attempt per workflow. Every cell is judged by executable checks on the saved final state: a workflow counts as complete only when the case-closing operation and all of its required ancestors pass.</p>
-  <div class="charts">
+  <p class="lead">Five frontier models, one harness, one attempt per workflow. Every cell is judged by executable checks on the saved final state: a workflow counts as complete only when the case-closing operation and all of its required ancestors pass. The analysis follows four questions.</p>
+
+  <div class="rq"><div class="rq-head"><span class="rq-n">Q1</span><h3>Can agents maintain correct execution across long dependency chains?</h3></div>
+    <div class="charts">
     <div class="chart" id="c-main"><div class="chead"><div><h3>Workflow completion across dependency depth</h3><div class="sub">Five models, one attempt per workflow. Each group shows evaluation at required depth 5, depth 10, and over the full workflow; hover a bar for the value and its bootstrap standard deviation.</div></div>
       <div class="seg" role="group" aria-label="Metric" id="mmetric"><button type="button" data-m="req" aria-pressed="true">LHCR-Req</button><button type="button" data-m="all" aria-pressed="false">LHCR-All</button><button type="button" data-m="tok" aria-pressed="false">Output tokens</button><button type="button" data-m="calls" aria-pressed="false">Tool calls</button></div></div></div>
     <div class="chart" id="c-quad"><h3>Accuracy against effort, relative to peers at each depth</h3><div class="sub">Each point is one model at one evaluation depth (3, 5, 10, full; larger marker = deeper), placed relative to the five-model mean at that depth: right means more accurate than peers, up means more output tokens than peers. Subtracting the per-depth mean removes the trend that every model gets slower and less reliable with depth.</div></div>
-    <div class="chart full" id="c-surv"><h3>Survival along the required dependency chain</h3><div class="sub">Share of workflows whose required chain is still fully valid at depth d (plan-level condition). Hover for values.</div></div>
-    <div class="chart" id="c-orc"><h3>What helps: structure or results?</h3><div class="sub">Full-workflow completion (LHCR-Req, %) under targeted oracles.</div></div>
-    <div class="chart" id="c-brk"><h3>Fragility under matched perturbations</h3><div class="sub">Base-successful workflows that fail after the change (Broken-Req, %).</div></div>
+    </div>
+    <div class="findings">
+      <div class="f"><div class="q">Local errors accumulate into large end-to-end reliability losses.</div><p>From depth 3 to the full workflow, completion drops by <span class="num">32 to 46 points</span> for every model; the degradation is already visible by depth 10 and continues to full completion.</p></div>
+      <div class="f"><div class="q">More tokens and tool calls do not imply better workflow coordination.</div><p>GPT-6 Astra finishes 46.5% of workflows with 12.9k output tokens; Gemini 3.7 Flash produces 30.7k tokens and reaches 30.0%. Relative to peers at the same depth, the accurate models are also the cheaper ones.</p></div>
+    </div>
   </div>
-</div></section>
 
-<section class="sec" id="findings"><div class="wrap">
-  <div class="sec-head"><div class="eyebrow">Findings</div><h2>Where workflow coordination breaks down</h2></div>
-  <div class="findings">
-    <div class="f"><div class="q">Local errors accumulate into large end-to-end losses.</div><p>From depth 3 to the full workflow, completion drops by <span class="num">32 to 46 points</span> for every model. At depth 12, own-check accuracy is still 59 to 81%, but only 32 to 56% of workflows keep a fully valid chain.</p></div>
-    <div class="f"><div class="q">Correct intermediate results matter more than dependency maps.</div><p>Handing agents the correct upstream object raises completion by <span class="num">up to 29.5 points</span>; exposing the dependency structure alone gives 7 to 14. Most lost edges fail at the producer (8 to 29%), not at the handoff (4 to 6%).</p></div>
-    <div class="f"><div class="q">More tokens and tool calls do not mean better coordination.</div><p>The best model finishes 46.5% of workflows with 12.9k output tokens; a model producing 30.7k tokens reaches 30.0%.</p></div>
-    <div class="f"><div class="q">Successful execution is fragile to controlled change.</div><p>Deepening a required path by three relays breaks <span class="num">25.6%</span> of previously successful workflows; ten decoy tools, which change nothing in the graph, still break 20.9%.</p></div>
+  <div class="rq"><div class="rq-head"><span class="rq-n">Q2</span><h3>What prevents agents from maintaining correct dependencies?</h3></div>
+    <div class="charts"><div class="chart full" id="c-orc"><h3>Targeted oracles remove one coordination demand at a time</h3><div class="sub">Full-workflow completion (LHCR-Req, %). Procedure: the required procedure and rules are given upfront. Dependency map: which upstream operations constrain each step, and how. Handoff: the correct upstream object is delivered when the consumer starts its step. Hover a bar for the value.</div></div></div>
+    <div class="findings">
+      <div class="f"><div class="q">Correct intermediate results matter more than dependency maps for most models.</div><p>Handing over the correct upstream object raises completion by <span class="num">up to 29.5 points</span>; exposing the dependency structure alone gives 7 to 14. Knowing which operations depend on one another is not the bottleneck; producing and carrying the result is.</p></div>
+      <div class="f"><div class="q">Planning remains a major bottleneck for several agents, but not uniformly so.</div><p>The full procedure adds 20 to 26.5 points for four models and <span class="num">nothing for GPT-6 Astra</span> (46.5 to 46.0), which instead gains most from help with dependency execution.</p></div>
+    </div>
+  </div>
+
+  <div class="rq"><div class="rq-head"><span class="rq-n">Q3</span><h3>Can agents adapt to workflow changes?</h3></div>
+    <div class="charts"><div class="chart full" id="c-brk"><h3>Fragility under matched perturbations</h3><div class="sub">Among workflows that succeed on the base version, the share that fail after the matched change (Broken-Req, %; 100 workflows, GPT-5.6 Sol, plan-level condition). Net completion can hide this, because some base failures also flip to success.</div></div></div>
+    <div class="findings">
+      <div class="f"><div class="q">Successful workflow execution is fragile to controlled changes.</div><p>Across settings, <span class="num">14.0 to 25.6%</span> of previously successful workflows fail after the perturbation; deepening the path by three relays breaks the most.</p></div>
+      <div class="f"><div class="q">Dependency changes and distractors stress agents differently.</div><p>Path deepening raises output by 0.8k to 1.8k tokens and 2 to 9 tool calls per run; distractor branches and decoy tools change effort hardly at all, yet still break 18.6% and 20.9% of successful runs.</p></div>
+    </div>
+  </div>
+
+  <div class="rq"><div class="rq-head"><span class="rq-n">Q4</span><h3>Where does workflow coordination break down?</h3></div>
+    <div class="charts"><div class="chart full" id="c-depth"><div class="chead"><div><h3>Local accuracy, chain survival, and the independent-failure baseline</h3></div><div class="seg" role="group" aria-label="Highlight a model" id="dsel"><button type="button" data-i="-1" aria-pressed="true">All</button><button type="button" data-i="0" aria-pressed="false">Astra</button><button type="button" data-i="1" aria-pressed="false">Sol</button><button type="button" data-i="2" aria-pressed="false">Fable†</button><button type="button" data-i="3" aria-pressed="false">Opus</button><button type="button" data-i="4" aria-pressed="false">Gemini</button></div></div>
+      <div class="sub"><b>How each curve is computed</b> (plan-level condition, depth = longest dependency path from a root). <b>Dashed, A(d)</b>: local accuracy, the share of required operations at depth d that pass their own check, over all node-runs at that depth. <b>Solid, S(d)</b>: chain survival, the share of workflows whose required chain is still intact at depth d, meaning some required operation at depth d or deeper passes its own check and every ancestor's. <b>Light, baseline</b>: the survival that independent failures would produce, simulated on each workflow's real graph by letting every required operation fail independently at its observed accuracy for that depth (1,000 draws per workflow). Hover for values; pick a model to isolate it.</div></div></div>
+    <div class="findings">
+      <div class="f"><div class="q">Local competence persists while dependency-valid progress compounds away.</div><p>At depth 12, own-check accuracy is still <span class="num">59 to 81%</span>, but only 32 to 56% of workflows keep a fully valid chain. A chain survives only if every operation on it passes, so the gap widens with depth even without cascades.</p></div>
+      <div class="f"><div class="q">Failures cluster rather than cascade beyond independence.</div><p>Observed survival runs at or slightly above the independent-failure baseline for most depths and converges with it at the deepest levels: the runs that fail tend to fail several operations at once, and most lost edges are lost at the producer (8 to 29%), not at the handoff (4 to 6%).</p></div>
+    </div>
   </div>
 </div></section>
 
@@ -553,10 +580,13 @@ reset();
 
 /* ---------- charts ---------- */
 var MODELS=[{n:'GPT-6 Astra',c:'--s1'},{n:'GPT-5.6 Sol',c:'--s2'},{n:'Claude Fable 5.1 †',c:'--s3'},{n:'Claude Opus 4.8',c:'--s4'},{n:'Gemini 3.7 Flash',c:'--s5'}];
+var AD=[[92,90,89,90,88,90,79,78,77,74,73,74,79,74],[94,91,90,91,84,85,90,91,83,82,82,77,74,67],[95,94,92,92,90,85,88,94,84,90,84,81,85,88],[73,71,68,68,61,67,74,73,72,67,59,59,64,49],[67,68,65,64,62,63,73,75,72,68,57,59,60,49]];
+var SIND=[[98.8,90.1,83.1,82.8,81.8,80.4,68.3,64.7,63.0,59.8,57.8,51.9,24.9,13.0],[99.3,91.6,85.9,85.5,82.8,77.7,74.2,71.5,64.7,62.7,58.6,50.7,22.9,11.5],[99.2,94.6,90.4,90.2,88.0,81.6,74.4,73.3,64.0,64.5,57.6,49.3,24.8,14.1],[91.1,71.2,53.7,53.1,50.1,46.6,43.3,40.4,37.2,35.4,32.2,26.5,12.4,5.8],[87.7,66.5,47.1,46.3,44.8,42.7,41.9,40.5,37.7,36.6,33.1,28.1,12.0,6.0]];
+var depthSel=-1;
 var SURV=[[95,90,87,87,86,84,71,68,66,63,61,55,30,16],[99,91,87,87,86,79,75,73,66,64,59,51,26,13],[98,94,92,92,92,86,78,78,68,68,62,56,30,14],[81,71,66,66,62,58,53,49,45,44,38,32,17,6],[74,68,64,63,62,58,56,55,51,50,45,38,16,8]];
 var ORC=[[46.5,46.0,53.3,69.8],[42.0,63.5,49.7,64.8],[46.0,66.0,60.0,51.5],[26.0,48.0,34.5,51.5],[30.0,56.5,40.5,59.5]];
 var ORCL=['Default','+ Procedure','+ Dependency map','+ Handoff'];
-var BRK=[['k = 1',16.3],['k = 3',25.6],['k = 5',23.3],['+3 parents',14.0],['+10 arms',18.6],['+10 tools',20.9]];
+var BRK=[['Path deepening, k = 1',16.3],['Path deepening, k = 3',25.6],['Path deepening, k = 5',23.3],['Prerequisite / fan-in, +3',14.0],['Distractor branches, +10',18.6],['Decoy tools, +10',20.9]];
 var MAIN={req:{lab:'LHCR-Req (%)',max:100,fmt:function(v){return v.toFixed(1);},d:[[[81.0,2.8],[59.0,3.5],[46.5,3.5]],[[76.5,2.9],[59.5,3.4],[42.0,3.5]],[[84.0,5.3],[62.0,6.9],[46.0,7.0]],[[53.5,3.5],[39.5,3.4],[26.0,3.1]],[[55.0,3.5],[46.0,3.5],[30.0,3.1]]]},
  all:{lab:'LHCR-All (%)',max:100,fmt:function(v){return v.toFixed(1);},d:[[[71.0,3.2],[51.5,3.6],[46.0,3.5]],[[62.0,3.4],[46.5,3.5],[41.5,3.5]],[[78.0,6.0],[56.0,7.0],[44.0,6.9]],[[45.0,3.5],[32.0,3.3],[25.0,3.0]],[[42.5,3.4],[34.0,3.3],[29.5,3.1]]]},
  tok:{lab:'Output tokens per run (k)',max:35,fmt:function(v){return v.toFixed(1);},d:[[[5.0,.10],[9.9,.21],[12.9,.20]],[[6.0,.12],[10.8,.17],[14.4,.18]],[[10.4,.52],[19.0,.88],[23.9,.99]],[[11.3,.39],[19.3,.61],[24.1,.70]],[[15.1,.31],[24.8,.42],[30.7,.43]]]},
@@ -634,31 +664,38 @@ function drawQuad(){
 function drawCharts(){
   drawQuad();
   mainState.rebuild=true; drawMain();
-  /* survival line chart */
-  (function(){var host=document.getElementById('c-surv');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    var Wc=980,Hc=300,ml=44,mr=150,mt=12,mb=36,pw=Wc-ml-mr,ph=Hc-mt-mb;var xs=function(d){return ml+(d-1)/13*pw;},ys=function(v){return mt+(1-v/100)*ph;};
-    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Survival by dependency depth, five models'});
+  /* depth chart: A(d) dashed, S(d) solid, independent baseline light */
+  (function(){var host=document.getElementById('c-depth');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
+    var Wc=980,Hc=330,ml=44,mr=16,mt=12,mb=36,pw=Wc-ml-mr,ph=Hc-mt-mb;var xs=function(d){return ml+(d-1)/13*pw;},ys=function(v){return mt+(1-v/100)*ph;};
+    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Local accuracy, survival, and independent baseline by depth'});
     [0,25,50,75,100].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-8,y:ys(v)+4,'text-anchor':'end',class:'ax'},v+'%'));});
     for(var d=1;d<=14;d++){s.appendChild(el('text',{x:xs(d),y:Hc-14,'text-anchor':'middle',class:'ax'},String(d)));}
     s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl'},'REQUIRED DEPENDENCY DEPTH d'));
-    MODELS.forEach(function(m,i){var col=cssv(m.c);var d='';SURV[i].forEach(function(v,j){d+=(j?'L':'M')+xs(j+1)+' '+ys(v);});
-      s.appendChild(el('path',{d:d,fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round'}));
-      SURV[i].forEach(function(v,j){s.appendChild(el('circle',{cx:xs(j+1),cy:ys(v),r:3.5,fill:col,stroke:cssv('--paper'),'stroke-width':2}));});
-      var last=SURV[i][13];var ly=ys(last)+4+(i===2?-8:0)+(i===0?6:0)+(i===4?4:0);s.appendChild(el('text',{x:xs(14)+10,y:ly,class:'lbl'},m.n+' · '+last+'%'));});
+    var path=function(arr){var d='';arr.forEach(function(v,j){d+=(j?'L':'M')+xs(j+1)+' '+ys(v);});return d;};
+    MODELS.forEach(function(m,i){var col=cssv(m.c);var dim=depthSel>=0&&depthSel!==i;
+      s.appendChild(el('path',{d:path(SIND[i]),fill:'none',stroke:col,'stroke-width':1.6,'stroke-opacity':.45,class:'ln'+(dim?' dim':''),'data-i':i}));
+      SIND[i].forEach(function(v,j){s.appendChild(el('circle',{cx:xs(j+1),cy:ys(v),r:2.4,fill:col,'fill-opacity':.45,class:(dim?'dim':''),'data-i':i}));});
+      s.appendChild(el('path',{d:path(AD[i]),fill:'none',stroke:col,'stroke-width':1.6,'stroke-dasharray':'5 4','stroke-opacity':.8,class:'ln'+(dim?' dim':''),'data-i':i}));
+      s.appendChild(el('path',{d:path(SURV[i]),fill:'none',stroke:col,'stroke-width':2.4,'stroke-linejoin':'round',class:'ln'+(dim?' dim':''),'data-i':i}));});
     host.appendChild(s);
-    var leg=document.createElement('div');leg.className='leg';MODELS.forEach(function(m){leg.innerHTML+='<span><i style="background:'+cssv(m.c)+'"></i>'+m.n+'</span>';});leg.innerHTML+='<span style="color:var(--muted)">† 50-workflow subset</span>';host.appendChild(leg);
-    var t=tip(host);s.addEventListener('mousemove',function(ev){var r=s.getBoundingClientRect();var x=(ev.clientX-r.left)/r.width*Wc;var d=Math.max(1,Math.min(14,Math.round((x-ml)/pw*13+1)));t.style.left=((xs(d))/Wc*100)+'%';t.style.top=(ys(Math.max.apply(null,SURV.map(function(a){return a[d-1];})))/Hc*100)+'%';t.innerHTML='depth '+d+': '+MODELS.map(function(m,i){return m.n.replace(' †','')+' '+SURV[i][d-1]+'%';}).join(' · ');t.style.opacity=1;});s.addEventListener('mouseleave',function(){t.style.opacity=0;});
-    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><div style="overflow-x:auto"><table class="data"><tr><th>Model</th>'+SURV[0].map(function(_,j){return '<th>d'+(j+1)+'</th>';}).join('')+'</tr>'+MODELS.map(function(m,i){return '<tr><td>'+m.n+'</td>'+SURV[i].map(function(v){return '<td>'+v+'</td>';}).join('')+'</tr>';}).join('')+'</table></div>';host.appendChild(det);
+    var leg=document.createElement('div');leg.className='leg';MODELS.forEach(function(m){leg.innerHTML+='<span><i style="background:'+cssv(m.c)+'"></i>'+m.n+'</span>';});
+    leg.innerHTML+='<span style="margin-left:6px"><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="currentColor" stroke-width="2.4"/></svg>S(d) survival</span><span><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 4"/></svg>A(d) local accuracy</span><span><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="currentColor" stroke-width="1.6" stroke-opacity=".45"/><circle cx="13" cy="4" r="2.4" fill="currentColor" fill-opacity=".45"/></svg>independent-failure baseline</span>';host.appendChild(leg);
+    var t=tip(host);s.addEventListener('mousemove',function(ev){var r=s.getBoundingClientRect();var x=(ev.clientX-r.left)/r.width*Wc;var d=Math.max(1,Math.min(14,Math.round((x-ml)/pw*13+1)));t.style.left=((xs(d))/Wc*100)+'%';t.style.top=(ys(Math.max.apply(null,SURV.map(function(a){return a[d-1];})))/Hc*100)+'%';
+      if(depthSel>=0){var i=depthSel;t.innerHTML=MODELS[i].n.replace(' †','')+' · depth '+d+': S '+SURV[i][d-1]+'% · A '+AD[i][d-1]+'% · baseline '+SIND[i][d-1]+'%';}
+      else{t.innerHTML='depth '+d+' · S(d): '+MODELS.map(function(m,i){return m.n.replace(' †','').replace('Claude ','').replace('GPT-','').replace(' Flash','')+' '+SURV[i][d-1]+'%';}).join(' · ');}
+      t.style.opacity=1;});s.addEventListener('mouseleave',function(){t.style.opacity=0;});
+    var det=document.createElement('details');det.className='tbl';var hdr='<tr><th>Model</th><th>Curve</th>'+SURV[0].map(function(_,j){return '<th>d'+(j+1)+'</th>';}).join('')+'</tr>';var rows='';MODELS.forEach(function(m,i){[['S(d)',SURV[i]],['A(d)',AD[i]],['baseline',SIND[i]]].forEach(function(c,k){rows+='<tr><td>'+(k?'':m.n)+'</td><td>'+c[0]+'</td>'+c[1].map(function(v){return '<td>'+v+'</td>';}).join('')+'</tr>';});});
+    det.innerHTML='<summary>Table view</summary><div style="overflow-x:auto"><table class="data">'+hdr+rows+'</table></div>';host.appendChild(det);
   })();
   /* oracle grouped bars */
   (function(){var host=document.getElementById('c-orc');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    var Wc=480,Hc=300,ml=36,mr=8,mt=10,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=(gw-14)/4;var ys=function(v){return mt+(1-v/80)*ph;};
+    var Wc=980,Hc=320,ml=40,mr=10,mt=12,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=(gw-40)/4;var ys=function(v){return mt+(1-v/80)*ph;};
     var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Completion under oracles, grouped bars'});
     [0,20,40,60,80].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-6,y:ys(v)+4,'text-anchor':'end',class:'ax'},v));});
     var shades=[0.35,0.55,0.75,1];
-    MODELS.forEach(function(m,i){var col=cssv(m.c);ORC[i].forEach(function(v,j){var x=ml+i*gw+7+j*bw;var y=ys(v);var r=el('rect',{x:x+1,y:y,width:bw-2,height:ys(0)-y,fill:col,'fill-opacity':shades[j],rx:2});r.setAttribute('data-l',m.n+' · '+ORCL[j]+': '+v+'%');s.appendChild(r);});
+    MODELS.forEach(function(m,i){var col=cssv(m.c);ORC[i].forEach(function(v,j){var x=ml+i*gw+20+j*bw;var y=ys(v);var r=el('rect',{x:x+1,y:y,width:bw-2,height:ys(0)-y,fill:col,'fill-opacity':shades[j],rx:2});r.setAttribute('data-l',m.n+' · '+ORCL[j]+': '+v+'%');s.appendChild(r);});
       var nm=m.n.replace('Claude ','').replace(' †','†');s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-26,'text-anchor':'middle',class:'ax'},nm.split(' ')[0]));s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-13,'text-anchor':'middle',class:'ax'},nm.split(' ').slice(1).join(' ')));
-      s.appendChild(el('text',{x:ml+i*gw+7+3*bw+bw/2,y:ys(ORC[i][3])-4,'text-anchor':'middle',class:'val'},ORC[i][3]));});
+      ORC[i].forEach(function(v,j){s.appendChild(el('text',{x:ml+i*gw+20+j*bw+bw/2,y:ys(v)-4,'text-anchor':'middle',class:'val'},v.toFixed(1)));});});
     s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl'},'LHCR-REQ (%) · BARS LEFT TO RIGHT: '+ORCL.join(', ').toUpperCase()));
     host.appendChild(s);
     var leg=document.createElement('div');leg.className='leg';ORCL.forEach(function(l,j){leg.innerHTML+='<span><i style="background:var(--ink);opacity:'+shades[j]+'"></i>'+l+'</span>';});host.appendChild(leg);
@@ -667,19 +704,20 @@ function drawCharts(){
   })();
   /* break-rate bars */
   (function(){var host=document.getElementById('c-brk');var old=host.querySelector('svg');if(old)old.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
-    var Wc=480,Hc=300,ml=110,mr=48,mt=14,mb=30,pw=Wc-ml-mr,ph=Hc-mt-mb,rh=ph/6;var xs=function(v){return ml+v/30*pw;};
+    var Wc=980,Hc=260,ml=200,mr=60,mt=14,mb=30,pw=Wc-ml-mr,ph=Hc-mt-mb,rh=ph/6;var xs=function(v){return ml+v/30*pw;};
     var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Broken-Req by perturbation'});
     [0,10,20,30].forEach(function(v){s.appendChild(el('line',{x1:xs(v),x2:xs(v),y1:mt,y2:mt+ph,class:'gl'}));s.appendChild(el('text',{x:xs(v),y:Hc-12,'text-anchor':'middle',class:'ax'},v+'%'));});
     var col=cssv('--brand');
     BRK.forEach(function(b,i){var y=mt+i*rh+rh*0.2,h=rh*0.6;var r=el('rect',{x:ml,y:y,width:xs(b[1])-ml,height:h,fill:col,rx:3});r.setAttribute('data-l',b[0]+': '+b[1]+'% of base-successful workflows fail');s.appendChild(r);
       s.appendChild(el('text',{x:ml-8,y:y+h/2+4,'text-anchor':'end',class:'lbl'},b[0]));s.appendChild(el('text',{x:xs(b[1])+6,y:y+h/2+4,class:'val'},b[1]+'%'));});
     s.appendChild(el('line',{x1:ml,x2:ml,y1:mt,y2:mt+ph,stroke:cssv('--line')}));
-    s.appendChild(el('text',{x:ml-8,y:mt+rh*1.5+2,'text-anchor':'end',class:'axl',transform:'translate(-96,0) rotate(-90 '+(ml-8)+' '+(mt+rh*1.5)+')'},'PATH DEEPENING'));
+    
     host.appendChild(s);
     var t=tip(host);s.querySelectorAll('rect[data-l]').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';t.textContent=r.getAttribute('data-l');t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
     var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><table class="data"><tr><th>Perturbation</th><th>Broken-Req</th></tr>'+BRK.map(function(b){return '<tr><td>'+b[0]+'</td><td>'+b[1]+'%</td></tr>';}).join('')+'</table>';host.appendChild(det);
   })();
 }
+document.querySelectorAll('#dsel button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#dsel button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');depthSel=+b.getAttribute('data-i');drawCharts();});});
 drawCharts();
 if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawCharts);}
 
