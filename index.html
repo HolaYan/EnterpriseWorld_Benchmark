@@ -657,7 +657,7 @@ document.querySelectorAll('#mmetric button').forEach(function(b){b.addEventListe
 function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
 function tip(host){var t=host.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';host.appendChild(t);}return t;}
 var QD={req:[[86.0,81.0,59.0,46.5],[85.5,76.5,59.5,42.0],[92.0,84.0,62.0,46.0],[64.5,53.5,39.5,26.0],[62.0,55.0,46.0,30.0]],tok:[[2.5,5.0,9.9,12.9],[2.9,6.0,10.8,14.4],[4.7,10.4,19.0,23.9],[4.7,11.3,19.3,24.1],[8.0,15.1,24.8,30.7]]};
-var QDEP=['3','5','10','full'],QR=[2.6,3.6,4.6,5.8];
+var QDEP=['3','5','10','full'],QR=[3.4,4.6,5.8,7.2];
 function shape(kind,cx,cy,r,attrs){var a=attrs||{};var e;
   if(kind==='circle'){e=el('circle',Object.assign({cx:cx,cy:cy,r:r},a));}
   else if(kind==='square'){e=el('rect',Object.assign({x:cx-r,y:cy-r,width:2*r,height:2*r,rx:1.5},a));}
