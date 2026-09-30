@@ -1,11 +1,10 @@
 # EnterpriseWorld: A realistic world for enterprise long-horizon agents
 
-[Project page](https://holayan.github.io/EnterpriseWorld_Benchmark/) · Paper (under review) · Contact: hongjunliu@nyu.edu
-
 In enterprise workflows, agents must carry the results, records, and state changes of earlier operations into later ones, often across systems. **EnterpriseWorld** is a benchmark of 200 cross-system enterprise workflows with 20 operations each, built with **EnterpriseFlow**, a programmatic framework that constructs workflows around four design principles: *realistic* enterprise operations, *long-horizon* coordination, *structural control* over task dependencies, and *verifiable* local and cross-task outcomes. Dependencies are grounded in results and state changes produced by earlier operations, verified by tracing input origins and testing whether upstream errors affect downstream success, and audited by humans (97.2% agreement). Paired workflow variants either modify the required dependency topology or add task/tool distractors while preserving it.
 
-This repository is the **review release**: eleven complete instances with their queries, hidden dependency graphs, executable checks, perturbation variants, real model trajectories with per-node verdicts, and the scorer that reads them. It exists so reviewers can inspect real data, not a description of it. The full release (200 workflows, all models, the execution harness) follows publication. The `gh-pages` branch holds the project page.
+**[Project page](https://holayan.github.io/EnterpriseWorld_Benchmark/) · Paper (To update) · Contact: hongjunliu@nyu.edu**
 
+---
 ## What is in this repository
 
 | path | contents |
