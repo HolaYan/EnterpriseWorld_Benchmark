@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnterpriseWorld</title>
+<meta name="description" content="EnterpriseWorld: a realistic world for enterprise long-horizon agents. 200 cross-system workflows with verified, controllable dependencies.">
+<style>
+:root{
+  color-scheme:light;
+  --ink:#0f1c3a; --text:#26324b; --muted:#5b6885; --faint:#8a95ad;
+  --brand:#2352c9; --brand-hover:#1c44a8; --brand-soft:#ecf1fc; --brand-line:#c9d6f5; --brand-text:#1a3f9c;
+  --amber:#d19a2a; --amber-soft:#fff8e8; --amber-text:#7a5410;
+  --ok:#1f8a4c; --ok-soft:#e4f4ea; --bad:#c73a3a; --bad-soft:#fbe7e7;
+  --canvas:#f3f5f9; --paper:#ffffff; --band:#f6f8fc; --line:#dfe4ee; --line-soft:#e8ecf3;
+  --grid:#e8ecf3; --shadow:0 1px 2px rgba(15,28,58,.06),0 12px 28px -14px rgba(15,28,58,.16);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --display:Georgia,"Times New Roman",serif;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ink:#eef2fb; --text:#d6dded; --muted:#a9b4cc; --faint:#7d8aa8;
+    --brand:#6b96f0; --brand-hover:#88aaf5; --brand-soft:#16264a; --brand-line:#2c447c; --brand-text:#a9c0f8;
+    --amber:#e0ac45; --amber-soft:#2a2410; --amber-text:#f0cf86;
+    --ok:#3fc07a; --ok-soft:#10301f; --bad:#f06767; --bad-soft:#3a1616;
+    --canvas:#0b1426; --paper:#121d33; --band:#172440; --line:#24334f; --line-soft:#1d2a45;
+    --grid:#1f2d4a; --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.6);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#eef2fb; --text:#d6dded; --muted:#a9b4cc; --faint:#7d8aa8;
+  --brand:#6b96f0; --brand-hover:#88aaf5; --brand-soft:#16264a; --brand-line:#2c447c; --brand-text:#a9c0f8;
+  --amber:#e0ac45; --amber-soft:#2a2410; --amber-text:#f0cf86;
+  --ok:#3fc07a; --ok-soft:#10301f; --bad:#f06767; --bad-soft:#3a1616;
+  --canvas:#0b1426; --paper:#121d33; --band:#172440; --line:#24334f; --line-soft:#1d2a45;
+  --grid:#1f2d4a; --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.6);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+a:hover{color:var(--brand-hover)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+h2{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.15;letter-spacing:-.005em}
+h3{font-size:1.15rem;line-height:1.3}
+p{margin:0 0 1rem}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text);margin-bottom:.5rem;font-family:var(--body)}
+.mono{font-family:var(--mono)}
+.prose{max-width:68ch}
+.prose p{color:var(--text)}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.brand{font-family:var(--display);font-weight:700;color:var(--ink);text-decoration:none;font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
+.brand svg{width:22px;height:22px}
+.navlinks{display:flex;gap:18px;align-items:center;font-size:.86rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.navlinks a{color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--ink)}
+.tbtn{border:1px solid var(--line);background:var(--paper);color:var(--text);border-radius:999px;padding:4px 10px;font:600 .78rem var(--body);cursor:pointer}
+@media (max-width:760px){.navlinks a{display:none}.navlinks a:last-of-type{display:none}}
+/* hero */
+.hero{background:var(--paper);border-bottom:1px solid var(--line);padding:56px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:28px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.01em}
+.hero h1 small{display:block;font-size:clamp(1.15rem,2.2vw,1.55rem);font-weight:400;color:var(--muted);margin-top:.5rem;letter-spacing:0;font-family:var(--display);font-style:italic}
+.tagline{font-size:1.15rem;max-width:62ch;color:var(--text)}
+.authors{font-size:.98rem;color:var(--text);max-width:80ch}
+.authors b{color:var(--ink);font-weight:600}
+.authors sup{color:var(--muted);font-size:.7em}
+.affil{font-size:.86rem;color:var(--muted);margin-top:.35rem}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.1rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;border-radius:999px;padding:.6rem 1.15rem;font:600 .92rem var(--body);text-decoration:none;border:1px solid var(--brand);color:var(--brand);background:transparent;cursor:pointer}
+.btn.primary{background:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand-hover);color:#fff}
+.btn:hover{background:var(--brand-soft)}
+.btn.primary:hover{background:var(--brand-hover)}
+.btn svg{width:16px;height:16px}
+/* stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:28px 0 0}
+.tile{background:var(--band);border:1px solid var(--line-soft);border-radius:10px;padding:14px 14px 12px;min-width:0}
+.tile .v{font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.tile .l{font-size:.78rem;color:var(--muted);margin-top:.45rem;line-height:1.3}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr)}}
+/* sections */
+section.sec{padding:64px 0;border-bottom:1px solid var(--line)}
+section.sec:last-of-type{border-bottom:0}
+.sec-head{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:22px}
+.lead{font-size:1.08rem;color:var(--text);max-width:68ch}
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.pr{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;box-shadow:var(--shadow)}
+.pr .n{font-family:var(--mono);color:var(--brand);font-size:.8rem;letter-spacing:.06em}
+.pr h3{margin:.35rem 0 .5rem}
+.pr p{font-size:.92rem;color:var(--text);margin:0}
+@media (max-width:860px){.principles{grid-template-columns:repeat(2,1fr)}}
+figure{margin:24px 0 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:.86rem;color:var(--muted);margin-top:.6rem;max-width:80ch}
+/* board */
+.board{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.board-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line-soft);background:var(--band)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper)}
+.seg button{border:0;background:transparent;color:var(--muted);padding:.42rem .85rem;font:600 .82rem var(--body);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ib{border:1px solid var(--line);background:var(--paper);color:var(--text);border-radius:8px;padding:.4rem .7rem;font:600 .82rem var(--body);cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
+.ib:hover{background:var(--band)}
+.ib svg{width:14px;height:14px}
+.board-body{display:grid;grid-template-columns:1fr 300px}
+.board svg.wf{width:100%;height:auto;display:block}
+.narr{border-left:1px solid var(--line-soft);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-height:100%}
+.narr .k{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.narr .t{font-family:var(--display);font-size:1.1rem;color:var(--ink);line-height:1.25}
+.narr .body{font-size:.9rem;color:var(--text)}
+.narr .vals{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.84rem;font-family:var(--mono)}
+.narr .vals .lab{color:var(--muted);font-family:var(--body);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+.pill{display:inline-block;border-radius:6px;padding:2px 8px;font:600 .78rem var(--mono)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.wait{background:var(--band);color:var(--muted);border:1px solid var(--line)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);padding:10px 16px;border-top:1px solid var(--line-soft);background:var(--band)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:2px solid var(--brand)}
+.sw.amber{border-top:2px dashed var(--amber)}
+.sw.state{border-top:2px dotted var(--brand)}
+.dot{width:12px;height:12px;border-radius:3px;border:1.5px solid var(--brand);background:var(--paper)}
+.dot.ok{background:var(--ok-soft);border-color:var(--ok)}
+.dot.bad{background:var(--bad-soft);border-color:var(--bad)}
+.dot.opt{border-style:dashed}
+@media (max-width:820px){.board-body{grid-template-columns:1fr}.narr{border-left:0;border-top:1px solid var(--line-soft)}}
+.report{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.report .cell{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:var(--mono);font-size:.78rem;background:var(--paper)}
+.report .cell .key{color:var(--muted);font-size:.7rem;letter-spacing:.04em}
+.report .cell.ok{background:var(--ok-soft);border-color:transparent}
+.report .cell.bad{background:var(--bad-soft);border-color:transparent}
+@media (max-width:640px){.report{grid-template-columns:repeat(2,1fr)}}
+/* graph svg styling */
+.wf .lane-label{font:600 11px var(--mono);letter-spacing:.08em;fill:var(--faint)}
+.wf .lane-line{stroke:var(--line);stroke-dasharray:3 7}
+.wf .edge{fill:none;stroke:var(--brand);stroke-width:1.6;stroke-opacity:.55;transition:stroke .35s,stroke-opacity .35s}
+.wf .edge.state{stroke-dasharray:2 4}
+.wf .edge.long{stroke:var(--amber);stroke-dasharray:6 5;stroke-opacity:.8}
+.wf .edge.bad{stroke:var(--bad);stroke-opacity:.9}
+.wf .edge.ok{stroke:var(--ok);stroke-opacity:.8}
+.wf .edge.dim{stroke-opacity:.14}
+.wf .node rect{fill:var(--paper);stroke:var(--brand);stroke-width:1.5;transition:fill .35s,stroke .35s}
+.wf .node.opt rect{stroke-dasharray:4 3}
+.wf .node text{font:12px var(--mono);fill:var(--ink)}
+.wf .node .id{font-size:9.5px;fill:var(--faint)}
+.wf .node.ok rect{fill:var(--ok-soft);stroke:var(--ok)}
+.wf .node.bad rect{fill:var(--bad-soft);stroke:var(--bad)}
+.wf .node.cur rect{stroke-width:3}
+.wf .node.pending rect{opacity:.55}
+.wf .node.pending text{opacity:.55}
+.wf .node{cursor:pointer}
+.wf .mark-blue{fill:var(--brand)} .wf .mark-amber{fill:var(--amber)} .wf .mark-bad{fill:var(--bad)} .wf .mark-ok{fill:var(--ok)}
+.wf .halo{fill:none;stroke:var(--bad);stroke-width:2;opacity:0}
+@keyframes halo{0%{r:18;opacity:.9}100%{r:44;opacity:0}}
+.wf .halo.go{animation:halo 1.1s ease-out 2}
+@media (prefers-reduced-motion:reduce){.wf .halo.go{animation:none}.wf *{transition:none!important}}
+/* perturbation */
+.pert{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+.pert .board-body{grid-template-columns:1fr}
+.ops{display:flex;flex-direction:column;gap:8px}
+.op{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;font:inherit;color:var(--text)}
+.op[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+.op .h{font-weight:700;color:var(--ink);font-size:.92rem;display:flex;justify-content:space-between;gap:8px}
+.op .h span.b{font-family:var(--mono);font-weight:600;color:var(--bad);font-size:.8rem}
+.op .d{font-size:.82rem;color:var(--muted);margin-top:2px}
+@media (max-width:820px){.pert{grid-template-columns:1fr}}
+.pg .rel rect{fill:var(--amber-soft);stroke:var(--amber)}
+.pg .rel text{fill:var(--amber-text)}
+.pg .gate{stroke:var(--amber)!important;stroke-dasharray:0!important;stroke-width:2.2!important;stroke-opacity:.95!important}
+.pg .dis rect{fill:var(--band);stroke:var(--faint);stroke-dasharray:3 3}
+.pg .dis text{fill:var(--muted)}
+.pg .tool{font:11px var(--mono);fill:var(--muted)}
+.pg .tool.decoy{fill:var(--bad)}
+.pg .enter{animation:pop .5s ease-out both}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* charts */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.chart{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;box-shadow:var(--shadow);position:relative;min-width:0}
+.chart h3{font-family:var(--body);font-size:.95rem;font-weight:700}
+.chart .sub{font-size:.8rem;color:var(--muted);margin:2px 0 8px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .ax{font:11px var(--body);fill:var(--muted)}
+.chart .axl{font:600 11px var(--body);fill:var(--muted);letter-spacing:.04em}
+.chart .gl{stroke:var(--grid);stroke-width:1}
+.chart .lbl{font:600 11px var(--body);fill:var(--text)}
+.chart .val{font:11px var(--mono);fill:var(--text)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--text);margin:8px 0 0}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.leg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font:12px var(--body);padding:6px 9px;border-radius:6px;opacity:0;transform:translate(-50%,-115%);white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+:root[data-theme="dark"] .tip{background:#fff;color:#0f1c3a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tip{background:#fff;color:#0f1c3a}}
+.chart.full{grid-column:1/-1}
+@media (max-width:820px){.charts{grid-template-columns:1fr}}
+details.tbl{margin-top:8px;font-size:.82rem}
+details.tbl summary{cursor:pointer;color:var(--brand);font-weight:600}
+table.data{border-collapse:collapse;width:100%;margin-top:8px;font-variant-numeric:tabular-nums}
+table.data th,table.data td{border-bottom:1px solid var(--line-soft);padding:4px 6px;text-align:right}
+table.data th:first-child,table.data td:first-child{text-align:left}
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+.f{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.f .q{font-family:var(--display);font-size:1.05rem;color:var(--ink);line-height:1.3;margin-bottom:.4rem}
+.f p{font-size:.92rem;margin:0}
+.f .num{font-family:var(--mono);color:var(--brand)}
+@media (max-width:760px){.findings{grid-template-columns:1fr}}
+/* cite */
+pre.bib{background:var(--band);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:.82rem/1.5 var(--mono);color:var(--text);overflow-x:auto;margin:0}
+.cite-row{display:flex;gap:10px;align-items:center;margin-top:10px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:.84rem}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:.85rem;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="7" height="5" rx="1.5"/><rect x="15" y="4" width="7" height="5" rx="1.5"/><rect x="8.5" y="15" width="7" height="5" rx="1.5"/><path d="M9 6.5h6M5.5 9v3.5h13V9M12 12.5V15"/></svg>EnterpriseWorld</a>
+  <div class="navlinks">
+    <a href="#idea">Idea</a><a href="#workflow">Workflow</a><a href="#perturb">Perturbations</a><a href="#results">Results</a><a href="#cite">Cite</a>
+    <button class="tbtn" id="theme" type="button" aria-label="Toggle color theme">Theme</button>
+  </div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <div class="eyebrow">Benchmark · 200 workflows · 20 operations each</div>
+    <h1>EnterpriseWorld <small>A realistic world for enterprise long-horizon agents</small></h1>
+  </div>
+  <p class="tagline">Agents can already do the steps. The question is whether they can carry each result, record, and state change into the operations that depend on it, across systems, twenty steps deep. EnterpriseWorld makes those dependencies explicit, verified, and controllable, and measures where execution breaks.</p>
+  <div>
+    <div class="authors"><b>Hongjun Liu</b><sup>1,2</sup>, <b>Bo Pang</b><sup>1,†</sup>, <b>Yifei Ming</b><sup>1,†</sup>, <b>Anurag Koul</b><sup>1</sup>, <b>Egor Pakhomov</b><sup>1</sup>, <b>Chen Zhao</b><sup>2</sup>, <b>Shafiq Joty</b><sup>1</sup>, <b>Erik Nijkamp</b><sup>1</sup></div>
+    <div class="affil"><sup>1</sup> Salesforce AI Research &nbsp;·&nbsp; <sup>2</sup> New York University &nbsp;·&nbsp; <sup>†</sup> core mentors</div>
+    <div class="ctas">
+      <a class="btn primary" href="#cite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h6M8 13h8M8 17h8"/></svg>Paper</a>
+      <a class="btn" href="https://anonymous.4open.science/r/ICLR_EnterpriseWorld_Repo-5E64/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Code &amp; data</a>
+      <a class="btn" href="#workflow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l14 8-14 8z"/></svg>Replay a run</a>
+    </div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><div class="v">200</div><div class="l">workflows, 20 operations each, in one executable world</div></div>
+    <div class="tile"><div class="v">27.4</div><div class="l">verified dependency edges per workflow (22 to 42)</div></div>
+    <div class="tile"><div class="v">12.9</div><div class="l">required dependency depth on average (12 to 15)</div></div>
+    <div class="tile"><div class="v">46.5%</div><div class="l">best full-workflow completion among five frontier models</div></div>
+    <div class="tile"><div class="v">14–26%</div><div class="l">of successful workflows break under a matched perturbation</div></div>
+    <div class="tile"><div class="v">97.2%</div><div class="l">of dependency verdicts endorsed in the human audit</div></div>
+  </div>
+</div></header>
+
+<section class="sec" id="idea"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">The idea</div><h2>Workflows are the unit of evaluation, not tasks</h2></div>
+  <div class="prose">
+    <p class="lead">In a payment workflow, a computed amount must inform the approval, the approval must authorize the payment, and reconciliation must use the transaction record that payment created. Existing benchmarks capture long, stateful tasks, but rarely make these dependencies explicit, verified, and controllable. EnterpriseWorld is built from familiar source tasks (BIRD, Spider 2.0, EnterpriseOps-Gym, WorkBench, AppWorld) woven into shared cases where every edge is a real field-level handoff that an incorrect upstream result demonstrably breaks.</p>
+  </div>
+  <div class="principles">
+    <div class="pr"><div class="n">01</div><h3>Realistic</h3><p>Enterprise operations keep their original data and judging semantics; 7 of 20 checks per workflow are inherited byte for byte from the source dataset.</p></div>
+    <div class="pr"><div class="n">02</div><h3>Long-horizon</h3><p>Results produced early resurface many steps later, and several must hold at once. 36% of edges span five or more steps; 24% span ten or more.</p></div>
+    <div class="pr"><div class="n">03</div><h3>Structurally controllable</h3><p>Matched variants deepen a required path or add prerequisites while the business setting stays fixed, so structure itself is the treatment.</p></div>
+    <div class="pr"><div class="n">04</div><h3>Verifiable</h3><p>Executable checks judge each operation and each dependency; replacing a correct upstream result with a wrong one must flip the downstream check.</p></div>
+  </div>
+  <figure><img src="img/pipeline.png" alt="Construction pipeline: source operations are materialized in a shared world, connected through value, record, state, and prerequisite dependencies, and validated by live targets and counterfactual probes."><figcaption>Construction. Validated source operations and case-specific steps are connected through dependencies in a shared executable world. Live target computation keeps downstream ground truth aligned with the current case; counterfactual probes and admission gates verify that the dependencies are executable and load-bearing.</figcaption></figure>
+</div></section>
+
+<section class="sec" id="workflow"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">The workflow</div><h2>One misread at step 3, and the whole case goes wrong consistently</h2></div>
+  <p class="lead">This is a real workflow from the benchmark, a balance-transfer request, and a real run by a frontier model under the plan-level condition. Each box is an operation; each line is a verified dependency (dashed amber lines span five steps or more). Press play to watch the run: the agent adds a status filter the reference book never asked for, the uplift becomes 3 instead of 65, and every downstream action is the other branch's action. Click any operation to read what happened there.</p>
+  <div class="board" id="board">
+    <div class="board-top">
+      <div class="seg" role="group" aria-label="Run to replay">
+        <button type="button" data-mode="agent" aria-pressed="true">Agent run</button>
+        <button type="button" data-mode="oracle" aria-pressed="false">With handoff oracle</button>
+        <button type="button" data-mode="gold" aria-pressed="false">Reference execution</button>
+      </div>
+      <div class="ctrl">
+        <button class="ib" type="button" id="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg><span>Play</span></button>
+        <button class="ib" type="button" id="step">Step</button>
+        <button class="ib" type="button" id="reset">Reset</button>
+      </div>
+    </div>
+    <div class="board-body">
+      <div id="wfhost"></div>
+      <aside class="narr" id="narr"></aside>
+    </div>
+    <div class="legend">
+      <span><i class="sw"></i>value dependency</span><span><i class="sw state"></i>state dependency</span><span><i class="sw amber"></i>long-range (gap ≥ 5)</span>
+      <span><i class="dot ok"></i>own check passes</span><span><i class="dot bad"></i>own check fails</span><span><i class="dot opt"></i>optional operation</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="perturb"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Perturbations</div><h2>Change the structure, keep the business setting</h2></div>
+  <p class="lead">Because every workflow is executable, its dependency graph can be edited and re-validated. Two operators change the topology; two add distractors while the required graph stays fixed. Pick an operator to see what it does to the excerpt on the left, and how often it breaks a run that succeeded on the base workflow.</p>
+  <div class="pert">
+    <div class="board"><div class="board-body"><div id="pghost"></div></div>
+      <div class="legend"><span><i class="dot" style="background:var(--amber-soft);border-color:var(--amber)"></i>added operation</span><span><i class="sw" style="border-top:2.2px solid var(--amber)"></i>added prerequisite</span><span><i class="dot" style="border-style:dashed;border-color:var(--faint)"></i>distractor (guard false)</span></div>
+    </div>
+    <div class="ops" id="ops">
+      <button class="op" type="button" data-op="base" aria-pressed="true"><div class="h"><span>Base workflow</span><span class="b">43 / 100 pass</span></div><div class="d">The validated instance. Plan-level condition, one attempt.</div></button>
+      <button class="op" type="button" data-op="k1" aria-pressed="false"><div class="h"><span>Path deepening, k = 1</span><span class="b">breaks 16.3%</span></div><div class="d">One relay re-records the uplift before its consumer reads it. The value is unchanged; the path is longer.</div></button>
+      <button class="op" type="button" data-op="k3" aria-pressed="false"><div class="h"><span>Path deepening, k = 3</span><span class="b">breaks 25.6%</span></div><div class="d">Three chained relays on the same edge. Output tokens rise 1.7k, tool calls by 7.</div></button>
+      <button class="op" type="button" data-op="k5" aria-pressed="false"><div class="h"><span>Path deepening, k = 5</span><span class="b">breaks 23.3%</span></div><div class="d">Five relays. Each is required, and each is checked against its predecessor.</div></button>
+      <button class="op" type="button" data-op="gate" aria-pressed="false"><div class="h"><span>Prerequisite / fan-in, +3</span><span class="b">breaks 14.0%</span></div><div class="d">The CRM log may not be finalized until three more operations are evidenced. Its own value does not change.</div></button>
+      <button class="op" type="button" data-op="dist" aria-pressed="false"><div class="h"><span>Distractor branches, +10</span><span class="b">breaks 18.6%</span></div><div class="d">Ten conditional escalation arms whose guards are all false. Firing one fails the run.</div></button>
+      <button class="op" type="button" data-op="tool" aria-pressed="false"><div class="h"><span>Tool distractors, +10</span><span class="b">breaks 20.9%</span></div><div class="d">Ten decoy tools, really callable, with canned replies. The graph, gold, and checks are untouched.</div></button>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="results"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Results</div><h2>Local competence does not compose into workflow reliability</h2></div>
+  <p class="lead">Five frontier models, one harness, one attempt per workflow. Every cell is judged by executable checks on the saved final state: a workflow counts as complete only when the case-closing operation and all of its required ancestors pass.</p>
+  <div class="charts">
+    <div class="chart full" id="c-surv"><h3>Survival along the required dependency chain</h3><div class="sub">Share of workflows whose required chain is still fully valid at depth d (plan-level condition). Hover for values.</div></div>
+    <div class="chart" id="c-orc"><h3>What helps: structure or results?</h3><div class="sub">Full-workflow completion (LHCR-Req, %) under targeted oracles.</div></div>
+    <div class="chart" id="c-brk"><h3>Fragility under matched perturbations</h3><div class="sub">Base-successful workflows that fail after the change (Broken-Req, %).</div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="findings"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Findings</div><h2>Where workflow coordination breaks down</h2></div>
+  <div class="findings">
+    <div class="f"><div class="q">Local errors accumulate into large end-to-end losses.</div><p>From depth 3 to the full workflow, completion drops by <span class="num">32 to 46 points</span> for every model. At depth 12, own-check accuracy is still 59 to 81%, but only 32 to 56% of workflows keep a fully valid chain.</p></div>
+    <div class="f"><div class="q">Correct intermediate results matter more than dependency maps.</div><p>Handing agents the correct upstream object raises completion by <span class="num">up to 29.5 points</span>; exposing the dependency structure alone gives 7 to 14. Most lost edges fail at the producer (8 to 29%), not at the handoff (4 to 6%).</p></div>
+    <div class="f"><div class="q">More tokens and tool calls do not mean better coordination.</div><p>The best model finishes 46.5% of workflows with 12.9k output tokens; a model producing 30.7k tokens reaches 30.0%.</p></div>
+    <div class="f"><div class="q">Successful execution is fragile to controlled change.</div><p>Deepening a required path by three relays breaks <span class="num">25.6%</span> of previously successful workflows; ten decoy tools, which change nothing in the graph, still break 20.9%.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="cite"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Cite</div><h2>BibTeX</h2></div>
+<pre class="bib" id="bib">@inproceedings{liu2027enterpriseworld,
+  title     = {EnterpriseWorld: A Realistic World for Enterprise Long-Horizon Agents},
+  author    = {Liu, Hongjun and Pang, Bo and Ming, Yifei and Koul, Anurag and Pakhomov, Egor and Zhao, Chen and Joty, Shafiq and Nijkamp, Erik},
+  booktitle = {Under review},
+  year      = {2027}
+}</pre>
+  <div class="cite-row"><button class="ib" type="button" id="copybib">Copy BibTeX</button><span style="font-size:.84rem;color:var(--muted)">Data and code preview: <a href="https://anonymous.4open.science/r/ICLR_EnterpriseWorld_Repo-5E64/">anonymous repository</a></span></div>
+</div></section>
+
+<footer><div class="wrap">EnterpriseWorld is built with EnterpriseFlow, a programmatic framework for constructing workflows with explicit, verified, and controllable dependencies. Source tasks retain the licenses of BIRD, Spider 2.0, EnterpriseOps-Gym, WorkBench, and AppWorld.</div></footer>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+/* ---------- theme ---------- */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  try{var s=localStorage.getItem('ew-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next=cur?(cur==='dark'?'light':'dark'):(sysDark?'light':'dark');
+    root.setAttribute('data-theme',next); try{localStorage.setItem('ew-theme',next);}catch(e){}
+    drawCharts();
+  });
+})();
+
+/* ---------- workflow data: hybrid_balance_transfer_offer__0001, GPT-5.6 Sol, plan-level run ---------- */
+var NODES=[
+ {id:'n01',k:1,lane:0,role:'req',label:'source balance',sys:'BIRD reference book',gold:'149,609.18',agent:'#52: 149,609.18',ok:true,text:'Average loan amount over male-borrower links. The agent computes it exactly as the book does.'},
+ {id:'n02',k:2,lane:2,role:'req',label:'transfer base',sys:'CRM (WorkBench)',gold:'748',agent:'748, stamped [BTO-BASE]',ok:true,text:'transfer_base = round(source_balance / 200), stamped on the CRM row.'},
+ {id:'n03',k:3,lane:0,role:'req',label:'promo uplift',sys:'BIRD reference book',gold:'65',agent:'#53: 3',ok:false,origin:true,text:'Count of qualifying loans (BIRD financial #136, inherited verbatim). The agent adds status = \'A\', reading "approved" as a status code; the book counts every loan meeting the amount, date, and issuance conditions. 65 becomes 3.'},
+ {id:'n04',k:4,lane:1,role:'req',label:'total & delta',sys:'composition',gold:'813; 65',agent:'751; 3',ok:false,text:'total_transfer = base + uplift, delta = uplift. Arithmetically right for the agent\'s own uplift, wrong for the case.'},
+ {id:'n05',k:5,lane:1,role:'req',label:'branch',sys:'composition',gold:'CONDITIONAL_UW_REVIEW',agent:'AUTO_APPROVE_STANDARD_PROMO',ok:false,text:'delta 3 falls below the conditional-review floor, so the branch flips to automatic approval. From here every gated action is the other route\'s action.'},
+ {id:'n06',k:6,lane:5,role:'req',label:'promo hold',sys:'Enterprise scheduler',gold:'hold cites 813',agent:'#113–118: cites 751',ok:false,text:'The promo-window hold is placed correctly but cites the wrong total.'},
+ {id:'n07',k:7,lane:3,role:'opt',label:'payoff [XFER]',sys:'Venmo ledger',gold:'65',agent:'#107: 3',ok:false,text:'Payoff wired for exactly delta: 3 instead of 65.'},
+ {id:'n08',k:8,lane:4,role:'req',label:'handoff e-mail',sys:'Gmail',gold:'sent',agent:'not sent',ok:false,text:'The underwriting handoff is sent only on conditional or declined branches. Not sending it is correct for the branch the agent chose, and still fails the check.'},
+ {id:'n09',k:9,lane:2,role:'req',label:'CRM log',sys:'CRM (WorkBench)',gold:'813, after the handoff',agent:'751, no handoff',ok:false,text:'The disposition log is written without the handoff that should precede it.'},
+ {id:'n10',k:10,lane:3,role:'req',label:'fee allocation',sys:'Splitwise',gold:'on 65',agent:'on 3',ok:false,text:'Intercompany fee allocation computed from the wrong delta.'},
+ {id:'n11',k:11,lane:4,role:'req',label:'follow-up task',sys:'Todoist',gold:'delta 65',agent:'#111: delta 3',ok:false,text:'Reconciliation follow-up opened with delta 3.'},
+ {id:'n12',k:12,lane:2,role:'req',label:'tier stamp',sys:'CRM (WorkBench)',gold:'CONDITIONAL_UW_REVIEW',agent:'#123: AUTO_APPROVE…, uplift 3',ok:false,text:'The tier is supposed to be re-derived from the live book. The agent re-uses its own uplift.'},
+ {id:'n13',k:13,lane:5,role:'req',label:'intake ticket',sys:'ITSM gym',gold:'conditional route',agent:'#119–120: auto-approve route',ok:false,text:'Card-servicing intake filed on the wrong route.'},
+ {id:'n14',k:14,lane:4,role:'req',label:'status e-mail',sys:'Gmail',gold:'813, conditional',agent:'#110: 751, auto-approve',ok:false,text:'Status update to the manager cites the wrong total and tier.'},
+ {id:'n15',k:15,lane:5,role:'req',label:'briefing case',sys:'HR gym',gold:'conditional route',agent:'#125–126: auto-approve route',ok:false,text:'Manager briefing case reassigned on the basis of the wrong branch.'},
+ {id:'n16',k:16,lane:3,role:'req',label:'settle-up',sys:'Splitwise',gold:'share of 65',agent:'share of 3',ok:false,text:'Underwriting settle-up matches the wrong share.'},
+ {id:'n17',k:17,lane:4,role:'req',label:'wrap-up',sys:'Todoist',gold:'total 813',agent:'#122: 751',ok:false,text:'Wrap-up comment quotes 751.'},
+ {id:'n18',k:18,lane:2,role:'opt',label:'reconcile',sys:'CRM (WorkBench)',gold:'net 65',agent:'#132–162: net 3, "reconciled: ok"',ok:false,text:'The agent re-reads every record it wrote itself and confirms they agree with each other. Nothing re-asks the book.'},
+ {id:'n19',k:19,lane:2,role:'req',label:'review booking',sys:'Calendar (WorkBench)',gold:'65 / 813 / 65 / conditional',agent:'#112: pins fail',ok:false,text:'The closing review is booked in the right slot, but its pins require the true uplift, total, delta, and branch.'},
+ {id:'n20',k:20,lane:0,role:'opt',label:'control probe',sys:'BIRD reference book',gold:'74',agent:'74',ok:true,text:'Quarter-close control reading, reported verbatim. Correct.'}
+];
+var EDGES=[['n01','n02','v',1],['n02','n04','v',2],['n03','n04','v',1],['n04','n05','v',1],['n02','n05','v',3],['n04','n06','v',2],['n04','n07','v',3],['n04','n08','v',4],['n05','n08','v',3],['n08','n09','s',1],['n04','n09','v',5],['n09','n11','s',2],['n04','n10','v',6],['n11','n12','s',1],['n12','n13','s',1],['n13','n14','s',1],['n04','n14','v',10],['n14','n15','s',1],['n11','n17','s',6],['n15','n17','s',2],['n07','n18','s',11],['n04','n18','v',14],['n06','n19','s',13],['n09','n19','s',10],['n15','n19','s',4],['n10','n16','s',6],['n04','n16','v',12],['n03','n12','v',9],['n02','n13','v',11],['n05','n15','v',10],['n04','n17','v',13],['n10','n17','s',7],['n16','n17','s',1],['n01','n19','v',18]];
+var LANES=['REFERENCE BOOK','COMPUTE','CRM · CALENDAR','LEDGERS','MAIL · TASKS','ENTERPRISE GYMS'];
+var REPORT=[['source_balance','149,609.18','149,609.18',true],['transfer_base','748','748',true],['side_scan_count','74','74',true],['reconciled','ok','ok',true],['promo_uplift','65','3',false],['delta','65','3',false],['total_transfer','813','751',false],['branch','CONDITIONAL_UW_REVIEW','AUTO_APPROVE_STANDARD_PROMO',false]];
+
+/* ---------- workflow board ---------- */
+var svgNS='http://www.w3.org/2000/svg';
+function el(n,a,txt){var e=document.createElementNS(svgNS,n);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;}
+var W=1040,LX=96,CW=44,NW=40,NH=26,LT=40,LH=62,H=LT+LH*LANES.length+16;
+function nx(k){return LX+(k-1)*CW+CW/2;} function ny(l){return LT+l*LH+LH/2;}
+var byId={}; NODES.forEach(function(n){byId[n.id]=n;});
+function buildBoard(host){
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,class:'wf',role:'img','aria-label':'Dependency graph of the balance-transfer workflow'});
+  var defs=el('defs'); ['blue','amber','bad','ok'].forEach(function(c){var m=el('marker',{id:'arr-'+c,viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto-start-reverse'});m.appendChild(el('path',{d:'M0 0L10 5L0 10z',class:'mark-'+c}));defs.appendChild(m);});
+  svg.appendChild(defs);
+  LANES.forEach(function(l,i){svg.appendChild(el('text',{x:12,y:ny(i)+4,class:'lane-label'},l));svg.appendChild(el('line',{x1:LX-8,x2:W-8,y1:ny(i),y2:ny(i),class:'lane-line'}));});
+  var eg=el('g',{id:'edges'}); svg.appendChild(eg);
+  EDGES.forEach(function(e){var a=byId[e[0]],b=byId[e[1]];var x1=nx(a.k)+NW/2,y1=ny(a.lane),x2=nx(b.k)-NW/2,y2=ny(b.lane);var dx=Math.max(24,(x2-x1)*0.45);var d;
+    if(a.lane===b.lane&&e[3]===1)d='M'+x1+' '+y1+'L'+x2+' '+y2; else d='M'+x1+' '+y1+'C'+(x1+dx)+' '+y1+','+(x2-dx)+' '+y2+','+x2+' '+y2;
+    var cls='edge'+(e[2]==='s'?' state':'')+(e[3]>=5?' long':'');var p=el('path',{d:d,class:cls,'data-from':e[0],'data-to':e[1],'marker-end':'url(#arr-'+(e[3]>=5?'amber':'blue')+')'});eg.appendChild(p);});
+  var ng=el('g',{id:'nodes'}); svg.appendChild(ng);
+  NODES.forEach(function(n){var g=el('g',{class:'node'+(n.role==='opt'?' opt':''),'data-id':n.id,transform:'translate('+(nx(n.k)-NW/2)+','+(ny(n.lane)-NH/2)+')'});
+    g.appendChild(el('circle',{class:'halo',cx:NW/2,cy:NH/2,r:18}));
+    g.appendChild(el('rect',{width:NW,height:NH,rx:6}));
+    g.appendChild(el('text',{x:NW/2,y:NH/2+4,'text-anchor':'middle'},String(n.k)));
+    g.appendChild(el('text',{x:NW/2,y:NH+11,'text-anchor':'middle',class:'id'},n.label));
+    g.addEventListener('click',function(){showNode(n.id,true);}); ng.appendChild(g);});
+  host.appendChild(svg); return svg;
+}
+var board={mode:'agent',i:0,timer:null};
+var svg=buildBoard(document.getElementById('wfhost'));
+function status(n){ if(board.mode==='agent')return n.ok; return true; }
+function narrHTML(n){
+  var st=status(n), done=board.i>NODES.indexOf(n);
+  var pill=done?('<span class="pill '+(st?'ok':'bad')+'">'+(st?'check passes':'check fails')+'</span>'):'<span class="pill wait">not yet executed</span>';
+  var agentVal=board.mode==='agent'?n.agent:(board.mode==='oracle'&&n.id==='n04'?'oracle supplies uplift 65 → 813; 65':n.gold);
+  var body=board.mode==='agent'?n.text:(board.mode==='oracle'?'Under the handoff oracle the correct upstream object is delivered when this consumer starts its step. With uplift 65 at operation 4, the branch, ledger, and every gated action follow the reference route.':'The reference program executes the workflow on the live world and recomputes every figure, branch, and target from it.');
+  return '<div class="k">operation '+n.k+' · '+n.sys+(n.role==='opt'?' · optional':' · depth-required')+(n.origin&&board.mode==='agent'?' · <b style="color:var(--bad)">origin of the error</b>':'')+'</div><div class="t">'+n.label.charAt(0).toUpperCase()+n.label.slice(1)+'</div>'+pill+'<div class="body">'+body+'</div><div class="vals"><span class="lab">reference</span><span>'+n.gold+'</span><span class="lab">'+(board.mode==='gold'?'reference':'agent')+'</span><span>'+agentVal+'</span></div>';
+}
+function reportHTML(){
+  var pass=board.mode==='agent'?false:true;
+  var cells=REPORT.map(function(r){var ok=board.mode==='agent'?r[3]:true;return '<div class="cell '+(ok?'ok':'bad')+'"><div class="key">'+r[0]+'</div>'+(board.mode==='agent'?r[2]:r[1])+'</div>';}).join('');
+  var sum=board.mode==='agent'?'<b style="color:var(--bad)">LHCR-Req = 0.</b> 15 of 17 required operations fail their own checks, none is merely blocked; four of eight report values are wrong. The run is internally consistent, and wrong.':'<b style="color:var(--ok)">LHCR-Req = 1.</b> Every required operation holds its closure verdict; all eight report values match the live-recomputed gold.';
+  return '<div class="k">run complete · 162 tool calls · ended by the agent</div><div class="t">Deliverable (REPORT block)</div><div class="body">'+sum+'</div><div class="report">'+cells+'</div>';
+}
+function paint(){
+  NODES.forEach(function(n,idx){var g=svg.querySelector('[data-id="'+n.id+'"]');g.classList.remove('ok','bad','cur','pending');
+    if(idx<board.i)g.classList.add(status(n)?'ok':'bad'); else g.classList.add('pending');
+    if(idx===board.i-1)g.classList.add('cur');});
+  EDGES.forEach(function(e){var p=svg.querySelector('[data-from="'+e[0]+'"][data-to="'+e[1]+'"]');p.classList.remove('bad','ok','dim');
+    var a=NODES.indexOf(byId[e[0]]),b=NODES.indexOf(byId[e[1]]);
+    if(b<board.i){var ok=status(byId[e[0]]);p.classList.add(ok?'ok':'bad');p.setAttribute('marker-end','url(#arr-'+(ok?'ok':'bad')+')');}
+    else{p.setAttribute('marker-end','url(#arr-'+(e[3]>=5?'amber':'blue')+')');if(a>=board.i)p.classList.add('dim');}});
+}
+function showNode(id,manual){var n=byId[id];document.getElementById('narr').innerHTML=narrHTML(n);if(manual){svg.querySelectorAll('.node.cur').forEach(function(g){g.classList.remove('cur');});svg.querySelector('[data-id="'+id+'"]').classList.add('cur');}}
+function stepOnce(){
+  if(board.i>=NODES.length){finish();return false;}
+  var n=NODES[board.i]; board.i++; paint(); showNode(n.id,false);
+  if(board.mode==='agent'&&n.origin){var h=svg.querySelector('[data-id="'+n.id+'"] .halo');h.classList.remove('go');void h.getBoundingClientRect();h.classList.add('go');}
+  return true;
+}
+function finish(){stopPlay();document.getElementById('narr').innerHTML=reportHTML();}
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function play(){if(board.timer){stopPlay();return;}document.querySelector('#play span').textContent='Pause';var tick=function(){if(!stepOnce()){return;}if(board.i>=NODES.length){board.timer=setTimeout(function(){finish();},900);return;}board.timer=setTimeout(tick,reduce?400:(NODES[board.i-1].origin?1700:720));};tick();}
+function stopPlay(){if(board.timer){clearTimeout(board.timer);board.timer=null;}document.querySelector('#play span').textContent='Play';}
+function reset(){stopPlay();board.i=0;paint();document.getElementById('narr').innerHTML='<div class="k">balance-transfer offer · 20 operations · required depth 12</div><div class="t">'+(board.mode==='agent'?'GPT-5.6 Sol, plan-level condition':(board.mode==='oracle'?'Same model, handoff oracle':'Reference execution'))+'</div><div class="body">'+(board.mode==='agent'?'The agent receives the business objective, the case files, and six database tools. Policies arrive as desk notes the first time it works the records they govern. It must plan the engagement itself.':(board.mode==='oracle'?'When a consumer operation starts its step, the harness delivers the correct dependency object as the reference execution produced it. Everything else is unchanged.':'The reference program that defines ground truth: every figure recomputed from the live world, every check passing.'))+'</div><div class="body" style="color:var(--muted)">Press Play, or Step through one operation at a time.</div>';}
+document.getElementById('play').addEventListener('click',play);
+document.getElementById('step').addEventListener('click',function(){stopPlay();if(!stepOnce())finish();});
+document.getElementById('reset').addEventListener('click',reset);
+document.querySelectorAll('#board .seg button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#board .seg button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');board.mode=b.getAttribute('data-mode');reset();});});
+reset();
+
+/* ---------- perturbation excerpt ---------- */
+(function(){
+  var host=document.getElementById('pghost');
+  var PW=700,PH=300;
+  var base={nodes:[{id:'n02',x:90,y:80,l:'transfer base'},{id:'n03',x:90,y:200,l:'promo uplift'},{id:'n04',x:260,y:140,l:'total & delta'},{id:'n05',x:400,y:140,l:'branch'},{id:'n08',x:540,y:80,l:'handoff e-mail'},{id:'n09',x:620,y:200,l:'CRM log'}],
+    edges:[['n02','n04'],['n03','n04'],['n04','n05'],['n05','n08'],['n08','n09'],['n04','n09']]};
+  var svg=el('svg',{viewBox:'0 0 '+PW+' '+PH,class:'wf pg',role:'img','aria-label':'Excerpt of the workflow under a perturbation operator'});
+  var defs=el('defs');var m=el('marker',{id:'parr',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto-start-reverse'});m.appendChild(el('path',{d:'M0 0L10 5L0 10z',class:'mark-blue'}));defs.appendChild(m);
+  var m2=el('marker',{id:'parr-a',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto-start-reverse'});m2.appendChild(el('path',{d:'M0 0L10 5L0 10z',class:'mark-amber'}));defs.appendChild(m2);
+  svg.appendChild(defs); host.appendChild(svg);
+  var BW=96,BH=30;
+  function node(n,cls){var g=el('g',{class:'node '+(cls||''),transform:'translate('+(n.x-BW/2)+','+(n.y-BH/2)+')'});g.appendChild(el('rect',{width:BW,height:BH,rx:7}));g.appendChild(el('text',{x:BW/2,y:BH/2+4,'text-anchor':'middle'},n.l));return g;}
+  function edge(a,b,cls,amber){var x1=a.x+BW/2,x2=b.x-BW/2,dx=Math.max(20,(x2-x1)*.5);var d='M'+x1+' '+a.y+'C'+(x1+dx)+' '+a.y+','+(x2-dx)+' '+b.y+','+x2+' '+b.y;return el('path',{d:d,class:'edge '+(cls||''),'marker-end':'url(#'+(amber?'parr-a':'parr')+')'});}
+  function render(op){
+    while(svg.childNodes.length>1)svg.removeChild(svg.lastChild);
+    var pos={};base.nodes.forEach(function(n){pos[n.id]={x:n.x,y:n.y,l:n.l};});
+    var extra=[],extraEdges=[],eg=el('g'),ng=el('g'),tg=el('g');
+    var k=op==='k1'?1:op==='k3'?3:op==='k5'?5:0;
+    var skip={};
+    if(k){ // relays between n03 and n04
+      skip['n03|n04']=true; var prev=pos.n03; var startX=150, span=(pos.n04.x-BW/2-24)-(startX);
+      pos.n04={x:pos.n04.x+ (k>=3?90:40),y:pos.n04.y,l:pos.n04.l}; pos.n05.x+=(k>=3?90:40); pos.n08.x+=(k>=3?30:20); pos.n09.x+=(k>=3?30:20);
+      for(var i=1;i<=k;i++){var rx=startX+ (i-1)*( (pos.n04.x-BW-startX)/Math.max(1,k-0.4) ), ry=200+(i%2?0:36);
+        var r={x:rx+40,y:ry,l:'staged '+i}; extra.push(r); extraEdges.push([prev,r,'rel']); prev=r;}
+      extraEdges.push([prev,pos.n04,'rel']);
+    }
+    base.edges.forEach(function(e){if(skip[e[0]+'|'+e[1]])return;eg.appendChild(edge(pos[e[0]],pos[e[1]]));});
+    extraEdges.forEach(function(e){var p=edge(e[0],e[1],'enter',true);p.classList.add('gate');eg.appendChild(p);});
+    if(op==='gate'){[{x:400,y:40,l:'promo hold'},{x:400,y:250,l:'fee allocation'},{x:520,y:250,l:'settle-up'}].forEach(function(w){extra.push(w);var p=edge(w,pos.n09,'gate enter',true);eg.appendChild(p);});}
+    if(op==='dist'){for(var j=0;j<10;j++){var d={x:120+j*58,y:262,l:'arm '+(j+1)};var g=node(d,'dis enter');g.setAttribute('transform','translate('+(d.x-30)+','+(d.y-12)+')');g.firstChild.setAttribute('width',56);g.firstChild.setAttribute('height',24);g.lastChild.setAttribute('x',28);g.lastChild.setAttribute('y',16);ng.appendChild(g);}
+      tg.appendChild(el('text',{x:PW/2,y:PH-6,'text-anchor':'middle',class:'tool'},'ten guarded escalation arms in the goal · every guard false on this data · firing one fails the run'));}
+    if(op==='tool'){var tools=['list_tables','describe_table','query','create_row','update_row','delete_row'],decoys=['send_sms','fx_rate','geocode','translate','holidays','set_reminder','kb_search','export_csv','archive_thread','schedule_report'];
+      var all=tools.map(function(t){return [t,false];}).concat(decoys.map(function(t){return [t,true];}));
+      all.forEach(function(t,i){var col=i%8,row=Math.floor(i/8);var tx=el('text',{x:40+col*86,y:252+row*20,class:'tool'+(t[1]?' decoy enter':''),'text-anchor':'start'},(t[1]?'+ ':'')+t[0]);tg.appendChild(tx);});
+      tg.appendChild(el('text',{x:40,y:236,class:'lane-label'},'TOOL SURFACE  ·  six real tools, ten callable decoys'));}
+    Object.keys(pos).forEach(function(id){ng.appendChild(node(pos[id]));});
+    extra.forEach(function(n){ng.appendChild(node(n,(op==='gate'?'':'rel')+' enter'));});
+    svg.appendChild(eg);svg.appendChild(ng);svg.appendChild(tg);
+  }
+  render('base');
+  document.querySelectorAll('#ops .op').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#ops .op').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');render(b.getAttribute('data-op'));});});
+})();
+
+/* ---------- charts ---------- */
+var MODELS=[{n:'GPT-6 Astra',c:'--s1'},{n:'GPT-5.6 Sol',c:'--s2'},{n:'Claude Fable 5.1 †',c:'--s3'},{n:'Claude Opus 4.8',c:'--s4'},{n:'Gemini 3.7 Flash',c:'--s5'}];
+var SURV=[[95,90,87,87,86,84,71,68,66,63,61,55,30,16],[99,91,87,87,86,79,75,73,66,64,59,51,26,13],[98,94,92,92,92,86,78,78,68,68,62,56,30,14],[81,71,66,66,62,58,53,49,45,44,38,32,17,6],[74,68,64,63,62,58,56,55,51,50,45,38,16,8]];
+var ORC=[[46.5,46.0,53.3,69.8],[42.0,63.5,49.7,64.8],[46.0,66.0,60.0,51.5],[26.0,48.0,34.5,51.5],[30.0,56.5,40.5,59.5]];
+var ORCL=['Default','+ Procedure','+ Dependency map','+ Handoff'];
+var BRK=[['k = 1',16.3],['k = 3',25.6],['k = 5',23.3],['+3 parents',14.0],['+10 arms',18.6],['+10 tools',20.9]];
+function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+function tip(host){var t=host.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';host.appendChild(t);}return t;}
+function drawCharts(){
+  /* survival line chart */
+  (function(){var host=document.getElementById('c-surv');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
+    var Wc=980,Hc=300,ml=44,mr=150,mt=12,mb=36,pw=Wc-ml-mr,ph=Hc-mt-mb;var xs=function(d){return ml+(d-1)/13*pw;},ys=function(v){return mt+(1-v/100)*ph;};
+    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Survival by dependency depth, five models'});
+    [0,25,50,75,100].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-8,y:ys(v)+4,'text-anchor':'end',class:'ax'},v+'%'));});
+    for(var d=1;d<=14;d++){s.appendChild(el('text',{x:xs(d),y:Hc-14,'text-anchor':'middle',class:'ax'},String(d)));}
+    s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl'},'REQUIRED DEPENDENCY DEPTH d'));
+    MODELS.forEach(function(m,i){var col=cssv(m.c);var d='';SURV[i].forEach(function(v,j){d+=(j?'L':'M')+xs(j+1)+' '+ys(v);});
+      s.appendChild(el('path',{d:d,fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round'}));
+      SURV[i].forEach(function(v,j){s.appendChild(el('circle',{cx:xs(j+1),cy:ys(v),r:3.5,fill:col,stroke:cssv('--paper'),'stroke-width':2}));});
+      var last=SURV[i][13];var ly=ys(last)+4+(i===2?-8:0)+(i===0?6:0)+(i===4?4:0);s.appendChild(el('text',{x:xs(14)+10,y:ly,class:'lbl'},m.n+' · '+last+'%'));});
+    host.appendChild(s);
+    var leg=document.createElement('div');leg.className='leg';MODELS.forEach(function(m){leg.innerHTML+='<span><i style="background:'+cssv(m.c)+'"></i>'+m.n+'</span>';});leg.innerHTML+='<span style="color:var(--muted)">† 50-workflow subset</span>';host.appendChild(leg);
+    var t=tip(host);s.addEventListener('mousemove',function(ev){var r=s.getBoundingClientRect();var x=(ev.clientX-r.left)/r.width*Wc;var d=Math.max(1,Math.min(14,Math.round((x-ml)/pw*13+1)));t.style.left=((xs(d))/Wc*100)+'%';t.style.top=(ys(Math.max.apply(null,SURV.map(function(a){return a[d-1];})))/Hc*100)+'%';t.innerHTML='depth '+d+': '+MODELS.map(function(m,i){return m.n.replace(' †','')+' '+SURV[i][d-1]+'%';}).join(' · ');t.style.opacity=1;});s.addEventListener('mouseleave',function(){t.style.opacity=0;});
+    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><div style="overflow-x:auto"><table class="data"><tr><th>Model</th>'+SURV[0].map(function(_,j){return '<th>d'+(j+1)+'</th>';}).join('')+'</tr>'+MODELS.map(function(m,i){return '<tr><td>'+m.n+'</td>'+SURV[i].map(function(v){return '<td>'+v+'</td>';}).join('')+'</tr>';}).join('')+'</table></div>';host.appendChild(det);
+  })();
+  /* oracle grouped bars */
+  (function(){var host=document.getElementById('c-orc');var old=host.querySelector('svg');if(old)old.remove();var oldL=host.querySelector('.leg');if(oldL)oldL.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
+    var Wc=480,Hc=300,ml=36,mr=8,mt=10,mb=44,pw=Wc-ml-mr,ph=Hc-mt-mb,gw=pw/5,bw=(gw-14)/4;var ys=function(v){return mt+(1-v/80)*ph;};
+    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Completion under oracles, grouped bars'});
+    [0,20,40,60,80].forEach(function(v){s.appendChild(el('line',{x1:ml,x2:ml+pw,y1:ys(v),y2:ys(v),class:'gl'}));s.appendChild(el('text',{x:ml-6,y:ys(v)+4,'text-anchor':'end',class:'ax'},v));});
+    var shades=[0.35,0.55,0.75,1];
+    MODELS.forEach(function(m,i){var col=cssv(m.c);ORC[i].forEach(function(v,j){var x=ml+i*gw+7+j*bw;var y=ys(v);var r=el('rect',{x:x+1,y:y,width:bw-2,height:ys(0)-y,fill:col,'fill-opacity':shades[j],rx:2});r.setAttribute('data-l',m.n+' · '+ORCL[j]+': '+v+'%');s.appendChild(r);});
+      var nm=m.n.replace('Claude ','').replace(' †','†');s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-26,'text-anchor':'middle',class:'ax'},nm.split(' ')[0]));s.appendChild(el('text',{x:ml+i*gw+gw/2,y:Hc-13,'text-anchor':'middle',class:'ax'},nm.split(' ').slice(1).join(' ')));
+      s.appendChild(el('text',{x:ml+i*gw+7+3*bw+bw/2,y:ys(ORC[i][3])-4,'text-anchor':'middle',class:'val'},ORC[i][3]));});
+    s.appendChild(el('text',{x:ml+pw/2,y:Hc-1,'text-anchor':'middle',class:'axl'},'LHCR-REQ (%) · BARS LEFT TO RIGHT: '+ORCL.join(', ').toUpperCase()));
+    host.appendChild(s);
+    var leg=document.createElement('div');leg.className='leg';ORCL.forEach(function(l,j){leg.innerHTML+='<span><i style="background:var(--ink);opacity:'+shades[j]+'"></i>'+l+'</span>';});host.appendChild(leg);
+    var t=tip(host);s.querySelectorAll('rect[data-l]').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';t.textContent=r.getAttribute('data-l');t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
+    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><table class="data"><tr><th>Model</th>'+ORCL.map(function(l){return '<th>'+l+'</th>';}).join('')+'</tr>'+MODELS.map(function(m,i){return '<tr><td>'+m.n+'</td>'+ORC[i].map(function(v){return '<td>'+v.toFixed(1)+'</td>';}).join('')+'</tr>';}).join('')+'</table>';host.appendChild(det);
+  })();
+  /* break-rate bars */
+  (function(){var host=document.getElementById('c-brk');var old=host.querySelector('svg');if(old)old.remove();var oldT=host.querySelector('details');if(oldT)oldT.remove();
+    var Wc=480,Hc=300,ml=110,mr=48,mt=14,mb=30,pw=Wc-ml-mr,ph=Hc-mt-mb,rh=ph/6;var xs=function(v){return ml+v/30*pw;};
+    var s=el('svg',{viewBox:'0 0 '+Wc+' '+Hc,role:'img','aria-label':'Broken-Req by perturbation'});
+    [0,10,20,30].forEach(function(v){s.appendChild(el('line',{x1:xs(v),x2:xs(v),y1:mt,y2:mt+ph,class:'gl'}));s.appendChild(el('text',{x:xs(v),y:Hc-12,'text-anchor':'middle',class:'ax'},v+'%'));});
+    var col=cssv('--brand');
+    BRK.forEach(function(b,i){var y=mt+i*rh+rh*0.2,h=rh*0.6;var r=el('rect',{x:ml,y:y,width:xs(b[1])-ml,height:h,fill:col,rx:3});r.setAttribute('data-l',b[0]+': '+b[1]+'% of base-successful workflows fail');s.appendChild(r);
+      s.appendChild(el('text',{x:ml-8,y:y+h/2+4,'text-anchor':'end',class:'lbl'},b[0]));s.appendChild(el('text',{x:xs(b[1])+6,y:y+h/2+4,class:'val'},b[1]+'%'));});
+    s.appendChild(el('line',{x1:ml,x2:ml,y1:mt,y2:mt+ph,stroke:cssv('--line')}));
+    s.appendChild(el('text',{x:ml-8,y:mt+rh*1.5+2,'text-anchor':'end',class:'axl',transform:'translate(-96,0) rotate(-90 '+(ml-8)+' '+(mt+rh*1.5)+')'},'PATH DEEPENING'));
+    host.appendChild(s);
+    var t=tip(host);s.querySelectorAll('rect[data-l]').forEach(function(r){r.addEventListener('mouseenter',function(){var b=r.getBBox();t.style.left=((b.x+b.width/2)/Wc*100)+'%';t.style.top=(b.y/Hc*100)+'%';t.textContent=r.getAttribute('data-l');t.style.opacity=1;});r.addEventListener('mouseleave',function(){t.style.opacity=0;});});
+    var det=document.createElement('details');det.className='tbl';det.innerHTML='<summary>Table view</summary><table class="data"><tr><th>Perturbation</th><th>Broken-Req</th></tr>'+BRK.map(function(b){return '<tr><td>'+b[0]+'</td><td>'+b[1]+'%</td></tr>';}).join('')+'</table>';host.appendChild(det);
+  })();
+}
+drawCharts();
+if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawCharts);}
+
+/* ---------- bibtex copy ---------- */
+document.getElementById('copybib').addEventListener('click',function(){var t=document.getElementById('bib').textContent;var done=function(){var x=document.getElementById('toast');x.classList.add('show');setTimeout(function(){x.classList.remove('show');},1400);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}});
+</script>
+
+</body>
+</html>
